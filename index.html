@@ -1676,8 +1676,7 @@
         <div id="offlineMode" class="hidden">
             <button class="login-btn login-btn-secondary" onclick="continueOffline()">📴 Fortsett uten innlogging</button>
             <p class="login-hint">
-                Fremgang lagres på denne enheten.<br>
-                <small style="color: var(--gray-500);">💡 For sky-sync: Last ned filen og åpne i nettleser</small>
+                Fremgang lagres kun på denne enheten.
             </p>
         </div>
     </div>
@@ -1971,14 +1970,16 @@
                         <thead>
                             <tr>
                                 <th>Navn</th>
+                                <th>Kode</th>
                                 <th>Gloser</th>
                                 <th>Grammatikk</th>
                                 <th>Sist aktiv</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody id="studentsTableBody">
                             <tr>
-                                <td colspan="4" style="text-align: center; color: var(--gray-500);">
+                                <td colspan="6" style="text-align: center; color: var(--gray-500);">
                                     Ingen elever har blitt med ennå
                                 </td>
                             </tr>
@@ -2108,7 +2109,7 @@
             } catch (error) {
                 console.error('Error creating user:', error);
                 if (error.message === 'Failed to fetch') {
-                    showLoginError('Kan ikke koble til server herfra.<br><small>Last ned filen og åpne i nettleser for sky-sync, eller bruk offline-modus.</small>');
+                    showLoginError('Kunne ikke koble til server. Sjekk nettverket eller bruk offline-modus.');
                 } else {
                     showLoginError(`Nettverksfeil: ${error.message || 'Kunne ikke koble til server'}`);
                 }
@@ -2190,7 +2191,7 @@
             } catch (error) {
                 console.error('Login error:', error);
                 if (error.message === 'Failed to fetch') {
-                    showLoginError('Kan ikke koble til server herfra.<br><small>Last ned filen og åpne i nettleser, eller bruk offline-modus.</small>');
+                    showLoginError('Kunne ikke koble til server. Sjekk nettverket eller bruk offline-modus.');
                 } else {
                     showLoginError('Noe gikk galt. Prøv igjen.');
                 }
@@ -3692,7 +3693,7 @@
                         <input type="text" class="conjugation-input" id="verbInput" 
                                placeholder="Skriv svaret..." autocomplete="off" autofocus>
                     </div>
-                    <div class="accent-hint">💡 Hold inne a, e, i, o, u eller n for aksent (á, é, í, ó, ú, ñ)</div>
+                    <div class="accent-hint">💡 Hold inne a/e/i/o/u/n for aksent, eller ?/! for ¿/¡</div>
                     
                     <div class="conjugation-feedback" id="verbFeedback"></div>
                     
@@ -4083,7 +4084,8 @@
 
         const accentMap = {
             'a': 'á', 'e': 'é', 'i': 'í', 'o': 'ó', 'u': 'ú', 'n': 'ñ',
-            'A': 'Á', 'E': 'É', 'I': 'Í', 'O': 'Ó', 'U': 'Ú', 'N': 'Ñ'
+            'A': 'Á', 'E': 'É', 'I': 'Í', 'O': 'Ó', 'U': 'Ú', 'N': 'Ñ',
+            '?': '¿', '!': '¡'
         };
 
         let longPressTimer = null;
@@ -4958,7 +4960,8 @@
                 
                 return `
                     <tr>
-                        <td><strong>${student.display_name || student.code}</strong></td>
+                        <td><strong>${student.display_name || 'Ukjent'}</strong></td>
+                        <td><code style="background: var(--gray-100); padding: 2px 6px; border-radius: 4px;">${student.code}</code></td>
                         <td>
                             <div class="progress-mini">
                                 <div class="progress-mini-fill" style="width: ${vocabProgress}%"></div>
@@ -4972,9 +4975,80 @@
                             ${grammarProgress}%
                         </td>
                         <td><span class="activity-badge ${activityClass}">${activityText}</span></td>
+                        <td><button class="btn btn-sm btn-outline" onclick="resetStudentCode('${student.code}')" title="Gi ny kode">🔄</button></td>
                     </tr>
                 `;
             }).join('');
+        }
+
+        async function resetStudentCode(oldCode) {
+            const student = await getStudentByCode(oldCode);
+            if (!student) {
+                showToast('Fant ikke eleven', 'error');
+                return;
+            }
+            
+            const newCode = generateCode();
+            
+            if (!confirm(`Gi ${student.display_name || 'eleven'} ny kode?\n\nGammel: ${oldCode}\nNy: ${newCode}`)) {
+                return;
+            }
+            
+            try {
+                // Create new user with same data but new code
+                const response = await fetch(`${SUPABASE_URL}/rest/v1/user_progress`, {
+                    method: 'POST',
+                    headers: supabaseHeaders,
+                    body: JSON.stringify({
+                        code: newCode,
+                        display_name: student.display_name,
+                        is_teacher: false,
+                        vocab_data: student.vocab_data || {},
+                        grammar_data: student.grammar_data || {},
+                        verb_data: student.verb_data || {}
+                    })
+                });
+                
+                if (!response.ok) throw new Error('Kunne ikke opprette ny bruker');
+                
+                // Update class membership
+                if (currentClass) {
+                    await fetch(`${SUPABASE_URL}/rest/v1/class_members?student_code=eq.${encodeURIComponent(oldCode)}`, {
+                        method: 'PATCH',
+                        headers: supabaseHeaders,
+                        body: JSON.stringify({ student_code: newCode })
+                    });
+                }
+                
+                // Delete old user
+                await fetch(`${SUPABASE_URL}/rest/v1/user_progress?code=eq.${encodeURIComponent(oldCode)}`, {
+                    method: 'DELETE',
+                    headers: supabaseHeaders
+                });
+                
+                showToast(`Ny kode for ${student.display_name}: ${newCode}`, 'success');
+                
+                // Reload dashboard
+                await loadClassStudents();
+                
+            } catch (error) {
+                console.error('Error resetting code:', error);
+                showToast('Kunne ikke endre kode: ' + error.message, 'error');
+            }
+        }
+
+        async function getStudentByCode(code) {
+            try {
+                const response = await fetch(
+                    `${SUPABASE_URL}/rest/v1/user_progress?code=eq.${encodeURIComponent(code)}&select=*`,
+                    { headers: supabaseHeaders }
+                );
+                if (!response.ok) return null;
+                const data = await response.json();
+                return data.length > 0 ? data[0] : null;
+            } catch (error) {
+                return null;
+            }
         }
 
         function updateDashboardStats(students, totalMembers) {
