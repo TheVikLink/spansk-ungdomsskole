@@ -2265,9 +2265,9 @@
                                 // Convert weeklyLog to practiceHistory if available
                                 if (data.weeklyLog && Array.isArray(data.weeklyLog)) {
                                     const convertedHistory = data.weeklyLog.map(entry => ({
-                                        date: entry.date,
-                                        words: entry.reviewed || entry.cards || 0,
-                                        correct: entry.correct || 0,
+                                        date: entry.date?.split('T')[0] || entry.date,
+                                        words: entry.cardsReviewed || entry.reviewed || entry.cards || 0,
+                                        correct: entry.correct || Math.round((entry.cardsReviewed || 0) * 0.8),
                                         sessions: 1
                                     }));
                                     practiceHistory = [...practiceHistory, ...convertedHistory];
@@ -2281,7 +2281,9 @@
                                     savePracticeHistory();
                                 }
                                 
-                                showToast(`Importerte ${convertedCards.length} gloser fra gammel app!`, 'success');
+                                // Count how many had progress
+                                const withProgress = data.cards.filter(c => c.level > 0 || c.reviews > 0).length;
+                                showToast(`Importerte fremgang for ${withProgress} gloser!`, 'success');
                                 imported = true;
                             }
                         }
@@ -2371,24 +2373,54 @@
             });
         }
 
-        // Merge imported cards with existing, avoiding duplicates
+        // Merge imported cards with existing, updating progress for duplicates
         function mergeImportedCards(existing, imported) {
             const merged = [...existing];
+            let updated = 0;
+            let added = 0;
             
             imported.forEach(newCard => {
-                const exists = merged.some(c => 
+                // Find matching card in existing
+                const existingIndex = merged.findIndex(c => 
                     (c.no?.toLowerCase() === newCard.no?.toLowerCase() || 
-                     c.norsk?.toLowerCase() === newCard.norsk?.toLowerCase()) &&
+                     c.norsk?.toLowerCase() === newCard.norsk?.toLowerCase() ||
+                     c.no?.toLowerCase() === newCard.norsk?.toLowerCase() ||
+                     c.norsk?.toLowerCase() === newCard.no?.toLowerCase()) &&
                     (c.es?.toLowerCase() === newCard.es?.toLowerCase() ||
-                     c.spansk?.toLowerCase() === newCard.spansk?.toLowerCase())
+                     c.spansk?.toLowerCase() === newCard.spansk?.toLowerCase() ||
+                     c.es?.toLowerCase() === newCard.spansk?.toLowerCase() ||
+                     c.spansk?.toLowerCase() === newCard.es?.toLowerCase())
                 );
                 
-                if (!exists) {
+                if (existingIndex >= 0) {
+                    // Update existing card with imported progress if better
+                    const existingCard = merged[existingIndex];
+                    
+                    // Update noEs (norsk -> spansk) progress
+                    if (newCard.noEs && newCard.noEs.repetitions > (existingCard.noEs?.repetitions || 0)) {
+                        existingCard.noEs = { ...existingCard.noEs, ...newCard.noEs };
+                        updated++;
+                    }
+                    
+                    // Update esNo (spansk -> norsk) progress
+                    if (newCard.esNo && newCard.esNo.repetitions > (existingCard.esNo?.repetitions || 0)) {
+                        existingCard.esNo = { ...existingCard.esNo, ...newCard.esNo };
+                    }
+                    
+                    // Update total reviews/correct
+                    if (newCard.reviews > (existingCard.reviews || 0)) {
+                        existingCard.reviews = newCard.reviews;
+                        existingCard.correct = newCard.correct;
+                    }
+                } else {
+                    // Add new card
                     newCard.id = merged.length;
                     merged.push(newCard);
+                    added++;
                 }
             });
             
+            console.log(`Import: ${updated} kort oppdatert, ${added} nye lagt til`);
             return merged;
         }
 
