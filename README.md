@@ -4,8 +4,6 @@ En gratis, interaktiv læringsapp for spansk på ungdomsskolenivå (A0-A1 CEFR).
 
 **[🚀 Prøv appen](https://theviklink.github.io/spansk-ungdomsskole/)**
 
-![Skjermbilde av appen](screenshot.png)
-
 ## ✨ Funksjoner
 
 ### 📚 Gloselæring
@@ -13,7 +11,7 @@ En gratis, interaktiv læringsapp for spansk på ungdomsskolenivå (A0-A1 CEFR).
 - Spaced repetition (SM-2 algoritme) for effektiv læring
 - Lær begge veier: Norsk → Spansk og Spansk → Norsk
 - Kategorisert etter tema (familie, mat, dyr, farger, osv.)
-- Legg til egne gloser eller importer fra lærer
+- Importer gloser fra JSON-fil
 
 ### 🏃 Verbøving
 - 20+ vanlige spanske verb
@@ -37,61 +35,64 @@ En gratis, interaktiv læringsapp for spansk på ungdomsskolenivå (A0-A1 CEFR).
 - Visuell oversikt over all læring
 - Fargekoding: grønn (mestret), gul (i læring), grå (ny)
 
-### 👩‍🏫 Klassesystem (for lærere)
-- Opprett klasse med delbar kode
-- Se elevenes fremgang i sanntid
-- Push nye gloser til hele klassen
-- Importer gloser fra JSON-fil
+### 📝 Ukeslekse
+- Sporer øvingsdager automatisk
+- Lever ukeslekse via Google Forms
+- Krav: Øv minst 2 dager (ons-søn) per uke
 
-## 🛠️ Teknisk oppsett
+## 🔒 Personvern
 
-### Enkel bruk (ingen server)
-Last ned `spansk-laering-v3.html` og åpne i nettleser. Alt fungerer med lokal lagring (localStorage).
+- **Ingen data sendes til skyen** - all fremgang lagres lokalt i nettleseren
+- Ingen innlogging eller brukerkontoer
+- Elevene kan eksportere/importere fremgang som JSON-fil
+- GDPR-vennlig for norske skoler
 
-### Med sky-synkronisering (Supabase)
+## 🛠️ Oppsett for lærere
 
-1. **Opprett Supabase-prosjekt**
-   - Gå til [supabase.com](https://supabase.com) og lag et gratis prosjekt
-   - Velg EU-region for GDPR-compliance
+### 1. Sett opp ukeslekse-system
 
-2. **Kjør database-oppsett**
-   - Gå til SQL Editor i Supabase
-   - Kjør innholdet fra `supabase-setup.sql`
+1. Gå til [script.google.com](https://script.google.com)
+2. Opprett nytt prosjekt og lim inn innholdet fra `ukeslekse-setup.gs`
+3. Kjør funksjonen `createHomeworkSystem`
+4. Godkjenn tillatelser
+5. Kopier entry IDs fra loggen (Vis → Logger)
 
-3. **Oppdater API-nøkler**
-   - Finn dine nøkler under Settings → API
-   - Erstatt `SUPABASE_URL` og `SUPABASE_ANON_KEY` i HTML-filen
+### 2. Oppdater appen
 
-4. **Deploy**
-   - GitHub Pages: Push til repo, aktiver Pages i Settings
-   - Netlify: Dra og slipp HTML-filen
-   - Egen server: Last opp filen
+Erstatt disse linjene i `index.html` (rundt linje 1917):
+
+```javascript
+const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/DIN_FORM_ID/viewform';
+const FORM_ENTRY_NAME = 'entry.XXXXXX';
+const FORM_ENTRY_DATE = 'entry.XXXXXX';
+const FORM_ENTRY_DAYS = 'entry.XXXXXX';
+const FORM_ENTRY_WORDS = 'entry.XXXXXX';
+const FORM_ENTRY_ACCURACY = 'entry.XXXXXX';
+```
+
+### 3. Deploy
+
+Last opp `index.html` til GitHub Pages, Netlify, eller skolens server.
 
 ## 📁 Filstruktur
 
 ```
-├── spansk-laering-v3.html    # Hovedapp (alt-i-ett)
-├── supabase-setup.sql        # Database-oppsett
-├── eksempel-gloser-laerer.json # Mal for lærer-import
+├── index.html              # Hovedapp (alt-i-ett)
+├── ukeslekse-setup.gs      # Google Apps Script for leksesystem
+├── eksempel-gloser.json    # Mal for glose-import
 └── README.md
 ```
 
-## 📥 Importere gloser (for lærere)
+## 📥 Importere fremgang
 
-Lag en JSON-fil i dette formatet:
+Elever kan importere fremgang fra:
+- ✅ Denne appen (eksportert JSON)
+- ✅ Gammel "Spansk Gloselæring"-app (appVersion: spansk_v1)
 
-```json
-{
-  "category": "kapittel-5-mat",
-  "words": [
-    ["eple", "la manzana"],
-    ["appelsin", "la naranja"],
-    ["banan", "el plátano"]
-  ]
-}
-```
-
-Last opp via "Importer gloser" i lærer-dashboardet.
+**Slik gjør du:**
+1. I gammel app: Eksporter fremgang → Last ned JSON
+2. I ny app: Startskjerm eller Lekse-fanen → "Importer fremgang"
+3. Velg filen → Ferdig!
 
 ## ⌨️ Hurtigtaster
 
@@ -102,24 +103,30 @@ Last opp via "Importer gloser" i lærer-dashboardet.
 | `2` | Bra (riktig) |
 | `Enter` | Sjekk svar (verb) |
 | Hold `a/e/i/o/u/n` | Aksent (á/é/í/ó/ú/ñ) |
+| Hold `?` / `!` | Spansk tegn (¿/¡) |
 
-## 🔒 Personvern
+## 📊 For lærere: Se innleveringer
 
-- Ingen persondata samles inn utover det som lagres i appen
-- Elevkoder er anonyme (6 tegn, f.eks. "ABC123")
-- All data kan slettes ved å logge ut
-- Appen fungerer fullt ut offline
+Etter oppsett finner du alle ukeslekse-innleveringer i Google-regnearket.
+
+**Bonusfunksjoner i Apps Script:**
+- `checkMissingSubmissions()` - Se hvem som ikke har levert
+- `setupWeeklyReminder()` - Få ukentlig e-post med oversikt
+
+## ❓ FAQ
+
+**Q: Hva skjer hvis eleven bytter nettleser/enhet?**  
+A: De må eksportere fremgang fra gammel enhet og importere på ny.
+
+**Q: Kan eleven bruke appen på mobil?**  
+A: Ja! Appen fungerer på mobil. Fremgang lagres per nettleser.
+
+**Q: Hva hvis eleven sletter nettleserdata?**  
+A: Fremgangen forsvinner. Oppfordre til jevnlig eksport.
 
 ## 🤝 Bidra
 
 Pull requests er velkomne! For store endringer, åpne gjerne en issue først.
-
-### Lokalt utviklingsmiljø
-```bash
-git clone https://github.com/TheVikLink/spansk-ungdomsskole.git
-cd spansk-ungdomsskole
-# Åpne spansk-laering-v3.html i nettleser
-```
 
 ## 📄 Lisens
 
@@ -133,4 +140,4 @@ MIT License - bruk fritt i undervisning!
 
 ---
 
-**Spørsmål?** Åpne en [issue](https://github.com/TheVikLink/spansk-ungdomsskole/issues) eller kontakt utvikleren.
+**Spørsmål?** Åpne en [issue](https://github.com/TheVikLink/spansk-ungdomsskole/issues)
