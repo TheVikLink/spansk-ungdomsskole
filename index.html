@@ -2456,20 +2456,6 @@
         }
 
         // ============================================
-        // AUTO-START
-        // ============================================
-
-        (function checkAutoStart() {
-            const savedName = localStorage.getItem('spansk123_studentName');
-            
-            if (savedName) {
-                studentName = savedName;
-                document.getElementById('studentNameInput').value = savedName;
-                showMainApp();
-            }
-        })();
-
-        // ============================================
         // VERB MODE STATE
         // ============================================
 
@@ -4905,8 +4891,17 @@
             return shuffled;
         }
 
-        // Initialize
-        init();
+        // Initialize app
+        (function() {
+            const savedName = localStorage.getItem('spansk123_studentName');
+            
+            if (savedName) {
+                // User has been here before - auto-login
+                studentName = savedName;
+                document.getElementById('studentNameInput').value = savedName;
+                showMainApp();
+            }
+        })();
     </script>
 </body>
 </html>
