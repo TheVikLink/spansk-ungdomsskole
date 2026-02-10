@@ -1600,6 +1600,528 @@
                 font-size: 20px;
             }
         }
+
+        /* ============================================ */
+        /* GAMES SECTION */
+        /* ============================================ */
+        
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 16px;
+            margin-top: 20px;
+        }
+
+        .game-card {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid var(--gray-200);
+        }
+
+        .game-card:hover:not(.coming-soon) {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            border-color: var(--primary);
+        }
+
+        .game-card.coming-soon {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .game-icon {
+            font-size: 48px;
+            margin-bottom: 12px;
+        }
+
+        .game-card h3 {
+            color: var(--gray-800);
+            margin-bottom: 8px;
+        }
+
+        .game-card p {
+            color: var(--gray-500);
+            font-size: 14px;
+        }
+
+        .game-setup-section {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 16px;
+        }
+
+        .game-setup-section h3 {
+            margin-bottom: 16px;
+            color: var(--gray-800);
+        }
+
+        .tense-selector {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .tense-option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            background: var(--gray-50);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .tense-option:hover {
+            background: var(--gray-100);
+        }
+
+        .tense-option input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            accent-color: var(--primary);
+        }
+
+        .verb-select-actions {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .game-verb-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 8px;
+        }
+
+        .game-verb-chip {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 12px;
+            background: var(--gray-50);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 14px;
+        }
+
+        .game-verb-chip:hover {
+            background: var(--gray-100);
+        }
+
+        .game-verb-chip.selected {
+            background: var(--primary);
+            color: white;
+        }
+
+        .game-verb-chip input {
+            display: none;
+        }
+
+        /* ============================================ */
+        /* VERBO INVADERS GAME */
+        /* ============================================ */
+
+        .vi-game-container {
+            position: fixed;
+            inset: 0;
+            background: #0a0a1a;
+            z-index: 1000;
+            overflow: hidden;
+        }
+
+        .vi-stars {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 20% 50%, #0d0d2b 0%, #0a0a1a 100%);
+        }
+
+        .vi-stars::before, .vi-stars::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,.6) 50%, transparent 50%),
+                radial-gradient(1px 1px at 30% 60%, rgba(255,255,255,.4) 50%, transparent 50%),
+                radial-gradient(1.5px 1.5px at 50% 10%, rgba(255,255,255,.7) 50%, transparent 50%),
+                radial-gradient(1px 1px at 70% 80%, rgba(255,255,255,.3) 50%, transparent 50%),
+                radial-gradient(1px 1px at 90% 40%, rgba(255,255,255,.5) 50%, transparent 50%);
+            background-size: 200px 200px;
+            animation: viTwinkle 4s ease-in-out infinite alternate;
+        }
+
+        .vi-stars::after {
+            background-size: 300px 300px;
+            animation-delay: 2s;
+            opacity: 0.5;
+        }
+
+        @keyframes viTwinkle {
+            from { opacity: 0.4; }
+            to { opacity: 1; }
+        }
+
+        .vi-hud {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            padding: 16px 24px;
+            background: linear-gradient(180deg, rgba(0,0,0,0.7) 0%, transparent 100%);
+            z-index: 100;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .vi-hud-item {
+            text-align: center;
+        }
+
+        .vi-hud-label {
+            color: #888;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .vi-hud-value {
+            font-size: 20px;
+            font-weight: bold;
+            color: #39ff14;
+            text-shadow: 0 0 10px #39ff14;
+        }
+
+        .vi-hud-value.vi-lives {
+            color: #ff2e63;
+            text-shadow: 0 0 10px #ff2e63;
+        }
+
+        .vi-hud-value.vi-level {
+            color: #08f7fe;
+            text-shadow: 0 0 10px #08f7fe;
+        }
+
+        .vi-quit-btn {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: #888;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.2s;
+        }
+
+        .vi-quit-btn:hover {
+            background: rgba(255,46,99,0.2);
+            border-color: #ff2e63;
+            color: #ff2e63;
+        }
+
+        .vi-invader-zone {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: -150px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 20;
+        }
+
+        .vi-invader-sprite {
+            font-size: 48px;
+            filter: drop-shadow(0 0 20px #39ff14);
+            animation: viWobble 0.6s ease-in-out infinite alternate;
+        }
+
+        @keyframes viWobble {
+            0% { transform: rotate(-3deg) scale(1); }
+            100% { transform: rotate(3deg) scale(1.05); }
+        }
+
+        .vi-prompt-box {
+            margin-top: 12px;
+            background: rgba(15, 15, 40, 0.85);
+            border: 1px solid rgba(57, 255, 20, 0.3);
+            border-radius: 12px;
+            padding: 16px 32px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 30px rgba(57, 255, 20, 0.1);
+        }
+
+        .vi-prompt-norwegian {
+            font-size: 18px;
+            font-weight: bold;
+            color: #ffe66d;
+            text-shadow: 0 0 10px rgba(255, 230, 109, 0.5);
+            margin-bottom: 8px;
+        }
+
+        .vi-prompt-verb {
+            font-size: 12px;
+            color: #888;
+        }
+
+        .vi-danger-line {
+            position: absolute;
+            bottom: 148px;
+            left: 10%;
+            right: 10%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #ff2e63, transparent);
+            box-shadow: 0 0 12px rgba(255, 46, 99, 0.4);
+            z-index: 15;
+            opacity: 0.5;
+        }
+
+        .vi-danger-label {
+            position: absolute;
+            bottom: 154px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 9px;
+            color: #ff2e63;
+            opacity: 0.4;
+            letter-spacing: 4px;
+            z-index: 15;
+        }
+
+        .vi-player-ship {
+            position: absolute;
+            bottom: 118px;
+            left: calc(50% - 18px);
+            font-size: 36px;
+            filter: drop-shadow(0 0 15px #08f7fe);
+            transition: left 0.3s ease;
+            z-index: 20;
+        }
+
+        .vi-answer-zone {
+            position: absolute;
+            bottom: 50px;
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            width: 100%;
+            padding: 0 20px;
+            z-index: 20;
+        }
+
+        .vi-answer-card {
+            background: rgba(15, 15, 40, 0.85);
+            border: 2px solid rgba(8, 247, 254, 0.3);
+            border-radius: 14px;
+            padding: 20px 28px;
+            min-width: 140px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            user-select: none;
+        }
+
+        .vi-answer-card:hover {
+            border-color: #08f7fe;
+            transform: translateY(-4px) scale(1.03);
+            box-shadow: 0 8px 30px rgba(8, 247, 254, 0.2);
+        }
+
+        .vi-key-hint {
+            font-size: 10px;
+            color: #555;
+            margin-bottom: 8px;
+            letter-spacing: 2px;
+        }
+
+        .vi-answer-text {
+            font-size: 18px;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .vi-answer-card.correct {
+            border-color: #39ff14 !important;
+            background: rgba(57, 255, 20, 0.15) !important;
+            animation: viCorrectPulse 0.5s ease;
+        }
+
+        .vi-answer-card.wrong {
+            border-color: #ff2e63 !important;
+            background: rgba(255, 46, 99, 0.15) !important;
+            animation: viShake 0.4s ease;
+        }
+
+        @keyframes viCorrectPulse {
+            0% { box-shadow: 0 0 0 0 rgba(57,255,20,.6); }
+            100% { box-shadow: 0 0 40px 10px rgba(57,255,20,0); }
+        }
+
+        @keyframes viShake {
+            0%, 100% { transform: translateX(0); }
+            20% { transform: translateX(-8px); }
+            40% { transform: translateX(8px); }
+            60% { transform: translateX(-4px); }
+            80% { transform: translateX(4px); }
+        }
+
+        .vi-combo {
+            position: absolute;
+            top: 50%;
+            right: 30px;
+            transform: translateY(-50%);
+            font-size: 12px;
+            color: #ffe66d;
+            text-shadow: 0 0 15px rgba(255,230,109,0.5);
+            z-index: 100;
+            text-align: right;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .vi-combo.visible {
+            opacity: 1;
+        }
+
+        .vi-combo-number {
+            font-size: 32px;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .vi-warning-glow {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 200px;
+            background: linear-gradient(0deg, rgba(255,46,99,0.15), transparent);
+            z-index: 5;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+        }
+
+        .vi-explosion {
+            position: fixed;
+            pointer-events: none;
+            z-index: 150;
+        }
+
+        .vi-explosion-particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            animation: viExplode 0.6s ease-out forwards;
+        }
+
+        @keyframes viExplode {
+            0% { opacity: 1; transform: translate(0, 0) scale(1); }
+            100% { opacity: 0; transform: translate(var(--dx), var(--dy)) scale(0); }
+        }
+
+        .vi-level-up-flash {
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle, rgba(8,247,254,0.2), transparent 70%);
+            z-index: 90;
+            animation: viLevelFlash 0.8s ease-out forwards;
+            pointer-events: none;
+        }
+
+        @keyframes viLevelFlash {
+            0% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        .vi-level-up-text {
+            position: fixed;
+            top: 45%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 28px;
+            font-weight: bold;
+            color: #08f7fe;
+            text-shadow: 0 0 30px #08f7fe;
+            z-index: 95;
+            animation: viLevelText 1.2s ease-out forwards;
+            pointer-events: none;
+        }
+
+        @keyframes viLevelText {
+            0% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+            30% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
+            70% { opacity: 1; }
+            100% { opacity: 0; transform: translate(-50%, -60%) scale(1); }
+        }
+
+        .vi-gameover-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 60vh;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .vi-gameover-title {
+            font-size: 36px;
+            font-weight: bold;
+            color: #ff2e63;
+            text-shadow: 0 0 30px rgba(255,46,99,0.6);
+            margin-bottom: 20px;
+        }
+
+        .vi-gameover-score {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ffe66d;
+            text-shadow: 0 0 20px rgba(255,230,109,0.5);
+            margin-bottom: 16px;
+        }
+
+        .vi-gameover-stats {
+            color: var(--gray-500);
+            margin-bottom: 32px;
+            line-height: 1.8;
+        }
+
+        @media (max-width: 600px) {
+            .vi-answer-card {
+                min-width: 90px;
+                padding: 14px 12px;
+            }
+            .vi-answer-text {
+                font-size: 14px;
+            }
+            .vi-prompt-norwegian {
+                font-size: 14px;
+            }
+            .vi-hud {
+                gap: 20px;
+                padding: 12px 16px;
+            }
+            .vi-quit-btn {
+                padding: 6px 10px;
+                font-size: 10px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1637,6 +2159,7 @@
                 <button class="nav-link" onclick="showPage('brainmap')" id="navBrainmap">🧠 Brainmap</button>
                 <button class="nav-link" onclick="showPage('verbs')" id="navVerbs">🏃 Verb</button>
                 <button class="nav-link" onclick="showPage('grammar')" id="navGrammar">📖 Grammatikk</button>
+                <button class="nav-link" onclick="showPage('games')" id="navGames">🎮 Spill</button>
                 <button class="nav-link homework-nav" onclick="showPage('homework')" id="navHomework">📝 Lekse</button>
             </div>
             <div class="user-info" id="userInfo">
@@ -1903,6 +2426,156 @@
                 <div class="button-group">
                     <button class="btn btn-secondary" onclick="exportAllProgress()">📥 Last ned fremgang</button>
                     <button class="btn btn-secondary" onclick="importProgressFile()">📂 Importer fremgang</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== -->
+        <!-- GAMES PAGE -->
+        <!-- ==================== -->
+        <div id="gamesPage" class="panel hidden">
+            <!-- Games Menu -->
+            <div id="gamesMenu">
+                <div class="page-header">
+                    <h2>🎮 Spill</h2>
+                    <p>Lær spansk på en morsom måte!</p>
+                </div>
+
+                <div class="games-grid">
+                    <div class="game-card" onclick="showGameSetup('verbo-invaders')">
+                        <div class="game-icon">👾</div>
+                        <h3>Verbo Invaders</h3>
+                        <p>Bøy verb riktig før romvesnene tar over!</p>
+                    </div>
+                    <div class="game-card coming-soon">
+                        <div class="game-icon">🎯</div>
+                        <h3>Glose-duell</h3>
+                        <p>Kommer snart...</p>
+                    </div>
+                    <div class="game-card coming-soon">
+                        <div class="game-icon">🧩</div>
+                        <h3>Setningspuslespill</h3>
+                        <p>Kommer snart...</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Verbo Invaders Setup -->
+            <div id="verboInvadersSetup" class="hidden">
+                <div class="page-header">
+                    <h2>👾 Verbo Invaders</h2>
+                    <p>Velg verb og verbtider du vil øve på</p>
+                </div>
+
+                <div class="game-setup-section">
+                    <h3>🎯 Velg verbtid(er)</h3>
+                    <div class="tense-selector">
+                        <label class="tense-option">
+                            <input type="checkbox" id="tensePresente" checked>
+                            <span>Presens (presente)</span>
+                        </label>
+                        <label class="tense-option">
+                            <input type="checkbox" id="tenseFuturo">
+                            <span>Futuro (ir a + infinitiv)</span>
+                        </label>
+                        <label class="tense-option">
+                            <input type="checkbox" id="tensePerfecto">
+                            <span>Presens perfektum (ha + partisipp)</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="game-setup-section">
+                    <h3>📝 Velg verb</h3>
+                    <div class="verb-select-actions">
+                        <button class="btn btn-sm" onclick="selectAllGameVerbs()">Velg alle</button>
+                        <button class="btn btn-sm btn-outline" onclick="deselectAllGameVerbs()">Fjern alle</button>
+                    </div>
+                    <div class="game-verb-grid" id="gameVerbGrid">
+                        <!-- Fylles inn dynamisk -->
+                    </div>
+                </div>
+
+                <div class="button-group" style="margin-top: 24px;">
+                    <button class="btn btn-primary btn-large" onclick="startVerboInvaders()">🚀 Start spillet!</button>
+                    <button class="btn btn-secondary" onclick="showGamesMenu()">← Tilbake</button>
+                </div>
+            </div>
+
+            <!-- Verbo Invaders Game Area -->
+            <div id="verboInvadersGame" class="hidden">
+                <div class="vi-game-container">
+                    <div class="vi-stars"></div>
+                    <div class="vi-warning-glow" id="viWarningGlow"></div>
+                    
+                    <!-- HUD -->
+                    <div class="vi-hud">
+                        <div class="vi-hud-item">
+                            <div class="vi-hud-label">Poeng</div>
+                            <div class="vi-hud-value" id="viScore">0</div>
+                        </div>
+                        <div class="vi-hud-item">
+                            <div class="vi-hud-label">Nivå</div>
+                            <div class="vi-hud-value vi-level" id="viLevel">1</div>
+                        </div>
+                        <div class="vi-hud-item">
+                            <div class="vi-hud-label">Liv</div>
+                            <div class="vi-hud-value vi-lives" id="viLives">❤️❤️❤️</div>
+                        </div>
+                        <button class="vi-quit-btn" onclick="quitVerboInvaders()">✕ Avslutt</button>
+                    </div>
+
+                    <!-- Falling invader -->
+                    <div class="vi-invader-zone" id="viInvaderZone">
+                        <div class="vi-invader-sprite">👾</div>
+                        <div class="vi-prompt-box">
+                            <div class="vi-prompt-norwegian" id="viPromptText">—</div>
+                            <div class="vi-prompt-verb" id="viPromptVerb">—</div>
+                        </div>
+                    </div>
+
+                    <!-- Danger line -->
+                    <div class="vi-danger-line"></div>
+                    <div class="vi-danger-label">▼ FARESONE ▼</div>
+
+                    <!-- Player ship -->
+                    <div class="vi-player-ship" id="viPlayerShip">🚀</div>
+
+                    <!-- Answer zone -->
+                    <div class="vi-answer-zone" id="viAnswerZone">
+                        <div class="vi-answer-card" onclick="viSelectAnswer(0)" id="viCard0">
+                            <div class="vi-key-hint">[ 1 ]</div>
+                            <div class="vi-answer-text" id="viAns0">—</div>
+                        </div>
+                        <div class="vi-answer-card" onclick="viSelectAnswer(1)" id="viCard1">
+                            <div class="vi-key-hint">[ 2 ]</div>
+                            <div class="vi-answer-text" id="viAns1">—</div>
+                        </div>
+                        <div class="vi-answer-card" onclick="viSelectAnswer(2)" id="viCard2">
+                            <div class="vi-key-hint">[ 3 ]</div>
+                            <div class="vi-answer-text" id="viAns2">—</div>
+                        </div>
+                    </div>
+
+                    <!-- Combo display -->
+                    <div class="vi-combo" id="viCombo">
+                        <span class="vi-combo-number" id="viComboNum">0</span>
+                        COMBO
+                    </div>
+                </div>
+            </div>
+
+            <!-- Game Over Screen -->
+            <div id="verboInvadersGameOver" class="hidden">
+                <div class="vi-gameover-container">
+                    <div class="vi-gameover-title">GAME OVER</div>
+                    <div class="vi-gameover-score" id="viFinalScore">0 POENG</div>
+                    <div class="vi-gameover-stats" id="viFinalStats"></div>
+                    <div class="button-group">
+                        <button class="btn btn-primary btn-large" onclick="startVerboInvaders()">🔄 Spill igjen</button>
+                        <button class="btn btn-secondary" onclick="showGameSetup('verbo-invaders')">⚙️ Endre innstillinger</button>
+                        <button class="btn btn-outline" onclick="showGamesMenu()">← Tilbake til spill</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -2477,6 +3150,13 @@
             document.getElementById('verbPage').classList.add('hidden');
             document.getElementById('grammarPage').classList.add('hidden');
             document.getElementById('homeworkPage').classList.add('hidden');
+            document.getElementById('gamesPage').classList.add('hidden');
+            
+            // Stop any running game
+            if (viGameActive) {
+                viStopFalling();
+                viGameActive = false;
+            }
             
             // Remove active from all nav links
             document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
@@ -2508,6 +3188,10 @@
                 document.getElementById('homeworkPage').classList.remove('hidden');
                 document.getElementById('navHomework').classList.add('active');
                 renderHomeworkPage();
+            } else if (page === 'games') {
+                document.getElementById('gamesPage').classList.remove('hidden');
+                document.getElementById('navGames').classList.add('active');
+                showGamesMenu();
             }
         }
         // VOCABULARY DATABASE
@@ -2721,7 +3405,7 @@
             ["å ha på seg", "llevar", "klær"],
             ["å kle på seg", "ponerse", "klær"],
             ["støvler", "las botas", "klær"],
-            ["t- skjorte", "la camiseta", "klær"],
+            ["t-skjorte", "la camiseta", "klær"],
             ["bikini", "el biquini", "klær"],
             ["skjorte", "la camisa", "klær"],
             ["jeans", "los vaqueros", "klær"],
@@ -2730,7 +3414,7 @@
             ["belte", "el cinturón", "klær"],
             ["sokker", "los calcetines", "klær"],
             ["genser (j)", "el jersey", "klær"],
-            ["slipperser", "las zapatillas", "klær"],
+            ["tøfler", "las zapatillas", "klær"],
             ["sko", "los zapatos", "klær"],
             ["høyhælte sko", "los zapatos de tacón", "klær"],
             ["sandaler", "las sandalias", "klær"],
@@ -2931,7 +3615,7 @@
             ["jeg spiser middag", "ceno", "rutiner"],
             ["jeg sover", "duermo", "rutiner"],
             ["jeg står opp tidlig", "me despierto temprano", "rutiner"],
-            ["jeg tar på meg en t- skjorte", "me pongo una camiseta", "rutiner"],
+            ["jeg tar på meg en t-skjorte", "me pongo una camiseta", "rutiner"],
             ["jeg går til skolen", "voy a pie a la escuela", "rutiner"],
             
             // VERBBØYING
@@ -3194,6 +3878,13 @@
                 type: "uregelmessig",
                 presente: ["veo", "ves", "ve", "vemos", "veis", "ven"],
                 participio: "visto"
+            },
+            preferir: {
+                infinitive: "preferir",
+                translation: "å foretrekke",
+                type: "uregelmessig",
+                presente: ["prefiero", "prefieres", "prefiere", "preferimos", "preferís", "prefieren"],
+                participio: "preferido"
             }
         };
 
@@ -4890,6 +5581,594 @@
             }
             return shuffled;
         }
+
+        // ============================================
+        // VERBO INVADERS GAME
+        // ============================================
+
+        // Game state
+        let viScore = 0;
+        let viLives = 3;
+        let viLevel = 1;
+        let viCombo = 0;
+        let viMaxCombo = 0;
+        let viTotalCorrect = 0;
+        let viTotalAnswered = 0;
+        let viCurrentQuestion = null;
+        let viCorrectIndex = -1;
+        let viGameActive = false;
+        let viAnswering = false;
+        let viSelectedVerbs = new Set();
+        let viSelectedTenses = new Set(['presente']);
+        let viQuestionPool = [];
+
+        // Falling animation state
+        let viFallAnimId = null;
+        let viFallStartTime = 0;
+        let viFallDuration = 8000;
+        let viStartY = -150;
+        let viEndY = 0;
+
+        const viPronouns = {
+            yo: "Jeg",
+            tú: "Du",
+            "él/ella": "Han/hun",
+            nosotros: "Vi",
+            vosotros: "Dere",
+            ellos: "De"
+        };
+
+        const viPronounKeys = ["yo", "tú", "él/ella", "nosotros", "vosotros", "ellos"];
+
+        function showGamesMenu() {
+            document.getElementById('gamesMenu').classList.remove('hidden');
+            document.getElementById('verboInvadersSetup').classList.add('hidden');
+            document.getElementById('verboInvadersGame').classList.add('hidden');
+            document.getElementById('verboInvadersGameOver').classList.add('hidden');
+        }
+
+        function showGameSetup(game) {
+            if (game === 'verbo-invaders') {
+                document.getElementById('gamesMenu').classList.add('hidden');
+                document.getElementById('verboInvadersSetup').classList.remove('hidden');
+                document.getElementById('verboInvadersGame').classList.add('hidden');
+                document.getElementById('verboInvadersGameOver').classList.add('hidden');
+                renderGameVerbSelector();
+            }
+        }
+
+        function renderGameVerbSelector() {
+            const grid = document.getElementById('gameVerbGrid');
+            grid.innerHTML = '';
+            
+            // Select all verbs by default if none selected
+            if (viSelectedVerbs.size === 0) {
+                Object.keys(verbDatabase).forEach(v => viSelectedVerbs.add(v));
+            }
+            
+            Object.entries(verbDatabase).forEach(([key, verb]) => {
+                const isSelected = viSelectedVerbs.has(key);
+                const chip = document.createElement('label');
+                chip.className = `game-verb-chip ${isSelected ? 'selected' : ''}`;
+                chip.innerHTML = `
+                    <input type="checkbox" ${isSelected ? 'checked' : ''} onchange="toggleGameVerb('${key}', this)">
+                    <span>${verb.infinitive}</span>
+                `;
+                grid.appendChild(chip);
+            });
+        }
+
+        function toggleGameVerb(verb, checkbox) {
+            if (checkbox.checked) {
+                viSelectedVerbs.add(verb);
+            } else {
+                viSelectedVerbs.delete(verb);
+            }
+            checkbox.closest('.game-verb-chip').classList.toggle('selected', checkbox.checked);
+        }
+
+        function selectAllGameVerbs() {
+            Object.keys(verbDatabase).forEach(v => viSelectedVerbs.add(v));
+            renderGameVerbSelector();
+        }
+
+        function deselectAllGameVerbs() {
+            viSelectedVerbs.clear();
+            document.querySelectorAll('.game-verb-chip').forEach(chip => {
+                chip.classList.remove('selected');
+                chip.querySelector('input').checked = false;
+            });
+        }
+
+        function generateViQuestionPool() {
+            viQuestionPool = [];
+            
+            // Get selected tenses
+            viSelectedTenses.clear();
+            if (document.getElementById('tensePresente').checked) viSelectedTenses.add('presente');
+            if (document.getElementById('tenseFuturo').checked) viSelectedTenses.add('futuro');
+            if (document.getElementById('tensePerfecto').checked) viSelectedTenses.add('perfecto');
+            
+            if (viSelectedTenses.size === 0) viSelectedTenses.add('presente');
+            if (viSelectedVerbs.size === 0) {
+                Object.keys(verbDatabase).forEach(v => viSelectedVerbs.add(v));
+            }
+            
+            viSelectedVerbs.forEach(verbKey => {
+                const verb = verbDatabase[verbKey];
+                if (!verb) return;
+                
+                viSelectedTenses.forEach(tense => {
+                    viPronounKeys.forEach((pronoun, idx) => {
+                        let correct, norwegian, verbDisplay;
+                        
+                        if (tense === 'presente') {
+                            correct = verb.presente[idx];
+                            norwegian = `${viPronouns[pronoun]} ${getVerbMeaning(verb.translation, pronoun)}`;
+                            verbDisplay = `${verb.infinitive} (${verb.translation}) - presens`;
+                        } else if (tense === 'futuro') {
+                            const irForms = ["voy a", "vas a", "va a", "vamos a", "vais a", "van a"];
+                            correct = `${irForms[idx]} ${verb.infinitive}`;
+                            const futuroVerb = getNorwegianInfinitive(verb.translation);
+                            norwegian = `${viPronouns[pronoun]} skal ${futuroVerb}`;
+                            verbDisplay = `${verb.infinitive} (${verb.translation}) - futuro`;
+                        } else if (tense === 'perfecto') {
+                            const haberForms = ["he", "has", "ha", "hemos", "habéis", "han"];
+                            correct = `${haberForms[idx]} ${verb.participio}`;
+                            const perfectoVerb = getNorwegianPerfectum(verb.translation);
+                            norwegian = `${viPronouns[pronoun]} har ${perfectoVerb}`;
+                            verbDisplay = `${verb.infinitive} (${verb.translation}) - perfecto`;
+                        }
+                        
+                        // Generate wrong answers from other forms
+                        const wrongs = generateWrongAnswers(verb, tense, idx);
+                        
+                        viQuestionPool.push({
+                            verb: verb.infinitive,
+                            verbDisplay: verbDisplay,
+                            norwegian: norwegian,
+                            correct: correct,
+                            wrongs: wrongs
+                        });
+                    });
+                });
+            });
+            
+            // Shuffle the pool
+            viQuestionPool = shuffleArray(viQuestionPool);
+        }
+
+        function getVerbMeaning(translation, pronoun) {
+            // Convert Norwegian infinitive to present tense
+            const base = translation.replace('å ', '');
+            
+            // Irregular Norwegian verbs mapping
+            const irregularNorwegian = {
+                'si': 'sier',
+                'være': 'er',
+                'være (permanent)': 'er',
+                'være/befinne seg': 'er',
+                'ha': 'har',
+                'kunne': 'kan',
+                'ville': 'vil',
+                'vite': 'vet',
+                'gjøre': 'gjør',
+                'gå': 'går',
+                'gå/dra': 'går',
+                'gå ut': 'går ut',
+                'se': 'ser',
+                'komme': 'kommer',
+                'foretrekke': 'foretrekker',
+                'snakke': 'snakker',
+                'jobbe': 'jobber',
+                'studere': 'studerer',
+                'danse': 'danser',
+                'kjøpe': 'kjøper',
+                'høre': 'hører',
+                'synge': 'synger',
+                'spise': 'spiser',
+                'drikke': 'drikker',
+                'lese': 'leser',
+                'lære': 'lærer',
+                'bo': 'bor',
+                'skrive': 'skriver'
+            };
+            
+            // Check if it's an irregular verb
+            if (irregularNorwegian[base]) {
+                return irregularNorwegian[base];
+            }
+            
+            // Regular verbs: add 'r' or 'er' depending on ending
+            if (base.endsWith('e')) {
+                return base + 'r';
+            } else {
+                return base + 'er';
+            }
+        }
+
+        function getNorwegianInfinitive(translation) {
+            // Clean up translation for futuro (skal + infinitiv)
+            let base = translation.replace('å ', '');
+            
+            // Handle compound translations
+            const cleanups = {
+                'være (permanent)': 'være',
+                'være/befinne seg': 'være',
+                'gå/dra': 'dra',
+                'gå ut': 'gå ut'
+            };
+            
+            return cleanups[base] || base;
+        }
+
+        function getNorwegianPerfectum(translation) {
+            // Convert Norwegian infinitive to past participle (har + partisipp)
+            const base = translation.replace('å ', '');
+            
+            // Irregular Norwegian past participles
+            const irregularPerfectum = {
+                'si': 'sagt',
+                'være': 'vært',
+                'være (permanent)': 'vært',
+                'være/befinne seg': 'vært',
+                'ha': 'hatt',
+                'kunne': 'kunnet',
+                'ville': 'villet',
+                'vite': 'visst',
+                'gjøre': 'gjort',
+                'gå': 'gått',
+                'gå/dra': 'dratt',
+                'gå ut': 'gått ut',
+                'se': 'sett',
+                'komme': 'kommet',
+                'foretrekke': 'foretrukket',
+                'skrive': 'skrevet',
+                'drikke': 'drukket',
+                'synge': 'sunget',
+                'lese': 'lest'
+            };
+            
+            if (irregularPerfectum[base]) {
+                return irregularPerfectum[base];
+            }
+            
+            // Regular verbs ending in -e: replace -e with -et
+            if (base.endsWith('e')) {
+                return base.slice(0, -1) + 'et';
+            }
+            
+            // Other regular verbs: add -d or -t
+            if (base.endsWith('r')) {
+                return base + 'd';
+            }
+            
+            return base + 't';
+        }
+
+        function generateWrongAnswers(verb, tense, correctIdx) {
+            const wrongs = [];
+            
+            if (tense === 'presente') {
+                // Use other conjugations of same verb
+                verb.presente.forEach((form, idx) => {
+                    if (idx !== correctIdx) wrongs.push(form);
+                });
+            } else if (tense === 'futuro') {
+                const irForms = ["voy a", "vas a", "va a", "vamos a", "vais a", "van a"];
+                irForms.forEach((form, idx) => {
+                    if (idx !== correctIdx) wrongs.push(`${form} ${verb.infinitive}`);
+                });
+            } else if (tense === 'perfecto') {
+                const haberForms = ["he", "has", "ha", "hemos", "habéis", "han"];
+                haberForms.forEach((form, idx) => {
+                    if (idx !== correctIdx) wrongs.push(`${form} ${verb.participio}`);
+                });
+            }
+            
+            return shuffleArray(wrongs).slice(0, 4);
+        }
+
+        function startVerboInvaders() {
+            generateViQuestionPool();
+            
+            if (viQuestionPool.length === 0) {
+                alert('Velg minst ett verb og én verbtid!');
+                return;
+            }
+            
+            viScore = 0;
+            viLives = 3;
+            viLevel = 1;
+            viCombo = 0;
+            viMaxCombo = 0;
+            viTotalCorrect = 0;
+            viTotalAnswered = 0;
+            viGameActive = true;
+            viAnswering = false;
+            
+            document.getElementById('verboInvadersSetup').classList.add('hidden');
+            document.getElementById('verboInvadersGame').classList.remove('hidden');
+            document.getElementById('verboInvadersGameOver').classList.add('hidden');
+            
+            viUpdateHUD();
+            viUpdateCombo();
+            
+            const invaderZone = document.getElementById('viInvaderZone');
+            invaderZone.style.transition = 'none';
+            invaderZone.style.opacity = '1';
+            invaderZone.style.top = '-150px';
+            
+            document.getElementById('viPlayerShip').style.left = 'calc(50% - 18px)';
+            
+            viPickQuestion();
+            setTimeout(() => viStartFalling(), 500);
+        }
+
+        function viPickQuestion() {
+            if (viQuestionPool.length === 0) {
+                generateViQuestionPool();
+            }
+            
+            const q = viQuestionPool[Math.floor(Math.random() * viQuestionPool.length)];
+            viCurrentQuestion = q;
+            
+            const wrongOptions = shuffleArray(q.wrongs).slice(0, 2);
+            const options = shuffleArray([q.correct, ...wrongOptions]);
+            viCorrectIndex = options.indexOf(q.correct);
+            
+            document.getElementById('viPromptText').textContent = q.norwegian;
+            document.getElementById('viPromptVerb').textContent = q.verbDisplay;
+            
+            for (let i = 0; i < 3; i++) {
+                document.getElementById(`viAns${i}`).textContent = options[i];
+                document.getElementById(`viCard${i}`).className = 'vi-answer-card';
+            }
+        }
+
+        function viGetFallDuration(level) {
+            return Math.max(2500, 8000 - (level - 1) * 500);
+        }
+
+        function viGetEndY() {
+            return window.innerHeight - 148 - 130;
+        }
+
+        function viStartFalling() {
+            viFallDuration = viGetFallDuration(viLevel);
+            viEndY = viGetEndY();
+            viStartY = -150;
+            
+            const invaderZone = document.getElementById('viInvaderZone');
+            invaderZone.style.top = viStartY + 'px';
+            document.getElementById('viWarningGlow').style.opacity = '0';
+            
+            viFallStartTime = performance.now();
+            if (viFallAnimId) cancelAnimationFrame(viFallAnimId);
+            viFallAnimId = requestAnimationFrame(viFallStep);
+        }
+
+        function viFallStep(timestamp) {
+            if (!viGameActive || viAnswering) return;
+            
+            const elapsed = timestamp - viFallStartTime;
+            const progress = Math.min(1, elapsed / viFallDuration);
+            const eased = progress * progress;
+            const currentY = viStartY + (viEndY - viStartY) * eased;
+            
+            const invaderZone = document.getElementById('viInvaderZone');
+            invaderZone.style.top = currentY + 'px';
+            
+            // Warning glow
+            if (progress > 0.5) {
+                const glowIntensity = (progress - 0.5) * 2;
+                document.getElementById('viWarningGlow').style.opacity = glowIntensity * 0.6;
+                
+                if (progress > 0.8) {
+                    const pulse = Math.sin(elapsed * 0.01) * 0.5 + 0.5;
+                    const promptBox = invaderZone.querySelector('.vi-prompt-box');
+                    promptBox.style.borderColor = `rgba(255, 46, 99, ${0.3 + pulse * 0.7})`;
+                    promptBox.style.boxShadow = `0 0 ${20 + pulse * 20}px rgba(255, 46, 99, ${0.2 + pulse * 0.3})`;
+                }
+            }
+            
+            if (progress >= 1) {
+                viHandleTimeout();
+                return;
+            }
+            
+            viFallAnimId = requestAnimationFrame(viFallStep);
+        }
+
+        function viStopFalling() {
+            if (viFallAnimId) {
+                cancelAnimationFrame(viFallAnimId);
+                viFallAnimId = null;
+            }
+        }
+
+        function viHandleTimeout() {
+            if (!viGameActive || viAnswering) return;
+            viAnswering = true;
+            viStopFalling();
+            viCombo = 0;
+            viUpdateCombo();
+            viLives--;
+            viUpdateHUD();
+            
+            document.getElementById(`viCard${viCorrectIndex}`).classList.add('correct');
+            document.getElementById('viInvaderZone').querySelector('.vi-invader-sprite').style.filter = 
+                'drop-shadow(0 0 30px #ff2e63)';
+            document.getElementById('viWarningGlow').style.opacity = '0';
+            
+            if (viLives <= 0) {
+                setTimeout(viGameOver, 800);
+            } else {
+                setTimeout(viNextRound, 1000);
+            }
+        }
+
+        function viSelectAnswer(idx) {
+            if (!viGameActive || viAnswering) return;
+            viAnswering = true;
+            viStopFalling();
+            
+            const card = document.getElementById(`viCard${idx}`);
+            viTotalAnswered++;
+            
+            const cardRect = card.getBoundingClientRect();
+            const ship = document.getElementById('viPlayerShip');
+            ship.style.left = (cardRect.left + cardRect.width / 2 - 18) + 'px';
+            
+            document.getElementById('viWarningGlow').style.opacity = '0';
+            
+            if (idx === viCorrectIndex) {
+                card.classList.add('correct');
+                viCombo++;
+                viTotalCorrect++;
+                if (viCombo > viMaxCombo) viMaxCombo = viCombo;
+                const points = 100 * viLevel + (viCombo > 1 ? viCombo * 20 : 0);
+                viScore += points;
+                viUpdateCombo();
+                
+                const invaderZone = document.getElementById('viInvaderZone');
+                const invRect = invaderZone.getBoundingClientRect();
+                viCreateExplosion(invRect.left + invRect.width / 2, invRect.top + 30, '#39ff14');
+                
+                invaderZone.style.transition = 'top 0.3s ease-out, opacity 0.3s';
+                invaderZone.style.top = (parseInt(invaderZone.style.top) - 80) + 'px';
+                invaderZone.style.opacity = '0';
+                
+                if (viTotalCorrect % 5 === 0) {
+                    viLevel++;
+                    viShowLevelUp();
+                }
+            } else {
+                card.classList.add('wrong');
+                document.getElementById(`viCard${viCorrectIndex}`).classList.add('correct');
+                viCombo = 0;
+                viUpdateCombo();
+                viLives--;
+                viCreateExplosion(cardRect.left + cardRect.width / 2, cardRect.top, '#ff2e63');
+            }
+            
+            viUpdateHUD();
+            
+            if (viLives <= 0) {
+                setTimeout(viGameOver, 800);
+            } else {
+                setTimeout(viNextRound, 1000);
+            }
+        }
+
+        function viNextRound() {
+            viAnswering = false;
+            
+            const invaderZone = document.getElementById('viInvaderZone');
+            invaderZone.style.transition = 'none';
+            invaderZone.style.opacity = '1';
+            invaderZone.style.top = viStartY + 'px';
+            invaderZone.querySelector('.vi-invader-sprite').style.filter = 'drop-shadow(0 0 20px #39ff14)';
+            invaderZone.querySelector('.vi-prompt-box').style.borderColor = 'rgba(57, 255, 20, 0.3)';
+            invaderZone.querySelector('.vi-prompt-box').style.boxShadow = '0 0 30px rgba(57, 255, 20, 0.1)';
+            
+            viPickQuestion();
+            setTimeout(() => {
+                if (viGameActive && !viAnswering) viStartFalling();
+            }, 300);
+        }
+
+        function viUpdateHUD() {
+            document.getElementById('viScore').textContent = viScore;
+            document.getElementById('viLevel').textContent = viLevel;
+            const hearts = '❤️'.repeat(Math.max(0, viLives)) + '🖤'.repeat(Math.max(0, 3 - viLives));
+            document.getElementById('viLives').textContent = hearts;
+        }
+
+        function viUpdateCombo() {
+            const el = document.getElementById('viCombo');
+            const num = document.getElementById('viComboNum');
+            if (viCombo >= 2) {
+                el.classList.add('visible');
+                num.textContent = viCombo + 'x';
+            } else {
+                el.classList.remove('visible');
+            }
+        }
+
+        function viCreateExplosion(x, y, color) {
+            const container = document.createElement('div');
+            container.className = 'vi-explosion';
+            container.style.left = x + 'px';
+            container.style.top = y + 'px';
+            
+            for (let i = 0; i < 12; i++) {
+                const p = document.createElement('div');
+                p.className = 'vi-explosion-particle';
+                const angle = (Math.PI * 2 * i) / 12;
+                const dist = 30 + Math.random() * 40;
+                p.style.setProperty('--dx', Math.cos(angle) * dist + 'px');
+                p.style.setProperty('--dy', Math.sin(angle) * dist + 'px');
+                p.style.background = color;
+                p.style.boxShadow = `0 0 6px ${color}`;
+                container.appendChild(p);
+            }
+            
+            document.body.appendChild(container);
+            setTimeout(() => container.remove(), 700);
+        }
+
+        function viShowLevelUp() {
+            const flash = document.createElement('div');
+            flash.className = 'vi-level-up-flash';
+            document.body.appendChild(flash);
+            setTimeout(() => flash.remove(), 900);
+            
+            const text = document.createElement('div');
+            text.className = 'vi-level-up-text';
+            text.textContent = `NIVÅ ${viLevel}!`;
+            document.body.appendChild(text);
+            setTimeout(() => text.remove(), 1300);
+        }
+
+        function viGameOver() {
+            viGameActive = false;
+            viStopFalling();
+            document.getElementById('viWarningGlow').style.opacity = '0';
+            
+            const pct = viTotalAnswered > 0 ? Math.round((viTotalCorrect / viTotalAnswered) * 100) : 0;
+            
+            document.getElementById('verboInvadersGame').classList.add('hidden');
+            document.getElementById('verboInvadersGameOver').classList.remove('hidden');
+            
+            document.getElementById('viFinalScore').textContent = `${viScore} POENG`;
+            document.getElementById('viFinalStats').innerHTML = 
+                `${viTotalCorrect} av ${viTotalAnswered} riktige (${pct}%)<br>Maks combo: ${viMaxCombo}x · Nivå: ${viLevel}`;
+        }
+
+        function quitVerboInvaders() {
+            if (confirm('Er du sikker på at du vil avslutte spillet?')) {
+                viGameActive = false;
+                viStopFalling();
+                showGamesMenu();
+            }
+        }
+
+        // Keyboard controls for Verbo Invaders
+        document.addEventListener('keydown', (e) => {
+            if (!viGameActive) return;
+            
+            if (e.key === '1') viSelectAnswer(0);
+            else if (e.key === '2') viSelectAnswer(1);
+            else if (e.key === '3') viSelectAnswer(2);
+        });
+
+        // Handle window resize for game
+        window.addEventListener('resize', () => {
+            if (viGameActive) {
+                viEndY = viGetEndY();
+            }
+        });
 
         // Initialize app
         (function() {
