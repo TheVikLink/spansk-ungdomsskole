@@ -2274,6 +2274,7 @@
             <div id="vocabStudy" class="hidden">
                 <div class="study-header">
                     <button class="btn btn-outline btn-sm" onclick="endVocabSessionEarly()">✕ Avslutt</button>
+                    <button class="btn btn-outline btn-sm" onclick="undoLastVocabAction()" id="undoVocabBtn" title="Angre (Ctrl+Z)">↩️ Angre</button>
                     <div class="session-progress">
                         <div class="session-progress-bar">
                             <div class="session-progress-fill" id="sessionProgressFill"></div>
@@ -2447,6 +2448,12 @@
                         <h3>Verbo Invaders</h3>
                         <p>Bøy verb riktig før romvesnene tar over!</p>
                     </div>
+                    <div class="game-card" onclick="showGameSetup('prepo-invaders')">
+                        <div class="game-icon">🧭</div>
+                        <h3>Prepo Invaders</h3>
+                        <p>Skyt riktig preposisjon før den lander!</p>
+                    </div>
+
                     <div class="game-card coming-soon">
                         <div class="game-icon">🎯</div>
                         <h3>Glose-duell</h3>
@@ -2578,6 +2585,107 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Prepo Invaders Setup -->
+            <div id="prepoInvadersSetup" class="hidden">
+                <div class="page-header">
+                    <h2>🧭 Prepo Invaders</h2>
+                    <p>Øv på spanske preposisjoner på Space-Invaders-vis</p>
+                </div>
+
+                <div class="game-setup-section">
+                    <h3>📌 Preposisjonene i spillet</h3>
+                    <p style="color: var(--gray-500); line-height: 1.6;">
+                        en (i/på) · a la izquierda · a la derecha · delante de · en el centro · debajo de · al lado de · encima de (over/på)
+                    </p>
+                    <p style="color: var(--gray-500); margin-top: 10px;">
+                        💡 Bruk tastene <strong>1</strong>, <strong>2</strong>, <strong>3</strong> for å svare lynraskt.
+                    </p>
+                </div>
+
+                <div class="button-group" style="margin-top: 24px;">
+                    <button class="btn btn-primary btn-large" onclick="startPrepoInvaders()">🚀 Start spillet!</button>
+                    <button class="btn btn-secondary" onclick="showGamesMenu()">← Tilbake</button>
+                </div>
+            </div>
+
+            <!-- Prepo Invaders Game Area -->
+            <div id="prepoInvadersGame" class="hidden">
+                <div class="vi-game-container">
+                    <div class="vi-stars"></div>
+                    <div class="vi-warning-glow" id="piWarningGlow"></div>
+
+                    <!-- HUD -->
+                    <div class="vi-hud">
+                        <div class="vi-hud-item">
+                            <div class="vi-hud-label">Poeng</div>
+                            <div class="vi-hud-value" id="piScore">0</div>
+                        </div>
+                        <div class="vi-hud-item">
+                            <div class="vi-hud-label">Nivå</div>
+                            <div class="vi-hud-value vi-level" id="piLevel">1</div>
+                        </div>
+                        <div class="vi-hud-item">
+                            <div class="vi-hud-label">Liv</div>
+                            <div class="vi-hud-value vi-lives" id="piLives">❤️❤️❤️</div>
+                        </div>
+                        <button class="vi-quit-btn" onclick="quitPrepoInvaders()">✕ Avslutt</button>
+                    </div>
+
+                    <!-- Falling invader -->
+                    <div class="vi-invader-zone" id="piInvaderZone">
+                        <div class="vi-invader-sprite">🛸</div>
+                        <div class="vi-prompt-box">
+                            <div class="vi-prompt-norwegian" id="piPromptText">—</div>
+                            <div class="vi-prompt-verb" id="piPromptHint">—</div>
+                        </div>
+                    </div>
+
+                    <!-- Danger line -->
+                    <div class="vi-danger-line"></div>
+                    <div class="vi-danger-label">▼ FARESONE ▼</div>
+
+                    <!-- Player ship -->
+                    <div class="vi-player-ship" id="piPlayerShip">🚀</div>
+
+                    <!-- Answer zone -->
+                    <div class="vi-answer-zone" id="piAnswerZone">
+                        <div class="vi-answer-card" onclick="piSelectAnswer(0)" id="piCard0">
+                            <div class="vi-key-hint">[ 1 ]</div>
+                            <div class="vi-answer-text" id="piAns0">—</div>
+                        </div>
+                        <div class="vi-answer-card" onclick="piSelectAnswer(1)" id="piCard1">
+                            <div class="vi-key-hint">[ 2 ]</div>
+                            <div class="vi-answer-text" id="piAns1">—</div>
+                        </div>
+                        <div class="vi-answer-card" onclick="piSelectAnswer(2)" id="piCard2">
+                            <div class="vi-key-hint">[ 3 ]</div>
+                            <div class="vi-answer-text" id="piAns2">—</div>
+                        </div>
+                    </div>
+
+                    <!-- Combo display -->
+                    <div class="vi-combo" id="piCombo">
+                        <span class="vi-combo-number" id="piComboNum">0</span>
+                        COMBO
+                    </div>
+                </div>
+            </div>
+
+            <!-- Prepo Invaders Game Over Screen -->
+            <div id="prepoInvadersGameOver" class="hidden">
+                <div class="vi-gameover-container">
+                    <div class="vi-gameover-title">GAME OVER</div>
+                    <div class="vi-gameover-score" id="piFinalScore">0 POENG</div>
+                    <div class="vi-gameover-stats" id="piFinalStats"></div>
+                    <div class="button-group">
+                        <button class="btn btn-primary btn-large" onclick="startPrepoInvaders()">🔄 Spill igjen</button>
+                        <button class="btn btn-secondary" onclick="showGameSetup('prepo-invaders')">⚙️ Se info</button>
+                        <button class="btn btn-outline" onclick="showGamesMenu()">← Tilbake til spill</button>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 
@@ -3156,6 +3264,10 @@
             if (viGameActive) {
                 viStopFalling();
                 viGameActive = false;
+            }
+            if (piGameActive) {
+                piStopFalling();
+                piGameActive = false;
             }
             
             // Remove active from all nav links
@@ -3956,6 +4068,45 @@
         let sessionStartTime = null;
         let sessionStats = { reviewed: 0, correct: 0, newLearned: 0 };
 
+        // Undo stack for vocab rating (Angre)
+        let vocabUndoStack = [];
+
+        function updateUndoButtonState() {
+            const btn = document.getElementById('undoVocabBtn');
+            if (!btn) return;
+            const enabled = !document.getElementById('vocabStudy').classList.contains('hidden') && vocabUndoStack.length > 0;
+            btn.disabled = !enabled;
+            btn.style.opacity = enabled ? '1' : '0.5';
+            btn.style.cursor = enabled ? 'pointer' : 'not-allowed';
+        }
+
+        function undoLastVocabAction() {
+            if (document.getElementById('vocabStudy').classList.contains('hidden')) return;
+            const last = vocabUndoStack.pop();
+            if (!last) return;
+
+            const card = cards.find(c => c.id === last.cardId);
+            if (card) {
+                card.noEs = last.cardNoEs;
+                card.esNo = last.cardEsNo;
+                card.lastReview = last.cardLastReview;
+                card.reviews = last.cardReviews;
+                card.correct = last.cardCorrect;
+            }
+
+            sessionCards = last.sessionCards;
+            currentIndex = last.currentIndex;
+            sessionStats = last.sessionStats;
+
+            saveData();
+
+            // Go back to the previous card, show answer side so user can rate again
+            showVocabCard();
+            flipCard();
+
+            updateUndoButtonState();
+        }
+
         // ============================================
         // VOCABULARY FUNCTIONS
         // ============================================
@@ -4013,6 +4164,14 @@
 
         function setupKeyboardShortcuts() {
             document.addEventListener('keydown', (e) => {
+                // Undo shortcut (Ctrl+Z / Cmd+Z) in vocab
+                if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'z') {
+                    if (!document.getElementById('vocabStudy').classList.contains('hidden')) {
+                        e.preventDefault();
+                        undoLastVocabAction();
+                        return;
+                    }
+                }
                 // Vocab shortcuts
                 if (!document.getElementById('vocabStudy').classList.contains('hidden')) {
                     if (!showingAnswer) {
@@ -4169,6 +4328,7 @@
             document.getElementById('vocabStudy').classList.remove('hidden');
             
             showVocabCard();
+            updateUndoButtonState();
         }
 
         function showVocabCard() {
@@ -4204,6 +4364,7 @@
             `;
             
             document.getElementById('buttonArea').innerHTML = '';
+            updateUndoButtonState();
         }
 
         function flipCard() {
@@ -4239,9 +4400,29 @@
                     <button class="rating-btn rating-good" onclick="rateCard(2)">😊 Bra<span class="interval">${intervals[2]}</span><span class="key">(2)</span></button>
                 </div>
             `;
+                    updateUndoButtonState();
         }
 
         function rateCard(quality) {
+            // Snapshot for undo (before we mutate anything)
+            try {
+                const snapItem = currentCard;
+                const snapCard = cards.find(c => c.id === snapItem.card.id);
+                vocabUndoStack.push({
+                    currentIndex: currentIndex,
+                    sessionStats: { ...sessionStats },
+                    sessionCards: sessionCards.map(it => ({ card: { id: it.card.id }, direction: it.direction })),
+                    cardId: snapCard?.id,
+                    cardNoEs: snapCard ? { ...snapCard.noEs } : null,
+                    cardEsNo: snapCard ? { ...snapCard.esNo } : null,
+                    cardLastReview: snapCard?.lastReview ?? null,
+                    cardReviews: snapCard?.reviews ?? 0,
+                    cardCorrect: snapCard?.correct ?? 0
+                });
+            } catch (e) {
+                console.warn('Undo snapshot failed', e);
+            }
+
             const item = currentCard;
             const card = cards.find(c => c.id === item.card.id);
             const direction = item.direction;
@@ -4280,6 +4461,8 @@
         }
 
         function endVocabSession() {
+            vocabUndoStack = [];
+            updateUndoButtonState();
             const duration = Math.round((new Date() - sessionStartTime) / 60000);
             const accuracy = sessionStats.reviewed > 0 ? Math.round((sessionStats.correct / sessionStats.reviewed) * 100) : 0;
             
@@ -5625,6 +5808,9 @@
             document.getElementById('verboInvadersSetup').classList.add('hidden');
             document.getElementById('verboInvadersGame').classList.add('hidden');
             document.getElementById('verboInvadersGameOver').classList.add('hidden');
+            document.getElementById('prepoInvadersSetup').classList.add('hidden');
+            document.getElementById('prepoInvadersGame').classList.add('hidden');
+            document.getElementById('prepoInvadersGameOver').classList.add('hidden');
         }
 
         function showGameSetup(game) {
@@ -5634,6 +5820,11 @@
                 document.getElementById('verboInvadersGame').classList.add('hidden');
                 document.getElementById('verboInvadersGameOver').classList.add('hidden');
                 renderGameVerbSelector();
+            } else if (game === 'prepo-invaders') {
+                document.getElementById('gamesMenu').classList.add('hidden');
+                document.getElementById('prepoInvadersSetup').classList.remove('hidden');
+                document.getElementById('prepoInvadersGame').classList.add('hidden');
+                document.getElementById('prepoInvadersGameOver').classList.add('hidden');
             }
         }
 
@@ -6154,13 +6345,17 @@
             }
         }
 
-        // Keyboard controls for Verbo Invaders
+        // Keyboard controls for games (Verbo + Prepo Invaders)
         document.addEventListener('keydown', (e) => {
-            if (!viGameActive) return;
-            
-            if (e.key === '1') viSelectAnswer(0);
-            else if (e.key === '2') viSelectAnswer(1);
-            else if (e.key === '3') viSelectAnswer(2);
+            if (viGameActive) {
+                if (e.key === '1') viSelectAnswer(0);
+                else if (e.key === '2') viSelectAnswer(1);
+                else if (e.key === '3') viSelectAnswer(2);
+            } else if (piGameActive) {
+                if (e.key === '1') piSelectAnswer(0);
+                else if (e.key === '2') piSelectAnswer(1);
+                else if (e.key === '3') piSelectAnswer(2);
+            }
         });
 
         // Handle window resize for game
@@ -6168,7 +6363,300 @@
             if (viGameActive) {
                 viEndY = viGetEndY();
             }
+            if (piGameActive) {
+                piEndY = piGetEndY();
+            }
         });
+
+
+        // ============================================
+        // PREPO INVADERS GAME (Preposisjoner)
+        // ============================================
+
+        // Game state
+        let piScore = 0;
+        let piLives = 3;
+        let piLevel = 1;
+        let piCombo = 0;
+        let piMaxCombo = 0;
+        let piTotalCorrect = 0;
+        let piTotalAnswered = 0;
+        let piCurrentQuestion = null;
+        let piCorrectIndex = -1;
+        let piGameActive = false;
+        let piAnswering = false;
+
+        // Falling animation state
+        let piFallAnimId = null;
+        let piFallStartTime = 0;
+        let piFallDuration = 8000;
+        let piStartY = -150;
+        let piEndY = 0;
+
+        const prepositions = [
+            { no: "i / på", es: "en", hint: "en (i, på)" },
+            { no: "til venstre", es: "a la izquierda", hint: "a la izquierda" },
+            { no: "til høyre", es: "a la derecha", hint: "a la derecha" },
+            { no: "foran", es: "delante de", hint: "delante de" },
+            { no: "i midten", es: "en el centro", hint: "en el centro" },
+            { no: "under", es: "debajo de", hint: "debajo de" },
+            { no: "ved siden av", es: "al lado de", hint: "al lado de" },
+            { no: "over / oppå", es: "encima de", hint: "encima de (over, på)" }
+        ];
+
+        function piGetFallDuration(level) {
+            return Math.max(2500, 8000 - (level - 1) * 500);
+        }
+
+        function piGetEndY() {
+            return window.innerHeight - 148 - 130;
+        }
+
+        function startPrepoInvaders() {
+            piScore = 0;
+            piLives = 3;
+            piLevel = 1;
+            piCombo = 0;
+            piMaxCombo = 0;
+            piTotalCorrect = 0;
+            piTotalAnswered = 0;
+            piGameActive = true;
+            piAnswering = false;
+
+            document.getElementById('prepoInvadersSetup').classList.add('hidden');
+            document.getElementById('prepoInvadersGame').classList.remove('hidden');
+            document.getElementById('prepoInvadersGameOver').classList.add('hidden');
+
+            piUpdateHUD();
+            piUpdateCombo();
+
+            const invaderZone = document.getElementById('piInvaderZone');
+            invaderZone.style.transition = 'none';
+            invaderZone.style.opacity = '1';
+            invaderZone.style.top = '-150px';
+
+            document.getElementById('piPlayerShip').style.left = 'calc(50% - 18px)';
+
+            piPickQuestion();
+            setTimeout(() => piStartFalling(), 500);
+        }
+
+        
+        
+        function piPickQuestion() {
+            const q = prepositions[Math.floor(Math.random() * prepositions.length)];
+            piCurrentQuestion = q;
+
+            let options = [];
+
+            // Hvis izquierda/derecha, vis begge (typisk forveksling)
+            if (q.es === "a la izquierda" || q.es === "a la derecha") {
+                const counterpart = (q.es === "a la izquierda") ? "a la derecha" : "a la izquierda";
+
+                const wrongPool = prepositions
+                    .filter(p => p.es !== q.es && p.es !== counterpart)
+                    .map(p => p.es);
+
+                const extraWrong = shuffleArray(wrongPool)[0];
+                options = shuffleArray([q.es, counterpart, extraWrong]);
+            } else {
+                const wrongPool = prepositions
+                    .filter(p => p.es !== q.es)
+                    .map(p => p.es);
+
+                const wrongs = shuffleArray(wrongPool).slice(0, 2);
+                options = shuffleArray([q.es, ...wrongs]);
+            }
+
+            piCorrectIndex = options.indexOf(q.es);
+
+            document.getElementById('piPromptText').textContent = q.no;
+            document.getElementById('piPromptHint').textContent = "Velg spansk preposisjon";
+
+            for (let i = 0; i < 3; i++) {
+                document.getElementById(`piAns${i}`).textContent = options[i];
+                document.getElementById(`piCard${i}`).className = 'vi-answer-card';
+            }
+        }
+
+
+        function piStartFalling() {
+            piFallDuration = piGetFallDuration(piLevel);
+            piEndY = piGetEndY();
+            piStartY = -150;
+
+            const invaderZone = document.getElementById('piInvaderZone');
+            invaderZone.style.top = piStartY + 'px';
+            document.getElementById('piWarningGlow').style.opacity = '0';
+
+            piFallStartTime = performance.now();
+            if (piFallAnimId) cancelAnimationFrame(piFallAnimId);
+            piFallAnimId = requestAnimationFrame(piFallStep);
+        }
+
+        function piFallStep(timestamp) {
+            if (!piGameActive || piAnswering) return;
+
+            const elapsed = timestamp - piFallStartTime;
+            const progress = Math.min(1, elapsed / piFallDuration);
+            const eased = progress * progress;
+            const currentY = piStartY + (piEndY - piStartY) * eased;
+
+            const invaderZone = document.getElementById('piInvaderZone');
+            invaderZone.style.top = currentY + 'px';
+
+            if (progress > 0.5) {
+                const glowIntensity = (progress - 0.5) * 2;
+                document.getElementById('piWarningGlow').style.opacity = glowIntensity * 0.6;
+            }
+
+            if (progress >= 1) {
+                piHandleTimeout();
+                return;
+            }
+
+            piFallAnimId = requestAnimationFrame(piFallStep);
+        }
+
+        function piStopFalling() {
+            if (piFallAnimId) {
+                cancelAnimationFrame(piFallAnimId);
+                piFallAnimId = null;
+            }
+        }
+
+        function piHandleTimeout() {
+            if (!piGameActive || piAnswering) return;
+            piAnswering = true;
+            piStopFalling();
+
+            piCombo = 0;
+            piUpdateCombo();
+            piLives--;
+            piUpdateHUD();
+
+            document.getElementById(`piCard${piCorrectIndex}`).classList.add('correct');
+            document.getElementById('piWarningGlow').style.opacity = '0';
+
+            if (piLives <= 0) {
+                setTimeout(piGameOver, 800);
+            } else {
+                setTimeout(piNextRound, 1000);
+            }
+        }
+
+        function piSelectAnswer(idx) {
+            if (!piGameActive || piAnswering) return;
+            piAnswering = true;
+            piStopFalling();
+
+            const card = document.getElementById(`piCard${idx}`);
+            piTotalAnswered++;
+
+            const cardRect = card.getBoundingClientRect();
+            const ship = document.getElementById('piPlayerShip');
+            ship.style.left = (cardRect.left + cardRect.width / 2 - 18) + 'px';
+
+            document.getElementById('piWarningGlow').style.opacity = '0';
+
+            if (idx === piCorrectIndex) {
+                card.classList.add('correct');
+                piCombo++;
+                piTotalCorrect++;
+                if (piCombo > piMaxCombo) piMaxCombo = piCombo;
+
+                const points = 100 * piLevel + (piCombo > 1 ? piCombo * 20 : 0);
+                piScore += points;
+                piUpdateCombo();
+
+                const invaderZone = document.getElementById('piInvaderZone');
+                const invRect = invaderZone.getBoundingClientRect();
+                viCreateExplosion(invRect.left + invRect.width / 2, invRect.top + 30, '#39ff14');
+
+                invaderZone.style.transition = 'top 0.3s ease-out, opacity 0.3s';
+                invaderZone.style.top = (parseInt(invaderZone.style.top) - 80) + 'px';
+                invaderZone.style.opacity = '0';
+
+                if (piTotalCorrect % 5 === 0) {
+                    piLevel++;
+                    viShowLevelUp(); // reuse same effect
+                }
+            } else {
+                card.classList.add('wrong');
+                document.getElementById(`piCard${piCorrectIndex}`).classList.add('correct');
+                piCombo = 0;
+                piUpdateCombo();
+                piLives--;
+                viCreateExplosion(cardRect.left + cardRect.width / 2, cardRect.top, '#ff2e63');
+            }
+
+            piUpdateHUD();
+
+            if (piLives <= 0) {
+                setTimeout(piGameOver, 800);
+            } else {
+                setTimeout(piNextRound, 1000);
+            }
+        }
+
+        function piNextRound() {
+            piAnswering = false;
+
+            const invaderZone = document.getElementById('piInvaderZone');
+            invaderZone.style.transition = 'none';
+            invaderZone.style.opacity = '1';
+            invaderZone.style.top = piStartY + 'px';
+            invaderZone.querySelector('.vi-invader-sprite').style.filter = 'drop-shadow(0 0 20px #39ff14)';
+            invaderZone.querySelector('.vi-prompt-box').style.borderColor = 'rgba(57, 255, 20, 0.3)';
+            invaderZone.querySelector('.vi-prompt-box').style.boxShadow = '0 0 30px rgba(57, 255, 20, 0.1)';
+
+            piPickQuestion();
+            setTimeout(() => {
+                if (piGameActive && !piAnswering) piStartFalling();
+            }, 300);
+        }
+
+        function piUpdateHUD() {
+            document.getElementById('piScore').textContent = piScore;
+            document.getElementById('piLevel').textContent = piLevel;
+            const hearts = '❤️'.repeat(Math.max(0, piLives)) + '🖤'.repeat(Math.max(0, 3 - piLives));
+            document.getElementById('piLives').textContent = hearts;
+        }
+
+        function piUpdateCombo() {
+            const el = document.getElementById('piCombo');
+            const num = document.getElementById('piComboNum');
+            if (piCombo >= 2) {
+                el.classList.add('visible');
+                num.textContent = piCombo + 'x';
+            } else {
+                el.classList.remove('visible');
+            }
+        }
+
+        function piGameOver() {
+            piGameActive = false;
+            piStopFalling();
+            document.getElementById('piWarningGlow').style.opacity = '0';
+
+            const pct = piTotalAnswered > 0 ? Math.round((piTotalCorrect / piTotalAnswered) * 100) : 0;
+
+            document.getElementById('prepoInvadersGame').classList.add('hidden');
+            document.getElementById('prepoInvadersGameOver').classList.remove('hidden');
+
+            document.getElementById('piFinalScore').textContent = `${piScore} POENG`;
+            document.getElementById('piFinalStats').innerHTML =
+                `${piTotalCorrect} av ${piTotalAnswered} riktige (${pct}%)<br>Maks combo: ${piMaxCombo}x · Nivå: ${piLevel}`;
+        }
+
+        function quitPrepoInvaders() {
+            if (confirm('Er du sikker på at du vil avslutte spillet?')) {
+                piGameActive = false;
+                piStopFalling();
+                showGamesMenu();
+            }
+        }
+
 
         // Initialize app
         (function() {
