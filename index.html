@@ -4067,6 +4067,7 @@
         let showingAnswer = false;
         let sessionStartTime = null;
         let sessionStats = { reviewed: 0, correct: 0, newLearned: 0 };
+        let isCustomStudySession = false;
 
         // Undo stack for vocab rating (Angre)
         let vocabUndoStack = [];
@@ -4305,6 +4306,55 @@
             return newItems;
         }
 
+        function getFutureReviewCards(cardList) {
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            const futureItems = [];
+
+            cardList.forEach(card => {
+                if (card.noEs.repetitions > 0 && card.noEs.nextReview && new Date(card.noEs.nextReview) > today) {
+                    futureItems.push({ card, direction: 'no-es' });
+                }
+                if (card.esNo.repetitions > 0 && card.esNo.nextReview && new Date(card.esNo.nextReview) > today) {
+                    futureItems.push({ card, direction: 'es-no' });
+                }
+            });
+
+            return futureItems;
+        }
+
+        function getCustomStudyCards(cardList, limit = 20) {
+            const items = [];
+
+            cardList.forEach(card => {
+                items.push({ card, direction: 'no-es' });
+                items.push({ card, direction: 'es-no' });
+            });
+
+            return shuffleArray(items).slice(0, limit);
+        }
+
+        function formatCategoryList(categories) {
+            const arr = [...categories].map(capitalizeFirst);
+            if (arr.length === 0) return '';
+            if (arr.length === 1) return arr[0];
+            if (arr.length === 2) return `${arr[0]} og ${arr[1]}`;
+            return `${arr.slice(0, -1).join(', ')} og ${arr[arr.length - 1]}`;
+        }
+
+        function shouldStartCustomStudy(selectedCategories) {
+            const categoryText = formatCategoryList(selectedCategories);
+            const isPlural = selectedCategories.size > 1;
+            const pronoun = isPlural ? 'dem' : 'den';
+            const subject = isPlural ? 'Kategoriene' : 'Kategorien';
+
+            return confirm(
+                `${subject} ${categoryText} har ingen tilgjengelige kort for øving fordi neste repetisjon er i fremtiden.
+
+Vil du øve på ${pronoun} likevel?`
+            );
+        }
+
         function startVocabSession() {
             const newLimit = parseInt(document.getElementById('newCardsLimit').value);
             const reviewLimit = parseInt(document.getElementById('reviewCardsLimit').value);
@@ -4312,14 +4362,34 @@
             
             const dueCards = getDueCards(filtered).slice(0, reviewLimit);
             const newCards = getNewCards(filtered).slice(0, newLimit * 2);
+            const futureReviewCards = getFutureReviewCards(filtered);
+            const normalSessionCards = shuffleArray([...dueCards, ...newCards]);
+
+            isCustomStudySession = false;
+            sessionCards = [];
             
-            sessionCards = shuffleArray([...dueCards, ...newCards]);
-            
-            if (sessionCards.length === 0) {
-                alert('Ingen kort tilgjengelig! Prøv å velge kategorier eller vent til flere kort forfaller.');
+            if (normalSessionCards.length > 0) {
+                sessionCards = normalSessionCards;
+            } else if (futureReviewCards.length > 0) {
+                const confirmed = shouldStartCustomStudy(selectedCategories);
+                if (!confirmed) return;
+
+                isCustomStudySession = true;
+                sessionCards = getCustomStudyCards(filtered, Math.max(10, reviewLimit, newLimit * 2));
+            } else if (filtered.length === 0) {
+                alert('Ingen kort tilgjengelig i de valgte kategoriene.');
+                return;
+            } else {
+                alert('Ingen kort tilgjengelig! Prøv å velge andre kategorier eller legg til flere kort.');
                 return;
             }
             
+            if (sessionCards.length === 0) {
+                alert('Ingen kort tilgjengelig i de valgte kategoriene.');
+                return;
+            }
+
+            vocabUndoStack = [];
             currentIndex = 0;
             sessionStartTime = new Date();
             sessionStats = { reviewed: 0, correct: 0, newLearned: 0 };
@@ -4349,10 +4419,12 @@
             
             updateVocabProgress();
             
+            const cardTypeLabel = isCustomStudySession ? 'Custom study' : (isNew ? 'Nytt kort' : 'Repetisjon');
+
             document.getElementById('flashcardArea').innerHTML = `
                 <div class="flashcard" onclick="flipCard()">
-                    <span class="card-type-badge ${isNew ? 'badge-new' : 'badge-review'}">
-                        ${isNew ? 'Nytt kort' : 'Repetisjon'}
+                    <span class="card-type-badge ${isCustomStudySession ? 'badge-review' : (isNew ? 'badge-new' : 'badge-review')}">
+                        ${cardTypeLabel}
                     </span>
                     <span class="direction-badge">
                         ${direction === 'no-es' ? '🇳🇴 → 🇪🇸' : '🇪🇸 → 🇳🇴'}
@@ -4380,10 +4452,12 @@
             const back = direction === 'no-es' ? card.es : card.no;
             const intervals = [0, 1, 2, 3].map(q => SM2.getIntervalText(q, srData));
             
+            const cardTypeLabel = isCustomStudySession ? 'Custom study' : (isNew ? 'Nytt kort' : 'Repetisjon');
+
             document.getElementById('flashcardArea').innerHTML = `
                 <div class="flashcard">
-                    <span class="card-type-badge ${isNew ? 'badge-new' : 'badge-review'}">
-                        ${isNew ? 'Nytt kort' : 'Repetisjon'}
+                    <span class="card-type-badge ${isCustomStudySession ? 'badge-review' : (isNew ? 'badge-new' : 'badge-review')}">
+                        ${cardTypeLabel}
                     </span>
                     <span class="direction-badge">
                         ${direction === 'no-es' ? '🇳🇴 → 🇪🇸' : '🇪🇸 → 🇳🇴'}
@@ -4428,23 +4502,26 @@
             const direction = item.direction;
             const srData = direction === 'no-es' ? card.noEs : card.esNo;
             const wasNew = srData.repetitions === 0;
-            
-            const result = SM2.calculateNextReview(srData, quality);
-            
-            if (direction === 'no-es') card.noEs = { ...card.noEs, ...result };
-            else card.esNo = { ...card.esNo, ...result };
-            
-            card.lastReview = new Date().toISOString();
-            card.reviews++;
-            if (quality >= 2) card.correct++;
+
+            if (!isCustomStudySession) {
+                const result = SM2.calculateNextReview(srData, quality);
+
+                if (direction === 'no-es') card.noEs = { ...card.noEs, ...result };
+                else card.esNo = { ...card.esNo, ...result };
+
+                card.lastReview = new Date().toISOString();
+                card.reviews++;
+                if (quality >= 2) card.correct++;
+                if (wasNew && quality >= 2) sessionStats.newLearned++;
+
+                saveData();
+            }
             
             sessionStats.reviewed++;
             if (quality >= 2) sessionStats.correct++;
-            if (wasNew && quality >= 2) sessionStats.newLearned++;
             
             if (quality === 0) sessionCards.push(item);
             
-            saveData();
             currentIndex++;
             showVocabCard();
         }
@@ -4452,7 +4529,7 @@
         function updateVocabProgress() {
             const progress = (currentIndex / sessionCards.length) * 100;
             document.getElementById('sessionProgressFill').style.width = progress + '%';
-            document.getElementById('sessionStats').textContent = `${sessionStats.reviewed} repetert • ${sessionStats.correct} riktig`;
+            document.getElementById('sessionStats').textContent = isCustomStudySession ? `Custom study • ${sessionStats.reviewed} repetert • ${sessionStats.correct} riktig` : `${sessionStats.reviewed} repetert • ${sessionStats.correct} riktig`;
             document.getElementById('cardCounter').textContent = `${currentIndex + 1} / ${sessionCards.length}`;
         }
 
@@ -4474,13 +4551,14 @@
             document.getElementById('flashcardArea').innerHTML = `
                 <div class="session-complete">
                     <div class="emoji">🎉</div>
-                    <h2>Økt fullført!</h2>
+                    <h2>${isCustomStudySession ? 'Custom study fullført!' : 'Økt fullført!'}</h2>
                     <div class="session-stats-grid">
                         <div class="session-stat"><div class="session-stat-value">${sessionStats.reviewed}</div><div class="session-stat-label">Kort repetert</div></div>
                         <div class="session-stat"><div class="session-stat-value">${accuracy}%</div><div class="session-stat-label">Nøyaktighet</div></div>
                         <div class="session-stat"><div class="session-stat-value">${duration}</div><div class="session-stat-label">Minutter</div></div>
                     </div>
-                    ${sessionStats.newLearned > 0 ? `<p style="color: var(--success); font-weight: 600;">✨ Du lærte ${sessionStats.newLearned} nye kort!</p>` : ''}
+                    ${!isCustomStudySession && sessionStats.newLearned > 0 ? `<p style="color: var(--success); font-weight: 600;">✨ Du lærte ${sessionStats.newLearned} nye kort!</p>` : ''}
+                    ${isCustomStudySession ? `<p style="color: var(--gray-600); font-weight: 600;">📝 Denne økten endret ikke repetisjonsplanen.</p>` : ''}
                 </div>
             `;
             
