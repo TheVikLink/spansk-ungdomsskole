@@ -4112,6 +4112,22 @@
         // VOCABULARY FUNCTIONS
         // ============================================
 
+        function normalizeCard(card, index) {
+            const normalized = { ...card };
+            normalized.id = normalized.id ?? index;
+            normalized.no = normalized.no ?? normalized.norsk ?? '';
+            normalized.es = normalized.es ?? normalized.spansk ?? '';
+            normalized.norsk = normalized.norsk ?? normalized.no ?? '';
+            normalized.spansk = normalized.spansk ?? normalized.es ?? '';
+            normalized.category = normalized.category || 'importert';
+            normalized.noEs = { easeFactor: SM2.defaultEaseFactor, interval: 0, repetitions: 0, nextReview: null, ...(normalized.noEs || {}) };
+            normalized.esNo = { easeFactor: SM2.defaultEaseFactor, interval: 0, repetitions: 0, nextReview: null, ...(normalized.esNo || {}) };
+            normalized.lastReview = normalized.lastReview || null;
+            normalized.reviews = normalized.reviews || 0;
+            normalized.correct = normalized.correct || 0;
+            return normalized;
+        }
+
         function init() {
             loadData();
             checkForOldAppData(); // Check if user has data from old app
@@ -4126,13 +4142,15 @@
         function loadData() {
             const saved = localStorage.getItem('spansk123Data_v4');
             if (saved) {
-                cards = JSON.parse(saved);
+                cards = JSON.parse(saved).map((card, index) => normalizeCard(card, index));
                 mergeNewVocabulary();
             } else {
                 cards = glossary.map((item, index) => ({
                     id: index,
                     no: item[0],
                     es: item[1],
+                    norsk: item[0],
+                    spansk: item[1],
                     category: item[2],
                     noEs: { easeFactor: SM2.defaultEaseFactor, interval: 0, repetitions: 0, nextReview: null },
                     esNo: { easeFactor: SM2.defaultEaseFactor, interval: 0, repetitions: 0, nextReview: null },
@@ -4149,7 +4167,7 @@
             glossary.forEach((item, index) => {
                 if (!existingIds.has(index)) {
                     cards.push({
-                        id: index, no: item[0], es: item[1], category: item[2],
+                        id: index, no: item[0], es: item[1], norsk: item[0], spansk: item[1], category: item[2],
                         noEs: { easeFactor: SM2.defaultEaseFactor, interval: 0, repetitions: 0, nextReview: null },
                         esNo: { easeFactor: SM2.defaultEaseFactor, interval: 0, repetitions: 0, nextReview: null },
                         lastReview: null, reviews: 0, correct: 0
@@ -4926,8 +4944,8 @@ Vil du øve på ${pronoun} likevel?`
             
             // Check for duplicates
             const exists = cards.some(c => 
-                c.norsk.toLowerCase() === norsk.toLowerCase() && 
-                c.spansk.toLowerCase() === spansk.toLowerCase()
+                (c.norsk || c.no || '').toLowerCase() === norsk.toLowerCase() && 
+                (c.spansk || c.es || '').toLowerCase() === spansk.toLowerCase()
             );
             
             if (exists) {
@@ -4937,6 +4955,9 @@ Vil du øve på ${pronoun} likevel?`
             
             // Create new card
             const newCard = {
+                id: cards.length,
+                no: norsk,
+                es: spansk,
                 norsk: norsk,
                 spansk: spansk,
                 category: category,
@@ -5018,8 +5039,8 @@ Vil du øve på ${pronoun} likevel?`
                             
                             // Check for duplicates
                             const exists = cards.some(c => 
-                                c.norsk.toLowerCase() === word.norsk.toLowerCase() && 
-                                c.spansk.toLowerCase() === word.spansk.toLowerCase()
+                                (c.norsk || c.no || '').toLowerCase() === word.norsk.toLowerCase() && 
+                                (c.spansk || c.es || '').toLowerCase() === word.spansk.toLowerCase()
                             );
                             
                             if (exists) {
@@ -5030,6 +5051,9 @@ Vil du øve på ${pronoun} likevel?`
                             const category = (word.category || 'importert').toLowerCase().replace(/\s+/g, '-');
                             
                             cards.push({
+                                id: cards.length,
+                                no: word.norsk,
+                                es: word.spansk,
                                 norsk: word.norsk,
                                 spansk: word.spansk,
                                 category: category,
