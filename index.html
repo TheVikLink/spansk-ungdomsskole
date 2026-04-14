@@ -2470,14 +2470,14 @@
                     <div class="chatbot-topic-list" id="chatbotTopicList"></div>
                 </div>
                 <div class="chatbot-main">
-                    <div class="chatbot-warning">⚠️ Ikke skriv ekte etternavn, adresse, telefonnummer eller andre personopplysninger. Du kan finne på svar.</div>
+                    <div class="chatbot-warning">⚠️ Ikke skriv etternavn, adresse, telefonnummer eller andre personopplysninger.</div>
                     <div class="chatbot-window" id="chatbotMessages"></div>
                     <div class="chatbot-actions" id="chatbotQuickReplies"></div>
                     <div class="chatbot-input-row">
                         <input id="chatbotInput" class="chatbot-input" type="text" maxlength="120" placeholder="Skriv en enkel setning på spansk...">
                         <button class="btn btn-primary" onclick="sendChatbotMessage()">Send</button>
                     </div>
-                    <div class="chatbot-help">Tips: Skriv korte setninger som «Me llamo Anna», «Tengo dos hermanos» eller «Me gusta el fútbol».</div>
+                    <div class="chatbot-help">Tips: Skriv korte setninger som «Me llamo Anna», «Tengo dos hermanos» eller «Me gusta el fútbol». Hold inne vokaler, n, ? eller ! for spesialtegn.</div>
                 </div>
             </div>
         </div>
@@ -6885,121 +6885,66 @@ Vil du øve på ${pronoun} likevel?`
         // ============================================
 
         const chatbotTopics = {
-            presentarte: {
-                label: '🗣️ Presentarte',
-                starter: '¡Hola! Vamos a practicar. ¿Cómo te llamas?',
-                quickReplies: ['Me llamo Sara', 'Tengo trece años', 'Soy de Noruega', 'Vivo en Bergen'],
-                fallback: 'Prueba con frases como «Me llamo...», «Tengo... años», «Soy de...», «Vivo en...» o «Hablo noruego e inglés».',
+            hilsen: {
+                label: '👋 Hilsing',
+                starter: '¡Hola! ¿Cómo te llamas?',
+                quickReplies: ['Hola', 'Me llamo Ana', '¿Cómo estás?'],
                 patterns: [
-                    { match: /cómo te llamas|como te llamas/i, reply: 'Me llamo Lola. ¿Y tú? ¿Cómo te llamas?' },
-                    { match: /me llamo|soy\s+[A-ZÁÉÍÓÚÑa-záéíóúñ]+/i, reply: '¡Mucho gusto! ¿Cuántos años tienes?' },
-                    { match: /cuántos años tienes|cuantos años tienes/i, reply: 'Tengo doce años. ¿Y tú?' },
-                    { match: /tengo\s+\w+\s+años/i, reply: 'Muy bien. ¿De dónde eres?' },
-                    { match: /de dónde eres|de donde eres/i, reply: 'Soy de España. ¿Y tú?' },
-                    { match: /soy de|vengo de/i, reply: '¡Qué bien! ¿Dónde vives?' },
-                    { match: /dónde vives|donde vives/i, reply: 'Vivo en Madrid. ¿Y tú?' },
-                    { match: /vivo en/i, reply: 'Entiendo. ¿Qué idiomas hablas?' },
-                    { match: /qué idiomas hablas|que idiomas hablas/i, reply: 'Hablo español e inglés. ¿Y tú?' },
-                    { match: /hablo/i, reply: 'Muy bien. ¿Cuándo es tu cumpleaños?' },
-                    { match: /cuándo es tu cumpleaños|cuando es tu cumpleaños/i, reply: 'Mi cumpleaños es en mayo. ¿Y el tuyo?' },
-                    { match: /mi cumpleaños es/i, reply: 'Perfecto. Ahora puedes contarme un poco sobre tu vida.' },
-                    { match: /cuéntame un poco sobre ti|cuentame un poco sobre ti|sobre tu vida/i, reply: 'Claro. Me llamo Lola, tengo doce años, soy de España y me gusta leer. Ahora cuéntame sobre ti.' }
-                ]
-            },
-            dia: {
-                label: '📅 Día, hora y tiempo',
-                starter: 'Vamos a practicar el día, la fecha, la hora y el tiempo. ¿Qué día es hoy?',
-                quickReplies: ['Hoy es lunes', 'Hoy es el doce de mayo', 'Son las dos', 'Hace sol'],
-                fallback: 'Puedes escribir «Hoy es lunes», «Hoy es el doce de mayo», «Son las dos» o «Hace sol».',
-                patterns: [
-                    { match: /qué día es hoy|que día es hoy|que dia es hoy/i, reply: 'Hoy es lunes. ¿Qué fecha es hoy?' },
-                    { match: /hoy es (lunes|martes|miércoles|miercoles|jueves|viernes|sábado|sabado|domingo)/i, reply: 'Muy bien. ¿Qué fecha es hoy?' },
-                    { match: /qué fecha es hoy|que fecha es hoy/i, reply: 'Hoy es el doce de mayo. ¿Y qué hora es?' },
-                    { match: /hoy es el/i, reply: 'Perfecto. ¿Qué hora es?' },
-                    { match: /qué hora es|que hora es/i, reply: 'Son las dos. ¿Qué tiempo hace hoy?' },
-                    { match: /son las|es la/i, reply: 'Bien. ¿Qué tiempo hace hoy?' },
-                    { match: /qué tiempo hace hoy|que tiempo hace hoy/i, reply: 'Hoy hace sol. ¿Y en tu ciudad?' },
-                    { match: /hace sol|hace frío|hace frio|hace calor|llueve|nieva|está nublado|esta nublado/i, reply: 'Muy bien. Puedes decir también: «Hoy hace viento» o «Hoy llueve».' }
-                ]
+                    { match: /me llamo|soy /i, reply: '¡Mucho gusto! Yo soy tu bot de español. ¿Cómo estás hoy?' },
+                    { match: /hola|buenas/i, reply: '¡Hola! ¿Cómo te llamas?' },
+                    { match: /cómo estás|como estas/i, reply: 'Estoy bien, gracias. ¿Y tú?' },
+                    { match: /bien|muy bien|genial/i, reply: '¡Qué bien! Vamos a practicar un poco más.' }
+                ],
+                fallback: 'Puedes escribir: «Hola», «Me llamo ...» o «¿Cómo estás?»'
             },
             familia: {
-                label: '👨‍👩‍👧‍👦 Familia y animales',
-                starter: 'Ahora hablamos de la familia. ¿Tienes hermanos?',
-                quickReplies: ['Tengo un hermano', 'No tengo hermanos', 'Tengo un perro', 'Vivo con mi madre y mi padre'],
-                fallback: 'Prueba con «Tengo un hermano», «No tengo hermanos», «Tengo un perro» o «Vivo con mi madre y mi padre».',
+                label: '👨‍👩‍👧‍👦 Familie',
+                starter: 'Háblame de tu familia. ¿Tienes hermanos?',
+                quickReplies: ['Tengo un hermano', 'Tengo dos hermanas', 'Vivo con mi madre'],
                 patterns: [
-                    { match: /tienes hermanos/i, reply: 'Yo tengo una hermana. ¿Y tú tienes hermanos?' },
-                    { match: /tengo\s+\w+\s+herman/i, reply: '¡Muy bien! ¿Tienes animales?' },
-                    { match: /no tengo hermanos/i, reply: 'Está bien. ¿Tienes animales?' },
-                    { match: /tienes animales/i, reply: 'Yo tengo un gato. ¿Y tú?' },
-                    { match: /tengo (un|una|dos|tres).*(perro|gato|conejo|pez|hamster|hámster)/i, reply: '¡Qué bien! ¿Cómo son tus amigos?' },
-                    { match: /no tengo (animales|mascotas)/i, reply: 'Entiendo. ¿Cómo son tus amigos?' },
-                    { match: /cómo son tus amigos|como son tus amigos/i, reply: 'Mis amigos son simpáticos y divertidos. ¿Y los tuyos?' },
-                    { match: /mis amigos son/i, reply: 'Muy bien. ¿Qué te gusta hacer con tus amigos?' },
-                    { match: /qué te gusta hacer con tus amigos|que te gusta hacer con tus amigos/i, reply: 'Me gusta hablar y jugar con mis amigos. ¿Y a ti?' },
-                    { match: /me gusta .* amigos/i, reply: '¡Genial! También puedes decir: «Me gusta estar con mis amigos».' }
-                ]
+                    { match: /tengo .*herman/i, reply: '¡Muy bien! ¿Cuántos años tiene tu hermano o hermana?' },
+                    { match: /vivo con/i, reply: 'Entiendo. ¿Cómo es tu familia?' },
+                    { match: /madre|padre|mamá|papá/i, reply: 'Bien. ¿Qué hace tu madre o tu padre?' },
+                    { match: /no tengo/i, reply: 'Está bien. ¿Vives con tu madre, tu padre o con los dos?' }
+                ],
+                fallback: 'Prueba con frases como «Tengo un hermano» o «Vivo con mi madre y mi padre».'
             },
-            gustos: {
-                label: '❤️ Gustos e intereses',
-                starter: 'Vamos a hablar de gustos. ¿Te gusta la música?',
-                quickReplies: ['Sí, me gusta la música', 'No me gusta bailar', 'Me gusta jugar al fútbol', 'Mis intereses son la música y el deporte'],
-                fallback: 'Puedes escribir «Me gusta...», «No me gusta...», «Mis intereses son...» o «Me gusta hacer...».',
+            hobby: {
+                label: '⚽ Hobbyer',
+                starter: '¿Qué te gusta hacer en tu tiempo libre?',
+                quickReplies: ['Me gusta jugar al fútbol', 'Me gusta escuchar música', 'No me gusta bailar'],
                 patterns: [
-                    { match: /te gusta/i, reply: 'Sí, me gusta bastante. ¿Y a ti qué te gusta?' },
-                    { match: /me gusta/i, reply: '¡Muy bien! ¿Cuáles son tus intereses?' },
-                    { match: /no me gusta/i, reply: 'Vale. ¿Qué sí te gusta?' },
-                    { match: /cuáles son tus intereses|cuales son tus intereses/i, reply: 'Mis intereses son la música, el deporte y los libros. ¿Y los tuyos?' },
-                    { match: /mis intereses son/i, reply: 'Interesante. ¿Qué te gusta hacer con tus amigos?' },
-                    { match: /me gusta (jugar|leer|escuchar|ver|bailar|cantar|hablar|estar)/i, reply: '¡Qué bien! Puedes decir también cuándo lo haces.' }
-                ]
+                    { match: /me gusta/i, reply: '¡Muy bien! ¿Con quién haces eso normalmente?' },
+                    { match: /no me gusta/i, reply: 'Vale. ¿Qué sí te gusta hacer?' },
+                    { match: /fútbol|baloncesto|tenis|música|bailar|leer|videojuegos/i, reply: '¡Interesante! ¿Cuándo haces eso, por la tarde o por la noche?' }
+                ],
+                fallback: 'Puedes escribir «Me gusta...», «No me gusta...» o «Juego al fútbol».'
             },
-            comida: {
-                label: '🍎 Comida',
-                starter: 'Hablemos de comida. ¿Cuál es tu comida favorita?',
-                quickReplies: ['Mi comida favorita es la pizza', 'Me gusta el pescado', 'No me gusta la cebolla', 'Bebo agua'],
-                fallback: 'Prueba con «Mi comida favorita es...», «Me gusta...», «No me gusta...» o «Bebo agua».',
+            skole: {
+                label: '🏫 Skole',
+                starter: '¿Qué asignaturas te gustan en la escuela?',
+                quickReplies: ['Me gusta el inglés', 'No me gusta las matemáticas', 'Mi profesor es simpático'],
                 patterns: [
-                    { match: /cuál es tu comida favorita|cual es tu comida favorita/i, reply: 'Mi comida favorita es la tortilla. ¿Y la tuya?' },
-                    { match: /mi comida favorita es/i, reply: '¡Qué rico! ¿Te gusta también la fruta?' },
-                    { match: /me gusta/i, reply: 'Muy bien. ¿Y qué bebes normalmente?' },
-                    { match: /no me gusta/i, reply: 'Entiendo. ¿Qué comida sí te gusta?' },
-                    { match: /bebo|tomo/i, reply: 'Bien. También puedes decir qué comes normalmente.' },
-                    { match: /como/i, reply: 'Perfecto. Ahora ya puedes hablar bastante sobre comida.' }
-                ]
+                    { match: /me gusta/i, reply: 'Bien. ¿Por qué te gusta esa asignatura?' },
+                    { match: /no me gusta/i, reply: 'Entiendo. ¿Qué asignatura prefieres?' },
+                    { match: /profesor|profesora/i, reply: '¿Tu profesor o profesora es simpático/a?' }
+                ],
+                fallback: 'Prueba: «Me gusta el inglés» o «Mi profesor es simpático».'
             },
-            personalidad: {
-                label: '🌟 Personalidad',
-                starter: '¿Cómo eres? ¿Cómo es tu personalidad?',
-                quickReplies: ['Soy simpático', 'Soy tímida', 'Mi personalidad es tranquila', 'Soy divertido y amable'],
-                fallback: 'Puedes escribir «Soy simpático/a», «Soy tímido/a», «Soy divertido/a» o «Mi personalidad es tranquila».',
+            mat: {
+                label: '🍎 Mat',
+                starter: '¿Qué te gusta comer y beber?',
+                quickReplies: ['Me gusta la pizza', 'Bebo agua', 'Como pan y queso'],
                 patterns: [
-                    { match: /cómo eres|como eres|cómo es tu personalidad|como es tu personalidad/i, reply: 'Soy simpática, tranquila y trabajadora. ¿Y tú cómo eres?' },
-                    { match: /soy\s+(simpátic|simpatic|tímid|timid|divertid|amabl|gracios|inteligent|pacient|sociabl|ordenad|responsabl|vag|terc)/i, reply: 'Muy bien. ¿Cómo son tus amigos?' },
-                    { match: /mi personalidad es/i, reply: 'Perfecto. Ahora describe a tus amigos.' },
-                    { match: /mis amigos son/i, reply: '¡Muy bien! Ya sabes hablar de personalidad.' }
-                ]
-            },
-            telefono: {
-                label: '🔢 Número inventado',
-                starter: 'Pregunta especial: ¿Cuál es tu número de teléfono? No escribas tu número real. Puedes inventar uno.',
-                quickReplies: ['Mi número es 12345678', 'No escribo mi número real', 'Mi número favorito es 7'],
-                fallback: 'No escribas tu número real. Puedes responder «Mi número es 12345678» o «Mi número favorito es 7».',
-                patterns: [
-                    { match: /cuál es tu número de teléfono|cual es tu numero de telefono/i, reply: 'No escribo mi número real. Puedes inventar un número. ¿Cuál es tu número favorito?' },
-                    { match: /\d{3,}/i, reply: 'Gracias. Recuerda: usa solo números inventados, no números reales.' },
-                    { match: /número favorito|numero favorito/i, reply: 'Mi número favorito es el siete. ¿Y el tuyo?' },
-                    { match: /mi número favorito es|mi numero favorito es/i, reply: '¡Muy bien! Esa es una respuesta segura.' }
-                ]
+                    { match: /me gusta/i, reply: '¡Qué rico! ¿Lo comes mucho?' },
+                    { match: /bebo|tomo/i, reply: 'Bien. ¿Qué bebes en el desayuno?' },
+                    { match: /como/i, reply: 'Muy bien. ¿Qué comes normalmente en la cena?' }
+                ],
+                fallback: 'Puedes escribir «Me gusta la pizza», «Bebo agua» o «Como fruta».'
             }
         };
 
-        const chatbotGlobalFallbacks = {
-            greeting: /¿qué tal\??|que tal\??|cómo estás\??|como estas\??/i,
-            safePhone: /número de teléfono|numero de telefono/i
-        };
-
-let chatbotCurrentTopic = 'presentarte';
+        let chatbotCurrentTopic = 'hilsen';
         let chatbotHistory = [];
 
         function renderChatbotPage() {
@@ -7020,6 +6965,7 @@ let chatbotCurrentTopic = 'presentarte';
                 input.addEventListener('keydown', (e) => {
                     if (e.key === 'Enter') sendChatbotMessage();
                 });
+                setupAccentInput(input);
                 input.dataset.bound = '1';
             }
         }
@@ -7066,22 +7012,11 @@ let chatbotCurrentTopic = 'presentarte';
         }
 
         function getChatbotReply(text) {
-            const sanitized = text.trim();
-            const lowered = sanitized.toLowerCase();
+            const sanitized = text.replace(/\d{3,}/g, '').trim();
             const topic = chatbotTopics[chatbotCurrentTopic];
-
-            if (chatbotGlobalFallbacks.safePhone.test(lowered) && chatbotCurrentTopic !== 'telefono') {
-                return 'No escribas tu número real. Puedes practicar con un número inventado o ir al tema «Número inventado».';
-            }
-
-            if (chatbotGlobalFallbacks.greeting.test(lowered) && chatbotCurrentTopic !== 'presentarte') {
-                return '¡Estoy bien, gracias! También podemos seguir con este tema. ' + topic.fallback;
-            }
-
             for (const pattern of topic.patterns) {
                 if (pattern.match.test(sanitized)) return pattern.reply;
             }
-            if (/\d{8,}/.test(sanitized)) return 'Recuerda: no escribas números reales. Usa solo números inventados.';
             if (/\?/i.test(sanitized)) return 'Buena pregunta. Vamos a usar frases simples. ' + topic.fallback;
             if (sanitized.split(/\s+/).length <= 2) return 'Puedes escribir una frase un poco más larga. ' + topic.fallback;
             return topic.fallback;
