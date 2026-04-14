@@ -1545,6 +1545,28 @@
             color: white;
         }
 
+
+        /* Chatbot */
+        .chatbot-layout { display: grid; grid-template-columns: 280px 1fr; gap: 20px; }
+        .chatbot-sidebar { background: var(--gray-50); border-radius: 14px; padding: 18px; }
+        .chatbot-sidebar h3 { margin-bottom: 10px; }
+        .chatbot-topic-list { display: grid; gap: 8px; margin-top: 12px; }
+        .chatbot-topic-btn { border: 2px solid var(--gray-200); background: white; border-radius: 10px; padding: 10px 12px; text-align: left; cursor: pointer; font-weight: 600; }
+        .chatbot-topic-btn.active, .chatbot-topic-btn:hover { border-color: var(--primary); }
+        .chatbot-main { display: flex; flex-direction: column; gap: 12px; }
+        .chatbot-warning { background: #fef3c7; color: #92400e; padding: 12px 14px; border-radius: 10px; font-size: 14px; }
+        .chatbot-window { background: var(--gray-50); border: 2px solid var(--gray-200); border-radius: 16px; padding: 16px; min-height: 420px; max-height: 520px; overflow: auto; }
+        .chatbot-message { max-width: 80%; padding: 12px 14px; border-radius: 14px; margin-bottom: 12px; line-height: 1.5; }
+        .chatbot-message.bot { background: white; border: 1px solid var(--gray-200); }
+        .chatbot-message.user { background: var(--primary); color: white; margin-left: auto; }
+        .chatbot-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+        .chatbot-chip { border: 2px solid var(--gray-200); background: white; border-radius: 999px; padding: 8px 12px; cursor: pointer; font-size: 14px; }
+        .chatbot-chip:hover { border-color: var(--primary); }
+        .chatbot-input-row { display: flex; gap: 10px; }
+        .chatbot-input { flex: 1; padding: 14px; border: 2px solid var(--gray-200); border-radius: 12px; font-size: 16px; }
+        .chatbot-input:focus { outline: none; border-color: var(--primary); }
+        .chatbot-help { font-size: 13px; color: var(--gray-500); }
+
         /* Responsive */
         @media (max-width: 768px) {
             .stats-grid {
@@ -2161,6 +2183,7 @@
                 <button class="nav-link" onclick="showPage('grammar')" id="navGrammar">📖 Grammatikk</button>
                 <button class="nav-link" onclick="showPage('games')" id="navGames">🎮 Spill</button>
                 <button class="nav-link homework-nav" onclick="showPage('homework')" id="navHomework">📝 Lekse</button>
+                <button class="nav-link" onclick="showPage('chatbot')" id="navChatbot">💬 Chat</button>
             </div>
             <div class="user-info" id="userInfo">
                 <span class="user-name" id="userName"></span>
@@ -2427,6 +2450,34 @@
                 <div class="button-group">
                     <button class="btn btn-secondary" onclick="exportAllProgress()">📥 Last ned fremgang</button>
                     <button class="btn btn-secondary" onclick="importProgressFile()">📂 Importer fremgang</button>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- ==================== -->
+        <!-- CHATBOT PAGE -->
+        <!-- ==================== -->
+        <div id="chatbotPage" class="panel hidden">
+            <div class="page-header">
+                <h2>💬 Enkel spansk chat</h2>
+                <p>Øv på korte samtaler på enkel spansk. Ingen data sendes ut av nettleseren.</p>
+            </div>
+            <div class="chatbot-layout">
+                <div class="chatbot-sidebar">
+                    <h3>Velg tema</h3>
+                    <p style="color: var(--gray-500); font-size: 14px;">Boten holder seg til enkle temaer og korte svar.</p>
+                    <div class="chatbot-topic-list" id="chatbotTopicList"></div>
+                </div>
+                <div class="chatbot-main">
+                    <div class="chatbot-warning">⚠️ Ikke skriv ekte etternavn, adresse, telefonnummer eller andre personopplysninger. Du kan finne på svar.</div>
+                    <div class="chatbot-window" id="chatbotMessages"></div>
+                    <div class="chatbot-actions" id="chatbotQuickReplies"></div>
+                    <div class="chatbot-input-row">
+                        <input id="chatbotInput" class="chatbot-input" type="text" maxlength="120" placeholder="Skriv en enkel setning på spansk...">
+                        <button class="btn btn-primary" onclick="sendChatbotMessage()">Send</button>
+                    </div>
+                    <div class="chatbot-help">Tips: Skriv korte setninger som «Me llamo Anna», «Tengo dos hermanos» eller «Me gusta el fútbol».</div>
                 </div>
             </div>
         </div>
@@ -3259,6 +3310,7 @@
             document.getElementById('grammarPage').classList.add('hidden');
             document.getElementById('homeworkPage').classList.add('hidden');
             document.getElementById('gamesPage').classList.add('hidden');
+            document.getElementById('chatbotPage').classList.add('hidden');
             
             // Stop any running game
             if (viGameActive) {
@@ -3304,6 +3356,10 @@
                 document.getElementById('gamesPage').classList.remove('hidden');
                 document.getElementById('navGames').classList.add('active');
                 showGamesMenu();
+            } else if (page === 'chatbot') {
+                document.getElementById('chatbotPage').classList.remove('hidden');
+                document.getElementById('navChatbot').classList.add('active');
+                renderChatbotPage();
             }
         }
         // VOCABULARY DATABASE
@@ -6820,6 +6876,219 @@ Vil du øve på ${pronoun} likevel?`
                 piStopFalling();
                 showGamesMenu();
             }
+        }
+
+
+        
+        // ============================================
+        // SIMPLE LOCAL CHATBOT (MODELL A)
+        // ============================================
+
+        const chatbotTopics = {
+            presentarte: {
+                label: '🗣️ Presentarte',
+                starter: '¡Hola! Vamos a practicar. ¿Cómo te llamas?',
+                quickReplies: ['Me llamo Sara', 'Tengo trece años', 'Soy de Noruega', 'Vivo en Bergen'],
+                fallback: 'Prueba con frases como «Me llamo...», «Tengo... años», «Soy de...», «Vivo en...» o «Hablo noruego e inglés».',
+                patterns: [
+                    { match: /cómo te llamas|como te llamas/i, reply: 'Me llamo Lola. ¿Y tú? ¿Cómo te llamas?' },
+                    { match: /me llamo|soy\s+[A-ZÁÉÍÓÚÑa-záéíóúñ]+/i, reply: '¡Mucho gusto! ¿Cuántos años tienes?' },
+                    { match: /cuántos años tienes|cuantos años tienes/i, reply: 'Tengo doce años. ¿Y tú?' },
+                    { match: /tengo\s+\w+\s+años/i, reply: 'Muy bien. ¿De dónde eres?' },
+                    { match: /de dónde eres|de donde eres/i, reply: 'Soy de España. ¿Y tú?' },
+                    { match: /soy de|vengo de/i, reply: '¡Qué bien! ¿Dónde vives?' },
+                    { match: /dónde vives|donde vives/i, reply: 'Vivo en Madrid. ¿Y tú?' },
+                    { match: /vivo en/i, reply: 'Entiendo. ¿Qué idiomas hablas?' },
+                    { match: /qué idiomas hablas|que idiomas hablas/i, reply: 'Hablo español e inglés. ¿Y tú?' },
+                    { match: /hablo/i, reply: 'Muy bien. ¿Cuándo es tu cumpleaños?' },
+                    { match: /cuándo es tu cumpleaños|cuando es tu cumpleaños/i, reply: 'Mi cumpleaños es en mayo. ¿Y el tuyo?' },
+                    { match: /mi cumpleaños es/i, reply: 'Perfecto. Ahora puedes contarme un poco sobre tu vida.' },
+                    { match: /cuéntame un poco sobre ti|cuentame un poco sobre ti|sobre tu vida/i, reply: 'Claro. Me llamo Lola, tengo doce años, soy de España y me gusta leer. Ahora cuéntame sobre ti.' }
+                ]
+            },
+            dia: {
+                label: '📅 Día, hora y tiempo',
+                starter: 'Vamos a practicar el día, la fecha, la hora y el tiempo. ¿Qué día es hoy?',
+                quickReplies: ['Hoy es lunes', 'Hoy es el doce de mayo', 'Son las dos', 'Hace sol'],
+                fallback: 'Puedes escribir «Hoy es lunes», «Hoy es el doce de mayo», «Son las dos» o «Hace sol».',
+                patterns: [
+                    { match: /qué día es hoy|que día es hoy|que dia es hoy/i, reply: 'Hoy es lunes. ¿Qué fecha es hoy?' },
+                    { match: /hoy es (lunes|martes|miércoles|miercoles|jueves|viernes|sábado|sabado|domingo)/i, reply: 'Muy bien. ¿Qué fecha es hoy?' },
+                    { match: /qué fecha es hoy|que fecha es hoy/i, reply: 'Hoy es el doce de mayo. ¿Y qué hora es?' },
+                    { match: /hoy es el/i, reply: 'Perfecto. ¿Qué hora es?' },
+                    { match: /qué hora es|que hora es/i, reply: 'Son las dos. ¿Qué tiempo hace hoy?' },
+                    { match: /son las|es la/i, reply: 'Bien. ¿Qué tiempo hace hoy?' },
+                    { match: /qué tiempo hace hoy|que tiempo hace hoy/i, reply: 'Hoy hace sol. ¿Y en tu ciudad?' },
+                    { match: /hace sol|hace frío|hace frio|hace calor|llueve|nieva|está nublado|esta nublado/i, reply: 'Muy bien. Puedes decir también: «Hoy hace viento» o «Hoy llueve».' }
+                ]
+            },
+            familia: {
+                label: '👨‍👩‍👧‍👦 Familia y animales',
+                starter: 'Ahora hablamos de la familia. ¿Tienes hermanos?',
+                quickReplies: ['Tengo un hermano', 'No tengo hermanos', 'Tengo un perro', 'Vivo con mi madre y mi padre'],
+                fallback: 'Prueba con «Tengo un hermano», «No tengo hermanos», «Tengo un perro» o «Vivo con mi madre y mi padre».',
+                patterns: [
+                    { match: /tienes hermanos/i, reply: 'Yo tengo una hermana. ¿Y tú tienes hermanos?' },
+                    { match: /tengo\s+\w+\s+herman/i, reply: '¡Muy bien! ¿Tienes animales?' },
+                    { match: /no tengo hermanos/i, reply: 'Está bien. ¿Tienes animales?' },
+                    { match: /tienes animales/i, reply: 'Yo tengo un gato. ¿Y tú?' },
+                    { match: /tengo (un|una|dos|tres).*(perro|gato|conejo|pez|hamster|hámster)/i, reply: '¡Qué bien! ¿Cómo son tus amigos?' },
+                    { match: /no tengo (animales|mascotas)/i, reply: 'Entiendo. ¿Cómo son tus amigos?' },
+                    { match: /cómo son tus amigos|como son tus amigos/i, reply: 'Mis amigos son simpáticos y divertidos. ¿Y los tuyos?' },
+                    { match: /mis amigos son/i, reply: 'Muy bien. ¿Qué te gusta hacer con tus amigos?' },
+                    { match: /qué te gusta hacer con tus amigos|que te gusta hacer con tus amigos/i, reply: 'Me gusta hablar y jugar con mis amigos. ¿Y a ti?' },
+                    { match: /me gusta .* amigos/i, reply: '¡Genial! También puedes decir: «Me gusta estar con mis amigos».' }
+                ]
+            },
+            gustos: {
+                label: '❤️ Gustos e intereses',
+                starter: 'Vamos a hablar de gustos. ¿Te gusta la música?',
+                quickReplies: ['Sí, me gusta la música', 'No me gusta bailar', 'Me gusta jugar al fútbol', 'Mis intereses son la música y el deporte'],
+                fallback: 'Puedes escribir «Me gusta...», «No me gusta...», «Mis intereses son...» o «Me gusta hacer...».',
+                patterns: [
+                    { match: /te gusta/i, reply: 'Sí, me gusta bastante. ¿Y a ti qué te gusta?' },
+                    { match: /me gusta/i, reply: '¡Muy bien! ¿Cuáles son tus intereses?' },
+                    { match: /no me gusta/i, reply: 'Vale. ¿Qué sí te gusta?' },
+                    { match: /cuáles son tus intereses|cuales son tus intereses/i, reply: 'Mis intereses son la música, el deporte y los libros. ¿Y los tuyos?' },
+                    { match: /mis intereses son/i, reply: 'Interesante. ¿Qué te gusta hacer con tus amigos?' },
+                    { match: /me gusta (jugar|leer|escuchar|ver|bailar|cantar|hablar|estar)/i, reply: '¡Qué bien! Puedes decir también cuándo lo haces.' }
+                ]
+            },
+            comida: {
+                label: '🍎 Comida',
+                starter: 'Hablemos de comida. ¿Cuál es tu comida favorita?',
+                quickReplies: ['Mi comida favorita es la pizza', 'Me gusta el pescado', 'No me gusta la cebolla', 'Bebo agua'],
+                fallback: 'Prueba con «Mi comida favorita es...», «Me gusta...», «No me gusta...» o «Bebo agua».',
+                patterns: [
+                    { match: /cuál es tu comida favorita|cual es tu comida favorita/i, reply: 'Mi comida favorita es la tortilla. ¿Y la tuya?' },
+                    { match: /mi comida favorita es/i, reply: '¡Qué rico! ¿Te gusta también la fruta?' },
+                    { match: /me gusta/i, reply: 'Muy bien. ¿Y qué bebes normalmente?' },
+                    { match: /no me gusta/i, reply: 'Entiendo. ¿Qué comida sí te gusta?' },
+                    { match: /bebo|tomo/i, reply: 'Bien. También puedes decir qué comes normalmente.' },
+                    { match: /como/i, reply: 'Perfecto. Ahora ya puedes hablar bastante sobre comida.' }
+                ]
+            },
+            personalidad: {
+                label: '🌟 Personalidad',
+                starter: '¿Cómo eres? ¿Cómo es tu personalidad?',
+                quickReplies: ['Soy simpático', 'Soy tímida', 'Mi personalidad es tranquila', 'Soy divertido y amable'],
+                fallback: 'Puedes escribir «Soy simpático/a», «Soy tímido/a», «Soy divertido/a» o «Mi personalidad es tranquila».',
+                patterns: [
+                    { match: /cómo eres|como eres|cómo es tu personalidad|como es tu personalidad/i, reply: 'Soy simpática, tranquila y trabajadora. ¿Y tú cómo eres?' },
+                    { match: /soy\s+(simpátic|simpatic|tímid|timid|divertid|amabl|gracios|inteligent|pacient|sociabl|ordenad|responsabl|vag|terc)/i, reply: 'Muy bien. ¿Cómo son tus amigos?' },
+                    { match: /mi personalidad es/i, reply: 'Perfecto. Ahora describe a tus amigos.' },
+                    { match: /mis amigos son/i, reply: '¡Muy bien! Ya sabes hablar de personalidad.' }
+                ]
+            },
+            telefono: {
+                label: '🔢 Número inventado',
+                starter: 'Pregunta especial: ¿Cuál es tu número de teléfono? No escribas tu número real. Puedes inventar uno.',
+                quickReplies: ['Mi número es 12345678', 'No escribo mi número real', 'Mi número favorito es 7'],
+                fallback: 'No escribas tu número real. Puedes responder «Mi número es 12345678» o «Mi número favorito es 7».',
+                patterns: [
+                    { match: /cuál es tu número de teléfono|cual es tu numero de telefono/i, reply: 'No escribo mi número real. Puedes inventar un número. ¿Cuál es tu número favorito?' },
+                    { match: /\d{3,}/i, reply: 'Gracias. Recuerda: usa solo números inventados, no números reales.' },
+                    { match: /número favorito|numero favorito/i, reply: 'Mi número favorito es el siete. ¿Y el tuyo?' },
+                    { match: /mi número favorito es|mi numero favorito es/i, reply: '¡Muy bien! Esa es una respuesta segura.' }
+                ]
+            }
+        };
+
+        const chatbotGlobalFallbacks = {
+            greeting: /¿qué tal\??|que tal\??|cómo estás\??|como estas\??/i,
+            safePhone: /número de teléfono|numero de telefono/i
+        };
+
+let chatbotCurrentTopic = 'presentarte';
+        let chatbotHistory = [];
+
+        function renderChatbotPage() {
+            const topicList = document.getElementById('chatbotTopicList');
+            topicList.innerHTML = Object.entries(chatbotTopics).map(([key, topic]) => `
+                <button class="chatbot-topic-btn ${key === chatbotCurrentTopic ? 'active' : ''}" onclick="setChatbotTopic('${key}')">${topic.label}</button>
+            `).join('');
+
+            if (chatbotHistory.length === 0) {
+                chatbotResetConversation();
+            } else {
+                renderChatbotMessages();
+                renderChatbotQuickReplies();
+            }
+
+            const input = document.getElementById('chatbotInput');
+            if (input && !input.dataset.bound) {
+                input.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter') sendChatbotMessage();
+                });
+                input.dataset.bound = '1';
+            }
+        }
+
+        function setChatbotTopic(topicKey) {
+            chatbotCurrentTopic = topicKey;
+            chatbotResetConversation();
+            renderChatbotPage();
+        }
+
+        function chatbotResetConversation() {
+            const topic = chatbotTopics[chatbotCurrentTopic];
+            chatbotHistory = [{ role: 'bot', text: topic.starter }];
+            renderChatbotMessages();
+            renderChatbotQuickReplies();
+        }
+
+        function renderChatbotMessages() {
+            const el = document.getElementById('chatbotMessages');
+            el.innerHTML = chatbotHistory.map(msg => `<div class="chatbot-message ${msg.role}">${escapeHtml(msg.text)}</div>`).join('');
+            el.scrollTop = el.scrollHeight;
+        }
+
+        function renderChatbotQuickReplies() {
+            const el = document.getElementById('chatbotQuickReplies');
+            const replies = chatbotTopics[chatbotCurrentTopic].quickReplies;
+            el.innerHTML = replies.map(reply => `<button class="chatbot-chip" onclick="useChatbotQuickReply('${reply.replace(/'/g, "&#39;")}')">${reply}</button>`).join('');
+        }
+
+        function useChatbotQuickReply(text) {
+            document.getElementById('chatbotInput').value = text;
+            sendChatbotMessage();
+        }
+
+        function sendChatbotMessage() {
+            const input = document.getElementById('chatbotInput');
+            const text = input.value.trim();
+            if (!text) return;
+            chatbotHistory.push({ role: 'user', text });
+            const reply = getChatbotReply(text);
+            chatbotHistory.push({ role: 'bot', text: reply });
+            input.value = '';
+            renderChatbotMessages();
+        }
+
+        function getChatbotReply(text) {
+            const sanitized = text.trim();
+            const lowered = sanitized.toLowerCase();
+            const topic = chatbotTopics[chatbotCurrentTopic];
+
+            if (chatbotGlobalFallbacks.safePhone.test(lowered) && chatbotCurrentTopic !== 'telefono') {
+                return 'No escribas tu número real. Puedes practicar con un número inventado o ir al tema «Número inventado».';
+            }
+
+            if (chatbotGlobalFallbacks.greeting.test(lowered) && chatbotCurrentTopic !== 'presentarte') {
+                return '¡Estoy bien, gracias! También podemos seguir con este tema. ' + topic.fallback;
+            }
+
+            for (const pattern of topic.patterns) {
+                if (pattern.match.test(sanitized)) return pattern.reply;
+            }
+            if (/\d{8,}/.test(sanitized)) return 'Recuerda: no escribas números reales. Usa solo números inventados.';
+            if (/\?/i.test(sanitized)) return 'Buena pregunta. Vamos a usar frases simples. ' + topic.fallback;
+            if (sanitized.split(/\s+/).length <= 2) return 'Puedes escribir una frase un poco más larga. ' + topic.fallback;
+            return topic.fallback;
+        }
+
+        function escapeHtml(str) {
+            return str.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
         }
 
 
