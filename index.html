@@ -3674,7 +3674,7 @@
             ["på mandager", "los lunes", "tidsuttrykk"],
             ["på morgenen", "por la mañana", "tidsuttrykk"],
             ["for noen dager siden", "hace unos días", "tidsuttrykk"],
-            ["hver uke", "cada semana", "Kapitel 8: Tareas de casa"],
+            ["hver uke", "cada semana", "Kapittel 8: Tareas de casa"],
             ["ofte", "a menudo", "tidsuttrykk"],
             ["sjelden", "raramente", "tidsuttrykk"],
             ["på ettermiddagen", "por la tarde", "tidsuttrykk"],
@@ -3842,7 +3842,7 @@
             ["også", "también", "bindeord"],
             ["alltid", "siempre", "bindeord"],
             ["aldri", "nunca", "bindeord"],
-            ["noen ganger", "a veces", "Kapitel 8: Tareas de casa"],
+            ["noen ganger", "a veces", "Kapittel 8: Tareas de casa"],
             ["vanligvis", "normalmente", "bindeord"],
             ["fordi", "porque", "bindeord"],
             ["derfor", "por eso", "bindeord"],
@@ -3859,15 +3859,15 @@
             ["jeg skal snakke om", "voy a hablar sobre", "bindeord"],
             ["takk for oppmerksomheten", "gracias por su atención", "bindeord"],
 
-            // KAPITEL 8: TAREAS DE CASA
-            ["å gjøre innkjøp", "hacer las compras", "Kapitel 8: Tareas de casa"],
-            ["å vaske opp", "lavar los platos", "Kapitel 8: Tareas de casa"],
-            ["å vaske badet", "limpiar el cuarto de baño", "Kapitel 8: Tareas de casa"],
-            ["å vaske klær", "lavar la ropa", "Kapitel 8: Tareas de casa"],
-            ["å støvsuge", "pasar la aspiradora", "Kapitel 8: Tareas de casa"],
-            ["å rydde rommet", "arreglar la habitación", "Kapitel 8: Tareas de casa"],
-            ["én gang i uken", "una vez a la semana", "Kapitel 8: Tareas de casa"],
-            ["hver dag", "cada día", "Kapitel 8: Tareas de casa"],
+            // KAPITTEL 8: TAREAS DE CASA
+            ["å gjøre innkjøp", "hacer las compras", "Kapittel 8: Tareas de casa"],
+            ["å vaske opp", "lavar los platos", "Kapittel 8: Tareas de casa"],
+            ["å vaske badet", "limpiar el cuarto de baño", "Kapittel 8: Tareas de casa"],
+            ["å vaske klær", "lavar la ropa", "Kapittel 8: Tareas de casa"],
+            ["å støvsuge", "pasar la aspiradora", "Kapittel 8: Tareas de casa"],
+            ["å rydde rommet", "arreglar la habitación", "Kapittel 8: Tareas de casa"],
+            ["én gang i uken", "una vez a la semana", "Kapittel 8: Tareas de casa"],
+            ["hver dag", "cada día", "Kapittel 8: Tareas de casa"],
 
             // KAPITTEL 7: GLOSER
             ["frukt", "la fruta", "kapittel 7: gloser"],
@@ -4291,18 +4291,53 @@
         }
 
         function mergeNewVocabulary() {
-            const existingIds = new Set(cards.map(c => c.id));
+            // Robust migrering: oppdater eksisterende kort etter ordpar, ikke bare id.
+            // Dette gjør at nye kategorier kommer inn selv om eleven allerede har lagret fremgang i localStorage.
+            const existingByPair = new Map();
+            cards.forEach((card, idx) => {
+                const key = `${(card.no || card.norsk || '').toLowerCase()}|||${(card.es || card.spansk || '').toLowerCase()}`;
+                existingByPair.set(key, { card, idx });
+            });
+
+            let changed = false;
+
             glossary.forEach((item, index) => {
-                if (!existingIds.has(index)) {
-                    cards.push({
-                        id: index, no: item[0], es: item[1], norsk: item[0], spansk: item[1], category: item[2],
+                const [no, es, category] = item;
+                const key = `${no.toLowerCase()}|||${es.toLowerCase()}`;
+                const existing = existingByPair.get(key);
+
+                if (existing) {
+                    // Behold elevens fremgang, men oppdater kategori/tekst fra den nye ordlisten.
+                    const card = existing.card;
+                    if (card.category !== category || card.no !== no || card.es !== es || card.norsk !== no || card.spansk !== es) {
+                        card.no = no;
+                        card.es = es;
+                        card.norsk = no;
+                        card.spansk = es;
+                        card.category = category;
+                        changed = true;
+                    }
+                } else {
+                    const newCard = {
+                        id: cards.length,
+                        no,
+                        es,
+                        norsk: no,
+                        spansk: es,
+                        category,
                         noEs: { easeFactor: SM2.defaultEaseFactor, interval: 0, repetitions: 0, nextReview: null },
                         esNo: { easeFactor: SM2.defaultEaseFactor, interval: 0, repetitions: 0, nextReview: null },
-                        lastReview: null, reviews: 0, correct: 0
-                    });
+                        lastReview: null,
+                        reviews: 0,
+                        correct: 0
+                    };
+                    cards.push(newCard);
+                    existingByPair.set(key, { card: newCard, idx: cards.length - 1 });
+                    changed = true;
                 }
             });
-            saveData();
+
+            if (changed) saveData();
         }
 
         function saveData() {
@@ -4377,7 +4412,7 @@
                 'gustar': '❤️', 'rutiner': '⏰', 'verbbøying': '📝',
                 'fremtid': '🔮', 'verb': '🏃', 'bindeord': '🔗',
                 'kapittel 7: gloser': '🍎',
-                'Kapitel 8: Tareas de casa': '🧹'
+                'Kapittel 8: Tareas de casa': '🧹'
             };
             return emojis[category] || '📌';
         }
@@ -4729,7 +4764,7 @@ Vil du øve på ${pronoun} likevel?`
             const themes = {
                 'Grunnleggende': ['tall', 'farger', 'bursdag', 'klokka', 'tidsuttrykk'],
                 'Mennesker': ['familie', 'familie-setninger', 'utseende', 'personlighet', 'yrker'],
-                'Hverdagsliv': ['klær', 'hjem', 'møbler', 'rutiner', 'hobbyer', 'kapittel 7: gloser', 'Kapitel 8: Tareas de casa'],
+                'Hverdagsliv': ['klær', 'hjem', 'møbler', 'rutiner', 'hobbyer', 'kapittel 7: gloser', 'Kapittel 8: Tareas de casa'],
                 'Verden': ['land', 'vær', 'høytider', 'skole', 'fag'],
                 'Språk': ['verb', 'verbbøying', 'gustar', 'fremtid', 'bindeord']
             };
