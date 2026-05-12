@@ -2411,7 +2411,7 @@
         <div id="homeworkPage" class="panel hidden">
             <div class="page-header">
                 <h2>📝 Ukeslekse</h2>
-                <p>Øv på gloser minst 2 dager i uken utenom spansktimene (mandag/tirsdag)</p>
+                <p>Øv på gloser, verbbøying eller grammatikk minst 2 dager i uken utenom spansktimene (mandag/tirsdag)</p>
             </div>
 
             <div class="homework-status" id="homeworkStatus">
@@ -2427,7 +2427,7 @@
             <div class="homework-submit-section">
                 <h3>✅ Lever ukeslekse</h3>
                 <p style="color: var(--gray-500); margin-bottom: 16px;">
-                    Når du har øvd minst 2 dager denne uken (onsdag-søndag), kan du levere leksen.
+                    Når du har øvd minst 2 dager denne uken (onsdag-søndag), kan du levere leksen. Gloser, verbbøying og grammatikk teller.
                 </p>
                 <button class="btn btn-primary btn-large" onclick="submitHomework()" id="submitHomeworkBtn">
                     📤 Lever ukeslekse
@@ -2961,7 +2961,7 @@
             const historyEl = document.getElementById('practiceHistory');
             
             if (practiceHistory.length === 0) {
-                historyEl.innerHTML = '<p style="color: var(--gray-500); text-align: center;">Ingen øvingshistorikk ennå. Start med gloser!</p>';
+                historyEl.innerHTML = '<p style="color: var(--gray-500); text-align: center;">Ingen øvingshistorikk ennå. Start med gloser, verbbøying eller grammatikk!</p>';
                 return;
             }
             
@@ -2977,7 +2977,7 @@
                     <div class="practice-entry">
                         <span class="practice-entry-date">${dateStr}</span>
                         <div class="practice-entry-stats">
-                            <span>📝 ${entry.words} ord</span>
+                            <span>📝 ${entry.words} oppgaver</span>
                             <span>✅ ${accuracy}%</span>
                             <span>🔄 ${entry.sessions} økt${entry.sessions > 1 ? 'er' : ''}</span>
                         </div>
@@ -5022,6 +5022,11 @@ Vil du øve på ${pronoun} likevel?`
         function endVerbSession() {
             const accuracy = verbStats.total > 0 ? Math.round((verbStats.correct / verbStats.total) * 100) : 0;
             
+            // Record practice for homework tracking: verb conjugation counts as homework practice.
+            if (verbStats.total > 0) {
+                recordPracticeSession(verbStats.total, verbStats.correct);
+            }
+            
             document.getElementById('verbExerciseArea').innerHTML = `
                 <div class="session-complete">
                     <div class="emoji">${accuracy >= 80 ? '🎉' : accuracy >= 50 ? '👍' : '💪'}</div>
@@ -5978,6 +5983,11 @@ Vil du øve på ${pronoun} likevel?`
         function endGrammarSession() {
             const accuracy = grammarStats.total > 0 ? Math.round((grammarStats.correct / grammarStats.total) * 100) : 0;
             const needsMorePractice = accuracy < 70 || grammarStats.errors >= 3;
+            
+            // Record practice for homework tracking: grammar exercises count as homework practice.
+            if (grammarStats.total > 0) {
+                recordPracticeSession(grammarStats.total, grammarStats.correct);
+            }
             
             document.getElementById('grammarExerciseArea').innerHTML = `
                 <div class="session-complete">
