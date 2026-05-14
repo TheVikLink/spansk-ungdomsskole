@@ -1,0 +1,14 @@
+{
+  "name": "spansk-ungdomsskole",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build:css": "npx @tailwindcss/cli -i ./src/styles/tailwind.css -o ./dist/tailwind.css --minify",
+    "check:tailwind": "node scripts/check-tailwind-adoption.mjs"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.1.17",
+    "tailwindcss": "^4.1.17"
+  }
+}
