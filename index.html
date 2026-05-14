@@ -14,6 +14,10 @@
         :root {
             --primary: #6366f1;
             --primary-dark: #4f46e5;
+            --primary-soft: #eef2ff;
+            --accent-blue: #0ea5e9;
+            --accent-green: #16a34a;
+            --accent-amber: #d97706;
             --success: #22c55e;
             --warning: #f59e0b;
             --danger: #ef4444;
@@ -31,6 +35,18 @@
             background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
             min-height: 100vh;
             padding: 16px;
+        }
+
+        button, input, select {
+            font: inherit;
+        }
+
+        button:focus-visible,
+        input:focus-visible,
+        select:focus-visible,
+        .flashcard:focus-visible {
+            outline: 3px solid rgba(99, 102, 241, 0.35);
+            outline-offset: 3px;
         }
 
         .container {
@@ -566,6 +582,169 @@
         .progress-learning { background: var(--warning); }
         .progress-new { background: var(--gray-300); }
 
+        /* Vocabulary Launcher */
+        .vocab-launcher {
+            display: grid;
+            gap: 24px;
+        }
+
+        .vocab-summary-strip {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .vocab-summary-item {
+            background: var(--gray-50);
+            border: 1px solid var(--gray-200);
+            border-radius: 12px;
+            padding: 14px;
+            text-align: center;
+        }
+
+        .vocab-summary-value {
+            display: block;
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--gray-900);
+        }
+
+        .vocab-summary-label {
+            display: block;
+            margin-top: 4px;
+            font-size: 12px;
+            color: var(--gray-500);
+        }
+
+        .vocab-mode-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+        }
+
+        .vocab-mode-card {
+            border: 2px solid var(--gray-200);
+            border-radius: 14px;
+            padding: 20px;
+            min-height: 170px;
+            background: white;
+            color: var(--gray-900);
+            cursor: pointer;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s, background 0.2s;
+        }
+
+        .vocab-mode-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 28px rgba(17, 24, 39, 0.12);
+            border-color: var(--primary);
+        }
+
+        .vocab-mode-card.review {
+            background: linear-gradient(180deg, #eff6ff, white);
+        }
+
+        .vocab-mode-card.mixed {
+            background: linear-gradient(180deg, #ecfdf5, white);
+        }
+
+        .vocab-mode-card.new {
+            background: linear-gradient(180deg, #fffbeb, white);
+        }
+
+        .vocab-mode-icon {
+            font-size: 28px;
+        }
+
+        .vocab-mode-title {
+            font-size: 18px;
+            font-weight: 800;
+        }
+
+        .vocab-mode-text {
+            font-size: 13px;
+            color: var(--gray-500);
+            line-height: 1.45;
+        }
+
+        .vocab-mode-meta {
+            margin-top: auto;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+
+        .vocab-advanced {
+            border: 1px solid var(--gray-200);
+            border-radius: 12px;
+            background: var(--gray-50);
+            overflow: hidden;
+        }
+
+        .vocab-advanced > summary {
+            padding: 16px 18px;
+            cursor: pointer;
+            font-weight: 800;
+            color: var(--gray-700);
+            list-style: none;
+        }
+
+        .vocab-advanced > summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .vocab-advanced > summary::after {
+            content: '+';
+            float: right;
+        }
+
+        .vocab-advanced[open] > summary::after {
+            content: '-';
+        }
+
+        .vocab-advanced-body {
+            padding: 0 18px 18px;
+            background: white;
+        }
+
+        .vocab-limits-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 12px;
+        }
+
+        .vocab-limit-card {
+            border: 1px solid var(--gray-200);
+            border-radius: 10px;
+            padding: 12px;
+            background: var(--gray-50);
+        }
+
+        .vocab-limit-card .setting-label,
+        .vocab-limit-card .setting-hint {
+            display: block;
+        }
+
+        .vocab-limit-card input {
+            margin-top: 8px;
+            width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            .vocab-summary-strip,
+            .vocab-mode-grid,
+            .vocab-limits-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .vocab-mode-card {
+                min-height: 0;
+            }
+        }
+
         /* Settings Section */
         .settings-section {
             margin-bottom: 28px;
@@ -638,6 +817,8 @@
             transition: all 0.2s;
             text-align: center;
             background: white;
+            color: var(--gray-900);
+            min-height: 42px;
         }
 
         .category-chip:hover {
@@ -647,8 +828,8 @@
 
         .category-chip.selected {
             border-color: var(--primary);
-            background: var(--primary);
-            color: white;
+            background: var(--primary-soft);
+            color: var(--primary-dark);
         }
 
         .category-chip .count {
@@ -914,6 +1095,7 @@
         }
 
         .grammar-topic-card {
+            width: 100%;
             background: var(--gray-50);
             border: 2px solid var(--gray-200);
             border-radius: 12px;
@@ -921,6 +1103,8 @@
             cursor: pointer;
             transition: all 0.2s;
             position: relative;
+            text-align: left;
+            font: inherit;
         }
 
         .grammar-topic-card:hover {
@@ -1332,12 +1516,15 @@
         }
 
         .verb-card {
+            width: 100%;
             background: var(--gray-50);
             border: 2px solid var(--gray-200);
             border-radius: 12px;
             padding: 16px;
             cursor: pointer;
             transition: all 0.2s;
+            text-align: left;
+            font: inherit;
         }
 
         .verb-card:hover {
@@ -1635,6 +1822,7 @@
         }
 
         .game-card {
+            width: 100%;
             background: white;
             border-radius: 16px;
             padding: 24px;
@@ -1642,6 +1830,8 @@
             cursor: pointer;
             transition: all 0.3s;
             border: 2px solid var(--gray-200);
+            font: inherit;
+            color: inherit;
         }
 
         .game-card:hover:not(.coming-soon) {
@@ -1731,6 +1921,10 @@
             cursor: pointer;
             transition: all 0.2s;
             font-size: 14px;
+        }
+
+        .game-verb-chip.recommended {
+            box-shadow: inset 0 0 0 1px rgba(255,255,255,0.25);
         }
 
         .game-verb-chip:hover {
@@ -1857,7 +2051,7 @@
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
-            top: -150px;
+            top: 86px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -2202,94 +2396,136 @@
                     <p>Lær ordforråd med spaced repetition - begge veier!</p>
                 </div>
 
-                <div class="stats-grid">
-                    <div class="stat-box">
-                        <div class="stat-number" id="statTotal">0</div>
-                        <div class="stat-label">Totalt</div>
-                    </div>
-                    <div class="stat-box">
-                        <div class="stat-number" id="statNew">0</div>
-                        <div class="stat-label">Nye</div>
-                    </div>
-                    <div class="stat-box">
-                        <div class="stat-number" id="statDue">0</div>
-                        <div class="stat-label">Til repetisjon</div>
-                    </div>
-                    <div class="stat-box">
-                        <div class="stat-number" id="statMastered">0</div>
-                        <div class="stat-label">Mestret</div>
-                    </div>
-                </div>
-
-                <div class="progress-container">
-                    <div class="progress-label">
-                        <span>Fremgang</span>
-                        <span id="progressPercent">0%</span>
-                    </div>
-                    <div class="progress-bar">
-                        <div class="progress-segment progress-mastered" id="progressMastered"></div>
-                        <div class="progress-segment progress-learning" id="progressLearning"></div>
-                        <div class="progress-segment progress-new" id="progressNew"></div>
-                    </div>
-                </div>
-
-                <div class="settings-section">
-                    <h3>⚙️ Øktinnstillinger</h3>
-                    <div class="setting-row">
-                        <div>
-                            <div class="setting-label">Nye kort</div>
-                            <div class="setting-hint">Antall nye ord per økt</div>
+                <div class="vocab-launcher">
+                    <div class="vocab-summary-strip" aria-label="Status for gloser">
+                        <div class="vocab-summary-item">
+                            <span class="vocab-summary-value" id="statDue">0</span>
+                            <span class="vocab-summary-label">Til repetisjon</span>
                         </div>
-                        <input type="number" id="newCardsLimit" min="0" max="50" value="10">
-                    </div>
-                    <div class="setting-row">
-                        <div>
-                            <div class="setting-label">Repetisjonskort</div>
-                            <div class="setting-hint">Maks antall repetisjoner per økt</div>
+                        <div class="vocab-summary-item">
+                            <span class="vocab-summary-value" id="statNew">0</span>
+                            <span class="vocab-summary-label">Nye ord</span>
                         </div>
-                        <input type="number" id="reviewCardsLimit" min="0" max="200" value="50">
+                        <div class="vocab-summary-item">
+                            <span class="vocab-summary-value" id="statMastered">0</span>
+                            <span class="vocab-summary-label">Mestret</span>
+                        </div>
                     </div>
-                </div>
 
-                <div class="settings-section">
-                    <h3>📚 Velg kategorier</h3>
-                    <div class="setting-row">
-                        <button class="btn btn-sm btn-outline" onclick="selectAllCategories()">Velg alle</button>
-                        <button class="btn btn-sm btn-outline" onclick="deselectAllCategories()">Fjern alle</button>
+                    <div class="vocab-mode-grid" aria-label="Velg gloseøkt">
+                        <button type="button" class="vocab-mode-card review" onclick="startVocabSession('review')">
+                            <span class="vocab-mode-icon">🔁</span>
+                            <span class="vocab-mode-title">Repetere ord</span>
+                            <span class="vocab-mode-text">Øv på alle ord som er klare for repetisjon.</span>
+                            <span class="vocab-mode-meta" id="reviewModeMeta">0 ord klare</span>
+                        </button>
+                        <button type="button" class="vocab-mode-card mixed" onclick="startVocabSession('mixed')">
+                            <span class="vocab-mode-icon">🌱</span>
+                            <span class="vocab-mode-title">Repetere ord og lære nye ord</span>
+                            <span class="vocab-mode-text">Ta repetisjonene først, og legg til nye ord fra valgte kategorier.</span>
+                            <span class="vocab-mode-meta" id="mixedModeMeta">Velg kategori under</span>
+                        </button>
+                        <button type="button" class="vocab-mode-card new" onclick="startVocabSession('new')">
+                            <span class="vocab-mode-icon">✨</span>
+                            <span class="vocab-mode-title">Lære nye ord</span>
+                            <span class="vocab-mode-text">Start en kort økt med nye ord fra kategoriene du velger.</span>
+                            <span class="vocab-mode-meta" id="newModeMeta">10 nye ord</span>
+                        </button>
                     </div>
-                    <div id="categoryGrid" class="category-grid"></div>
-                </div>
 
-                <div class="settings-section">
-                    <h3>➕ Legg til gloser</h3>
-                    <div class="add-word-form">
-                        <div class="add-word-row">
-                            <input type="text" id="addWordNorsk" placeholder="Norsk" class="add-word-input">
-                            <input type="text" id="addWordSpansk" placeholder="Spansk" class="add-word-input">
-                        </div>
-                        <div class="add-word-row">
-                            <select id="addWordCategory" class="add-word-select">
-                                <option value="">Velg kategori...</option>
-                            </select>
-                            <input type="text" id="addWordNewCategory" placeholder="...eller ny kategori" class="add-word-input">
-                        </div>
-                        <button class="btn btn-sm btn-primary" onclick="addCustomWord()">➕ Legg til glose</button>
+                    <div class="vocab-limits-grid">
+                        <label class="vocab-limit-card">
+                            <span class="setting-label">Nye ord</span>
+                            <span class="setting-hint">For økter med nye ord</span>
+                            <input type="number" id="newCardsLimit" min="0" max="50" value="10">
+                        </label>
+                        <label class="vocab-limit-card">
+                            <span class="setting-label">Maks repetisjoner</span>
+                            <span class="setting-hint">For repetisjonsøkter</span>
+                            <input type="number" id="reviewCardsLimit" min="0" max="200" value="50">
+                        </label>
+                        <label class="vocab-limit-card">
+                            <span class="setting-label">Maks minutter</span>
+                            <span class="setting-hint">0 betyr ingen tidsgrense</span>
+                            <input type="number" id="sessionTimeLimit" min="0" max="60" value="0">
+                        </label>
                     </div>
-                    <div class="setting-row" style="margin-top: 16px;">
-                        <div>
-                            <div class="setting-label">Importer fra lærer</div>
-                            <div class="setting-hint">Last inn JSON-fil med nye gloser</div>
-                        </div>
-                        <button class="btn btn-sm btn-outline" onclick="importTeacherWords()">📥 Importer gloser</button>
-                    </div>
-                    <div id="customWordsCount" class="setting-hint" style="margin-top: 8px;"></div>
-                </div>
 
-                <div class="button-group">
-                    <button class="btn btn-primary" onclick="startVocabSession()">▶️ Start økt</button>
-                    <button class="btn btn-secondary" onclick="showStatistics()">📊 Statistikk</button>
-                    <button class="btn btn-secondary" onclick="exportProgress()">💾 Eksporter</button>
-                    <button class="btn btn-secondary" onclick="importProgress()">📂 Importer</button>
+                    <div class="settings-section">
+                        <h3>📚 Velg kategori for nye ord</h3>
+                        <div class="setting-row">
+                            <button class="btn btn-sm btn-outline" onclick="selectAllCategories()">Velg alle</button>
+                            <button class="btn btn-sm btn-outline" onclick="deselectAllCategories()">Fjern alle</button>
+                        </div>
+                        <div id="categoryGrid" class="category-grid"></div>
+                    </div>
+
+                    <details class="vocab-advanced">
+                        <summary>Statistikk, import og egne gloser</summary>
+                        <div class="vocab-advanced-body">
+                            <div class="stats-grid">
+                                <div class="stat-box">
+                                    <div class="stat-number" id="statTotal">0</div>
+                                    <div class="stat-label">Totalt</div>
+                                </div>
+                                <div class="stat-box">
+                                    <div class="stat-number" id="statAdvancedNew">0</div>
+                                    <div class="stat-label">Nye</div>
+                                </div>
+                                <div class="stat-box">
+                                    <div class="stat-number" id="statAdvancedDue">0</div>
+                                    <div class="stat-label">Til repetisjon</div>
+                                </div>
+                                <div class="stat-box">
+                                    <div class="stat-number" id="statAdvancedMastered">0</div>
+                                    <div class="stat-label">Mestret</div>
+                                </div>
+                            </div>
+
+                            <div class="progress-container">
+                                <div class="progress-label">
+                                    <span>Fremgang</span>
+                                    <span id="progressPercent">0%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-segment progress-mastered" id="progressMastered"></div>
+                                    <div class="progress-segment progress-learning" id="progressLearning"></div>
+                                    <div class="progress-segment progress-new" id="progressNew"></div>
+                                </div>
+                            </div>
+
+                            <div class="settings-section">
+                                <h3>➕ Legg til gloser</h3>
+                                <div class="add-word-form">
+                                    <div class="add-word-row">
+                                        <input type="text" id="addWordNorsk" placeholder="Norsk" class="add-word-input">
+                                        <input type="text" id="addWordSpansk" placeholder="Spansk" class="add-word-input">
+                                    </div>
+                                    <div class="add-word-row">
+                                        <select id="addWordCategory" class="add-word-select">
+                                            <option value="">Velg kategori...</option>
+                                        </select>
+                                        <input type="text" id="addWordNewCategory" placeholder="...eller ny kategori" class="add-word-input">
+                                    </div>
+                                    <button class="btn btn-sm btn-primary" onclick="addCustomWord()">➕ Legg til glose</button>
+                                </div>
+                                <div class="setting-row" style="margin-top: 16px;">
+                                    <div>
+                                        <div class="setting-label">Importer fra lærer</div>
+                                        <div class="setting-hint">Last inn JSON-fil med nye gloser</div>
+                                    </div>
+                                    <button class="btn btn-sm btn-outline" onclick="importTeacherWords()">📥 Importer gloser</button>
+                                </div>
+                                <div id="customWordsCount" class="setting-hint" style="margin-top: 8px;"></div>
+                            </div>
+
+                            <div class="button-group">
+                                <button class="btn btn-secondary" onclick="showStatistics()">📊 Statistikk</button>
+                                <button class="btn btn-secondary" onclick="exportProgress()">💾 Eksporter</button>
+                                <button class="btn btn-secondary" onclick="importProgress()">📂 Importer</button>
+                            </div>
+                        </div>
+                    </details>
                 </div>
             </div>
 
@@ -2494,27 +2730,27 @@
                 </div>
 
                 <div class="games-grid">
-                    <div class="game-card" onclick="showGameSetup('verbo-invaders')">
+                    <button type="button" class="game-card" onclick="showGameSetup('verbo-invaders')">
                         <div class="game-icon">👾</div>
                         <h3>Verbo Invaders</h3>
                         <p>Bøy verb riktig før romvesnene tar over!</p>
-                    </div>
-                    <div class="game-card" onclick="showGameSetup('prepo-invaders')">
+                    </button>
+                    <button type="button" class="game-card" onclick="showGameSetup('prepo-invaders')">
                         <div class="game-icon">🧭</div>
                         <h3>Prepo Invaders</h3>
                         <p>Skyt riktig preposisjon før den lander!</p>
-                    </div>
+                    </button>
 
-                    <div class="game-card coming-soon">
+                    <button type="button" class="game-card coming-soon" disabled>
                         <div class="game-icon">🎯</div>
                         <h3>Glose-duell</h3>
                         <p>Kommer snart...</p>
-                    </div>
-                    <div class="game-card coming-soon">
+                    </button>
+                    <button type="button" class="game-card coming-soon" disabled>
                         <div class="game-icon">🧩</div>
                         <h3>Setningspuslespill</h3>
                         <p>Kommer snart...</p>
-                    </div>
+                    </button>
                 </div>
             </div>
 
@@ -2529,15 +2765,15 @@
                     <h3>🎯 Velg verbtid(er)</h3>
                     <div class="tense-selector">
                         <label class="tense-option">
-                            <input type="checkbox" id="tensePresente" checked>
+                            <input type="checkbox" id="gameTensePresente" checked>
                             <span>Presens (presente)</span>
                         </label>
                         <label class="tense-option">
-                            <input type="checkbox" id="tenseFuturo">
+                            <input type="checkbox" id="gameTenseFuturo">
                             <span>Futuro (ir a + infinitiv)</span>
                         </label>
                         <label class="tense-option">
-                            <input type="checkbox" id="tensePerfecto">
+                            <input type="checkbox" id="gameTensePerfecto">
                             <span>Presens perfektum (ha + partisipp)</span>
                         </label>
                     </div>
@@ -4196,6 +4432,8 @@
         let sessionStartTime = null;
         let sessionStats = { reviewed: 0, correct: 0, newLearned: 0 };
         let isCustomStudySession = false;
+        let currentVocabMode = 'mixed';
+        let sessionTimeLimitMinutes = 0;
 
         // Undo stack for vocab rating (Angre)
         let vocabUndoStack = [];
@@ -4259,8 +4497,13 @@
         function init() {
             loadData();
             checkForOldAppData(); // Check if user has data from old app
+            if (selectedCategories.size === 0) selectAllCategories();
             populateCategories();
             updateStats();
+            ['newCardsLimit', 'reviewCardsLimit', 'sessionTimeLimit'].forEach(id => {
+                const input = document.getElementById(id);
+                if (input) input.addEventListener('input', updateStats);
+            });
             setupKeyboardShortcuts();
             renderVerbSelector();
             loadGrammarProgress();
@@ -4394,11 +4637,14 @@
             const sortedCategories = Object.entries(categories).sort((a, b) => a[0].localeCompare(b[0]));
             
             grid.innerHTML = sortedCategories.map(([name, data]) => `
-                <div class="category-chip ${selectedCategories.has(name) ? 'selected' : ''}" 
-                     onclick="toggleCategory('${name}')">
+                <button type="button"
+                        class="category-chip ${selectedCategories.has(name) ? 'selected' : ''}"
+                        data-category="${name.replace(/"/g, '&quot;')}"
+                        aria-pressed="${selectedCategories.has(name)}"
+                        onclick="toggleCategory(this.dataset.category)">
                     ${getCategoryEmoji(name)} ${capitalizeFirst(name)}
                     <span class="count">(${data.count})</span>
-                </div>
+                </button>
             `).join('');
         }
 
@@ -4425,16 +4671,19 @@
             if (selectedCategories.has(name)) selectedCategories.delete(name);
             else selectedCategories.add(name);
             populateCategories();
+            updateStats();
         }
 
         function selectAllCategories() {
             Object.keys(getCategories()).forEach(cat => selectedCategories.add(cat));
             populateCategories();
+            updateStats();
         }
 
         function deselectAllCategories() {
             selectedCategories.clear();
             populateCategories();
+            updateStats();
         }
 
         function updateStats() {
@@ -4442,25 +4691,64 @@
             const total = filtered.length;
             const newCards = filtered.filter(c => c.noEs.repetitions === 0 && c.esNo.repetitions === 0).length;
             const mastered = filtered.filter(c => c.noEs.repetitions >= 3 && c.esNo.repetitions >= 3).length;
-            const due = getDueCards(filtered).length;
+            const due = getDueCards(cards).length;
+            const newLimit = getLimitValue('newCardsLimit', 10);
+            const reviewLimit = getLimitValue('reviewCardsLimit', 50);
+            const selectedNewItems = getNewCards(filtered);
+            const selectedCategoryCount = selectedCategories.size;
+            const newWordCount = Math.min(newLimit, Math.ceil(selectedNewItems.length / 2));
+            const dueReviewCount = Math.min(reviewLimit, due);
 
-            document.getElementById('statTotal').textContent = total;
-            document.getElementById('statNew').textContent = newCards;
-            document.getElementById('statDue').textContent = due;
-            document.getElementById('statMastered').textContent = mastered;
+            setText('statTotal', total);
+            setText('statNew', newCards);
+            setText('statDue', due);
+            setText('statMastered', mastered);
+            setText('statAdvancedNew', newCards);
+            setText('statAdvancedDue', due);
+            setText('statAdvancedMastered', mastered);
+            setText('reviewModeMeta', `${dueReviewCount} av ${due} klare`);
+            setText('mixedModeMeta', `${dueReviewCount} repetisjoner + ${newWordCount} nye ord`);
+            setText('newModeMeta', `${newWordCount} nye ord fra ${selectedCategoryCount} kategorier`);
 
             const masteredPercent = total > 0 ? (mastered / total) * 100 : 0;
             const learning = total - newCards - mastered;
             const learningPercent = total > 0 ? (learning / total) * 100 : 0;
             
-            document.getElementById('progressMastered').style.width = masteredPercent + '%';
-            document.getElementById('progressLearning').style.width = learningPercent + '%';
-            document.getElementById('progressNew').style.width = (100 - masteredPercent - learningPercent) + '%';
-            document.getElementById('progressPercent').textContent = Math.round(masteredPercent) + '%';
+            const progressMastered = document.getElementById('progressMastered');
+            const progressLearning = document.getElementById('progressLearning');
+            const progressNew = document.getElementById('progressNew');
+            if (progressMastered) progressMastered.style.width = masteredPercent + '%';
+            if (progressLearning) progressLearning.style.width = learningPercent + '%';
+            if (progressNew) progressNew.style.width = (100 - masteredPercent - learningPercent) + '%';
+            setText('progressPercent', Math.round(masteredPercent) + '%');
+        }
+
+        function setText(id, value) {
+            const el = document.getElementById(id);
+            if (el) el.textContent = value;
+        }
+
+        function getLimitValue(id, fallback) {
+            const input = document.getElementById(id);
+            if (!input) return fallback;
+            const value = parseInt(input.value, 10);
+            if (Number.isNaN(value)) return fallback;
+            const min = input.min === '' ? 0 : parseInt(input.min, 10);
+            const max = input.max === '' ? value : parseInt(input.max, 10);
+            return Math.min(Math.max(value, min), max);
+        }
+
+        function getSessionTimeLimitMs() {
+            return sessionTimeLimitMinutes > 0 ? sessionTimeLimitMinutes * 60 * 1000 : 0;
+        }
+
+        function isVocabTimeLimitReached() {
+            const limitMs = getSessionTimeLimitMs();
+            return limitMs > 0 && sessionStartTime && new Date() - sessionStartTime >= limitMs;
         }
 
         function getFilteredCards() {
-            if (selectedCategories.size === 0) return cards;
+            if (selectedCategories.size === 0) return [];
             return cards.filter(c => selectedCategories.has(c.category));
         }
 
@@ -4538,37 +4826,37 @@ Vil du øve på ${pronoun} likevel?`
             );
         }
 
-        function startVocabSession() {
-            const newLimit = parseInt(document.getElementById('newCardsLimit').value);
-            const reviewLimit = parseInt(document.getElementById('reviewCardsLimit').value);
-            const filtered = getFilteredCards();
-            
-            const dueCards = getDueCards(filtered).slice(0, reviewLimit);
-            const newCards = getNewCards(filtered).slice(0, newLimit * 2);
-            const futureReviewCards = getFutureReviewCards(filtered);
-            const normalSessionCards = shuffleArray([...dueCards, ...newCards]);
-
+        function startVocabSession(mode = 'mixed') {
+            const newLimit = getLimitValue('newCardsLimit', 10);
+            const reviewLimit = getLimitValue('reviewCardsLimit', 50);
+            sessionTimeLimitMinutes = getLimitValue('sessionTimeLimit', 0);
+            currentVocabMode = mode;
             isCustomStudySession = false;
             sessionCards = [];
-            
-            if (normalSessionCards.length > 0) {
-                sessionCards = normalSessionCards;
-            } else if (futureReviewCards.length > 0) {
-                const confirmed = shouldStartCustomStudy(selectedCategories);
-                if (!confirmed) return;
 
-                isCustomStudySession = true;
-                sessionCards = getCustomStudyCards(filtered, Math.max(10, reviewLimit, newLimit * 2));
-            } else if (filtered.length === 0) {
-                alert('Ingen kort tilgjengelig i de valgte kategoriene.');
-                return;
+            const dueCards = getDueCards(cards).slice(0, reviewLimit);
+            const filteredNewCards = getNewCards(getFilteredCards()).slice(0, newLimit * 2);
+
+            if (mode === 'review') {
+                sessionCards = shuffleArray(dueCards);
+            } else if (mode === 'new') {
+                sessionCards = shuffleArray(filteredNewCards);
             } else {
-                alert('Ingen kort tilgjengelig! Prøv å velge andre kategorier eller legg til flere kort.');
+                sessionCards = shuffleArray([...dueCards, ...filteredNewCards]);
+            }
+
+            if (sessionCards.length === 0 && mode === 'review') {
+                alert('Ingen ord er klare for repetisjon akkurat nå.');
                 return;
             }
-            
+
+            if (sessionCards.length === 0 && mode === 'new') {
+                alert('Ingen nye ord tilgjengelig i de valgte kategoriene.');
+                return;
+            }
+
             if (sessionCards.length === 0) {
-                alert('Ingen kort tilgjengelig i de valgte kategoriene.');
+                alert('Ingen kort tilgjengelig akkurat nå. Prøv å velge andre kategorier eller justere grensene.');
                 return;
             }
 
@@ -4602,7 +4890,7 @@ Vil du øve på ${pronoun} likevel?`
             
             updateVocabProgress();
             
-            const cardTypeLabel = isCustomStudySession ? 'Custom study' : (isNew ? 'Nytt kort' : 'Repetisjon');
+            const cardTypeLabel = isCustomStudySession ? 'Ekstraøving' : (isNew ? 'Nytt kort' : 'Repetisjon');
 
             document.getElementById('flashcardArea').innerHTML = `
                 <div class="flashcard" onclick="flipCard()">
@@ -4635,7 +4923,7 @@ Vil du øve på ${pronoun} likevel?`
             const back = direction === 'no-es' ? card.es : card.no;
             const intervals = [0, 1, 2, 3].map(q => SM2.getIntervalText(q, srData));
             
-            const cardTypeLabel = isCustomStudySession ? 'Custom study' : (isNew ? 'Nytt kort' : 'Repetisjon');
+            const cardTypeLabel = isCustomStudySession ? 'Ekstraøving' : (isNew ? 'Nytt kort' : 'Repetisjon');
 
             document.getElementById('flashcardArea').innerHTML = `
                 <div class="flashcard">
@@ -4706,13 +4994,15 @@ Vil du øve på ${pronoun} likevel?`
             if (quality === 0) sessionCards.push(item);
             
             currentIndex++;
-            showVocabCard();
+            if (isVocabTimeLimitReached()) endVocabSession();
+            else showVocabCard();
         }
 
         function updateVocabProgress() {
             const progress = (currentIndex / sessionCards.length) * 100;
             document.getElementById('sessionProgressFill').style.width = progress + '%';
-            document.getElementById('sessionStats').textContent = isCustomStudySession ? `Custom study • ${sessionStats.reviewed} repetert • ${sessionStats.correct} riktig` : `${sessionStats.reviewed} repetert • ${sessionStats.correct} riktig`;
+            const limitText = sessionTimeLimitMinutes > 0 ? ` • maks ${sessionTimeLimitMinutes} min` : '';
+            document.getElementById('sessionStats').textContent = `${sessionStats.reviewed} repetert • ${sessionStats.correct} riktig${limitText}`;
             document.getElementById('cardCounter').textContent = `${currentIndex + 1} / ${sessionCards.length}`;
         }
 
@@ -4734,7 +5024,7 @@ Vil du øve på ${pronoun} likevel?`
             document.getElementById('flashcardArea').innerHTML = `
                 <div class="session-complete">
                     <div class="emoji">🎉</div>
-                    <h2>${isCustomStudySession ? 'Custom study fullført!' : 'Økt fullført!'}</h2>
+                    <h2>Økt fullført!</h2>
                     <div class="session-stats-grid">
                         <div class="session-stat"><div class="session-stat-value">${sessionStats.reviewed}</div><div class="session-stat-label">Kort repetert</div></div>
                         <div class="session-stat"><div class="session-stat-value">${accuracy}%</div><div class="session-stat-label">Nøyaktighet</div></div>
@@ -4747,7 +5037,7 @@ Vil du øve på ${pronoun} likevel?`
             
             document.getElementById('buttonArea').innerHTML = `
                 <div class="button-group">
-                    <button class="btn btn-primary" onclick="startVocabSession()">▶️ Start ny økt</button>
+                    <button class="btn btn-primary" onclick="startVocabSession(currentVocabMode)">▶️ Start ny økt</button>
                     <button class="btn btn-secondary" onclick="showPage('vocab')">← Tilbake</button>
                 </div>
             `;
@@ -4798,7 +5088,8 @@ Vil du øve på ${pronoun} likevel?`
             selectedCategories.add(category);
             showPage('vocab');
             populateCategories();
-            startVocabSession();
+            updateStats();
+            startVocabSession('mixed');
         }
 
         // ============================================
@@ -4808,11 +5099,14 @@ Vil du øve på ${pronoun} likevel?`
         function renderVerbSelector() {
             const selector = document.getElementById('verbSelector');
             selector.innerHTML = Object.entries(verbDatabase).map(([key, verb]) => `
-                <div class="verb-card ${selectedVerbs.has(key) ? 'selected' : ''}" onclick="toggleVerb('${key}')">
+                <button type="button"
+                        class="verb-card ${selectedVerbs.has(key) ? 'selected' : ''}"
+                        aria-pressed="${selectedVerbs.has(key)}"
+                        onclick="toggleVerb('${key}')">
                     <div class="verb-infinitive">${verb.infinitive}</div>
                     <div class="verb-translation">${verb.translation}</div>
                     <span class="verb-type-badge">${verb.type}</span>
-                </div>
+                </button>
             `).join('');
         }
 
@@ -5799,7 +6093,7 @@ Vil du øve på ${pronoun} likevel?`
                 const mastered = percentage >= 80 && progress.total >= 10;
                 
                 return `
-                    <div class="grammar-topic-card" onclick="startGrammarTopic('${topic.id}')">
+                    <button type="button" class="grammar-topic-card" onclick="startGrammarTopic('${topic.id}')">
                         ${mastered ? '<span class="grammar-mastery-badge">⭐</span>' : ''}
                         <div class="grammar-topic-icon">${topic.icon}</div>
                         <div class="grammar-topic-name">${topic.name}</div>
@@ -5810,7 +6104,7 @@ Vil du øve på ${pronoun} likevel?`
                         <div class="grammar-topic-stats">
                             ${progress.total > 0 ? `${percentage}% riktig (${progress.total} øvelser)` : 'Ikke startet'}
                         </div>
-                    </div>
+                    </button>
                 `;
             }).join('');
         }
@@ -6061,12 +6355,15 @@ Vil du øve på ${pronoun} likevel?`
         let viSelectedVerbs = new Set();
         let viSelectedTenses = new Set(['presente']);
         let viQuestionPool = [];
+        let viHasInitializedRecommendedVerbs = false;
+        const viRecommendedVerbKeys = ['hablar', 'trabajar', 'estudiar', 'bailar', 'comprar', 'comer', 'beber', 'vivir'];
+        const VI_VISIBLE_START_Y = 86;
 
         // Falling animation state
         let viFallAnimId = null;
         let viFallStartTime = 0;
         let viFallDuration = 8000;
-        let viStartY = -150;
+        let viStartY = VI_VISIBLE_START_Y;
         let viEndY = 0;
 
         const viPronouns = {
@@ -6096,6 +6393,7 @@ Vil du øve på ${pronoun} likevel?`
                 document.getElementById('verboInvadersSetup').classList.remove('hidden');
                 document.getElementById('verboInvadersGame').classList.add('hidden');
                 document.getElementById('verboInvadersGameOver').classList.add('hidden');
+                ensureRecommendedGameVerbs();
                 renderGameVerbSelector();
             } else if (game === 'prepo-invaders') {
                 document.getElementById('gamesMenu').classList.add('hidden');
@@ -6105,28 +6403,33 @@ Vil du øve på ${pronoun} likevel?`
             }
         }
 
+        function ensureRecommendedGameVerbs() {
+            if (viHasInitializedRecommendedVerbs || viSelectedVerbs.size > 0) return;
+            viRecommendedVerbKeys.forEach(key => {
+                if (verbDatabase[key]) viSelectedVerbs.add(key);
+            });
+            viHasInitializedRecommendedVerbs = true;
+        }
+
         function renderGameVerbSelector() {
             const grid = document.getElementById('gameVerbGrid');
             grid.innerHTML = '';
             
-            // Select all verbs by default if none selected
-            if (viSelectedVerbs.size === 0) {
-                Object.keys(verbDatabase).forEach(v => viSelectedVerbs.add(v));
-            }
-            
             Object.entries(verbDatabase).forEach(([key, verb]) => {
                 const isSelected = viSelectedVerbs.has(key);
+                const isRecommended = viRecommendedVerbKeys.includes(key);
                 const chip = document.createElement('label');
-                chip.className = `game-verb-chip ${isSelected ? 'selected' : ''}`;
+                chip.className = `game-verb-chip ${isSelected ? 'selected' : ''} ${isRecommended ? 'recommended' : ''}`;
                 chip.innerHTML = `
                     <input type="checkbox" ${isSelected ? 'checked' : ''} onchange="toggleGameVerb('${key}', this)">
-                    <span>${verb.infinitive}</span>
+                    <span>${verb.infinitive}${isRecommended ? ' · anbefalt' : ''}</span>
                 `;
                 grid.appendChild(chip);
             });
         }
 
         function toggleGameVerb(verb, checkbox) {
+            viHasInitializedRecommendedVerbs = true;
             if (checkbox.checked) {
                 viSelectedVerbs.add(verb);
             } else {
@@ -6136,11 +6439,13 @@ Vil du øve på ${pronoun} likevel?`
         }
 
         function selectAllGameVerbs() {
+            viHasInitializedRecommendedVerbs = true;
             Object.keys(verbDatabase).forEach(v => viSelectedVerbs.add(v));
             renderGameVerbSelector();
         }
 
         function deselectAllGameVerbs() {
+            viHasInitializedRecommendedVerbs = true;
             viSelectedVerbs.clear();
             document.querySelectorAll('.game-verb-chip').forEach(chip => {
                 chip.classList.remove('selected');
@@ -6153,14 +6458,11 @@ Vil du øve på ${pronoun} likevel?`
             
             // Get selected tenses
             viSelectedTenses.clear();
-            if (document.getElementById('tensePresente').checked) viSelectedTenses.add('presente');
-            if (document.getElementById('tenseFuturo').checked) viSelectedTenses.add('futuro');
-            if (document.getElementById('tensePerfecto').checked) viSelectedTenses.add('perfecto');
+            if (document.getElementById('gameTensePresente').checked) viSelectedTenses.add('presente');
+            if (document.getElementById('gameTenseFuturo').checked) viSelectedTenses.add('futuro');
+            if (document.getElementById('gameTensePerfecto').checked) viSelectedTenses.add('perfecto');
             
             if (viSelectedTenses.size === 0) viSelectedTenses.add('presente');
-            if (viSelectedVerbs.size === 0) {
-                Object.keys(verbDatabase).forEach(v => viSelectedVerbs.add(v));
-            }
             
             viSelectedVerbs.forEach(verbKey => {
                 const verb = verbDatabase[verbKey];
@@ -6365,7 +6667,7 @@ Vil du øve på ${pronoun} likevel?`
             const invaderZone = document.getElementById('viInvaderZone');
             invaderZone.style.transition = 'none';
             invaderZone.style.opacity = '1';
-            invaderZone.style.top = '-150px';
+            invaderZone.style.top = VI_VISIBLE_START_Y + 'px';
             
             document.getElementById('viPlayerShip').style.left = 'calc(50% - 18px)';
             
@@ -6405,7 +6707,7 @@ Vil du øve på ${pronoun} likevel?`
         function viStartFalling() {
             viFallDuration = viGetFallDuration(viLevel);
             viEndY = viGetEndY();
-            viStartY = -150;
+            viStartY = VI_VISIBLE_START_Y;
             
             const invaderZone = document.getElementById('viInvaderZone');
             invaderZone.style.top = viStartY + 'px';
@@ -6662,12 +6964,13 @@ Vil du øve på ${pronoun} likevel?`
         let piCorrectIndex = -1;
         let piGameActive = false;
         let piAnswering = false;
+        const PI_VISIBLE_START_Y = 86;
 
         // Falling animation state
         let piFallAnimId = null;
         let piFallStartTime = 0;
         let piFallDuration = 8000;
-        let piStartY = -150;
+        let piStartY = PI_VISIBLE_START_Y;
         let piEndY = 0;
 
         const prepositions = [
@@ -6710,7 +7013,7 @@ Vil du øve på ${pronoun} likevel?`
             const invaderZone = document.getElementById('piInvaderZone');
             invaderZone.style.transition = 'none';
             invaderZone.style.opacity = '1';
-            invaderZone.style.top = '-150px';
+            invaderZone.style.top = PI_VISIBLE_START_Y + 'px';
 
             document.getElementById('piPlayerShip').style.left = 'calc(50% - 18px)';
 
@@ -6760,7 +7063,7 @@ Vil du øve på ${pronoun} likevel?`
         function piStartFalling() {
             piFallDuration = piGetFallDuration(piLevel);
             piEndY = piGetEndY();
-            piStartY = -150;
+            piStartY = PI_VISIBLE_START_Y;
 
             const invaderZone = document.getElementById('piInvaderZone');
             invaderZone.style.top = piStartY + 'px';
