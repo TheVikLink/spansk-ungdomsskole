@@ -14,11 +14,11 @@
         <p class="login-subtitle">Øv på spansk - din fremgang lagres på denne enheten</p>
         
         <div id="welcomeForm">
-            <input type="text" id="studentNameInput" class="login-input" placeholder="Ditt navn (f.eks. Maria)" maxlength="50">
+            <input type="text" id="studentNameInput" class="login-input" placeholder="Fornavn eller elevkode (f.eks. Maria eller 9A-14)" maxlength="50">
             <button class="login-btn login-btn-primary" onclick="startApp()">🚀 Start</button>
             
             <p class="login-hint">
-                💡 Skriv navnet ditt så vi kan vise det i ukesleksen.
+                💡 Bruk fornavn eller lærerens elevkode. Dette lagres bare i nettleseren og brukes i lekselevering.
             </p>
             
             <div class="login-divider">har du brukt appen før?</div>
@@ -97,6 +97,14 @@
                             <span class="vocab-mode-text">Start en kort økt med nye ord fra kategoriene du velger.</span>
                             <span class="vocab-mode-meta" id="newModeMeta">10 nye ord</span>
                         </button>
+                    </div>
+
+                    <div class="settings-section">
+                        <h3>🎯 Kapitteløving</h3>
+                        <p class="mb-4 text-gray-500">
+                            Øv på et aktuelt kapittel. Repetisjoner som er klare, blir fortsatt med.
+                        </p>
+                        <div class="vocab-mode-grid" id="chapterFocusGrid" aria-label="Velg kapitteløving"></div>
                     </div>
 
                     <div class="vocab-limits-grid">
@@ -366,6 +374,7 @@
                 <p class="mb-4 text-gray-500">
                     Last ned fremgangen din som fil, eller importer fra en tidligere lagring.
                 </p>
+                <p class="homework-hint" id="backupStatus"></p>
                 <div class="button-group">
                     <button class="btn btn-secondary" onclick="exportAllProgress()">📥 Last ned fremgang</button>
                     <button class="btn btn-secondary" onclick="importProgressFile()">📂 Importer fremgang</button>
@@ -686,6 +695,10 @@
         const FORM_ENTRY_WORDS = 'entry.913529179';
         const FORM_ENTRY_ACCURACY = 'entry.1698461882';
         
+        const LAST_EXPORT_KEY = 'spansk123_lastExportDate';
+        const BACKUP_REMINDER_DAYS = 14;
+        const CORRUPT_STORAGE_PREFIX = 'spansk123_corrupt_';
+
         let studentName = '';
         let practiceHistory = [];
 
@@ -698,7 +711,7 @@
             const name = nameInput.value.trim();
             
             if (!name) {
-                alert('Skriv inn navnet ditt!');
+                alert('Skriv inn fornavn eller elevkode!');
                 return;
             }
             
@@ -724,8 +737,9 @@
             modal.innerHTML = `
                 <div class="settings-modal-content">
                     <h2>⚙️ Innstillinger</h2>
-                    <label class="mb-2 block text-gray-700">Ditt navn:</label>
-                    <input type="text" id="settingsNameInput" value="${studentName}" placeholder="Ditt navn">
+                    <label class="mb-2 block text-gray-700">Fornavn eller elevkode:</label>
+                    <input type="text" id="settingsNameInput" value="${studentName}" placeholder="Fornavn eller elevkode">
+                    <p class="login-hint mt-2 text-xs">Lagres lokalt i nettleseren og brukes når du leverer ukeslekse.</p>
                     <div class="button-group">
                         <button class="btn btn-primary" onclick="saveSettings()">Lagre</button>
                         <button class="btn btn-secondary" onclick="closeSettings()">Avbryt</button>
@@ -754,23 +768,56 @@
 
         function resetAllData() {
             if (confirm('Er du sikker på at du vil slette ALL fremgang? Dette kan ikke angres!')) {
-                localStorage.removeItem('spansk123_studentName');
-                localStorage.removeItem('spansk123Data_v4');
-                localStorage.removeItem('spansk123Grammar_v1');
-                localStorage.removeItem('spansk123_practiceHistory');
+                clearAllLocalAppData();
                 location.reload();
             }
+        }
+
+        function clearAllLocalAppData() {
+            const appKeys = [
+                'spansk123_studentName',
+                'spansk123Data_v4',
+                'spansk123Grammar_v1',
+                'spansk123_practiceHistory',
+                LAST_EXPORT_KEY,
+                'spansk123_oldImportDone'
+            ];
+
+            Object.keys(localStorage).forEach(key => {
+                if (appKeys.includes(key) || key.startsWith(CORRUPT_STORAGE_PREFIX)) {
+                    localStorage.removeItem(key);
+                }
+            });
         }
 
         // ============================================
         // PRACTICE TRACKING
         // ============================================
 
-        function loadPracticeHistory() {
-            const saved = localStorage.getItem('spansk123_practiceHistory');
-            if (saved) {
-                practiceHistory = JSON.parse(saved);
+        function backupCorruptStorageValue(key, rawValue) {
+            const safeTimestamp = new Date().toISOString().replace(/[:.]/g, '-');
+            const backupKey = `${CORRUPT_STORAGE_PREFIX}${key}_${safeTimestamp}`;
+            localStorage.setItem(backupKey, rawValue);
+            localStorage.removeItem(key);
+            showToast('Lagret fremgang var skadet. Vi startet trygt og beholdt en lokal kopi i nettleseren.', 'error');
+            return backupKey;
+        }
+
+        function readStoredJson(key, fallback) {
+            const rawValue = localStorage.getItem(key);
+            if (!rawValue) return fallback;
+
+            try {
+                return JSON.parse(rawValue);
+            } catch (error) {
+                console.warn(`Could not parse ${key}; preserving corrupt value before recovery.`, error);
+                backupCorruptStorageValue(key, rawValue);
+                return fallback;
             }
+        }
+
+        function loadPracticeHistory() {
+            practiceHistory = readStoredJson('spansk123_practiceHistory', []);
         }
 
         function savePracticeHistory() {
@@ -887,6 +934,7 @@
             
             // Practice history
             renderPracticeHistory();
+            renderBackupStatus();
         }
 
         function renderPracticeHistory() {
@@ -955,8 +1003,8 @@
         // EXPORT/IMPORT PROGRESS
         // ============================================
 
-        function exportAllProgress() {
-            const data = {
+        function buildProgressExportData() {
+            return {
                 version: 'spansk123_export_v1',
                 exportDate: new Date().toISOString(),
                 studentName: studentName,
@@ -964,18 +1012,225 @@
                 grammarData: JSON.parse(localStorage.getItem('spansk123Grammar_v1') || '{}'),
                 practiceHistory: practiceHistory
             };
+        }
+
+        function importProgressData(data) {
+            if (data.version === 'spansk123_export_v1') {
+                if (data.studentName) {
+                    studentName = data.studentName;
+                    localStorage.setItem('spansk123_studentName', studentName);
+                }
+                if (data.vocabData) {
+                    localStorage.setItem('spansk123Data_v4', JSON.stringify(data.vocabData));
+                }
+                if (data.grammarData) {
+                    localStorage.setItem('spansk123Grammar_v1', JSON.stringify(data.grammarData));
+                }
+                if (data.practiceHistory) {
+                    practiceHistory = data.practiceHistory;
+                    savePracticeHistory();
+                }
+                return {
+                    imported: true,
+                    format: 'spansk123_export_v1',
+                    message: 'Fremgang importert'
+                };
+            }
+
+            if (data.version === 'spansk123_v4' && data.cards) {
+                localStorage.setItem('spansk123Data_v4', JSON.stringify(data.cards));
+                return {
+                    imported: true,
+                    format: 'spansk123_v4',
+                    message: 'Glosefremgang importert'
+                };
+            }
+
+            if (data.appVersion === 'spansk_v1' && data.cards) {
+                const convertedCards = convertOldFormatToNew(data.cards);
+                if (convertedCards.length === 0) {
+                    return {
+                        imported: false,
+                        format: 'spansk_v1',
+                        message: 'Ingen gloser å importere'
+                    };
+                }
+
+                const existingCards = JSON.parse(localStorage.getItem('spansk123Data_v4') || '[]');
+                const mergedCards = mergeImportedCards(existingCards, convertedCards);
+                localStorage.setItem('spansk123Data_v4', JSON.stringify(mergedCards));
+
+                if (data.weeklyLog && Array.isArray(data.weeklyLog)) {
+                    const convertedHistory = data.weeklyLog.map(entry => ({
+                        date: entry.date?.split('T')[0] || entry.date,
+                        words: entry.cardsReviewed || entry.reviewed || entry.cards || 0,
+                        correct: entry.correct || Math.round((entry.cardsReviewed || 0) * 0.8),
+                        sessions: 1
+                    }));
+                    practiceHistory = [...practiceHistory, ...convertedHistory];
+                    const seen = new Set();
+                    practiceHistory = practiceHistory.filter(entry => {
+                        if (seen.has(entry.date)) return false;
+                        seen.add(entry.date);
+                        return true;
+                    });
+                    savePracticeHistory();
+                }
+
+                const withProgress = data.cards.filter(c => c.level > 0 || c.reviews > 0).length;
+                return {
+                    imported: true,
+                    format: 'spansk_v1',
+                    convertedCards: convertedCards.length,
+                    cardsWithProgress: withProgress,
+                    message: `Importerte fremgang for ${withProgress} gloser`
+                };
+            }
+
+            if (Array.isArray(data) && data.length > 0 && data[0].norwegian && data[0].spanish) {
+                const convertedCards = convertOldFormatToNew(data);
+                if (convertedCards.length === 0) {
+                    return {
+                        imported: false,
+                        format: 'old_raw_array',
+                        message: 'Ingen gloser å importere'
+                    };
+                }
+
+                const existingCards = JSON.parse(localStorage.getItem('spansk123Data_v4') || '[]');
+                const mergedCards = mergeImportedCards(existingCards, convertedCards);
+                localStorage.setItem('spansk123Data_v4', JSON.stringify(mergedCards));
+
+                return {
+                    imported: true,
+                    format: 'old_raw_array',
+                    convertedCards: convertedCards.length,
+                    message: `Importerte ${convertedCards.length} gloser fra gammel app`
+                };
+            }
+
+            if (data.spanskSRData) {
+                const oldCards = typeof data.spanskSRData === 'string'
+                    ? JSON.parse(data.spanskSRData)
+                    : data.spanskSRData;
+                const convertedCards = convertOldFormatToNew(oldCards);
+                if (convertedCards.length === 0) {
+                    return {
+                        imported: false,
+                        format: 'old_localstorage_dump',
+                        message: 'Ingen gloser å importere'
+                    };
+                }
+
+                const existingCards = JSON.parse(localStorage.getItem('spansk123Data_v4') || '[]');
+                const mergedCards = mergeImportedCards(existingCards, convertedCards);
+                localStorage.setItem('spansk123Data_v4', JSON.stringify(mergedCards));
+
+                return {
+                    imported: true,
+                    format: 'old_localstorage_dump',
+                    convertedCards: convertedCards.length,
+                    message: `Importerte ${convertedCards.length} gloser fra gammel app`
+                };
+            }
+
+            return {
+                imported: false,
+                format: 'unknown',
+                message: 'Ukjent filformat'
+            };
+        }
+
+        function importProgressText(text) {
+            try {
+                return importProgressData(JSON.parse(text));
+            } catch (error) {
+                return {
+                    imported: false,
+                    format: 'parse_error',
+                    message: 'Kunne ikke lese filen: ' + error.message
+                };
+            }
+        }
+
+        function exportAllProgress() {
+            const data = buildProgressExportData();
             
             const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = `spansk-fremgang-${studentName.replace(/\s+/g, '-')}-${new Date().toISOString().split('T')[0]}.json`;
+            a.download = buildProgressExportFilename(studentName);
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
             URL.revokeObjectURL(url);
+            markProgressExported();
             
             showToast('Fremgang lastet ned!', 'success');
+        }
+
+        function buildProgressExportFilename(_identifier, date = new Date()) {
+            return `spansk-fremgang-${date.toISOString().split('T')[0]}.json`;
+        }
+
+        function getIsoDate(date = new Date()) {
+            return date.toISOString().split('T')[0];
+        }
+
+        function getBackupStatus(now = new Date()) {
+            const lastExportDate = localStorage.getItem(LAST_EXPORT_KEY);
+
+            if (!lastExportDate) {
+                return {
+                    tone: 'warning',
+                    text: 'Ingen sikkerhetskopi er lastet ned ennå. Last ned fremgang jevnlig så data ikke går tapt hvis nettleserdata slettes.'
+                };
+            }
+
+            const today = new Date(getIsoDate(now) + 'T00:00:00Z');
+            const last = new Date(lastExportDate + 'T00:00:00Z');
+            const diffDays = Math.max(0, Math.floor((today - last) / 86400000));
+
+            if (Number.isNaN(diffDays)) {
+                return {
+                    tone: 'warning',
+                    text: 'Sikkerhetskopidatoen kunne ikke leses. Last ned fremgang på nytt.'
+                };
+            }
+
+            if (diffDays === 0) {
+                return {
+                    tone: 'success',
+                    text: 'Sikkerhetskopi tatt i dag.'
+                };
+            }
+
+            if (diffDays <= BACKUP_REMINDER_DAYS) {
+                return {
+                    tone: 'success',
+                    text: `Sikkerhetskopi tatt for ${diffDays} dag${diffDays === 1 ? '' : 'er'} siden.`
+                };
+            }
+
+            return {
+                tone: 'warning',
+                text: `Siste sikkerhetskopi ble tatt for ${diffDays} dager siden. Last ned fremgang før du bytter enhet eller sletter nettleserdata.`
+            };
+        }
+
+        function renderBackupStatus() {
+            const statusEl = document.getElementById('backupStatus');
+            if (!statusEl) return;
+
+            const status = getBackupStatus();
+            statusEl.className = `homework-hint ${status.tone === 'success' ? 'text-emerald-500' : 'text-amber-500'}`;
+            statusEl.textContent = status.text;
+        }
+
+        function markProgressExported() {
+            localStorage.setItem(LAST_EXPORT_KEY, getIsoDate());
+            renderBackupStatus();
         }
 
         function importProgressFile() {
@@ -988,105 +1243,12 @@
                 
                 const reader = new FileReader();
                 reader.onload = (event) => {
-                    try {
-                        const data = JSON.parse(event.target.result);
-                        let imported = false;
-                        
-                        // Format 1: New export format (spansk123_export_v1)
-                        if (data.version === 'spansk123_export_v1') {
-                            if (data.studentName) {
-                                studentName = data.studentName;
-                                localStorage.setItem('spansk123_studentName', studentName);
-                            }
-                            if (data.vocabData) {
-                                localStorage.setItem('spansk123Data_v4', JSON.stringify(data.vocabData));
-                            }
-                            if (data.grammarData) {
-                                localStorage.setItem('spansk123Grammar_v1', JSON.stringify(data.grammarData));
-                            }
-                            if (data.practiceHistory) {
-                                practiceHistory = data.practiceHistory;
-                                savePracticeHistory();
-                            }
-                            imported = true;
-                        }
-                        // Format 2: Old vocab export format (spansk123_v4)
-                        else if (data.version === 'spansk123_v4') {
-                            if (data.cards) {
-                                localStorage.setItem('spansk123Data_v4', JSON.stringify(data.cards));
-                            }
-                            imported = true;
-                        }
-                        // Format 3: OLD APP "Spansk Gloselæring" export (appVersion: 'spansk_v1')
-                        // Has structure: { cards: [...], weeklyLog: [...], appVersion: 'spansk_v1' }
-                        else if (data.appVersion === 'spansk_v1' && data.cards) {
-                            const convertedCards = convertOldFormatToNew(data.cards);
-                            if (convertedCards.length > 0) {
-                                const existingCards = JSON.parse(localStorage.getItem('spansk123Data_v4') || '[]');
-                                const mergedCards = mergeImportedCards(existingCards, convertedCards);
-                                localStorage.setItem('spansk123Data_v4', JSON.stringify(mergedCards));
-                                
-                                // Convert weeklyLog to practiceHistory if available
-                                if (data.weeklyLog && Array.isArray(data.weeklyLog)) {
-                                    const convertedHistory = data.weeklyLog.map(entry => ({
-                                        date: entry.date?.split('T')[0] || entry.date,
-                                        words: entry.cardsReviewed || entry.reviewed || entry.cards || 0,
-                                        correct: entry.correct || Math.round((entry.cardsReviewed || 0) * 0.8),
-                                        sessions: 1
-                                    }));
-                                    practiceHistory = [...practiceHistory, ...convertedHistory];
-                                    // Remove duplicates by date
-                                    const seen = new Set();
-                                    practiceHistory = practiceHistory.filter(entry => {
-                                        if (seen.has(entry.date)) return false;
-                                        seen.add(entry.date);
-                                        return true;
-                                    });
-                                    savePracticeHistory();
-                                }
-                                
-                                // Count how many had progress
-                                const withProgress = data.cards.filter(c => c.level > 0 || c.reviews > 0).length;
-                                showToast(`Importerte fremgang for ${withProgress} gloser!`, 'success');
-                                imported = true;
-                            }
-                        }
-                        // Format 4: Raw array from old app (norwegian/spanish fields)
-                        else if (Array.isArray(data) && data.length > 0 && data[0].norwegian && data[0].spanish) {
-                            const convertedCards = convertOldFormatToNew(data);
-                            if (convertedCards.length > 0) {
-                                // Merge with existing cards
-                                const existingCards = JSON.parse(localStorage.getItem('spansk123Data_v4') || '[]');
-                                const mergedCards = mergeImportedCards(existingCards, convertedCards);
-                                localStorage.setItem('spansk123Data_v4', JSON.stringify(mergedCards));
-                                showToast(`Importerte ${convertedCards.length} gloser fra gammel app!`, 'success');
-                                imported = true;
-                            }
-                        }
-                        // Format 5: Direct localStorage dump from old app
-                        else if (data.spanskSRData) {
-                            const oldCards = typeof data.spanskSRData === 'string' 
-                                ? JSON.parse(data.spanskSRData) 
-                                : data.spanskSRData;
-                            const convertedCards = convertOldFormatToNew(oldCards);
-                            if (convertedCards.length > 0) {
-                                const existingCards = JSON.parse(localStorage.getItem('spansk123Data_v4') || '[]');
-                                const mergedCards = mergeImportedCards(existingCards, convertedCards);
-                                localStorage.setItem('spansk123Data_v4', JSON.stringify(mergedCards));
-                                imported = true;
-                            }
-                        }
-                        
-                        if (imported) {
-                            showToast('Fremgang importert! Laster på nytt...', 'success');
-                            setTimeout(() => location.reload(), 1500);
-                        } else {
-                            showToast('Ukjent filformat', 'error');
-                        }
-                        
-                    } catch (error) {
-                        console.error('Import error:', error);
-                        showToast('Kunne ikke lese filen: ' + error.message, 'error');
+                    const result = importProgressText(event.target.result);
+                    if (result.imported) {
+                        showToast(`${result.message}! Laster på nytt...`, 'success');
+                        setTimeout(() => location.reload(), 1500);
+                    } else {
+                        showToast(result.message, 'error');
                     }
                 };
                 reader.readAsText(file);
@@ -1215,6 +1377,8 @@
                     }
                 } catch (e) {
                     console.error('Could not parse old data:', e);
+                    backupCorruptStorageValue('spanskSRData', oldData);
+                    localStorage.setItem('spansk123_oldImportDone', 'true');
                 }
             }
         }
@@ -1327,9 +1491,9 @@
             ["91", "noventa y uno", "tall"],
             ["100", "cien", "tall"],
             ["110", "ciento diez", "tall"],
-            ["123", "ciento veintitres", "tall"],
+            ["123", "ciento veintitrés", "tall"],
             ["200", "doscientos", "tall"],
-            ["245", "dos cientos cuarenta y cinco", "tall"],
+            ["245", "doscientos cuarenta y cinco", "tall"],
             ["300", "trescientos", "tall"],
             ["400", "cuatrocientos", "tall"],
             ["500 på spansk", "quinientos", "tall"],
@@ -1354,7 +1518,7 @@
             ["Når har du bursdag?", "¿Cuándo es tu cumpleaños?", "bursdag"],
             ["Bursdagen min er 7. juli", "Mi cumpleaños es el siete de julio", "bursdag"],
             ["Når er bursdagen til Marius?", "¿Cuándo es el cumpleaños de Marius?", "bursdag"],
-            ["Bursdagen til Marius er 26. juni", "El cumpleaños de Marius es el veintiseis de junio", "bursdag"],
+            ["Bursdagen til Marius er 26. juni", "El cumpleaños de Marius es el veintiséis de junio", "bursdag"],
             
             // LAND
             ["Norge", "Noruega", "land"],
@@ -1435,7 +1599,7 @@
             ["pen/kjekk", "guapo", "utseende"],
             ["vakker", "hermoso", "utseende"],
             ["blå øyne", "los ojos azules", "utseende"],
-            ["brune øyne", "los ojos negros", "utseende"],
+            ["brune øyne", "los ojos marrones", "utseende"],
             ["grønne øyne", "los ojos verdes", "utseende"],
             ["mørkt hår", "el pelo moreno", "utseende"],
             ["blondt hår", "el pelo rubio", "utseende"],
@@ -1543,7 +1707,7 @@
             ["snekker", "el carpintero", "yrker"],
             ["kokk", "el cocinero", "yrker"],
             ["tannlege", "el dentista", "yrker"],
-            ["elektriker", "el electrista", "yrker"],
+            ["elektriker", "el electricista", "yrker"],
             ["sykepleier", "el enfermero", "yrker"],
             ["bonde", "el granjero", "yrker"],
             ["lege", "el médico", "yrker"],
@@ -1581,8 +1745,8 @@
             ["å være med venner", "estar con amigos", "hobbyer"],
             ["å dra ut med venner", "salir con mis amigos", "hobbyer"],
             ["å danse", "bailar", "hobbyer"],
-            ["å gå tur", "hacer cenderismo", "hobbyer"],
-            ["å slappe av", "relajar", "hobbyer"],
+            ["å gå tur", "hacer senderismo", "hobbyer"],
+            ["å slappe av", "relajarse", "hobbyer"],
             ["å surfe på internett", "navegar por internet", "hobbyer"],
             
             // KLOKKA
@@ -1648,7 +1812,7 @@
             ["naturfag", "las ciencias naturales", "fag"],
             ["kroppsøving", "la educación física", "fag"],
             ["kunst og håndtverk", "las artes manuales", "fag"],
-            ["religion / KRLE", "el religión", "fag"],
+            ["religion / KRLE", "la religión", "fag"],
             
             // HJEM
             ["rom", "la habitación", "hjem"],
@@ -1722,11 +1886,11 @@
             // VERBBØYING
             ["bøying av verbet SER, som betyr å være", "soy, eres, es, somos, sois, son", "verbbøying"],
             ["bøying av verbet tener, som betyr å ha", "tengo, tienes, tiene, tenemos, tenéis, tienen", "verbbøying"],
-            ["bøying av verbet ir", "voy, vas, va, vamos, váis, van", "verbbøying"],
+            ["bøying av verbet ir", "voy, vas, va, vamos, vais, van", "verbbøying"],
             ["bøying av verbet estar, som betyr å være/å befinne seg", "estoy, estás, está, estamos, estáis, están", "verbbøying"],
             ["bøying av verbet hablar, som betyr å snakke", "hablo, hablas, habla, hablamos, habláis, hablan", "verbbøying"],
             ["bøying av verbet comer, som betyr å spise", "como, comes, come, comemos, coméis, comen", "verbbøying"],
-            ["bøying av verbet vivir, som betyr å spise", "vivo, vives, vive, vivimos, vivís, viven", "verbbøying"],
+            ["bøying av verbet vivir, som betyr å bo", "vivo, vives, vive, vivimos, vivís, viven", "verbbøying"],
             ["bøying av verbet poder, som betyr å kunne", "puedo, puedes, puede, podemos, podéis, pueden", "verbbøying"],
             ["bøying av verbet decir, som betyr å si", "digo, dices, dice, decimos, decís, dicen", "verbbøying"],
             ["bøying av verbet hacer, som betyr å gjøre", "hago, haces, hace, hacemos, hacéis, hacen", "verbbøying"],
@@ -2132,6 +2296,21 @@
         let currentVocabMode = 'mixed';
         let sessionTimeLimitMinutes = 0;
 
+        const chapterFocusOptions = [
+            {
+                id: 'kapittel-7-mat',
+                title: 'Kapittel 7: Mat og innkjøp',
+                description: 'Frukt, matvarer og handling',
+                categories: ['kapittel 7: gloser']
+            },
+            {
+                id: 'kapittel-8-tareas',
+                title: 'Kapittel 8: Tareas de casa',
+                description: 'Husarbeid og tidsuttrykk',
+                categories: ['Kapittel 8: Tareas de casa']
+            }
+        ];
+
         // Undo stack for vocab rating (Angre)
         let vocabUndoStack = [];
 
@@ -2196,6 +2375,7 @@
             checkForOldAppData(); // Check if user has data from old app
             if (selectedCategories.size === 0) selectAllCategories();
             populateCategories();
+            renderChapterFocusOptions();
             updateStats();
             ['newCardsLimit', 'reviewCardsLimit', 'sessionTimeLimit'].forEach(id => {
                 const input = document.getElementById(id);
@@ -2209,9 +2389,9 @@
         }
 
         function loadData() {
-            const saved = localStorage.getItem('spansk123Data_v4');
+            const saved = readStoredJson('spansk123Data_v4', null);
             if (saved) {
-                cards = JSON.parse(saved).map((card, index) => normalizeCard(card, index));
+                cards = saved.map((card, index) => normalizeCard(card, index));
                 mergeNewVocabulary();
             } else {
                 cards = glossary.map((item, index) => ({
@@ -2346,6 +2526,26 @@
             `).join('');
         }
 
+        function renderChapterFocusOptions() {
+            const grid = document.getElementById('chapterFocusGrid');
+            if (!grid) return;
+
+            grid.innerHTML = chapterFocusOptions.map(focus => {
+                const queueCount = buildChapterFocusQueue(focus.id).length;
+                return `
+                    <button type="button"
+                            class="vocab-mode-card mixed"
+                            data-chapter-focus="${focus.id}"
+                            onclick="startChapterFocusSession('${focus.id}')">
+                        <span class="vocab-mode-icon">🎯</span>
+                        <span class="vocab-mode-title">${focus.title}</span>
+                        <span class="vocab-mode-text">${focus.description}</span>
+                        <span class="vocab-mode-meta">${queueCount} kort i kø</span>
+                    </button>
+                `;
+            }).join('');
+        }
+
         function getCategoryEmoji(category) {
             const emojis = {
                 'tall': '🔢', 'farger': '🎨', 'bursdag': '🎂', 'land': '🌍',
@@ -2407,6 +2607,7 @@
             setText('reviewModeMeta', `${dueReviewCount} av ${due} klare`);
             setText('mixedModeMeta', `${dueReviewCount} repetisjoner + ${newWordCount} nye ord`);
             setText('newModeMeta', `${newWordCount} nye ord fra ${selectedCategoryCount} kategorier`);
+            renderChapterFocusOptions();
 
             const masteredPercent = total > 0 ? (mastered / total) * 100 : 0;
             const learning = total - newCards - mastered;
@@ -2492,6 +2693,48 @@
             return futureItems;
         }
 
+        function getChapterFocus(focusId) {
+            return chapterFocusOptions.find(focus => focus.id === focusId) || null;
+        }
+
+        function getItemKey(item) {
+            return `${item.card.id}:${item.direction}`;
+        }
+
+        function getChapterWeakCards(cardList, focus) {
+            const focusCategories = new Set(focus.categories);
+            const items = [];
+
+            cardList.forEach(card => {
+                if (!focusCategories.has(card.category)) return;
+                if (card.noEs.repetitions < 3) items.push({ card, direction: 'no-es' });
+                if (card.esNo.repetitions < 3) items.push({ card, direction: 'es-no' });
+            });
+
+            return items;
+        }
+
+        function buildChapterFocusQueue(focusId, options = {}) {
+            const focus = getChapterFocus(focusId);
+            if (!focus) return [];
+
+            const reviewLimit = options.reviewLimit ?? getLimitValue('reviewCardsLimit', 50);
+            const newLimit = options.newLimit ?? getLimitValue('newCardsLimit', 10);
+            const queue = getDueCards(cards).slice(0, reviewLimit);
+            const seen = new Set(queue.map(getItemKey));
+            const focusItems = getChapterWeakCards(cards, focus).slice(0, newLimit * 2);
+
+            focusItems.forEach(item => {
+                const key = getItemKey(item);
+                if (!seen.has(key)) {
+                    queue.push(item);
+                    seen.add(key);
+                }
+            });
+
+            return queue;
+        }
+
         function getCustomStudyCards(cardList, limit = 20) {
             const items = [];
 
@@ -2569,6 +2812,47 @@ Vil du øve på ${pronoun} likevel?`
             
             showVocabCard();
             updateUndoButtonState();
+        }
+
+        function startChapterFocusSession(focusId) {
+            const newLimit = getLimitValue('newCardsLimit', 10);
+            const reviewLimit = getLimitValue('reviewCardsLimit', 50);
+            const focus = getChapterFocus(focusId);
+            sessionTimeLimitMinutes = getLimitValue('sessionTimeLimit', 0);
+            currentVocabMode = `chapter:${focusId}`;
+            isCustomStudySession = false;
+            sessionCards = shuffleArray(buildChapterFocusQueue(focusId, { newLimit, reviewLimit }));
+
+            if (!focus) {
+                alert('Ukjent kapittelvalg.');
+                return;
+            }
+
+            if (sessionCards.length === 0) {
+                alert(`Ingen kort tilgjengelig for ${focus.title} akkurat nå.`);
+                return;
+            }
+
+            vocabUndoStack = [];
+            currentIndex = 0;
+            sessionStartTime = new Date();
+            sessionStats = { reviewed: 0, correct: 0, newLearned: 0 };
+
+            document.getElementById('vocabSettings').classList.add('hidden');
+            document.getElementById('vocabStudy').classList.remove('hidden');
+            document.querySelector('#vocabStudy .study-header')?.classList.remove('hidden');
+
+            showVocabCard();
+            updateUndoButtonState();
+        }
+
+        function restartCurrentVocabMode() {
+            if (currentVocabMode.startsWith('chapter:')) {
+                startChapterFocusSession(currentVocabMode.replace('chapter:', ''));
+                return;
+            }
+
+            startVocabSession(currentVocabMode);
         }
 
         function showVocabCard() {
@@ -2737,7 +3021,7 @@ Vil du øve på ${pronoun} likevel?`
             
             document.getElementById('buttonArea').innerHTML = `
                 <div class="button-group">
-                    <button class="btn btn-primary" onclick="startVocabSession(currentVocabMode)">▶️ Start ny økt</button>
+                    <button class="btn btn-primary" onclick="restartCurrentVocabMode()">▶️ Start ny økt</button>
                     <button class="btn btn-secondary" onclick="showPage('vocab')">← Tilbake</button>
                 </div>
             `;
@@ -3050,6 +3334,9 @@ Vil du øve på ${pronoun} likevel?`
 
         function endVerbSession() {
             const accuracy = verbStats.total > 0 ? Math.round((verbStats.correct / verbStats.total) * 100) : 0;
+            document.getElementById('verbProgressFill').style.width = '100%';
+            document.getElementById('verbSessionStats').textContent = `${verbStats.correct} / ${verbStats.total} riktig`;
+            document.getElementById('verbCounter').textContent = `${verbStats.total} / ${verbStats.total}`;
             
             // Record practice for homework tracking: verb conjugation counts as homework practice.
             if (verbStats.total > 0) {
@@ -3183,6 +3470,165 @@ Vil du øve på ${pronoun} likevel?`
             showToast(`"${norsk}" lagt til i "${category}"`, 'success');
         }
 
+        function normalizeTeacherWordRows(data) {
+            if (Array.isArray(data) && data.length === 0) return [];
+
+            if (Array.isArray(data) && (Array.isArray(data[0]) || data[0]?.norsk)) {
+                return data.map(item => Array.isArray(item)
+                    ? {
+                        norsk: item[0],
+                        spansk: item[1],
+                        category: item[2] || 'importert'
+                    }
+                    : item);
+            }
+
+            if (data && data.category && Array.isArray(data.words)) {
+                return data.words.map(item => Array.isArray(item)
+                    ? {
+                        norsk: item[0],
+                        spansk: item[1],
+                        category: data.category
+                    }
+                    : {
+                        norsk: item.norsk,
+                        spansk: item.spansk,
+                        category: item.category || data.category
+                    });
+            }
+
+            if (data && Array.isArray(data.words)) {
+                return data.words.map(item => Array.isArray(item)
+                    ? {
+                        norsk: item[0],
+                        spansk: item[1],
+                        category: item[2] || 'importert'
+                    }
+                    : item);
+            }
+
+            throw new Error('Ukjent filformat');
+        }
+
+        function normalizeImportedTeacherWord(word) {
+            return {
+                norsk: String(word.norsk || '').trim(),
+                spansk: String(word.spansk || '').trim(),
+                category: String(word.category || 'importert').trim() || 'importert'
+            };
+        }
+
+        function teacherWordExists(word, cardList = cards) {
+            return cardList.some(card =>
+                (card.norsk || card.no || '').toLowerCase() === word.norsk.toLowerCase() &&
+                (card.spansk || card.es || '').toLowerCase() === word.spansk.toLowerCase()
+            );
+        }
+
+        function validateTeacherWord(word, rowNumber, cardList, pendingKeys) {
+            if (!word.norsk || !word.spansk) {
+                return 'Mangler norsk eller spansk tekst';
+            }
+
+            if (word.norsk.length > 80) {
+                return 'Norsk tekst er for lang for glosekort';
+            }
+
+            if (word.spansk.length > 80) {
+                return 'Spansk tekst er for lang for glosekort';
+            }
+
+            const key = `${word.norsk.toLowerCase()}::${word.spansk.toLowerCase()}`;
+            if (teacherWordExists(word, cardList) || pendingKeys.has(key)) {
+                return `Finnes allerede: ${word.norsk} - ${word.spansk}`;
+            }
+
+            pendingKeys.add(key);
+            return null;
+        }
+
+        function analyzeTeacherWordImport(data, cardList = cards) {
+            const rows = normalizeTeacherWordRows(data);
+            const valid = [];
+            const problems = [];
+            const pendingKeys = new Set();
+
+            rows.forEach((row, index) => {
+                const word = normalizeImportedTeacherWord(row);
+                const reason = validateTeacherWord(word, index + 1, cardList, pendingKeys);
+
+                if (reason) {
+                    problems.push({ row: index + 1, reason });
+                    return;
+                }
+
+                valid.push(word);
+            });
+
+            return {
+                valid,
+                problems,
+                importableCount: valid.length,
+                skippedCount: problems.length
+            };
+        }
+
+        function createCustomCardFromTeacherWord(word) {
+            const category = word.category.toLowerCase().replace(/\s+/g, '-');
+
+            return {
+                id: cards.length,
+                no: word.norsk,
+                es: word.spansk,
+                norsk: word.norsk,
+                spansk: word.spansk,
+                category: category,
+                isCustom: true,
+                noEs: { repetitions: 0, easeFactor: 2.5, interval: 0, nextReview: 0 },
+                esNo: { repetitions: 0, easeFactor: 2.5, interval: 0, nextReview: 0 },
+                reviews: 0,
+                correct: 0
+            };
+        }
+
+        function buildTeacherImportPreview(summary) {
+            const lines = [`Importere ${summary.importableCount} nye gloser?`];
+
+            if (summary.skippedCount > 0) {
+                lines.push(`${summary.skippedCount} rader hoppes over:`);
+                summary.problems.slice(0, 5).forEach(problem => {
+                    lines.push(`Rad ${problem.row}: ${problem.reason}`);
+                });
+
+                if (summary.problems.length > 5) {
+                    lines.push(`...og ${summary.problems.length - 5} til.`);
+                }
+            }
+
+            return lines.join('\n');
+        }
+
+        function applyTeacherWordImport(summary) {
+            summary.valid.forEach(word => {
+                cards.push(createCustomCardFromTeacherWord(word));
+            });
+
+            if (summary.valid.length > 0) {
+                saveData();
+                updateCategoryDropdown();
+                populateCategories();
+                updateStats();
+            }
+
+            return {
+                imported: summary.importableCount,
+                skipped: summary.skippedCount,
+                message: summary.importableCount > 0
+                    ? `Importerte ${summary.importableCount} gloser`
+                    : `Ingen nye gloser å importere (${summary.skippedCount} hoppet over)`
+            };
+        }
+
         function importTeacherWords() {
             const input = document.createElement('input');
             input.type = 'file';
@@ -3195,85 +3641,23 @@ Vil du øve på ${pronoun} likevel?`
                 reader.onload = (event) => {
                     try {
                         const data = JSON.parse(event.target.result);
-                        let imported = 0;
-                        let skipped = 0;
-                        
-                        // Support different formats
-                        let wordsToImport = [];
-                        
-                        // Format 1: Array of [norsk, spansk, kategori]
-                        if (Array.isArray(data) && Array.isArray(data[0])) {
-                            wordsToImport = data.map(item => ({
-                                norsk: item[0],
-                                spansk: item[1],
-                                category: item[2] || 'importert'
-                            }));
+                        const summary = analyzeTeacherWordImport(data);
+
+                        if (summary.importableCount === 0) {
+                            showToast(`Ingen nye gloser å importere (${summary.skippedCount} hoppet over)`, 'error');
+                            return;
                         }
-                        // Format 2: { category: "...", words: [[norsk, spansk], ...] }
-                        else if (data.category && Array.isArray(data.words)) {
-                            wordsToImport = data.words.map(item => ({
-                                norsk: item[0],
-                                spansk: item[1],
-                                category: data.category
-                            }));
+
+                        if (!confirm(buildTeacherImportPreview(summary))) {
+                            return;
                         }
-                        // Format 3: { words: [{ norsk, spansk, category }, ...] }
-                        else if (data.words && Array.isArray(data.words)) {
-                            wordsToImport = data.words;
-                        }
-                        // Format 4: Array of { norsk, spansk, category }
-                        else if (Array.isArray(data) && data[0].norsk) {
-                            wordsToImport = data;
-                        }
-                        else {
-                            throw new Error('Ukjent filformat');
-                        }
-                        
-                        // Import words
-                        for (const word of wordsToImport) {
-                            if (!word.norsk || !word.spansk) {
-                                skipped++;
-                                continue;
-                            }
-                            
-                            // Check for duplicates
-                            const exists = cards.some(c => 
-                                (c.norsk || c.no || '').toLowerCase() === word.norsk.toLowerCase() && 
-                                (c.spansk || c.es || '').toLowerCase() === word.spansk.toLowerCase()
-                            );
-                            
-                            if (exists) {
-                                skipped++;
-                                continue;
-                            }
-                            
-                            const category = (word.category || 'importert').toLowerCase().replace(/\s+/g, '-');
-                            
-                            cards.push({
-                                id: cards.length,
-                                no: word.norsk,
-                                es: word.spansk,
-                                norsk: word.norsk,
-                                spansk: word.spansk,
-                                category: category,
-                                isCustom: true,
-                                noEs: { repetitions: 0, easeFactor: 2.5, interval: 0, nextReview: 0 },
-                                esNo: { repetitions: 0, easeFactor: 2.5, interval: 0, nextReview: 0 },
-                                reviews: 0,
-                                correct: 0
-                            });
-                            imported++;
-                        }
-                        
-                        saveData();
-                        updateCategoryDropdown();
-                        populateCategories();
-                        updateStats();
-                        
-                        if (imported > 0) {
-                            showToast(`Importerte ${imported} gloser` + (skipped > 0 ? ` (${skipped} hoppet over)` : ''), 'success');
+
+                        const result = applyTeacherWordImport(summary);
+
+                        if (result.imported > 0) {
+                            showToast(result.message + (result.skipped > 0 ? ` (${result.skipped} hoppet over)` : ''), 'success');
                         } else {
-                            showToast(`Ingen nye gloser å importere (${skipped} duplikater)`, 'error');
+                            showToast(result.message, 'error');
                         }
                         
                     } catch (error) {
@@ -3310,6 +3694,7 @@ Vil du øve på ${pronoun} likevel?`
             a.click();
             document.body.removeChild(a);
             URL.revokeObjectURL(url);
+            markProgressExported();
         }
 
         function importProgress() {
@@ -3803,9 +4188,8 @@ Vil du øve på ${pronoun} likevel?`
         let showingTheory = false;
 
         function loadGrammarProgress() {
-            const saved = localStorage.getItem('spansk123Grammar_v1');
-            if (saved) {
-                const data = JSON.parse(saved);
+            const data = readStoredJson('spansk123Grammar_v1', null);
+            if (data) {
                 grammarProgress = data.progress || {};
                 hasSeenTheory = data.hasSeenTheory || {};
             }
@@ -4086,6 +4470,9 @@ Vil du øve på ${pronoun} likevel?`
         function endGrammarSession() {
             const accuracy = grammarStats.total > 0 ? Math.round((grammarStats.correct / grammarStats.total) * 100) : 0;
             const needsMorePractice = accuracy < 70 || grammarStats.errors >= 3;
+            document.getElementById('grammarProgressFill').style.width = '100%';
+            document.getElementById('grammarSessionStats').textContent = `${grammarStats.correct} / ${grammarStats.total} riktig`;
+            document.getElementById('grammarCounter').textContent = `${grammarStats.total} / ${grammarStats.total}`;
             
             // Record practice for homework tracking: grammar exercises count as homework practice.
             if (grammarStats.total > 0) {

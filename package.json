@@ -5,9 +5,18 @@
   "type": "module",
   "scripts": {
     "build:css": "npx @tailwindcss/cli -i ./src/styles/tailwind.css -o ./dist/tailwind.css --minify",
-    "check:tailwind": "node scripts/check-tailwind-adoption.mjs"
+    "check:tailwind": "node scripts/check-tailwind-adoption.mjs",
+    "check:content": "node scripts/check-content-quality.mjs",
+    "test:backup-privacy": "playwright test tests/backup-privacy.spec.js --browser chromium",
+    "test:import-export": "playwright test tests/import-export-compat.spec.js --browser chromium",
+    "test:storage-recovery": "playwright test tests/storage-recovery.spec.js --browser chromium",
+    "test:chapter-focus": "playwright test tests/chapter-focus.spec.js --browser chromium",
+    "test:completion-header": "playwright test tests/completion-header.spec.js --browser chromium",
+    "test:teacher-import": "playwright test tests/teacher-glossary-import.spec.js --browser chromium",
+    "test:all": "npm run check:content && npm run check:tailwind && npm run test:backup-privacy && npm run test:import-export && npm run test:storage-recovery && npm run test:chapter-focus && npm run test:completion-header && npm run test:teacher-import"
   },
   "devDependencies": {
+    "@playwright/test": "^1.60.0",
     "@tailwindcss/cli": "^4.1.17",
     "tailwindcss": "^4.1.17"
   }
