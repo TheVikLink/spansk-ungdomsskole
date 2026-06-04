@@ -1,13 +1,13 @@
 # 🇪🇸 Spansk på 1-2-3
 
-En gratis, interaktiv læringsapp for spansk på ungdomsskolenivå (A0-A1 CEFR). Bygget for norske elever som bruker læreboken "Spansk på 1-2-3".
+En gratis, interaktiv læringsapp for spansk på ungdomsskolenivå (A0-A1 CEFR). Bygget for norske elever og kan brukes uten innlogging.
 
 **[🚀 Prøv appen](https://theviklink.github.io/spansk-ungdomsskole/)**
 
 ## ✨ Funksjoner
 
 ### 📚 Gloselæring
-- **443 gloser** fra Spansk på 1-2-3 pensum
+- **443 gloser** på ungdomsskolenivå
 - Spaced repetition (SM-2 algoritme) for effektiv læring
 - Lær begge veier: Norsk → Spansk og Spansk → Norsk
 - Kategorisert etter tema (familie, mat, dyr, farger, osv.)
@@ -37,29 +37,33 @@ En gratis, interaktiv læringsapp for spansk på ungdomsskolenivå (A0-A1 CEFR).
 
 ### 📝 Ukeslekse
 - Sporer øvingsdager automatisk
-- Lever ukeslekse via Google Forms
+- Lager lokal lekseoppsummering uten å sende data
+- Kan kobles til et læreradministrert Google Forms-skjema hvis skolen/læreren har gjort en egen personvernvurdering
 - Krav: Øv minst 2 dager (ons-søn) per uke
 
 ## 🔒 Personvern
 
-- **Ingen data sendes til skyen** - all fremgang lagres lokalt i nettleseren
+- **Ingen data sendes til skyen i standardoppsettet** - all fremgang lagres lokalt i nettleseren
 - Ingen innlogging eller brukerkontoer
 - Elevene kan eksportere/importere fremgang som JSON-fil
+- Ukeslekse viser en lokal oppsummering som standard. Ekstern innlevering må konfigureres eksplisitt av lærer/skole.
 - GDPR-vennlig for norske skoler
 
 ## 🛠️ Oppsett for lærere
 
-### 1. Sett opp ukeslekse-system
+### 1. Bruk standard lokal pilotflyt
 
-1. Gå til [script.google.com](https://script.google.com)
-2. Opprett nytt prosjekt og lim inn innholdet fra `ukeslekse-setup.gs`
-3. Kjør funksjonen `createHomeworkSystem`
-4. Godkjenn tillatelser
-5. Kopier entry IDs fra loggen (Vis → Logger)
+For demo og første klassepilot trenger du bare GitHub Pages-lenken. Elevene skriver elevkode eller fornavn, øver lokalt og kan laste ned fremgang som JSON-fil. Leksefanen viser en lokal oppsummering, men sender ingenting.
 
-### 2. Oppdater appen
+### 2. Valgfritt: Koble til ekstern innlevering
 
-Erstatt disse linjene i `index.html` (rundt linje 1917):
+Standardoppsettet sender ikke lekseinnleveringer. Hvis skolen vil bruke Google Forms eller et annet system, må læreren/skolen først lage et godkjent skjema og kopiere URL og felt-ID-er derfra.
+
+Før dette brukes med elever, dokumenter hva som sendes, hvorfor, hvem som har tilgang, sletting/retensjon og hvordan elever kan få eksportert data.
+
+### 3. Oppdater appen
+
+Erstatt disse linjene i `index.html`:
 
 ```javascript
 const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/DIN_FORM_ID/viewform';
@@ -70,16 +74,21 @@ const FORM_ENTRY_WORDS = 'entry.XXXXXX';
 const FORM_ENTRY_ACCURACY = 'entry.XXXXXX';
 ```
 
-### 3. Deploy
+### 4. Deploy
 
 Last opp `index.html` til GitHub Pages, Netlify, eller skolens server.
+
+## 📚 Innhold og rettigheter
+
+Ikke importer eller del skannede læreboksider, uttrukket forlagsinnhold eller annet materiale du ikke har rettigheter til. Kapittelimporten er ment for lærerens egne ordlister og manuelt godkjent innhold.
 
 ## 📁 Filstruktur
 
 ```
 ├── index.html              # Hovedapp (alt-i-ett)
-├── ukeslekse-setup.gs      # Google Apps Script for leksesystem
-├── eksempel-gloser.json    # Mal for glose-import
+├── eksempel-gloser-laerer.json # Mal for lærerimport
+├── manifest.webmanifest    # PWA-metadata
+├── sw.js                   # Lokal/offline cache
 └── README.md
 ```
 
@@ -107,11 +116,7 @@ Elever kan importere fremgang fra:
 
 ## 📊 For lærere: Se innleveringer
 
-Etter oppsett finner du alle ukeslekse-innleveringer i Google-regnearket.
-
-**Bonusfunksjoner i Apps Script:**
-- `checkMissingSubmissions()` - Se hvem som ikke har levert
-- `setupWeeklyReminder()` - Få ukentlig e-post med oversikt
+Standardoppsettet sender ikke innleveringer. Hvis du har konfigurert et valgfritt Google Forms-oppsett, finner du innleveringer i lærerens Google-regneark.
 
 ## ❓ FAQ
 
@@ -134,9 +139,8 @@ MIT License - bruk fritt i undervisning!
 
 ## 🙏 Kreditt
 
-- Ordliste basert på "Spansk på 1-2-3" pensum
 - Spaced repetition basert på SM-2 algoritmen
-- Bygget med ❤️ for norske spanskelever
+- Bygget for norske spanskelever
 
 ---
 

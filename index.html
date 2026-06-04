@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Spansk på 1-2-3 | Læringsapp</title>
+    <meta name="theme-color" content="#dc2626">
+    <link rel="manifest" href="./manifest.webmanifest">
     <link href="./dist/tailwind.css" rel="stylesheet">
 </head>
 <body>
@@ -43,7 +45,6 @@
                 <button class="nav-link" onclick="showPage('grammar')" id="navGrammar">📖 Grammatikk</button>
                 <button class="nav-link" onclick="showPage('games')" id="navGames">🎮 Spill</button>
                 <button class="nav-link homework-nav" onclick="showPage('homework')" id="navHomework">📝 Lekse</button>
-                <button class="nav-link" onclick="showPage('chatbot')" id="navChatbot">💬 Chat</button>
             </div>
             <div class="user-info" id="userInfo">
                 <span class="user-name" id="userName"></span>
@@ -190,6 +191,13 @@
                                     </div>
                                     <button class="btn btn-sm btn-outline" onclick="importTeacherWords()">📥 Importer gloser</button>
                                 </div>
+                                <div class="setting-row mt-4">
+                                    <div>
+                                        <div class="setting-label">Importer fra bilde/OCR-tekst</div>
+                                        <div class="setting-hint">Lim inn tekst fra bilde og rediger før import</div>
+                                    </div>
+                                    <button class="btn btn-sm btn-outline" onclick="showChapterTextImport()">🖼️ Lim inn kapittelord</button>
+                                </div>
                                 <div id="customWordsCount" class="setting-hint mt-2"></div>
                             </div>
 
@@ -266,6 +274,18 @@
                         <button type="button" class="verb-focus-card" data-verb-focus="irregular" onclick="selectVerbFocus('irregular')">
                             <span class="verb-focus-title">Uregelrette verb</span>
                             <span class="verb-focus-hint">Ser, estar, tener, ir og flere</span>
+                        </button>
+                        <button type="button" class="verb-focus-card" data-verb-focus="stem-e-ie" onclick="selectVerbFocus('stem-e-ie')">
+                            <span class="verb-focus-title">Stammeendring e→ie</span>
+                            <span class="verb-focus-hint">Querer, preferir, empezar og lignende</span>
+                        </button>
+                        <button type="button" class="verb-focus-card" data-verb-focus="stem-o-ue" onclick="selectVerbFocus('stem-o-ue')">
+                            <span class="verb-focus-title">Stammeendring o→ue</span>
+                            <span class="verb-focus-hint">Poder, dormir og volver</span>
+                        </button>
+                        <button type="button" class="verb-focus-card" data-verb-focus="stem-e-i" onclick="selectVerbFocus('stem-e-i')">
+                            <span class="verb-focus-title">Stammeendring e→i</span>
+                            <span class="verb-focus-hint">Pedir, repetir, servir og decir</span>
                         </button>
                         <button type="button" class="verb-focus-card" data-verb-focus="custom" onclick="selectVerbFocus('custom')">
                             <span class="verb-focus-title">Velg selv</span>
@@ -378,34 +398,6 @@
                 <div class="button-group">
                     <button class="btn btn-secondary" onclick="exportAllProgress()">📥 Last ned fremgang</button>
                     <button class="btn btn-secondary" onclick="importProgressFile()">📂 Importer fremgang</button>
-                </div>
-            </div>
-        </div>
-
-
-        <!-- ==================== -->
-        <!-- CHATBOT PAGE -->
-        <!-- ==================== -->
-        <div id="chatbotPage" class="panel hidden">
-            <div class="page-header">
-                <h2>💬 Enkel spansk chat</h2>
-                <p>Øv på korte samtaler på enkel spansk. Ingen data sendes ut av nettleseren.</p>
-            </div>
-            <div class="chatbot-layout">
-                <div class="chatbot-sidebar">
-                    <h3>Velg tema</h3>
-                    <p class="text-sm text-gray-500">Boten holder seg til enkle temaer og korte svar.</p>
-                    <div class="chatbot-topic-list" id="chatbotTopicList"></div>
-                </div>
-                <div class="chatbot-main">
-                    <div class="chatbot-warning">⚠️ Ikke skriv etternavn, adresse, telefonnummer eller andre personopplysninger.</div>
-                    <div class="chatbot-window" id="chatbotMessages"></div>
-                    <div class="chatbot-actions" id="chatbotQuickReplies"></div>
-                    <div class="chatbot-input-row">
-                        <input id="chatbotInput" class="chatbot-input" type="text" maxlength="120" placeholder="Skriv en enkel setning på spansk...">
-                        <button class="btn btn-primary" onclick="sendChatbotMessage()">Send</button>
-                    </div>
-                    <div class="chatbot-help">Tips: Skriv korte setninger som «Me llamo Anna», «Tengo dos hermanos» eller «Me gusta el fútbol». Hold inne vokaler, n, ? eller ! for spesialtegn.</div>
                 </div>
             </div>
         </div>
@@ -686,14 +678,14 @@
         // APP CONFIGURATION
         // ============================================
         
-        // Google Forms URL - Ukeslekse innlevering
-        const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSdmupM8bDWBLew1NZ0zA4aEnu8H25kcmMEoxpER1fbfm1XJxw/viewform';
-        // Entry IDs fra Google Forms
-        const FORM_ENTRY_NAME = 'entry.1390438586';
-        const FORM_ENTRY_DATE = 'entry.1347619510';
-        const FORM_ENTRY_DAYS = 'entry.39925987';
-        const FORM_ENTRY_WORDS = 'entry.913529179';
-        const FORM_ENTRY_ACCURACY = 'entry.1698461882';
+        // Optional Google Forms URL for teacher-managed homework submission.
+        // Leave empty for the default local-first pilot build.
+        const GOOGLE_FORM_URL = '';
+        const FORM_ENTRY_NAME = '';
+        const FORM_ENTRY_DATE = '';
+        const FORM_ENTRY_DAYS = '';
+        const FORM_ENTRY_WORDS = '';
+        const FORM_ENTRY_ACCURACY = '';
         
         const LAST_EXPORT_KEY = 'spansk123_lastExportDate';
         const BACKUP_REMINDER_DAYS = 14;
@@ -927,7 +919,9 @@
             // Hint
             const hintEl = document.getElementById('homeworkHint');
             if (canSubmit) {
-                hintEl.textContent = 'Klikk for å åpne innleveringsskjemaet.';
+                hintEl.textContent = isHomeworkExternalSubmissionConfigured()
+                    ? 'Klikk for å åpne lærerens innleveringsskjema. Da sendes elevkode og øvingsstatistikk til skjemaet.'
+                    : 'Klikk for å lage en lokal oppsummering. Ingen data sendes ut av nettleseren.';
             } else {
                 hintEl.textContent = 'Mandag og tirsdag er spanskdager - øv de andre dagene!';
             }
@@ -966,37 +960,63 @@
             }).join('');
         }
 
+        function isHomeworkExternalSubmissionConfigured() {
+            const entries = [FORM_ENTRY_NAME, FORM_ENTRY_DATE, FORM_ENTRY_DAYS, FORM_ENTRY_WORDS, FORM_ENTRY_ACCURACY];
+            return GOOGLE_FORM_URL.startsWith('https://docs.google.com/forms/') && entries.every(Boolean);
+        }
+
+        function buildHomeworkSubmissionSummary(days, practiceDays) {
+            const weekStart = days[0].dateStr;
+            const weekEnd = days[6].dateStr;
+            const weekHistory = practiceHistory.filter(e => e.date >= weekStart && e.date <= weekEnd);
+
+            const totalWords = weekHistory.reduce((sum, e) => sum + e.words, 0);
+            const totalCorrect = weekHistory.reduce((sum, e) => sum + e.correct, 0);
+            const accuracy = totalWords > 0 ? Math.round((totalCorrect / totalWords) * 100) : 0;
+
+            return {
+                date: new Date().toLocaleDateString('no-NO'),
+                daysStr: practiceDays.map(d => d.name).join(', '),
+                totalWords,
+                accuracy
+            };
+        }
+
         function submitHomework() {
             const days = getWeekDays();
             const practiceDays = days.filter(d => !d.isClassDay && d.practiced);
             
             if (practiceDays.length < 2) {
                 alert('Du må øve minst 2 dager (ons-søn) før du kan levere!');
-                return;
+                return { submittedExternally: false, reason: 'not_enough_practice' };
             }
             
-            // Calculate weekly stats
-            const weekStart = days[0].dateStr;
-            const weekEnd = days[6].dateStr;
-            const weekHistory = practiceHistory.filter(e => e.date >= weekStart && e.date <= weekEnd);
-            
-            const totalWords = weekHistory.reduce((sum, e) => sum + e.words, 0);
-            const totalCorrect = weekHistory.reduce((sum, e) => sum + e.correct, 0);
-            const accuracy = totalWords > 0 ? Math.round((totalCorrect / totalWords) * 100) : 0;
-            const daysStr = practiceDays.map(d => d.name).join(', ');
+            const summary = buildHomeworkSubmissionSummary(days, practiceDays);
+
+            if (!isHomeworkExternalSubmissionConfigured()) {
+                const hintEl = document.getElementById('homeworkHint');
+                hintEl.textContent = `Lokal oppsummering: ${summary.daysStr}, ${summary.totalWords} oppgaver, ${summary.accuracy}% riktig. Ingen data er sendt.`;
+                showToast('Lokal lekseoppsummering er klar. Ingen data er sendt.', 'success');
+                return { submittedExternally: false, summary };
+            }
+
+            if (!confirm('Dette åpner et Google Forms-skjema og sender elevkode, dato, øvingsdager, antall oppgaver og nøyaktighet til læreren. Fortsette?')) {
+                return { submittedExternally: false, reason: 'cancelled' };
+            }
             
             // Build Google Form URL with pre-filled data
             const formUrl = new URL(GOOGLE_FORM_URL);
             formUrl.searchParams.set(FORM_ENTRY_NAME, studentName);
-            formUrl.searchParams.set(FORM_ENTRY_DATE, new Date().toLocaleDateString('no-NO'));
-            formUrl.searchParams.set(FORM_ENTRY_DAYS, daysStr);
-            formUrl.searchParams.set(FORM_ENTRY_WORDS, totalWords.toString());
-            formUrl.searchParams.set(FORM_ENTRY_ACCURACY, accuracy + '%');
+            formUrl.searchParams.set(FORM_ENTRY_DATE, summary.date);
+            formUrl.searchParams.set(FORM_ENTRY_DAYS, summary.daysStr);
+            formUrl.searchParams.set(FORM_ENTRY_WORDS, summary.totalWords.toString());
+            formUrl.searchParams.set(FORM_ENTRY_ACCURACY, summary.accuracy + '%');
             
             // Open form in new tab
             window.open(formUrl.toString(), '_blank');
             
             showToast('Skjemaet åpnes i ny fane. Klikk "Send" for å levere!', 'success');
+            return { submittedExternally: true, url: formUrl.toString(), summary };
         }
 
         // ============================================
@@ -1407,7 +1427,6 @@
             document.getElementById('grammarPage').classList.add('hidden');
             document.getElementById('homeworkPage').classList.add('hidden');
             document.getElementById('gamesPage').classList.add('hidden');
-            document.getElementById('chatbotPage').classList.add('hidden');
             
             // Stop any running game
             if (viGameActive) {
@@ -1453,10 +1472,6 @@
                 document.getElementById('gamesPage').classList.remove('hidden');
                 document.getElementById('navGames').classList.add('active');
                 showGamesMenu();
-            } else if (page === 'chatbot') {
-                document.getElementById('chatbotPage').classList.remove('hidden');
-                document.getElementById('navChatbot').classList.add('active');
-                renderChatbotPage();
             }
         }
         // VOCABULARY DATABASE
@@ -2149,7 +2164,7 @@
             tener: {
                 infinitive: "tener",
                 translation: "å ha",
-                type: "uregelmessig",
+                type: "stammeendring e→ie + yo",
                 presente: ["tengo", "tienes", "tiene", "tenemos", "tenéis", "tienen"],
                 participio: "tenido"
             },
@@ -2170,21 +2185,21 @@
             poder: {
                 infinitive: "poder",
                 translation: "å kunne",
-                type: "uregelmessig",
+                type: "stammeendring o→ue",
                 presente: ["puedo", "puedes", "puede", "podemos", "podéis", "pueden"],
                 participio: "podido"
             },
             querer: {
                 infinitive: "querer",
                 translation: "å ville",
-                type: "uregelmessig",
+                type: "stammeendring e→ie",
                 presente: ["quiero", "quieres", "quiere", "queremos", "queréis", "quieren"],
                 participio: "querido"
             },
             decir: {
                 infinitive: "decir",
                 translation: "å si",
-                type: "uregelmessig",
+                type: "stammeendring e→i + yo",
                 presente: ["digo", "dices", "dice", "decimos", "decís", "dicen"],
                 participio: "dicho"
             },
@@ -2198,7 +2213,7 @@
             venir: {
                 infinitive: "venir",
                 translation: "å komme",
-                type: "uregelmessig",
+                type: "stammeendring e→ie + yo",
                 presente: ["vengo", "vienes", "viene", "venimos", "venís", "vienen"],
                 participio: "venido"
             },
@@ -2219,9 +2234,58 @@
             preferir: {
                 infinitive: "preferir",
                 translation: "å foretrekke",
-                type: "uregelmessig",
+                type: "stammeendring e→ie",
                 presente: ["prefiero", "prefieres", "prefiere", "preferimos", "preferís", "prefieren"],
                 participio: "preferido"
+            },
+            empezar: {
+                infinitive: "empezar",
+                translation: "å begynne",
+                type: "stammeendring e→ie",
+                presente: ["empiezo", "empiezas", "empieza", "empezamos", "empezáis", "empiezan"],
+                participio: "empezado"
+            },
+            entender: {
+                infinitive: "entender",
+                translation: "å forstå",
+                type: "stammeendring e→ie",
+                presente: ["entiendo", "entiendes", "entiende", "entendemos", "entendéis", "entienden"],
+                participio: "entendido"
+            },
+            dormir: {
+                infinitive: "dormir",
+                translation: "å sove",
+                type: "stammeendring o→ue",
+                presente: ["duermo", "duermes", "duerme", "dormimos", "dormís", "duermen"],
+                participio: "dormido"
+            },
+            volver: {
+                infinitive: "volver",
+                translation: "å komme tilbake",
+                type: "stammeendring o→ue",
+                presente: ["vuelvo", "vuelves", "vuelve", "volvemos", "volvéis", "vuelven"],
+                participio: "vuelto"
+            },
+            pedir: {
+                infinitive: "pedir",
+                translation: "å be om / bestille",
+                type: "stammeendring e→i",
+                presente: ["pido", "pides", "pide", "pedimos", "pedís", "piden"],
+                participio: "pedido"
+            },
+            repetir: {
+                infinitive: "repetir",
+                translation: "å gjenta",
+                type: "stammeendring e→i",
+                presente: ["repito", "repites", "repite", "repetimos", "repetís", "repiten"],
+                participio: "repetido"
+            },
+            servir: {
+                infinitive: "servir",
+                translation: "å servere / tjene",
+                type: "stammeendring e→i",
+                presente: ["sirvo", "sirves", "sirve", "servimos", "servís", "sirven"],
+                participio: "servido"
             }
         };
 
@@ -2295,6 +2359,8 @@
         let isCustomStudySession = false;
         let currentVocabMode = 'mixed';
         let sessionTimeLimitMinutes = 0;
+        const TYPED_REVIEW_PERCENT = 0.25;
+        const LEECH_LAPSE_THRESHOLD = 3;
 
         const chapterFocusOptions = [
             {
@@ -2364,6 +2430,8 @@
             normalized.category = normalized.category || 'importert';
             normalized.noEs = { easeFactor: SM2.defaultEaseFactor, interval: 0, repetitions: 0, nextReview: null, ...(normalized.noEs || {}) };
             normalized.esNo = { easeFactor: SM2.defaultEaseFactor, interval: 0, repetitions: 0, nextReview: null, ...(normalized.esNo || {}) };
+            normalized.noEs.lapses = normalized.noEs.lapses || 0;
+            normalized.esNo.lapses = normalized.esNo.lapses || 0;
             normalized.lastReview = normalized.lastReview || null;
             normalized.reviews = normalized.reviews || 0;
             normalized.correct = normalized.correct || 0;
@@ -2477,6 +2545,13 @@
                 }
                 // Vocab shortcuts
                 if (!document.getElementById('vocabStudy').classList.contains('hidden')) {
+                    if (e.target?.id === 'typedVocabInput') {
+                        if (e.key === 'Enter') {
+                            e.preventDefault();
+                            submitTypedVocabAnswer();
+                        }
+                        return;
+                    }
                     if (!showingAnswer) {
                         if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); flipCard(); }
                     } else {
@@ -2651,20 +2726,104 @@
             return cards.filter(c => selectedCategories.has(c.category));
         }
 
+        function getDirectionData(card, direction) {
+            return direction === 'no-es' ? card.noEs : card.esNo;
+        }
+
+        function getPromptBaseText(item) {
+            return item.direction === 'no-es' ? item.card.no : item.card.es;
+        }
+
+        function getExpectedAnswerText(item) {
+            return item.direction === 'no-es' ? item.card.es : item.card.no;
+        }
+
+        function normalizeTypedAnswer(text) {
+            return String(text || '').trim().toLocaleLowerCase('es-ES');
+        }
+
+        function isTypedVocabAnswerCorrect(answer, expected) {
+            return normalizeTypedAnswer(answer) === normalizeTypedAnswer(expected);
+        }
+
+        function getVocabPromptText(item, cardList = cards) {
+            const prompt = getPromptBaseText(item);
+            const expectedAnswer = getExpectedAnswerText(item);
+            const hasAmbiguousPrompt = cardList.some(card => {
+                if (card.id === item.card.id) return false;
+                const otherPrompt = item.direction === 'no-es' ? card.no : card.es;
+                const otherAnswer = item.direction === 'no-es' ? card.es : card.no;
+                return normalizeTypedAnswer(otherPrompt) === normalizeTypedAnswer(prompt) &&
+                    normalizeTypedAnswer(otherAnswer) !== normalizeTypedAnswer(expectedAnswer);
+            });
+
+            if (!hasAmbiguousPrompt) return prompt;
+
+            return `${prompt} (${expectedAnswer.trim().charAt(0).toLocaleLowerCase('es-ES')})`;
+        }
+
+        function isLeechReviewData(srData) {
+            return (srData.lapses || 0) >= LEECH_LAPSE_THRESHOLD;
+        }
+
+        function isLeechReviewItem(item) {
+            return isLeechReviewData(getDirectionData(item.card, item.direction));
+        }
+
+        function syncLinkedCardProgress(sourceCard, direction) {
+            const sourceKey = getVocabPairKey(sourceCard.no, sourceCard.es);
+            const sourceData = { ...getDirectionData(sourceCard, direction) };
+
+            cards.forEach(card => {
+                if (card.id === sourceCard.id) return;
+                if (getVocabPairKey(card.no, card.es) !== sourceKey) return;
+
+                if (direction === 'no-es') card.noEs = { ...card.noEs, ...sourceData };
+                else card.esNo = { ...card.esNo, ...sourceData };
+
+                card.lastReview = sourceCard.lastReview;
+            });
+        }
+
+        function markTypedReviewItems(items, percent = TYPED_REVIEW_PERCENT) {
+            const reviewItems = items.filter(item => getDirectionData(item.card, item.direction).repetitions > 0);
+            const typedTarget = Math.round(reviewItems.length * percent);
+            if (typedTarget <= 0) return items.map(item => ({ ...item, typed: false }));
+
+            const interval = Math.max(1, Math.floor(reviewItems.length / typedTarget));
+            const typedKeys = new Set();
+
+            for (let i = 0; i < reviewItems.length && typedKeys.size < typedTarget; i += interval) {
+                typedKeys.add(getItemKey(reviewItems[i]));
+            }
+
+            return items.map(item => ({
+                ...item,
+                typed: typedKeys.has(getItemKey(item))
+            }));
+        }
+
         function getDueCards(cardList) {
             const today = new Date();
             today.setHours(0, 0, 0, 0);
             const dueItems = [];
             
             cardList.forEach(card => {
-                if (card.noEs.repetitions > 0 && card.noEs.nextReview && new Date(card.noEs.nextReview) <= today) {
+                if (card.noEs.repetitions > 0 && ((card.noEs.nextReview && new Date(card.noEs.nextReview) <= today) || isLeechReviewData(card.noEs))) {
                     dueItems.push({ card, direction: 'no-es' });
                 }
-                if (card.esNo.repetitions > 0 && card.esNo.nextReview && new Date(card.esNo.nextReview) <= today) {
+                if (card.esNo.repetitions > 0 && ((card.esNo.nextReview && new Date(card.esNo.nextReview) <= today) || isLeechReviewData(card.esNo))) {
                     dueItems.push({ card, direction: 'es-no' });
                 }
             });
-            return dueItems;
+
+            return dueItems.sort((a, b) => {
+                const leechDiff = Number(isLeechReviewItem(b)) - Number(isLeechReviewItem(a));
+                if (leechDiff !== 0) return leechDiff;
+                const aDue = new Date(getDirectionData(a.card, a.direction).nextReview || 0).getTime();
+                const bDue = new Date(getDirectionData(b.card, b.direction).nextReview || 0).getTime();
+                return aDue - bDue;
+            });
         }
 
         function getNewCards(cardList) {
@@ -2775,7 +2934,7 @@ Vil du øve på ${pronoun} likevel?`
             isCustomStudySession = false;
             sessionCards = [];
 
-            const dueCards = getDueCards(cards).slice(0, reviewLimit);
+            const dueCards = markTypedReviewItems(getDueCards(cards).slice(0, reviewLimit));
             const filteredNewCards = getNewCards(getFilteredCards()).slice(0, newLimit * 2);
 
             if (mode === 'review') {
@@ -2821,7 +2980,7 @@ Vil du øve på ${pronoun} likevel?`
             sessionTimeLimitMinutes = getLimitValue('sessionTimeLimit', 0);
             currentVocabMode = `chapter:${focusId}`;
             isCustomStudySession = false;
-            sessionCards = shuffleArray(buildChapterFocusQueue(focusId, { newLimit, reviewLimit }));
+            sessionCards = shuffleArray(markTypedReviewItems(buildChapterFocusQueue(focusId, { newLimit, reviewLimit })));
 
             if (!focus) {
                 alert('Ukjent kapittelvalg.');
@@ -2869,11 +3028,38 @@ Vil du øve på ${pronoun} likevel?`
             const direction = item.direction;
             const srData = direction === 'no-es' ? card.noEs : card.esNo;
             const isNew = srData.repetitions === 0;
-            const front = direction === 'no-es' ? card.no : card.es;
+            const front = getVocabPromptText(item);
             
             updateVocabProgress();
             
             const cardTypeLabel = isCustomStudySession ? 'Ekstraøving' : (isNew ? 'Nytt kort' : 'Repetisjon');
+
+            if (item.typed) {
+                document.getElementById('flashcardArea').innerHTML = `
+                    <div class="flashcard">
+                        <span class="card-type-badge badge-review">Skriv svaret</span>
+                        <span class="direction-badge">
+                            ${direction === 'no-es' ? '🇳🇴 → 🇪🇸' : '🇪🇸 → 🇳🇴'}
+                        </span>
+                        <div class="card-word">${front}</div>
+                        <div class="mt-4">
+                            <input type="text" class="conjugation-input" id="typedVocabInput" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Skriv svaret">
+                            <div class="conjugation-feedback" id="typedVocabFeedback"></div>
+                        </div>
+                        <span class="card-category">${getCategoryEmoji(card.category)} ${capitalizeFirst(card.category)}</span>
+                    </div>
+                `;
+                document.getElementById('buttonArea').innerHTML = `
+                    <div class="button-group">
+                        <button class="btn btn-primary" onclick="submitTypedVocabAnswer()">Sjekk svar</button>
+                    </div>
+                `;
+                const input = document.getElementById('typedVocabInput');
+                setupAccentInput(input);
+                input.focus();
+                updateUndoButtonState();
+                return;
+            }
 
             document.getElementById('flashcardArea').innerHTML = `
                 <div class="flashcard" onclick="flipCard()">
@@ -2902,8 +3088,8 @@ Vil du øve på ${pronoun} likevel?`
             const direction = item.direction;
             const srData = direction === 'no-es' ? card.noEs : card.esNo;
             const isNew = srData.repetitions === 0;
-            const front = direction === 'no-es' ? card.no : card.es;
-            const back = direction === 'no-es' ? card.es : card.no;
+            const front = getVocabPromptText(item);
+            const back = getExpectedAnswerText(item);
             const intervals = [0, 1, 2, 3].map(q => SM2.getIntervalText(q, srData));
             
             const cardTypeLabel = isCustomStudySession ? 'Ekstraøving' : (isNew ? 'Nytt kort' : 'Repetisjon');
@@ -2931,6 +3117,33 @@ Vil du øve på ${pronoun} likevel?`
                     updateUndoButtonState();
         }
 
+        function submitTypedVocabAnswer() {
+            if (!currentCard || !currentCard.typed) return;
+            const input = document.getElementById('typedVocabInput');
+            const feedback = document.getElementById('typedVocabFeedback');
+            const expected = getExpectedAnswerText(currentCard);
+            const isCorrect = isTypedVocabAnswerCorrect(input.value, expected);
+
+            input.disabled = true;
+
+            if (isCorrect) {
+                feedback.innerHTML = '<div class="grammar-feedback correct">✓ Riktig!</div>';
+                rateCard(2);
+                return;
+            }
+
+            feedback.innerHTML = `
+                <div class="grammar-feedback incorrect">
+                    ✗ Feil. Riktig svar er: <strong>${expected}</strong>
+                </div>
+            `;
+            document.getElementById('buttonArea').innerHTML = `
+                <div class="button-group">
+                    <button class="btn btn-primary" onclick="rateCard(0)">Neste kort</button>
+                </div>
+            `;
+        }
+
         function rateCard(quality) {
             // Snapshot for undo (before we mutate anything)
             try {
@@ -2939,7 +3152,7 @@ Vil du øve på ${pronoun} likevel?`
                 vocabUndoStack.push({
                     currentIndex: currentIndex,
                     sessionStats: { ...sessionStats },
-                    sessionCards: sessionCards.map(it => ({ card: { id: it.card.id }, direction: it.direction })),
+                    sessionCards: sessionCards.map(it => ({ card: { id: it.card.id }, direction: it.direction, typed: it.typed })),
                     cardId: snapCard?.id,
                     cardNoEs: snapCard ? { ...snapCard.noEs } : null,
                     cardEsNo: snapCard ? { ...snapCard.esNo } : null,
@@ -2963,11 +3176,17 @@ Vil du øve på ${pronoun} likevel?`
                 if (direction === 'no-es') card.noEs = { ...card.noEs, ...result };
                 else card.esNo = { ...card.esNo, ...result };
 
+                if (quality === 0) {
+                    const target = direction === 'no-es' ? card.noEs : card.esNo;
+                    target.lapses = (target.lapses || 0) + 1;
+                }
+
                 card.lastReview = new Date().toISOString();
                 card.reviews++;
                 if (quality >= 2) card.correct++;
                 if (wasNew && quality >= 2) sessionStats.newLearned++;
 
+                syncLinkedCardProgress(card, direction);
                 saveData();
             }
             
@@ -3083,7 +3302,10 @@ Vil du øve på ${pronoun} likevel?`
         function getVerbFocusKeys(focus) {
             if (focus === 'ar') return ['hablar', 'trabajar', 'estudiar', 'bailar', 'comprar'];
             if (focus === 'erir') return ['comer', 'beber', 'leer', 'aprender', 'vivir', 'escribir'];
-            if (focus === 'irregular') return ['ser', 'estar', 'tener', 'ir', 'hacer', 'poder', 'querer'];
+            if (focus === 'irregular') return ['ser', 'estar', 'ir', 'hacer', 'saber', 'salir', 'ver'];
+            if (focus === 'stem-e-ie') return ['querer', 'preferir', 'empezar', 'entender', 'tener', 'venir'];
+            if (focus === 'stem-o-ue') return ['poder', 'dormir', 'volver'];
+            if (focus === 'stem-e-i') return ['pedir', 'repetir', 'servir', 'decir'];
             return [];
         }
 
@@ -3518,10 +3740,24 @@ Vil du øve på ${pronoun} likevel?`
             };
         }
 
-        function teacherWordExists(word, cardList = cards) {
+        function normalizeVocabCompareText(text) {
+            return String(text || '').trim().toLocaleLowerCase('es-ES').replace(/\s+/g, ' ');
+        }
+
+        function normalizeCategorySlug(category) {
+            return String(category || 'importert').trim().toLowerCase().replace(/\s+/g, '-');
+        }
+
+        function getVocabPairKey(no, es) {
+            return `${normalizeVocabCompareText(no)}::${normalizeVocabCompareText(es)}`;
+        }
+
+        function teacherWordExistsInSameCategory(word, cardList = cards) {
+            const pairKey = getVocabPairKey(word.norsk, word.spansk);
+            const categoryKey = normalizeCategorySlug(word.category);
             return cardList.some(card =>
-                (card.norsk || card.no || '').toLowerCase() === word.norsk.toLowerCase() &&
-                (card.spansk || card.es || '').toLowerCase() === word.spansk.toLowerCase()
+                getVocabPairKey(card.norsk || card.no, card.spansk || card.es) === pairKey &&
+                normalizeCategorySlug(card.category) === categoryKey
             );
         }
 
@@ -3538,13 +3774,50 @@ Vil du øve på ${pronoun} likevel?`
                 return 'Spansk tekst er for lang for glosekort';
             }
 
-            const key = `${word.norsk.toLowerCase()}::${word.spansk.toLowerCase()}`;
-            if (teacherWordExists(word, cardList) || pendingKeys.has(key)) {
-                return `Finnes allerede: ${word.norsk} - ${word.spansk}`;
+            const key = `${getVocabPairKey(word.norsk, word.spansk)}::${normalizeCategorySlug(word.category)}`;
+            if (teacherWordExistsInSameCategory(word, cardList) || pendingKeys.has(key)) {
+                return `Finnes allerede i samme kategori: ${word.norsk} - ${word.spansk}`;
             }
 
             pendingKeys.add(key);
             return null;
+        }
+
+        function splitAlternativeTranslations(row) {
+            const alternatives = row.spansk
+                .split(/\s+\/\s+/)
+                .map(part => part.trim())
+                .filter(Boolean);
+
+            if (alternatives.length <= 1) return [row];
+
+            return alternatives.map(spansk => ({ ...row, spansk }));
+        }
+
+        function parseChapterVocabularyLine(line, category) {
+            const trimmed = line.trim();
+            if (!trimmed) return [];
+
+            const parts = trimmed.includes('\t')
+                ? trimmed.split(/\t+/)
+                : trimmed.split(/\s{2,}|\s+-\s+|\s+–\s+|\s+—\s+/);
+
+            if (parts.length < 2) return [];
+
+            const row = normalizeImportedTeacherWord({
+                norsk: parts[0],
+                spansk: parts.slice(1).join(' ').trim(),
+                category
+            });
+
+            if (!row.norsk && !row.spansk) return [];
+            return splitAlternativeTranslations(row);
+        }
+
+        function parseChapterVocabularyText(text, category = 'importert') {
+            return String(text || '')
+                .split(/\r?\n/)
+                .flatMap(line => parseChapterVocabularyLine(line, category));
         }
 
         function analyzeTeacherWordImport(data, cardList = cards) {
@@ -3574,7 +3847,7 @@ Vil du øve på ${pronoun} likevel?`
         }
 
         function createCustomCardFromTeacherWord(word) {
-            const category = word.category.toLowerCase().replace(/\s+/g, '-');
+            const category = normalizeCategorySlug(word.category);
 
             return {
                 id: cards.length,
@@ -3589,6 +3862,84 @@ Vil du øve på ${pronoun} likevel?`
                 reviews: 0,
                 correct: 0
             };
+        }
+
+        function showChapterTextImport() {
+            const modal = document.createElement('div');
+            modal.className = 'settings-modal';
+            modal.innerHTML = `
+                <div class="settings-modal-content">
+                    <h2>🖼️ Importer kapittelord</h2>
+                    <p class="login-hint mt-2 text-xs">Lim inn tekst fra bilde/OCR. Bildet lastes ikke opp og originalbildet lagres ikke i appen.</p>
+                    <label class="mb-2 mt-4 block text-gray-700">Kategori:</label>
+                    <input type="text" id="chapterImportCategory" value="Kapittel 9" placeholder="Kapittel 9">
+                    <label class="mb-2 mt-4 block text-gray-700">Tekst fra ordliste:</label>
+                    <textarea id="chapterImportText" class="add-word-input" rows="8" placeholder="å forstå    entender / comprender&#10;å begynne   empezar"></textarea>
+                    <div class="button-group">
+                        <button class="btn btn-primary" onclick="previewChapterTextImport()">Forhåndsvis</button>
+                        <button class="btn btn-secondary" onclick="closeSettings()">Avbryt</button>
+                    </div>
+                    <div id="chapterImportPreview" class="mt-4"></div>
+                </div>
+            `;
+            document.body.appendChild(modal);
+        }
+
+        function getChapterImportRowsFromPreview() {
+            return [...document.querySelectorAll('[data-chapter-import-row]')].map(row => ({
+                norsk: row.querySelector('[data-field="norsk"]').value,
+                spansk: row.querySelector('[data-field="spansk"]').value,
+                category: row.querySelector('[data-field="category"]').value
+            }));
+        }
+
+        function renderChapterImportPreview(rows) {
+            const preview = document.getElementById('chapterImportPreview');
+            if (!preview) return;
+
+            if (rows.length === 0) {
+                preview.innerHTML = '<p class="homework-hint text-amber-500">Fant ingen ordpar. Sjekk at norsk og spansk står på samme linje med tab, flere mellomrom eller bindestrek mellom.</p>';
+                return;
+            }
+
+            preview.innerHTML = `
+                <div class="setting-hint mb-2">${rows.length} rader funnet. Slett eller rediger før import.</div>
+                <div class="practice-history">
+                    ${rows.map((row, index) => `
+                        <div class="practice-entry" data-chapter-import-row>
+                            <input class="add-word-input" data-field="norsk" value="${escapeHtml(row.norsk)}" aria-label="Norsk rad ${index + 1}">
+                            <input class="add-word-input" data-field="spansk" value="${escapeHtml(row.spansk)}" aria-label="Spansk rad ${index + 1}">
+                            <input class="add-word-input" data-field="category" value="${escapeHtml(row.category)}" aria-label="Kategori rad ${index + 1}">
+                            <button class="btn btn-sm btn-outline" onclick="this.closest('[data-chapter-import-row]').remove()">Slett</button>
+                        </div>
+                    `).join('')}
+                </div>
+                <div class="button-group mt-4">
+                    <button class="btn btn-primary" onclick="importChapterTextPreviewRows()">Importer rader</button>
+                    <button class="btn btn-secondary" onclick="previewChapterTextImport()">Les teksten på nytt</button>
+                </div>
+            `;
+        }
+
+        function previewChapterTextImport() {
+            const category = document.getElementById('chapterImportCategory').value || 'importert';
+            const text = document.getElementById('chapterImportText').value;
+            renderChapterImportPreview(parseChapterVocabularyText(text, category));
+        }
+
+        function importChapterTextPreviewRows() {
+            const summary = analyzeTeacherWordImport(getChapterImportRowsFromPreview());
+
+            if (summary.importableCount === 0) {
+                showToast(`Ingen nye gloser å importere (${summary.skippedCount} hoppet over)`, 'error');
+                return;
+            }
+
+            if (!confirm(buildTeacherImportPreview(summary))) return;
+
+            const result = applyTeacherWordImport(summary);
+            closeSettings();
+            showToast(result.message + (result.skipped > 0 ? ` (${result.skipped} hoppet over)` : ''), 'success');
         }
 
         function buildTeacherImportPreview(summary) {
@@ -4316,6 +4667,20 @@ Vil du øve på ${pronoun} likevel?`
             button.textContent = isHidden ? 'Vis regelkort' : 'Skjul regelkort';
         }
 
+        function getGrammarMistakeExplanation(topicId) {
+            const explanations = {
+                articles: 'Hvorfor? Velg artikkel etter substantivets kjønn og tall: el/un for maskulin entall, la/una for feminin entall, los/las for flertall.',
+                adjectives: 'Hvorfor? Adjektivet må passe med substantivet i kjønn og tall: alto, alta, altos, altas.',
+                serEstar: 'Hvorfor? Bruk ser for identitet, yrke og varige beskrivelser. Bruk estar for sted, følelser og midlertidige tilstander.',
+                gustar: 'Hvorfor? Med gustar styrer tingen du liker verbet: gusta for én ting eller infinitiv, gustan for flere ting.',
+                reflexive: 'Hvorfor? Refleksive verb trenger pronomen som viser hvem handlingen gjelder: me, te, se, nos, se.',
+                demonstratives: 'Hvorfor? Este/esta brukes om noe nært, ese/esa om noe lenger unna. Formen må passe med kjønn og tall.',
+                possessives: 'Hvorfor? Eiendomsord bøyes etter det som eies: mi libro, mis libros, nuestro padre, nuestra madre.'
+            };
+
+            return explanations[topicId] || 'Hvorfor? Se på mønsteret i setningen og velg formen som passer med personen, kjønn eller tall.';
+        }
+
         function showGrammarTheory() {
             showingTheory = true;
             document.getElementById('grammarSettings').classList.add('hidden');
@@ -4431,6 +4796,7 @@ Vil du øve på ${pronoun} likevel?`
                     <div class="grammar-feedback incorrect">
                         ✗ Feil! Riktig svar er: <strong>${exercise.answer}</strong>
                         <div class="explanation">${exercise.hint}</div>
+                        <div class="explanation"><strong>Hvorfor?</strong> ${getGrammarMistakeExplanation(currentGrammarTopic.id).replace(/^Hvorfor\?\s*/, '')}</div>
                     </div>
                 `;
             }
@@ -5480,150 +5846,6 @@ Vil du øve på ${pronoun} likevel?`
             }
         }
 
-
-        
-        // ============================================
-        // SIMPLE LOCAL CHATBOT (MODELL A)
-        // ============================================
-
-        const chatbotTopics = {
-            hilsen: {
-                label: '👋 Hilsing',
-                starter: '¡Hola! ¿Cómo te llamas?',
-                quickReplies: ['Hola', 'Me llamo Ana', '¿Cómo estás?'],
-                patterns: [
-                    { match: /me llamo|soy /i, reply: '¡Mucho gusto! Yo soy tu bot de español. ¿Cómo estás hoy?' },
-                    { match: /hola|buenas/i, reply: '¡Hola! ¿Cómo te llamas?' },
-                    { match: /cómo estás|como estas/i, reply: 'Estoy bien, gracias. ¿Y tú?' },
-                    { match: /bien|muy bien|genial/i, reply: '¡Qué bien! Vamos a practicar un poco más.' }
-                ],
-                fallback: 'Puedes escribir: «Hola», «Me llamo ...» o «¿Cómo estás?»'
-            },
-            familia: {
-                label: '👨‍👩‍👧‍👦 Familie',
-                starter: 'Háblame de tu familia. ¿Tienes hermanos?',
-                quickReplies: ['Tengo un hermano', 'Tengo dos hermanas', 'Vivo con mi madre'],
-                patterns: [
-                    { match: /tengo .*herman/i, reply: '¡Muy bien! ¿Cuántos años tiene tu hermano o hermana?' },
-                    { match: /vivo con/i, reply: 'Entiendo. ¿Cómo es tu familia?' },
-                    { match: /madre|padre|mamá|papá/i, reply: 'Bien. ¿Qué hace tu madre o tu padre?' },
-                    { match: /no tengo/i, reply: 'Está bien. ¿Vives con tu madre, tu padre o con los dos?' }
-                ],
-                fallback: 'Prueba con frases como «Tengo un hermano» o «Vivo con mi madre y mi padre».'
-            },
-            hobby: {
-                label: '⚽ Hobbyer',
-                starter: '¿Qué te gusta hacer en tu tiempo libre?',
-                quickReplies: ['Me gusta jugar al fútbol', 'Me gusta escuchar música', 'No me gusta bailar'],
-                patterns: [
-                    { match: /me gusta/i, reply: '¡Muy bien! ¿Con quién haces eso normalmente?' },
-                    { match: /no me gusta/i, reply: 'Vale. ¿Qué sí te gusta hacer?' },
-                    { match: /fútbol|baloncesto|tenis|música|bailar|leer|videojuegos/i, reply: '¡Interesante! ¿Cuándo haces eso, por la tarde o por la noche?' }
-                ],
-                fallback: 'Puedes escribir «Me gusta...», «No me gusta...» o «Juego al fútbol».'
-            },
-            skole: {
-                label: '🏫 Skole',
-                starter: '¿Qué asignaturas te gustan en la escuela?',
-                quickReplies: ['Me gusta el inglés', 'No me gusta las matemáticas', 'Mi profesor es simpático'],
-                patterns: [
-                    { match: /me gusta/i, reply: 'Bien. ¿Por qué te gusta esa asignatura?' },
-                    { match: /no me gusta/i, reply: 'Entiendo. ¿Qué asignatura prefieres?' },
-                    { match: /profesor|profesora/i, reply: '¿Tu profesor o profesora es simpático/a?' }
-                ],
-                fallback: 'Prueba: «Me gusta el inglés» o «Mi profesor es simpático».'
-            },
-            mat: {
-                label: '🍎 Mat',
-                starter: '¿Qué te gusta comer y beber?',
-                quickReplies: ['Me gusta la pizza', 'Bebo agua', 'Como pan y queso'],
-                patterns: [
-                    { match: /me gusta/i, reply: '¡Qué rico! ¿Lo comes mucho?' },
-                    { match: /bebo|tomo/i, reply: 'Bien. ¿Qué bebes en el desayuno?' },
-                    { match: /como/i, reply: 'Muy bien. ¿Qué comes normalmente en la cena?' }
-                ],
-                fallback: 'Puedes escribir «Me gusta la pizza», «Bebo agua» o «Como fruta».'
-            }
-        };
-
-        let chatbotCurrentTopic = 'hilsen';
-        let chatbotHistory = [];
-
-        function renderChatbotPage() {
-            const topicList = document.getElementById('chatbotTopicList');
-            topicList.innerHTML = Object.entries(chatbotTopics).map(([key, topic]) => `
-                <button class="chatbot-topic-btn ${key === chatbotCurrentTopic ? 'active' : ''}" onclick="setChatbotTopic('${key}')">${topic.label}</button>
-            `).join('');
-
-            if (chatbotHistory.length === 0) {
-                chatbotResetConversation();
-            } else {
-                renderChatbotMessages();
-                renderChatbotQuickReplies();
-            }
-
-            const input = document.getElementById('chatbotInput');
-            if (input && !input.dataset.bound) {
-                input.addEventListener('keydown', (e) => {
-                    if (e.key === 'Enter') sendChatbotMessage();
-                });
-                setupAccentInput(input);
-                input.dataset.bound = '1';
-            }
-        }
-
-        function setChatbotTopic(topicKey) {
-            chatbotCurrentTopic = topicKey;
-            chatbotResetConversation();
-            renderChatbotPage();
-        }
-
-        function chatbotResetConversation() {
-            const topic = chatbotTopics[chatbotCurrentTopic];
-            chatbotHistory = [{ role: 'bot', text: topic.starter }];
-            renderChatbotMessages();
-            renderChatbotQuickReplies();
-        }
-
-        function renderChatbotMessages() {
-            const el = document.getElementById('chatbotMessages');
-            el.innerHTML = chatbotHistory.map(msg => `<div class="chatbot-message ${msg.role}">${escapeHtml(msg.text)}</div>`).join('');
-            el.scrollTop = el.scrollHeight;
-        }
-
-        function renderChatbotQuickReplies() {
-            const el = document.getElementById('chatbotQuickReplies');
-            const replies = chatbotTopics[chatbotCurrentTopic].quickReplies;
-            el.innerHTML = replies.map(reply => `<button class="chatbot-chip" onclick="useChatbotQuickReply('${reply.replace(/'/g, "&#39;")}')">${reply}</button>`).join('');
-        }
-
-        function useChatbotQuickReply(text) {
-            document.getElementById('chatbotInput').value = text;
-            sendChatbotMessage();
-        }
-
-        function sendChatbotMessage() {
-            const input = document.getElementById('chatbotInput');
-            const text = input.value.trim();
-            if (!text) return;
-            chatbotHistory.push({ role: 'user', text });
-            const reply = getChatbotReply(text);
-            chatbotHistory.push({ role: 'bot', text: reply });
-            input.value = '';
-            renderChatbotMessages();
-        }
-
-        function getChatbotReply(text) {
-            const sanitized = text.replace(/\d{3,}/g, '').trim();
-            const topic = chatbotTopics[chatbotCurrentTopic];
-            for (const pattern of topic.patterns) {
-                if (pattern.match.test(sanitized)) return pattern.reply;
-            }
-            if (/\?/i.test(sanitized)) return 'Buena pregunta. Vamos a usar frases simples. ' + topic.fallback;
-            if (sanitized.split(/\s+/).length <= 2) return 'Puedes escribir una frase un poco más larga. ' + topic.fallback;
-            return topic.fallback;
-        }
-
         function escapeHtml(str) {
             return str.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
         }
@@ -5631,6 +5853,14 @@ Vil du øve på ${pronoun} likevel?`
 
         // Initialize app
         (function() {
+            if ('serviceWorker' in navigator) {
+                window.addEventListener('load', () => {
+                    navigator.serviceWorker.register('./sw.js').catch(error => {
+                        console.warn('Service worker registration failed', error);
+                    });
+                });
+            }
+
             const savedName = localStorage.getItem('spansk123_studentName');
             
             if (savedName) {

@@ -38,7 +38,7 @@ test.describe('teacher glossary import validation', () => {
     expect(summary.importableCount).toBe(2);
     expect(summary.skippedCount).toBe(3);
     expect(summary.problems).toEqual([
-      { row: 2, reason: 'Finnes allerede: hei - hola' },
+      { row: 2, reason: 'Finnes allerede i samme kategori: hei - hola' },
       { row: 3, reason: 'Mangler norsk eller spansk tekst' },
       { row: 4, reason: 'Spansk tekst er for lang for glosekort' }
     ]);
@@ -106,5 +106,38 @@ test.describe('teacher glossary import validation', () => {
     expect(preview).toContain('2 rader hoppes over');
     expect(preview).toContain('Rad 4: Finnes allerede: hei - hola');
     expect(preview).toContain('Rad 8: Mangler norsk eller spansk tekst');
+  });
+
+  test('treats whitespace and case variants as duplicate teacher rows', async ({ page }) => {
+    await page.goto(appUrl);
+
+    const summary = await page.evaluate(() => {
+      cards = [
+        {
+          id: 1,
+          no: 'takk',
+          es: 'gracias',
+          norsk: 'takk',
+          spansk: 'gracias',
+          category: 'hilsener',
+          noEs: { repetitions: 0 },
+          esNo: { repetitions: 0 }
+        }
+      ];
+
+      return analyzeTeacherWordImport([
+        [' Takk ', ' GRACIAS ', 'hilsener'],
+        ['god kveld', 'buenas noches', 'hilsener'],
+        ['god kveld ', ' Buenas Noches ', 'hilsener']
+      ]);
+    });
+
+    expect(summary.valid).toEqual([
+      { norsk: 'god kveld', spansk: 'buenas noches', category: 'hilsener' }
+    ]);
+    expect(summary.problems).toEqual([
+      { row: 1, reason: 'Finnes allerede i samme kategori: Takk - GRACIAS' },
+      { row: 3, reason: 'Finnes allerede i samme kategori: god kveld - Buenas Noches' }
+    ]);
   });
 });

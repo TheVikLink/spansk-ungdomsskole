@@ -33,6 +33,42 @@ test.describe('privacy wording and local backup reminder', () => {
     await expect(page.locator('#backupStatus')).toContainText('Sikkerhetskopi tatt i dag');
   });
 
+  test('homework delivery is local-only unless a teacher configures an external form', async ({ page }) => {
+    await page.goto(appUrl);
+
+    const result = await page.evaluate(() => {
+      localStorage.clear();
+      studentName = '9A-14';
+      showMainApp();
+
+      const days = getWeekDays().filter(day => !day.isClassDay).slice(0, 2);
+      practiceHistory = days.map((day, index) => ({
+        date: day.dateStr,
+        words: 10 + index,
+        correct: 8 + index,
+        sessions: 1
+      }));
+      savePracticeHistory();
+      showPage('homework');
+
+      const openedUrls = [];
+      const originalOpen = window.open;
+      window.open = url => openedUrls.push(url);
+      const submitResult = submitHomework();
+      window.open = originalOpen;
+
+      return {
+        submitResult,
+        openedUrls,
+        hint: document.getElementById('homeworkHint').textContent
+      };
+    });
+
+    expect(result.submitResult).toMatchObject({ submittedExternally: false });
+    expect(result.openedUrls).toEqual([]);
+    expect(result.hint).toContain('Ingen data er sendt');
+  });
+
   test('keeps student identifiers out of exported backup filenames', async ({ page }) => {
     await page.goto(appUrl);
 
