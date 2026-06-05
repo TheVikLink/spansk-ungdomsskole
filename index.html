@@ -914,7 +914,10 @@
             // Submit button state
             const submitBtn = document.getElementById('submitHomeworkBtn');
             submitBtn.disabled = !canSubmit;
-            submitBtn.style.opacity = canSubmit ? '1' : '0.5';
+            submitBtn.className = canSubmit
+                ? 'btn btn-primary btn-large'
+                : 'btn btn-secondary btn-large homework-submit-disabled';
+            submitBtn.style.opacity = '1';
             
             // Hint
             const hintEl = document.getElementById('homeworkHint');
@@ -1413,7 +1416,8 @@
         let verbCurrentIndex = 0;
         let verbStats = { correct: 0, total: 0 };
         let verbAnswerPending = false;
-        let activeVerbFocus = 'ar';
+        let activeVerbFocus = 'focus';
+        let selectedVerbFocuses = new Set(['ar']);
 
         // ============================================
         // NAVIGATION
@@ -2450,7 +2454,7 @@
                 if (input) input.addEventListener('input', updateStats);
             });
             setupKeyboardShortcuts();
-            if (selectedVerbs.size === 0) applyVerbFocus('ar');
+            if (selectedVerbs.size === 0) rebuildSelectedVerbsFromFocuses();
             renderVerbSelector();
             loadGrammarProgress();
             updateCategoryDropdown();
@@ -3309,14 +3313,32 @@ Vil du øve på ${pronoun} likevel?`
             return [];
         }
 
-        function applyVerbFocus(focus) {
-            activeVerbFocus = focus;
-            if (focus !== 'custom') {
-                selectedVerbs.clear();
+        function rebuildSelectedVerbsFromFocuses() {
+            selectedVerbs.clear();
+            selectedVerbFocuses.forEach(focus => {
                 getVerbFocusKeys(focus).forEach(key => {
                     if (verbDatabase[key]) selectedVerbs.add(key);
                 });
+            });
+        }
+
+        function applyVerbFocus(focus) {
+            if (focus === 'custom') {
+                activeVerbFocus = 'custom';
+                selectedVerbFocuses.clear();
+                updateVerbFocusButtons();
+                return;
             }
+
+            if (activeVerbFocus === 'custom' || (selectedVerbFocuses.size === 1 && selectedVerbFocuses.has('ar') && focus !== 'ar')) {
+                selectedVerbFocuses.clear();
+            }
+
+            activeVerbFocus = 'focus';
+            if (selectedVerbFocuses.has(focus)) selectedVerbFocuses.delete(focus);
+            else selectedVerbFocuses.add(focus);
+
+            rebuildSelectedVerbsFromFocuses();
             updateVerbFocusButtons();
         }
 
@@ -3327,7 +3349,10 @@ Vil du øve på ${pronoun} likevel?`
 
         function updateVerbFocusButtons() {
             document.querySelectorAll('.verb-focus-card').forEach(button => {
-                const isActive = button.dataset.verbFocus === activeVerbFocus;
+                const focus = button.dataset.verbFocus;
+                const isActive = focus === 'custom'
+                    ? activeVerbFocus === 'custom'
+                    : selectedVerbFocuses.has(focus);
                 button.classList.toggle('active', isActive);
                 button.setAttribute('aria-pressed', isActive);
             });
@@ -3350,6 +3375,7 @@ Vil du øve på ${pronoun} likevel?`
 
         function toggleVerb(key) {
             activeVerbFocus = 'custom';
+            selectedVerbFocuses.clear();
             if (selectedVerbs.has(key)) selectedVerbs.delete(key);
             else selectedVerbs.add(key);
             renderVerbSelector();
@@ -3357,12 +3383,14 @@ Vil du øve på ${pronoun} likevel?`
 
         function selectAllVerbs() {
             activeVerbFocus = 'custom';
+            selectedVerbFocuses.clear();
             Object.keys(verbDatabase).forEach(k => selectedVerbs.add(k));
             renderVerbSelector();
         }
 
         function deselectAllVerbs() {
             activeVerbFocus = 'custom';
+            selectedVerbFocuses.clear();
             selectedVerbs.clear();
             renderVerbSelector();
         }

@@ -33,6 +33,42 @@ test.describe('privacy wording and local backup reminder', () => {
     await expect(page.locator('#backupStatus')).toContainText('Sikkerhetskopi tatt i dag');
   });
 
+  test('keeps incomplete homework instructions readable', async ({ page }) => {
+    await page.goto(appUrl);
+
+    const styles = await page.evaluate(() => {
+      localStorage.clear();
+      studentName = 'Elevkode 7';
+      practiceHistory = [];
+      showMainApp();
+      showPage('homework');
+
+      const button = document.getElementById('submitHomeworkBtn');
+      const hint = document.getElementById('homeworkHint');
+      const summary = document.getElementById('homeworkSummary');
+      const buttonStyles = getComputedStyle(button);
+      const hintStyles = getComputedStyle(hint);
+      const summaryStyles = getComputedStyle(summary);
+
+      return {
+        disabled: button.disabled,
+        buttonOpacity: buttonStyles.opacity,
+        buttonColor: buttonStyles.color,
+        buttonBackground: buttonStyles.backgroundColor,
+        hintColor: hintStyles.color,
+        summaryColor: summaryStyles.color,
+        hintText: hint.textContent
+      };
+    });
+
+    expect(styles.disabled).toBe(true);
+    expect(styles.buttonOpacity).toBe('1');
+    expect(styles.buttonColor).not.toBe('rgb(255, 255, 255)');
+    expect(styles.hintText).toContain('øv de andre dagene');
+    expect(styles.hintColor).not.toBe('rgb(255, 255, 255)');
+    expect(styles.summaryColor).not.toBe('rgb(255, 255, 255)');
+  });
+
   test('homework delivery is local-only unless a teacher configures an external form', async ({ page }) => {
     await page.goto(appUrl);
 
