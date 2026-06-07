@@ -1667,9 +1667,213 @@ select {
     line-height: 1.35;
 }
 
+/* Sentence Puzzle */
+.sentence-puzzle-options {
+    display: grid;
+    gap: 10px;
+}
+
+.sentence-puzzle-option {
+    border: 2px solid var(--gray-200);
+    border-radius: 10px;
+    background: #fff;
+    color: var(--gray-900);
+    padding: 12px 14px;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.sentence-puzzle-option strong,
+.sentence-puzzle-option span {
+    display: block;
+}
+
+.sentence-puzzle-option span {
+    color: var(--gray-500);
+    font-size: 13px;
+    margin-top: 2px;
+}
+
+.sentence-puzzle-option:hover,
+.sentence-puzzle-option.active {
+    border-color: var(--primary);
+    background: var(--primary-soft);
+}
+
+.sentence-puzzle-board {
+    border: 1px solid var(--gray-200);
+    border-radius: 14px;
+    background: #fff;
+    padding: 24px;
+    box-shadow: 0 12px 32px rgba(15, 23, 42, 0.08);
+}
+
+.sentence-puzzle-progress {
+    margin-bottom: 20px;
+}
+
+.sentence-puzzle-progress-meta {
+    display: flex;
+    justify-content: space-between;
+    color: var(--gray-700);
+    font-size: 13px;
+    font-weight: 800;
+    margin-bottom: 8px;
+}
+
+.sentence-puzzle-progress-track {
+    height: 10px;
+    border-radius: 999px;
+    background: var(--gray-200);
+    overflow: hidden;
+}
+
+.sentence-puzzle-progress-fill {
+    height: 100%;
+    border-radius: 999px;
+    background: var(--primary);
+    transition: width 0.25s ease;
+}
+
+.sentence-puzzle-topbar {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.sentence-puzzle-target {
+    color: var(--gray-900);
+    font-size: 24px;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-top: 4px;
+}
+
+.sentence-puzzle-score {
+    min-width: 88px;
+    border-radius: 10px;
+    background: var(--primary-soft);
+    color: var(--gray-900);
+    padding: 10px 14px;
+    text-align: center;
+}
+
+.sentence-puzzle-score span,
+.sentence-puzzle-label {
+    display: block;
+    color: var(--gray-500);
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.sentence-puzzle-score strong {
+    display: block;
+    color: var(--primary-dark);
+    font-size: 28px;
+    line-height: 1;
+}
+
+.sentence-puzzle-workspace {
+    border: 2px dashed var(--gray-300);
+    border-radius: 12px;
+    background: var(--gray-50);
+    padding: 16px;
+    margin-bottom: 18px;
+}
+
+.sentence-puzzle-built,
+.sentence-puzzle-tiles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    min-height: 52px;
+    align-items: center;
+}
+
+.sentence-puzzle-built {
+    margin-top: 10px;
+}
+
+.sentence-puzzle-tiles {
+    margin-top: 10px;
+}
+
+.sentence-puzzle-tile,
+.sentence-puzzle-built-word {
+    border: 2px solid var(--gray-200);
+    border-radius: 10px;
+    background: #fff;
+    color: var(--gray-900);
+    padding: 10px 14px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.sentence-puzzle-tile:hover,
+.sentence-puzzle-built-word:hover {
+    border-color: var(--primary);
+    transform: translateY(-1px);
+}
+
+.sentence-puzzle-built-word {
+    cursor: grab;
+}
+
+.sentence-puzzle-built-word:active,
+.sentence-puzzle-built-word.dragging {
+    cursor: grabbing;
+    border-color: var(--primary);
+    background: var(--primary-soft);
+}
+
+.sentence-puzzle-tile.used {
+    opacity: 0.35;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.sentence-puzzle-feedback {
+    min-height: 44px;
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin-top: 18px;
+    font-weight: 700;
+}
+
+.sentence-puzzle-feedback.correct {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.sentence-puzzle-feedback.wrong {
+    background: #fef3c7;
+    color: #92400e;
+}
+
 @media (max-width: 768px) {
     .verb-focus-grid {
         grid-template-columns: 1fr;
+    }
+
+    .sentence-puzzle-board {
+        padding: 16px;
+    }
+
+    .sentence-puzzle-topbar {
+        flex-direction: column;
+    }
+
+    .sentence-puzzle-score {
+        width: 100%;
+    }
+
+    .sentence-puzzle-target {
+        font-size: 21px;
     }
 }
 

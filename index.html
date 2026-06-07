@@ -430,10 +430,10 @@
                         <h3>Glose-duell</h3>
                         <p>Kommer snart...</p>
                     </button>
-                    <button type="button" class="game-card coming-soon" disabled>
+                    <button type="button" class="game-card" onclick="showGameSetup('sentence-puzzle')">
                         <div class="game-icon">🧩</div>
                         <h3>Setningspuslespill</h3>
-                        <p>Kommer snart...</p>
+                        <p>Bygg spanske setninger i riktig rekkefølge.</p>
                     </button>
                 </div>
             </div>
@@ -666,6 +666,119 @@
                         <button class="btn btn-primary btn-large" onclick="startPrepoInvaders()">🔄 Spill igjen</button>
                         <button class="btn btn-secondary" onclick="showGameSetup('prepo-invaders')">⚙️ Se info</button>
                         <button class="btn btn-outline" onclick="showGamesMenu()">← Tilbake til spill</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sentence Puzzle Setup -->
+            <div id="sentencePuzzleSetup" class="hidden">
+                <div class="page-header">
+                    <h2>🧩 Setningspuslespill</h2>
+                    <p>Bygg korte spanske setninger ord for ord.</p>
+                </div>
+
+                <div class="grid gap-4 md:grid-cols-2">
+                    <div class="rounded-lg border border-gray-200 bg-white p-4">
+                        <h3 class="mb-3 text-lg font-bold text-gray-900">🎯 Velg nivå</h3>
+                        <div class="sentence-puzzle-options">
+                            <button type="button" class="sentence-puzzle-option active" data-sp-level="basic" aria-pressed="true" onclick="selectSentencePuzzleLevel('basic')">
+                                <strong>Basis</strong>
+                                <span>Jeg heter..., jeg har..., jeg liker...</span>
+                            </button>
+                            <button type="button" class="sentence-puzzle-option" data-sp-level="prepositions" aria-pressed="false" onclick="selectSentencePuzzleLevel('prepositions')">
+                                <strong>Preposisjoner</strong>
+                                <span>i, på, under, ved siden av</span>
+                            </button>
+                            <button type="button" class="sentence-puzzle-option" data-sp-level="questions" aria-pressed="false" onclick="selectSentencePuzzleLevel('questions')">
+                                <strong>Spørsmål</strong>
+                                <span>Hvordan lager vi et spørsmål?</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="rounded-lg border border-indigo-200 bg-indigo-50 p-4 text-gray-800">
+                        <h3 class="mb-2 text-lg font-bold text-gray-900">Slik fungerer det</h3>
+                        <p class="mb-3 text-sm">Les norsk setning, klikk ordene i riktig spansk rekkefølge, og sjekk setningen.</p>
+                        <ul class="space-y-2 text-sm">
+                            <li>• Korte A1-setninger for ungdomsskole</li>
+                            <li>• Umiddelbar feedback uten å lagre persondata</li>
+                            <li>• Fungerer med mus, tastatur og mobiltrykk</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="button-group mt-6">
+                    <button class="btn btn-primary btn-large" onclick="startSentencePuzzle()">Start puslespillet</button>
+                    <button class="btn btn-secondary" onclick="showGamesMenu()">← Tilbake</button>
+                </div>
+            </div>
+
+            <!-- Sentence Puzzle Game -->
+            <div id="sentencePuzzleGame" class="hidden">
+                <div class="sentence-puzzle-board">
+                    <div class="sentence-puzzle-progress">
+                        <div class="sentence-puzzle-progress-meta">
+                            <span id="spProgressText">1 av 1</span>
+                            <span id="spProgressPercent">0%</span>
+                        </div>
+                        <div class="sentence-puzzle-progress-track">
+                            <div id="spProgressFill" class="sentence-puzzle-progress-fill" style="width: 0%"></div>
+                        </div>
+                    </div>
+
+                    <div class="sentence-puzzle-topbar">
+                        <div>
+                            <div id="spSentenceTarget" class="sentence-puzzle-target">—</div>
+                        </div>
+                        <div class="sentence-puzzle-score">
+                            <span>Poeng</span>
+                            <strong id="spScore">0</strong>
+                        </div>
+                    </div>
+
+                    <div class="sentence-puzzle-workspace">
+                        <div id="spBuiltSentence" class="sentence-puzzle-built" aria-live="polite"></div>
+                    </div>
+
+                    <div>
+                        <div class="sentence-puzzle-label">Ordbrikker</div>
+                        <div id="spWordTiles" class="sentence-puzzle-tiles"></div>
+                    </div>
+
+                    <div id="spFeedback" class="sentence-puzzle-feedback" aria-live="polite"></div>
+
+                    <div class="button-group mt-5">
+                        <button class="btn btn-primary" id="spCheckButton" onclick="checkSentencePuzzle()">Sjekk setning</button>
+                        <button class="btn btn-secondary" id="spNextButton" onclick="nextSentencePuzzle()" disabled>Neste setning</button>
+                        <button class="btn btn-outline" onclick="resetSentencePuzzleRound()">Start setningen på nytt</button>
+                        <button class="btn btn-outline" onclick="showGameSetup('sentence-puzzle')">Avslutt</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sentence Puzzle Complete -->
+            <div id="sentencePuzzleComplete" class="hidden">
+                <div class="session-complete">
+                    <div class="emoji">🧩</div>
+                    <h2>Setningsrunde ferdig</h2>
+                    <div class="session-stats-grid">
+                        <div class="session-stat">
+                            <div class="session-stat-value" id="spFinalScore">0</div>
+                            <div class="session-stat-label">riktige setninger</div>
+                        </div>
+                        <div class="session-stat">
+                            <div class="session-stat-value" id="spFinalAttempts">0</div>
+                            <div class="session-stat-label">forsøk</div>
+                        </div>
+                        <div class="session-stat">
+                            <div class="session-stat-value" id="spFinalAccuracy">0%</div>
+                            <div class="session-stat-label">treffprosent</div>
+                        </div>
+                    </div>
+                    <div class="button-group">
+                        <button class="btn btn-primary btn-large" onclick="startSentencePuzzle()">Spill igjen</button>
+                        <button class="btn btn-secondary" onclick="showGameSetup('sentence-puzzle')">Endre nivå</button>
+                        <button class="btn btn-outline" onclick="showGamesMenu()">Tilbake til spill</button>
                     </div>
                 </div>
             </div>
@@ -4927,6 +5040,234 @@ Vil du øve på ${pronoun} likevel?`
         }
 
         // ============================================
+        // SENTENCE PUZZLE GAME
+        // ============================================
+
+        const sentencePuzzleBank = {
+            basic: [
+                { no: 'Jeg heter Ana.', words: ['Me', 'llamo', 'Ana.'] },
+                { no: 'Jeg har to brødre.', words: ['Tengo', 'dos', 'hermanos.'] },
+                { no: 'Jeg liker fotball.', words: ['Me', 'gusta', 'el', 'fútbol.'] },
+                { no: 'Hun bor i Madrid.', words: ['Ella', 'vive', 'en', 'Madrid.'] },
+                { no: 'Vi spiser pizza.', words: ['Comemos', 'pizza.'] },
+                { no: 'De snakker spansk.', words: ['Ellos', 'hablan', 'español.'] }
+            ],
+            prepositions: [
+                { no: 'Boka er på bordet.', words: ['El', 'libro', 'está', 'en', 'la', 'mesa.'] },
+                { no: 'Katten er under stolen.', words: ['El', 'gato', 'está', 'debajo', 'de', 'la', 'silla.'] },
+                { no: 'Skolen er ved siden av parken.', words: ['El', 'colegio', 'está', 'al', 'lado', 'del', 'parque.'] },
+                { no: 'Sekken er foran døra.', words: ['La', 'mochila', 'está', 'delante', 'de', 'la', 'puerta.'] }
+            ],
+            questions: [
+                { no: 'Hva heter du?', words: ['¿Cómo', 'te', 'llamas?'] },
+                { no: 'Hvor bor du?', words: ['¿Dónde', 'vives?'] },
+                { no: 'Hvor mange søsken har du?', words: ['¿Cuántos', 'hermanos', 'tienes?'] },
+                { no: 'Liker du musikk?', words: ['¿Te', 'gusta', 'la', 'música?'] }
+            ]
+        };
+
+        let spSelectedLevel = 'basic';
+        let spQuestionPool = [];
+        let spCurrentPuzzle = null;
+        let spSelectedWords = [];
+        let spSolved = 0;
+        let spAttempts = 0;
+        let spRoundIndex = 0;
+        let spDraggedWordIndex = null;
+
+        function selectSentencePuzzleLevel(level) {
+            if (!sentencePuzzleBank[level]) return;
+            spSelectedLevel = level;
+            document.querySelectorAll('.sentence-puzzle-option').forEach(button => {
+                const isActive = button.dataset.spLevel === level;
+                button.classList.toggle('active', isActive);
+                button.setAttribute('aria-pressed', isActive);
+            });
+        }
+
+        function startSentencePuzzle() {
+            spQuestionPool = shuffleArray(sentencePuzzleBank[spSelectedLevel]);
+            spSelectedWords = [];
+            spSolved = 0;
+            spAttempts = 0;
+            spRoundIndex = 0;
+            document.getElementById('sentencePuzzleSetup').classList.add('hidden');
+            document.getElementById('sentencePuzzleComplete').classList.add('hidden');
+            document.getElementById('sentencePuzzleGame').classList.remove('hidden');
+            renderSentencePuzzleRound();
+        }
+
+        function renderSentencePuzzleRound() {
+            if (spRoundIndex >= spQuestionPool.length) {
+                completeSentencePuzzle();
+                return;
+            }
+
+            spCurrentPuzzle = spQuestionPool[spRoundIndex];
+            spSelectedWords = [];
+            document.getElementById('spSentenceTarget').textContent = spCurrentPuzzle.no;
+            document.getElementById('spScore').textContent = spSolved;
+            document.getElementById('spBuiltSentence').innerHTML = '';
+            document.getElementById('spFeedback').textContent = '';
+            document.getElementById('spFeedback').className = 'sentence-puzzle-feedback';
+            setSentencePuzzleActionState(false);
+            updateSentencePuzzleProgress();
+
+            const tiles = shuffleArray(spCurrentPuzzle.words).map((word, index) => ({ word, index }));
+            document.getElementById('spWordTiles').innerHTML = tiles.map(tile => `
+                <button type="button"
+                    class="sentence-puzzle-tile"
+                    data-sp-index="${tile.index}"
+                    data-sp-word="${escapeHtml(tile.word)}"
+                    onclick="selectSentencePuzzleWord(${tile.index})">
+                    ${escapeHtml(tile.word)}
+                </button>
+            `).join('');
+        }
+
+        function updateSentencePuzzleProgress() {
+            const total = Math.max(1, spQuestionPool.length);
+            const current = Math.min(spRoundIndex + 1, total);
+            const percent = Math.round((spSolved / total) * 100);
+            document.getElementById('spProgressText').textContent = `${current} av ${total}`;
+            document.getElementById('spProgressPercent').textContent = `${percent}%`;
+            document.getElementById('spProgressFill').style.width = `${percent}%`;
+        }
+
+        function setSentencePuzzleActionState(isSolved) {
+            const checkButton = document.getElementById('spCheckButton');
+            const nextButton = document.getElementById('spNextButton');
+            checkButton.disabled = isSolved;
+            checkButton.className = isSolved ? 'btn btn-secondary' : 'btn btn-primary';
+            nextButton.disabled = !isSolved;
+            nextButton.className = isSolved ? 'btn btn-primary' : 'btn btn-secondary';
+        }
+
+        function selectSentencePuzzleWord(tileIndex) {
+            const tile = document.querySelector(`[data-sp-index="${tileIndex}"]`);
+            if (!tile || tile.disabled || document.getElementById('spNextButton').disabled === false) return;
+
+            const word = tile.dataset.spWord;
+            spSelectedWords.push({ word, tileIndex });
+            tile.disabled = true;
+            tile.classList.add('used');
+            renderBuiltSentencePuzzle();
+        }
+
+        function renderBuiltSentencePuzzle() {
+            const built = document.getElementById('spBuiltSentence');
+            built.innerHTML = spSelectedWords.map((entry, selectedIndex) => `
+                <button type="button"
+                    class="sentence-puzzle-built-word"
+                    draggable="true"
+                    data-sp-built-index="${selectedIndex}"
+                    onclick="removeSentencePuzzleWord(${selectedIndex})"
+                    ondragstart="startSentencePuzzleWordDrag(event, ${selectedIndex})"
+                    ondragend="endSentencePuzzleWordDrag()"
+                    ondragover="event.preventDefault()"
+                    ondrop="dropSentencePuzzleWord(event, ${selectedIndex})">
+                    ${escapeHtml(entry.word)}
+                </button>
+            `).join('');
+        }
+
+        function moveSentencePuzzleWord(fromIndex, toIndex) {
+            if (document.getElementById('spNextButton').disabled === false) return;
+            if (fromIndex === toIndex) return;
+            if (fromIndex < 0 || toIndex < 0) return;
+            if (fromIndex >= spSelectedWords.length || toIndex >= spSelectedWords.length) return;
+
+            const [moved] = spSelectedWords.splice(fromIndex, 1);
+            spSelectedWords.splice(toIndex, 0, moved);
+            renderBuiltSentencePuzzle();
+        }
+
+        function startSentencePuzzleWordDrag(event, selectedIndex) {
+            if (document.getElementById('spNextButton').disabled === false) return;
+            spDraggedWordIndex = selectedIndex;
+            event.currentTarget.classList.add('dragging');
+            event.dataTransfer.effectAllowed = 'move';
+            event.dataTransfer.setData('text/plain', String(selectedIndex));
+        }
+
+        function dropSentencePuzzleWord(event, targetIndex) {
+            event.preventDefault();
+            const fromIndex = spDraggedWordIndex ?? Number(event.dataTransfer.getData('text/plain'));
+            endSentencePuzzleWordDrag();
+            moveSentencePuzzleWord(fromIndex, targetIndex);
+        }
+
+        function endSentencePuzzleWordDrag() {
+            spDraggedWordIndex = null;
+            document.querySelectorAll('.sentence-puzzle-built-word.dragging').forEach(word => word.classList.remove('dragging'));
+        }
+
+        function removeSentencePuzzleWord(selectedIndex) {
+            if (document.getElementById('spNextButton').disabled === false) return;
+            const [removed] = spSelectedWords.splice(selectedIndex, 1);
+            const tile = document.querySelector(`[data-sp-index="${removed.tileIndex}"]`);
+            if (tile) {
+                tile.disabled = false;
+                tile.classList.remove('used');
+            }
+            renderBuiltSentencePuzzle();
+        }
+
+        function checkSentencePuzzle() {
+            if (!spCurrentPuzzle || document.getElementById('spNextButton').disabled === false) return;
+
+            spAttempts++;
+            const expected = spCurrentPuzzle.words.join(' ');
+            const actual = spSelectedWords.map(entry => entry.word).join(' ');
+            const feedback = document.getElementById('spFeedback');
+
+            if (actual === expected) {
+                spSolved++;
+                feedback.textContent = 'Riktig! Setningen er bygget i god spansk rekkefølge.';
+                feedback.className = 'sentence-puzzle-feedback correct';
+                document.getElementById('spScore').textContent = spSolved;
+                updateSentencePuzzleProgress();
+                setSentencePuzzleActionState(true);
+                document.querySelectorAll('.sentence-puzzle-tile').forEach(tile => tile.disabled = true);
+            } else {
+                feedback.textContent = spSelectedWords.length === 0
+                    ? 'Velg ordbrikker før du sjekker setningen.'
+                    : 'Ikke helt. Prøv å flytte ordene til en mer spansk rekkefølge.';
+                feedback.className = 'sentence-puzzle-feedback wrong';
+            }
+        }
+
+        function resetSentencePuzzleRound() {
+            if (!spCurrentPuzzle) return;
+            spSelectedWords = [];
+            document.querySelectorAll('.sentence-puzzle-tile').forEach(tile => {
+                tile.disabled = false;
+                tile.classList.remove('used');
+            });
+            document.getElementById('spBuiltSentence').innerHTML = '';
+            document.getElementById('spFeedback').textContent = '';
+            document.getElementById('spFeedback').className = 'sentence-puzzle-feedback';
+            setSentencePuzzleActionState(false);
+        }
+
+        function nextSentencePuzzle() {
+            spRoundIndex++;
+            renderSentencePuzzleRound();
+        }
+
+        function completeSentencePuzzle() {
+            const accuracy = spAttempts > 0 ? Math.round((spSolved / spAttempts) * 100) : 0;
+            document.getElementById('spProgressText').textContent = `${spQuestionPool.length} av ${spQuestionPool.length}`;
+            document.getElementById('spProgressPercent').textContent = '100%';
+            document.getElementById('spProgressFill').style.width = '100%';
+            document.getElementById('sentencePuzzleGame').classList.add('hidden');
+            document.getElementById('sentencePuzzleComplete').classList.remove('hidden');
+            document.getElementById('spFinalScore').textContent = spSolved;
+            document.getElementById('spFinalAttempts').textContent = spAttempts;
+            document.getElementById('spFinalAccuracy').textContent = `${accuracy}%`;
+        }
+
+        // ============================================
         // VERBO INVADERS GAME
         // ============================================
 
@@ -4975,6 +5316,9 @@ Vil du øve på ${pronoun} likevel?`
             document.getElementById('prepoInvadersSetup').classList.add('hidden');
             document.getElementById('prepoInvadersGame').classList.add('hidden');
             document.getElementById('prepoInvadersGameOver').classList.add('hidden');
+            document.getElementById('sentencePuzzleSetup').classList.add('hidden');
+            document.getElementById('sentencePuzzleGame').classList.add('hidden');
+            document.getElementById('sentencePuzzleComplete').classList.add('hidden');
         }
 
         function showGameSetup(game) {
@@ -4991,6 +5335,11 @@ Vil du øve på ${pronoun} likevel?`
                 document.getElementById('prepoInvadersGame').classList.add('hidden');
                 document.getElementById('prepoInvadersGameOver').classList.add('hidden');
                 renderPrepoSelector();
+            } else if (game === 'sentence-puzzle') {
+                document.getElementById('gamesMenu').classList.add('hidden');
+                document.getElementById('sentencePuzzleSetup').classList.remove('hidden');
+                document.getElementById('sentencePuzzleGame').classList.add('hidden');
+                document.getElementById('sentencePuzzleComplete').classList.add('hidden');
             }
         }
 

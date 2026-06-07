@@ -18,7 +18,8 @@
     "test:pwa-ui": "playwright test tests/pwa-and-ui-smoke.spec.js --browser chromium",
     "test:chapter-text-import": "playwright test tests/chapter-text-import.spec.js --browser chromium",
     "test:verb-focus": "playwright test tests/verb-focus.spec.js --browser chromium",
-    "test:all": "npm run check:content && npm run check:tailwind && npm run test:backup-privacy && npm run test:import-export && npm run test:storage-recovery && npm run test:chapter-focus && npm run test:completion-header && npm run test:teacher-import && npm run test:vocab-mechanics && npm run test:grammar-explanations && npm run test:pwa-ui && npm run test:chapter-text-import && npm run test:verb-focus"
+    "test:sentence-puzzle": "playwright test tests/sentence-puzzle-game.spec.js --browser chromium",
+    "test:all": "npm run check:content && npm run check:tailwind && npm run test:backup-privacy && npm run test:import-export && npm run test:storage-recovery && npm run test:chapter-focus && npm run test:completion-header && npm run test:teacher-import && npm run test:vocab-mechanics && npm run test:grammar-explanations && npm run test:pwa-ui && npm run test:chapter-text-import && npm run test:verb-focus && npm run test:sentence-puzzle"
   },
   "devDependencies": {
     "@playwright/test": "^1.60.0",
