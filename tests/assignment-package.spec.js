@@ -80,6 +80,105 @@ test.describe('teacher assignment packages', () => {
     ]);
   });
 
+  test('keeps existing built-in vocabulary available for assignment practice', async ({ page }) => {
+    await page.goto(appUrl);
+
+    const result = await page.evaluate(() => {
+      localStorage.clear();
+      studentName = '9A-14';
+      showMainApp();
+      const existingCard = cards.find(card => card.no === '1' && card.es === 'uno');
+      const imported = importAssignmentPackage({
+        schemaVersion: 'assignment-v1',
+        assignmentTitle: 'Uke 35: tall',
+        vocabulary: [{ norsk: existingCard.no, spansk: existingCard.es, category: existingCard.category }],
+        minuteTargets: { vocabulary: 10 }
+      });
+      const resolved = resolveAssignmentVocabularyCards(activeAssignment).map(card => card.id);
+      return {
+        imported,
+        assignment: { importedWords: activeAssignment.importedWords, skippedWords: activeAssignment.skippedWords, vocabularyCount: activeAssignment.vocabularyCount },
+        resolved
+      };
+    });
+
+    expect(result.imported).toMatchObject({ importedWords: 0, skippedWords: 1 });
+    expect(result.assignment).toEqual({ importedWords: 0, skippedWords: 1, vocabularyCount: 1 });
+    expect(result.resolved).toHaveLength(1);
+
+    await page.evaluate(() => {
+      showPage('homework');
+      startActiveAssignmentVocabulary();
+    });
+    await expect(page.getByRole('button', { name: /Avslutt/ }).first()).toBeVisible();
+    await expect(page.locator('#vocabStudy')).toBeVisible();
+  });
+
+  test('resolves mixed existing and new assignment words without duplicates', async ({ page }) => {
+    await page.goto(appUrl);
+
+    const result = await page.evaluate(() => {
+      localStorage.clear();
+      studentName = '9A-14';
+      showMainApp();
+      const existing = cards.find(card => card.no === 'hei' && card.es === 'hola');
+      const imported = importAssignmentPackage({
+        schemaVersion: 'assignment-v1',
+        assignmentTitle: 'Uke 36: hilsener',
+        vocabulary: [
+          { norsk: existing.no, spansk: existing.es, category: existing.category },
+          { norsk: 'god morgen', spansk: 'buenos días', category: existing.category }
+        ],
+        minuteTargets: { vocabulary: 10 }
+      });
+      const resolved = resolveAssignmentVocabularyCards(activeAssignment);
+      return {
+        imported,
+        resolved: resolved.map(card => ({ no: card.no, es: card.es, assignmentId: card.assignmentId || null })),
+        pairCount: new Set(resolved.map(card => `${card.no}::${card.es}`)).size
+      };
+    });
+
+    expect(result.imported).toMatchObject({ importedWords: 1, skippedWords: 1 });
+    expect(result.resolved).toHaveLength(2);
+    expect(result.pairCount).toBe(2);
+    expect(result.resolved.find(card => card.no === 'god morgen').assignmentId).toBeTruthy();
+  });
+
+  test('keeps assignment practice available after re-import without adding duplicates', async ({ page }) => {
+    await page.goto(appUrl);
+
+    const result = await page.evaluate(() => {
+      localStorage.clear();
+      studentName = '9A-14';
+      showMainApp();
+      const packageData = {
+        schemaVersion: 'assignment-v1',
+        id: 'assignment-reimport',
+        assignmentTitle: 'Uke 37: hilsener',
+        vocabulary: [
+          { norsk: 'hei', spansk: 'hola', category: 'hilsener' },
+          { norsk: 'god morgen', spansk: 'buenos días', category: 'hilsener' }
+        ],
+        minuteTargets: { vocabulary: 10 }
+      };
+      const first = importAssignmentPackage(packageData);
+      const second = importAssignmentPackage(packageData);
+      const resolved = resolveAssignmentVocabularyCards(activeAssignment);
+      return {
+        first,
+        second,
+        resolved: resolved.map(card => `${card.no}::${card.es}`),
+        matchingCards: cards.filter(card => card.category === 'hilsener' && ['hei', 'god morgen'].includes(card.no)).length
+      };
+    });
+
+    expect(result.first).toMatchObject({ importedWords: 1, skippedWords: 1 });
+    expect(result.second).toMatchObject({ importedWords: 0, skippedWords: 2 });
+    expect(result.resolved).toEqual(['hei::hola', 'god morgen::buenos días']);
+    expect(result.matchingCards).toBe(2);
+  });
+
   test('imports assignment packages from the homework file input', async ({ page }) => {
     await page.goto(appUrl);
 
@@ -279,6 +378,7 @@ test.describe('teacher assignment packages', () => {
 
     await expect(page.getByRole('heading', { name: 'Lag leksepakke' })).toBeVisible();
     await expect(page.getByText('For lærer')).toBeVisible();
+    await expect(page.locator('[data-builder-vocab-category]')).not.toHaveCount(0);
     await page.locator('#assignmentBuilder > summary').click();
     await expect(page.locator('#builderAssignmentTitle')).toBeVisible();
     await page.fill('#builderAssignmentTitle', 'Uke 35: familie');
@@ -291,6 +391,7 @@ test.describe('teacher assignment packages', () => {
 
     const downloadPromise = page.waitForEvent('download');
     await page.getByRole('button', { name: 'Last ned leksepakke' }).click();
+    await expect(page.locator('#assignmentBuilderStatus')).toContainText('hoppes over');
     const download = await downloadPromise;
     const stream = await download.createReadStream();
     const chunks = [];
@@ -328,6 +429,7 @@ test.describe('teacher assignment packages', () => {
 
   test('student can start assigned practice from the homework page', async ({ page }) => {
     await page.goto(appUrl);
+    page.on('dialog', dialog => dialog.accept());
 
     await page.evaluate(() => {
       localStorage.clear();

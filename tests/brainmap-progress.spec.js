@@ -84,6 +84,6 @@ test.describe('brainmap v1 progress model', () => {
 
     await expect(page.locator('#brainmapMicroskills')).toBeVisible();
     await expect(page.locator('[data-brainmap-status="gray"]').first()).toBeVisible();
-    await expect(page.getByRole('button', { name: /Tall.*0 av 48 mestret/i })).toBeVisible();
+    await expect(page.getByRole('button', { name: /Tall.*0 av 58 mestret/i })).toBeVisible();
   });
 });

@@ -281,4 +281,45 @@ test.describe('progress import/export compatibility', () => {
     });
     expect(results.storedCards).toBeNull();
   });
+
+  test('rejects null progress payloads without throwing', async ({ page }) => {
+    await page.goto(appUrl);
+
+    const result = await page.evaluate(() => {
+      localStorage.clear();
+      return importProgressData(null);
+    });
+
+    expect(result).toEqual({
+      imported: false,
+      format: 'unknown',
+      message: 'Ukjent filformat'
+    });
+  });
+
+  test('does not write malformed non-array vocabData into local storage', async ({ page }) => {
+    await page.goto(appUrl);
+
+    const result = await page.evaluate(() => {
+      localStorage.clear();
+      localStorage.setItem('spansk123Data_v4', JSON.stringify([{ id: 7, no: 'bevart', es: 'preserved' }]));
+
+      const importResult = importProgressData({
+        version: 'spansk123_export_v1',
+        vocabData: 'not-an-array'
+      });
+
+      return {
+        importResult,
+        storedCards: JSON.parse(localStorage.getItem('spansk123Data_v4'))
+      };
+    });
+
+    expect(result.importResult).toEqual({
+      imported: true,
+      format: 'spansk123_export_v1',
+      message: 'Fremgang importert'
+    });
+    expect(result.storedCards).toEqual([{ id: 7, no: 'bevart', es: 'preserved' }]);
+  });
 });

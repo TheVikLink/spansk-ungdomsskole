@@ -59,21 +59,41 @@ test.describe('vocabulary learning mechanics', () => {
     expect(typed.filter(item => item.typed).map(item => item.id)).toEqual([1, 5, 9]);
   });
 
-  test('typed answers require exact accents but ignore case', async ({ page }) => {
+  test('typed answers classify accent variants while ignoring case and extra spaces', async ({ page }) => {
     await page.goto(appUrl);
 
     const result = await page.evaluate(() => ({
       sameCase: isTypedVocabAnswerCorrect('sí', 'sí'),
       upperCase: isTypedVocabAnswerCorrect('SÍ', 'sí'),
       missingAccent: isTypedVocabAnswerCorrect('si', 'sí'),
-      extraSpace: isTypedVocabAnswerCorrect('  Sí  ', 'sí')
+      extraSpace: isTypedVocabAnswerCorrect('  Sí  ', 'sí'),
+      doubleSpace: isTypedVocabAnswerCorrect('  buenos  días  ', 'buenos días'),
+      wrong: isTypedVocabAnswerCorrect('no', 'sí')
     }));
 
     expect(result).toEqual({
-      sameCase: true,
-      upperCase: true,
-      missingAccent: false,
-      extraSpace: true
+      sameCase: { resultKind: 'correct', correct: true },
+      upperCase: { resultKind: 'correct', correct: true },
+      missingAccent: { resultKind: 'accent_or_case_variant', correct: false },
+      extraSpace: { resultKind: 'correct', correct: true },
+      doubleSpace: { resultKind: 'correct', correct: true },
+      wrong: { resultKind: 'wrong', correct: false }
+    });
+  });
+
+  test('keeps ñ distinct while classifying Spanish accent variants', async ({ page }) => {
+    await page.goto(appUrl);
+
+    const result = await page.evaluate(() => ({
+      accentVariant: isTypedVocabAnswerCorrect('platano', 'plátano'),
+      enye: isTypedVocabAnswerCorrect('ano', 'año'),
+      multiWord: isTypedVocabAnswerCorrect('  buenos  días  ', 'buenos días')
+    }));
+
+    expect(result).toEqual({
+      accentVariant: { resultKind: 'accent_or_case_variant', correct: false },
+      enye: { resultKind: 'wrong', correct: false },
+      multiWord: { resultKind: 'correct', correct: true }
     });
   });
 

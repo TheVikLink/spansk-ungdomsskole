@@ -27,10 +27,10 @@
             <div class="login-divider">har du brukt appen før?</div>
             
             <button class="login-btn login-btn-secondary" onclick="importProgressFile()">📂 Importer fremgang fra fil</button>
-            <p class="login-hint mt-2 text-xs">
+            <p class="login-hint mt-2">
                 Støtter både ny og gammel versjon av appen
             </p>
-            <p class="login-hint mt-2 text-xs">
+            <p class="login-hint mt-2">
                 Hvis nettleserdata slettes, skriv inn elevkoden på nytt eller importer tidligere fremgang for å fortsette uten ny diagnose.
             </p>
         </div>
@@ -122,13 +122,13 @@
                             <span class="vocab-mode-text">Øv på alle ord som er klare for repetisjon.</span>
                             <span class="vocab-mode-meta" id="reviewModeMeta">0 ord klare</span>
                         </button>
-                        <button type="button" class="vocab-mode-card mixed" onclick="startVocabSession('mixed')">
+                        <button type="button" class="vocab-mode-card mixed" onclick="selectVocabMode('mixed')">
                             <span class="vocab-mode-icon">🌱</span>
                             <span class="vocab-mode-title">Repetere ord og lære nye ord</span>
                             <span class="vocab-mode-text">Ta repetisjonene først, og legg til nye ord fra valgte kategorier.</span>
                             <span class="vocab-mode-meta" id="mixedModeMeta">Velg kategori under</span>
                         </button>
-                        <button type="button" class="vocab-mode-card new" onclick="startVocabSession('new')">
+                        <button type="button" class="vocab-mode-card new" onclick="selectVocabMode('new')">
                             <span class="vocab-mode-icon">✨</span>
                             <span class="vocab-mode-title">Lære nye ord</span>
                             <span class="vocab-mode-text">Start en kort økt med nye ord fra kategoriene du velger.</span>
@@ -162,14 +162,17 @@
                         </label>
                     </div>
 
-                    <div class="settings-section">
-                        <h3>📚 Velg kategori for nye ord</h3>
+                    <details class="settings-section vocab-category-disclosure" id="vocabCategoryDisclosure">
+                        <summary>📚 Velg kategori for nye ord</summary>
                         <div class="setting-row">
                             <button class="btn btn-sm btn-outline" onclick="selectAllCategories()">Velg alle</button>
                             <button class="btn btn-sm btn-outline" onclick="deselectAllCategories()">Fjern alle</button>
                         </div>
                         <div id="categoryGrid" class="category-grid"></div>
-                    </div>
+                        <div id="vocabModeStartAction" class="hidden mt-4">
+                            <button type="button" class="btn btn-primary" onclick="startVocabSession(currentVocabMode)">Start gloseøkt</button>
+                        </div>
+                    </details>
 
                     <details class="vocab-advanced">
                         <summary>Statistikk, import og egne gloser</summary>
@@ -961,6 +964,7 @@
         let activeAssignment = null;
         let learningProgressWriteBlocked = false;
         let quizStatsWriteBlocked = false;
+        let diagnosisFeedback = null;
 
         const learningCatalog = {
             skills: [
@@ -1383,7 +1387,13 @@
             return next;
         }
 
+        function hasCompletedDailyQuizForDate(stats, localDate = getLocalDateString()) {
+            const normalized = normalizeQuizStats(stats);
+            return (normalized.dailyQuizCounts[normalizeQuizDate(localDate)] || 0) > 0;
+        }
+
         function startDiagnosis(nowIso = new Date().toISOString()) {
+            diagnosisFeedback = null;
             return saveDiagnosisState({
                 schemaVersion: DIAGNOSIS_SCHEMA_VERSION,
                 status: 'in_progress',
@@ -1410,7 +1420,13 @@
         }
 
         function normalizeAnswerText(value) {
-            return String(value || '').trim().toLowerCase();
+            return String(value || '').trim().toLowerCase().replace(/\s+/g, ' ');
+        }
+
+        function normalizeAccentVariant(value) {
+            return normalizeAnswerText(value).replace(/[áéíóúü]/g, character => ({
+                á: 'a', é: 'e', í: 'i', ó: 'o', ú: 'u', ü: 'u'
+            }[character] || character));
         }
 
         function evaluateDiagnosisAnswer(question, answer) {
@@ -1418,6 +1434,21 @@
             if (!normalizedAnswer) return { resultKind: 'skipped', correct: false };
             const accepted = (question.acceptedAnswers || []).map(normalizeAnswerText);
             if (accepted.includes(normalizedAnswer)) return { resultKind: 'correct', correct: true };
+            const accentVariant = normalizeAccentVariant(answer);
+            if ((question.acceptedAnswers || []).some(expected => normalizeAccentVariant(expected) === accentVariant)) {
+                return { resultKind: 'accent_or_case_variant', correct: false };
+            }
+            return { resultKind: 'wrong', correct: false };
+        }
+
+        function evaluateTypedAnswer(answer, expected) {
+            const normalizedAnswer = normalizeAnswerText(answer);
+            const normalizedExpected = normalizeAnswerText(expected);
+            if (!normalizedAnswer) return { resultKind: 'skipped', correct: false };
+            if (normalizedAnswer === normalizedExpected) return { resultKind: 'correct', correct: true };
+            if (normalizeAccentVariant(answer) === normalizeAccentVariant(expected)) {
+                return { resultKind: 'accent_or_case_variant', correct: false };
+            }
             return { resultKind: 'wrong', correct: false };
         }
 
@@ -1530,6 +1561,30 @@
             }
 
             if (state.status === 'in_progress') {
+                if (diagnosisFeedback) {
+                    const feedbackQuestion = diagnosisQuestionCatalog.find(question => question.id === diagnosisFeedback.questionId);
+                    if (feedbackQuestion) {
+                        panel.classList.remove('hidden');
+                        panel.removeAttribute('data-response-mode');
+                        panel.removeAttribute('data-accepted-answer');
+                        const isLastQuestion = state.answers.length >= state.questionIds.length;
+                        panel.innerHTML = `
+                            <div class="page-header">
+                                <h2>Finn nivået mitt</h2>
+                                <p>Spørsmål ${state.answers.length} av ${state.questionIds.length}.</p>
+                            </div>
+                            <div class="homework-summary diagnosis-feedback ${diagnosisFeedback.correct ? 'correct' : 'incorrect'}" data-diagnosis-feedback>
+                                <p class="text-xl font-bold">${escapeHtml(feedbackQuestion.prompt)}</p>
+                                <p class="font-semibold">${diagnosisFeedback.correct ? '✓ Riktig' : `✗ Riktig svar var: ${escapeHtml(diagnosisFeedback.canonicalAnswer)}`}</p>
+                                <p class="text-gray-600">Feil brukes bare til å finne riktig startnivå.</p>
+                                <button type="button" class="btn btn-primary mt-4" onclick="advanceDiagnosisFeedback()">${isLastQuestion ? 'Se resultat' : 'Neste'}</button>
+                            </div>
+                        `;
+                        panel.querySelector('button')?.focus();
+                        return;
+                    }
+                    diagnosisFeedback = null;
+                }
                 const question = getNextDiagnosisQuestion(state);
                 if (!question) {
                     completeDiagnosisResult();
@@ -1584,9 +1639,25 @@
         }
 
         function submitDiagnosisAnswer(answer) {
+            if (diagnosisFeedback) return;
             const question = getNextDiagnosisQuestion();
             if (!question) return;
             answerDiagnosisQuestion(question.id, answer);
+            const state = loadDiagnosisState();
+            const answerRecord = state.answers.find(entry => entry.questionId === question.id);
+            const canonicalAnswer = question.acceptedAnswers?.[0] || 'Svar ikke registrert';
+            diagnosisFeedback = {
+                questionId: question.id,
+                answer,
+                correct: Boolean(answerRecord?.correct),
+                canonicalAnswer
+            };
+            renderDiagnosisPanel();
+        }
+
+        function advanceDiagnosisFeedback() {
+            if (!diagnosisFeedback) return;
+            diagnosisFeedback = null;
             const state = loadDiagnosisState();
             if (state.answers.length >= state.questionIds.length) {
                 completeDiagnosisResult();
@@ -1873,6 +1944,32 @@
             };
         }
 
+        function resolveAssignmentVocabularyCards(assignment = activeAssignment, cardList = cards) {
+            if (!assignment) return [];
+
+            if (!Array.isArray(assignment.vocabulary) || assignment.vocabulary.length === 0) {
+                return cardList.filter(card => card.assignmentId === assignment.id);
+            }
+
+            const resolved = [];
+            const seen = new Set();
+            assignment.vocabulary.forEach(word => {
+                const pairKey = getVocabPairKey(word.norsk, word.spansk);
+                const categoryKey = normalizeCategorySlug(word.category);
+                const card = cardList.find(candidate =>
+                    getVocabPairKey(candidate.norsk || candidate.no, candidate.spansk || candidate.es) === pairKey &&
+                    normalizeCategorySlug(candidate.category) === categoryKey
+                );
+                const resolvedKey = `${pairKey}::${categoryKey}`;
+                if (card && !seen.has(resolvedKey)) {
+                    seen.add(resolvedKey);
+                    resolved.push(card);
+                }
+            });
+
+            return resolved;
+        }
+
         function getHomeworkRequiredDays() {
             return activeAssignment?.requiredPracticeDays || 2;
         }
@@ -2036,7 +2133,7 @@
                 document.body.removeChild(a);
                 URL.revokeObjectURL(url);
 
-                statusEl.textContent = `Leksepakke laget med ${assignment.vocabulary.length} gloser. Del JSON-filen med elevene.`;
+                statusEl.textContent = 'Leksepakke laget med ' + assignment.vocabulary.length + ' gloser. Ord eleven allerede har, hoppes over som nye kort, men brukes fortsatt i lekseøkten. Del JSON-filen med elevene.';
                 statusEl.className = 'homework-hint text-emerald-500';
                 return assignment;
             } catch (error) {
@@ -2215,7 +2312,7 @@
                         </div>
                         <div class="assignment-meta-item">
                             <span class="assignment-meta-label">Gloser</span>
-                            <span class="assignment-meta-value">${activeAssignment.importedWords || 0} gloser</span>
+                            <span class="assignment-meta-value">${activeAssignment.vocabularyCount ?? activeAssignment.importedWords ?? 0} gloser</span>
                         </div>
                     </div>
                     ${minuteProgressHtml}
@@ -2226,7 +2323,9 @@
 
         function renderAssignmentActions() {
             if (!activeAssignment) return '';
-            const hasVocab = (activeAssignment.importedWords || 0) > 0;
+            const hasVocab = Array.isArray(activeAssignment.vocabulary)
+                ? activeAssignment.vocabulary.length > 0
+                : (activeAssignment.importedWords || 0) > 0;
             const hasVerbs = (activeAssignment.verbFocuses || []).length > 0;
             const hasGrammar = (activeAssignment.grammarTopics || []).length > 0;
             if (!hasVocab && !hasVerbs && !hasGrammar) return '';
@@ -2242,20 +2341,18 @@
 
         function startActiveAssignmentVocabulary() {
             if (!activeAssignment) return;
-            const assignmentCategories = new Set(cards
-                .filter(card => card.assignmentId === activeAssignment.id)
-                .map(card => card.category));
-            if (assignmentCategories.size === 0) {
-                showToast('Denne leksepakken har ingen importerte gloser.', 'error');
+            const assignmentCards = resolveAssignmentVocabularyCards(activeAssignment);
+            if (assignmentCards.length === 0) {
+                showToast('Denne leksepakken har ingen tilgjengelige gloser på denne enheten.', 'error');
                 return;
             }
 
             selectedCategories.clear();
-            assignmentCategories.forEach(category => selectedCategories.add(category));
+            assignmentCards.forEach(card => selectedCategories.add(card.category));
             showPage('vocab');
             populateCategories();
             updateStats();
-            startVocabSession('mixed');
+            startVocabSession('mixed', assignmentCards);
         }
 
         function startActiveAssignmentVerbs() {
@@ -2551,12 +2648,20 @@
         }
 
         function importProgressData(data) {
+            if (!data || typeof data !== 'object') {
+                return {
+                    imported: false,
+                    format: 'unknown',
+                    message: 'Ukjent filformat'
+                };
+            }
+
             if (data.version === 'spansk123_export_v1') {
                 if (data.studentName) {
                     studentName = data.studentName;
                     localStorage.setItem('spansk123_studentName', studentName);
                 }
-                if (data.vocabData) {
+                if (Array.isArray(data.vocabData)) {
                     localStorage.setItem('spansk123Data_v4', JSON.stringify(data.vocabData));
                 }
                 if (data.grammarData) {
@@ -2963,19 +3068,21 @@
             if (!content) return;
             const diagnosisComplete = loadDiagnosisState().status === 'complete';
             const quizStats = loadQuizStats();
-            const streakText = quizStats.currentStreak > 0
-                ? `🔥 ${quizStats.currentStreak} dag${quizStats.currentStreak === 1 ? '' : 'er'} på rad · ${quizStats.dailyQuizCounts[getLocalDateString()] || 0} quiz i dag`
-                : 'Start en quiz i dag for å bygge streak.';
+            const dailyQuizComplete = hasCompletedDailyQuizForDate(quizStats, getLocalDateString());
+            const streakText = dailyQuizComplete
+                ? `🔥 ${quizStats.currentStreak} dag${quizStats.currentStreak === 1 ? '' : 'er'} på rad — kom tilbake i morgen!`
+                : 'Du har ikke øvd i dag ennå.';
             content.innerHTML = `
                 <section class="home-primary-action" aria-labelledby="homeQuizTitle">
                     <div class="home-primary-copy">
                         <span class="home-eyebrow">${diagnosisComplete ? 'Neste steg' : 'Første steg'}</span>
-                        <h1 id="homeQuizTitle">Dagens quiz</h1>
-                        <p>${diagnosisComplete ? 'Ti korte spørsmål fra ordforråd, grammatikk og verb.' : 'Ta nivåtesten først, så lager vi en quiz som passer deg.'}</p>
+                        <h1 id="homeQuizTitle">${dailyQuizComplete ? 'Dagens quiz fullført' : 'Dagens quiz'}</h1>
+                        <p>${dailyQuizComplete ? 'Bra jobbet. Fortsett med gloser eller se hva du bør øve på.' : diagnosisComplete ? 'Ti korte spørsmål fra ordforråd, grammatikk og verb.' : 'Ta nivåtesten først, så lager vi en quiz som passer deg.'}</p>
                     </div>
-                    <button type="button" class="btn btn-primary btn-large" id="homeStartMixedQuizBtn" onclick="startDailyQuizFromHome()" ${diagnosisComplete ? '' : 'disabled'}>${diagnosisComplete ? 'Start dagens quiz' : 'Start nivåtest først'}</button>
+                    <button type="button" class="btn btn-primary btn-large" id="homeStartMixedQuizBtn" onclick="${dailyQuizComplete ? "showPage('vocab')" : 'startDailyQuizFromHome()'}" ${diagnosisComplete ? '' : 'disabled'}>${dailyQuizComplete ? 'Øv på gloser' : diagnosisComplete ? 'Start dagens quiz' : 'Start nivåtest først'}</button>
                 </section>
                 <p class="home-streak" id="homeQuizStreak">${streakText}</p>
+                <p class="home-offline-hint" id="homeOfflineHint">Fungerer også uten internett etter at appen er lastet inn.</p>
             `;
         }
 
@@ -2985,7 +3092,49 @@
             startMixedQuizFromUi();
         }
 
-        function showPage(page) {
+        function getActiveSessionPage() {
+            return {
+                mixedQuiz: 'vocab',
+                vocabulary: 'vocab',
+                verbs: 'verbs',
+                grammar: 'grammar'
+            }[activeSessionType] || null;
+        }
+
+        function abandonActiveSession() {
+            if (!activeSessionType) return false;
+            if (activeSessionType === 'mixedQuiz') {
+                mixedQuizState = null;
+            } else if (activeSessionType === 'vocabulary') {
+                sessionCards = [];
+                currentIndex = 0;
+                currentCard = null;
+                showingAnswer = false;
+                sessionStartTime = null;
+                sessionStats = { reviewed: 0, correct: 0, newLearned: 0 };
+            } else if (activeSessionType === 'verbs') {
+                verbSessionExercises = [];
+                verbCurrentIndex = 0;
+                verbStats = { correct: 0, total: 0 };
+                verbAnswerPending = false;
+                verbSessionStartTime = null;
+            } else if (activeSessionType === 'grammar') {
+                grammarExercises = [];
+                grammarCurrentIndex = 0;
+                grammarStats = { correct: 0, total: 0, errors: 0 };
+                grammarSessionStartTime = null;
+            }
+            activeSessionType = null;
+            return true;
+        }
+
+        function showPage(page, options = {}) {
+            const activePage = getActiveSessionPage();
+            if (!options.skipGuard && activeSessionType && activePage === page) return false;
+            if (!options.skipGuard && activeSessionType && activePage && activePage !== page) {
+                if (!confirm('Du holder på med en økt. Avslutt og bytt fane?')) return false;
+                abandonActiveSession();
+            }
             // Hide all pages
             document.getElementById('homePage').classList.add('hidden');
             document.getElementById('vocabPage').classList.add('hidden');
@@ -3064,6 +3213,16 @@
         
         const glossary = [
             // TALL
+            ["1", "uno", "tall"],
+            ["2", "dos", "tall"],
+            ["3", "tres", "tall"],
+            ["4", "cuatro", "tall"],
+            ["5", "cinco", "tall"],
+            ["6", "seis", "tall"],
+            ["7", "siete", "tall"],
+            ["8", "ocho", "tall"],
+            ["9", "nueve", "tall"],
+            ["10", "diez", "tall"],
             ["11", "once", "tall"],
             ["12", "doce", "tall"],
             ["13", "trece", "tall"],
@@ -3096,7 +3255,7 @@
             ["245", "doscientos cuarenta y cinco", "tall"],
             ["300", "trescientos", "tall"],
             ["400", "cuatrocientos", "tall"],
-            ["500 på spansk", "quinientos", "tall"],
+            ["500", "quinientos", "tall"],
             ["600", "seiscientos", "tall"],
             ["700", "setecientos", "tall"],
             ["800", "ochocientos", "tall"],
@@ -3120,13 +3279,17 @@
             ["Når er bursdagen til Marius?", "¿Cuándo es el cumpleaños de Marius?", "bursdag"],
             ["Bursdagen til Marius er 26. juni", "El cumpleaños de Marius es el veintiséis de junio", "bursdag"],
             
+            // HILSENER
+            ["hei", "hola", "hilsener"],
+            ["takk", "gracias", "hilsener"],
+
             // LAND
             ["Norge", "Noruega", "land"],
             ["Sverige", "Suecia", "land"],
             ["Danmark", "Dinamarca", "land"],
             ["Finland", "Finlandia", "land"],
             ["Island", "Islandia", "land"],
-            ["Russland på spansk", "Rusia", "land"],
+            ["Russland", "Rusia", "land"],
             ["Tyskland", "Alemania", "land"],
             ["Østerrike", "Austria", "land"],
             ["Nederland", "Los Países Bajos", "land"],
@@ -3138,7 +3301,7 @@
             ["England", "Inglaterra", "land"],
             ["Irland", "Irlanda", "land"],
             ["Hellas", "Grecia", "land"],
-            ["Sveits (spansk)", "Suiza", "land"],
+            ["Sveits", "Suiza", "land"],
             
             // FARGER
             ["rød", "rojo", "farger"],
@@ -3183,7 +3346,7 @@
             ["de hellige tre kongers aften", "El Día de los Reyes", "høytider"],
             ["allehelgensdagen", "El Día de los Muertos", "høytider"],
             ["fødselsdag", "El Cumpleaños", "høytider"],
-            ["konfirmasjon", "La Comunión", "høytider"],
+            ["konfirmasjon", "La Confirmación", "høytider"],
             ["barnedåp", "El Bautizo", "høytider"],
             ["bryllup", "La Boda", "høytider"],
             ["begravelse (f)", "el Funeral", "høytider"],
@@ -3327,7 +3490,7 @@
             ["håndball", "el balonmano", "hobbyer"],
             ["volleyball", "el voleibol", "hobbyer"],
             ["badminton", "bádminton", "hobbyer"],
-            ["innebandy", "el bandy sala", "hobbyer"],
+            ["innebandy", "el floorball", "hobbyer"],
             ["tennis", "el tenis", "hobbyer"],
             ["bordtennis", "el tenis de mesa", "hobbyer"],
             ["ishockey", "el hockey sobre hielo", "hobbyer"],
@@ -3336,22 +3499,22 @@
             ["alpint", "esquí alpino", "hobbyer"],
             ["å handle", "ir de compras", "hobbyer"],
             ["å sykle", "montar en bici", "hobbyer"],
-            ["å synge", "cantar", "hobbyer"],
+            ["å synge i kor", "cantar en un coro", "hobbyer"],
             ["å se på TV", "ver la tele", "hobbyer"],
             ["å spille gitar", "tocar la guitarra", "hobbyer"],
             ["å spille piano", "tocar el piano", "hobbyer"],
-            ["å trene", "entrenar", "hobbyer"],
+            ["å trene på treningssenteret", "entrenar en el gimnasio", "hobbyer"],
             ["å høre musikk", "escuchar música", "hobbyer"],
             ["å være med venner", "estar con amigos", "hobbyer"],
             ["å dra ut med venner", "salir con mis amigos", "hobbyer"],
-            ["å danse", "bailar", "hobbyer"],
+            ["å danse på fritiden", "bailar en mi tiempo libre", "hobbyer"],
             ["å gå tur", "hacer senderismo", "hobbyer"],
             ["å slappe av", "relajarse", "hobbyer"],
             ["å surfe på internett", "navegar por internet", "hobbyer"],
             
             // KLOKKA
-            ["Har du klokke?", "¿Tienes hora?", "klokka"],
-            ["Vet du hvor mye klokka er?", "Perdón, ¿Sabes qué hora es?", "klokka"],
+            ["Har du klokke?", "¿Tienes reloj?", "klokka"],
+            ["Vet du hva klokka er?", "¿Sabes qué hora es?", "klokka"],
             ["Når skal du spise?", "¿A qué hora vas a comer?", "klokka"],
             ["jeg skal spise klokka åtte", "voy a comer a las ocho", "klokka"],
             ["Den er 13:00", "Es la una", "klokka"],
@@ -3384,7 +3547,7 @@
             
             // SKOLE
             ["elev", "el alumno", "skole"],
-            ["lærer (p)", "el profesor", "skole"],
+            ["spansklærer", "el profesor de español", "skole"],
             ["skoletime", "la clase", "skole"],
             ["skoleklasse", "la clase", "skole"],
             ["tavle", "la pizarra", "skole"],
@@ -3393,7 +3556,7 @@
             ["bok", "el libro", "skole"],
             ["PC", "el ordenador", "skole"],
             ["ungdomsskolen", "la E.S.O", "skole"],
-            ["pult", "la mesa", "skole"],
+            ["pult", "el pupitre", "skole"],
             ["stol", "la silla", "skole"],
             ["sekk", "la mochila", "skole"],
             ["pennal", "el estuche", "skole"],
@@ -3479,7 +3642,7 @@
             ["jeg drar på trening", "voy al entrenamiento", "rutiner"],
             ["jeg spiser middag", "ceno", "rutiner"],
             ["jeg sover", "duermo", "rutiner"],
-            ["jeg står opp tidlig", "me despierto temprano", "rutiner"],
+            ["jeg står opp tidlig", "me levanto temprano", "rutiner"],
             ["jeg tar på meg en t-skjorte", "me pongo una camiseta", "rutiner"],
             ["jeg går til skolen", "voy a pie a la escuela", "rutiner"],
             
@@ -3945,6 +4108,7 @@
         let currentVocabMode = 'mixed';
         let sessionTimeLimitMinutes = 0;
         let mixedQuizState = null;
+        let activeSessionType = null;
         const TYPED_REVIEW_PERCENT = 0.25;
         const LEECH_LAPSE_THRESHOLD = 3;
 
@@ -4113,6 +4277,7 @@
                 return;
             }
             mixedQuizState = { quiz, index: 0, answered: 0, correct: 0, startedAt: new Date() };
+            activeSessionType = 'mixedQuiz';
             document.getElementById('vocabSettings').classList.add('hidden');
             document.getElementById('vocabStudy').classList.add('hidden');
             document.getElementById('mixedQuizStudy').classList.remove('hidden');
@@ -4131,10 +4296,13 @@
             if (result.correct) mixedQuizState.correct++;
             const feedback = document.getElementById('mixedQuizFeedback');
             if (feedback) {
-                feedback.className = `mixed-quiz-feedback ${result.correct ? 'correct' : 'incorrect'}`;
-                feedback.innerHTML = result.correct
+                const feedbackClass = result.resultKind === 'correct' ? 'correct' : result.resultKind === 'accent_or_case_variant' ? 'near-miss' : 'incorrect';
+                feedback.className = `mixed-quiz-feedback ${feedbackClass}`;
+                feedback.innerHTML = result.resultKind === 'correct'
                     ? '✓ Riktig!'
-                    : `✗ Riktig svar er: <strong>${escapeHtml(item.acceptedAnswers[0])}</strong>`;
+                    : result.resultKind === 'accent_or_case_variant'
+                        ? `Nesten riktig — sjekk aksenten. Riktig svar er: <strong>${escapeHtml(item.acceptedAnswers[0])}</strong>`
+                        : `✗ Feil — riktig svar: <strong>${escapeHtml(item.acceptedAnswers[0])}</strong>`;
                 feedback.insertAdjacentHTML('beforeend', `<div class="button-group"><button type="button" class="btn btn-primary btn-sm mt-4" onclick="advanceMixedQuizQuestion()">${mixedQuizState.answered >= mixedQuizState.quiz.items.length ? 'Se resultat' : 'Neste'}</button></div>`);
             }
             document.querySelectorAll('#mixedQuizQuestion input, #mixedQuizQuestion button').forEach(control => {
@@ -4160,6 +4328,7 @@
                 recordPracticeSession(total, mixedQuizState.correct, 'mixed-quiz', getElapsedPracticeMinutes(mixedQuizState.startedAt));
                 quizStats = completeQuizForToday();
             }
+            activeSessionType = null;
             const container = document.getElementById('mixedQuizQuestion');
             if (container) {
                 container.innerHTML = `
@@ -4176,7 +4345,10 @@
         }
 
         function endMixedQuizEarly() {
-            if (!mixedQuizState || confirm('Er du sikker på at du vil avslutte quizen?')) showPage('vocab');
+            if (!mixedQuizState || confirm('Er du sikker på at du vil avslutte quizen?')) {
+                abandonActiveSession();
+                showPage('vocab', { skipGuard: true });
+            }
         }
 
         function loadData() {
@@ -4258,6 +4430,11 @@
 
         function setupKeyboardShortcuts() {
             document.addEventListener('keydown', (e) => {
+                if (diagnosisFeedback && e.key === 'Enter') {
+                    e.preventDefault();
+                    advanceDiagnosisFeedback();
+                    return;
+                }
                 // Undo shortcut (Ctrl+Z / Cmd+Z) in vocab
                 if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'z') {
                     if (!document.getElementById('vocabStudy').classList.contains('hidden')) {
@@ -4485,7 +4662,7 @@
         }
 
         function isTypedVocabAnswerCorrect(answer, expected) {
-            return normalizeTypedAnswer(answer) === normalizeTypedAnswer(expected);
+            return evaluateTypedAnswer(answer, expected);
         }
 
         function getVocabPromptText(item, cardList = cards) {
@@ -4668,7 +4845,17 @@ Vil du øve på ${pronoun} likevel?`
             );
         }
 
-        function startVocabSession(mode = 'mixed') {
+        function selectVocabMode(mode) {
+            currentVocabMode = mode;
+            const disclosure = document.getElementById('vocabCategoryDisclosure');
+            const startAction = document.getElementById('vocabModeStartAction');
+            const needsCategories = mode === 'new' || mode === 'mixed';
+            if (disclosure) disclosure.open = needsCategories;
+            if (startAction) startAction.classList.toggle('hidden', !needsCategories);
+            if (!needsCategories) startVocabSession(mode);
+        }
+
+        function startVocabSession(mode = 'mixed', cardPool = null) {
             const newLimit = getLimitValue('newCardsLimit', 10);
             const reviewLimit = getLimitValue('reviewCardsLimit', 50);
             sessionTimeLimitMinutes = getLimitValue('sessionTimeLimit', 0);
@@ -4676,8 +4863,10 @@ Vil du øve på ${pronoun} likevel?`
             isCustomStudySession = false;
             sessionCards = [];
 
-            const dueCards = markTypedReviewItems(getDueCards(cards).slice(0, reviewLimit));
-            const filteredNewCards = getNewCards(getFilteredCards()).slice(0, newLimit * 2);
+            const availableCards = Array.isArray(cardPool) ? cardPool : cards;
+            const newCards = Array.isArray(cardPool) ? availableCards : getFilteredCards();
+            const dueCards = markTypedReviewItems(getDueCards(availableCards).slice(0, reviewLimit));
+            const filteredNewCards = getNewCards(newCards).slice(0, newLimit * 2);
 
             if (mode === 'review') {
                 sessionCards = shuffleArray(dueCards);
@@ -4702,6 +4891,7 @@ Vil du øve på ${pronoun} likevel?`
                 return;
             }
 
+            activeSessionType = 'vocabulary';
             vocabUndoStack = [];
             currentIndex = 0;
             sessionStartTime = new Date();
@@ -4734,6 +4924,7 @@ Vil du øve på ${pronoun} likevel?`
                 return;
             }
 
+            activeSessionType = 'vocabulary';
             vocabUndoStack = [];
             currentIndex = 0;
             sessionStartTime = new Date();
@@ -4852,8 +5043,8 @@ Vil du øve på ${pronoun} likevel?`
             
             document.getElementById('buttonArea').innerHTML = `
                 <div class="rating-buttons">
-                    <button class="rating-btn rating-again" onclick="rateCard(0)">😓 Igjen<span class="interval">${intervals[0]}</span><span class="key">(1)</span></button>
-                    <button class="rating-btn rating-good" onclick="rateCard(2)">😊 Bra<span class="interval">${intervals[2]}</span><span class="key">(2)</span></button>
+                    <button class="rating-btn rating-again" onclick="rateCard(0)">😓 <span class="rating-label">Igjen</span><span class="interval">${intervals[0]}</span><span class="key">(1)</span></button>
+                    <button class="rating-btn rating-good" onclick="rateCard(2)">😊 <span class="rating-label">Bra</span><span class="interval">${intervals[2]}</span><span class="key">(2)</span></button>
                 </div>
             `;
                     updateUndoButtonState();
@@ -4864,19 +5055,19 @@ Vil du øve på ${pronoun} likevel?`
             const input = document.getElementById('typedVocabInput');
             const feedback = document.getElementById('typedVocabFeedback');
             const expected = getExpectedAnswerText(currentCard);
-            const isCorrect = isTypedVocabAnswerCorrect(input.value, expected);
+            const evaluation = isTypedVocabAnswerCorrect(input.value, expected);
 
             input.disabled = true;
 
-            if (isCorrect) {
+            if (evaluation.resultKind === 'correct') {
                 feedback.innerHTML = '<div class="grammar-feedback correct">✓ Riktig!</div>';
                 rateCard(2);
                 return;
             }
 
             feedback.innerHTML = `
-                <div class="grammar-feedback incorrect">
-                    ✗ Feil. Riktig svar er: <strong>${expected}</strong>
+                <div class="grammar-feedback ${evaluation.resultKind === 'accent_or_case_variant' ? 'near-miss' : 'incorrect'}">
+                    ${evaluation.resultKind === 'accent_or_case_variant' ? 'Nesten riktig — sjekk aksenten.' : '✗ Feil.'} Riktig svar er: <strong>${expected}</strong>
                 </div>
             `;
             document.getElementById('buttonArea').innerHTML = `
@@ -4956,6 +5147,7 @@ Vil du øve på ${pronoun} likevel?`
         }
 
         function endVocabSession() {
+            activeSessionType = null;
             vocabUndoStack = [];
             updateUndoButtonState();
             document.querySelector('#vocabStudy .study-header')?.classList.add('hidden');
@@ -5008,6 +5200,10 @@ Vil du øve på ${pronoun} likevel?`
         function getBrainmapProgressCell(progress, targetId, direction = null) {
             if (direction) return progress?.wordProgress?.[targetId]?.[direction] || {};
             return progress?.skillProgress?.[targetId] || {};
+        }
+
+        function formatBrainmapNodeStatus(node) {
+            return node.attempts === 0 ? node.statusLabel : `${node.statusLabel} · styrke ${node.strength.toFixed(1)} av 5`;
         }
 
         function buildBrainmapModel(progress = loadLearningProgress()) {
@@ -5089,29 +5285,37 @@ Vil du øve på ${pronoun} likevel?`
                 <section class="brainmap-learning-map" aria-labelledby="brainmapMicroskillsTitle">
                     <div class="page-header">
                         <h3 id="brainmapMicroskillsTitle">Læringskart</h3>
-                        <p>Fargene viser hva du har øvd på og hva som trenger mer trening. Grå betyr at du ikke har startet ennå.</p>
+                        <div class="brainmap-legend" aria-label="Statusforklaring">
+                            <span><i class="brainmap-legend-dot brainmap-legend-gray" aria-hidden="true"></i>Grå = ikke startet</span>
+                            <span><i class="brainmap-legend-dot brainmap-legend-red" aria-hidden="true"></i>Rød = trenger øving</span>
+                            <span><i class="brainmap-legend-dot brainmap-legend-yellow" aria-hidden="true"></i>Gul = på vei</span>
+                            <span><i class="brainmap-legend-dot brainmap-legend-green" aria-hidden="true"></i>Grønn = god kontroll</span>
+                            <span><i class="brainmap-legend-dot brainmap-legend-gold" aria-hidden="true"></i>Gull = svært sterk</span>
+                        </div>
+                        <h4 class="brainmap-section-title">Ferdigheter</h4>
                     </div>
                     <div id="brainmapMicroskills" class="brainmap-node-grid">
                         ${model.skills.map(node => `
-                            <article class="brainmap-node brainmap-node-${node.status}" data-brainmap-status="${node.status}" role="group" aria-label="${escapeHtml(`${node.label}, ${node.level}, ${node.statusLabel}, ${node.strength.toFixed(1)} av 5`)}">
+                            <article class="brainmap-node brainmap-node-${node.status}" data-brainmap-status="${node.status}" role="group" aria-label="${escapeHtml(`${node.label}, ${node.level}, ${formatBrainmapNodeStatus(node)}`)}">
                                 <div class="brainmap-node-topline">
                                     <span class="brainmap-status-dot" aria-hidden="true"></span>
                                     <span class="brainmap-node-level">${escapeHtml(node.level)}</span>
                                 </div>
                                 <h4>${escapeHtml(node.label)}</h4>
-                                <p>${escapeHtml(node.statusLabel)} · ${node.strength.toFixed(1)} / 5</p>
+                                <p>${escapeHtml(formatBrainmapNodeStatus(node))}</p>
                             </article>
                         `).join('')}
                     </div>
+                    <h4 class="brainmap-section-title brainmap-vocabulary-title">Ordforråd</h4>
                     <div class="brainmap-area-grid">
                         ${model.vocabularyAreas.map(area => `
-                            <article class="brainmap-node brainmap-node-${area.status}" data-brainmap-status="${area.status}" role="group" aria-label="${escapeHtml(`${area.label}, ordforråd, ${area.statusLabel}, ${area.strength.toFixed(1)} av 5`)}">
+                            <article class="brainmap-node brainmap-node-${area.status}" data-brainmap-status="${area.status}" role="group" aria-label="${escapeHtml(`${area.label}, ordforråd, ${formatBrainmapNodeStatus(area)}`)}">
                                 <div class="brainmap-node-topline">
                                     <span class="brainmap-status-dot" aria-hidden="true"></span>
                                     <span class="brainmap-node-level">Ordforråd</span>
                                 </div>
                                 <h4>${escapeHtml(area.label)}</h4>
-                                <p>${escapeHtml(area.statusLabel)} · ${area.strength.toFixed(1)} / 5</p>
+                                <p>${escapeHtml(formatBrainmapNodeStatus(area))}</p>
                                 ${area.directionSplit ? `<p class="brainmap-direction-split">Norsk → spansk ${area.directionStrength.noToEs.toFixed(1)} · Spansk → norsk ${area.directionStrength.esToNo.toFixed(1)}</p>` : ''}
                             </article>
                         `).join('')}
@@ -5302,6 +5506,7 @@ Vil du øve på ${pronoun} likevel?`
             verbCurrentIndex = 0;
             verbStats = { correct: 0, total: verbSessionExercises.length };
             verbSessionStartTime = new Date();
+            activeSessionType = 'verbs';
             
             document.getElementById('verbSettings').classList.add('hidden');
             document.getElementById('verbExercise').classList.remove('hidden');
@@ -5372,14 +5577,13 @@ Vil du øve på ${pronoun} likevel?`
             
             const input = document.getElementById('verbInput');
             const expected = input.dataset.expected;
-            const userAnswer = input.value.trim().toLowerCase();
-            const expectedLower = expected.toLowerCase();
+            const evaluation = evaluateTypedAnswer(input.value, expected);
             
             const feedback = document.getElementById('verbFeedback');
             
             verbAnswerPending = true;
             
-            if (userAnswer === expectedLower) {
+            if (evaluation.resultKind === 'correct') {
                 feedback.textContent = '✓ Riktig!';
                 feedback.className = 'conjugation-feedback correct';
                 input.classList.add('correct');
@@ -5392,8 +5596,10 @@ Vil du øve på ${pronoun} likevel?`
                     showVerbExercise();
                 }, 1000);
             } else {
-                feedback.innerHTML = `✗ Riktig svar: <strong>${expected}</strong>`;
-                feedback.className = 'conjugation-feedback incorrect';
+                feedback.innerHTML = evaluation.resultKind === 'accent_or_case_variant'
+                    ? `Nesten riktig — sjekk aksenten. Riktig svar: <strong>${expected}</strong>`
+                    : `✗ Riktig svar: <strong>${expected}</strong>`;
+                feedback.className = `conjugation-feedback ${evaluation.resultKind === 'accent_or_case_variant' ? 'near-miss' : 'incorrect'}`;
                 input.classList.add('incorrect');
                 input.classList.remove('correct');
                 
@@ -5460,6 +5666,7 @@ Vil du øve på ${pronoun} likevel?`
         }
 
         function endVerbSession() {
+            activeSessionType = null;
             const accuracy = verbStats.total > 0 ? Math.round((verbStats.correct / verbStats.total) * 100) : 0;
             document.getElementById('verbProgressFill').style.width = '100%';
             document.getElementById('verbSessionStats').textContent = `${verbStats.correct} / ${verbStats.total} riktig`;
@@ -6630,6 +6837,7 @@ Vil du øve på ${pronoun} likevel?`
             grammarCurrentIndex = 0;
             grammarStats = { correct: 0, total: grammarExercises.length, errors: 0 };
             grammarSessionStartTime = new Date();
+            activeSessionType = 'grammar';
             
             // Reset recent errors for this topic
             if (!grammarProgress[currentGrammarTopic.id]) {
@@ -6749,6 +6957,7 @@ Vil du øve på ${pronoun} likevel?`
         }
 
         function endGrammarSession() {
+            activeSessionType = null;
             const accuracy = grammarStats.total > 0 ? Math.round((grammarStats.correct / grammarStats.total) * 100) : 0;
             const needsMorePractice = accuracy < 70 || grammarStats.errors >= 3;
             document.getElementById('grammarProgressFill').style.width = '100%';

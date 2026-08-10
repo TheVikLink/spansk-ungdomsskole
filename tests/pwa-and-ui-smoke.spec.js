@@ -22,6 +22,27 @@ test.describe('PWA and UI smoke checks', () => {
     expect(hasRegistration).toBe(true);
   });
 
+  test('keeps the app shell available offline after the first load', async ({ page, context }) => {
+    try {
+      await page.goto('http://127.0.0.1:5178/index.html');
+    } catch (error) {
+      test.skip(true, 'Requires a local HTTP server on port 5178 for service-worker verification');
+      return;
+    }
+    await page.evaluate(() => navigator.serviceWorker.ready);
+    await page.evaluate(() => {
+      localStorage.clear();
+      studentName = 'Elev offline';
+      showMainApp();
+    });
+    await expect(page.locator('#homeOfflineHint')).toContainText('Fungerer også uten internett');
+
+    await context.setOffline(true);
+    await page.reload();
+    await expect(page.locator('#welcomeScreen')).toBeVisible();
+    await expect(page.locator('body')).toContainText('Spansk på 1-2-3');
+  });
+
   test('core classroom views render on mobile without horizontal overflow', async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto(appUrl);
@@ -49,7 +70,7 @@ test.describe('PWA and UI smoke checks', () => {
       showPage('brainmap');
     });
 
-    const numbersCategory = page.getByRole('button', { name: /Tall.*0 av 48 mestret/i });
+    const numbersCategory = page.getByRole('button', { name: /Tall.*0 av 58 mestret/i });
     await expect(numbersCategory).toBeVisible();
     await numbersCategory.focus();
     await page.keyboard.press('Enter');

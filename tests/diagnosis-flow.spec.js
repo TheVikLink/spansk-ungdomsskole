@@ -41,6 +41,7 @@ test.describe('diagnosis quiz v1', () => {
 
     const result = await page.evaluate(() => {
       localStorage.clear();
+      document.getElementById('mainApp').classList.remove('hidden');
       startDiagnosis('2026-08-07T10:00:00.000Z');
       const state = answerDiagnosisQuestion(
         'diag.vocab.greeting.hola.es_no',
@@ -123,11 +124,50 @@ test.describe('diagnosis quiz v1', () => {
         const accepted = await page.locator('#diagnosisPanel').getAttribute('data-accepted-answer');
         await page.locator('#diagnosisPanel').getByRole('button', { name: accepted, exact: true }).click();
       }
+      await page.locator('#diagnosisPanel button').filter({ hasText: i === 11 ? 'Se resultat' : 'Neste' }).click();
     }
 
     await expect(page.getByRole('heading', { name: 'Resultat' })).toBeVisible();
     await expect(page.locator('#diagnosisResultBand')).toContainText('A1');
     await expect(page.locator('#diagnosisPanel')).toContainText('Fremgangen er lagret bare på denne enheten.');
+  });
+
+  test('keeps an answered diagnosis question visible until manual continuation', async ({ page }) => {
+    await page.goto(appUrl);
+    await page.evaluate(() => {
+      localStorage.clear();
+      document.getElementById('mainApp').classList.remove('hidden');
+      startDiagnosis('2026-08-07T10:00:00.000Z');
+      document.getElementById('diagnosisPanel').classList.remove('hidden');
+      renderDiagnosisPanel();
+      submitDiagnosisAnswer('feil');
+    });
+
+    await expect(page.locator('#diagnosisPanel')).toContainText('hola');
+    await expect(page.locator('#diagnosisPanel')).toContainText('Riktig svar var');
+    const diagnosisPanel = page.locator('#diagnosisPanel');
+    await expect(diagnosisPanel.locator('button', { hasText: 'Neste' })).toBeVisible();
+    await expect(page.locator('#diagnosisPanel')).not.toContainText('takk');
+
+    await diagnosisPanel.locator('button', { hasText: 'Neste' }).click();
+    await expect(page.locator('#diagnosisPanel')).toContainText('takk');
+  });
+
+  test('advances diagnosis feedback with Enter without submitting twice', async ({ page }) => {
+    await page.goto(appUrl);
+    await page.evaluate(() => {
+      localStorage.clear();
+      document.getElementById('mainApp').classList.remove('hidden');
+      startDiagnosis('2026-08-07T10:00:00.000Z');
+      document.getElementById('diagnosisPanel').classList.remove('hidden');
+      renderDiagnosisPanel();
+      submitDiagnosisAnswer('feil');
+    });
+
+    await page.keyboard.press('Enter');
+    const answerCount = await page.evaluate(() => loadDiagnosisState().answers.length);
+    expect(answerCount).toBe(1);
+    await expect(page.locator('#diagnosisPanel')).toContainText('takk');
   });
 
   test('imported prior progress skips diagnosis after browser data was cleared', async ({ page }) => {

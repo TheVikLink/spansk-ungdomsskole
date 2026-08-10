@@ -8,6 +8,7 @@
     "check:tailwind": "node scripts/check-tailwind-adoption.mjs",
     "check:learning-catalog": "node scripts/check-learning-catalog.mjs",
     "check:content": "node scripts/check-content-quality.mjs",
+    "test:content-accuracy": "playwright test tests/content-accuracy-audit.spec.js --browser chromium",
     "test:backup-privacy": "playwright test tests/backup-privacy.spec.js --browser chromium",
     "test:learning-catalog": "playwright test tests/learning-catalog.spec.js --browser chromium",
     "test:learning-progress": "playwright test tests/learning-progress.spec.js --browser chromium",
@@ -17,7 +18,9 @@
     "test:quiz-streaks": "playwright test tests/quiz-streaks.spec.js --browser chromium",
     "test:pilot-audit": "playwright test tests/pilot-audit.spec.js --browser chromium",
     "test:frontend-audit-fixes": "playwright test tests/frontend-audit-fixes.spec.js --browser chromium",
+    "test:frontend-visual-audit": "playwright test tests/frontend-visual-audit.spec.js --browser chromium",
     "test:diagnosis": "playwright test tests/diagnosis-flow.spec.js --browser chromium",
+    "test:student-learning-flow-audit": "playwright test tests/student-learning-flow-audit.spec.js --browser chromium",
     "test:import-export": "playwright test tests/import-export-compat.spec.js --browser chromium",
     "test:storage-recovery": "playwright test tests/storage-recovery.spec.js --browser chromium",
     "test:chapter-focus": "playwright test tests/chapter-focus.spec.js --browser chromium",
@@ -30,7 +33,7 @@
     "test:chapter-text-import": "playwright test tests/chapter-text-import.spec.js --browser chromium",
     "test:verb-focus": "playwright test tests/verb-focus.spec.js --browser chromium",
     "test:sentence-puzzle": "playwright test tests/sentence-puzzle-game.spec.js --browser chromium",
-    "test:all": "npm run check:content && npm run check:learning-catalog && npm run check:tailwind && npm run test:backup-privacy && npm run test:learning-catalog && npm run test:learning-progress && npm run test:brainmap && npm run test:adaptive-quiz && npm run test:start-page && npm run test:quiz-streaks && npm run test:pilot-audit && npm run test:frontend-audit-fixes && npm run test:diagnosis && npm run test:import-export && npm run test:storage-recovery && npm run test:chapter-focus && npm run test:completion-header && npm run test:teacher-import && npm run test:assignment-package && npm run test:vocab-mechanics && npm run test:grammar-explanations && npm run test:pwa-ui && npm run test:chapter-text-import && npm run test:verb-focus && npm run test:sentence-puzzle"
+    "test:all": "npm run check:content && npm run test:content-accuracy && npm run check:learning-catalog && npm run check:tailwind && npm run test:backup-privacy && npm run test:learning-catalog && npm run test:learning-progress && npm run test:brainmap && npm run test:adaptive-quiz && npm run test:start-page && npm run test:quiz-streaks && npm run test:pilot-audit && npm run test:frontend-audit-fixes && npm run test:frontend-visual-audit && npm run test:diagnosis && npm run test:student-learning-flow-audit && npm run test:import-export && npm run test:storage-recovery && npm run test:chapter-focus && npm run test:completion-header && npm run test:teacher-import && npm run test:assignment-package && npm run test:vocab-mechanics && npm run test:grammar-explanations && npm run test:pwa-ui && npm run test:chapter-text-import && npm run test:verb-focus && npm run test:sentence-puzzle"
   },
   "devDependencies": {
     "@playwright/test": "^1.60.0",

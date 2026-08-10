@@ -55,4 +55,24 @@ test.describe('verb focus categories', () => {
       ar: 'false'
     });
   });
+
+  test('classifies missing verb accents as near misses without treating ñ as an accent', async ({ page }) => {
+    await page.goto(appUrl);
+
+    const result = await page.evaluate(() => ({
+      vosotrosAr: evaluateTypedAnswer('hablais', 'habláis'),
+      vosotrosIr: evaluateTypedAnswer('vivis', 'vivís'),
+      doubleSpace: evaluateTypedAnswer('  hablo  ', 'hablo'),
+      enye: evaluateTypedAnswer('ano', 'año'),
+      wrong: evaluateTypedAnswer('comes', 'hablas')
+    }));
+
+    expect(result).toEqual({
+      vosotrosAr: { resultKind: 'accent_or_case_variant', correct: false },
+      vosotrosIr: { resultKind: 'accent_or_case_variant', correct: false },
+      doubleSpace: { resultKind: 'correct', correct: true },
+      enye: { resultKind: 'wrong', correct: false },
+      wrong: { resultKind: 'wrong', correct: false }
+    });
+  });
 });

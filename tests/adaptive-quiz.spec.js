@@ -145,6 +145,26 @@ test.describe('adaptive mixed quiz v1', () => {
     expect(Object.keys(result.progress.skillProgress)).toHaveLength(1);
   });
 
+  test('classifies accent variants separately without changing the accepted answer', async ({ page }) => {
+    await page.goto(appUrl);
+
+    const result = await page.evaluate(() => ({
+      exact: evaluateDiagnosisAnswer({ acceptedAnswers: ['hablo'] }, 'hablo'),
+      accentVariant: evaluateDiagnosisAnswer({ acceptedAnswers: ['hablo'] }, 'habló'),
+      doubleSpace: evaluateDiagnosisAnswer({ acceptedAnswers: ['soy de noruega'] }, 'Soy  de  Noruega'),
+      ñIsNotAnAccentVariant: evaluateDiagnosisAnswer({ acceptedAnswers: ['año'] }, 'ano'),
+      wrong: evaluateDiagnosisAnswer({ acceptedAnswers: ['hablo'] }, 'comes'),
+      blank: evaluateDiagnosisAnswer({ acceptedAnswers: ['hablo'] }, '')
+    }));
+
+    expect(result.exact).toEqual({ resultKind: 'correct', correct: true });
+    expect(result.accentVariant).toEqual({ resultKind: 'accent_or_case_variant', correct: false });
+    expect(result.doubleSpace).toEqual({ resultKind: 'correct', correct: true });
+    expect(result.ñIsNotAnAccentVariant).toEqual({ resultKind: 'wrong', correct: false });
+    expect(result.wrong).toEqual({ resultKind: 'wrong', correct: false });
+    expect(result.blank).toEqual({ resultKind: 'skipped', correct: false });
+  });
+
   test('starts the mixed quiz from the existing vocabulary page and advances manually', async ({ page }) => {
     await page.goto(appUrl);
 
@@ -183,5 +203,38 @@ test.describe('adaptive mixed quiz v1', () => {
     await expect(page.getByRole('button', { name: 'Neste' })).toBeVisible();
     await page.getByRole('button', { name: 'Neste' }).click();
     await expect(page.locator('#mixedQuizStats')).toContainText('1 / 10');
+  });
+
+  test('labels a wrong mixed-quiz answer explicitly', async ({ page }) => {
+    await page.goto(appUrl);
+    await page.evaluate(() => {
+      localStorage.clear();
+      localStorage.setItem('spansk123_diagnosis_v1', JSON.stringify({
+        schemaVersion: 1,
+        status: 'complete',
+        startedAt: null,
+        completedAt: '2026-08-07T09:00:00.000Z',
+        questionIds: [],
+        answers: [],
+        resultBand: 'A0',
+        recommendedSkillIds: []
+      }));
+      studentName = 'Elev audit';
+      showMainApp();
+      showPage('vocab');
+      startMixedQuizFromUi();
+    });
+
+    const responseMode = await page.locator('.mixed-quiz-question').getAttribute('data-response-mode');
+    if (responseMode === 'typed') {
+      await page.fill('#mixedQuizAnswerInput', 'helt feil');
+      await page.getByRole('button', { name: 'Sjekk svar' }).click();
+    } else {
+      await page.locator('[data-mixed-answer]').first().click();
+    }
+
+    await expect(page.locator('#mixedQuizFeedback')).toContainText('Feil');
+    await expect(page.locator('#mixedQuizFeedback')).toContainText('riktig svar');
+    await expect(page.getByRole('button', { name: 'Neste' })).toBeVisible();
   });
 });

@@ -43,6 +43,38 @@ const forbiddenFragments = [
     text: 'váis',
     reason: 'The present-tense vosotros form of ir is vais.',
   },
+  {
+    text: '["jeg står opp tidlig", "me despierto temprano", "rutiner"]',
+    reason: 'Står opp is me levanto; me despierto means wakes up.',
+  },
+  {
+    text: '["konfirmasjon", "La Comunión", "høytider"]',
+    reason: 'Konfirmasjon is not first communion.',
+  },
+  {
+    text: '["500 på spansk", "quinientos", "tall"]',
+    reason: 'The number prompt should be the Norwegian number itself.',
+  },
+  {
+    text: '["Russland på spansk", "Rusia", "land"]',
+    reason: 'Country prompts should not include a meta-label.',
+  },
+  {
+    text: '["Sveits (spansk)", "Suiza", "land"]',
+    reason: 'Country prompts should not include a meta-label.',
+  },
+  {
+    text: '["Har du klokke?", "¿Tienes hora?", "klokka"]',
+    reason: 'The Norwegian prompt asks about owning a clock/watch.',
+  },
+  {
+    text: '["Vet du hvor mye klokka er?", "Perdón, ¿Sabes qué hora es?", "klokka"]',
+    reason: 'Use natural Norwegian and match the Spanish prompt without an extra apology.',
+  },
+  {
+    text: '["pult", "la mesa", "skole"]',
+    reason: 'A school desk is el pupitre; la mesa is a table.',
+  },
 ];
 
 const requiredFragments = [
@@ -56,6 +88,14 @@ const requiredFragments = [
   'la religión',
   'vivir, som betyr å bo',
   'voy, vas, va, vamos, vais, van',
+  '["jeg står opp tidlig", "me levanto temprano", "rutiner"]',
+  '["konfirmasjon", "La Confirmación", "høytider"]',
+  '["500", "quinientos", "tall"]',
+  '["Russland", "Rusia", "land"]',
+  '["Sveits", "Suiza", "land"]',
+  '["Har du klokke?", "¿Tienes reloj?", "klokka"]',
+  '["Vet du hva klokka er?", "¿Sabes qué hora es?", "klokka"]',
+  '["pult", "el pupitre", "skole"]',
 ];
 
 const failures = [];
