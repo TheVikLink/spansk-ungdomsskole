@@ -14,6 +14,30 @@ test.describe('progress import/export compatibility', () => {
       practiceHistory = [{ date: '2026-05-17', words: 8, correct: 7, sessions: 1 }];
       localStorage.setItem('spansk123Data_v4', JSON.stringify([{ id: 99, no: 'hei', es: 'hola' }]));
       localStorage.setItem('spansk123Grammar_v1', JSON.stringify({ progress: { articles: { total: 3, correct: 2 } } }));
+      localStorage.setItem('spansk123_learningProgress_v1', JSON.stringify({
+        schemaVersion: 1,
+        createdAt: '2026-08-01T10:00:00.000Z',
+        updatedAt: '2026-08-02T10:00:00.000Z',
+        wordProgress: {
+          'core.hola': {
+            noToEs: { strength: 2 },
+            esToNo: { strength: 3 }
+          }
+        },
+        skillProgress: {
+          'a0.articles.definite_singular': { strength: 4 }
+        }
+      }));
+      localStorage.setItem('spansk123_diagnosis_v1', JSON.stringify({
+        schemaVersion: 1,
+        status: 'complete',
+        startedAt: '2026-08-07T10:00:00.000Z',
+        completedAt: '2026-08-07T10:12:00.000Z',
+        questionIds: ['diag.vocab.greeting.hola.es_no'],
+        answers: [],
+        resultBand: 'A0+',
+        recommendedSkillIds: ['a0.articles.definite_singular']
+      }));
 
       return buildProgressExportData();
     });
@@ -23,6 +47,24 @@ test.describe('progress import/export compatibility', () => {
     expect(exported.vocabData).toEqual([{ id: 99, no: 'hei', es: 'hola' }]);
     expect(exported.grammarData).toEqual({ progress: { articles: { total: 3, correct: 2 } } });
     expect(exported.practiceHistory).toEqual([{ date: '2026-05-17', words: 8, correct: 7, sessions: 1 }]);
+    expect(exported.learningProgress).toMatchObject({
+      schemaVersion: 1,
+      wordProgress: {
+        'core.hola': {
+          noToEs: { strength: 2 },
+          esToNo: { strength: 3 }
+        }
+      },
+      skillProgress: {
+        'a0.articles.definite_singular': { strength: 4 }
+      }
+    });
+    expect(exported.diagnosis).toMatchObject({
+      schemaVersion: 1,
+      status: 'complete',
+      resultBand: 'A0+',
+      recommendedSkillIds: ['a0.articles.definite_singular']
+    });
     expect(exported.exportDate).toMatch(/^\d{4}-\d{2}-\d{2}T/);
   });
 
@@ -38,7 +80,26 @@ test.describe('progress import/export compatibility', () => {
         studentName: 'Elevkode 9A-14',
         vocabData: [{ id: 4, no: 'takk', es: 'gracias' }],
         grammarData: { progress: { gustar: { total: 5, correct: 4 } } },
-        practiceHistory: [{ date: '2026-05-16', words: 12, correct: 10, sessions: 2 }]
+        practiceHistory: [{ date: '2026-05-16', words: 12, correct: 10, sessions: 2 }],
+        learningProgress: {
+          schemaVersion: 1,
+          createdAt: '2026-08-01T10:00:00.000Z',
+          updatedAt: '2026-08-02T10:00:00.000Z',
+          wordProgress: {},
+          skillProgress: {
+            'a1.verbs.regular_ar.present': { strength: 3, attempts: 2, correct: 1 }
+          }
+        },
+        diagnosis: {
+          schemaVersion: 1,
+          status: 'complete',
+          startedAt: '2026-08-07T10:00:00.000Z',
+          completedAt: '2026-08-07T10:12:00.000Z',
+          questionIds: ['diag.vocab.greeting.hola.es_no'],
+          answers: [],
+          resultBand: 'A0+',
+          recommendedSkillIds: ['a0.articles.definite_singular']
+        }
       });
     });
 
@@ -52,13 +113,27 @@ test.describe('progress import/export compatibility', () => {
       studentName: localStorage.getItem('spansk123_studentName'),
       vocabData: JSON.parse(localStorage.getItem('spansk123Data_v4')),
       grammarData: JSON.parse(localStorage.getItem('spansk123Grammar_v1')),
-      practiceHistory: JSON.parse(localStorage.getItem('spansk123_practiceHistory'))
+      practiceHistory: JSON.parse(localStorage.getItem('spansk123_practiceHistory')),
+      learningProgress: JSON.parse(localStorage.getItem('spansk123_learningProgress_v1')),
+      diagnosis: JSON.parse(localStorage.getItem('spansk123_diagnosis_v1'))
     }));
 
     expect(stored.studentName).toBe('Elevkode 9A-14');
     expect(stored.vocabData).toEqual([{ id: 4, no: 'takk', es: 'gracias' }]);
     expect(stored.grammarData).toEqual({ progress: { gustar: { total: 5, correct: 4 } } });
     expect(stored.practiceHistory).toEqual([{ date: '2026-05-16', words: 12, correct: 10, sessions: 2 }]);
+    expect(stored.learningProgress.skillProgress['a1.verbs.regular_ar.present']).toMatchObject({
+      strength: 3,
+      attempts: 2,
+      correct: 1,
+      lapses: 0
+    });
+    expect(stored.diagnosis).toMatchObject({
+      schemaVersion: 1,
+      status: 'complete',
+      resultBand: 'A0+',
+      recommendedSkillIds: ['a0.articles.definite_singular']
+    });
   });
 
   test('imports the legacy spansk123_v4 vocabulary export', async ({ page }) => {

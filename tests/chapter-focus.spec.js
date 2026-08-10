@@ -69,6 +69,7 @@ test.describe('chapter-focused vocabulary practice', () => {
       localStorage.clear();
       studentName = 'Elev 5';
       showMainApp();
+      showPage('vocab');
     });
 
     await expect(page.getByRole('button', { name: /Lære nye ord Start en kort økt/ })).toBeVisible();

@@ -45,4 +45,38 @@ test.describe('grammar mistake explanations', () => {
     await expect(page.locator('#grammarFeedback')).toContainText('Hvorfor?');
     await expect(page.locator('#grammarFeedback')).toContainText('substantivets kjønn og tall');
   });
+
+  test('keeps wrong-answer explanation until the student advances', async ({ page }) => {
+    await page.goto(appUrl);
+
+    await page.evaluate(() => {
+      localStorage.clear();
+      studentName = 'Elev 12';
+      showMainApp();
+      currentGrammarTopic = grammarTopics.articles;
+      grammarExercises = [
+        { sentence: '___ casa es grande', answer: 'La', options: ['El', 'La'], hint: 'casa er feminin' },
+        { sentence: '___ chico es alto', answer: 'El', options: ['El', 'La'], hint: 'chico er maskulin' }
+      ];
+      grammarCurrentIndex = 0;
+      grammarStats = { correct: 0, total: 2, errors: 0 };
+      grammarProgress.articles = { correct: 0, total: 0, recentErrors: 0 };
+      document.getElementById('grammarSettings').classList.add('hidden');
+      document.getElementById('grammarExercise').classList.remove('hidden');
+      showGrammarExercise();
+    });
+
+    await page.evaluate(() => {
+      const wrongButton = [...document.querySelectorAll('#grammarExerciseArea .grammar-option')]
+        .find(button => button.textContent.trim() === 'El');
+      wrongButton.click();
+    });
+    await expect(page.locator('#grammarFeedback')).toContainText('Hvorfor?');
+    await page.waitForTimeout(3000);
+    await expect(page.locator('#grammarFeedback')).toContainText('Hvorfor?');
+    await expect(page.locator('#grammarExerciseArea')).toContainText('casa');
+
+    await page.keyboard.press('Enter');
+    await expect(page.locator('#grammarExerciseArea')).toContainText('chico');
+  });
 });

@@ -9,6 +9,7 @@
     <link href="./dist/tailwind.css" rel="stylesheet">
 </head>
 <body>
+    <a href="#mainContent" class="skip-link">Hopp til hovedinnhold</a>
     <!-- Welcome Screen -->
     <div id="welcomeScreen" class="login-screen">
         <div class="login-logo">🇪🇸</div>
@@ -29,6 +30,9 @@
             <p class="login-hint mt-2 text-xs">
                 Støtter både ny og gammel versjon av appen
             </p>
+            <p class="login-hint mt-2 text-xs">
+                Hvis nettleserdata slettes, skriv inn elevkoden på nytt eller importer tidligere fremgang for å fortsette uten ny diagnose.
+            </p>
         </div>
     </div>
 
@@ -39,7 +43,8 @@
                 🇪🇸 Spansk på 1-2-3
             </div>
             <div class="nav-links">
-                <button class="nav-link active" onclick="showPage('vocab')" id="navVocab">📚 Gloser</button>
+                <button class="nav-link" onclick="showPage('home')" id="navHome">🏠 Start</button>
+                <button class="nav-link active" onclick="showPage('vocab')" id="navVocab" aria-current="page">📚 Gloser</button>
                 <button class="nav-link" onclick="showPage('brainmap')" id="navBrainmap">🧠 Brainmap</button>
                 <button class="nav-link" onclick="showPage('verbs')" id="navVerbs">🏃 Verb</button>
                 <button class="nav-link" onclick="showPage('grammar')" id="navGrammar">📖 Grammatikk</button>
@@ -52,6 +57,29 @@
             </div>
         </nav>
 
+        <main id="mainContent" tabindex="-1">
+        <section id="diagnosisPanel" class="panel hidden" aria-live="polite">
+            <!-- Fylles inn dynamisk -->
+        </section>
+
+        <div id="homePage" class="panel hidden">
+            <div id="homePrimaryContent"></div>
+            <section class="home-manual-section" aria-labelledby="homeManualTitle">
+                <div class="page-header">
+                    <h2 id="homeManualTitle">Flere måter å øve på</h2>
+                    <p>Velg en bestemt økt når du vil fordype deg.</p>
+                </div>
+                <div class="home-manual-grid">
+                    <button type="button" class="home-manual-action" onclick="showPage('vocab')">📚 <span>Gloser</span></button>
+                    <button type="button" class="home-manual-action" onclick="showPage('brainmap')">🧠 <span>Brainmap</span></button>
+                    <button type="button" class="home-manual-action" onclick="showPage('verbs')">🏃 <span>Verb</span></button>
+                    <button type="button" class="home-manual-action" onclick="showPage('grammar')">📖 <span>Grammatikk</span></button>
+                    <button type="button" class="home-manual-action" onclick="showPage('games')">🎮 <span>Spill</span></button>
+                    <button type="button" class="home-manual-action" onclick="showPage('homework')">📝 <span>Lekse</span></button>
+                </div>
+            </section>
+        </div>
+
         <!-- ==================== -->
         <!-- VOCABULARY PAGE -->
         <!-- ==================== -->
@@ -62,6 +90,14 @@
                     <h2>📚 Gloselæring</h2>
                     <p>Lær ordforråd med spaced repetition - begge veier!</p>
                 </div>
+
+                <section class="mixed-quiz-launcher" id="mixedQuizLauncher" aria-labelledby="mixedQuizLauncherTitle">
+                    <div>
+                        <h3 id="mixedQuizLauncherTitle">🎯 Dagens blandede quiz</h3>
+                        <p id="mixedQuizLauncherStatus">10 spørsmål fra ordforråd, grammatikk og verb.</p>
+                    </div>
+                    <button class="btn btn-primary" id="startMixedQuizBtn" onclick="startMixedQuizFromUi()">Start quiz</button>
+                </section>
 
                 <div class="vocab-launcher">
                     <div class="vocab-summary-strip" aria-label="Status for gloser">
@@ -173,14 +209,26 @@
                                 <h3>➕ Legg til gloser</h3>
                                 <div class="add-word-form">
                                     <div class="add-word-row">
-                                        <input type="text" id="addWordNorsk" placeholder="Norsk" class="add-word-input">
-                                        <input type="text" id="addWordSpansk" placeholder="Spansk" class="add-word-input">
+                                        <label class="add-word-field">
+                                            <span>Norsk tekst</span>
+                                            <input type="text" id="addWordNorsk" name="custom-vocab-norwegian" autocomplete="off" placeholder="Norsk" class="add-word-input">
+                                        </label>
+                                        <label class="add-word-field">
+                                            <span>Spansk tekst</span>
+                                            <input type="text" id="addWordSpansk" name="custom-vocab-spanish" autocomplete="off" placeholder="Spansk" class="add-word-input">
+                                        </label>
                                     </div>
                                     <div class="add-word-row">
-                                        <select id="addWordCategory" class="add-word-select">
-                                            <option value="">Velg kategori...</option>
-                                        </select>
-                                        <input type="text" id="addWordNewCategory" placeholder="...eller ny kategori" class="add-word-input">
+                                        <label class="add-word-field">
+                                            <span>Eksisterende kategori</span>
+                                            <select id="addWordCategory" name="custom-vocab-existing-category" autocomplete="off" class="add-word-select">
+                                                <option value="">Velg kategori...</option>
+                                            </select>
+                                        </label>
+                                        <label class="add-word-field">
+                                            <span>Ny kategori</span>
+                                            <input type="text" id="addWordNewCategory" name="custom-vocab-new-category" autocomplete="off" placeholder="...eller ny kategori" class="add-word-input">
+                                        </label>
                                     </div>
                                     <button class="btn btn-sm btn-primary" onclick="addCustomWord()">➕ Legg til glose</button>
                                 </div>
@@ -217,7 +265,7 @@
                     <button class="btn btn-outline btn-sm" onclick="endVocabSessionEarly()">✕ Avslutt</button>
                     <button class="btn btn-outline btn-sm" onclick="undoLastVocabAction()" id="undoVocabBtn" title="Angre (Ctrl+Z)">↩️ Angre</button>
                     <div class="session-progress">
-                        <div class="session-progress-bar">
+                        <div class="session-progress-bar" role="progressbar" aria-label="Fremgang i gloseøkt" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
                             <div class="session-progress-fill" id="sessionProgressFill"></div>
                         </div>
                         <div class="session-stats" id="sessionStats">0 / 0 kort</div>
@@ -226,6 +274,20 @@
                 </div>
                 <div id="flashcardArea"></div>
                 <div id="buttonArea"></div>
+            </div>
+
+            <div id="mixedQuizStudy" class="hidden" aria-live="polite">
+                <div class="study-header">
+                    <button class="btn btn-outline btn-sm" onclick="endMixedQuizEarly()">✕ Avslutt</button>
+                    <div class="session-progress">
+                        <div class="session-progress-bar" role="progressbar" aria-label="Fremgang i dagens quiz" aria-valuemin="0" aria-valuemax="10" aria-valuenow="0">
+                            <div class="session-progress-fill" id="mixedQuizProgressFill"></div>
+                        </div>
+                        <div class="session-stats" id="mixedQuizStats">0 / 10</div>
+                    </div>
+                    <div class="card-counter" id="mixedQuizCounter">1 / 10</div>
+                </div>
+                <div id="mixedQuizQuestion"></div>
             </div>
         </div>
 
@@ -358,7 +420,7 @@
         <div id="homeworkPage" class="panel hidden">
             <div class="page-header">
                 <h2>📝 Ukeslekse</h2>
-                <p>Øv på gloser, verbbøying eller grammatikk minst 2 dager i uken utenom spansktimene (mandag/tirsdag)</p>
+                <p>Øv på gloser, verbbøying eller grammatikk de dagene læreren har satt som mål.</p>
             </div>
 
             <div class="homework-status" id="homeworkStatus">
@@ -371,13 +433,95 @@
                 </div>
             </div>
 
+            <div class="homework-assignment-section">
+                <h3>📥 Hent leksepakke fra lærer</h3>
+                <p class="mb-4 text-gray-500">
+                    Slipp en JSON-fil her, eller velg filen du fikk av læreren. Filen lagres bare i denne nettleseren.
+                </p>
+                <label class="assignment-dropzone" id="assignmentDropzone" for="assignmentFileInput">
+                    <span class="assignment-dropzone-icon">📄</span>
+                    <span class="assignment-dropzone-title">Slipp leksefil her</span>
+                    <span class="assignment-dropzone-hint">assignment-v1 JSON med gloser og ukemål</span>
+                    <input type="file" id="assignmentFileInput" accept=".json,application/json" onchange="handleAssignmentFileInput(event)">
+                </label>
+                <p class="homework-hint" id="assignmentImportStatus"></p>
+                <div class="active-assignment-panel" id="activeAssignmentPanel">
+                    <!-- Fylles inn dynamisk -->
+                </div>
+
+                <details class="assignment-builder" id="assignmentBuilder">
+                    <summary><span class="assignment-builder-kicker">For lærer</span><h3>Lag leksepakke</h3></summary>
+                    <div class="assignment-builder-body">
+                        <div class="assignment-builder-grid">
+                            <label class="add-word-field">
+                                <span>Tittel</span>
+                                <input type="text" id="builderAssignmentTitle" class="add-word-input" autocomplete="off" value="Ukeslekse i spansk">
+                            </label>
+                            <label class="add-word-field">
+                                <span>Lærer</span>
+                                <input type="text" id="builderTeacherName" class="add-word-input" autocomplete="off" placeholder="Navn eller faglærer">
+                            </label>
+                            <label class="add-word-field">
+                                <span>Skole/klasse</span>
+                                <input type="text" id="builderSchoolName" class="add-word-input" autocomplete="off" placeholder="Valgfritt">
+                            </label>
+                            <label class="add-word-field">
+                                <span>Frist</span>
+                                <input type="date" id="builderDueDate" class="add-word-input" autocomplete="off">
+                            </label>
+                            <label class="add-word-field">
+                                <span>Øvingsdager</span>
+                                <input type="number" id="builderRequiredDays" class="add-word-input" min="1" max="7" value="2">
+                            </label>
+                        </div>
+
+                        <label class="add-word-field mt-4">
+                            <span>Instruks til elever</span>
+                            <textarea id="builderInstructions" class="add-word-input" rows="3" autocomplete="off">Øv på leksen og lag PDF-rapport når du er ferdig.</textarea>
+                        </label>
+
+                        <div class="assignment-builder-columns">
+                            <div>
+                                <h4>Gloser</h4>
+                                <div id="builderVocabCategories" class="assignment-builder-options"></div>
+                                <label class="add-word-field mt-3">
+                                    <span>Minutter gloser</span>
+                                    <input type="number" id="builderVocabMinutes" class="add-word-input" min="0" max="180" value="10">
+                                </label>
+                            </div>
+                            <div>
+                                <h4>Verb</h4>
+                                <div id="builderVerbFocuses" class="assignment-builder-options"></div>
+                                <label class="add-word-field mt-3">
+                                    <span>Minutter verb</span>
+                                    <input type="number" id="builderVerbMinutes" class="add-word-input" min="0" max="180" value="5">
+                                </label>
+                            </div>
+                            <div>
+                                <h4>Grammatikk</h4>
+                                <div id="builderGrammarTopics" class="assignment-builder-options"></div>
+                                <label class="add-word-field mt-3">
+                                    <span>Minutter grammatikk</span>
+                                    <input type="number" id="builderGrammarMinutes" class="add-word-input" min="0" max="180" value="5">
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="button-group mt-4">
+                            <button class="btn btn-primary" onclick="downloadTeacherAssignmentPackage()">Last ned leksepakke</button>
+                        </div>
+                        <p class="homework-hint" id="assignmentBuilderStatus"></p>
+                    </div>
+                </details>
+            </div>
+
             <div class="homework-submit-section">
                 <h3>✅ Lever ukeslekse</h3>
                 <p class="mb-4 text-gray-500">
-                    Når du har øvd minst 2 dager denne uken (onsdag-søndag), kan du levere leksen. Gloser, verbbøying og grammatikk teller.
+                    Når du har øvd nok denne uken, kan du lage en rapport. Gloser, verbbøying og grammatikk teller.
                 </p>
                 <button class="btn btn-primary btn-large" onclick="submitHomework()" id="submitHomeworkBtn">
-                    📤 Lever ukeslekse
+                    📄 Lag PDF-rapport
                 </button>
                 <p class="homework-hint" id="homeworkHint"></p>
             </div>
@@ -716,40 +860,40 @@
             <!-- Sentence Puzzle Game -->
             <div id="sentencePuzzleGame" class="hidden">
                 <div class="sentence-puzzle-board">
-                    <div class="sentence-puzzle-progress">
+                    <div class="sentence-puzzle-progress" role="group" aria-label="Fremgang i setningspuslespill">
                         <div class="sentence-puzzle-progress-meta">
                             <span id="spProgressText">1 av 1</span>
                             <span id="spProgressPercent">0%</span>
                         </div>
-                        <div class="sentence-puzzle-progress-track">
+                        <div class="sentence-puzzle-progress-track" role="progressbar" aria-label="Fullførte setninger" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
                             <div id="spProgressFill" class="sentence-puzzle-progress-fill" style="width: 0%"></div>
                         </div>
                     </div>
 
                     <div class="sentence-puzzle-topbar">
                         <div>
-                            <div id="spSentenceTarget" class="sentence-puzzle-target">—</div>
+                            <div id="spSentenceTarget" class="sentence-puzzle-target" aria-label="Norsk setning">—</div>
                         </div>
-                        <div class="sentence-puzzle-score">
+                        <div class="sentence-puzzle-score" role="status" aria-live="polite" aria-label="Poeng">
                             <span>Poeng</span>
                             <strong id="spScore">0</strong>
                         </div>
                     </div>
 
                     <div class="sentence-puzzle-workspace">
-                        <div id="spBuiltSentence" class="sentence-puzzle-built" aria-live="polite"></div>
+                        <div id="spBuiltSentence" class="sentence-puzzle-built" aria-live="polite" aria-label="Din spanske setning"></div>
                     </div>
 
                     <div>
                         <div class="sentence-puzzle-label">Ordbrikker</div>
-                        <div id="spWordTiles" class="sentence-puzzle-tiles"></div>
+                        <div id="spWordTiles" class="sentence-puzzle-tiles" role="group" aria-label="Ordbrikker"></div>
                     </div>
 
                     <div id="spFeedback" class="sentence-puzzle-feedback" aria-live="polite"></div>
 
                     <div class="button-group mt-5">
-                        <button class="btn btn-primary" id="spCheckButton" onclick="checkSentencePuzzle()">Sjekk setning</button>
-                        <button class="btn btn-secondary" id="spNextButton" onclick="nextSentencePuzzle()" disabled>Neste setning</button>
+                        <button class="btn btn-primary" id="spCheckButton" onclick="checkSentencePuzzle()" aria-keyshortcuts="Enter">Sjekk setning</button>
+                        <button class="btn btn-secondary" id="spNextButton" onclick="nextSentencePuzzle()" disabled aria-keyshortcuts="Enter">Neste setning</button>
                         <button class="btn btn-outline" onclick="resetSentencePuzzleRound()">Start setningen på nytt</button>
                         <button class="btn btn-outline" onclick="showGameSetup('sentence-puzzle')">Avslutt</button>
                     </div>
@@ -784,6 +928,7 @@
             </div>
 
         </div>
+        </main>
     </div>
 
     <script>
@@ -803,9 +948,53 @@
         const LAST_EXPORT_KEY = 'spansk123_lastExportDate';
         const BACKUP_REMINDER_DAYS = 14;
         const CORRUPT_STORAGE_PREFIX = 'spansk123_corrupt_';
+        const ACTIVE_ASSIGNMENT_KEY = 'spansk123_activeAssignment';
+        const LEARNING_PROGRESS_KEY = 'spansk123_learningProgress_v1';
+        const LEARNING_PROGRESS_SCHEMA_VERSION = 1;
+        const DIAGNOSIS_KEY = 'spansk123_diagnosis_v1';
+        const DIAGNOSIS_SCHEMA_VERSION = 1;
+        const QUIZ_STATS_KEY = 'spansk123_quizStats_v1';
+        const QUIZ_STATS_SCHEMA_VERSION = 1;
 
         let studentName = '';
         let practiceHistory = [];
+        let activeAssignment = null;
+        let learningProgressWriteBlocked = false;
+        let quizStatsWriteBlocked = false;
+
+        const learningCatalog = {
+            skills: [
+                { id: 'a0.identity.me_llamo', level: 'A0', group: 'Setninger og uttrykk', label: 'Si hva du heter med me llamo', sourceNote: 'written-original' },
+                { id: 'a0.identity.soy_de', level: 'A0', group: 'Setninger og uttrykk', label: 'Si hvor du er fra med soy de', sourceNote: 'written-original' },
+                { id: 'a0.articles.indefinite_singular', level: 'A0', group: 'Artikler og substantiv', label: 'Bruke un og una', sourceNote: 'written-original' },
+                { id: 'a0.articles.definite_singular', level: 'A0', group: 'Artikler og substantiv', label: 'Bruke el og la', sourceNote: 'written-original' },
+                { id: 'a1.verbs.regular_ar.present', level: 'A1', group: 'Verb i presens', label: 'Bøye regelrette -ar-verb i presens', sourceNote: 'written-original' },
+                { id: 'a1.verbs.regular_er.present', level: 'A1', group: 'Verb i presens', label: 'Bøye regelrette -er-verb i presens', sourceNote: 'written-original' },
+                { id: 'a1.gustar.basic', level: 'A1', group: 'Setninger og uttrykk', label: 'Bruke gustar med én ting eller aktivitet', sourceNote: 'written-original' },
+                { id: 'a1.ser_estar.identity_or_location', level: 'A1', group: 'Setninger og uttrykk', label: 'Velge ser eller estar for identitet og sted', sourceNote: 'written-original' }
+            ],
+            words: [
+                { id: 'core.hola', level: 'A0', area: 'Hilsener', no: 'hei', es: 'hola', sourceNote: 'written-original' },
+                { id: 'core.gracias', level: 'A0', area: 'Hilsener', no: 'takk', es: 'gracias', sourceNote: 'written-original' },
+                { id: 'core.madre', level: 'A0', area: 'Familie', no: 'mor', es: 'la madre', sourceNote: 'written-original' },
+                { id: 'core.cinco', level: 'A0', area: 'Tall', no: 'fem', es: 'cinco', sourceNote: 'written-original' }
+            ]
+        };
+
+        const diagnosisQuestionCatalog = [
+            { id: 'diag.vocab.greeting.hola.es_no', prompt: 'hola', targetType: 'word', targetId: 'core.hola', direction: 'esToNo', responseMode: 'typed', acceptedAnswers: ['hei', 'hallo'], sourceNote: 'written-original' },
+            { id: 'diag.vocab.greeting.takk.no_es', prompt: 'takk', targetType: 'word', targetId: 'core.gracias', direction: 'noToEs', responseMode: 'typed', acceptedAnswers: ['gracias'], sourceNote: 'written-original' },
+            { id: 'diag.vocab.family.madre.es_no', prompt: 'la madre', targetType: 'word', targetId: 'core.madre', direction: 'esToNo', responseMode: 'typed', acceptedAnswers: ['mor', 'moren', 'mamma'], sourceNote: 'written-original' },
+            { id: 'diag.vocab.number.fem.no_es', prompt: 'fem', targetType: 'word', targetId: 'core.cinco', direction: 'noToEs', responseMode: 'typed', acceptedAnswers: ['cinco'], sourceNote: 'written-original' },
+            { id: 'diag.a0.identity.me_llamo.typed', prompt: 'Skriv: Jeg heter Ana', targetType: 'skill', targetId: 'a0.identity.me_llamo', direction: null, responseMode: 'typed', acceptedAnswers: ['me llamo ana'], sourceNote: 'written-original' },
+            { id: 'diag.a0.identity.soy_de.choice', prompt: 'Hvordan sier du "Jeg er fra Norge"?', targetType: 'skill', targetId: 'a0.identity.soy_de', direction: null, responseMode: 'choice', acceptedAnswers: ['Soy de Noruega'], options: ['Soy de Noruega', 'Estoy de Noruega', 'Me llamo Noruega'], sourceNote: 'written-original' },
+            { id: 'diag.a0.articles.indefinite_singular.choice', prompt: '___ casa', targetType: 'skill', targetId: 'a0.articles.indefinite_singular', direction: null, responseMode: 'choice', acceptedAnswers: ['una'], options: ['un', 'una', 'el', 'la'], sourceNote: 'written-original' },
+            { id: 'diag.a0.articles.definite_singular.choice', prompt: '___ libro', targetType: 'skill', targetId: 'a0.articles.definite_singular', direction: null, responseMode: 'choice', acceptedAnswers: ['el'], options: ['el', 'la', 'un', 'una'], sourceNote: 'written-original' },
+            { id: 'diag.a1.verbs.regular_ar.present.hablar', prompt: 'yo + hablar', targetType: 'skill', targetId: 'a1.verbs.regular_ar.present', direction: null, responseMode: 'typed', acceptedAnswers: ['hablo'], sourceNote: 'written-original' },
+            { id: 'diag.a1.verbs.regular_er.present.comer', prompt: 'tú + comer', targetType: 'skill', targetId: 'a1.verbs.regular_er.present', direction: null, responseMode: 'typed', acceptedAnswers: ['comes'], sourceNote: 'written-original' },
+            { id: 'diag.a1.gustar.basic.choice', prompt: 'Me ___ el fútbol', targetType: 'skill', targetId: 'a1.gustar.basic', direction: null, responseMode: 'choice', acceptedAnswers: ['gusta'], options: ['gusta', 'gustan', 'gusto'], sourceNote: 'written-original' },
+            { id: 'diag.a1.ser_estar.identity_or_location.choice', prompt: 'Madrid ___ en España', targetType: 'skill', targetId: 'a1.ser_estar.identity_or_location', direction: null, responseMode: 'choice', acceptedAnswers: ['está'], options: ['es', 'está', 'soy'], sourceNote: 'written-original' }
+        ];
 
         // ============================================
         // APP START FUNCTIONS
@@ -834,6 +1023,8 @@
             
             init();
             loadPracticeHistory();
+            renderDiagnosisPanel();
+            showPage('home');
         }
 
         function showSettings() {
@@ -884,12 +1075,16 @@
                 'spansk123Data_v4',
                 'spansk123Grammar_v1',
                 'spansk123_practiceHistory',
+                ACTIVE_ASSIGNMENT_KEY,
                 LAST_EXPORT_KEY,
-                'spansk123_oldImportDone'
+                'spansk123_oldImportDone',
+                LEARNING_PROGRESS_KEY,
+                DIAGNOSIS_KEY,
+                QUIZ_STATS_KEY
             ];
 
             Object.keys(localStorage).forEach(key => {
-                if (appKeys.includes(key) || key.startsWith(CORRUPT_STORAGE_PREFIX)) {
+                if (appKeys.includes(key) || key.startsWith(CORRUPT_STORAGE_PREFIX) || key.startsWith('spansk123_learningProgress_unsupported_') || key.startsWith('spansk123_quizStats_unsupported_')) {
                     localStorage.removeItem(key);
                 }
             });
@@ -921,6 +1116,659 @@
             }
         }
 
+        function normalizeLearningProgress(data, nowIso = new Date().toISOString()) {
+            if (!data || data.schemaVersion !== LEARNING_PROGRESS_SCHEMA_VERSION) {
+                return {
+                    schemaVersion: LEARNING_PROGRESS_SCHEMA_VERSION,
+                    createdAt: nowIso,
+                    updatedAt: nowIso,
+                    wordProgress: {},
+                    skillProgress: {}
+                };
+            }
+
+            const normalizeProgressDate = value => {
+                if (!value || Number.isNaN(Date.parse(value))) return null;
+                return String(value);
+            };
+            const normalizeProgressCell = cell => {
+                const source = cell && typeof cell === 'object' ? cell : {};
+                const strength = Math.max(0, Math.min(5, Math.round(Number(source.strength) || 0)));
+                return {
+                    strength,
+                    attempts: Math.max(0, Math.round(Number(source.attempts) || 0)),
+                    correct: Math.max(0, Math.round(Number(source.correct) || 0)),
+                    lapses: Math.max(0, Math.round(Number(source.lapses) || 0)),
+                    dueAt: normalizeProgressDate(source.dueAt),
+                    lastSeenAt: normalizeProgressDate(source.lastSeenAt)
+                };
+            };
+            const wordProgress = {};
+            Object.entries(data.wordProgress && typeof data.wordProgress === 'object' ? data.wordProgress : {}).forEach(([wordId, entry]) => {
+                wordProgress[wordId] = {
+                    noToEs: normalizeProgressCell(entry?.noToEs),
+                    esToNo: normalizeProgressCell(entry?.esToNo)
+                };
+            });
+            const skillProgress = {};
+            Object.entries(data.skillProgress && typeof data.skillProgress === 'object' ? data.skillProgress : {}).forEach(([skillId, cell]) => {
+                skillProgress[skillId] = normalizeProgressCell(cell);
+            });
+
+            return {
+                schemaVersion: LEARNING_PROGRESS_SCHEMA_VERSION,
+                createdAt: data.createdAt || nowIso,
+                updatedAt: data.updatedAt || data.createdAt || nowIso,
+                wordProgress,
+                skillProgress
+            };
+        }
+
+        function updateProgressCell(cell, resultKind, nowIso = new Date().toISOString()) {
+            const normalized = normalizeLearningProgress({
+                schemaVersion: LEARNING_PROGRESS_SCHEMA_VERSION,
+                wordProgress: {},
+                skillProgress: { current: cell }
+            }, nowIso).skillProgress.current;
+            const transitions = {
+                correct: [2, 2, 3, 4, 5, 5],
+                accent_or_case_variant: [2, 2, 3, 4, 5, 5],
+                near_miss: [1, 1, 2, 2, 3, 4],
+                wrong: [0, 0, 1, 1, 2, 3],
+                skipped: [0, 0, 1, 1, 2, 3]
+            };
+            const kind = transitions[resultKind] ? resultKind : 'wrong';
+            const nextStrength = transitions[kind][normalized.strength];
+            const dueDaysByStrength = [0, 1, 2, 4, 7, 14];
+            const dueDays = kind === 'wrong' || kind === 'skipped'
+                ? 0
+                : kind === 'near_miss'
+                    ? 1
+                    : dueDaysByStrength[nextStrength];
+            const dueDate = new Date(nowIso);
+            dueDate.setDate(dueDate.getDate() + dueDays);
+
+            return {
+                strength: nextStrength,
+                attempts: normalized.attempts + 1,
+                correct: normalized.correct + (kind === 'correct' || kind === 'accent_or_case_variant' ? 1 : 0),
+                lapses: normalized.lapses + (normalized.strength >= 3 && (kind === 'wrong' || kind === 'skipped') ? 1 : 0),
+                dueAt: dueDate.toISOString(),
+                lastSeenAt: nowIso
+            };
+        }
+
+        function backupUnsupportedLearningProgress(rawValue) {
+            const safeTimestamp = new Date().toISOString().replace(/[:.]/g, '-');
+            const backupKey = `spansk123_learningProgress_unsupported_${safeTimestamp}`;
+            localStorage.setItem(backupKey, rawValue);
+            return backupKey;
+        }
+
+        function loadLearningProgress(nowIso = new Date().toISOString()) {
+            learningProgressWriteBlocked = false;
+            const rawValue = localStorage.getItem(LEARNING_PROGRESS_KEY);
+            if (!rawValue) return normalizeLearningProgress(null, nowIso);
+
+            try {
+                const parsed = JSON.parse(rawValue);
+                if (Number(parsed?.schemaVersion) > LEARNING_PROGRESS_SCHEMA_VERSION) {
+                    backupUnsupportedLearningProgress(rawValue);
+                    learningProgressWriteBlocked = true;
+                    return normalizeLearningProgress(null, nowIso);
+                }
+                return normalizeLearningProgress(parsed, nowIso);
+            } catch (error) {
+                console.warn(`Could not parse ${LEARNING_PROGRESS_KEY}; preserving corrupt value before recovery.`, error);
+                backupCorruptStorageValue(LEARNING_PROGRESS_KEY, rawValue);
+                return normalizeLearningProgress(null, nowIso);
+            }
+        }
+
+        function saveLearningProgress(progress) {
+            if (learningProgressWriteBlocked) return false;
+            const normalized = normalizeLearningProgress(progress);
+            localStorage.setItem(LEARNING_PROGRESS_KEY, JSON.stringify(normalized));
+            return true;
+        }
+
+        function normalizeDiagnosisState(data) {
+            const validStatuses = new Set(['not_started', 'in_progress', 'complete']);
+            if (!data || data.schemaVersion !== DIAGNOSIS_SCHEMA_VERSION) {
+                return {
+                    schemaVersion: DIAGNOSIS_SCHEMA_VERSION,
+                    status: 'not_started',
+                    startedAt: null,
+                    completedAt: null,
+                    questionIds: [],
+                    answers: [],
+                    resultBand: null,
+                    recommendedSkillIds: []
+                };
+            }
+
+            return {
+                schemaVersion: DIAGNOSIS_SCHEMA_VERSION,
+                status: validStatuses.has(data.status) ? data.status : 'not_started',
+                startedAt: data.startedAt || null,
+                completedAt: data.completedAt || null,
+                questionIds: Array.isArray(data.questionIds) ? data.questionIds.map(String) : [],
+                answers: Array.isArray(data.answers) ? data.answers : [],
+                resultBand: data.resultBand || null,
+                recommendedSkillIds: Array.isArray(data.recommendedSkillIds) ? data.recommendedSkillIds.map(String) : []
+            };
+        }
+
+        function saveDiagnosisState(state) {
+            const normalized = normalizeDiagnosisState(state);
+            localStorage.setItem(DIAGNOSIS_KEY, JSON.stringify(normalized));
+            return normalized;
+        }
+
+        function loadDiagnosisState() {
+            return normalizeDiagnosisState(readStoredJson(DIAGNOSIS_KEY, null));
+        }
+
+        function normalizeQuizDate(value) {
+            return typeof value === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(value) ? value : null;
+        }
+
+        function getLocalDateString(date = new Date()) {
+            const year = date.getFullYear();
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const day = String(date.getDate()).padStart(2, '0');
+            return `${year}-${month}-${day}`;
+        }
+
+        function calculateQuizStreak(completedDates) {
+            const dates = [...new Set((completedDates || []).map(normalizeQuizDate).filter(Boolean))].sort();
+            if (dates.length === 0) return { currentStreak: 0, longestStreak: 0 };
+            let longestStreak = 1;
+            let run = 1;
+            for (let index = 1; index < dates.length; index++) {
+                const previous = new Date(`${dates[index - 1]}T12:00:00`);
+                const current = new Date(`${dates[index]}T12:00:00`);
+                const difference = Math.round((current - previous) / 86400000);
+                run = difference === 1 ? run + 1 : 1;
+                longestStreak = Math.max(longestStreak, run);
+            }
+            let currentStreak = 1;
+            for (let index = dates.length - 1; index > 0; index--) {
+                const current = new Date(`${dates[index]}T12:00:00`);
+                const previous = new Date(`${dates[index - 1]}T12:00:00`);
+                if (Math.round((current - previous) / 86400000) !== 1) break;
+                currentStreak++;
+            }
+            return { currentStreak, longestStreak };
+        }
+
+        function normalizeQuizStats(data) {
+            const source = data && data.schemaVersion === QUIZ_STATS_SCHEMA_VERSION ? data : {};
+            const dailyQuizCounts = {};
+            Object.entries(source.dailyQuizCounts && typeof source.dailyQuizCounts === 'object' ? source.dailyQuizCounts : {}).forEach(([date, count]) => {
+                const normalizedDate = normalizeQuizDate(date);
+                const normalizedCount = Math.max(0, Math.round(Number(count) || 0));
+                if (normalizedDate && normalizedCount > 0) dailyQuizCounts[normalizedDate] = normalizedCount;
+            });
+            const completedDates = Object.keys(dailyQuizCounts).sort();
+            const streak = calculateQuizStreak(completedDates);
+            return {
+                schemaVersion: QUIZ_STATS_SCHEMA_VERSION,
+                currentStreak: streak.currentStreak,
+                longestStreak: Math.max(streak.longestStreak, Math.max(0, Math.round(Number(source.longestStreak) || 0))),
+                fiveQuizDays: Math.max(0, Math.round(Number(source.fiveQuizDays) || 0), completedDates.filter(date => dailyQuizCounts[date] >= 5).length),
+                completedDates,
+                dailyQuizCounts
+            };
+        }
+
+        function completeQuizStatsForDate(stats, dateString) {
+            const date = normalizeQuizDate(dateString);
+            if (!date) return normalizeQuizStats(stats);
+            const next = normalizeQuizStats(stats);
+            const previousCount = next.dailyQuizCounts[date] || 0;
+            next.dailyQuizCounts[date] = previousCount + 1;
+            const normalized = normalizeQuizStats(next);
+            normalized.fiveQuizDays = next.fiveQuizDays + (previousCount < 5 && normalized.dailyQuizCounts[date] >= 5 ? 1 : 0);
+            return normalized;
+        }
+
+        function mergeQuizStats(existing, imported) {
+            const left = normalizeQuizStats(existing);
+            const right = normalizeQuizStats(imported);
+            const dailyQuizCounts = { ...left.dailyQuizCounts };
+            Object.entries(right.dailyQuizCounts).forEach(([date, count]) => {
+                dailyQuizCounts[date] = Math.max(dailyQuizCounts[date] || 0, count);
+            });
+            const merged = normalizeQuizStats({ schemaVersion: QUIZ_STATS_SCHEMA_VERSION, dailyQuizCounts });
+            merged.longestStreak = Math.max(merged.longestStreak, left.longestStreak, right.longestStreak);
+            merged.fiveQuizDays = Math.max(merged.fiveQuizDays, left.fiveQuizDays, right.fiveQuizDays);
+            return merged;
+        }
+
+        function backupUnsupportedQuizStats(rawValue) {
+            const safeTimestamp = new Date().toISOString().replace(/[:.]/g, '-');
+            return localStorage.setItem(`spansk123_quizStats_unsupported_${safeTimestamp}`, rawValue);
+        }
+
+        function loadQuizStats() {
+            quizStatsWriteBlocked = false;
+            const rawValue = localStorage.getItem(QUIZ_STATS_KEY);
+            if (!rawValue) return normalizeQuizStats(null);
+            try {
+                const parsed = JSON.parse(rawValue);
+                if (Number(parsed?.schemaVersion) > QUIZ_STATS_SCHEMA_VERSION) {
+                    backupUnsupportedQuizStats(rawValue);
+                    quizStatsWriteBlocked = true;
+                    return normalizeQuizStats(null);
+                }
+                return normalizeQuizStats(parsed);
+            } catch (error) {
+                console.warn(`Could not parse ${QUIZ_STATS_KEY}; preserving corrupt value before recovery.`, error);
+                backupCorruptStorageValue(QUIZ_STATS_KEY, rawValue);
+                return normalizeQuizStats(null);
+            }
+        }
+
+        function saveQuizStats(stats) {
+            if (quizStatsWriteBlocked) return false;
+            const normalized = normalizeQuizStats(stats);
+            localStorage.setItem(QUIZ_STATS_KEY, JSON.stringify(normalized));
+            return true;
+        }
+
+        function completeQuizForToday(date = new Date()) {
+            const next = completeQuizStatsForDate(loadQuizStats(), getLocalDateString(date));
+            saveQuizStats(next);
+            return next;
+        }
+
+        function startDiagnosis(nowIso = new Date().toISOString()) {
+            return saveDiagnosisState({
+                schemaVersion: DIAGNOSIS_SCHEMA_VERSION,
+                status: 'in_progress',
+                startedAt: nowIso,
+                completedAt: null,
+                questionIds: diagnosisQuestionCatalog.map(question => question.id),
+                answers: [],
+                resultBand: null,
+                recommendedSkillIds: []
+            });
+        }
+
+        function skipDiagnosisAfterProgressImport(nowIso = new Date().toISOString()) {
+            return saveDiagnosisState({
+                schemaVersion: DIAGNOSIS_SCHEMA_VERSION,
+                status: 'complete',
+                startedAt: null,
+                completedAt: nowIso,
+                questionIds: [],
+                answers: [],
+                resultBand: 'A0',
+                recommendedSkillIds: []
+            });
+        }
+
+        function normalizeAnswerText(value) {
+            return String(value || '').trim().toLowerCase();
+        }
+
+        function evaluateDiagnosisAnswer(question, answer) {
+            const normalizedAnswer = normalizeAnswerText(answer);
+            if (!normalizedAnswer) return { resultKind: 'skipped', correct: false };
+            const accepted = (question.acceptedAnswers || []).map(normalizeAnswerText);
+            if (accepted.includes(normalizedAnswer)) return { resultKind: 'correct', correct: true };
+            return { resultKind: 'wrong', correct: false };
+        }
+
+        function answerDiagnosisQuestion(questionId, answer, nowIso = new Date().toISOString()) {
+            const state = loadDiagnosisState();
+            const question = diagnosisQuestionCatalog.find(item => item.id === questionId);
+            if (!question) throw new Error('Ukjent diagnosespørsmål');
+            if (state.answers.some(entry => entry.questionId === questionId)) return state;
+
+            const evaluation = evaluateDiagnosisAnswer(question, answer);
+            const progress = loadLearningProgress(nowIso);
+            if (question.targetType === 'word') {
+                if (!progress.wordProgress[question.targetId]) {
+                    progress.wordProgress[question.targetId] = {
+                        noToEs: updateProgressCell(null, 'skipped', nowIso),
+                        esToNo: updateProgressCell(null, 'skipped', nowIso)
+                    };
+                    progress.wordProgress[question.targetId].noToEs = normalizeLearningProgress({
+                        schemaVersion: LEARNING_PROGRESS_SCHEMA_VERSION,
+                        wordProgress: { temp: { noToEs: null, esToNo: null } },
+                        skillProgress: {}
+                    }).wordProgress.temp.noToEs;
+                    progress.wordProgress[question.targetId].esToNo = normalizeLearningProgress({
+                        schemaVersion: LEARNING_PROGRESS_SCHEMA_VERSION,
+                        wordProgress: { temp: { noToEs: null, esToNo: null } },
+                        skillProgress: {}
+                    }).wordProgress.temp.esToNo;
+                }
+                progress.wordProgress[question.targetId][question.direction] = updateProgressCell(
+                    progress.wordProgress[question.targetId][question.direction],
+                    evaluation.resultKind,
+                    nowIso
+                );
+            } else {
+                progress.skillProgress[question.targetId] = updateProgressCell(
+                    progress.skillProgress[question.targetId],
+                    evaluation.resultKind,
+                    nowIso
+                );
+            }
+            progress.updatedAt = nowIso;
+            saveLearningProgress(progress);
+
+            state.answers.push({
+                questionId: question.id,
+                targetType: question.targetType,
+                targetId: question.targetId,
+                direction: question.direction ?? null,
+                correct: evaluation.correct,
+                resultKind: evaluation.resultKind,
+                responseMode: question.responseMode,
+                answeredAt: nowIso
+            });
+            return saveDiagnosisState(state);
+        }
+
+        function getDiagnosisResultBand(correctCount) {
+            if (correctCount <= 4) return 'A0';
+            if (correctCount <= 7) return 'A0+';
+            if (correctCount <= 10) return 'A1-start';
+            return 'A1';
+        }
+
+        function completeDiagnosisResult(nowIso = new Date().toISOString()) {
+            const state = loadDiagnosisState();
+            const correctCount = state.answers.filter(answer => answer.correct).length;
+            const recommended = state.answers
+                .filter(answer => !answer.correct && answer.targetType === 'skill')
+                .map(answer => answer.targetId)
+                .filter((targetId, index, list) => list.indexOf(targetId) === index)
+                .slice(0, 3);
+            state.status = 'complete';
+            state.completedAt = nowIso;
+            state.resultBand = getDiagnosisResultBand(correctCount);
+            state.recommendedSkillIds = recommended;
+            return saveDiagnosisState(state);
+        }
+
+        function getNextDiagnosisQuestion(state = loadDiagnosisState()) {
+            const answered = new Set(state.answers.map(answer => answer.questionId));
+            const nextId = state.questionIds.find(questionId => !answered.has(questionId));
+            return diagnosisQuestionCatalog.find(question => question.id === nextId) || null;
+        }
+
+        function renderDiagnosisPanel() {
+            const panel = document.getElementById('diagnosisPanel');
+            if (!panel) return;
+            const state = loadDiagnosisState();
+
+            if (state.status === 'complete') {
+                const diagnosisWasSkipped = state.answers.length === 0 && state.resultBand === 'A0';
+                const recommended = state.recommendedSkillIds
+                    .map(skillId => learningCatalog.skills.find(skill => skill.id === skillId)?.label || skillId)
+                    .join(', ') || 'Dagens quiz velger neste steg.';
+                panel.classList.remove('hidden');
+                panel.removeAttribute('data-response-mode');
+                panel.removeAttribute('data-accepted-answer');
+                panel.innerHTML = `
+                    <div class="page-header">
+                        <h2>${diagnosisWasSkipped ? 'Diagnose hoppet over' : 'Resultat'}</h2>
+                        <p>${diagnosisWasSkipped ? 'Tidligere fremgang er importert. Du starter på A0 og kan ta diagnose senere fra denne siden.' : 'Fremgangen er lagret bare på denne enheten.'}</p>
+                    </div>
+                    <div class="homework-summary">
+                        <strong id="diagnosisResultBand">${state.resultBand || 'A0'}</strong>
+                        <p>Anbefalt å øve videre på: ${escapeHtml(recommended)}</p>
+                        ${diagnosisWasSkipped ? '<button class="btn btn-secondary mt-3" onclick="startDiagnosisFromUi()">Ta diagnose nå</button>' : ''}
+                    </div>
+                `;
+                return;
+            }
+
+            if (state.status === 'in_progress') {
+                const question = getNextDiagnosisQuestion(state);
+                if (!question) {
+                    completeDiagnosisResult();
+                    renderDiagnosisPanel();
+                    return;
+                }
+                panel.classList.remove('hidden');
+                panel.dataset.responseMode = question.responseMode;
+                panel.dataset.acceptedAnswer = question.acceptedAnswers[0];
+                const answeredCount = state.answers.length + 1;
+                const answerControls = question.responseMode === 'typed'
+                    ? `
+                        <input id="diagnosisAnswerInput" class="add-word-input" autocomplete="off" placeholder="Skriv svaret">
+                        <button class="btn btn-primary" onclick="submitDiagnosisTypedAnswer()">Svar</button>
+                    `
+                    : `
+                        <div class="button-group">
+                            ${(question.options || question.acceptedAnswers).map(option => `
+                                <button class="btn btn-outline" onclick="submitDiagnosisChoiceAnswer('${escapeHtml(option)}')">${escapeHtml(option)}</button>
+                            `).join('')}
+                        </div>
+                    `;
+                panel.innerHTML = `
+                    <div class="page-header">
+                        <h2>Finn nivået mitt</h2>
+                        <p>Spørsmål ${answeredCount} av ${state.questionIds.length}. Feil brukes bare til å finne riktig startnivå.</p>
+                    </div>
+                    <div class="homework-summary">
+                        <p class="text-xl font-bold">${escapeHtml(question.prompt)}</p>
+                        ${answerControls}
+                    </div>
+                `;
+                document.getElementById('diagnosisAnswerInput')?.focus();
+                return;
+            }
+
+            panel.classList.remove('hidden');
+            panel.removeAttribute('data-response-mode');
+            panel.removeAttribute('data-accepted-answer');
+            panel.innerHTML = `
+                <div class="page-header">
+                    <h2>Finn nivået mitt</h2>
+                    <p>Svar på 12 korte spørsmål. Du kan bruke fornavn, kallenavn eller elevkode. Alt lagres bare på denne enheten.</p>
+                </div>
+                <button class="btn btn-primary btn-large" onclick="startDiagnosisFromUi()">Start diagnose</button>
+            `;
+        }
+
+        function startDiagnosisFromUi() {
+            startDiagnosis();
+            renderDiagnosisPanel();
+        }
+
+        function submitDiagnosisAnswer(answer) {
+            const question = getNextDiagnosisQuestion();
+            if (!question) return;
+            answerDiagnosisQuestion(question.id, answer);
+            const state = loadDiagnosisState();
+            if (state.answers.length >= state.questionIds.length) {
+                completeDiagnosisResult();
+            }
+            renderDiagnosisPanel();
+        }
+
+        function submitDiagnosisTypedAnswer() {
+            submitDiagnosisAnswer(document.getElementById('diagnosisAnswerInput')?.value || '');
+        }
+
+        function submitDiagnosisChoiceAnswer(answer) {
+            submitDiagnosisAnswer(answer);
+        }
+
+        function getMixedQuizCandidateCell(candidate, learningProgress) {
+            if (candidate.targetType === 'word') {
+                return learningProgress?.wordProgress?.[candidate.targetId]?.[candidate.direction] || {};
+            }
+            return learningProgress?.skillProgress?.[candidate.targetId] || {};
+        }
+
+        function mixedQuizSeedScore(value, seed) {
+            const input = `${seed}:${value}`;
+            let hash = 2166136261;
+            for (let index = 0; index < input.length; index++) {
+                hash ^= input.charCodeAt(index);
+                hash = Math.imul(hash, 16777619);
+            }
+            return hash >>> 0;
+        }
+
+        function compareMixedQuizCandidates(a, b, now, seed) {
+            const aDue = a.attempts === 0 || !a.dueAt || new Date(a.dueAt) <= now ? 0 : 1;
+            const bDue = b.attempts === 0 || !b.dueAt || new Date(b.dueAt) <= now ? 0 : 1;
+            if (aDue !== bDue) return aDue - bDue;
+            if (a.strength !== b.strength) return a.strength - b.strength;
+            if (a.lapses !== b.lapses) return b.lapses - a.lapses;
+            const aSeen = a.lastSeenAt ? new Date(a.lastSeenAt).getTime() : 0;
+            const bSeen = b.lastSeenAt ? new Date(b.lastSeenAt).getTime() : 0;
+            if (aSeen !== bSeen) return aSeen - bSeen;
+            const aSeed = mixedQuizSeedScore(a.questionId, seed);
+            const bSeed = mixedQuizSeedScore(b.questionId, seed);
+            if (aSeed !== bSeed) return aSeed - bSeed;
+            return a.questionId.localeCompare(b.questionId);
+        }
+
+        function buildMixedQuizCandidates({ cards = [], skillsCatalog = learningCatalog, learningProgress, diagnosis }) {
+            const candidates = [];
+            const catalogWordIds = new Set((skillsCatalog.words || []).map(word => word.id));
+            const catalogSkillIds = new Set((skillsCatalog.skills || []).map(skill => skill.id));
+            const catalogQuestions = diagnosisQuestionCatalog.filter(question =>
+                (question.targetType === 'word' && catalogWordIds.has(question.targetId)) ||
+                (question.targetType === 'skill' && catalogSkillIds.has(question.targetId))
+            );
+
+            catalogQuestions.forEach(question => {
+                const cell = getMixedQuizCandidateCell(question, learningProgress);
+                const skill = skillsCatalog.skills.find(item => item.id === question.targetId);
+                const diagnosisWeak = (diagnosis.answers || []).some(answer =>
+                    answer.targetId === question.targetId && !answer.correct
+                );
+                candidates.push({
+                    ...question,
+                    questionId: question.id,
+                    itemType: question.targetType === 'word' ? 'vocabulary' : 'skill',
+                    skillKind: skill?.group === 'Verb i presens' ? 'verb' : 'grammar',
+                    strength: Number(cell.strength) || 0,
+                    attempts: Number(cell.attempts) || 0,
+                    lapses: Number(cell.lapses) || 0,
+                    dueAt: cell.dueAt || null,
+                    lastSeenAt: cell.lastSeenAt || null,
+                    recent: (Number(cell.attempts) || 0) === 0 || diagnosisWeak
+                });
+            });
+
+            cards.forEach(card => {
+                const cardId = String(card.id ?? `${card.no || card.norsk}:${card.es || card.spansk}`);
+                [['noToEs', 'no-es', card.no || card.norsk, card.es || card.spansk], ['esToNo', 'es-no', card.es || card.spansk, card.no || card.norsk]].forEach(([direction, directionLabel, prompt, answer]) => {
+                    if (!prompt || !answer) return;
+                    const questionId = `mixed.vocab.${cardId}.${direction}`;
+                    if (candidates.some(candidate => candidate.questionId === questionId)) return;
+                    const cell = getMixedQuizCandidateCell({ targetType: 'word', targetId: cardId, direction }, learningProgress);
+                    candidates.push({
+                        questionId,
+                        targetType: 'word',
+                        targetId: cardId,
+                        direction,
+                        directionLabel,
+                        prompt,
+                        acceptedAnswers: [answer],
+                        responseMode: 'typed',
+                        itemType: 'vocabulary',
+                        skillKind: null,
+                        strength: Number(cell.strength) || 0,
+                        attempts: Number(cell.attempts) || 0,
+                        lapses: Number(cell.lapses) || 0,
+                        dueAt: cell.dueAt || null,
+                        lastSeenAt: cell.lastSeenAt || null,
+                        recent: (Number(cell.attempts) || 0) === 0
+                    });
+                });
+            });
+
+            return candidates;
+        }
+
+        function buildMixedQuiz({
+            cards = [],
+            skillsCatalog = learningCatalog,
+            learningProgress = loadLearningProgress(),
+            diagnosis = loadDiagnosisState(),
+            now = new Date().toISOString(),
+            seed = now.slice(0, 10),
+            size = 10
+        } = {}) {
+            if (!['complete'].includes(diagnosis?.status)) {
+                return { status: 'diagnosis_required', items: [], fallbackUsed: false };
+            }
+
+            const nowDate = new Date(now);
+            const candidates = buildMixedQuizCandidates({ cards, skillsCatalog, learningProgress, diagnosis })
+                .sort((a, b) => compareMixedQuizCandidates(a, b, nowDate, seed));
+            const selected = [];
+            const selectedIds = new Set();
+            let fallbackUsed = false;
+
+            const canSelect = candidate => !selectedIds.has(candidate.questionId) && !(
+                candidate.targetType === 'word' && selected.some(item => item.targetType === 'word' && item.targetId === candidate.targetId && item.direction === candidate.direction)
+            );
+            const pick = (label, count, predicate) => {
+                let picked = 0;
+                for (const candidate of candidates) {
+                    if (picked >= count) break;
+                    if (!canSelect(candidate) || !predicate(candidate)) continue;
+                    selected.push({ ...candidate, selectionBucket: label });
+                    selectedIds.add(candidate.questionId);
+                    picked++;
+                }
+                if (picked < count) fallbackUsed = true;
+            };
+
+            pick('vocabulary', 4, candidate => candidate.itemType === 'vocabulary');
+            pick('skill', 3, candidate => candidate.itemType === 'skill' && !candidate.recent && candidate.strength < 4);
+            pick('recent', 2, candidate => candidate.recent);
+            pick('confidence', 1, candidate => candidate.strength >= 4 && candidate.attempts > 0);
+
+            if (selected.length < Math.min(size, candidates.length)) {
+                fallbackUsed = true;
+                for (const candidate of candidates) {
+                    if (selected.length >= size) break;
+                    if (!canSelect(candidate)) continue;
+                    selected.push({ ...candidate, selectionBucket: 'fallback' });
+                    selectedIds.add(candidate.questionId);
+                }
+            }
+
+            return {
+                status: 'ready',
+                items: selected.slice(0, size),
+                fallbackUsed
+            };
+        }
+
+        function answerMixedQuizItem(item, answer, nowIso = new Date().toISOString()) {
+            const evaluation = evaluateDiagnosisAnswer(item, answer);
+            const progress = loadLearningProgress(nowIso);
+            if (item.targetType === 'word') {
+                if (!progress.wordProgress[item.targetId]) {
+                    progress.wordProgress[item.targetId] = {
+                        noToEs: normalizeLearningProgress({ schemaVersion: 1, wordProgress: { temp: { noToEs: null, esToNo: null } }, skillProgress: {} }, nowIso).wordProgress.temp.noToEs,
+                        esToNo: normalizeLearningProgress({ schemaVersion: 1, wordProgress: { temp: { noToEs: null, esToNo: null } }, skillProgress: {} }, nowIso).wordProgress.temp.esToNo
+                    };
+                }
+                progress.wordProgress[item.targetId][item.direction] = updateProgressCell(progress.wordProgress[item.targetId][item.direction], evaluation.resultKind, nowIso);
+            } else {
+                progress.skillProgress[item.targetId] = updateProgressCell(progress.skillProgress[item.targetId], evaluation.resultKind, nowIso);
+            }
+            saveLearningProgress(progress);
+            return { ...evaluation, progress };
+        }
+
         function loadPracticeHistory() {
             practiceHistory = readStoredJson('spansk123_practiceHistory', []);
         }
@@ -929,22 +1777,307 @@
             localStorage.setItem('spansk123_practiceHistory', JSON.stringify(practiceHistory));
         }
 
-        function recordPracticeSession(wordsReviewed, correctAnswers) {
+        function loadActiveAssignment() {
+            activeAssignment = readStoredJson(ACTIVE_ASSIGNMENT_KEY, null);
+        }
+
+        function saveActiveAssignment() {
+            if (!activeAssignment) {
+                localStorage.removeItem(ACTIVE_ASSIGNMENT_KEY);
+                return;
+            }
+
+            localStorage.setItem(ACTIVE_ASSIGNMENT_KEY, JSON.stringify(activeAssignment));
+        }
+
+        function normalizeAssignmentPackage(data) {
+            if (!data || data.schemaVersion !== 'assignment-v1') {
+                throw new Error('Ukjent leksepakkeformat');
+            }
+
+            const assignmentTitle = String(data.assignmentTitle || '').trim();
+            if (!assignmentTitle) throw new Error('Leksepakken mangler tittel');
+
+            return {
+                id: data.id || `assignment-${Date.now()}`,
+                schemaVersion: 'assignment-v1',
+                assignmentTitle,
+                teacherDisplayName: String(data.teacherDisplayName || '').trim(),
+                schoolDisplayName: String(data.schoolDisplayName || '').trim(),
+                dueDate: String(data.dueDate || '').trim(),
+                instructions: String(data.instructions || '').trim(),
+                requiredPracticeDays: Math.max(1, Math.min(7, Number(data.requiredPracticeDays) || 2)),
+                verbFocuses: Array.isArray(data.verbFocuses) ? data.verbFocuses.map(String) : [],
+                grammarTopics: Array.isArray(data.grammarTopics) ? data.grammarTopics.map(String) : [],
+                minuteTargets: normalizeAssignmentMinuteTargets(data.minuteTargets),
+                importedAt: new Date().toISOString(),
+                vocabulary: normalizeTeacherWordRows(data.vocabulary || data.words || [])
+            };
+        }
+
+        function normalizeAssignmentMinuteTargets(targets = {}) {
+            return {
+                vocabulary: Math.max(0, Math.min(180, Number(targets.vocabulary) || 0)),
+                verbs: Math.max(0, Math.min(180, Number(targets.verbs) || 0)),
+                grammar: Math.max(0, Math.min(180, Number(targets.grammar) || 0))
+            };
+        }
+
+        function buildTeacherAssignmentPackage(input) {
+            const title = String(input.assignmentTitle || '').trim();
+            if (!title) throw new Error('Leksepakken mangler tittel');
+
+            const selectedCategories = new Set(input.vocabularyCategories || []);
+            const vocabulary = cards
+                .filter(card => selectedCategories.has(card.category))
+                .map(card => ({
+                    norsk: card.norsk || card.no,
+                    spansk: card.spansk || card.es,
+                    category: card.category
+                }));
+
+            return {
+                schemaVersion: 'assignment-v1',
+                assignmentTitle: title,
+                teacherDisplayName: String(input.teacherDisplayName || '').trim(),
+                schoolDisplayName: String(input.schoolDisplayName || '').trim(),
+                dueDate: String(input.dueDate || '').trim(),
+                instructions: String(input.instructions || '').trim(),
+                requiredPracticeDays: Math.max(1, Math.min(7, Number(input.requiredPracticeDays) || 2)),
+                vocabulary,
+                verbFocuses: Array.isArray(input.verbFocuses) ? input.verbFocuses.map(String) : [],
+                grammarTopics: Array.isArray(input.grammarTopics) ? input.grammarTopics.map(String) : [],
+                minuteTargets: normalizeAssignmentMinuteTargets(input.minuteTargets)
+            };
+        }
+
+        function importAssignmentPackage(data) {
+            const assignment = normalizeAssignmentPackage(data);
+            const summary = analyzeTeacherWordImport(assignment.vocabulary);
+            const result = applyTeacherWordImport(summary, { assignmentId: assignment.id });
+
+            activeAssignment = {
+                ...assignment,
+                vocabularyCount: assignment.vocabulary.length,
+                importedWords: result.imported,
+                skippedWords: result.skipped
+            };
+            saveActiveAssignment();
+
+            return {
+                imported: true,
+                assignmentTitle: activeAssignment.assignmentTitle,
+                importedWords: result.imported,
+                skippedWords: result.skipped,
+                message: `Leksepakken "${activeAssignment.assignmentTitle}" er importert`
+            };
+        }
+
+        function getHomeworkRequiredDays() {
+            return activeAssignment?.requiredPracticeDays || 2;
+        }
+
+        function readJsonFile(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = event => {
+                    try {
+                        resolve(JSON.parse(event.target.result));
+                    } catch (error) {
+                        reject(new Error('Filen er ikke gyldig JSON'));
+                    }
+                };
+                reader.onerror = () => reject(new Error('Kunne ikke lese filen'));
+                reader.readAsText(file);
+            });
+        }
+
+        async function importAssignmentFile(file) {
+            if (!file) return null;
+
+            try {
+                const data = await readJsonFile(file);
+                const result = importAssignmentPackage(data);
+                renderHomeworkPage();
+                const statusEl = document.getElementById('assignmentImportStatus');
+                if (statusEl) {
+                    statusEl.textContent = `${result.message}. ${result.importedWords} gloser lagt til.`;
+                    statusEl.className = 'homework-hint text-emerald-500';
+                }
+                showToast(result.message, 'success');
+                return result;
+            } catch (error) {
+                const statusEl = document.getElementById('assignmentImportStatus');
+                if (statusEl) {
+                    statusEl.textContent = error.message;
+                    statusEl.className = 'homework-hint text-amber-500';
+                }
+                showToast('Kunne ikke importere leksepakken: ' + error.message, 'error');
+                return { imported: false, message: error.message };
+            }
+        }
+
+        function handleAssignmentFileInput(event) {
+            const file = event.target.files?.[0];
+            importAssignmentFile(file);
+            event.target.value = '';
+        }
+
+        function setupAssignmentDropzone() {
+            const dropzone = document.getElementById('assignmentDropzone');
+            if (!dropzone || dropzone.dataset.initialized === 'true') return;
+
+            dropzone.dataset.initialized = 'true';
+            ['dragenter', 'dragover'].forEach(eventName => {
+                dropzone.addEventListener(eventName, event => {
+                    event.preventDefault();
+                    dropzone.classList.add('drag-over');
+                });
+            });
+            ['dragleave', 'drop'].forEach(eventName => {
+                dropzone.addEventListener(eventName, event => {
+                    event.preventDefault();
+                    dropzone.classList.remove('drag-over');
+                });
+            });
+            dropzone.addEventListener('drop', event => {
+                importAssignmentFile(event.dataTransfer.files?.[0]);
+            });
+        }
+
+        function renderTeacherAssignmentBuilder() {
+            const categoryRoot = document.getElementById('builderVocabCategories');
+            const verbRoot = document.getElementById('builderVerbFocuses');
+            const grammarRoot = document.getElementById('builderGrammarTopics');
+            if (!categoryRoot || !verbRoot || !grammarRoot) return;
+
+            const categories = Object.entries(getCategories()).sort(([a], [b]) => a.localeCompare(b, 'no'));
+            categoryRoot.innerHTML = categories.map(([name, data]) => `
+                <label class="assignment-builder-choice">
+                    <input type="checkbox" value="${escapeHtml(name)}" data-builder-vocab-category>
+                    <span>${getCategoryEmoji(name)} ${capitalizeFirst(name)} (${data.count})</span>
+                </label>
+            `).join('');
+
+            const verbFocusLabels = {
+                ar: 'Vanlige -ar-verb',
+                erir: '-er/-ir-verb',
+                irregular: 'Uregelrette verb',
+                'stem-e-ie': 'Stammeendring e-ie',
+                'stem-o-ue': 'Stammeendring o-ue',
+                'stem-e-i': 'Stammeendring e-i'
+            };
+            verbRoot.innerHTML = Object.entries(verbFocusLabels).map(([value, label], index) => `
+                <label class="assignment-builder-choice">
+                    <input type="checkbox" value="${value}" data-builder-verb-focus ${index === 0 ? 'checked' : ''}>
+                    <span>${label}</span>
+                </label>
+            `).join('');
+
+            grammarRoot.innerHTML = Object.values(grammarTopics).map(topic => `
+                <label class="assignment-builder-choice">
+                    <input type="checkbox" value="${topic.id}" data-builder-grammar-topic>
+                    <span>${topic.icon} ${topic.name}</span>
+                </label>
+            `).join('');
+        }
+
+        function getCheckedBuilderValues(selector) {
+            return [...document.querySelectorAll(selector)]
+                .filter(input => input.checked)
+                .map(input => input.value);
+        }
+
+        function collectTeacherAssignmentBuilderInput() {
+            return {
+                assignmentTitle: document.getElementById('builderAssignmentTitle').value,
+                teacherDisplayName: document.getElementById('builderTeacherName').value,
+                schoolDisplayName: document.getElementById('builderSchoolName').value,
+                dueDate: document.getElementById('builderDueDate').value,
+                instructions: document.getElementById('builderInstructions').value,
+                requiredPracticeDays: document.getElementById('builderRequiredDays').value,
+                vocabularyCategories: getCheckedBuilderValues('[data-builder-vocab-category]'),
+                verbFocuses: getCheckedBuilderValues('[data-builder-verb-focus]'),
+                grammarTopics: getCheckedBuilderValues('[data-builder-grammar-topic]'),
+                minuteTargets: {
+                    vocabulary: document.getElementById('builderVocabMinutes').value,
+                    verbs: document.getElementById('builderVerbMinutes').value,
+                    grammar: document.getElementById('builderGrammarMinutes').value
+                }
+            };
+        }
+
+        function downloadTeacherAssignmentPackage() {
+            const statusEl = document.getElementById('assignmentBuilderStatus');
+            try {
+                const assignment = buildTeacherAssignmentPackage(collectTeacherAssignmentBuilderInput());
+                const targets = assignment.minuteTargets;
+                if (targets.vocabulary > 0 && assignment.vocabulary.length === 0) {
+                    throw new Error('Velg minst én glosekategori, eller sett minutter gloser til 0');
+                }
+                if (targets.verbs > 0 && assignment.verbFocuses.length === 0) {
+                    throw new Error('Velg minst én verbgruppe, eller sett minutter verb til 0');
+                }
+                if (targets.grammar > 0 && assignment.grammarTopics.length === 0) {
+                    throw new Error('Velg minst én grammatikkoppgave, eller sett minutter grammatikk til 0');
+                }
+                if (assignment.vocabulary.length === 0 && assignment.verbFocuses.length === 0 && assignment.grammarTopics.length === 0) {
+                    throw new Error('Velg minst én glosekategori, verbgruppe eller grammatikkoppgave');
+                }
+
+                const blob = new Blob([JSON.stringify(assignment, null, 2)], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                const safeTitle = assignment.assignmentTitle.toLowerCase().replace(/[^a-z0-9æøåáéíóúñ]+/gi, '-').replace(/^-|-$/g, '') || 'leksepakke';
+                a.href = url;
+                a.download = `${safeTitle}.json`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+
+                statusEl.textContent = `Leksepakke laget med ${assignment.vocabulary.length} gloser. Del JSON-filen med elevene.`;
+                statusEl.className = 'homework-hint text-emerald-500';
+                return assignment;
+            } catch (error) {
+                statusEl.textContent = error.message;
+                statusEl.className = 'homework-hint text-amber-500';
+                return null;
+            }
+        }
+
+        function renderAssignmentSessionGoal(activity, label) {
+            if (!activeAssignment?.minuteTargets) return '';
+            const target = Number(activeAssignment.minuteTargets[activity]) || 0;
+            if (target <= 0) return '';
+            return `<p class="assignment-session-goal">Leksemål: øv ${label} i minst ${target} min.</p>`;
+        }
+
+        function getElapsedPracticeMinutes(startTime) {
+            if (!startTime) return 1;
+            return Math.max(1, Math.round((new Date() - startTime) / 60000));
+        }
+
+        function recordPracticeSession(wordsReviewed, correctAnswers, activity = 'practice', minutes = 1) {
             const today = new Date().toISOString().split('T')[0];
+            const safeMinutes = Math.max(1, Math.round(Number(minutes) || 1));
             
             // Find or create today's entry
-            let todayEntry = practiceHistory.find(e => e.date === today);
+            let todayEntry = practiceHistory.find(e => e.date === today && (e.activity || 'practice') === activity);
             
             if (todayEntry) {
                 todayEntry.words += wordsReviewed;
                 todayEntry.correct += correctAnswers;
                 todayEntry.sessions++;
+                todayEntry.minutes = (todayEntry.minutes || 0) + safeMinutes;
             } else {
                 practiceHistory.push({
                     date: today,
                     words: wordsReviewed,
                     correct: correctAnswers,
-                    sessions: 1
+                    sessions: 1,
+                    activity,
+                    minutes: safeMinutes
                 });
             }
             
@@ -970,15 +2103,12 @@
                 const dateStr = date.toISOString().split('T')[0];
                 const practiced = practiceHistory.some(e => e.date === dateStr);
                 const isToday = dateStr === today.toISOString().split('T')[0];
-                const isClassDay = i === 0 || i === 1; // Monday or Tuesday
-                
                 days.push({
                     name: dayNames[i],
                     date: date.getDate(),
                     dateStr: dateStr,
                     practiced: practiced,
-                    isToday: isToday,
-                    isClassDay: isClassDay
+                    isToday: isToday
                 });
             }
             
@@ -993,11 +2123,8 @@
                 let classes = 'homework-day';
                 if (day.practiced) classes += ' practiced';
                 if (day.isToday) classes += ' today';
-                if (day.isClassDay) classes += ' class-day';
-                
                 let icon = '';
-                if (day.isClassDay) icon = '📚';
-                else if (day.practiced) icon = '✅';
+                if (day.practiced) icon = '✅';
                 
                 return `
                     <div class="${classes}">
@@ -1010,14 +2137,14 @@
             
             document.getElementById('homeworkWeek').innerHTML = weekHtml;
             
-            // Count practice days this week (excluding Mon/Tue)
-            const practiceDays = days.filter(d => !d.isClassDay && d.practiced).length;
-            const requiredDays = 2;
+            // Count practice days this week.
+            const practiceDays = days.filter(d => d.practiced).length;
+            const requiredDays = getHomeworkRequiredDays();
             const canSubmit = practiceDays >= requiredDays;
             
             // Summary
             const summaryHtml = `
-                <p><strong>Øvingsdager denne uken (ons-søn):</strong> ${practiceDays} av ${requiredDays} påkrevd</p>
+                <p><strong>Øvingsdager denne uken:</strong> ${practiceDays} av ${requiredDays} påkrevd</p>
                 <p class="mt-2 ${canSubmit ? 'text-emerald-500' : 'text-amber-500'}">
                     ${canSubmit ? '✅ Du kan levere ukesleksen!' : `⏳ Øv ${requiredDays - practiceDays} dag(er) til for å kunne levere.`}
                 </p>
@@ -1037,14 +2164,156 @@
             if (canSubmit) {
                 hintEl.textContent = isHomeworkExternalSubmissionConfigured()
                     ? 'Klikk for å åpne lærerens innleveringsskjema. Da sendes elevkode og øvingsstatistikk til skjemaet.'
-                    : 'Klikk for å lage en lokal oppsummering. Ingen data sendes ut av nettleseren.';
+                    : 'Klikk for å lage en lokal rapport. Velg "Lagre som PDF" i utskriftsvinduet.';
             } else {
-                hintEl.textContent = 'Mandag og tirsdag er spanskdager - øv de andre dagene!';
+                hintEl.textContent = 'Øv litt flere dager, så kan du lage rapport.';
             }
+
+            renderActiveAssignmentPanel();
             
             // Practice history
             renderPracticeHistory();
             renderBackupStatus();
+            renderTeacherAssignmentBuilder();
+        }
+
+        function renderActiveAssignmentPanel() {
+            const panel = document.getElementById('activeAssignmentPanel');
+            if (!panel) return;
+
+            if (!activeAssignment) {
+                panel.innerHTML = '<p class="homework-hint">Ingen leksepakke er hentet ennå.</p>';
+                return;
+            }
+
+            const dueDate = activeAssignment.dueDate
+                ? new Date(activeAssignment.dueDate).toLocaleDateString('no-NO')
+                : 'Ikke satt';
+            const teacher = activeAssignment.teacherDisplayName || 'Ikke satt';
+            const instructions = activeAssignment.instructions
+                ? `<p class="mt-2">${escapeHtml(activeAssignment.instructions)}</p>`
+                : '';
+            const minuteProgressHtml = renderAssignmentMinuteProgress();
+            const assignmentActionsHtml = renderAssignmentActions();
+
+            panel.innerHTML = `
+                <div class="active-assignment-card">
+                    <h4>${escapeHtml(activeAssignment.assignmentTitle)}</h4>
+                    ${instructions}
+                    <div class="assignment-meta-grid">
+                        <div class="assignment-meta-item">
+                            <span class="assignment-meta-label">Lærer</span>
+                            <span class="assignment-meta-value">${escapeHtml(teacher)}</span>
+                        </div>
+                        <div class="assignment-meta-item">
+                            <span class="assignment-meta-label">Frist</span>
+                            <span class="assignment-meta-value">${escapeHtml(dueDate)}</span>
+                        </div>
+                        <div class="assignment-meta-item">
+                            <span class="assignment-meta-label">Øvingsdager</span>
+                            <span class="assignment-meta-value">${activeAssignment.requiredPracticeDays} påkrevd</span>
+                        </div>
+                        <div class="assignment-meta-item">
+                            <span class="assignment-meta-label">Gloser</span>
+                            <span class="assignment-meta-value">${activeAssignment.importedWords || 0} gloser</span>
+                        </div>
+                    </div>
+                    ${minuteProgressHtml}
+                    ${assignmentActionsHtml}
+                </div>
+            `;
+        }
+
+        function renderAssignmentActions() {
+            if (!activeAssignment) return '';
+            const hasVocab = (activeAssignment.importedWords || 0) > 0;
+            const hasVerbs = (activeAssignment.verbFocuses || []).length > 0;
+            const hasGrammar = (activeAssignment.grammarTopics || []).length > 0;
+            if (!hasVocab && !hasVerbs && !hasGrammar) return '';
+
+            return `
+                <div class="assignment-action-row">
+                    ${hasVocab ? '<button class="btn btn-sm btn-primary" onclick="startActiveAssignmentVocabulary()">Start gloser</button>' : ''}
+                    ${hasVerbs ? '<button class="btn btn-sm btn-secondary" onclick="startActiveAssignmentVerbs()">Start verb</button>' : ''}
+                    ${hasGrammar ? '<button class="btn btn-sm btn-secondary" onclick="startActiveAssignmentGrammar()">Start grammatikk</button>' : ''}
+                </div>
+            `;
+        }
+
+        function startActiveAssignmentVocabulary() {
+            if (!activeAssignment) return;
+            const assignmentCategories = new Set(cards
+                .filter(card => card.assignmentId === activeAssignment.id)
+                .map(card => card.category));
+            if (assignmentCategories.size === 0) {
+                showToast('Denne leksepakken har ingen importerte gloser.', 'error');
+                return;
+            }
+
+            selectedCategories.clear();
+            assignmentCategories.forEach(category => selectedCategories.add(category));
+            showPage('vocab');
+            populateCategories();
+            updateStats();
+            startVocabSession('mixed');
+        }
+
+        function startActiveAssignmentVerbs() {
+            if (!activeAssignment || !activeAssignment.verbFocuses?.length) return;
+            activeVerbFocus = 'focus';
+            selectedVerbFocuses = new Set(activeAssignment.verbFocuses);
+            rebuildSelectedVerbsFromFocuses();
+            showPage('verbs');
+            startVerbSession();
+        }
+
+        function startActiveAssignmentGrammar() {
+            if (!activeAssignment || !activeAssignment.grammarTopics?.length) return;
+            showPage('grammar');
+            startGrammarTopic(activeAssignment.grammarTopics[0]);
+        }
+
+        function getAssignmentMinuteProgress() {
+            const targets = normalizeAssignmentMinuteTargets(activeAssignment?.minuteTargets || {});
+            const progress = { vocabulary: 0, verbs: 0, grammar: 0 };
+
+            practiceHistory.forEach(entry => {
+                const activity = entry.activity;
+                if (activity && Object.prototype.hasOwnProperty.call(progress, activity)) {
+                    progress[activity] += Number(entry.minutes) || 0;
+                }
+            });
+
+            return { targets, progress };
+        }
+
+        function renderAssignmentMinuteProgress() {
+            const { targets, progress } = getAssignmentMinuteProgress();
+            const rows = [
+                ['vocabulary', 'Gloser'],
+                ['verbs', 'Verb'],
+                ['grammar', 'Grammatikk']
+            ].filter(([key]) => targets[key] > 0);
+
+            if (rows.length === 0) return '';
+
+            return `
+                <div class="assignment-time-goals">
+                    <h5>Tidsmål</h5>
+                    ${rows.map(([key, label]) => {
+                        const used = Math.min(progress[key], targets[key]);
+                        const percent = Math.round((used / targets[key]) * 100);
+                        return `
+                            <div class="assignment-time-row">
+                                <div class="assignment-time-label">${label}: ${used} av ${targets[key]} min</div>
+                                <div class="assignment-time-track" role="progressbar" aria-label="${label} tidsmål" aria-valuemin="0" aria-valuemax="${targets[key]}" aria-valuenow="${used}">
+                                    <div class="assignment-time-fill" style="width: ${percent}%"></div>
+                                </div>
+                            </div>
+                        `;
+                    }).join('')}
+                </div>
+            `;
         }
 
         function renderPracticeHistory() {
@@ -1098,22 +2367,149 @@
             };
         }
 
+        function buildWeeklyReportData(days = getWeekDays()) {
+            const weekStart = days[0].dateStr;
+            const weekEnd = days[6].dateStr;
+            const weekHistory = practiceHistory.filter(e => e.date >= weekStart && e.date <= weekEnd);
+            const totalWords = weekHistory.reduce((sum, e) => sum + e.words, 0);
+            const totalCorrect = weekHistory.reduce((sum, e) => sum + e.correct, 0);
+            const totalSessions = weekHistory.reduce((sum, e) => sum + e.sessions, 0);
+            const accuracy = totalWords > 0 ? Math.round((totalCorrect / totalWords) * 100) : 0;
+            const practiceDays = days.filter(d => d.practiced);
+            const formatDate = dateStr => new Date(dateStr).toLocaleDateString('no-NO');
+
+            return {
+                generatedAt: new Date().toLocaleString('no-NO'),
+                studentName: studentName || 'Ikke satt',
+                weekRange: `${formatDate(weekStart)}-${formatDate(weekEnd)}`,
+                practiceDays: practiceDays.map(day => day.name),
+                practiceDayCount: practiceDays.length,
+                requiredDays: getHomeworkRequiredDays(),
+                totalWords,
+                totalCorrect,
+                totalSessions,
+                accuracy,
+                entries: weekHistory,
+                activeAssignment: activeAssignment ? {
+                    title: activeAssignment.assignmentTitle,
+                    teacher: activeAssignment.teacherDisplayName || 'Ikke satt',
+                    dueDate: activeAssignment.dueDate || 'Ikke satt',
+                    instructions: activeAssignment.instructions || '',
+                    importedWords: activeAssignment.importedWords || 0,
+                    verbFocuses: activeAssignment.verbFocuses || [],
+                    grammarTopics: activeAssignment.grammarTopics || []
+                } : null
+            };
+        }
+
+        function renderWeeklyReportHtml(report) {
+            const assignment = report.activeAssignment;
+            const entriesHtml = report.entries.length > 0
+                ? report.entries.map(entry => {
+                    const accuracy = entry.words > 0 ? Math.round((entry.correct / entry.words) * 100) : 0;
+                    return `
+                        <tr>
+                            <td>${escapeHtml(new Date(entry.date).toLocaleDateString('no-NO'))}</td>
+                            <td>${entry.sessions}</td>
+                            <td>${entry.words}</td>
+                            <td>${accuracy}%</td>
+                        </tr>
+                    `;
+                }).join('')
+                : '<tr><td colspan="4">Ingen øving registrert denne uken.</td></tr>';
+
+            return `
+                <div class="weekly-report">
+                    <h1>Ukesrapport i spansk</h1>
+                    <p><strong>Elev:</strong> ${escapeHtml(report.studentName)}</p>
+                    <p><strong>Uke:</strong> ${escapeHtml(report.weekRange)}</p>
+                    <p><strong>Laget:</strong> ${escapeHtml(report.generatedAt)}</p>
+
+                    ${assignment ? `
+                        <h2>Leksepakke</h2>
+                        <p><strong>${escapeHtml(assignment.title)}</strong></p>
+                        <p>Lærer: ${escapeHtml(assignment.teacher)}</p>
+                        <p>Frist: ${escapeHtml(assignment.dueDate)}</p>
+                        ${assignment.instructions ? `<p>${escapeHtml(assignment.instructions)}</p>` : ''}
+                    ` : '<h2>Leksepakke</h2><p>Ingen leksepakke er hentet.</p>'}
+
+                    <div class="weekly-report-stats">
+                        <div class="weekly-report-stat">
+                            <span class="weekly-report-label">Øvingsdager</span>
+                            <span class="weekly-report-value">${report.practiceDayCount} av ${report.requiredDays}</span>
+                        </div>
+                        <div class="weekly-report-stat">
+                            <span class="weekly-report-label">Oppgaver</span>
+                            <span class="weekly-report-value">${report.totalWords}</span>
+                        </div>
+                        <div class="weekly-report-stat">
+                            <span class="weekly-report-label">Økter</span>
+                            <span class="weekly-report-value">${report.totalSessions}</span>
+                        </div>
+                        <div class="weekly-report-stat">
+                            <span class="weekly-report-label">Treffprosent</span>
+                            <span class="weekly-report-value">${report.accuracy}%</span>
+                        </div>
+                    </div>
+
+                    <h2>Øving denne uken</h2>
+                    <p>Dager utenom spansktimene: ${escapeHtml(report.practiceDays.join(', ') || 'Ingen')}</p>
+                    <table class="weekly-report-table">
+                        <thead>
+                            <tr>
+                                <th>Dato</th>
+                                <th>Økter</th>
+                                <th>Oppgaver</th>
+                                <th>Treff</th>
+                            </tr>
+                        </thead>
+                        <tbody>${entriesHtml}</tbody>
+                    </table>
+
+                    <div class="weekly-report-actions">
+                        <button class="btn btn-primary" onclick="window.print()">Skriv ut / lagre som PDF</button>
+                        <button class="btn btn-secondary" onclick="closeWeeklyReport()">Tilbake</button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function closeWeeklyReport() {
+            const root = document.getElementById('weeklyReportPrintRoot');
+            if (root) root.remove();
+            document.body.classList.remove('printing-weekly-report');
+        }
+
+        function showWeeklyReportForPrint() {
+            closeWeeklyReport();
+            const report = buildWeeklyReportData();
+            const root = document.createElement('div');
+            root.id = 'weeklyReportPrintRoot';
+            root.innerHTML = renderWeeklyReportHtml(report);
+            document.body.appendChild(root);
+            document.body.classList.add('printing-weekly-report');
+            window.print();
+            return report;
+        }
+
         function submitHomework() {
             const days = getWeekDays();
-            const practiceDays = days.filter(d => !d.isClassDay && d.practiced);
+            const practiceDays = days.filter(d => d.practiced);
+            const requiredDays = getHomeworkRequiredDays();
             
-            if (practiceDays.length < 2) {
-                alert('Du må øve minst 2 dager (ons-søn) før du kan levere!');
+            if (practiceDays.length < requiredDays) {
+                alert(`Du må øve minst ${requiredDays} dag(er) denne uken før du kan levere!`);
                 return { submittedExternally: false, reason: 'not_enough_practice' };
             }
             
             const summary = buildHomeworkSubmissionSummary(days, practiceDays);
 
             if (!isHomeworkExternalSubmissionConfigured()) {
+                const report = showWeeklyReportForPrint();
                 const hintEl = document.getElementById('homeworkHint');
-                hintEl.textContent = `Lokal oppsummering: ${summary.daysStr}, ${summary.totalWords} oppgaver, ${summary.accuracy}% riktig. Ingen data er sendt.`;
-                showToast('Lokal lekseoppsummering er klar. Ingen data er sendt.', 'success');
-                return { submittedExternally: false, summary };
+                hintEl.textContent = `Lokal rapport: ${summary.daysStr}, ${summary.totalWords} oppgaver, ${summary.accuracy}% riktig. Ingen data er sendt.`;
+                showToast('Lokal rapport er klar. Velg "Lagre som PDF" i utskriftsvinduet.', 'success');
+                return { submittedExternally: false, summary, report };
             }
 
             if (!confirm('Dette åpner et Google Forms-skjema og sender elevkode, dato, øvingsdager, antall oppgaver og nøyaktighet til læreren. Fortsette?')) {
@@ -1146,7 +2542,11 @@
                 studentName: studentName,
                 vocabData: JSON.parse(localStorage.getItem('spansk123Data_v4') || '[]'),
                 grammarData: JSON.parse(localStorage.getItem('spansk123Grammar_v1') || '{}'),
-                practiceHistory: practiceHistory
+                practiceHistory: practiceHistory,
+                activeAssignment: activeAssignment,
+                learningProgress: loadLearningProgress(),
+                diagnosis: loadDiagnosisState(),
+                quizStats: loadQuizStats()
             };
         }
 
@@ -1166,6 +2566,23 @@
                     practiceHistory = data.practiceHistory;
                     savePracticeHistory();
                 }
+                if (data.activeAssignment) {
+                    activeAssignment = data.activeAssignment;
+                    saveActiveAssignment();
+                }
+                if (data.learningProgress) {
+                    learningProgressWriteBlocked = false;
+                    saveLearningProgress(data.learningProgress);
+                }
+                if (data.diagnosis) {
+                    saveDiagnosisState(data.diagnosis);
+                } else {
+                    skipDiagnosisAfterProgressImport();
+                }
+                if (data.quizStats) {
+                    quizStatsWriteBlocked = false;
+                    saveQuizStats(mergeQuizStats(loadQuizStats(), data.quizStats));
+                }
                 return {
                     imported: true,
                     format: 'spansk123_export_v1',
@@ -1175,6 +2592,7 @@
 
             if (data.version === 'spansk123_v4' && data.cards) {
                 localStorage.setItem('spansk123Data_v4', JSON.stringify(data.cards));
+                skipDiagnosisAfterProgressImport();
                 return {
                     imported: true,
                     format: 'spansk123_v4',
@@ -1214,6 +2632,7 @@
                 }
 
                 const withProgress = data.cards.filter(c => c.level > 0 || c.reviews > 0).length;
+                skipDiagnosisAfterProgressImport();
                 return {
                     imported: true,
                     format: 'spansk_v1',
@@ -1236,6 +2655,7 @@
                 const existingCards = JSON.parse(localStorage.getItem('spansk123Data_v4') || '[]');
                 const mergedCards = mergeImportedCards(existingCards, convertedCards);
                 localStorage.setItem('spansk123Data_v4', JSON.stringify(mergedCards));
+                skipDiagnosisAfterProgressImport();
 
                 return {
                     imported: true,
@@ -1261,6 +2681,7 @@
                 const existingCards = JSON.parse(localStorage.getItem('spansk123Data_v4') || '[]');
                 const mergedCards = mergeImportedCards(existingCards, convertedCards);
                 localStorage.setItem('spansk123Data_v4', JSON.stringify(mergedCards));
+                skipDiagnosisAfterProgressImport();
 
                 return {
                     imported: true,
@@ -1531,19 +2952,49 @@
         let verbAnswerPending = false;
         let activeVerbFocus = 'focus';
         let selectedVerbFocuses = new Set(['ar']);
+        let verbSessionStartTime = null;
 
         // ============================================
         // NAVIGATION
         // ============================================
 
+        function renderHomePage() {
+            const content = document.getElementById('homePrimaryContent');
+            if (!content) return;
+            const diagnosisComplete = loadDiagnosisState().status === 'complete';
+            const quizStats = loadQuizStats();
+            const streakText = quizStats.currentStreak > 0
+                ? `🔥 ${quizStats.currentStreak} dag${quizStats.currentStreak === 1 ? '' : 'er'} på rad · ${quizStats.dailyQuizCounts[getLocalDateString()] || 0} quiz i dag`
+                : 'Start en quiz i dag for å bygge streak.';
+            content.innerHTML = `
+                <section class="home-primary-action" aria-labelledby="homeQuizTitle">
+                    <div class="home-primary-copy">
+                        <span class="home-eyebrow">${diagnosisComplete ? 'Neste steg' : 'Første steg'}</span>
+                        <h1 id="homeQuizTitle">Dagens quiz</h1>
+                        <p>${diagnosisComplete ? 'Ti korte spørsmål fra ordforråd, grammatikk og verb.' : 'Ta nivåtesten først, så lager vi en quiz som passer deg.'}</p>
+                    </div>
+                    <button type="button" class="btn btn-primary btn-large" id="homeStartMixedQuizBtn" onclick="startDailyQuizFromHome()" ${diagnosisComplete ? '' : 'disabled'}>${diagnosisComplete ? 'Start dagens quiz' : 'Start nivåtest først'}</button>
+                </section>
+                <p class="home-streak" id="homeQuizStreak">${streakText}</p>
+            `;
+        }
+
+        function startDailyQuizFromHome() {
+            if (loadDiagnosisState().status !== 'complete') return;
+            showPage('vocab');
+            startMixedQuizFromUi();
+        }
+
         function showPage(page) {
             // Hide all pages
+            document.getElementById('homePage').classList.add('hidden');
             document.getElementById('vocabPage').classList.add('hidden');
             document.getElementById('brainmapPage').classList.add('hidden');
             document.getElementById('verbPage').classList.add('hidden');
             document.getElementById('grammarPage').classList.add('hidden');
             document.getElementById('homeworkPage').classList.add('hidden');
             document.getElementById('gamesPage').classList.add('hidden');
+            document.getElementById('diagnosisPanel').classList.add('hidden');
             
             // Stop any running game
             if (viGameActive) {
@@ -1556,38 +3007,55 @@
             }
             
             // Remove active from all nav links
-            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+            document.querySelectorAll('.nav-link').forEach(l => {
+                l.classList.remove('active');
+                l.removeAttribute('aria-current');
+            });
             
             // Show selected page
-            if (page === 'vocab') {
+            if (page === 'home') {
+                document.getElementById('homePage').classList.remove('hidden');
+                document.getElementById('navHome').classList.add('active');
+                document.getElementById('navHome').setAttribute('aria-current', 'page');
+                if (loadDiagnosisState().status !== 'complete') document.getElementById('diagnosisPanel').classList.remove('hidden');
+                renderHomePage();
+            } else if (page === 'vocab') {
                 document.getElementById('vocabPage').classList.remove('hidden');
                 document.getElementById('navVocab').classList.add('active');
+                document.getElementById('navVocab').setAttribute('aria-current', 'page');
                 document.getElementById('vocabSettings').classList.remove('hidden');
                 document.getElementById('vocabStudy').classList.add('hidden');
+                document.getElementById('mixedQuizStudy').classList.add('hidden');
+                renderMixedQuizLauncher();
                 updateStats();
             } else if (page === 'brainmap') {
                 document.getElementById('brainmapPage').classList.remove('hidden');
                 document.getElementById('navBrainmap').classList.add('active');
+                document.getElementById('navBrainmap').setAttribute('aria-current', 'page');
                 renderBrainmap();
             } else if (page === 'verbs') {
                 document.getElementById('verbPage').classList.remove('hidden');
                 document.getElementById('navVerbs').classList.add('active');
+                document.getElementById('navVerbs').setAttribute('aria-current', 'page');
                 document.getElementById('verbSettings').classList.remove('hidden');
                 document.getElementById('verbExercise').classList.add('hidden');
                 renderVerbSelector();
             } else if (page === 'grammar') {
                 document.getElementById('grammarPage').classList.remove('hidden');
                 document.getElementById('navGrammar').classList.add('active');
+                document.getElementById('navGrammar').setAttribute('aria-current', 'page');
                 document.getElementById('grammarSettings').classList.remove('hidden');
                 document.getElementById('grammarExercise').classList.add('hidden');
                 renderGrammarTopics();
             } else if (page === 'homework') {
                 document.getElementById('homeworkPage').classList.remove('hidden');
                 document.getElementById('navHomework').classList.add('active');
+                document.getElementById('navHomework').setAttribute('aria-current', 'page');
                 renderHomeworkPage();
             } else if (page === 'games') {
                 document.getElementById('gamesPage').classList.remove('hidden');
                 document.getElementById('navGames').classList.add('active');
+                document.getElementById('navGames').setAttribute('aria-current', 'page');
                 showGamesMenu();
             }
         }
@@ -2476,6 +3944,7 @@
         let isCustomStudySession = false;
         let currentVocabMode = 'mixed';
         let sessionTimeLimitMinutes = 0;
+        let mixedQuizState = null;
         const TYPED_REVIEW_PERCENT = 0.25;
         const LEECH_LAPSE_THRESHOLD = 3;
 
@@ -2557,6 +4026,7 @@
 
         function init() {
             loadData();
+            loadActiveAssignment();
             checkForOldAppData(); // Check if user has data from old app
             if (selectedCategories.size === 0) selectAllCategories();
             populateCategories();
@@ -2571,6 +4041,142 @@
             renderVerbSelector();
             loadGrammarProgress();
             updateCategoryDropdown();
+            setupAssignmentDropzone();
+            renderMixedQuizLauncher();
+        }
+
+        function renderMixedQuizLauncher() {
+            const button = document.getElementById('startMixedQuizBtn');
+            const status = document.getElementById('mixedQuizLauncherStatus');
+            if (!button || !status) return;
+            const ready = loadDiagnosisState().status === 'complete';
+            button.disabled = !ready;
+            status.textContent = ready
+                ? '10 spørsmål fra ordforråd, grammatikk og verb.'
+                : 'Fullfør nivåtesten først for å få en quiz som passer deg.';
+        }
+
+        function mixedQuizTypeLabel(item) {
+            if (item.itemType === 'vocabulary') return 'Ordforråd';
+            return item.skillKind === 'verb' ? 'Verb' : 'Grammatikk';
+        }
+
+        function updateMixedQuizProgress() {
+            const total = mixedQuizState?.quiz.items.length || 0;
+            const answered = mixedQuizState?.answered || 0;
+            const percent = total ? (answered / total) * 100 : 0;
+            const fill = document.getElementById('mixedQuizProgressFill');
+            const bar = fill?.parentElement;
+            if (fill) fill.style.width = `${percent}%`;
+            if (bar) bar.setAttribute('aria-valuenow', String(answered));
+            const stats = document.getElementById('mixedQuizStats');
+            const counter = document.getElementById('mixedQuizCounter');
+            if (stats) stats.textContent = `${answered} / ${total}`;
+            if (counter) counter.textContent = `${Math.min(answered + 1, total)} / ${total}`;
+        }
+
+        function renderMixedQuizQuestion() {
+            const container = document.getElementById('mixedQuizQuestion');
+            const item = mixedQuizState?.quiz.items[mixedQuizState.index];
+            if (!container || !item) return finishMixedQuiz();
+            updateMixedQuizProgress();
+            const choices = item.options || item.acceptedAnswers;
+            const responseControls = item.responseMode === 'choice'
+                ? `<div class="mixed-quiz-options">${choices.map(option => `<button type="button" class="btn btn-outline" data-mixed-answer="${escapeHtml(option)}">${escapeHtml(option)}</button>`).join('')}</div>`
+                : `<input id="mixedQuizAnswerInput" class="conjugation-input" autocomplete="off" placeholder="Skriv svaret" onkeydown="if(event.key === 'Enter') submitMixedQuizTypedAnswer()"><div class="button-group"><button type="button" class="btn btn-primary" onclick="submitMixedQuizTypedAnswer()">Sjekk svar</button></div>`;
+            container.innerHTML = `
+                <div class="mixed-quiz-question" data-response-mode="${item.responseMode}" data-accepted-answer="${escapeHtml(item.acceptedAnswers[0])}">
+                    <div class="mixed-quiz-type">${mixedQuizTypeLabel(item)}</div>
+                    <div class="mixed-quiz-prompt">${escapeHtml(item.prompt)}</div>
+                    ${responseControls}
+                    <div class="mixed-quiz-feedback" id="mixedQuizFeedback" aria-live="polite"></div>
+                </div>
+            `;
+            container.querySelectorAll('[data-mixed-answer]').forEach(button => {
+                button.addEventListener('click', () => submitMixedQuizAnswer(button.dataset.mixedAnswer));
+            });
+            document.getElementById('mixedQuizAnswerInput')?.focus();
+        }
+
+        function startMixedQuizFromUi() {
+            const quiz = buildMixedQuiz({
+                cards,
+                skillsCatalog: learningCatalog,
+                learningProgress: loadLearningProgress(),
+                diagnosis: loadDiagnosisState(),
+                now: new Date().toISOString(),
+                seed: getIsoDate(),
+                size: 10
+            });
+            if (quiz.status !== 'ready' || quiz.items.length === 0) {
+                alert('Fullfør nivåtesten før du starter en personlig quiz.');
+                return;
+            }
+            mixedQuizState = { quiz, index: 0, answered: 0, correct: 0, startedAt: new Date() };
+            document.getElementById('vocabSettings').classList.add('hidden');
+            document.getElementById('vocabStudy').classList.add('hidden');
+            document.getElementById('mixedQuizStudy').classList.remove('hidden');
+            renderMixedQuizQuestion();
+        }
+
+        function submitMixedQuizTypedAnswer() {
+            submitMixedQuizAnswer(document.getElementById('mixedQuizAnswerInput')?.value || '');
+        }
+
+        function submitMixedQuizAnswer(answer) {
+            if (!mixedQuizState || mixedQuizState.answered !== mixedQuizState.index) return;
+            const item = mixedQuizState.quiz.items[mixedQuizState.index];
+            const result = answerMixedQuizItem(item, answer);
+            mixedQuizState.answered++;
+            if (result.correct) mixedQuizState.correct++;
+            const feedback = document.getElementById('mixedQuizFeedback');
+            if (feedback) {
+                feedback.className = `mixed-quiz-feedback ${result.correct ? 'correct' : 'incorrect'}`;
+                feedback.innerHTML = result.correct
+                    ? '✓ Riktig!'
+                    : `✗ Riktig svar er: <strong>${escapeHtml(item.acceptedAnswers[0])}</strong>`;
+                feedback.insertAdjacentHTML('beforeend', `<div class="button-group"><button type="button" class="btn btn-primary btn-sm mt-4" onclick="advanceMixedQuizQuestion()">${mixedQuizState.answered >= mixedQuizState.quiz.items.length ? 'Se resultat' : 'Neste'}</button></div>`);
+            }
+            document.querySelectorAll('#mixedQuizQuestion input, #mixedQuizQuestion button').forEach(control => {
+                if (!control.matches('#mixedQuizFeedback button')) control.disabled = true;
+            });
+            feedback?.querySelector('button')?.focus();
+            updateMixedQuizProgress();
+        }
+
+        function advanceMixedQuizQuestion() {
+            if (!mixedQuizState) return;
+            mixedQuizState.index++;
+            if (mixedQuizState.index >= mixedQuizState.quiz.items.length) return finishMixedQuiz();
+            renderMixedQuizQuestion();
+        }
+
+        function finishMixedQuiz() {
+            if (!mixedQuizState) return;
+            const total = mixedQuizState.quiz.items.length;
+            const accuracy = total ? Math.round((mixedQuizState.correct / total) * 100) : 0;
+            let quizStats = loadQuizStats();
+            if (mixedQuizState.answered === total && total > 0) {
+                recordPracticeSession(total, mixedQuizState.correct, 'mixed-quiz', getElapsedPracticeMinutes(mixedQuizState.startedAt));
+                quizStats = completeQuizForToday();
+            }
+            const container = document.getElementById('mixedQuizQuestion');
+            if (container) {
+                container.innerHTML = `
+                    <div class="session-complete">
+                        <div class="emoji">${accuracy >= 80 ? '🎉' : accuracy >= 50 ? '👍' : '💪'}</div>
+                        <h2>Dagens quiz er ferdig</h2>
+                        <p>${mixedQuizState.correct} av ${total} riktige (${accuracy}%).</p>
+                        <p id="mixedQuizStreakSummary">🔥 ${quizStats.currentStreak} dag${quizStats.currentStreak === 1 ? '' : 'er'} på rad · ${quizStats.dailyQuizCounts[getLocalDateString()] || 0} quiz i dag</p>
+                        <div class="button-group"><button type="button" class="btn btn-primary" onclick="showPage('vocab')">Tilbake til øving</button></div>
+                    </div>
+                `;
+            }
+            updateMixedQuizProgress();
+        }
+
+        function endMixedQuizEarly() {
+            if (!mixedQuizState || confirm('Er du sikker på at du vil avslutte quizen?')) showPage('vocab');
         }
 
         function loadData() {
@@ -2677,11 +4283,30 @@
                     }
                 }
                 
+                const grammarNextButton = document.getElementById('grammarNextBtn');
+                if (grammarNextButton && !document.getElementById('grammarExercise').classList.contains('hidden') && e.key === 'Enter') {
+                    e.preventDefault();
+                    grammarNextButton.click();
+                    return;
+                }
+
                 // Verb shortcuts
                 if (!document.getElementById('verbExercise').classList.contains('hidden')) {
                     if (e.key === 'Enter') {
                         e.preventDefault();
                         checkVerbAnswer();
+                    }
+                }
+
+                if (!document.getElementById('sentencePuzzleGame').classList.contains('hidden')) {
+                    if (e.key === 'Enter') {
+                        const primaryAction = document.getElementById('spCheckButton').disabled
+                            ? document.getElementById('spNextButton')
+                            : document.getElementById('spCheckButton');
+                        if (!primaryAction.disabled) {
+                            e.preventDefault();
+                            primaryAction.click();
+                        }
                     }
                 }
             });
@@ -3179,7 +4804,7 @@ Vil du øve på ${pronoun} likevel?`
             }
 
             document.getElementById('flashcardArea').innerHTML = `
-                <div class="flashcard" onclick="flipCard()">
+                <div class="flashcard" role="button" tabindex="0" aria-label="${escapeHtml(front)} - trykk for å se svar" onclick="flipCard()" onkeydown="if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); flipCard(); }">
                     <span class="card-type-badge ${isCustomStudySession ? 'badge-review' : (isNew ? 'badge-new' : 'badge-review')}">
                         ${cardTypeLabel}
                     </span>
@@ -3320,6 +4945,7 @@ Vil du øve på ${pronoun} likevel?`
         function updateVocabProgress() {
             const progress = (currentIndex / sessionCards.length) * 100;
             document.getElementById('sessionProgressFill').style.width = progress + '%';
+            document.querySelector('#vocabStudy .session-progress-bar')?.setAttribute('aria-valuenow', String(Math.round(progress)));
             const limitText = sessionTimeLimitMinutes > 0 ? ` • maks ${sessionTimeLimitMinutes} min` : '';
             document.getElementById('sessionStats').textContent = `${sessionStats.reviewed} repetert • ${sessionStats.correct} riktig${limitText}`;
             document.getElementById('cardCounter').textContent = `${currentIndex + 1} / ${sessionCards.length}`;
@@ -3338,7 +4964,7 @@ Vil du øve på ${pronoun} likevel?`
             
             // Record practice for homework tracking
             if (sessionStats.reviewed > 0) {
-                recordPracticeSession(sessionStats.reviewed, sessionStats.correct);
+                recordPracticeSession(sessionStats.reviewed, sessionStats.correct, 'vocabulary', getElapsedPracticeMinutes(sessionStartTime));
             }
             
             document.getElementById('flashcardArea').innerHTML = `
@@ -3369,8 +4995,88 @@ Vil du øve på ${pronoun} likevel?`
         // BRAINMAP FUNCTIONS
         // ============================================
 
+        function getBrainmapStatus(cell = {}) {
+            const strength = Math.max(0, Math.min(5, Number(cell.strength) || 0));
+            const attempts = Math.max(0, Number(cell.attempts) || 0);
+            if (attempts === 0) return { key: 'gray', label: 'Ikke startet', strength, attempts };
+            if (strength < 2) return { key: 'red', label: 'Trenger øving', strength, attempts };
+            if (strength < 4) return { key: 'yellow', label: 'På vei', strength, attempts };
+            if (strength < 5) return { key: 'green', label: 'God kontroll', strength, attempts };
+            return { key: 'gold', label: 'Svært sterk', strength, attempts };
+        }
+
+        function getBrainmapProgressCell(progress, targetId, direction = null) {
+            if (direction) return progress?.wordProgress?.[targetId]?.[direction] || {};
+            return progress?.skillProgress?.[targetId] || {};
+        }
+
+        function buildBrainmapModel(progress = loadLearningProgress()) {
+            const skills = learningCatalog.skills.map(skill => {
+                const cell = getBrainmapProgressCell(progress, skill.id);
+                const status = getBrainmapStatus(cell);
+                return { ...skill, nodeType: 'skill', strength: status.strength, attempts: status.attempts, status: status.key, statusLabel: status.label };
+            });
+
+            const vocabularyAreas = Array.from(new Set(learningCatalog.words.map(word => word.area))).map(area => {
+                const words = learningCatalog.words.filter(word => word.area === area);
+                const wordDetails = words.map(word => {
+                    const noToEs = getBrainmapProgressCell(progress, word.id, 'noToEs');
+                    const esToNo = getBrainmapProgressCell(progress, word.id, 'esToNo');
+                    const noStatus = getBrainmapStatus(noToEs);
+                    const esStatus = getBrainmapStatus(esToNo);
+                    return {
+                        ...word,
+                        noToEs,
+                        esToNo,
+                        wordStrength: Math.min(noStatus.strength, esStatus.strength),
+                        noToEsStatus: noStatus,
+                        esToNoStatus: esStatus
+                    };
+                });
+                const attemptedWords = wordDetails.filter(word => word.noToEsStatus.attempts > 0 || word.esToNoStatus.attempts > 0);
+                const noStrength = attemptedWords.reduce((sum, word) => sum + word.noToEsStatus.strength, 0) / Math.max(1, attemptedWords.length);
+                const esStrength = attemptedWords.reduce((sum, word) => sum + word.esToNoStatus.strength, 0) / Math.max(1, attemptedWords.length);
+                const strength = attemptedWords.reduce((sum, word) => sum + word.wordStrength, 0) / Math.max(1, attemptedWords.length);
+                const attempts = attemptedWords.reduce((sum, word) => sum + word.noToEsStatus.attempts + word.esToNoStatus.attempts, 0);
+                const status = getBrainmapStatus({ strength, attempts });
+                return {
+                    id: area,
+                    label: area,
+                    nodeType: 'vocabularyArea',
+                    strength,
+                    attempts,
+                    status: status.key,
+                    statusLabel: status.label,
+                    directionStrength: { noToEs: noStrength, esToNo: esStrength },
+                    directionSplit: Math.abs(noStrength - esStrength) >= 2,
+                    words: wordDetails
+                };
+            });
+
+            const groups = Array.from(new Set(learningCatalog.skills.map(skill => skill.group))).map(group => {
+                const children = skills.filter(skill => skill.group === group);
+                const strength = children.reduce((sum, child) => sum + child.strength, 0) / Math.max(1, children.length);
+                const attempts = children.reduce((sum, child) => sum + child.attempts, 0);
+                const status = getBrainmapStatus({ strength, attempts });
+                const hasAttemptedRedChild = children.some(child => child.attempts > 0 && child.status === 'red');
+                return {
+                    id: group,
+                    label: group,
+                    nodeType: 'group',
+                    strength,
+                    attempts,
+                    status: hasAttemptedRedChild && ['green', 'gold'].includes(status.key) ? 'yellow' : status.key,
+                    statusLabel: hasAttemptedRedChild && ['green', 'gold'].includes(status.key) ? 'På vei' : status.label,
+                    childIds: children.map(child => child.id)
+                };
+            });
+
+            return { skills, vocabularyAreas, groups };
+        }
+
         function renderBrainmap() {
             const categories = getCategories();
+            const model = buildBrainmapModel();
             const themes = {
                 'Grunnleggende': ['tall', 'farger', 'bursdag', 'klokka', 'tidsuttrykk'],
                 'Mennesker': ['familie', 'familie-setninger', 'utseende', 'personlighet', 'yrker'],
@@ -3379,28 +5085,84 @@ Vil du øve på ${pronoun} likevel?`
                 'Språk': ['verb', 'verbbøying', 'gustar', 'fremtid', 'bindeord']
             };
             
-            document.getElementById('brainmapContent').innerHTML = Object.entries(themes).map(([theme, cats]) => `
-                <div class="brainmap-level">
+            document.getElementById('brainmapContent').innerHTML = `
+                <section class="brainmap-learning-map" aria-labelledby="brainmapMicroskillsTitle">
+                    <div class="page-header">
+                        <h3 id="brainmapMicroskillsTitle">Læringskart</h3>
+                        <p>Fargene viser hva du har øvd på og hva som trenger mer trening. Grå betyr at du ikke har startet ennå.</p>
+                    </div>
+                    <div id="brainmapMicroskills" class="brainmap-node-grid">
+                        ${model.skills.map(node => `
+                            <article class="brainmap-node brainmap-node-${node.status}" data-brainmap-status="${node.status}" role="group" aria-label="${escapeHtml(`${node.label}, ${node.level}, ${node.statusLabel}, ${node.strength.toFixed(1)} av 5`)}">
+                                <div class="brainmap-node-topline">
+                                    <span class="brainmap-status-dot" aria-hidden="true"></span>
+                                    <span class="brainmap-node-level">${escapeHtml(node.level)}</span>
+                                </div>
+                                <h4>${escapeHtml(node.label)}</h4>
+                                <p>${escapeHtml(node.statusLabel)} · ${node.strength.toFixed(1)} / 5</p>
+                            </article>
+                        `).join('')}
+                    </div>
+                    <div class="brainmap-area-grid">
+                        ${model.vocabularyAreas.map(area => `
+                            <article class="brainmap-node brainmap-node-${area.status}" data-brainmap-status="${area.status}" role="group" aria-label="${escapeHtml(`${area.label}, ordforråd, ${area.statusLabel}, ${area.strength.toFixed(1)} av 5`)}">
+                                <div class="brainmap-node-topline">
+                                    <span class="brainmap-status-dot" aria-hidden="true"></span>
+                                    <span class="brainmap-node-level">Ordforråd</span>
+                                </div>
+                                <h4>${escapeHtml(area.label)}</h4>
+                                <p>${escapeHtml(area.statusLabel)} · ${area.strength.toFixed(1)} / 5</p>
+                                ${area.directionSplit ? `<p class="brainmap-direction-split">Norsk → spansk ${area.directionStrength.noToEs.toFixed(1)} · Spansk → norsk ${area.directionStrength.esToNo.toFixed(1)}</p>` : ''}
+                            </article>
+                        `).join('')}
+                    </div>
+                </section>
+                <section class="brainmap-level" aria-labelledby="brainmapPracticeTitle">
                     <div class="brainmap-level-header">
-                        <span class="brainmap-level-title">${theme}</span>
+                        <span class="brainmap-level-title" id="brainmapPracticeTitle">Velg en kategori å øve på</span>
                     </div>
                     <div class="brainmap-categories">
-                        ${cats.filter(name => categories[name]).map(name => {
+                        ${Object.entries(themes).map(([theme, cats]) => cats.filter(name => categories[name]).map(name => {
                             const data = categories[name];
                             const progress = (data.mastered / data.count) * 100;
                             return `
-                                <div class="brainmap-category" onclick="selectCategoryAndStudy('${name}')">
+                                <button type="button" class="brainmap-category" onclick="selectCategoryAndStudy('${name.replaceAll("'", "\\'")}')" aria-label="${capitalizeFirst(name)}, ${data.mastered} av ${data.count} mestret. Start øving.">
                                     <div class="brainmap-category-name">${getCategoryEmoji(name)} ${capitalizeFirst(name)}</div>
                                     <div class="brainmap-category-progress">
                                         <div class="brainmap-category-progress-fill" style="width: ${progress}%"></div>
                                     </div>
-                                    <div class="brainmap-category-stats">${data.mastered}/${data.count} mestret</div>
-                                </div>
+                                    <div class="brainmap-category-stats">${data.mastered} av ${data.count} mestret</div>
+                                </button>
                             `;
-                        }).join('')}
+                        }).join('')).join('')}
                     </div>
-                </div>
-            `).join('');
+                </section>
+            `;
+           /* Legacy category practice stays available below the learning map. */
+           /*
+           ${Object.entries(themes).map(([theme, cats]) => `
+               <div class="brainmap-level">
+                   <div class="brainmap-level-header">
+                       <span class="brainmap-level-title">${theme}</span>
+                   </div>
+                   <div class="brainmap-categories">
+                       ${cats.filter(name => categories[name]).map(name => {
+                           const data = categories[name];
+                           const progress = (data.mastered / data.count) * 100;
+                           return `
+                               <button type="button" class="brainmap-category" onclick="selectCategoryAndStudy('${name}')" aria-label="${capitalizeFirst(name)}, ${data.mastered} av ${data.count} mestret. Start øving.">
+                                   <div class="brainmap-category-name">${getCategoryEmoji(name)} ${capitalizeFirst(name)}</div>
+                                   <div class="brainmap-category-progress">
+                                       <div class="brainmap-category-progress-fill" style="width: ${progress}%"></div>
+                                   </div>
+                                   <div class="brainmap-category-stats">${data.mastered} av ${data.count} mestret</div>
+                               </button>
+                           `;
+                       }).join('')}
+                   </div>
+               </div>
+           `).join('')}
+           */
         }
 
         function selectCategoryAndStudy(category) {
@@ -3539,6 +5301,7 @@ Vil du øve på ${pronoun} likevel?`
             verbSessionExercises = shuffleArray(verbSessionExercises).slice(0, 20);
             verbCurrentIndex = 0;
             verbStats = { correct: 0, total: verbSessionExercises.length };
+            verbSessionStartTime = new Date();
             
             document.getElementById('verbSettings').classList.add('hidden');
             document.getElementById('verbExercise').classList.remove('hidden');
@@ -3574,6 +5337,7 @@ Vil du øve på ${pronoun} likevel?`
             
             document.getElementById('verbExerciseArea').innerHTML = `
                 <div class="conjugation-exercise">
+                    ${renderAssignmentSessionGoal('verbs', 'verb')}
                     <div class="conjugation-verb">${verb.infinitive}</div>
                     <div class="conjugation-translation">${verb.translation}</div>
                     <div class="conjugation-tense">${tenseDisplay}</div>
@@ -3703,7 +5467,7 @@ Vil du øve på ${pronoun} likevel?`
             
             // Record practice for homework tracking: verb conjugation counts as homework practice.
             if (verbStats.total > 0) {
-                recordPracticeSession(verbStats.total, verbStats.correct);
+                recordPracticeSession(verbStats.total, verbStats.correct, 'verbs', getElapsedPracticeMinutes(verbSessionStartTime));
             }
             
             document.getElementById('verbExerciseArea').innerHTML = `
@@ -3987,7 +5751,7 @@ Vil du øve på ${pronoun} likevel?`
             };
         }
 
-        function createCustomCardFromTeacherWord(word) {
+        function createCustomCardFromTeacherWord(word, options = {}) {
             const category = normalizeCategorySlug(word.category);
 
             return {
@@ -3998,6 +5762,7 @@ Vil du øve på ${pronoun} likevel?`
                 spansk: word.spansk,
                 category: category,
                 isCustom: true,
+                ...(options.assignmentId ? { assignmentId: options.assignmentId } : {}),
                 noEs: { repetitions: 0, easeFactor: 2.5, interval: 0, nextReview: 0 },
                 esNo: { repetitions: 0, easeFactor: 2.5, interval: 0, nextReview: 0 },
                 reviews: 0,
@@ -4100,9 +5865,9 @@ Vil du øve på ${pronoun} likevel?`
             return lines.join('\n');
         }
 
-        function applyTeacherWordImport(summary) {
+        function applyTeacherWordImport(summary, options = {}) {
             summary.valid.forEach(word => {
-                cards.push(createCustomCardFromTeacherWord(word));
+                cards.push(createCustomCardFromTeacherWord(word, options));
             });
 
             if (summary.valid.length > 0) {
@@ -4678,6 +6443,7 @@ Vil du øve på ${pronoun} likevel?`
         let grammarStats = { correct: 0, total: 0, errors: 0 };
         let hasSeenTheory = {};
         let showingTheory = false;
+        let grammarSessionStartTime = null;
 
         function loadGrammarProgress() {
             const data = readStoredJson('spansk123Grammar_v1', null);
@@ -4830,6 +6596,7 @@ Vil du øve på ${pronoun} likevel?`
             const topic = currentGrammarTopic;
             
             document.getElementById('grammarTheoryArea').innerHTML = `
+                ${renderAssignmentSessionGoal('grammar', 'grammatikk')}
                 ${renderGrammarScaffold(topic)}
                 <div class="theory-card grammar-rule-reference hidden" id="grammarRuleReference">
                     <h3>📚 ${topic.theory.title}</h3>
@@ -4862,6 +6629,7 @@ Vil du øve på ${pronoun} likevel?`
             grammarExercises = shuffleArray([...currentGrammarTopic.exercises]).slice(0, 10);
             grammarCurrentIndex = 0;
             grammarStats = { correct: 0, total: grammarExercises.length, errors: 0 };
+            grammarSessionStartTime = new Date();
             
             // Reset recent errors for this topic
             if (!grammarProgress[currentGrammarTopic.id]) {
@@ -4890,6 +6658,7 @@ Vil du øve på ${pronoun} likevel?`
             
             document.getElementById('grammarExerciseArea').innerHTML = `
                 <div class="grammar-exercise">
+                    ${renderAssignmentSessionGoal('grammar', 'grammatikk')}
                     <div class="grammar-sentence">${sentenceHTML}</div>
                     
                     <div class="grammar-options">
@@ -4938,8 +6707,10 @@ Vil du øve på ${pronoun} likevel?`
                         ✗ Feil! Riktig svar er: <strong>${exercise.answer}</strong>
                         <div class="explanation">${exercise.hint}</div>
                         <div class="explanation"><strong>Hvorfor?</strong> ${getGrammarMistakeExplanation(currentGrammarTopic.id).replace(/^Hvorfor\?\s*/, '')}</div>
+                        <button class="btn btn-primary btn-sm mt-4" onclick="advanceGrammarExercise()" id="grammarNextBtn" aria-keyshortcuts="Enter">Neste</button>
                     </div>
                 `;
+                document.getElementById('grammarNextBtn').focus();
             }
             
             // Update overall progress
@@ -4947,11 +6718,14 @@ Vil du øve på ${pronoun} likevel?`
             if (isCorrect) grammarProgress[currentGrammarTopic.id].correct++;
             saveGrammarProgress();
             
-            // Move to next after delay
-            setTimeout(() => {
-                grammarCurrentIndex++;
-                showGrammarExercise();
-            }, isCorrect ? 1000 : 2500);
+            if (isCorrect) {
+                setTimeout(advanceGrammarExercise, 1000);
+            }
+        }
+
+        function advanceGrammarExercise() {
+            grammarCurrentIndex++;
+            showGrammarExercise();
         }
 
         function showGrammarHint() {
@@ -4983,7 +6757,7 @@ Vil du øve på ${pronoun} likevel?`
             
             // Record practice for homework tracking: grammar exercises count as homework practice.
             if (grammarStats.total > 0) {
-                recordPracticeSession(grammarStats.total, grammarStats.correct);
+                recordPracticeSession(grammarStats.total, grammarStats.correct, 'grammar', getElapsedPracticeMinutes(grammarSessionStartTime));
             }
             
             document.getElementById('grammarExerciseArea').innerHTML = `
@@ -5132,6 +6906,7 @@ Vil du øve på ${pronoun} likevel?`
             document.getElementById('spProgressText').textContent = `${current} av ${total}`;
             document.getElementById('spProgressPercent').textContent = `${percent}%`;
             document.getElementById('spProgressFill').style.width = `${percent}%`;
+            document.querySelector('.sentence-puzzle-progress-track')?.setAttribute('aria-valuenow', String(percent));
         }
 
         function setSentencePuzzleActionState(isSolved) {
@@ -6224,7 +7999,7 @@ Vil du øve på ${pronoun} likevel?`
         }
 
         function escapeHtml(str) {
-            return str.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
+            return String(str).replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
         }
 
 

@@ -1,0 +1,89 @@
+import { test, expect } from '@playwright/test';
+import path from 'node:path';
+import { pathToFileURL } from 'node:url';
+
+const appUrl = pathToFileURL(path.resolve('index.html')).toString();
+
+test.describe('brainmap v1 progress model', () => {
+  test('maps strength and attempts to the contracted status colors', async ({ page }) => {
+    await page.goto(appUrl);
+
+    const statuses = await page.evaluate(() => [
+      getBrainmapStatus({ strength: 0, attempts: 0 }),
+      getBrainmapStatus({ strength: 1, attempts: 1 }),
+      getBrainmapStatus({ strength: 2, attempts: 1 }),
+      getBrainmapStatus({ strength: 4, attempts: 2 }),
+      getBrainmapStatus({ strength: 5, attempts: 3 })
+    ]);
+
+    expect(statuses.map(status => status.key)).toEqual(['gray', 'red', 'yellow', 'green', 'gold']);
+  });
+
+  test('builds current nodes, keeps direction differences, and hides unknown ids', async ({ page }) => {
+    await page.goto(appUrl);
+
+    const model = await page.evaluate(() => buildBrainmapModel({
+      schemaVersion: 1,
+      createdAt: '2026-08-07T10:00:00.000Z',
+      updatedAt: '2026-08-07T10:05:00.000Z',
+      skillProgress: {
+        'a0.identity.me_llamo': { strength: 1, attempts: 1, correct: 0, lapses: 0, dueAt: null, lastSeenAt: '2026-08-07T10:01:00.000Z' },
+        'unknown.future.skill': { strength: 5, attempts: 5, correct: 5, lapses: 0, dueAt: null, lastSeenAt: '2026-08-07T10:02:00.000Z' }
+      },
+      wordProgress: {
+        'core.hola': {
+          noToEs: { strength: 5, attempts: 4, correct: 4, lapses: 0, dueAt: null, lastSeenAt: '2026-08-07T10:03:00.000Z' },
+          esToNo: { strength: 2, attempts: 2, correct: 2, lapses: 0, dueAt: null, lastSeenAt: '2026-08-07T10:04:00.000Z' }
+        },
+        'unknown.future.word': {
+          noToEs: { strength: 5, attempts: 1, correct: 1, lapses: 0, dueAt: null, lastSeenAt: null },
+          esToNo: { strength: 5, attempts: 1, correct: 1, lapses: 0, dueAt: null, lastSeenAt: null }
+        }
+      }
+    }));
+
+    expect(model.skills).toHaveLength(8);
+    expect(model.skills.find(node => node.id === 'a0.identity.me_llamo')).toMatchObject({ status: 'red', strength: 1 });
+    expect(model.skills.some(node => node.id === 'unknown.future.skill')).toBe(false);
+    expect(model.vocabularyAreas.find(area => area.id === 'Hilsener')).toMatchObject({
+      status: 'yellow',
+      directionSplit: true
+    });
+    expect(model.vocabularyAreas.some(area => area.id === 'unknown.future.word')).toBe(false);
+  });
+
+  test('caps a group at yellow when an attempted child is red', async ({ page }) => {
+    await page.goto(appUrl);
+
+    const model = await page.evaluate(() => buildBrainmapModel({
+      schemaVersion: 1,
+      createdAt: '2026-08-07T10:00:00.000Z',
+      updatedAt: '2026-08-07T10:05:00.000Z',
+      wordProgress: {},
+      skillProgress: {
+        'a0.identity.me_llamo': { strength: 1, attempts: 1, correct: 0, lapses: 1, dueAt: null, lastSeenAt: '2026-08-07T10:01:00.000Z' },
+        'a0.identity.soy_de': { strength: 5, attempts: 5, correct: 5, lapses: 0, dueAt: null, lastSeenAt: '2026-08-07T10:01:00.000Z' },
+        'a1.gustar.basic': { strength: 5, attempts: 5, correct: 5, lapses: 0, dueAt: null, lastSeenAt: '2026-08-07T10:01:00.000Z' },
+        'a1.ser_estar.identity_or_location': { strength: 5, attempts: 5, correct: 5, lapses: 0, dueAt: null, lastSeenAt: '2026-08-07T10:01:00.000Z' }
+      }
+    }));
+    const group = model.groups.find(node => node.id === 'Setninger og uttrykk');
+
+    expect(group).toMatchObject({ status: 'yellow' });
+  });
+
+  test('renders microskills without removing legacy category practice buttons', async ({ page }) => {
+    await page.goto(appUrl);
+
+    await page.evaluate(() => {
+      localStorage.clear();
+      studentName = 'Elev 14';
+      showMainApp();
+      showPage('brainmap');
+    });
+
+    await expect(page.locator('#brainmapMicroskills')).toBeVisible();
+    await expect(page.locator('[data-brainmap-status="gray"]').first()).toBeVisible();
+    await expect(page.getByRole('button', { name: /Tall.*0 av 48 mestret/i })).toBeVisible();
+  });
+});

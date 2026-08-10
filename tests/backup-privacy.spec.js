@@ -11,6 +11,8 @@ test.describe('privacy wording and local backup reminder', () => {
     await expect(page.locator('#studentNameInput')).toHaveAttribute('placeholder', /Fornavn eller elevkode/);
     await expect(page.locator('.login-hint').first()).toContainText('lagres bare i nettleseren');
     await expect(page.locator('.login-hint').first()).toContainText('lekselevering');
+    await expect(page.locator('#welcomeForm')).toContainText('nettleserdata slettes');
+    await expect(page.locator('#welcomeForm')).toContainText('Importer fremgang fra fil');
   });
 
   test('shows backup status and updates when a recent export is recorded', async ({ page }) => {
@@ -64,7 +66,7 @@ test.describe('privacy wording and local backup reminder', () => {
     expect(styles.disabled).toBe(true);
     expect(styles.buttonOpacity).toBe('1');
     expect(styles.buttonColor).not.toBe('rgb(255, 255, 255)');
-    expect(styles.hintText).toContain('øv de andre dagene');
+    expect(styles.hintText).toContain('Øv litt flere dager');
     expect(styles.hintColor).not.toBe('rgb(255, 255, 255)');
     expect(styles.summaryColor).not.toBe('rgb(255, 255, 255)');
   });
@@ -131,6 +133,11 @@ test.describe('privacy wording and local backup reminder', () => {
       localStorage.setItem('spansk123Grammar_v1', '{}');
       localStorage.setItem('spansk123_practiceHistory', '[]');
       localStorage.setItem('spansk123_lastExportDate', '2026-05-17');
+      localStorage.setItem('spansk123_learningProgress_v1', '{}');
+      localStorage.setItem('spansk123_diagnosis_v1', '{}');
+      localStorage.setItem('spansk123_quizStats_v1', '{}');
+      localStorage.setItem('spansk123_learningProgress_unsupported_2026-05-17', '{}');
+      localStorage.setItem('spansk123_quizStats_unsupported_2026-05-17', '{}');
       localStorage.setItem('spansk123_corrupt_spansk123Data_v4_2026-05-17T12-00-00-000Z', '{ skadet }');
       localStorage.setItem('spansk123_oldImportDone', 'true');
       localStorage.setItem('unrelated_key', 'behold meg');

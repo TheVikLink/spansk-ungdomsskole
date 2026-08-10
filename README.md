@@ -39,7 +39,8 @@ En gratis, interaktiv læringsapp for spansk på ungdomsskolenivå (A0-A1 CEFR).
 - Sporer øvingsdager automatisk
 - Lager lokal lekseoppsummering uten å sende data
 - Kan kobles til et læreradministrert Google Forms-skjema hvis skolen/læreren har gjort en egen personvernvurdering
-- Krav: Øv minst 2 dager (ons-søn) per uke
+- Krav: Øv minst 2 dager per uke
+- Spesifikke gloser kan deles med elever som lærerimport, og en tydeligere leksepakke-flyt er planlagt før bred skolepilot
 
 ## 🔒 Personvern
 
@@ -47,13 +48,25 @@ En gratis, interaktiv læringsapp for spansk på ungdomsskolenivå (A0-A1 CEFR).
 - Ingen innlogging eller brukerkontoer
 - Elevene kan eksportere/importere fremgang som JSON-fil
 - Ukeslekse viser en lokal oppsummering som standard. Ekstern innlevering må konfigureres eksplisitt av lærer/skole.
+- Elever blir ikke lagt inn i en felles klasse, og standardversjonen har ingen sentral lærerinnboks.
 - GDPR-vennlig for norske skoler
+
+## 🎒 Skolestartpilot
+
+Målet for første pilot er å gi spansklærere et lavterskel supplement til undervisningen uten innlogging, elevkontoer eller sentral datalagring.
+
+- Gratis pilot i 2-4 uker for utvalgte lærere/skoler
+- Foreslått tidlig skolelisens etter pilot: 3 000-4 000 kr per skole per år
+- Best egnet for gloser, repetisjon, verb, grammatikk og korte øvingsøkter i eller mellom timer
+- Feide, lærerinnlogging og skole-/kommuneadministrasjon vurderes som en senere fase etter egen personvern- og datamodell
 
 ## 🛠️ Oppsett for lærere
 
 ### 1. Bruk standard lokal pilotflyt
 
 For demo og første klassepilot trenger du bare GitHub Pages-lenken. Elevene skriver elevkode eller fornavn, øver lokalt og kan laste ned fremgang som JSON-fil. Leksefanen viser en lokal oppsummering, men sender ingenting.
+
+Standardversjonen har ikke en felles klasse som elevene blir meldt inn i. Hvis en lærer vil bruke egne gloser, deler læreren en JSON-fil basert på `eksempel-gloser-laerer.json`, og eleven importerer filen lokalt i appen.
 
 ### 2. Valgfritt: Koble til ekstern innlevering
 

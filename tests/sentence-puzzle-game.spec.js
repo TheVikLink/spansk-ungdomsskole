@@ -144,4 +144,39 @@ test.describe('sentence puzzle game', () => {
     await page.evaluate(() => checkSentencePuzzle());
     await expect(page.locator('#spFeedback')).toContainText('Riktig');
   });
+
+  test('Enter activates the current primary sentence puzzle action', async ({ page }) => {
+    await page.goto(appUrl);
+
+    await page.evaluate(() => {
+      localStorage.clear();
+      studentName = 'Elev 23';
+      showMainApp();
+      showPage('games');
+      showGameSetup('sentence-puzzle');
+      startSentencePuzzle();
+
+      spCurrentPuzzle = { no: 'Jeg har to brødre.', words: ['Tengo', 'dos', 'hermanos.'] };
+      spQuestionPool = [
+        spCurrentPuzzle,
+        { no: 'Jeg liker musikk.', words: ['Me', 'gusta', 'la', 'música.'] }
+      ];
+      spRoundIndex = 0;
+      spSolved = 0;
+      renderSentencePuzzleRound();
+    });
+
+    await page.getByRole('button', { name: 'Tengo' }).click();
+    await page.getByRole('button', { name: 'dos' }).click();
+    await page.getByRole('button', { name: 'hermanos.' }).click();
+    await page.keyboard.press('Enter');
+
+    await expect(page.locator('#spFeedback')).toContainText('Riktig');
+    await expect(page.locator('#spNextButton')).toBeEnabled();
+
+    await page.keyboard.press('Enter');
+
+    await expect(page.locator('#spProgressText')).toHaveText('2 av 2');
+    await expect(page.locator('#spBuiltSentence')).toBeEmpty();
+  });
 });
