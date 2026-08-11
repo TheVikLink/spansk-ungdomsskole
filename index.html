@@ -4520,7 +4520,7 @@
                 : getDiagnosisOptions(item);
             const responseControls = item.responseMode === 'choice'
                 ? `<div class="mixed-quiz-options">${choices.map(option => `<button type="button" class="btn btn-outline" data-mixed-answer="${escapeHtml(option.label)}">${escapeHtml(option.label)}</button>`).join('')}</div>`
-                : `<input id="mixedQuizAnswerInput" class="conjugation-input" autocomplete="off" placeholder="Skriv svaret" onkeydown="if(event.key === 'Enter') submitMixedQuizTypedAnswer()"><div class="button-group"><button type="button" class="btn btn-primary" onclick="submitMixedQuizTypedAnswer()">Sjekk svar</button></div>`;
+                : `<input id="mixedQuizAnswerInput" class="conjugation-input" autocomplete="off" placeholder="Skriv svaret" onkeydown="if(event.key === 'Enter') { event.preventDefault(); submitMixedQuizTypedAnswer(); }"><div class="button-group"><button type="button" class="btn btn-primary" onclick="submitMixedQuizTypedAnswer()">Sjekk svar</button></div>`;
             container.innerHTML = `
                 <div class="mixed-quiz-question" data-response-mode="${item.responseMode}" data-accepted-answer="${escapeHtml(getDiagnosisAnswerValue(item.acceptedAnswers[0]))}">
                     <div class="mixed-quiz-type">${mixedQuizTypeLabel(item)}</div>
@@ -4741,7 +4741,7 @@
 
         function setupKeyboardShortcuts() {
             document.addEventListener('keydown', (e) => {
-                if (diagnosisFeedback && e.key === 'Enter') {
+                if (diagnosisFeedback && e.key === 'Enter' && e.target?.id !== 'diagnosisAnswerInput') {
                     e.preventDefault();
                     advanceDiagnosisFeedback();
                     return;
