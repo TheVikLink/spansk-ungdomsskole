@@ -1311,6 +1311,10 @@ select:focus-visible,
     margin-top: 24px;
 }
 
+.speech-audio-button {
+    margin: 10px auto 0;
+}
+
 @media (max-width: 640px) {
     .mixed-quiz-results {
         padding: 20px 10px;

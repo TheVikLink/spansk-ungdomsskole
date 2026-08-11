@@ -1144,6 +1144,52 @@
             }
         }
 
+        // Browser/OS speech is optional. Keep it behind one guarded helper so a missing
+        // voice never interrupts a learning session or creates a network dependency.
+        function isSpeechAvailable() {
+            return typeof window !== 'undefined'
+                && typeof window.speechSynthesis?.speak === 'function'
+                && typeof window.SpeechSynthesisUtterance === 'function';
+        }
+
+        function getSpanishSpeechVoice() {
+            if (!isSpeechAvailable() || typeof window.speechSynthesis.getVoices !== 'function') return null;
+            const voices = window.speechSynthesis.getVoices() || [];
+            return voices.find(voice => String(voice.lang || '').toLowerCase() === 'es-es')
+                || voices.find(voice => String(voice.lang || '').toLowerCase().startsWith('es'))
+                || null;
+        }
+
+        function speakSpanish(text) {
+            const value = String(text || '').trim();
+            if (!value || !isSpeechAvailable()) return false;
+
+            try {
+                const synthesis = window.speechSynthesis;
+                synthesis.cancel();
+                const utterance = new window.SpeechSynthesisUtterance(value);
+                utterance.lang = 'es-ES';
+                const voice = getSpanishSpeechVoice();
+                if (voice) utterance.voice = voice;
+                synthesis.speak(utterance);
+                return true;
+            } catch (error) {
+                console.warn('Spanish speech is unavailable in this browser.', error);
+                return false;
+            }
+        }
+
+        function attachSpanishAudioControl(root, text) {
+            const control = root?.querySelector('[data-speak-spanish]');
+            if (!control) return;
+            const available = isSpeechAvailable();
+            control.disabled = !available;
+            control.textContent = available ? '🔊 Spill av' : '🔇 Lyd ikke tilgjengelig';
+            control.setAttribute('aria-label', available ? 'Spill av spansk lyd' : 'Lyd er ikke tilgjengelig');
+            control.title = available ? 'Spill av spansk lyd' : 'Lyd er ikke tilgjengelig i denne nettleseren';
+            control.addEventListener('click', () => speakSpanish(text));
+        }
+
         function normalizeLearningProgress(data, nowIso = new Date().toISOString()) {
             if (!data || data.schemaVersion !== LEARNING_PROGRESS_SCHEMA_VERSION) {
                 return {
@@ -4525,10 +4571,12 @@
                 <div class="mixed-quiz-question" data-response-mode="${item.responseMode}" data-accepted-answer="${escapeHtml(getDiagnosisAnswerValue(item.acceptedAnswers[0]))}">
                     <div class="mixed-quiz-type">${mixedQuizTypeLabel(item)}</div>
                     <div class="mixed-quiz-prompt">${escapeHtml(item.prompt)}${item.answerConstraint?.type === 'startsWith' ? ` <span class="answer-constraint">(begynner på «${escapeHtml(item.answerConstraint.value)}»)</span>` : ''}</div>
+                    ${item.direction === 'es-no' ? '<button type="button" class="speech-audio-button btn btn-secondary btn-sm" data-speak-spanish>🔊 Spill av</button>' : ''}
                     ${responseControls}
                     <div class="mixed-quiz-feedback" id="mixedQuizFeedback" aria-live="polite"></div>
                 </div>
             `;
+            if (item.direction === 'es-no') attachSpanishAudioControl(container, item.prompt);
             container.querySelectorAll('[data-mixed-answer]').forEach(button => {
                 button.addEventListener('click', () => submitMixedQuizAnswer(button.dataset.mixedAnswer));
             });
@@ -5328,8 +5376,9 @@ Vil du øve på ${pronoun} likevel?`
                     <div class="card-hint">Trykk for å se svar (mellomrom)</div>
                     <span class="card-category">${getCategoryEmoji(card.category)} ${capitalizeFirst(card.category)}</span>
                 </div>
+                ${direction === 'es-no' ? '<button type="button" class="speech-audio-button btn btn-secondary btn-sm" data-speak-spanish>🔊 Spill av</button>' : ''}
             `;
-            
+            if (direction === 'es-no') attachSpanishAudioControl(document.getElementById('flashcardArea'), front);
             document.getElementById('buttonArea').innerHTML = '';
             updateUndoButtonState();
         }
@@ -5361,8 +5410,9 @@ Vil du øve på ${pronoun} likevel?`
                     <div class="card-answer">${back}</div>
                     <span class="card-category">${getCategoryEmoji(card.category)} ${capitalizeFirst(card.category)}</span>
                 </div>
+                ${direction === 'no-es' ? '<button type="button" class="speech-audio-button btn btn-secondary btn-sm" data-speak-spanish>🔊 Spill av</button>' : ''}
             `;
-            
+            if (direction === 'no-es') attachSpanishAudioControl(document.getElementById('flashcardArea'), back);
             document.getElementById('buttonArea').innerHTML = `
                 <div class="rating-buttons">
                     <button class="rating-btn rating-again" onclick="rateCard(0)">😓 <span class="rating-label">Igjen</span><span class="interval">${intervals[0]}</span><span class="key">(1)</span></button>
