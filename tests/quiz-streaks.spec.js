@@ -135,16 +135,47 @@ test.describe('local quiz streaks', () => {
       finishMixedQuiz();
       return {
         rows: document.querySelectorAll('.mixed-quiz-review-item').length,
-        repeatButton: document.querySelector('.mixed-quiz-results button')?.textContent,
+        topActions: Boolean(document.querySelector('.mixed-quiz-result-actions-top')),
+        repeatButton: document.querySelector('.mixed-quiz-result-actions-top button')?.textContent,
         explanation: document.querySelector('.mixed-quiz-review-item p:last-child')?.textContent,
         summary: document.getElementById('mixedQuizStreakSummary')?.textContent
       };
     });
 
     expect(result.rows).toBe(10);
+    expect(result.topActions).toBe(true);
     expect(result.repeatButton).toContain('Ta en ny quiz');
     expect(result.explanation).toContain('Kort forklaring');
     expect(result.summary).toContain('1/5');
+  });
+
+  test('opens incorrect review rows and keeps correct rows collapsed', async ({ page }) => {
+    await page.goto(appUrl);
+
+    const result = await page.evaluate(() => {
+      localStorage.clear();
+      mixedQuizState = {
+        index: 2,
+        answered: 2,
+        correct: 1,
+        startedAt: new Date().toISOString(),
+        results: [
+          { questionId: 'q1', prompt: 'riktig', answer: 'ja', resultKind: 'correct', correct: true, correctAnswers: ['ja'], explanation: 'Forklaring 1' },
+          { questionId: 'q2', prompt: 'feil', answer: 'nei', resultKind: 'wrong', correct: false, correctAnswers: ['ja'], explanation: 'Forklaring 2' }
+        ],
+        quiz: { items: [{ questionId: 'q1' }, { questionId: 'q2' }] }
+      };
+      finishMixedQuiz();
+      return [...document.querySelectorAll('.mixed-quiz-review-item')].map(row => ({
+        open: row.open,
+        status: row.querySelector('summary')?.textContent || ''
+      }));
+    });
+
+    expect(result).toEqual([
+      { open: false, status: expect.stringContaining('Riktig') },
+      { open: true, status: expect.stringContaining('Feil') }
+    ]);
   });
 
   test('awards a skill badge once when mastery threshold is reached', async ({ page }) => {

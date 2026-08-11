@@ -87,11 +87,15 @@ test('simulated student completes diagnosis and two mixed quizzes with evidence 
     if (quizNumber === 1) {
       await page.getByRole('button', { name: 'Start dagens quiz', exact: true }).click();
     } else {
-      await page.getByRole('button', { name: /Ta en ny quiz/ }).click();
+      await page.locator('.mixed-quiz-result-actions-top').getByRole('button', { name: /Ta en ny quiz/ }).click();
     }
     await checkpoint(`quiz-${quizNumber}-start`, 'Blandet quiz med ordforråd, grammatikk og verb.');
     for (let index = 0; index < 10; index++) await answerCurrentQuestion(`quiz-${quizNumber}`, index);
     await expect(page.locator('.mixed-quiz-review-item')).toHaveCount(10);
+    await expect(page.locator('.mixed-quiz-result-actions-top')).toBeVisible();
+    const firstReviewTop = await page.locator('.mixed-quiz-review-item').first().boundingBox();
+    const topActionBottom = await page.locator('.mixed-quiz-result-actions-top').boundingBox();
+    expect(topActionBottom?.y + topActionBottom?.height).toBeLessThanOrEqual(firstReviewTop?.y || 0);
     await checkpoint(`quiz-${quizNumber}-result`, 'Alle svar, fasiter og forklaringer skal være synlige.');
   }
 

@@ -4630,6 +4630,11 @@
                         <p>${mixedQuizState.correct} av ${total} riktige (${accuracy}%).</p>
                         <p id="mixedQuizStreakSummary">${formatQuizStreakSummary(quizStats)}</p>
                         ${newlyMastered.length ? `<div class="quiz-badge-awards"><strong>🏅 Nye merker</strong><p>${newlyMastered.map(badge => escapeHtml(badge.label)).join(' · ')}</p></div>` : ''}
+                        <div class="mixed-quiz-result-actions-top" aria-label="Neste steg">
+                            <button type="button" class="btn btn-primary" onclick="startMixedQuizFromUi()">▶️ Ta en ny quiz</button>
+                            <button type="button" class="btn btn-secondary" onclick="showPage('brainmap')">🧠 Se Brainmap</button>
+                        </div>
+                        <p class="mixed-quiz-review-intro">Åpne et svar for å se forklaring og godkjente svar.</p>
                         <div class="mixed-quiz-review" aria-label="Gjennomgang av quizsvar">
                             ${results.map((result, index) => `<details class="mixed-quiz-review-item" ${result.correct ? '' : 'open'}>
                                 <summary><span>${index + 1}. ${escapeHtml(result.prompt)}</span><strong class="${result.correct ? 'review-correct' : 'review-wrong'}">${result.correct ? '✓ Riktig' : result.resultKind === 'near_miss' ? 'Nesten' : '✗ Feil'}</strong></summary>
@@ -4638,12 +4643,18 @@
                                 <p>${escapeHtml(result.explanation)}</p>
                             </details>`).join('')}
                         </div>
-                        <div class="button-group">
+                        <div class="button-group mixed-quiz-result-actions-bottom">
                             <button type="button" class="btn btn-primary" onclick="startMixedQuizFromUi()">▶️ Ta en ny quiz</button>
                             <button type="button" class="btn btn-secondary" onclick="showPage('brainmap')">🧠 Se Brainmap</button>
                         </div>
                     </div>
                 `;
+                const resultHeading = container.querySelector('h2');
+                if (resultHeading) {
+                    resultHeading.tabIndex = -1;
+                    resultHeading.focus({ preventScroll: true });
+                }
+                container.scrollIntoView({ block: 'start' });
             }
             updateMixedQuizProgress();
         }
