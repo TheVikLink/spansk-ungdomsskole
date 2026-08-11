@@ -60,7 +60,7 @@ test.describe('progress import/export compatibility', () => {
       }
     });
     expect(exported.diagnosis).toMatchObject({
-      schemaVersion: 1,
+      schemaVersion: 2,
       status: 'complete',
       resultBand: 'A0+',
       recommendedSkillIds: ['a0.articles.definite_singular']
@@ -115,7 +115,7 @@ test.describe('progress import/export compatibility', () => {
       grammarData: JSON.parse(localStorage.getItem('spansk123Grammar_v1')),
       practiceHistory: JSON.parse(localStorage.getItem('spansk123_practiceHistory')),
       learningProgress: JSON.parse(localStorage.getItem('spansk123_learningProgress_v1')),
-      diagnosis: JSON.parse(localStorage.getItem('spansk123_diagnosis_v1'))
+      diagnosis: JSON.parse(localStorage.getItem('spansk123_diagnosis_v2'))
     }));
 
     expect(stored.studentName).toBe('Elevkode 9A-14');
@@ -129,7 +129,7 @@ test.describe('progress import/export compatibility', () => {
       lapses: 0
     });
     expect(stored.diagnosis).toMatchObject({
-      schemaVersion: 1,
+      schemaVersion: 2,
       status: 'complete',
       resultBand: 'A0+',
       recommendedSkillIds: ['a0.articles.definite_singular']

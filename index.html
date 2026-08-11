@@ -934,6 +934,23 @@
         </main>
     </div>
 
+    <script type="application/json" id="diagnosis-catalog-data">
+        [
+            {"id":"diag.vocab.greeting.hola.es_no","contentVersion":1,"instructionNb":"Skriv betydningen på norsk.","prompt":"hola","targetType":"word","targetId":"core.hola","direction":"esToNo","responseMode":"typed","acceptedAnswers":[{"answerId":"hei","value":"hei","canonicalMeaningId":"greeting_hola_no"},{"answerId":"hallo","value":"hallo","canonicalMeaningId":"greeting_hola_no"}],"primaryConstruct":"concrete_vocabulary","secondaryConstructs":["recognition_to_production"],"informativeBands":["A0","A0+"],"productiveAnchor":false,"maxEvidence":1,"normalization":{"unicode":"NFC","trimOuterWhitespace":true,"collapseInternalWhitespace":true,"ignoreTerminalPunctuation":true,"caseSensitive":false,"diacriticSensitive":false},"variantRules":[],"nearMissRules":[],"ambiguityReview":{"passed":true,"reviewedBy":["content-review-2026-08-11"],"reviewedAt":"2026-08-11","notes":"Direkte, entydig høyfrekvent hilsen.","checkedForAlternativeCorrectAnswers":true,"checkedForRegionalVariation":true},"sourceNote":"written-original"},
+            {"id":"diag.vocab.greeting.takk.no_es","contentVersion":1,"instructionNb":"Skriv ordet på spansk.","prompt":"takk","targetType":"word","targetId":"core.gracias","direction":"noToEs","responseMode":"typed","acceptedAnswers":[{"answerId":"gracias","value":"gracias","canonicalMeaningId":"thanks_gracias_es"}],"primaryConstruct":"concrete_vocabulary","secondaryConstructs":["production"],"informativeBands":["A0","A0+"],"productiveAnchor":false,"maxEvidence":1,"normalization":{"unicode":"NFC","trimOuterWhitespace":true,"collapseInternalWhitespace":true,"ignoreTerminalPunctuation":true,"caseSensitive":false,"diacriticSensitive":false},"variantRules":[],"nearMissRules":[],"ambiguityReview":{"passed":true,"reviewedBy":["content-review-2026-08-11"],"reviewedAt":"2026-08-11","notes":"Direkte, entydig høyfrekvent høflighetsord.","checkedForAlternativeCorrectAnswers":true,"checkedForRegionalVariation":true},"sourceNote":"written-original"},
+            {"id":"diag.vocab.family.madre.es_no","contentVersion":1,"instructionNb":"Skriv betydningen på norsk.","prompt":"la madre","targetType":"word","targetId":"core.madre","direction":"esToNo","responseMode":"typed","acceptedAnswers":[{"answerId":"mor","value":"mor","canonicalMeaningId":"mother_madre_no"},{"answerId":"moren","value":"moren","canonicalMeaningId":"mother_madre_no"},{"answerId":"mamma","value":"mamma","canonicalMeaningId":"mother_madre_no"}],"primaryConstruct":"concrete_vocabulary","secondaryConstructs":["article_recognition"],"informativeBands":["A0","A0+"],"productiveAnchor":false,"maxEvidence":1,"normalization":{"unicode":"NFC","trimOuterWhitespace":true,"collapseInternalWhitespace":true,"ignoreTerminalPunctuation":true,"caseSensitive":false,"diacriticSensitive":false},"variantRules":[],"nearMissRules":[],"ambiguityReview":{"passed":true,"reviewedBy":["content-review-2026-08-11"],"reviewedAt":"2026-08-11","notes":"Flere norske bøynings- og ordvalgsvarianter er eksplisitt godkjent.","checkedForAlternativeCorrectAnswers":true,"checkedForRegionalVariation":true},"sourceNote":"written-original"},
+            {"id":"diag.vocab.number.fem.no_es","contentVersion":1,"instructionNb":"Skriv tallet på spansk.","prompt":"fem","targetType":"word","targetId":"core.cinco","direction":"noToEs","responseMode":"typed","acceptedAnswers":[{"answerId":"cinco","value":"cinco","canonicalMeaningId":"five_cinco_es"}],"primaryConstruct":"concrete_vocabulary","secondaryConstructs":["production"],"informativeBands":["A0","A0+"],"productiveAnchor":false,"maxEvidence":1,"normalization":{"unicode":"NFC","trimOuterWhitespace":true,"collapseInternalWhitespace":true,"ignoreTerminalPunctuation":true,"caseSensitive":false,"diacriticSensitive":false},"variantRules":[],"nearMissRules":[],"ambiguityReview":{"passed":true,"reviewedBy":["content-review-2026-08-11"],"reviewedAt":"2026-08-11","notes":"Direkte og entydig talloppgave.","checkedForAlternativeCorrectAnswers":true,"checkedForRegionalVariation":true},"sourceNote":"written-original"},
+            {"id":"diag.a0.identity.me_llamo.typed","contentVersion":1,"instructionNb":"Skriv på spansk.","prompt":"Jeg heter Ana","targetType":"skill","targetId":"a0.identity.me_llamo","direction":null,"responseMode":"typed","acceptedAnswers":[{"answerId":"me_llamo_ana","value":"me llamo ana","canonicalMeaningId":"say_name_me_llamo"}],"primaryConstruct":"formulaic_identity","secondaryConstructs":["productive_control"],"informativeBands":["A0+","A1-start"],"productiveAnchor":true,"maxEvidence":1,"normalization":{"unicode":"NFC","trimOuterWhitespace":true,"collapseInternalWhitespace":true,"ignoreTerminalPunctuation":true,"caseSensitive":false,"diacriticSensitive":false},"variantRules":[],"nearMissRules":[{"ruleId":"me_llama_ana","values":["me llama ana"],"evidenceWeight":0.5,"errorTag":"wrong_person"}],"ambiguityReview":{"passed":true,"reviewedBy":["content-review-2026-08-11"],"reviewedAt":"2026-08-11","notes":"Fast identitetskonstruksjon med ett eksplisitt tillatt svar.","checkedForAlternativeCorrectAnswers":true,"checkedForRegionalVariation":true},"sourceNote":"written-original"},
+            {"id":"diag.a0.identity.soy_de.choice","contentVersion":1,"instructionNb":"Velg den spanske setningen som betyr «Jeg er fra Norge».","prompt":"Jeg er fra Norge","targetType":"skill","targetId":"a0.identity.soy_de","direction":null,"responseMode":"choice","acceptedAnswers":[{"answerId":"soy_de_noruega","value":"Soy de Noruega","canonicalMeaningId":"origin_soy_de"}],"options":[{"optionId":"soy_de_noruega","label":"Soy de Noruega"},{"optionId":"estoy_de_noruega","label":"Estoy de Noruega"},{"optionId":"me_llamo_noruega","label":"Me llamo Noruega"}],"primaryConstruct":"identity_origin","secondaryConstructs":["recognition"],"informativeBands":["A0+","A1-start"],"productiveAnchor":false,"maxEvidence":1,"normalization":{"unicode":"NFC","trimOuterWhitespace":true,"collapseInternalWhitespace":true,"ignoreTerminalPunctuation":true,"caseSensitive":false,"diacriticSensitive":false},"variantRules":[],"nearMissRules":[],"ambiguityReview":{"passed":true,"reviewedBy":["content-review-2026-08-11"],"reviewedAt":"2026-08-11","notes":"Norsk betydning og register er eksplisitt.","checkedForAlternativeCorrectAnswers":true,"checkedForRegionalVariation":true},"sourceNote":"written-original"},
+            {"id":"diag.a0.articles.indefinite_singular.choice","contentVersion":1,"instructionNb":"Velg den spanske formuleringen som betyr «et hus».","prompt":"et hus","targetType":"skill","targetId":"a0.articles.indefinite_singular","direction":null,"responseMode":"choice","acceptedAnswers":[{"answerId":"una_casa","value":"una casa","canonicalMeaningId":"indefinite_feminine_singular"}],"options":[{"optionId":"una_casa","label":"una casa"},{"optionId":"la_casa","label":"la casa"},{"optionId":"un_casa","label":"un casa"},{"optionId":"el_casa","label":"el casa"}],"primaryConstruct":"indefinite_article_gender","secondaryConstructs":["recognition"],"informativeBands":["A0+","A1-start"],"productiveAnchor":false,"maxEvidence":1,"normalization":{"unicode":"NFC","trimOuterWhitespace":true,"collapseInternalWhitespace":true,"ignoreTerminalPunctuation":true,"caseSensitive":false,"diacriticSensitive":false},"variantRules":[],"nearMissRules":[{"ruleId":"la_casa","values":["la casa"],"evidenceWeight":0.5,"errorTag":"wrong_article_type"}],"ambiguityReview":{"passed":true,"reviewedBy":["content-review-2026-08-11"],"reviewedAt":"2026-08-11","notes":"Betydningen «et hus» gjør bestemt/ubestemt valg entydig.","checkedForAlternativeCorrectAnswers":true,"checkedForRegionalVariation":true},"sourceNote":"written-original"},
+            {"id":"diag.a0.articles.definite_singular.choice","contentVersion":1,"instructionNb":"Velg den spanske formuleringen som betyr «boka».","prompt":"boka","targetType":"skill","targetId":"a0.articles.definite_singular","direction":null,"responseMode":"choice","acceptedAnswers":[{"answerId":"el_libro","value":"el libro","canonicalMeaningId":"definite_masculine_singular"}],"options":[{"optionId":"el_libro","label":"el libro"},{"optionId":"un_libro","label":"un libro"},{"optionId":"la_libro","label":"la libro"},{"optionId":"una_libro","label":"una libro"}],"primaryConstruct":"definite_article_gender","secondaryConstructs":["recognition"],"informativeBands":["A0+","A1-start"],"productiveAnchor":false,"maxEvidence":1,"normalization":{"unicode":"NFC","trimOuterWhitespace":true,"collapseInternalWhitespace":true,"ignoreTerminalPunctuation":true,"caseSensitive":false,"diacriticSensitive":false},"variantRules":[],"nearMissRules":[{"ruleId":"un_libro","values":["un libro"],"evidenceWeight":0.5,"errorTag":"wrong_article_type"}],"ambiguityReview":{"passed":true,"reviewedBy":["content-review-2026-08-11"],"reviewedAt":"2026-08-11","notes":"Norsk bestemthet og spansk maskulin entall er eksplisitt.","checkedForAlternativeCorrectAnswers":true,"checkedForRegionalVariation":true},"sourceNote":"written-original"},
+            {"id":"diag.a1.verbs.regular_ar.present.hablar","contentVersion":1,"instructionNb":"Skriv riktig presensform av hablar.","prompt":"yo + hablar","targetType":"skill","targetId":"a1.verbs.regular_ar.present","direction":null,"responseMode":"typed","acceptedAnswers":[{"answerId":"hablo","value":"hablo","canonicalMeaningId":"regular_ar_present_yo"}],"primaryConstruct":"regular_ar_present","secondaryConstructs":["productive_control"],"informativeBands":["A1-start","A1"],"productiveAnchor":true,"maxEvidence":1,"normalization":{"unicode":"NFC","trimOuterWhitespace":true,"collapseInternalWhitespace":true,"ignoreTerminalPunctuation":true,"caseSensitive":false,"diacriticSensitive":false},"variantRules":[],"nearMissRules":[{"ruleId":"hablar_infinitive","values":["hablar"],"evidenceWeight":0.5,"errorTag":"infinitive_for_finite"}],"ambiguityReview":{"passed":true,"reviewedBy":["content-review-2026-08-11"],"reviewedAt":"2026-08-11","notes":"Person og verb er eksplisitt oppgitt.","checkedForAlternativeCorrectAnswers":true,"checkedForRegionalVariation":true},"sourceNote":"written-original"},
+            {"id":"diag.a1.verbs.regular_er.present.comer","contentVersion":1,"instructionNb":"Skriv riktig presensform av comer.","prompt":"tú + comer","targetType":"skill","targetId":"a1.verbs.regular_er.present","direction":null,"responseMode":"typed","acceptedAnswers":[{"answerId":"comes","value":"comes","canonicalMeaningId":"regular_er_present_tu"}],"primaryConstruct":"regular_er_present","secondaryConstructs":["productive_control"],"informativeBands":["A1-start","A1"],"productiveAnchor":true,"maxEvidence":1,"normalization":{"unicode":"NFC","trimOuterWhitespace":true,"collapseInternalWhitespace":true,"ignoreTerminalPunctuation":true,"caseSensitive":false,"diacriticSensitive":false},"variantRules":[],"nearMissRules":[{"ruleId":"comer_infinitive","values":["comer"],"evidenceWeight":0.5,"errorTag":"infinitive_for_finite"}],"ambiguityReview":{"passed":true,"reviewedBy":["content-review-2026-08-11"],"reviewedAt":"2026-08-11","notes":"Person og verb er eksplisitt oppgitt.","checkedForAlternativeCorrectAnswers":true,"checkedForRegionalVariation":true},"sourceNote":"written-original"},
+            {"id":"diag.a1.gustar.basic.choice","contentVersion":1,"instructionNb":"Velg riktig form av gustar.","prompt":"Me ___ los libros de aventuras.","targetType":"skill","targetId":"a1.gustar.basic","direction":null,"responseMode":"choice","acceptedAnswers":[{"answerId":"gustan","value":"gustan","canonicalMeaningId":"gustar_plural_subject"}],"options":[{"optionId":"gusta","label":"gusta"},{"optionId":"gustan","label":"gustan"},{"optionId":"gusto","label":"gusto"},{"optionId":"gustas","label":"gustas"}],"primaryConstruct":"gustar_plural_agreement","secondaryConstructs":["recognition"],"informativeBands":["A1-start","A1"],"productiveAnchor":false,"maxEvidence":1,"normalization":{"unicode":"NFC","trimOuterWhitespace":true,"collapseInternalWhitespace":true,"ignoreTerminalPunctuation":true,"caseSensitive":false,"diacriticSensitive":false},"variantRules":[],"nearMissRules":[{"ruleId":"gusta","values":["gusta"],"evidenceWeight":0.5,"errorTag":"wrong_number"}],"ambiguityReview":{"passed":true,"reviewedBy":["content-review-2026-08-11"],"reviewedAt":"2026-08-11","notes":"Los libros gjør grammatisk subjekt og tall tydelig.","checkedForAlternativeCorrectAnswers":true,"checkedForRegionalVariation":true},"sourceNote":"written-original"},
+            {"id":"diag.a1.ser_estar.identity_or_location.choice","contentVersion":1,"instructionNb":"Velg riktig verbform for plassering.","prompt":"Madrid ___ en España","targetType":"skill","targetId":"a1.ser_estar.identity_or_location","direction":null,"responseMode":"choice","acceptedAnswers":[{"answerId":"esta","value":"está","canonicalMeaningId":"estar_location"}],"options":[{"optionId":"es","label":"es"},{"optionId":"esta","label":"está"},{"optionId":"soy","label":"soy"},{"optionId":"hay","label":"hay"}],"primaryConstruct":"estar_location","secondaryConstructs":["recognition"],"informativeBands":["A1-start","A1"],"productiveAnchor":false,"maxEvidence":1,"normalization":{"unicode":"NFC","trimOuterWhitespace":true,"collapseInternalWhitespace":true,"ignoreTerminalPunctuation":true,"caseSensitive":false,"diacriticSensitive":true},"variantRules":[{"ruleId":"esta_without_accent","values":["esta"],"classification":"accent_or_case_variant","evidenceWeight":0.9,"reasonCode":"missing_diacritic"}],"nearMissRules":[{"ruleId":"es","values":["es"],"evidenceWeight":0.5,"errorTag":"ser_estar_confusion"}],"ambiguityReview":{"passed":true,"reviewedBy":["content-review-2026-08-11"],"reviewedAt":"2026-08-11","notes":"Lokasjon er eksplisitt; itemet tester ikke permanent/midlertidig-regelen.","checkedForAlternativeCorrectAnswers":true,"checkedForRegionalVariation":true},"sourceNote":"written-original"}
+        ]
+    </script>
+
     <script>
         // ============================================
         // APP CONFIGURATION
@@ -954,8 +971,9 @@
         const ACTIVE_ASSIGNMENT_KEY = 'spansk123_activeAssignment';
         const LEARNING_PROGRESS_KEY = 'spansk123_learningProgress_v1';
         const LEARNING_PROGRESS_SCHEMA_VERSION = 1;
-        const DIAGNOSIS_KEY = 'spansk123_diagnosis_v1';
-        const DIAGNOSIS_SCHEMA_VERSION = 1;
+        const DIAGNOSIS_KEY = 'spansk123_diagnosis_v2';
+        const LEGACY_DIAGNOSIS_KEY = 'spansk123_diagnosis_v1';
+        const DIAGNOSIS_SCHEMA_VERSION = 2;
         const QUIZ_STATS_KEY = 'spansk123_quizStats_v1';
         const QUIZ_STATS_SCHEMA_VERSION = 1;
 
@@ -964,6 +982,7 @@
         let activeAssignment = null;
         let learningProgressWriteBlocked = false;
         let quizStatsWriteBlocked = false;
+        let diagnosisWriteBlocked = false;
         let diagnosisFeedback = null;
 
         const learningCatalog = {
@@ -985,20 +1004,10 @@
             ]
         };
 
-        const diagnosisQuestionCatalog = [
-            { id: 'diag.vocab.greeting.hola.es_no', prompt: 'hola', targetType: 'word', targetId: 'core.hola', direction: 'esToNo', responseMode: 'typed', acceptedAnswers: ['hei', 'hallo'], sourceNote: 'written-original' },
-            { id: 'diag.vocab.greeting.takk.no_es', prompt: 'takk', targetType: 'word', targetId: 'core.gracias', direction: 'noToEs', responseMode: 'typed', acceptedAnswers: ['gracias'], sourceNote: 'written-original' },
-            { id: 'diag.vocab.family.madre.es_no', prompt: 'la madre', targetType: 'word', targetId: 'core.madre', direction: 'esToNo', responseMode: 'typed', acceptedAnswers: ['mor', 'moren', 'mamma'], sourceNote: 'written-original' },
-            { id: 'diag.vocab.number.fem.no_es', prompt: 'fem', targetType: 'word', targetId: 'core.cinco', direction: 'noToEs', responseMode: 'typed', acceptedAnswers: ['cinco'], sourceNote: 'written-original' },
-            { id: 'diag.a0.identity.me_llamo.typed', prompt: 'Skriv: Jeg heter Ana', targetType: 'skill', targetId: 'a0.identity.me_llamo', direction: null, responseMode: 'typed', acceptedAnswers: ['me llamo ana'], sourceNote: 'written-original' },
-            { id: 'diag.a0.identity.soy_de.choice', prompt: 'Hvordan sier du "Jeg er fra Norge"?', targetType: 'skill', targetId: 'a0.identity.soy_de', direction: null, responseMode: 'choice', acceptedAnswers: ['Soy de Noruega'], options: ['Soy de Noruega', 'Estoy de Noruega', 'Me llamo Noruega'], sourceNote: 'written-original' },
-            { id: 'diag.a0.articles.indefinite_singular.choice', prompt: '___ casa', targetType: 'skill', targetId: 'a0.articles.indefinite_singular', direction: null, responseMode: 'choice', acceptedAnswers: ['una'], options: ['un', 'una', 'el', 'la'], sourceNote: 'written-original' },
-            { id: 'diag.a0.articles.definite_singular.choice', prompt: '___ libro', targetType: 'skill', targetId: 'a0.articles.definite_singular', direction: null, responseMode: 'choice', acceptedAnswers: ['el'], options: ['el', 'la', 'un', 'una'], sourceNote: 'written-original' },
-            { id: 'diag.a1.verbs.regular_ar.present.hablar', prompt: 'yo + hablar', targetType: 'skill', targetId: 'a1.verbs.regular_ar.present', direction: null, responseMode: 'typed', acceptedAnswers: ['hablo'], sourceNote: 'written-original' },
-            { id: 'diag.a1.verbs.regular_er.present.comer', prompt: 'tú + comer', targetType: 'skill', targetId: 'a1.verbs.regular_er.present', direction: null, responseMode: 'typed', acceptedAnswers: ['comes'], sourceNote: 'written-original' },
-            { id: 'diag.a1.gustar.basic.choice', prompt: 'Me ___ el fútbol', targetType: 'skill', targetId: 'a1.gustar.basic', direction: null, responseMode: 'choice', acceptedAnswers: ['gusta'], options: ['gusta', 'gustan', 'gusto'], sourceNote: 'written-original' },
-            { id: 'diag.a1.ser_estar.identity_or_location.choice', prompt: 'Madrid ___ en España', targetType: 'skill', targetId: 'a1.ser_estar.identity_or_location', direction: null, responseMode: 'choice', acceptedAnswers: ['está'], options: ['es', 'está', 'soy'], sourceNote: 'written-original' }
-        ];
+        const diagnosisQuestionCatalog = JSON.parse(document.getElementById('diagnosis-catalog-data').textContent);
+        const getDiagnosisAnswerValue = answer => typeof answer === 'string' ? answer : answer?.value || '';
+        const getDiagnosisAnswerValues = question => (question.acceptedAnswers || []).map(getDiagnosisAnswerValue);
+        const getDiagnosisOptions = question => (question.options || question.acceptedAnswers || []).map(option => typeof option === 'string' ? { optionId: option, label: option } : option);
 
         // ============================================
         // APP START FUNCTIONS
@@ -1084,11 +1093,12 @@
                 'spansk123_oldImportDone',
                 LEARNING_PROGRESS_KEY,
                 DIAGNOSIS_KEY,
+                LEGACY_DIAGNOSIS_KEY,
                 QUIZ_STATS_KEY
             ];
 
             Object.keys(localStorage).forEach(key => {
-                if (appKeys.includes(key) || key.startsWith(CORRUPT_STORAGE_PREFIX) || key.startsWith('spansk123_learningProgress_unsupported_') || key.startsWith('spansk123_quizStats_unsupported_')) {
+                if (appKeys.includes(key) || key.startsWith(CORRUPT_STORAGE_PREFIX) || key.startsWith('spansk123_learningProgress_unsupported_') || key.startsWith('spansk123_quizStats_unsupported_') || key.startsWith('spansk123_diagnosis_unsupported_')) {
                     localStorage.removeItem(key);
                 }
             });
@@ -1238,39 +1248,98 @@
 
         function normalizeDiagnosisState(data) {
             const validStatuses = new Set(['not_started', 'in_progress', 'complete']);
-            if (!data || data.schemaVersion !== DIAGNOSIS_SCHEMA_VERSION) {
-                return {
-                    schemaVersion: DIAGNOSIS_SCHEMA_VERSION,
-                    status: 'not_started',
-                    startedAt: null,
-                    completedAt: null,
-                    questionIds: [],
-                    answers: [],
-                    resultBand: null,
-                    recommendedSkillIds: []
-                };
-            }
-
+            const source = data && Number(data.schemaVersion) === DIAGNOSIS_SCHEMA_VERSION ? data : {};
             return {
                 schemaVersion: DIAGNOSIS_SCHEMA_VERSION,
-                status: validStatuses.has(data.status) ? data.status : 'not_started',
-                startedAt: data.startedAt || null,
-                completedAt: data.completedAt || null,
-                questionIds: Array.isArray(data.questionIds) ? data.questionIds.map(String) : [],
-                answers: Array.isArray(data.answers) ? data.answers : [],
-                resultBand: data.resultBand || null,
-                recommendedSkillIds: Array.isArray(data.recommendedSkillIds) ? data.recommendedSkillIds.map(String) : []
+                status: validStatuses.has(source.status) ? source.status : 'not_started',
+                startedAt: source.startedAt || null,
+                completedAt: source.completedAt || null,
+                questionIds: Array.isArray(source.questionIds) ? source.questionIds.map(String) : [],
+                answers: Array.isArray(source.answers) ? source.answers : [],
+                resultBand: source.resultBand || null,
+                recommendedSkillIds: Array.isArray(source.recommendedSkillIds) ? source.recommendedSkillIds.map(String) : [],
+                confidence: ['low', 'medium', 'high'].includes(source.confidence) ? source.confidence : 'low',
+                evidenceCount: Math.max(0, Number(source.evidenceCount) || 0),
+                productiveAnchorCount: Math.max(0, Number(source.productiveAnchorCount) || 0),
+                insufficientEvidence: Boolean(source.insufficientEvidence),
+                observationsVersion: Number(source.observationsVersion) || 1,
+                itemVersions: source.itemVersions && typeof source.itemVersions === 'object' ? source.itemVersions : {},
+                sessionId: typeof source.sessionId === 'string' ? source.sessionId : null,
+                processedResponseIds: Array.isArray(source.processedResponseIds) ? source.processedResponseIds.map(String) : []
             };
         }
 
         function saveDiagnosisState(state) {
-            const normalized = normalizeDiagnosisState(state);
+            if (diagnosisWriteBlocked) return false;
+            const normalized = Number(state?.schemaVersion) === 1
+                ? migrateLegacyDiagnosisState(state)
+                : normalizeDiagnosisState(state);
             localStorage.setItem(DIAGNOSIS_KEY, JSON.stringify(normalized));
             return normalized;
         }
 
+        function migrateLegacyDiagnosisState(data) {
+            if (!data || Number(data.schemaVersion) !== 1) return null;
+            return normalizeDiagnosisState({
+                schemaVersion: DIAGNOSIS_SCHEMA_VERSION,
+                status: data.status,
+                startedAt: data.startedAt,
+                completedAt: data.completedAt,
+                questionIds: data.questionIds,
+                answers: (data.answers || []).map(answer => ({
+                    ...answer,
+                    rawResponse: null,
+                    normalizedResponse: null,
+                    contentVersion: null,
+                    itemSnapshot: null,
+                    responseClass: answer.resultKind || 'legacy_unknown',
+                    reclassifiable: false,
+                    legacySource: 'diagnosis_v1'
+                })),
+                resultBand: data.resultBand,
+                recommendedSkillIds: data.recommendedSkillIds,
+                confidence: 'low',
+                evidenceCount: data.answers?.length || 0,
+                insufficientEvidence: (data.answers?.length || 0) < 8,
+                sessionId: null,
+                processedResponseIds: []
+            });
+        }
+
+        function backupUnsupportedDiagnosis(rawValue) {
+            const safeTimestamp = new Date().toISOString().replace(/[:.]/g, '-');
+            localStorage.setItem(`spansk123_diagnosis_unsupported_${safeTimestamp}`, rawValue);
+        }
+
         function loadDiagnosisState() {
-            return normalizeDiagnosisState(readStoredJson(DIAGNOSIS_KEY, null));
+            diagnosisWriteBlocked = false;
+            const rawCurrent = localStorage.getItem(DIAGNOSIS_KEY);
+            if (rawCurrent) {
+                try {
+                    const parsed = JSON.parse(rawCurrent);
+                    if (Number(parsed?.schemaVersion) > DIAGNOSIS_SCHEMA_VERSION) {
+                        backupUnsupportedDiagnosis(rawCurrent);
+                        diagnosisWriteBlocked = true;
+                        return normalizeDiagnosisState(null);
+                    }
+                    return normalizeDiagnosisState(parsed);
+                } catch (error) {
+                    backupCorruptStorageValue(DIAGNOSIS_KEY, rawCurrent);
+                    return normalizeDiagnosisState(null);
+                }
+            }
+            const rawLegacy = localStorage.getItem(LEGACY_DIAGNOSIS_KEY);
+            if (!rawLegacy) return normalizeDiagnosisState(null);
+            try {
+                const migrated = migrateLegacyDiagnosisState(JSON.parse(rawLegacy));
+                if (migrated) {
+                    localStorage.setItem(DIAGNOSIS_KEY, JSON.stringify(migrated));
+                    return migrated;
+                }
+            } catch (error) {
+                backupCorruptStorageValue(LEGACY_DIAGNOSIS_KEY, rawLegacy);
+            }
+            return normalizeDiagnosisState(null);
         }
 
         function normalizeQuizDate(value) {
@@ -1402,7 +1471,15 @@
                 questionIds: diagnosisQuestionCatalog.map(question => question.id),
                 answers: [],
                 resultBand: null,
-                recommendedSkillIds: []
+                recommendedSkillIds: [],
+                confidence: 'low',
+                evidenceCount: 0,
+                productiveAnchorCount: 0,
+                insufficientEvidence: true,
+                observationsVersion: 1,
+                itemVersions: {},
+                sessionId: crypto.randomUUID(),
+                processedResponseIds: []
             });
         }
 
@@ -1415,7 +1492,15 @@
                 questionIds: [],
                 answers: [],
                 resultBand: 'A0',
-                recommendedSkillIds: []
+                recommendedSkillIds: [],
+                confidence: 'low',
+                evidenceCount: 0,
+                productiveAnchorCount: 0,
+                insufficientEvidence: true,
+                observationsVersion: 1,
+                itemVersions: {},
+                sessionId: null,
+                processedResponseIds: []
             });
         }
 
@@ -1432,12 +1517,14 @@
         function evaluateDiagnosisAnswer(question, answer) {
             const normalizedAnswer = normalizeAnswerText(answer);
             if (!normalizedAnswer) return { resultKind: 'skipped', correct: false };
-            const accepted = (question.acceptedAnswers || []).map(normalizeAnswerText);
+            const accepted = getDiagnosisAnswerValues(question).map(normalizeAnswerText);
             if (accepted.includes(normalizedAnswer)) return { resultKind: 'correct', correct: true };
             const accentVariant = normalizeAccentVariant(answer);
-            if ((question.acceptedAnswers || []).some(expected => normalizeAccentVariant(expected) === accentVariant)) {
+            if (getDiagnosisAnswerValues(question).some(expected => normalizeAccentVariant(expected) === accentVariant)) {
                 return { resultKind: 'accent_or_case_variant', correct: false };
             }
+            const nearMiss = (question.nearMissRules || []).find(rule => (rule.values || []).some(value => normalizeAnswerText(value) === normalizedAnswer));
+            if (nearMiss) return { resultKind: 'near_miss', correct: false, matchedRuleId: nearMiss.ruleId };
             return { resultKind: 'wrong', correct: false };
         }
 
@@ -1459,6 +1546,9 @@
             if (state.answers.some(entry => entry.questionId === questionId)) return state;
 
             const evaluation = evaluateDiagnosisAnswer(question, answer);
+            const attempt = state.answers.length + 1;
+            const responseId = `${state.sessionId || 'legacy-session'}:${question.id}:${attempt}`;
+            if (state.processedResponseIds.includes(responseId)) return state;
             const progress = loadLearningProgress(nowIso);
             if (question.targetType === 'word') {
                 if (!progress.wordProgress[question.targetId]) {
@@ -1493,15 +1583,38 @@
             saveLearningProgress(progress);
 
             state.answers.push({
+                responseId,
                 questionId: question.id,
+                contentVersion: question.contentVersion || 1,
                 targetType: question.targetType,
                 targetId: question.targetId,
                 direction: question.direction ?? null,
                 correct: evaluation.correct,
                 resultKind: evaluation.resultKind,
+                responseClass: evaluation.resultKind,
+                productiveAnchor: Boolean(question.productiveAnchor),
                 responseMode: question.responseMode,
+                rawResponse: answer,
+                normalizedResponse: normalizeAnswerText(answer),
+                selectedOptionId: question.responseMode === 'choice'
+                    ? getDiagnosisOptions(question).find(option => option.label === answer)?.optionId || null
+                    : null,
+                matchedRuleId: evaluation.matchedRuleId || null,
+                itemSnapshot: {
+                    id: question.id,
+                    contentVersion: question.contentVersion || 1,
+                    instructionNb: question.instructionNb,
+                    prompt: question.prompt,
+                    responseMode: question.responseMode,
+                    acceptedAnswers: question.acceptedAnswers,
+                    options: question.options || null,
+                    variantRules: question.variantRules || [],
+                    nearMissRules: question.nearMissRules || []
+                },
+                reclassifiable: true,
                 answeredAt: nowIso
             });
+            state.processedResponseIds.push(responseId);
             return saveDiagnosisState(state);
         }
 
@@ -1512,9 +1625,49 @@
             return 'A1';
         }
 
+        function calculateDiagnosisRouting(answers = [], observationsCount = answers.length) {
+            const weights = {
+                correct: 1,
+                accent_or_case_variant: 0.9,
+                near_miss: 0.5,
+                wrong: 0,
+                skipped: 0
+            };
+            const answeredItems = answers.filter(answer => answer.resultKind !== 'skipped').length;
+            const evidenceScore = answers.reduce((total, answer) => total + (weights[answer.resultKind] || 0), 0);
+            const productiveAnchorCount = answers.filter(answer =>
+                Boolean(answer.productiveAnchor) && ['correct', 'accent_or_case_variant'].includes(answer.resultKind)
+            ).length;
+            if (answeredItems < 8) {
+                return {
+                    resultBand: 'A0+',
+                    confidence: 'low',
+                    evidenceCount: answeredItems,
+                    productiveAnchorCount,
+                    evidenceScore,
+                    insufficientEvidence: true
+                };
+            }
+            let resultBand = 'A0';
+            if (evidenceScore >= 8.5 && productiveAnchorCount >= 2) resultBand = 'A1';
+            else if (evidenceScore >= 5.5 && productiveAnchorCount >= 1) resultBand = 'A1-start';
+            else if (evidenceScore >= 2.5) resultBand = 'A0+';
+            return {
+                resultBand,
+                confidence: observationsCount >= 20 ? 'medium' : 'low',
+                evidenceCount: answeredItems,
+                productiveAnchorCount,
+                evidenceScore,
+                insufficientEvidence: false
+            };
+        }
+
         function completeDiagnosisResult(nowIso = new Date().toISOString()) {
             const state = loadDiagnosisState();
-            const correctCount = state.answers.filter(answer => answer.correct).length;
+            const routing = calculateDiagnosisRouting(state.answers.map(answer => ({
+                ...answer,
+                productiveAnchor: answer.productiveAnchor ?? diagnosisQuestionCatalog.find(question => question.id === answer.questionId)?.productiveAnchor
+            })), state.answers.length);
             const recommended = state.answers
                 .filter(answer => !answer.correct && answer.targetType === 'skill')
                 .map(answer => answer.targetId)
@@ -1522,8 +1675,12 @@
                 .slice(0, 3);
             state.status = 'complete';
             state.completedAt = nowIso;
-            state.resultBand = getDiagnosisResultBand(correctCount);
+            state.resultBand = routing.resultBand;
             state.recommendedSkillIds = recommended;
+            state.evidenceCount = routing.evidenceCount;
+            state.productiveAnchorCount = routing.productiveAnchorCount;
+            state.confidence = routing.confidence;
+            state.insufficientEvidence = routing.insufficientEvidence;
             return saveDiagnosisState(state);
         }
 
@@ -1593,17 +1750,18 @@
                 }
                 panel.classList.remove('hidden');
                 panel.dataset.responseMode = question.responseMode;
-                panel.dataset.acceptedAnswer = question.acceptedAnswers[0];
+                panel.dataset.acceptedAnswer = getDiagnosisAnswerValue(question.acceptedAnswers[0]);
                 const answeredCount = state.answers.length + 1;
+                const diagnosisOptions = getDiagnosisOptions(question);
                 const answerControls = question.responseMode === 'typed'
                     ? `
-                        <input id="diagnosisAnswerInput" class="add-word-input" autocomplete="off" placeholder="Skriv svaret">
+                        <input id="diagnosisAnswerInput" class="add-word-input" autocomplete="off" placeholder="Skriv svaret" onkeydown="if (event.key === 'Enter') { event.preventDefault(); submitDiagnosisTypedAnswer(); }">
                         <button class="btn btn-primary" onclick="submitDiagnosisTypedAnswer()">Svar</button>
                     `
                     : `
                         <div class="button-group">
-                            ${(question.options || question.acceptedAnswers).map(option => `
-                                <button class="btn btn-outline" onclick="submitDiagnosisChoiceAnswer('${escapeHtml(option)}')">${escapeHtml(option)}</button>
+                            ${diagnosisOptions.map(option => `
+                                <button class="btn btn-outline" data-option-id="${escapeHtml(option.optionId)}" onclick="submitDiagnosisChoiceAnswer('${escapeHtml(option.label)}')">${escapeHtml(option.label)}</button>
                             `).join('')}
                         </div>
                     `;
@@ -1645,7 +1803,7 @@
             answerDiagnosisQuestion(question.id, answer);
             const state = loadDiagnosisState();
             const answerRecord = state.answers.find(entry => entry.questionId === question.id);
-            const canonicalAnswer = question.acceptedAnswers?.[0] || 'Svar ikke registrert';
+            const canonicalAnswer = getDiagnosisAnswerValue(question.acceptedAnswers?.[0]) || 'Svar ikke registrert';
             diagnosisFeedback = {
                 questionId: question.id,
                 answer,
@@ -1661,6 +1819,9 @@
             const state = loadDiagnosisState();
             if (state.answers.length >= state.questionIds.length) {
                 completeDiagnosisResult();
+                renderDiagnosisPanel();
+                renderHomePage();
+                return;
             }
             renderDiagnosisPanel();
         }
@@ -2644,6 +2805,30 @@
                 learningProgress: loadLearningProgress(),
                 diagnosis: loadDiagnosisState(),
                 quizStats: loadQuizStats()
+            };
+        }
+
+        function buildDiagnosisPilotExportData(diagnosis = loadDiagnosisState()) {
+            const routing = calculateDiagnosisRouting(diagnosis.answers || [], diagnosis.answers?.length || 0);
+            return {
+                version: 'spansk123_diagnosis_pilot_v1',
+                exportId: crypto.randomUUID(),
+                analysisOnly: true,
+                responseCount: (diagnosis.answers || []).length,
+                resultBand: diagnosis.resultBand || routing.resultBand,
+                confidence: diagnosis.confidence || routing.confidence,
+                responses: (diagnosis.answers || []).map((answer, index) => ({
+                    sequence: index + 1,
+                    questionId: answer.questionId,
+                    contentVersion: answer.contentVersion || null,
+                    targetType: answer.targetType || null,
+                    targetId: answer.targetId || null,
+                    responseClass: answer.responseClass || answer.resultKind || 'legacy_unknown',
+                    evidence: ({ correct: 1, accent_or_case_variant: 0.9, near_miss: 0.5, wrong: 0, skipped: 0 }[answer.responseClass || answer.resultKind] || 0),
+                    selectedOptionId: answer.selectedOptionId || null,
+                    productiveAnchor: Boolean(answer.productiveAnchor),
+                    responseTimeBucket: null
+                }))
             };
         }
 
@@ -4244,12 +4429,14 @@
             const item = mixedQuizState?.quiz.items[mixedQuizState.index];
             if (!container || !item) return finishMixedQuiz();
             updateMixedQuizProgress();
-            const choices = item.options || item.acceptedAnswers;
+            const choices = item.options
+                ? item.options.map(option => typeof option === 'string' ? { optionId: option, label: option } : option)
+                : getDiagnosisOptions(item);
             const responseControls = item.responseMode === 'choice'
-                ? `<div class="mixed-quiz-options">${choices.map(option => `<button type="button" class="btn btn-outline" data-mixed-answer="${escapeHtml(option)}">${escapeHtml(option)}</button>`).join('')}</div>`
+                ? `<div class="mixed-quiz-options">${choices.map(option => `<button type="button" class="btn btn-outline" data-mixed-answer="${escapeHtml(option.label)}">${escapeHtml(option.label)}</button>`).join('')}</div>`
                 : `<input id="mixedQuizAnswerInput" class="conjugation-input" autocomplete="off" placeholder="Skriv svaret" onkeydown="if(event.key === 'Enter') submitMixedQuizTypedAnswer()"><div class="button-group"><button type="button" class="btn btn-primary" onclick="submitMixedQuizTypedAnswer()">Sjekk svar</button></div>`;
             container.innerHTML = `
-                <div class="mixed-quiz-question" data-response-mode="${item.responseMode}" data-accepted-answer="${escapeHtml(item.acceptedAnswers[0])}">
+                <div class="mixed-quiz-question" data-response-mode="${item.responseMode}" data-accepted-answer="${escapeHtml(getDiagnosisAnswerValue(item.acceptedAnswers[0]))}">
                     <div class="mixed-quiz-type">${mixedQuizTypeLabel(item)}</div>
                     <div class="mixed-quiz-prompt">${escapeHtml(item.prompt)}</div>
                     ${responseControls}
@@ -4301,8 +4488,8 @@
                 feedback.innerHTML = result.resultKind === 'correct'
                     ? '✓ Riktig!'
                     : result.resultKind === 'accent_or_case_variant'
-                        ? `Nesten riktig — sjekk aksenten. Riktig svar er: <strong>${escapeHtml(item.acceptedAnswers[0])}</strong>`
-                        : `✗ Feil — riktig svar: <strong>${escapeHtml(item.acceptedAnswers[0])}</strong>`;
+                        ? `Nesten riktig — sjekk aksenten. Riktig svar er: <strong>${escapeHtml(getDiagnosisAnswerValue(item.acceptedAnswers[0]))}</strong>`
+                        : `✗ Feil — riktig svar: <strong>${escapeHtml(getDiagnosisAnswerValue(item.acceptedAnswers[0]))}</strong>`;
                 feedback.insertAdjacentHTML('beforeend', `<div class="button-group"><button type="button" class="btn btn-primary btn-sm mt-4" onclick="advanceMixedQuizQuestion()">${mixedQuizState.answered >= mixedQuizState.quiz.items.length ? 'Se resultat' : 'Neste'}</button></div>`);
             }
             document.querySelectorAll('#mixedQuizQuestion input, #mixedQuizQuestion button').forEach(control => {

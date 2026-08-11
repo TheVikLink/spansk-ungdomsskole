@@ -50,5 +50,12 @@ test.describe('learning catalog', () => {
         expect(['noToEs', 'esToNo']).toContain(question.direction);
       }
     }
+
+    const indefiniteArticle = await page.evaluate(() => diagnosisQuestionCatalog.find(question => question.id === 'diag.a0.articles.indefinite_singular.choice'));
+    const definiteArticle = await page.evaluate(() => diagnosisQuestionCatalog.find(question => question.id === 'diag.a0.articles.definite_singular.choice'));
+    expect(indefiniteArticle.prompt).toContain('et hus');
+    expect(indefiniteArticle.options.map(option => option.label)).toContain('una casa');
+    expect(definiteArticle.prompt).toContain('boka');
+    expect(definiteArticle.options.map(option => option.label)).toContain('el libro');
   });
 });

@@ -15,19 +15,27 @@ test.describe('diagnosis quiz v1', () => {
         empty,
         started,
         expectedQuestionIds: diagnosisQuestionCatalog.map(question => question.id),
-        stored: JSON.parse(localStorage.getItem('spansk123_diagnosis_v1'))
+        stored: JSON.parse(localStorage.getItem('spansk123_diagnosis_v2'))
       };
     });
 
     expect(result.empty).toEqual({
-      schemaVersion: 1,
+      schemaVersion: 2,
       status: 'not_started',
       startedAt: null,
       completedAt: null,
       questionIds: [],
       answers: [],
       resultBand: null,
-      recommendedSkillIds: []
+      recommendedSkillIds: [],
+      confidence: 'low',
+      evidenceCount: 0,
+      productiveAnchorCount: 0,
+      insufficientEvidence: false,
+      observationsVersion: 1,
+      itemVersions: {},
+      sessionId: null,
+      processedResponseIds: []
     });
     expect(result.started.status).toBe('in_progress');
     expect(result.started.startedAt).toBe('2026-08-07T10:00:00.000Z');
@@ -54,8 +62,8 @@ test.describe('diagnosis quiz v1', () => {
       };
     });
 
-    expect(result.state.answers).toEqual([
-      {
+    expect(result.state.answers).toHaveLength(1);
+    expect(result.state.answers[0]).toMatchObject({
         questionId: 'diag.vocab.greeting.hola.es_no',
         targetType: 'word',
         targetId: 'core.hola',
@@ -63,9 +71,13 @@ test.describe('diagnosis quiz v1', () => {
         correct: true,
         resultKind: 'correct',
         responseMode: 'typed',
-        answeredAt: '2026-08-07T10:01:00.000Z'
-      }
-    ]);
+        answeredAt: '2026-08-07T10:01:00.000Z',
+        contentVersion: 1,
+        responseClass: 'correct',
+        rawResponse: 'hei',
+        normalizedResponse: 'hei',
+        reclassifiable: true
+    });
     expect(result.progress.wordProgress['core.hola'].esToNo).toMatchObject({
       strength: 2,
       attempts: 1,
@@ -87,7 +99,7 @@ test.describe('diagnosis quiz v1', () => {
       localStorage.clear();
       startDiagnosis('2026-08-07T10:00:00.000Z');
       diagnosisQuestionCatalog.forEach((question, index) => {
-        const answer = index < 8 ? question.acceptedAnswers[0] : 'feil';
+        const answer = index < 8 ? getDiagnosisAnswerValue(question.acceptedAnswers[0]) : 'feil';
         answerDiagnosisQuestion(question.id, answer, `2026-08-07T10:${String(index + 1).padStart(2, '0')}:00.000Z`);
       });
       return completeDiagnosisResult('2026-08-07T10:20:00.000Z');
@@ -101,6 +113,42 @@ test.describe('diagnosis quiz v1', () => {
       'a1.verbs.regular_er.present',
       'a1.gustar.basic'
     ]);
+  });
+
+  test('routes from weighted evidence and marks incomplete evidence explicitly', async ({ page }) => {
+    await page.goto(appUrl);
+
+    const result = await page.evaluate(() => ({
+      incomplete: calculateDiagnosisRouting([
+        { resultKind: 'correct', productiveAnchor: true },
+        { resultKind: 'skipped', productiveAnchor: false }
+      ]),
+      a1Start: calculateDiagnosisRouting([
+        { resultKind: 'correct', productiveAnchor: true },
+        { resultKind: 'correct', productiveAnchor: false },
+        { resultKind: 'correct', productiveAnchor: false },
+        { resultKind: 'correct', productiveAnchor: false },
+        { resultKind: 'correct', productiveAnchor: false },
+        { resultKind: 'correct', productiveAnchor: false },
+        { resultKind: 'near_miss', productiveAnchor: false },
+        { resultKind: 'wrong', productiveAnchor: false }
+      ]),
+      a1: calculateDiagnosisRouting([
+        { resultKind: 'correct', productiveAnchor: true },
+        { resultKind: 'correct', productiveAnchor: true },
+        { resultKind: 'accent_or_case_variant', productiveAnchor: true },
+        { resultKind: 'correct', productiveAnchor: false },
+        { resultKind: 'correct', productiveAnchor: false },
+        { resultKind: 'correct', productiveAnchor: false },
+        { resultKind: 'correct', productiveAnchor: false },
+        { resultKind: 'correct', productiveAnchor: false },
+        { resultKind: 'correct', productiveAnchor: false }
+      ])
+    }));
+
+    expect(result.incomplete).toMatchObject({ resultBand: 'A0+', insufficientEvidence: true, confidence: 'low' });
+    expect(result.a1Start).toMatchObject({ resultBand: 'A1-start', insufficientEvidence: false });
+    expect(result.a1).toMatchObject({ resultBand: 'A1', productiveAnchorCount: 3 });
   });
 
   test('new pupil can complete the diagnosis quiz from the app UI', async ({ page }) => {
@@ -130,6 +178,47 @@ test.describe('diagnosis quiz v1', () => {
     await expect(page.getByRole('heading', { name: 'Resultat' })).toBeVisible();
     await expect(page.locator('#diagnosisResultBand')).toContainText('A1');
     await expect(page.locator('#diagnosisPanel')).toContainText('Fremgangen er lagret bare på denne enheten.');
+  });
+
+  test('refreshes the home CTA immediately after diagnosis completion', async ({ page }) => {
+    await page.goto(appUrl);
+    await page.evaluate(() => localStorage.clear());
+    await page.reload();
+
+    await page.fill('#studentNameInput', 'Elevkode 8A-13');
+    await page.getByRole('button', { name: 'Start' }).click();
+    await page.getByRole('button', { name: 'Start diagnose' }).click();
+
+    for (let i = 0; i < 12; i++) {
+      const responseMode = await page.locator('#diagnosisPanel').getAttribute('data-response-mode');
+      const accepted = await page.locator('#diagnosisPanel').getAttribute('data-accepted-answer');
+      if (responseMode === 'typed') {
+        await page.fill('#diagnosisAnswerInput', accepted);
+        await page.getByRole('button', { name: 'Svar' }).click();
+      } else {
+        await page.locator('#diagnosisPanel').getByRole('button', { name: accepted, exact: true }).click();
+      }
+      await page.locator('#diagnosisPanel button').filter({ hasText: i === 11 ? 'Se resultat' : 'Neste' }).click();
+    }
+
+    await expect(page.getByRole('heading', { name: 'Resultat' })).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Start dagens quiz' })).toBeEnabled();
+  });
+
+  test('submits typed diagnosis answers with Enter', async ({ page }) => {
+    await page.goto(appUrl);
+    await page.evaluate(() => {
+      localStorage.clear();
+      document.getElementById('mainApp').classList.remove('hidden');
+      startDiagnosis('2026-08-10T13:00:00.000Z');
+      document.getElementById('diagnosisPanel').classList.remove('hidden');
+      renderDiagnosisPanel();
+    });
+
+    await page.fill('#diagnosisAnswerInput', 'hei');
+    await page.keyboard.press('Enter');
+    await expect(page.locator('#diagnosisPanel')).toContainText('Riktig');
+    await expect.poll(() => page.evaluate(() => loadDiagnosisState().answers.length)).toBe(1);
   });
 
   test('keeps an answered diagnosis question visible until manual continuation', async ({ page }) => {
@@ -200,5 +289,69 @@ test.describe('diagnosis quiz v1', () => {
       answers: [],
       recommendedSkillIds: []
     });
+  });
+
+  test('migrates legacy diagnosis state without inventing reclassifiable answers', async ({ page }) => {
+    await page.goto(appUrl);
+
+    const result = await page.evaluate(() => {
+      localStorage.clear();
+      localStorage.setItem('spansk123_diagnosis_v1', JSON.stringify({
+        schemaVersion: 1,
+        status: 'complete',
+        startedAt: '2026-08-07T10:00:00.000Z',
+        completedAt: '2026-08-07T10:05:00.000Z',
+        questionIds: ['diag.vocab.greeting.hola.es_no'],
+        answers: [{ questionId: 'diag.vocab.greeting.hola.es_no', resultKind: 'correct', answeredAt: '2026-08-07T10:01:00.000Z' }],
+        resultBand: 'A0+',
+        recommendedSkillIds: []
+      }));
+      const diagnosis = loadDiagnosisState();
+      return { diagnosis, stored: JSON.parse(localStorage.getItem('spansk123_diagnosis_v2')) };
+    });
+
+    expect(result.diagnosis.schemaVersion).toBe(2);
+    expect(result.diagnosis.answers[0]).toMatchObject({ reclassifiable: false, contentVersion: null, rawResponse: null });
+    expect(result.stored.schemaVersion).toBe(2);
+  });
+
+  test('preserves newer diagnosis state and blocks writes', async ({ page }) => {
+    await page.goto(appUrl);
+
+    const result = await page.evaluate(() => {
+      localStorage.clear();
+      const future = JSON.stringify({ schemaVersion: 99, status: 'complete', answers: [{ questionId: 'future' }] });
+      localStorage.setItem('spansk123_diagnosis_v2', future);
+      const loaded = loadDiagnosisState();
+      saveDiagnosisState({ schemaVersion: 2, status: 'complete', resultBand: 'A0' });
+      return {
+        loaded,
+        current: localStorage.getItem('spansk123_diagnosis_v2'),
+        backups: Object.keys(localStorage).filter(key => key.startsWith('spansk123_diagnosis_unsupported_'))
+      };
+    });
+
+    expect(result.loaded.status).toBe('not_started');
+    expect(result.current).toContain('"schemaVersion":99');
+    expect(result.backups).toHaveLength(1);
+  });
+
+  test('builds an analysis-only pilot export without student identity or raw answers', async ({ page }) => {
+    await page.goto(appUrl);
+
+    const result = await page.evaluate(() => {
+      localStorage.clear();
+      startDiagnosis('2026-08-07T10:00:00.000Z');
+      answerDiagnosisQuestion('diag.vocab.greeting.hola.es_no', 'hei', '2026-08-07T10:01:00.000Z');
+      studentName = 'Elevkode 9A-14';
+      activeAssignment = { assignmentTitle: 'Skjult lekse' };
+      return buildDiagnosisPilotExportData(loadDiagnosisState());
+    });
+
+    expect(result.version).toBe('spansk123_diagnosis_pilot_v1');
+    expect(result).not.toHaveProperty('studentName');
+    expect(result).not.toHaveProperty('activeAssignment');
+    expect(result.responses[0]).not.toHaveProperty('rawResponse');
+    expect(result.responses[0]).toMatchObject({ questionId: 'diag.vocab.greeting.hola.es_no', responseClass: 'correct' });
   });
 });

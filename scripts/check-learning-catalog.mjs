@@ -1,24 +1,8 @@
 import { readFileSync } from 'node:fs';
+import { extractDiagnosisCatalog } from './lib/extract-inline-catalog.mjs';
 
 const html = readFileSync('index.html', 'utf8');
 const failures = [];
-
-function extractConstArray(name) {
-  const marker = `const ${name} = `;
-  const start = html.indexOf(marker);
-  if (start === -1) {
-    failures.push(`Missing ${name}`);
-    return [];
-  }
-  const arrayStart = html.indexOf('[', start);
-  const arrayEnd = html.indexOf('\n        ];', arrayStart);
-  if (arrayStart === -1 || arrayEnd === -1) {
-    failures.push(`Could not parse ${name}`);
-    return [];
-  }
-  const source = html.slice(arrayStart, arrayEnd + 10);
-  return Function(`"use strict"; return (${source});`)();
-}
 
 function extractLearningCatalog() {
   const marker = 'const learningCatalog = ';
@@ -55,7 +39,12 @@ const expectedDiagnosisIds = [
 ];
 
 const catalog = extractLearningCatalog();
-const questions = extractConstArray('diagnosisQuestionCatalog');
+let questions = [];
+try {
+  questions = extractDiagnosisCatalog(html);
+} catch (error) {
+  failures.push(error.message);
+}
 
 function assertUnique(items, label) {
   const seen = new Set();
@@ -95,6 +84,25 @@ if (JSON.stringify(actualDiagnosisIds) !== JSON.stringify(expectedDiagnosisIds))
 for (const question of questions) {
   if (!validSourceNotes.has(question.sourceNote)) failures.push(`Question ${question.id} missing valid sourceNote`);
   if (!Array.isArray(question.acceptedAnswers) || question.acceptedAnswers.length === 0) failures.push(`Question ${question.id} missing acceptedAnswers`);
+  if (!Number.isInteger(question.contentVersion) || question.contentVersion < 1) failures.push(`Question ${question.id} missing contentVersion`);
+  if (!question.primaryConstruct) failures.push(`Question ${question.id} missing primaryConstruct`);
+  if (!question.ambiguityReview?.passed || !question.ambiguityReview?.checkedForAlternativeCorrectAnswers || !question.ambiguityReview?.checkedForRegionalVariation) failures.push(`Question ${question.id} missing completed ambiguity review`);
+  const acceptedAnswerIds = new Set();
+  for (const answer of question.acceptedAnswers || []) {
+    if (!answer?.answerId || !answer?.canonicalMeaningId || !answer.value) failures.push(`Question ${question.id} has malformed accepted answer`);
+    if (acceptedAnswerIds.has(answer.answerId)) failures.push(`Question ${question.id} has duplicate accepted answer id ${answer.answerId}`);
+    acceptedAnswerIds.add(answer.answerId);
+  }
+  if (question.responseMode === 'choice') {
+    if (!Array.isArray(question.options) || question.options.length === 0) failures.push(`Choice question ${question.id} missing options`);
+    const optionIds = new Set((question.options || []).map(option => option.optionId));
+    for (const option of question.options || []) {
+      if (!option.optionId || !option.label) failures.push(`Choice question ${question.id} has malformed option`);
+    }
+    for (const answer of question.acceptedAnswers || []) {
+      if (!optionIds.has(answer.answerId)) failures.push(`Question ${question.id} accepted answer ${answer.answerId} is not an option`);
+    }
+  }
   if (question.targetType === 'skill' && !skillIds.has(question.targetId)) failures.push(`Question ${question.id} targets unknown skill ${question.targetId}`);
   if (question.targetType === 'word') {
     if (!wordIds.has(question.targetId)) failures.push(`Question ${question.id} targets unknown word ${question.targetId}`);
