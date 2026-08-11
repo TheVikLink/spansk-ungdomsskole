@@ -165,6 +165,82 @@ test.describe('adaptive mixed quiz v1', () => {
     expect(result.blank).toEqual({ resultKind: 'skipped', correct: false });
   });
 
+  test('shows feedback after every item in a mixed quiz', async ({ page }) => {
+    await page.goto(appUrl);
+
+    const result = await page.evaluate(() => {
+      localStorage.clear();
+      saveDiagnosisState({ schemaVersion: 1, status: 'complete', questionIds: [], answers: [], resultBand: 'A0' });
+      const quiz = buildMixedQuiz({
+        cards: [],
+        skillsCatalog: learningCatalog,
+        learningProgress: { schemaVersion: 1, wordProgress: {}, skillProgress: {} },
+        diagnosis: { status: 'complete', answers: [] },
+        now: '2026-08-11T10:00:00.000Z',
+        seed: 'feedback-all-items',
+        size: 10
+      });
+      mixedQuizState = { quiz, index: 0, answered: 0, correct: 0, startedAt: new Date() };
+      document.getElementById('mixedQuizStudy').classList.remove('hidden');
+      renderMixedQuizQuestion();
+
+      const feedback = [];
+      for (let index = 0; index < quiz.items.length; index++) {
+        const item = quiz.items[index];
+        const answer = item.responseMode === 'choice'
+          ? (item.options || [])[0].label
+          : getDiagnosisAnswerValue(item.acceptedAnswers[0]);
+        submitMixedQuizAnswer(answer);
+        feedback.push({
+          questionId: item.questionId,
+          text: document.getElementById('mixedQuizFeedback')?.textContent || '',
+          nextButton: Boolean(document.querySelector('#mixedQuizFeedback button'))
+        });
+        if (index < quiz.items.length - 1) advanceMixedQuizQuestion();
+      }
+      return feedback;
+    });
+
+    expect(result).toHaveLength(10);
+    expect(result.every(item => item.text.trim().length > 0)).toBe(true);
+    expect(result.every(item => item.nextButton)).toBe(true);
+  });
+
+  test('accepts equivalent synonyms as one correct meaning', async ({ page }) => {
+    await page.goto(appUrl);
+
+    const result = await page.evaluate(() => evaluateDiagnosisAnswer({
+      acceptedAnswers: [
+        { answerId: 'alumno', value: 'alumno', canonicalMeaningId: 'student' },
+        { answerId: 'estudiante', value: 'estudiante', canonicalMeaningId: 'student' }
+      ]
+    }, 'estudiante'));
+
+    expect(result).toEqual({ resultKind: 'correct', correct: true });
+  });
+
+  test('supports an explicit initial-letter constraint', async ({ page }) => {
+    await page.goto(appUrl);
+
+    const result = await page.evaluate(() => ({
+      constrained: evaluateDiagnosisAnswer({
+        acceptedAnswers: [{ answerId: 'alumno', value: 'alumno', canonicalMeaningId: 'student' }],
+        answerConstraint: { type: 'startsWith', value: 'a' }
+      }, 'alumno'),
+      otherSynonym: evaluateDiagnosisAnswer({
+        acceptedAnswers: [
+          { answerId: 'alumno', value: 'alumno', canonicalMeaningId: 'student' },
+          { answerId: 'estudiante', value: 'estudiante', canonicalMeaningId: 'student' }
+        ],
+        answerConstraint: { type: 'startsWith', value: 'a' }
+      }, 'estudiante')
+    }));
+
+    expect(result.constrained).toEqual({ resultKind: 'correct', correct: true });
+    expect(result.otherSynonym.resultKind).toBe('near_miss');
+    expect(result.otherSynonym.correct).toBe(false);
+  });
+
   test('starts the mixed quiz from the existing vocabulary page and advances manually', async ({ page }) => {
     await page.goto(appUrl);
 

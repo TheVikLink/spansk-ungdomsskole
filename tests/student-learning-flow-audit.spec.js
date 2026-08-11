@@ -127,9 +127,9 @@ test.describe('student learning flow audit', () => {
 
     expect(result.before.text).toContain('Du har ikke øvd i dag ennå.');
     expect(result.before.button).toContain('Start dagens quiz');
-    expect(result.after.title).toContain('Dagens quiz fullført');
-    expect(result.after.button).toContain('Øv på gloser');
-    expect(result.after.text).toContain('kom tilbake i morgen');
+    expect(result.after.title).toContain('Ta en ny quiz');
+    expect(result.after.button).toContain('Ta en ny quiz');
+    expect(result.after.text).toContain('1/5 mot dagens merke');
   });
 
   test('keeps vocabulary categories collapsed until a new-word mode is selected', async ({ page }) => {

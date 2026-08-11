@@ -976,6 +976,7 @@
         const DIAGNOSIS_SCHEMA_VERSION = 2;
         const QUIZ_STATS_KEY = 'spansk123_quizStats_v1';
         const QUIZ_STATS_SCHEMA_VERSION = 1;
+        const MASTERY_BADGES_KEY = 'spansk123_masteryBadges_v1';
 
         let studentName = '';
         let practiceHistory = [];
@@ -1008,6 +1009,18 @@
         const getDiagnosisAnswerValue = answer => typeof answer === 'string' ? answer : answer?.value || '';
         const getDiagnosisAnswerValues = question => (question.acceptedAnswers || []).map(getDiagnosisAnswerValue);
         const getDiagnosisOptions = question => (question.options || question.acceptedAnswers || []).map(option => typeof option === 'string' ? { optionId: option, label: option } : option);
+
+        const vocabularyAnswerAlternatives = {
+            'elev|no-es': [
+                { answerId: 'el_alumno', value: 'el alumno', canonicalMeaningId: 'student' },
+                { answerId: 'el_estudiante', value: 'el estudiante', canonicalMeaningId: 'student' }
+            ]
+        };
+
+        function getVocabularyAcceptedAnswers(card, direction, primaryAnswer) {
+            const alternatives = vocabularyAnswerAlternatives[`${card.no}|${direction}`];
+            return alternatives?.length ? alternatives : [{ answerId: 'primary', value: primaryAnswer, canonicalMeaningId: `${card.no}:${direction}` }];
+        }
 
         // ============================================
         // APP START FUNCTIONS
@@ -1094,7 +1107,8 @@
                 LEARNING_PROGRESS_KEY,
                 DIAGNOSIS_KEY,
                 LEGACY_DIAGNOSIS_KEY,
-                QUIZ_STATS_KEY
+                QUIZ_STATS_KEY,
+                MASTERY_BADGES_KEY
             ];
 
             Object.keys(localStorage).forEach(key => {
@@ -1461,6 +1475,32 @@
             return (normalized.dailyQuizCounts[normalizeQuizDate(localDate)] || 0) > 0;
         }
 
+        function getMasteryBadges(progress = loadLearningProgress()) {
+            return learningCatalog.skills.flatMap(skill => {
+                const cell = progress?.skillProgress?.[skill.id] || {};
+                if ((Number(cell.attempts) || 0) < 3 || (Number(cell.strength) || 0) < 4) return [];
+                return [{
+                    id: `mastery:${skill.id}`,
+                    skillId: skill.id,
+                    label: `Mestret: ${skill.label}`
+                }];
+            });
+        }
+
+        function loadMasteryBadges() {
+            const value = readStoredJson(MASTERY_BADGES_KEY, null);
+            return Array.isArray(value?.badges) ? value.badges.filter(id => typeof id === 'string') : [];
+        }
+
+        function awardMasteryBadges(progress = loadLearningProgress()) {
+            const eligible = getMasteryBadges(progress);
+            const previous = new Set(loadMasteryBadges());
+            const newlyEarned = eligible.filter(badge => !previous.has(badge.id));
+            const allIds = [...new Set([...previous, ...eligible.map(badge => badge.id)])];
+            localStorage.setItem(MASTERY_BADGES_KEY, JSON.stringify({ schemaVersion: 1, badges: allIds }));
+            return { badges: eligible, newlyEarned };
+        }
+
         function startDiagnosis(nowIso = new Date().toISOString()) {
             diagnosisFeedback = null;
             return saveDiagnosisState({
@@ -1517,15 +1557,52 @@
         function evaluateDiagnosisAnswer(question, answer) {
             const normalizedAnswer = normalizeAnswerText(answer);
             if (!normalizedAnswer) return { resultKind: 'skipped', correct: false };
-            const accepted = getDiagnosisAnswerValues(question).map(normalizeAnswerText);
-            if (accepted.includes(normalizedAnswer)) return { resultKind: 'correct', correct: true };
+            const acceptedAnswers = question.acceptedAnswers || [];
+            const accepted = acceptedAnswers.map(getDiagnosisAnswerValue).map(normalizeAnswerText);
+            const acceptedIndex = accepted.indexOf(normalizedAnswer);
+            const constraint = question.answerConstraint;
+            const violatesConstraint = constraint?.type === 'startsWith'
+                && !normalizeAccentVariant(normalizedAnswer).startsWith(normalizeAccentVariant(constraint.value || ''));
+            if (acceptedIndex >= 0) {
+                const acceptedAnswer = acceptedAnswers[acceptedIndex];
+                if (violatesConstraint) {
+                    return { resultKind: 'near_miss', correct: false, reasonCode: 'answer_constraint' };
+                }
+                return { resultKind: 'correct', correct: true };
+            }
             const accentVariant = normalizeAccentVariant(answer);
-            if (getDiagnosisAnswerValues(question).some(expected => normalizeAccentVariant(expected) === accentVariant)) {
+            if (!violatesConstraint && acceptedAnswers.some(expected => normalizeAccentVariant(getDiagnosisAnswerValue(expected)) === accentVariant)) {
                 return { resultKind: 'accent_or_case_variant', correct: false };
+            }
+            const variantRule = (question.variantRules || []).find(rule => (rule.values || []).some(value => normalizeAnswerText(value) === normalizedAnswer));
+            if (!violatesConstraint && variantRule) {
+                return { resultKind: variantRule.classification || 'accent_or_case_variant', correct: false, matchedRuleId: variantRule.ruleId };
             }
             const nearMiss = (question.nearMissRules || []).find(rule => (rule.values || []).some(value => normalizeAnswerText(value) === normalizedAnswer));
             if (nearMiss) return { resultKind: 'near_miss', correct: false, matchedRuleId: nearMiss.ruleId };
             return { resultKind: 'wrong', correct: false };
+        }
+
+        function getMixedQuizExplanation(item, result) {
+            if (result?.reasonCode === 'answer_constraint') {
+                return `Svaret passer, men denne oppgaven ba om et ord som begynner på «${item.answerConstraint.value}».`;
+            }
+            const explanations = {
+                indefinite_article_gender: '«Una» betyr «et/en» foran et hunkjønnsord som «casa».',
+                definite_article_gender: '«El» og «la» betyr «den/det». Artikkelen må passe med kjønn og tall.',
+                regular_ar_present: 'Et regelrett -ar-verb får endingen «-o» med yo.',
+                regular_er_present: 'Et regelrett -er-verb får endingen «-es» med tú.',
+                formulaic_identity: 'Når du sier hva du heter, bruker du uttrykket «me llamo».',
+                identity_origin: '«Ser de» brukes når du forteller hvor noen er fra.',
+                gustar_plural_agreement: 'I «me gustan los libros» er «los libros» flertall, derfor blir det «gustan».',
+                estar_location: '«Estar» brukes til å fortelle hvor noe eller noen befinner seg.'
+            };
+            return explanations[item.primaryConstruct] || 'Se på mønsteret i setningen og prøv samme type oppgave igjen.';
+        }
+
+        function formatMixedQuizCorrectAnswers(item) {
+            const values = getDiagnosisAnswerValues(item).filter(Boolean);
+            return values.length > 1 ? values.join(' / ') : (values[0] || 'Ikke oppgitt');
         }
 
         function evaluateTypedAnswer(answer, expected) {
@@ -1909,7 +1986,7 @@
                         direction,
                         directionLabel,
                         prompt,
-                        acceptedAnswers: [answer],
+                        acceptedAnswers: getVocabularyAcceptedAnswers(card, direction, answer),
                         responseMode: 'typed',
                         itemType: 'vocabulary',
                         skillKind: null,
@@ -2804,7 +2881,8 @@
                 activeAssignment: activeAssignment,
                 learningProgress: loadLearningProgress(),
                 diagnosis: loadDiagnosisState(),
-                quizStats: loadQuizStats()
+                quizStats: loadQuizStats(),
+                masteryBadges: { schemaVersion: 1, badges: loadMasteryBadges() }
             };
         }
 
@@ -2872,6 +2950,11 @@
                 if (data.quizStats) {
                     quizStatsWriteBlocked = false;
                     saveQuizStats(mergeQuizStats(loadQuizStats(), data.quizStats));
+                }
+                if (data.masteryBadges && Array.isArray(data.masteryBadges.badges)) {
+                    const importedBadges = data.masteryBadges.badges.filter(badge => typeof badge === 'string');
+                    const mergedBadges = [...new Set([...loadMasteryBadges(), ...importedBadges])];
+                    localStorage.setItem(MASTERY_BADGES_KEY, JSON.stringify({ schemaVersion: 1, badges: mergedBadges }));
                 }
                 return {
                     imported: true,
@@ -3254,20 +3337,23 @@
             const diagnosisComplete = loadDiagnosisState().status === 'complete';
             const quizStats = loadQuizStats();
             const dailyQuizComplete = hasCompletedDailyQuizForDate(quizStats, getLocalDateString());
+            const todayQuizCount = quizStats.dailyQuizCounts[getLocalDateString()] || 0;
             const streakText = dailyQuizComplete
-                ? `🔥 ${quizStats.currentStreak} dag${quizStats.currentStreak === 1 ? '' : 'er'} på rad — kom tilbake i morgen!`
+                ? `${formatQuizStreakSummary(quizStats)}`
                 : 'Du har ikke øvd i dag ennå.';
+            const badges = getMasteryBadges(loadLearningProgress());
             content.innerHTML = `
                 <section class="home-primary-action" aria-labelledby="homeQuizTitle">
                     <div class="home-primary-copy">
                         <span class="home-eyebrow">${diagnosisComplete ? 'Neste steg' : 'Første steg'}</span>
-                        <h1 id="homeQuizTitle">${dailyQuizComplete ? 'Dagens quiz fullført' : 'Dagens quiz'}</h1>
-                        <p>${dailyQuizComplete ? 'Bra jobbet. Fortsett med gloser eller se hva du bør øve på.' : diagnosisComplete ? 'Ti korte spørsmål fra ordforråd, grammatikk og verb.' : 'Ta nivåtesten først, så lager vi en quiz som passer deg.'}</p>
+                        <h1 id="homeQuizTitle">${dailyQuizComplete ? 'Ta en ny quiz' : 'Dagens quiz'}</h1>
+                        <p>${dailyQuizComplete ? `Bra jobbet. Du har tatt ${todayQuizCount} quiz i dag. Ta en til for mer variert øving.` : diagnosisComplete ? 'Ti korte spørsmål fra ordforråd, grammatikk og verb.' : 'Ta nivåtesten først, så lager vi en quiz som passer deg.'}</p>
                     </div>
-                    <button type="button" class="btn btn-primary btn-large" id="homeStartMixedQuizBtn" onclick="${dailyQuizComplete ? "showPage('vocab')" : 'startDailyQuizFromHome()'}" ${diagnosisComplete ? '' : 'disabled'}>${dailyQuizComplete ? 'Øv på gloser' : diagnosisComplete ? 'Start dagens quiz' : 'Start nivåtest først'}</button>
+                    <button type="button" class="btn btn-primary btn-large" id="homeStartMixedQuizBtn" onclick="startDailyQuizFromHome()" ${diagnosisComplete ? '' : 'disabled'}>${dailyQuizComplete ? 'Ta en ny quiz' : diagnosisComplete ? 'Start dagens quiz' : 'Start nivåtest først'}</button>
                 </section>
                 <p class="home-streak" id="homeQuizStreak">${streakText}</p>
                 <p class="home-offline-hint" id="homeOfflineHint">Fungerer også uten internett etter at appen er lastet inn.</p>
+                ${badges.length ? `<section class="home-badges" aria-labelledby="homeBadgesTitle"><h2 id="homeBadgesTitle">🏅 Merker du har fått</h2><div class="badge-list">${badges.map(badge => `<span class="mastery-badge">${escapeHtml(badge.label)}</span>`).join('')}</div></section>` : ''}
             `;
         }
 
@@ -4438,7 +4524,7 @@
             container.innerHTML = `
                 <div class="mixed-quiz-question" data-response-mode="${item.responseMode}" data-accepted-answer="${escapeHtml(getDiagnosisAnswerValue(item.acceptedAnswers[0]))}">
                     <div class="mixed-quiz-type">${mixedQuizTypeLabel(item)}</div>
-                    <div class="mixed-quiz-prompt">${escapeHtml(item.prompt)}</div>
+                    <div class="mixed-quiz-prompt">${escapeHtml(item.prompt)}${item.answerConstraint?.type === 'startsWith' ? ` <span class="answer-constraint">(begynner på «${escapeHtml(item.answerConstraint.value)}»)</span>` : ''}</div>
                     ${responseControls}
                     <div class="mixed-quiz-feedback" id="mixedQuizFeedback" aria-live="polite"></div>
                 </div>
@@ -4450,20 +4536,21 @@
         }
 
         function startMixedQuizFromUi() {
+            const todayCount = loadQuizStats().dailyQuizCounts[getLocalDateString()] || 0;
             const quiz = buildMixedQuiz({
                 cards,
                 skillsCatalog: learningCatalog,
                 learningProgress: loadLearningProgress(),
                 diagnosis: loadDiagnosisState(),
                 now: new Date().toISOString(),
-                seed: getIsoDate(),
+                seed: `${getIsoDate()}:${todayCount}`,
                 size: 10
             });
             if (quiz.status !== 'ready' || quiz.items.length === 0) {
                 alert('Fullfør nivåtesten før du starter en personlig quiz.');
                 return;
             }
-            mixedQuizState = { quiz, index: 0, answered: 0, correct: 0, startedAt: new Date() };
+            mixedQuizState = { quiz, index: 0, answered: 0, correct: 0, startedAt: new Date(), results: [] };
             activeSessionType = 'mixedQuiz';
             document.getElementById('vocabSettings').classList.add('hidden');
             document.getElementById('vocabStudy').classList.add('hidden');
@@ -4479,6 +4566,19 @@
             if (!mixedQuizState || mixedQuizState.answered !== mixedQuizState.index) return;
             const item = mixedQuizState.quiz.items[mixedQuizState.index];
             const result = answerMixedQuizItem(item, answer);
+            mixedQuizState.results = mixedQuizState.results || [];
+            mixedQuizState.results.push({
+                questionId: item.questionId,
+                prompt: item.prompt,
+                itemType: item.itemType,
+                responseMode: item.responseMode,
+                answer: String(answer || ''),
+                resultKind: result.resultKind,
+                correct: result.correct,
+                matchedAnswerId: result.matchedAnswerId || null,
+                explanation: getMixedQuizExplanation(item, result),
+                correctAnswers: getDiagnosisAnswerValues(item)
+            });
             mixedQuizState.answered++;
             if (result.correct) mixedQuizState.correct++;
             const feedback = document.getElementById('mixedQuizFeedback');
@@ -4488,8 +4588,10 @@
                 feedback.innerHTML = result.resultKind === 'correct'
                     ? '✓ Riktig!'
                     : result.resultKind === 'accent_or_case_variant'
-                        ? `Nesten riktig — sjekk aksenten. Riktig svar er: <strong>${escapeHtml(getDiagnosisAnswerValue(item.acceptedAnswers[0]))}</strong>`
-                        : `✗ Feil — riktig svar: <strong>${escapeHtml(getDiagnosisAnswerValue(item.acceptedAnswers[0]))}</strong>`;
+                        ? `Nesten riktig — sjekk aksenten. Riktig svar er: <strong>${escapeHtml(formatMixedQuizCorrectAnswers(item))}</strong>`
+                        : result.resultKind === 'near_miss'
+                            ? `Nesten — riktig svar er: <strong>${escapeHtml(formatMixedQuizCorrectAnswers(item))}</strong>`
+                            : `✗ Feil — riktig svar: <strong>${escapeHtml(formatMixedQuizCorrectAnswers(item))}</strong>`;
                 feedback.insertAdjacentHTML('beforeend', `<div class="button-group"><button type="button" class="btn btn-primary btn-sm mt-4" onclick="advanceMixedQuizQuestion()">${mixedQuizState.answered >= mixedQuizState.quiz.items.length ? 'Se resultat' : 'Neste'}</button></div>`);
             }
             document.querySelectorAll('#mixedQuizQuestion input, #mixedQuizQuestion button').forEach(control => {
@@ -4518,18 +4620,40 @@
             activeSessionType = null;
             const container = document.getElementById('mixedQuizQuestion');
             if (container) {
+                const results = mixedQuizState.results || [];
+                const badgeResult = awardMasteryBadges(loadLearningProgress());
+                const newlyMastered = badgeResult.newlyEarned;
                 container.innerHTML = `
-                    <div class="session-complete">
+                    <div class="session-complete mixed-quiz-results">
                         <div class="emoji">${accuracy >= 80 ? '🎉' : accuracy >= 50 ? '👍' : '💪'}</div>
-                        <h2>Dagens quiz er ferdig</h2>
+                        <h2>Quiz ferdig</h2>
                         <p>${mixedQuizState.correct} av ${total} riktige (${accuracy}%).</p>
-                        <p id="mixedQuizStreakSummary">🔥 ${quizStats.currentStreak} dag${quizStats.currentStreak === 1 ? '' : 'er'} på rad · ${quizStats.dailyQuizCounts[getLocalDateString()] || 0} quiz i dag</p>
-                        <div class="button-group"><button type="button" class="btn btn-primary" onclick="showPage('vocab')">Tilbake til øving</button></div>
+                        <p id="mixedQuizStreakSummary">${formatQuizStreakSummary(quizStats)}</p>
+                        ${newlyMastered.length ? `<div class="quiz-badge-awards"><strong>🏅 Nye merker</strong><p>${newlyMastered.map(badge => escapeHtml(badge.label)).join(' · ')}</p></div>` : ''}
+                        <div class="mixed-quiz-review" aria-label="Gjennomgang av quizsvar">
+                            ${results.map((result, index) => `<details class="mixed-quiz-review-item" ${result.correct ? '' : 'open'}>
+                                <summary><span>${index + 1}. ${escapeHtml(result.prompt)}</span><strong class="${result.correct ? 'review-correct' : 'review-wrong'}">${result.correct ? '✓ Riktig' : result.resultKind === 'near_miss' ? 'Nesten' : '✗ Feil'}</strong></summary>
+                                <p><strong>Ditt svar:</strong> ${escapeHtml(result.answer || 'Ikke besvart')}</p>
+                                <p><strong>Godkjent svar:</strong> ${escapeHtml(result.correctAnswers.join(' / ') || 'Ikke oppgitt')}</p>
+                                <p>${escapeHtml(result.explanation)}</p>
+                            </details>`).join('')}
+                        </div>
+                        <div class="button-group">
+                            <button type="button" class="btn btn-primary" onclick="startMixedQuizFromUi()">▶️ Ta en ny quiz</button>
+                            <button type="button" class="btn btn-secondary" onclick="showPage('brainmap')">🧠 Se Brainmap</button>
+                        </div>
                     </div>
                 `;
             }
             updateMixedQuizProgress();
         }
+
+        function formatQuizStreakSummary(quizStats = loadQuizStats()) {
+            const todayCount = quizStats.dailyQuizCounts[getLocalDateString()] || 0;
+            const fiveProgress = Math.min(todayCount, 5);
+            return `🔥 ${quizStats.currentStreak} dag${quizStats.currentStreak === 1 ? '' : 'er'} på rad · ${todayCount} quiz i dag · ${fiveProgress}/5 mot dagens merke`;
+        }
+
 
         function endMixedQuizEarly() {
             if (!mixedQuizState || confirm('Er du sikker på at du vil avslutte quizen?')) {
@@ -4848,8 +4972,8 @@
             return String(text || '').trim().toLocaleLowerCase('es-ES');
         }
 
-        function isTypedVocabAnswerCorrect(answer, expected) {
-            return evaluateTypedAnswer(answer, expected);
+        function isTypedVocabAnswerCorrect(answer, expected, acceptedAnswers = [expected]) {
+            return evaluateDiagnosisAnswer({ acceptedAnswers }, answer);
         }
 
         function getVocabPromptText(item, cardList = cards) {
@@ -5242,7 +5366,7 @@ Vil du øve på ${pronoun} likevel?`
             const input = document.getElementById('typedVocabInput');
             const feedback = document.getElementById('typedVocabFeedback');
             const expected = getExpectedAnswerText(currentCard);
-            const evaluation = isTypedVocabAnswerCorrect(input.value, expected);
+            const evaluation = isTypedVocabAnswerCorrect(input.value, expected, getVocabularyAcceptedAnswers(currentCard.card, currentCard.direction, expected).map(item => item.value));
 
             input.disabled = true;
 
@@ -5254,7 +5378,7 @@ Vil du øve på ${pronoun} likevel?`
 
             feedback.innerHTML = `
                 <div class="grammar-feedback ${evaluation.resultKind === 'accent_or_case_variant' ? 'near-miss' : 'incorrect'}">
-                    ${evaluation.resultKind === 'accent_or_case_variant' ? 'Nesten riktig — sjekk aksenten.' : '✗ Feil.'} Riktig svar er: <strong>${expected}</strong>
+                    ${evaluation.resultKind === 'accent_or_case_variant' ? 'Nesten riktig — sjekk aksenten.' : '✗ Feil.'} Godkjente svar: <strong>${getVocabularyAcceptedAnswers(currentCard.card, currentCard.direction, expected).map(item => escapeHtml(item.value)).join(' / ')}</strong>
                 </div>
             `;
             document.getElementById('buttonArea').innerHTML = `

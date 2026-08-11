@@ -111,6 +111,68 @@ test.describe('local quiz streaks', () => {
     expect(result.summary).toContain('1 dag på rad');
   });
 
+  test('shows a complete review and keeps the repeat-quiz action available', async ({ page }) => {
+    await page.goto(appUrl);
+
+    const result = await page.evaluate(() => {
+      localStorage.clear();
+      mixedQuizState = {
+        index: 10,
+        answered: 10,
+        correct: 7,
+        startedAt: new Date().toISOString(),
+        results: Array.from({ length: 10 }, (_, index) => ({
+          questionId: `q${index}`,
+          prompt: `spørsmål ${index + 1}`,
+          answer: index < 7 ? 'riktig' : 'feil',
+          resultKind: index < 7 ? 'correct' : 'wrong',
+          correct: index < 7,
+          correctAnswers: ['fasit'],
+          explanation: 'Kort forklaring.'
+        })),
+        quiz: { items: Array.from({ length: 10 }, (_, index) => ({ questionId: `q${index}` })) }
+      };
+      finishMixedQuiz();
+      return {
+        rows: document.querySelectorAll('.mixed-quiz-review-item').length,
+        repeatButton: document.querySelector('.mixed-quiz-results button')?.textContent,
+        explanation: document.querySelector('.mixed-quiz-review-item p:last-child')?.textContent,
+        summary: document.getElementById('mixedQuizStreakSummary')?.textContent
+      };
+    });
+
+    expect(result.rows).toBe(10);
+    expect(result.repeatButton).toContain('Ta en ny quiz');
+    expect(result.explanation).toContain('Kort forklaring');
+    expect(result.summary).toContain('1/5');
+  });
+
+  test('awards a skill badge once when mastery threshold is reached', async ({ page }) => {
+    await page.goto(appUrl);
+
+    const result = await page.evaluate(() => {
+      localStorage.clear();
+      const progress = {
+        schemaVersion: 1,
+        skillProgress: {
+          'a1.verbs.regular_ar.present': { strength: 4, attempts: 3, correct: 3, lapses: 0 }
+        },
+        wordProgress: {}
+      };
+      const first = awardMasteryBadges(progress);
+      const second = awardMasteryBadges(progress);
+      return {
+        first: first.newlyEarned.map(badge => badge.id),
+        second: second.newlyEarned.map(badge => badge.id),
+        stored: JSON.parse(localStorage.getItem('spansk123_masteryBadges_v1'))
+      };
+    });
+
+    expect(result.first).toEqual(['mastery:a1.verbs.regular_ar.present']);
+    expect(result.second).toEqual([]);
+    expect(result.stored.badges).toEqual(['mastery:a1.verbs.regular_ar.present']);
+  });
+
   test('includes quiz stats in full export and merges them on import', async ({ page }) => {
     await page.goto(appUrl);
 
