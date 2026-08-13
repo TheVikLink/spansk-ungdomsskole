@@ -39,6 +39,37 @@ test.describe('content accuracy audit', () => {
     }
   });
 
+  test('includes the first quality-checked greeting, weekday, and body-part slice', async ({ page }) => {
+    await page.goto(appUrl);
+
+    const entries = await page.evaluate(() => glossary);
+    const find = (norwegian) => entries.find(([no]) => no === norwegian);
+
+    expect(find('god morgen')).toEqual(['god morgen', 'buenos días', 'hilsener']);
+    expect(find('god dag')).toEqual(['god dag', 'buenos días', 'hilsener']);
+    expect(find('god kveld')).toEqual(['god kveld', 'buenas noches', 'hilsener']);
+    expect(find('ha det')).toEqual(['ha det', 'adiós', 'hilsener']);
+    expect(find('tirsdag')).toEqual(['tirsdag', 'martes', 'ukedager']);
+    expect(find('onsdag')).toEqual(['onsdag', 'miércoles', 'ukedager']);
+    expect(find('torsdag')).toEqual(['torsdag', 'jueves', 'ukedager']);
+    expect(find('fredag')).toEqual(['fredag', 'viernes', 'ukedager']);
+    expect(find('hode')).toEqual(['hode', 'la cabeza', 'kropp']);
+    expect(find('øye')).toEqual(['øye', 'el ojo', 'kropp']);
+    expect(find('munn')).toEqual(['munn', 'la boca', 'kropp']);
+    expect(find('hånd')).toEqual(['hånd', 'la mano', 'kropp']);
+    expect(find('fot')).toEqual(['fot', 'el pie', 'kropp']);
+
+    const newPairs = [
+      ['god morgen', 'buenos días'], ['god dag', 'buenos días'],
+      ['god kveld', 'buenas noches'], ['ha det', 'adiós'],
+      ['tirsdag', 'martes'], ['onsdag', 'miércoles'], ['torsdag', 'jueves'], ['fredag', 'viernes'],
+      ['hode', 'la cabeza'], ['øye', 'el ojo'], ['munn', 'la boca'], ['hånd', 'la mano'], ['fot', 'el pie']
+    ];
+    for (const [norwegian, spanish] of newPairs) {
+      expect(entries.filter(([no, es]) => no.toLocaleLowerCase() === norwegian && es.toLocaleLowerCase() === spanish)).toHaveLength(1);
+    }
+  });
+
   test('avoids known duplicate cards by keeping school and hobby phrases distinct', async ({ page }) => {
     await page.goto(appUrl);
 

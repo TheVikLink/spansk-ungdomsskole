@@ -1014,6 +1014,75 @@
             'elev|no-es': [
                 { answerId: 'el_alumno', value: 'el alumno', canonicalMeaningId: 'student' },
                 { answerId: 'el_estudiante', value: 'el estudiante', canonicalMeaningId: 'student' }
+            ],
+            'pen/kjekk|es-no': [
+                { answerId: 'pen', value: 'pen', canonicalMeaningId: 'guapo_no' },
+                { answerId: 'kjekk', value: 'kjekk', canonicalMeaningId: 'guapo_no' }
+            ],
+            'snill/ hyggelig|es-no': [
+                { answerId: 'snill', value: 'snill', canonicalMeaningId: 'simpatico_no' },
+                { answerId: 'hyggelig', value: 'hyggelig', canonicalMeaningId: 'simpatico_no' }
+            ],
+            'etter / etterpå|es-no': [
+                { answerId: 'etter', value: 'etter', canonicalMeaningId: 'despues_no' },
+                { answerId: 'etterpå', value: 'etterpå', canonicalMeaningId: 'despues_no' }
+            ],
+            'religion / KRLE|es-no': [
+                { answerId: 'religion', value: 'religion', canonicalMeaningId: 'religion_no' },
+                { answerId: 'KRLE', value: 'KRLE', canonicalMeaningId: 'religion_no' }
+            ],
+            'bilde / maleri (c)|es-no': [
+                { answerId: 'bilde', value: 'bilde', canonicalMeaningId: 'cuadro_no' },
+                { answerId: 'maleri', value: 'maleri', canonicalMeaningId: 'cuadro_no' }
+            ],
+            'han/hun liker|es-no': [
+                { answerId: 'han liker', value: 'han liker', canonicalMeaningId: 'le_gusta_no' },
+                { answerId: 'hun liker', value: 'hun liker', canonicalMeaningId: 'le_gusta_no' }
+            ],
+            'dermed / deretter / så|es-no': [
+                { answerId: 'dermed', value: 'dermed', canonicalMeaningId: 'entonces_no' },
+                { answerId: 'deretter', value: 'deretter', canonicalMeaningId: 'entonces_no' },
+                { answerId: 'så', value: 'så', canonicalMeaningId: 'entonces_no' }
+            ],
+            'i tillegg / dessuten|es-no': [
+                { answerId: 'i tillegg', value: 'i tillegg', canonicalMeaningId: 'ademas_no' },
+                { answerId: 'dessuten', value: 'dessuten', canonicalMeaningId: 'ademas_no' }
+            ],
+            'å bo/ å leve|no-es': [
+                { answerId: 'vivir_bo', value: 'vivir', canonicalMeaningId: 'vivir_es' },
+                { answerId: 'vivir_leve', value: 'vivir', canonicalMeaningId: 'vivir_es' }
+            ],
+            'det er vind|es-no': [
+                { answerId: 'det_er_vind', value: 'det er vind', canonicalMeaningId: 'hace_viento_no' },
+                { answerId: 'det_blaser', value: 'det blåser', canonicalMeaningId: 'hace_viento_no' }
+            ],
+            'det blåser|es-no': [
+                { answerId: 'det_er_vind', value: 'det er vind', canonicalMeaningId: 'hace_viento_no' },
+                { answerId: 'det_blaser', value: 'det blåser', canonicalMeaningId: 'hace_viento_no' }
+            ],
+            'å kjøpe|es-no': [
+                { answerId: 'a_kjope', value: 'å kjøpe', canonicalMeaningId: 'comprar_no' },
+                { answerId: 'kjope', value: 'kjøpe', canonicalMeaningId: 'comprar_no' }
+            ],
+            'kjøpe|es-no': [
+                { answerId: 'a_kjope', value: 'å kjøpe', canonicalMeaningId: 'comprar_no' },
+                { answerId: 'kjope', value: 'kjøpe', canonicalMeaningId: 'comprar_no' }
+            ],
+            'å drikke|es-no': [
+                { answerId: 'a_drikke', value: 'å drikke', canonicalMeaningId: 'beber_no' },
+                { answerId: 'drikke', value: 'drikke', canonicalMeaningId: 'beber_no' }
+            ],
+            'drikke|es-no': [
+                { answerId: 'a_drikke', value: 'å drikke', canonicalMeaningId: 'beber_no' },
+                { answerId: 'drikke', value: 'drikke', canonicalMeaningId: 'beber_no' }
+            ],
+            'skoletime|es-no': [
+                { answerId: 'skoletime', value: 'skoletime', canonicalMeaningId: 'clase_no' },
+                { answerId: 'skoleklasse', value: 'skoleklasse', canonicalMeaningId: 'clase_no' }
+            ],
+            'skoleklasse|es-no': [
+                { answerId: 'skoletime', value: 'skoletime', canonicalMeaningId: 'clase_no' },
+                { answerId: 'skoleklasse', value: 'skoleklasse', canonicalMeaningId: 'clase_no' }
             ]
         };
 
@@ -1643,7 +1712,9 @@
                 gustar_plural_agreement: 'I «me gustan los libros» er «los libros» flertall, derfor blir det «gustan».',
                 estar_location: '«Estar» brukes til å fortelle hvor noe eller noen befinner seg.'
             };
-            return explanations[item.primaryConstruct] || 'Se på mønsteret i setningen og prøv samme type oppgave igjen.';
+            return explanations[item.primaryConstruct] || (item.itemType === 'vocabulary'
+                ? 'Øv på denne glosen igjen — se Brainmap for å se hvilke ord du trenger mer på.'
+                : 'Se på mønsteret i setningen og prøv samme type oppgave igjen.');
         }
 
         function formatMixedQuizCorrectAnswers(item) {
@@ -2056,15 +2127,18 @@
             diagnosis = loadDiagnosisState(),
             now = new Date().toISOString(),
             seed = now.slice(0, 10),
-            size = 10
+            size = 10,
+            excludeIds = new Set()
         } = {}) {
             if (!['complete'].includes(diagnosis?.status)) {
                 return { status: 'diagnosis_required', items: [], fallbackUsed: false };
             }
 
             const nowDate = new Date(now);
-            const candidates = buildMixedQuizCandidates({ cards, skillsCatalog, learningProgress, diagnosis })
+            const allCandidates = buildMixedQuizCandidates({ cards, skillsCatalog, learningProgress, diagnosis })
                 .sort((a, b) => compareMixedQuizCandidates(a, b, nowDate, seed));
+            const candidates = allCandidates.filter(c => !excludeIds.has(c.questionId));
+            const fallbackPool = excludeIds.size > 0 ? allCandidates : [];
             const selected = [];
             const selectedIds = new Set();
             let fallbackUsed = false;
@@ -2084,14 +2158,29 @@
                 if (picked < count) fallbackUsed = true;
             };
 
+            const totalSkillAttempts = candidates
+                .filter(c => c.itemType === 'skill')
+                .reduce((sum, c) => sum + (c.attempts || 0), 0);
+            const skillPredicate = totalSkillAttempts < 6
+                ? candidate => candidate.itemType === 'skill' && candidate.strength < 4
+                : candidate => candidate.itemType === 'skill' && !candidate.recent && candidate.strength < 4;
             pick('vocabulary', 4, candidate => candidate.itemType === 'vocabulary');
-            pick('skill', 3, candidate => candidate.itemType === 'skill' && !candidate.recent && candidate.strength < 4);
+            pick('skill', 3, skillPredicate);
             pick('recent', 2, candidate => candidate.recent);
             pick('confidence', 1, candidate => candidate.strength >= 4 && candidate.attempts > 0);
 
             if (selected.length < Math.min(size, candidates.length)) {
                 fallbackUsed = true;
                 for (const candidate of candidates) {
+                    if (selected.length >= size) break;
+                    if (!canSelect(candidate)) continue;
+                    selected.push({ ...candidate, selectionBucket: 'fallback' });
+                    selectedIds.add(candidate.questionId);
+                }
+            }
+
+            if (selected.length < size && fallbackPool.length > 0) {
+                for (const candidate of fallbackPool) {
                     if (selected.length >= size) break;
                     if (!canSelect(candidate)) continue;
                     selected.push({ ...candidate, selectionBucket: 'fallback' });
@@ -3599,6 +3688,10 @@
             // HILSENER
             ["hei", "hola", "hilsener"],
             ["takk", "gracias", "hilsener"],
+            ["god morgen", "buenos días", "hilsener"],
+            ["god dag", "buenos días", "hilsener"],
+            ["god kveld", "buenas noches", "hilsener"],
+            ["ha det", "adiós", "hilsener"],
 
             // LAND
             ["Norge", "Noruega", "land"],
@@ -3648,7 +3741,8 @@
             ["det er fint vær", "hace buen tiempo", "vær"],
             ["det er dårlig vær", "hace mal tiempo", "vær"],
             ["det er sol", "hace sol", "vær"],
-            ["det er vind / det blåser", "hace viento", "vær"],
+            ["det er vind", "hace viento", "vær"],
+            ["det blåser", "hace viento", "vær"],
             ["det er varmt", "hace calor", "vær"],
             ["det er kaldt", "hace frío", "vær"],
             
@@ -3849,6 +3943,10 @@
             ["hver dag", "todos los días", "tidsuttrykk"],
             ["på mandag", "el lunes", "tidsuttrykk"],
             ["på mandager", "los lunes", "tidsuttrykk"],
+            ["tirsdag", "martes", "ukedager"],
+            ["onsdag", "miércoles", "ukedager"],
+            ["torsdag", "jueves", "ukedager"],
+            ["fredag", "viernes", "ukedager"],
             ["på morgenen", "por la mañana", "tidsuttrykk"],
             ["for noen dager siden", "hace unos días", "tidsuttrykk"],
             ["hver uke", "cada semana", "Kapittel 8: Tareas de casa"],
@@ -3861,6 +3959,13 @@
             ["i går", "ayer", "tidsuttrykk"],
             ["på kvelden", "por la noche", "tidsuttrykk"],
             ["etter / etterpå", "después", "tidsuttrykk"],
+
+            // KROPPSDELER
+            ["hode", "la cabeza", "kropp"],
+            ["øye", "el ojo", "kropp"],
+            ["munn", "la boca", "kropp"],
+            ["hånd", "la mano", "kropp"],
+            ["fot", "el pie", "kropp"],
             
             // SKOLE
             ["elev", "el alumno", "skole"],
@@ -4583,8 +4688,23 @@
             document.getElementById('mixedQuizAnswerInput')?.focus();
         }
 
+        function getTodayAskedQuestionIds() {
+            const raw = readStoredJson('spansk123_dailyAskedIds', null);
+            const today = getLocalDateString();
+            if (raw && raw.date === today && Array.isArray(raw.ids)) return new Set(raw.ids);
+            return new Set();
+        }
+
+        function addTodayAskedQuestionIds(ids) {
+            const today = getLocalDateString();
+            const existing = getTodayAskedQuestionIds();
+            ids.forEach(id => existing.add(id));
+            localStorage.setItem('spansk123_dailyAskedIds', JSON.stringify({ date: today, ids: [...existing] }));
+        }
+
         function startMixedQuizFromUi() {
             const todayCount = loadQuizStats().dailyQuizCounts[getLocalDateString()] || 0;
+            const excludeIds = getTodayAskedQuestionIds();
             const quiz = buildMixedQuiz({
                 cards,
                 skillsCatalog: learningCatalog,
@@ -4592,7 +4712,8 @@
                 diagnosis: loadDiagnosisState(),
                 now: new Date().toISOString(),
                 seed: `${getIsoDate()}:${todayCount}`,
-                size: 10
+                size: 10,
+                excludeIds
             });
             if (quiz.status !== 'ready' || quiz.items.length === 0) {
                 alert('Fullfør nivåtesten før du starter en personlig quiz.');
@@ -4664,6 +4785,7 @@
             if (mixedQuizState.answered === total && total > 0) {
                 recordPracticeSession(total, mixedQuizState.correct, 'mixed-quiz', getElapsedPracticeMinutes(mixedQuizState.startedAt));
                 quizStats = completeQuizForToday();
+                addTodayAskedQuestionIds((mixedQuizState.results || []).map(r => r.questionId).filter(Boolean));
             }
             activeSessionType = null;
             const container = document.getElementById('mixedQuizQuestion');
