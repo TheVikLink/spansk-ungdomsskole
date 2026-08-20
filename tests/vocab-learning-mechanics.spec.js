@@ -110,6 +110,23 @@ test.describe('vocabulary learning mechanics', () => {
     await expect(input).toHaveValue('aé');
   });
 
+  test('turns held question and exclamation marks into Spanish inverted punctuation', async ({ page }) => {
+    await page.goto(appUrl);
+    await page.setContent('<input id="punctuation-test" autocomplete="off">');
+    await page.evaluate(() => setupAccentInput(document.getElementById('punctuation-test')));
+    const input = page.locator('#punctuation-test');
+    await input.focus();
+
+    await page.keyboard.down('?');
+    await page.waitForTimeout(450);
+    await page.keyboard.up('?');
+    await page.keyboard.down('!');
+    await page.waitForTimeout(450);
+    await page.keyboard.up('!');
+
+    await expect(input).toHaveValue('¿¡');
+  });
+
   test('typed answers classify accent variants while ignoring case and extra spaces', async ({ page }) => {
     await page.goto(appUrl);
 
