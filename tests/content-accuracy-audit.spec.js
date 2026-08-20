@@ -19,6 +19,11 @@ test.describe('content accuracy audit', () => {
     expect(find('Har du klokke?')).toEqual(['Har du klokke?', '¿Tienes reloj?', 'klokka']);
     expect(find('Vet du hva klokka er?')).toEqual(['Vet du hva klokka er?', '¿Sabes qué hora es?', 'klokka']);
     expect(find('pult')).toEqual(['pult', 'el pupitre', 'skole']);
+    expect(find('Familien min består av fem personer')).toEqual([
+      'Familien min består av fem personer',
+      'En mi familia somos cinco',
+      'familie-setninger'
+    ]);
   });
 
   test('includes the A0 greeting and number words used by diagnosis', async ({ page }) => {

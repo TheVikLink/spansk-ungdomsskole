@@ -2337,6 +2337,112 @@ select {
     gap: 12px;
 }
 
+.brainmap-interaction-hint {
+    margin: 0 0 14px;
+    color: var(--gray-600);
+    font-size: 13px;
+}
+
+.brainmap-cluster-list {
+    display: grid;
+    gap: 12px;
+}
+
+.brainmap-group {
+    overflow: hidden;
+    border: 1px solid var(--gray-200);
+    border-radius: 12px;
+    background: #fff;
+}
+
+.brainmap-group > summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    min-height: 56px;
+    padding: 14px 16px;
+    cursor: pointer;
+    list-style: none;
+}
+
+.brainmap-group > summary::-webkit-details-marker { display: none; }
+.brainmap-group > summary::before {
+    content: '＋';
+    color: var(--gray-500);
+    font-weight: 700;
+}
+.brainmap-group[open] > summary::before { content: '−'; }
+.brainmap-group > summary:focus-visible,
+.brainmap-node:focus-visible,
+.brainmap-detail-close:focus-visible {
+    outline: 3px solid #2563eb;
+    outline-offset: 2px;
+}
+
+.brainmap-group-title {
+    color: var(--gray-900);
+    font-size: 16px;
+    font-weight: 800;
+}
+
+.brainmap-group-meta {
+    margin-left: auto;
+    color: var(--gray-600);
+    font-size: 12px;
+}
+
+.brainmap-group-skills {
+    padding: 0 12px 12px;
+}
+
+.brainmap-skill-action,
+.brainmap-vocabulary-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    width: 100%;
+    color: inherit;
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+    transition: transform 120ms ease, box-shadow 120ms ease;
+}
+
+.brainmap-skill-action:hover,
+.brainmap-vocabulary-card:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgb(15 23 42 / 10%);
+}
+
+.brainmap-skill-action strong { color: var(--gray-900); line-height: 1.35; }
+.brainmap-skill-action > span:not(.brainmap-node-topline),
+.brainmap-vocabulary-card > p { color: var(--gray-600); font-size: 12px; }
+.brainmap-node-action {
+    margin-top: auto;
+    color: #1d4ed8;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.brainmap-skill-detail { margin: 0 0 14px; }
+.brainmap-detail-card {
+    position: relative;
+    padding: 16px;
+    border: 1px solid #93c5fd;
+    border-radius: 12px;
+    background: #eff6ff;
+}
+.brainmap-detail-card h3 { margin: 0 0 6px; color: var(--gray-900); }
+.brainmap-detail-card p { margin: 0 0 14px; color: var(--gray-700); }
+.brainmap-detail-close { position: absolute; top: 12px; right: 12px; }
+
+.brainmap-node[data-brainmap-intensity="low"] { box-shadow: inset 0 0 0 1px rgb(15 23 42 / 4%); }
+.brainmap-node[data-brainmap-intensity="medium"] { box-shadow: inset 0 0 0 2px rgb(15 23 42 / 6%); }
+.brainmap-node[data-brainmap-intensity="high"] { box-shadow: inset 0 0 0 2px rgb(15 23 42 / 10%); }
+.brainmap-node[data-brainmap-intensity="max"] { box-shadow: inset 0 0 0 3px rgb(15 23 42 / 14%); }
+
 .brainmap-area-grid {
     margin-top: 12px;
 }
@@ -2414,6 +2520,14 @@ select {
     .brainmap-area-grid {
         grid-template-columns: 1fr;
     }
+
+    .brainmap-group > summary { align-items: flex-start; }
+    .brainmap-group-meta { text-align: right; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .brainmap-skill-action,
+    .brainmap-vocabulary-card { transition: none; }
 }
 
 .brainmap-level {

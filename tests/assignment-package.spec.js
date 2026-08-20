@@ -127,7 +127,7 @@ test.describe('teacher assignment packages', () => {
         assignmentTitle: 'Uke 36: hilsener',
         vocabulary: [
           { norsk: existing.no, spansk: existing.es, category: existing.category },
-          { norsk: 'god morgen', spansk: 'buenos días', category: existing.category }
+          { norsk: 'god ettermiddag', spansk: 'buenas tardes', category: existing.category }
         ],
         minuteTargets: { vocabulary: 10 }
       });
@@ -142,7 +142,7 @@ test.describe('teacher assignment packages', () => {
     expect(result.imported).toMatchObject({ importedWords: 1, skippedWords: 1 });
     expect(result.resolved).toHaveLength(2);
     expect(result.pairCount).toBe(2);
-    expect(result.resolved.find(card => card.no === 'god morgen').assignmentId).toBeTruthy();
+    expect(result.resolved.find(card => card.no === 'god ettermiddag').assignmentId).toBeTruthy();
   });
 
   test('keeps assignment practice available after re-import without adding duplicates', async ({ page }) => {
@@ -158,7 +158,7 @@ test.describe('teacher assignment packages', () => {
         assignmentTitle: 'Uke 37: hilsener',
         vocabulary: [
           { norsk: 'hei', spansk: 'hola', category: 'hilsener' },
-          { norsk: 'god morgen', spansk: 'buenos días', category: 'hilsener' }
+          { norsk: 'god ettermiddag', spansk: 'buenas tardes', category: 'hilsener' }
         ],
         minuteTargets: { vocabulary: 10 }
       };
@@ -169,13 +169,13 @@ test.describe('teacher assignment packages', () => {
         first,
         second,
         resolved: resolved.map(card => `${card.no}::${card.es}`),
-        matchingCards: cards.filter(card => card.category === 'hilsener' && ['hei', 'god morgen'].includes(card.no)).length
+        matchingCards: cards.filter(card => card.category === 'hilsener' && ['hei', 'god ettermiddag'].includes(card.no)).length
       };
     });
 
     expect(result.first).toMatchObject({ importedWords: 1, skippedWords: 1 });
     expect(result.second).toMatchObject({ importedWords: 0, skippedWords: 2 });
-    expect(result.resolved).toEqual(['hei::hola', 'god morgen::buenos días']);
+    expect(result.resolved).toEqual(['hei::hola', 'god ettermiddag::buenas tardes']);
     expect(result.matchingCards).toBe(2);
   });
 

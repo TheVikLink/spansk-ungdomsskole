@@ -71,7 +71,7 @@ test.describe('privacy wording and local backup reminder', () => {
     expect(styles.summaryColor).not.toBe('rgb(255, 255, 255)');
   });
 
-  test('homework delivery is local-only unless a teacher configures an external form', async ({ page }) => {
+  test('homework delivery is always local-only in the pilot build', async ({ page }) => {
     await page.goto(appUrl);
 
     const result = await page.evaluate(() => {
@@ -98,13 +98,15 @@ test.describe('privacy wording and local backup reminder', () => {
       return {
         submitResult,
         openedUrls,
-        hint: document.getElementById('homeworkHint').textContent
+        hint: document.getElementById('homeworkHint').textContent,
+        externalSubmissionHelper: typeof isHomeworkExternalSubmissionConfigured
       };
     });
 
     expect(result.submitResult).toMatchObject({ submittedExternally: false });
     expect(result.openedUrls).toEqual([]);
     expect(result.hint).toContain('Ingen data er sendt');
+    expect(result.externalSubmissionHelper).toBe('undefined');
   });
 
   test('keeps student identifiers out of exported backup filenames', async ({ page }) => {

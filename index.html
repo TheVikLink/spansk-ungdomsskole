@@ -956,15 +956,6 @@
         // APP CONFIGURATION
         // ============================================
         
-        // Optional Google Forms URL for teacher-managed homework submission.
-        // Leave empty for the default local-first pilot build.
-        const GOOGLE_FORM_URL = '';
-        const FORM_ENTRY_NAME = '';
-        const FORM_ENTRY_DATE = '';
-        const FORM_ENTRY_DAYS = '';
-        const FORM_ENTRY_WORDS = '';
-        const FORM_ENTRY_ACCURACY = '';
-        
         const LAST_EXPORT_KEY = 'spansk123_lastExportDate';
         const BACKUP_REMINDER_DAYS = 14;
         const CORRUPT_STORAGE_PREFIX = 'spansk123_corrupt_';
@@ -2632,9 +2623,7 @@
             // Hint
             const hintEl = document.getElementById('homeworkHint');
             if (canSubmit) {
-                hintEl.textContent = isHomeworkExternalSubmissionConfigured()
-                    ? 'Klikk for å åpne lærerens innleveringsskjema. Da sendes elevkode og øvingsstatistikk til skjemaet.'
-                    : 'Klikk for å lage en lokal rapport. Velg "Lagre som PDF" i utskriftsvinduet.';
+                hintEl.textContent = 'Klikk for å lage en lokal rapport. Velg "Lagre som PDF" i utskriftsvinduet.';
             } else {
                 hintEl.textContent = 'Øv litt flere dager, så kan du lage rapport.';
             }
@@ -2815,11 +2804,6 @@
             }).join('');
         }
 
-        function isHomeworkExternalSubmissionConfigured() {
-            const entries = [FORM_ENTRY_NAME, FORM_ENTRY_DATE, FORM_ENTRY_DAYS, FORM_ENTRY_WORDS, FORM_ENTRY_ACCURACY];
-            return GOOGLE_FORM_URL.startsWith('https://docs.google.com/forms/') && entries.every(Boolean);
-        }
-
         function buildHomeworkSubmissionSummary(days, practiceDays) {
             const weekStart = days[0].dateStr;
             const weekEnd = days[6].dateStr;
@@ -2974,31 +2958,11 @@
             
             const summary = buildHomeworkSubmissionSummary(days, practiceDays);
 
-            if (!isHomeworkExternalSubmissionConfigured()) {
-                const report = showWeeklyReportForPrint();
-                const hintEl = document.getElementById('homeworkHint');
-                hintEl.textContent = `Lokal rapport: ${summary.daysStr}, ${summary.totalWords} oppgaver, ${summary.accuracy}% riktig. Ingen data er sendt.`;
-                showToast('Lokal rapport er klar. Velg "Lagre som PDF" i utskriftsvinduet.', 'success');
-                return { submittedExternally: false, summary, report };
-            }
-
-            if (!confirm('Dette åpner et Google Forms-skjema og sender elevkode, dato, øvingsdager, antall oppgaver og nøyaktighet til læreren. Fortsette?')) {
-                return { submittedExternally: false, reason: 'cancelled' };
-            }
-            
-            // Build Google Form URL with pre-filled data
-            const formUrl = new URL(GOOGLE_FORM_URL);
-            formUrl.searchParams.set(FORM_ENTRY_NAME, studentName);
-            formUrl.searchParams.set(FORM_ENTRY_DATE, summary.date);
-            formUrl.searchParams.set(FORM_ENTRY_DAYS, summary.daysStr);
-            formUrl.searchParams.set(FORM_ENTRY_WORDS, summary.totalWords.toString());
-            formUrl.searchParams.set(FORM_ENTRY_ACCURACY, summary.accuracy + '%');
-            
-            // Open form in new tab
-            window.open(formUrl.toString(), '_blank');
-            
-            showToast('Skjemaet åpnes i ny fane. Klikk "Send" for å levere!', 'success');
-            return { submittedExternally: true, url: formUrl.toString(), summary };
+            const report = showWeeklyReportForPrint();
+            const hintEl = document.getElementById('homeworkHint');
+            hintEl.textContent = `Lokal rapport: ${summary.daysStr}, ${summary.totalWords} oppgaver, ${summary.accuracy}% riktig. Ingen data er sendt.`;
+            showToast('Lokal rapport er klar. Velg "Lagre som PDF" i utskriftsvinduet.', 'success');
+            return { submittedExternally: false, summary, report };
         }
 
         // ============================================
@@ -3830,7 +3794,7 @@
             ["lillesøster", "la hermana menor", "familie"],
             
             // FAMILIE-SETNINGER
-            ["Familien min består av fem personer", "Mi familia consiste de cinco personas", "familie-setninger"],
+            ["Familien min består av fem personer", "En mi familia somos cinco", "familie-setninger"],
             ["Hvem bor du sammen med?", "¿Con quién vives?", "familie-setninger"],
             ["Jeg bor sammen med moren og broren min", "Vivo con mi madre y mi hermano", "familie-setninger"],
             ["Foreldrene mine er skilt", "Mis padres están divorciados", "familie-setninger"],
@@ -5700,6 +5664,107 @@ Vil du øve på ${pronoun} likevel?`
             return node.attempts === 0 ? node.statusLabel : `${node.statusLabel} · styrke ${node.strength.toFixed(1)} av 5`;
         }
 
+        function getBrainmapStrengthIntensity({ strength = 0, attempts = 0 } = {}) {
+            if (!Number(attempts)) return 'none';
+            const normalized = Math.max(0, Math.min(5, Number(strength) || 0));
+            if (normalized < 2) return 'low';
+            if (normalized < 4) return 'medium';
+            if (normalized < 5) return 'high';
+            return 'max';
+        }
+
+        function buildBrainmapVocabularyAreas(runtimeCards = cards) {
+            const areas = new Map();
+            const sourceCards = (runtimeCards && runtimeCards.length)
+                ? runtimeCards
+                : learningCatalog.words.map((word, index) => ({ ...word, norsk: word.no, spansk: word.es, category: word.area, id: word.id || index, noEs: {}, esNo: {} }));
+            sourceCards.forEach(card => {
+                const label = String(card.category || 'importert').trim() || 'importert';
+                const id = normalizeCategorySlug(label);
+                if (!areas.has(id)) areas.set(id, { id, label, cards: new Map() });
+                const area = areas.get(id);
+                const identity = `${getVocabPairKey(card.norsk ?? card.no ?? '', card.spansk ?? card.es ?? '')}::${id}`;
+                if (!area.cards.has(identity)) area.cards.set(identity, card);
+            });
+            return Array.from(areas.values()).map(area => {
+                const uniqueCards = Array.from(area.cards.values());
+                const mastered = uniqueCards.filter(card => (Number(card.noEs?.repetitions) || 0) >= 3 && (Number(card.esNo?.repetitions) || 0) >= 3).length;
+                return { id: area.id, label: area.label, count: uniqueCards.length, mastered, cards: uniqueCards };
+            });
+        }
+
+        function getBrainmapSkillActionDescriptors() {
+            return {
+                'a0.identity.me_llamo': { kind: 'skillDetail', label: 'Les og øv på å si hva du heter', practiceSkillId: 'a0.identity.me_llamo' },
+                'a0.identity.soy_de': { kind: 'skillDetail', label: 'Les og øv på å si hvor du er fra', practiceSkillId: 'a0.identity.soy_de' },
+                'a0.articles.indefinite_singular': { kind: 'grammar', topicId: 'articles', label: 'Øv på un og una' },
+                'a0.articles.definite_singular': { kind: 'grammar', topicId: 'articles', label: 'Øv på el og la' },
+                'a1.verbs.regular_ar.present': { kind: 'verbs', focus: 'ar', label: 'Øv på regelrette -ar-verb' },
+                'a1.verbs.regular_er.present': { kind: 'verbs', focus: 'erir', label: 'Øv på -er- og -ir-verb' },
+                'a1.gustar.basic': { kind: 'grammar', topicId: 'gustar', label: 'Øv på gustar' },
+                'a1.ser_estar.identity_or_location': { kind: 'grammar', topicId: 'serEstar', label: 'Øv på ser og estar' }
+            };
+        }
+
+        function showBrainmapSkillDetail(skillId) {
+            const skill = learningCatalog.skills.find(item => item.id === skillId);
+            const descriptor = getBrainmapSkillActionDescriptors()[skillId];
+            if (!skill || !descriptor) return;
+            const container = document.getElementById('brainmapSkillDetail');
+            if (!container) return;
+            container.innerHTML = `
+                <div class="brainmap-detail-card" role="dialog" aria-labelledby="brainmapSkillDetailTitle">
+                    <button type="button" class="btn btn-sm btn-outline brainmap-detail-close" onclick="closeBrainmapSkillDetail()">Lukk</button>
+                    <h3 id="brainmapSkillDetailTitle">${escapeHtml(skill.label)}</h3>
+                    <p>Her får du en kort forklaring før du øver aktivt.</p>
+                    <button type="button" class="btn btn-primary" onclick="startBrainmapSkillPractice('${skillId}')">${escapeHtml(descriptor.label)}</button>
+                </div>
+            `;
+            container.classList.remove('hidden');
+            container.querySelector('button.btn-primary')?.focus();
+        }
+
+        function closeBrainmapSkillDetail() {
+            document.getElementById('brainmapSkillDetail')?.classList.add('hidden');
+        }
+
+        function startBrainmapSkillPractice(skillId) {
+            const matching = buildMixedQuizCandidates({ cards, skillsCatalog: learningCatalog, learningProgress: loadLearningProgress(), diagnosis: loadDiagnosisState() })
+                .filter(candidate => candidate.targetId === skillId)
+                .slice(0, 3);
+            if (!matching.length) {
+                showBrainmapSkillDetail(skillId);
+                return;
+            }
+            closeBrainmapSkillDetail();
+            activeSessionType = null;
+            mixedQuizState = null;
+            showPage('vocab');
+            const quiz = { status: 'ready', items: matching, fallbackUsed: false };
+            mixedQuizState = { quiz, index: 0, answered: 0, correct: 0, startedAt: new Date(), results: [] };
+            activeSessionType = 'mixedQuiz';
+            document.getElementById('vocabSettings').classList.add('hidden');
+            document.getElementById('vocabStudy').classList.add('hidden');
+            document.getElementById('mixedQuizStudy').classList.remove('hidden');
+            renderMixedQuizQuestion();
+        }
+
+        function activateBrainmapSkill(skillId) {
+            const descriptor = getBrainmapSkillActionDescriptors()[skillId];
+            if (!descriptor) return;
+            if (descriptor.kind === 'skillDetail') return showBrainmapSkillDetail(skillId);
+            if (descriptor.kind === 'grammar') {
+                showPage('grammar');
+                startGrammarTopic(descriptor.topicId);
+                return;
+            }
+            if (descriptor.kind === 'verbs') {
+                abandonActiveSession();
+                selectedVerbFocuses = new Set([descriptor.focus]);
+                showPage('verbs');
+            }
+        }
+
         function buildBrainmapModel(progress = loadLearningProgress()) {
             const skills = learningCatalog.skills.map(skill => {
                 const cell = getBrainmapProgressCell(progress, skill.id);
@@ -5707,15 +5772,17 @@ Vil du øve på ${pronoun} likevel?`
                 return { ...skill, nodeType: 'skill', strength: status.strength, attempts: status.attempts, status: status.key, statusLabel: status.label };
             });
 
-            const vocabularyAreas = Array.from(new Set(learningCatalog.words.map(word => word.area))).map(area => {
-                const words = learningCatalog.words.filter(word => word.area === area);
+            const vocabularyAreas = buildBrainmapVocabularyAreas(cards).map(area => {
+                const words = area.cards;
                 const wordDetails = words.map(word => {
-                    const noToEs = getBrainmapProgressCell(progress, word.id, 'noToEs');
-                    const esToNo = getBrainmapProgressCell(progress, word.id, 'esToNo');
+                    const wordId = word.id || getVocabPairKey(word.norsk ?? word.no, word.spansk ?? word.es);
+                    const noToEs = getBrainmapProgressCell(progress, wordId, 'noToEs');
+                    const esToNo = getBrainmapProgressCell(progress, wordId, 'esToNo');
                     const noStatus = getBrainmapStatus(noToEs);
                     const esStatus = getBrainmapStatus(esToNo);
                     return {
                         ...word,
+                        id: wordId,
                         noToEs,
                         esToNo,
                         wordStrength: Math.min(noStatus.strength, esStatus.strength),
@@ -5730,8 +5797,9 @@ Vil du øve på ${pronoun} likevel?`
                 const attempts = attemptedWords.reduce((sum, word) => sum + word.noToEsStatus.attempts + word.esToNoStatus.attempts, 0);
                 const status = getBrainmapStatus({ strength, attempts });
                 return {
-                    id: area,
-                    label: area,
+                    id: capitalizeFirst(area.label),
+                    areaKey: area.id,
+                    label: area.label,
                     nodeType: 'vocabularyArea',
                     strength,
                     attempts,
@@ -5739,7 +5807,9 @@ Vil du øve på ${pronoun} likevel?`
                     statusLabel: status.label,
                     directionStrength: { noToEs: noStrength, esToNo: esStrength },
                     directionSplit: Math.abs(noStrength - esStrength) >= 2,
-                    words: wordDetails
+                    words: wordDetails,
+                    count: area.count,
+                    mastered: area.mastered
                 };
             });
 
@@ -5786,32 +5856,46 @@ Vil du øve på ${pronoun} likevel?`
                             <span><i class="brainmap-legend-dot brainmap-legend-green" aria-hidden="true"></i>Grønn = god kontroll</span>
                             <span><i class="brainmap-legend-dot brainmap-legend-gold" aria-hidden="true"></i>Gull = svært sterk</span>
                         </div>
-                        <h4 class="brainmap-section-title">Ferdigheter</h4>
-                    </div>
-                    <div id="brainmapMicroskills" class="brainmap-node-grid">
-                        ${model.skills.map(node => `
-                            <article class="brainmap-node brainmap-node-${node.status}" data-brainmap-status="${node.status}" role="group" aria-label="${escapeHtml(`${node.label}, ${node.level}, ${formatBrainmapNodeStatus(node)}`)}">
-                                <div class="brainmap-node-topline">
-                                    <span class="brainmap-status-dot" aria-hidden="true"></span>
-                                    <span class="brainmap-node-level">${escapeHtml(node.level)}</span>
-                                </div>
-                                <h4>${escapeHtml(node.label)}</h4>
-                                <p>${escapeHtml(formatBrainmapNodeStatus(node))}</p>
-                            </article>
-                        `).join('')}
+                    <h4 class="brainmap-section-title">Ferdigheter</h4>
+                    <p class="brainmap-interaction-hint">Trykk på et emne for å lese kort og øve.</p>
+                    <div id="brainmapSkillDetail" class="brainmap-skill-detail hidden"></div>
+                </div>
+                    <div id="brainmapMicroskills" class="brainmap-cluster-list">
+                        ${model.groups.map((group, groupIndex) => {
+                            const children = model.skills.filter(skill => group.childIds.includes(skill.id));
+                            const intensity = getBrainmapStrengthIntensity(group);
+                            return `
+                                <details class="brainmap-group" data-brainmap-group data-brainmap-status="${group.status}" data-brainmap-intensity="${intensity}" ${groupIndex === 0 ? '' : ''}>
+                                    <summary aria-expanded="false">
+                                        <span class="brainmap-group-title">${escapeHtml(group.label)}</span>
+                                        <span class="brainmap-group-meta">${children.length} ferdigheter · ${escapeHtml(group.statusLabel)}</span>
+                                    </summary>
+                                    <div class="brainmap-node-grid brainmap-group-skills">
+                                        ${children.map(node => `
+                                            <button type="button" class="brainmap-node brainmap-node-${node.status} brainmap-skill-action" data-brainmap-skill-action data-brainmap-status="${node.status}" data-brainmap-intensity="${getBrainmapStrengthIntensity(node)}" onclick="activateBrainmapSkill('${node.id}')" aria-label="${escapeHtml(`${node.label}, ${node.level}, ${formatBrainmapNodeStatus(node)}. ${getBrainmapSkillActionDescriptors()[node.id]?.label || 'Åpne emne'}`)}">
+                                                <span class="brainmap-node-topline"><span class="brainmap-status-dot" aria-hidden="true"></span><span class="brainmap-node-level">${escapeHtml(node.level)}</span></span>
+                                                <strong>${escapeHtml(node.label)}</strong>
+                                                <span>${escapeHtml(formatBrainmapNodeStatus(node))}</span>
+                                                <span class="brainmap-node-action">${escapeHtml(getBrainmapSkillActionDescriptors()[node.id]?.label || 'Åpne emne')} →</span>
+                                            </button>
+                                        `).join('')}
+                                    </div>
+                                </details>
+                            `;
+                        }).join('')}
                     </div>
                     <h4 class="brainmap-section-title brainmap-vocabulary-title">Ordforråd</h4>
                     <div class="brainmap-area-grid">
                         ${model.vocabularyAreas.map(area => `
-                            <article class="brainmap-node brainmap-node-${area.status}" data-brainmap-status="${area.status}" role="group" aria-label="${escapeHtml(`${area.label}, ordforråd, ${formatBrainmapNodeStatus(area)}`)}">
+                            <button type="button" class="brainmap-node brainmap-node-${area.status} brainmap-vocabulary-card" data-brainmap-status="${area.status}" onclick="selectCategoryAndStudy('${area.label.replaceAll("'", "\\'")}')" aria-label="${escapeHtml(`${area.label}, ${area.mastered} av ${area.count} ord mestret. Trykk for å øve.`)}">
                                 <div class="brainmap-node-topline">
                                     <span class="brainmap-status-dot" aria-hidden="true"></span>
                                     <span class="brainmap-node-level">Ordforråd</span>
                                 </div>
                                 <h4>${escapeHtml(area.label)}</h4>
-                                <p>${escapeHtml(formatBrainmapNodeStatus(area))}</p>
+                                <p>${area.mastered} av ${area.count} ord mestret · Trykk for å øve</p>
                                 ${area.directionSplit ? `<p class="brainmap-direction-split">Norsk → spansk ${area.directionStrength.noToEs.toFixed(1)} · Spansk → norsk ${area.directionStrength.esToNo.toFixed(1)}</p>` : ''}
-                            </article>
+                            </button>
                         `).join('')}
                     </div>
                 </section>
@@ -6194,6 +6278,23 @@ Vil du øve på ${pronoun} likevel?`
                     <button class="btn btn-secondary" onclick="showPage('verbs')">← Tilbake</button>
                 </div>
             `;
+            document.querySelectorAll('[data-brainmap-group]').forEach(group => {
+                const summary = group.querySelector('summary');
+                const sync = () => summary?.setAttribute('aria-expanded', String(group.open));
+                group.addEventListener('toggle', sync);
+                summary?.addEventListener('click', () => {
+                    summary.setAttribute('aria-expanded', String(!group.open));
+                    setTimeout(sync, 0);
+                });
+                summary?.addEventListener('keydown', () => setTimeout(sync, 10));
+                summary?.addEventListener('keyup', () => setTimeout(sync, 10));
+                new MutationObserver(sync).observe(group, { attributes: true, attributeFilter: ['open'] });
+                sync();
+            });
+            document.getElementById('brainmapMicroskills')?.addEventListener('keydown', event => {
+                const summary = event.target.closest('summary');
+                if (summary && event.key === 'Enter') summary.setAttribute('aria-expanded', 'true');
+            }, true);
         }
 
         // ============================================

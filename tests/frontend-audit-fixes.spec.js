@@ -93,7 +93,7 @@ test.describe('frontend audit fixes', () => {
       showPage('brainmap');
     }, completedDiagnosis);
 
-    const names = await page.locator('.brainmap-node[role="group"]').evaluateAll(nodes => nodes.map(node => node.getAttribute('aria-label')));
+    const names = await page.locator('[data-brainmap-skill-action]').evaluateAll(nodes => nodes.map(node => node.getAttribute('aria-label')));
     expect(names.length).toBeGreaterThan(0);
     expect(names.every(name => /Ikke startet|Trenger øving|På vei|God kontroll|Svært sterk/.test(name))).toBe(true);
   });

@@ -38,7 +38,6 @@ En gratis, interaktiv læringsapp for spansk på ungdomsskolenivå (A0-A1 CEFR).
 ### 📝 Ukeslekse
 - Sporer øvingsdager automatisk
 - Lager lokal lekseoppsummering uten å sende data
-- Kan kobles til et læreradministrert Google Forms-skjema hvis skolen/læreren har gjort en egen personvernvurdering
 - Krav: Øv minst 2 dager per uke
 - Spesifikke gloser kan deles med elever som lærerimport, og en tydeligere leksepakke-flyt er planlagt før bred skolepilot
 
@@ -47,9 +46,9 @@ En gratis, interaktiv læringsapp for spansk på ungdomsskolenivå (A0-A1 CEFR).
 - **Ingen data sendes til skyen i standardoppsettet** - all fremgang lagres lokalt i nettleseren
 - Ingen innlogging eller brukerkontoer
 - Elevene kan eksportere/importere fremgang som JSON-fil
-- Ukeslekse viser en lokal oppsummering som standard. Ekstern innlevering må konfigureres eksplisitt av lærer/skole.
+- Ukeslekse viser en lokal oppsummering som kan skrives ut eller lagres som PDF. Det finnes ingen ekstern innlevering i pilotversjonen.
 - Elever blir ikke lagt inn i en felles klasse, og standardversjonen har ingen sentral lærerinnboks.
-- GDPR-vennlig for norske skoler
+- Personvernoppsettet er laget for en lokal pilot. Feide, skolekontoer og eventuell sentral datalagring krever en egen data- og personvernmodell.
 
 ## 🎒 Skolestartpilot
 
@@ -68,26 +67,7 @@ For demo og første klassepilot trenger du bare GitHub Pages-lenken. Elevene skr
 
 Standardversjonen har ikke en felles klasse som elevene blir meldt inn i. Hvis en lærer vil bruke egne gloser, deler læreren en JSON-fil basert på `eksempel-gloser-laerer.json`, og eleven importerer filen lokalt i appen.
 
-### 2. Valgfritt: Koble til ekstern innlevering
-
-Standardoppsettet sender ikke lekseinnleveringer. Hvis skolen vil bruke Google Forms eller et annet system, må læreren/skolen først lage et godkjent skjema og kopiere URL og felt-ID-er derfra.
-
-Før dette brukes med elever, dokumenter hva som sendes, hvorfor, hvem som har tilgang, sletting/retensjon og hvordan elever kan få eksportert data.
-
-### 3. Oppdater appen
-
-Erstatt disse linjene i `index.html`:
-
-```javascript
-const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/DIN_FORM_ID/viewform';
-const FORM_ENTRY_NAME = 'entry.XXXXXX';
-const FORM_ENTRY_DATE = 'entry.XXXXXX';
-const FORM_ENTRY_DAYS = 'entry.XXXXXX';
-const FORM_ENTRY_WORDS = 'entry.XXXXXX';
-const FORM_ENTRY_ACCURACY = 'entry.XXXXXX';
-```
-
-### 4. Deploy
+### 2. Deploy
 
 Last opp `index.html` til GitHub Pages, Netlify, eller skolens server.
 
@@ -126,10 +106,6 @@ Elever kan importere fremgang fra:
 | `Enter` | Sjekk svar (verb) |
 | Hold `a/e/i/o/u/n` | Aksent (á/é/í/ó/ú/ñ) |
 | Hold `?` / `!` | Spansk tegn (¿/¡) |
-
-## 📊 For lærere: Se innleveringer
-
-Standardoppsettet sender ikke innleveringer. Hvis du har konfigurert et valgfritt Google Forms-oppsett, finner du innleveringer i lærerens Google-regneark.
 
 ## ❓ FAQ
 

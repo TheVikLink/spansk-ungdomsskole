@@ -86,4 +86,54 @@ test.describe('brainmap v1 progress model', () => {
     await expect(page.locator('[data-brainmap-status="gray"]').first()).toBeVisible();
     await expect(page.getByRole('button', { name: /Tall.*0 av 58 mestret/i })).toBeVisible();
   });
+
+  test('groups every skill into an accessible collapsed cluster with actionable controls', async ({ page }) => {
+    await page.goto(appUrl);
+    await page.evaluate(() => {
+      localStorage.clear();
+      studentName = 'Elev audit';
+      showMainApp();
+      showPage('brainmap');
+    });
+
+    await expect(page.locator('[data-brainmap-group]')).toHaveCount(3);
+    await expect(page.locator('[data-brainmap-group]').first()).not.toHaveAttribute('open', '');
+    await expect(page.locator('[data-brainmap-skill-action]')).toHaveCount(8);
+    await expect(page.locator('[data-brainmap-group] [data-brainmap-skill-action]').first()).toBeHidden();
+
+    await page.locator('[data-brainmap-group] summary').first().press('Enter');
+    await expect(page.locator('[data-brainmap-group]').first()).toHaveAttribute('open', '');
+    await expect(page.locator('[data-brainmap-group]').first().locator('[data-brainmap-skill-action]').first()).toBeVisible();
+  });
+
+  test('exposes total skill routes and deterministic strength intensity', async ({ page }) => {
+    await page.goto(appUrl);
+    const result = await page.evaluate(() => ({
+      ids: learningCatalog.skills.map(skill => skill.id),
+      routeIds: Object.keys(getBrainmapSkillActionDescriptors()),
+      intensity: [
+        getBrainmapStrengthIntensity({ strength: -1, attempts: 1 }),
+        getBrainmapStrengthIntensity({ strength: 1, attempts: 1 }),
+        getBrainmapStrengthIntensity({ strength: 2, attempts: 1 }),
+        getBrainmapStrengthIntensity({ strength: 4, attempts: 1 }),
+        getBrainmapStrengthIntensity({ strength: 5, attempts: 1 }),
+        getBrainmapStrengthIntensity({ strength: 5, attempts: 0 })
+      ]
+    }));
+    expect(result.routeIds.sort()).toEqual(result.ids.sort());
+    expect(result.intensity).toEqual(['low', 'low', 'medium', 'high', 'max', 'none']);
+  });
+
+  test('builds Brainmap vocabulary areas from canonical runtime cards', async ({ page }) => {
+    await page.goto(appUrl);
+    const areas = await page.evaluate(() => buildBrainmapVocabularyAreas([
+      { norsk: 'hei', spansk: 'hola', category: 'Hilsener', noEs: { repetitions: 3 }, esNo: { repetitions: 3 } },
+      { norsk: 'hei', spansk: 'hola', category: ' hilsener ', noEs: { repetitions: 3 }, esNo: { repetitions: 3 } },
+      { norsk: 'takk', spansk: 'gracias', category: 'Ekstra', noEs: { repetitions: 3 }, esNo: { repetitions: 1 } }
+    ]));
+    expect(areas).toEqual([
+      expect.objectContaining({ id: 'hilsener', label: 'Hilsener', count: 1, mastered: 1 }),
+      expect.objectContaining({ id: 'ekstra', label: 'Ekstra', count: 1, mastered: 0 })
+    ]);
+  });
 });
