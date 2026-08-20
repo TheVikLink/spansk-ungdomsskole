@@ -6913,10 +6913,14 @@ Vil du øve på ${pronoun} likevel?`
                 const key = e.key;
                 
                 if (!accentMap[key]) return;
+
+                // Take over the key event so macOS does not open its native
+                // accent picker. A quick press still inserts the plain key;
+                // holding it replaces that key with the Spanish high accent.
+                e.preventDefault();
                 
                 // Ignore key repeat
                 if (e.repeat) {
-                    e.preventDefault();
                     return;
                 }
                 
@@ -6926,19 +6930,16 @@ Vil du øve på ${pronoun} likevel?`
                     longPressTimer = null;
                 }
                 
-                // Let the character be typed normally (don't preventDefault)
-                // But start a timer to replace it with accented version
+                const start = inputElement.selectionStart;
+                insertCharacter(inputElement, key);
+                const insertedPosition = start + 1;
+
                 longPressTimer = setTimeout(() => {
-                    // Replace the last character with accented version
-                    const pos = inputElement.selectionStart;
-                    if (pos > 0) {
-                        const value = inputElement.value;
-                        const lastChar = value.charAt(pos - 1);
-                        // Only replace if it matches the key we pressed
-                        if (lastChar.toLowerCase() === key.toLowerCase()) {
-                            inputElement.value = value.substring(0, pos - 1) + accentMap[key] + value.substring(pos);
-                            inputElement.selectionStart = inputElement.selectionEnd = pos;
-                        }
+                    const value = inputElement.value;
+                    const insertedChar = value.charAt(insertedPosition - 1);
+                    if (insertedChar === key) {
+                        inputElement.value = value.substring(0, insertedPosition - 1) + accentMap[key] + value.substring(insertedPosition);
+                        inputElement.selectionStart = inputElement.selectionEnd = insertedPosition;
                     }
                     longPressTimer = null;
                 }, 400);

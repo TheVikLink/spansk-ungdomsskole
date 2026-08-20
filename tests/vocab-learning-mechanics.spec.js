@@ -94,6 +94,22 @@ test.describe('vocabulary learning mechanics', () => {
     expect(new Set(result.map(option => option.label)).size).toBe(4);
   });
 
+  test('turns a held Spanish vowel into a high accent without opening native accent menus', async ({ page }) => {
+    await page.goto(appUrl);
+    await page.setContent('<input id="accent-test" autocomplete="off">');
+    await page.evaluate(() => setupAccentInput(document.getElementById('accent-test')));
+    const input = page.locator('#accent-test');
+    await input.focus();
+
+    await page.keyboard.press('a');
+    await expect(input).toHaveValue('a');
+
+    await page.keyboard.down('e');
+    await page.waitForTimeout(450);
+    await page.keyboard.up('e');
+    await expect(input).toHaveValue('aé');
+  });
+
   test('typed answers classify accent variants while ignoring case and extra spaces', async ({ page }) => {
     await page.goto(appUrl);
 
