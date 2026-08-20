@@ -2084,6 +2084,7 @@
                 );
                 candidates.push({
                     ...question,
+                    sourceResponseMode: question.responseMode,
                     responseMode: getMixedQuizResponseMode(question),
                     questionId: question.id,
                     itemType: question.targetType === 'word' ? 'vocabulary' : 'skill',
@@ -2150,15 +2151,25 @@
             const selected = [];
             const selectedIds = new Set();
             let fallbackUsed = false;
+            const responseModeTargets = { typed: 4, select: 4, choice: 2 };
 
             const canSelect = candidate => !selectedIds.has(candidate.questionId) && !(
                 candidate.targetType === 'word' && selected.some(item => item.targetType === 'word' && item.targetId === candidate.targetId && item.direction === candidate.direction)
             );
             const pick = (label, count, predicate) => {
                 let picked = 0;
-                for (const candidate of candidates) {
+                const eligible = candidates.filter(candidate => predicate(candidate));
+                while (picked < count) {
+                    const candidate = eligible
+                        .filter(item => canSelect(item))
+                        .sort((a, b) => {
+                            const aDeficit = responseModeTargets[a.responseMode] - selected.filter(item => item.responseMode === a.responseMode).length;
+                            const bDeficit = responseModeTargets[b.responseMode] - selected.filter(item => item.responseMode === b.responseMode).length;
+                            if (aDeficit !== bDeficit) return bDeficit - aDeficit;
+                            return compareMixedQuizCandidates(a, b, nowDate, seed);
+                        })[0];
+                    if (!candidate) break;
                     if (picked >= count) break;
-                    if (!canSelect(candidate) || !predicate(candidate)) continue;
                     selected.push({ ...candidate, selectionBucket: label });
                     selectedIds.add(candidate.questionId);
                     picked++;
@@ -2195,6 +2206,13 @@
                     selectedIds.add(candidate.questionId);
                 }
             }
+
+            // Keep recognition items in the middle: two choice items, with the
+            // remaining recognition items using the lower-friction select mode.
+            const recognitionItems = selected.filter(item => item.sourceResponseMode === 'choice');
+            recognitionItems.forEach((item, index) => {
+                item.responseMode = index < 2 ? 'choice' : 'select';
+            });
 
             return {
                 status: 'ready',

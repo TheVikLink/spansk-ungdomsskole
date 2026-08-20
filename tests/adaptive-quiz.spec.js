@@ -78,6 +78,10 @@ test.describe('adaptive mixed quiz v1', () => {
     expect(result.itemTypes.skill).toBe(6);
     expect(result.first.items.filter(item => item.selectionBucket === 'confidence')).toHaveLength(1);
     expect(result.first.items.filter(item => item.selectionBucket === 'recent')).toHaveLength(2);
+    expect(result.first.items.reduce((counts, item) => {
+      counts[item.responseMode] = (counts[item.responseMode] || 0) + 1;
+      return counts;
+    }, {})).toEqual({ typed: 5, select: 3, choice: 2 });
   });
 
   test('builds select options with one correct answer and diagnostic distractors', async ({ page }) => {
