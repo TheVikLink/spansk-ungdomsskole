@@ -2051,6 +2051,22 @@
             return a.questionId.localeCompare(b.questionId);
         }
 
+        function getSelectOptions(item) {
+            const accepted = new Set((item.acceptedAnswers || []).map(getDiagnosisAnswerValue));
+            const options = item.options || item.acceptedAnswers || [];
+            return options.map(option => {
+                const normalized = typeof option === 'string'
+                    ? { optionId: option, label: option }
+                    : { optionId: option.optionId || option.value || option.label, label: option.label || option.value || option.optionId };
+                return { ...normalized, correct: accepted.has(normalized.label) };
+            });
+        }
+
+        function getMixedQuizResponseMode(question) {
+            if (question.responseMode !== 'choice') return question.responseMode;
+            return mixedQuizSeedScore(question.id, 'mixed-response-mode') % 2 === 0 ? 'select' : 'choice';
+        }
+
         function buildMixedQuizCandidates({ cards = [], skillsCatalog = learningCatalog, learningProgress, diagnosis }) {
             const candidates = [];
             const catalogWordIds = new Set((skillsCatalog.words || []).map(word => word.id));
@@ -2068,6 +2084,7 @@
                 );
                 candidates.push({
                     ...question,
+                    responseMode: getMixedQuizResponseMode(question),
                     questionId: question.id,
                     itemType: question.targetType === 'word' ? 'vocabulary' : 'skill',
                     skillKind: skill?.group === 'Verb i presens' ? 'verb' : 'grammar',
@@ -4635,7 +4652,9 @@
                 : getDiagnosisOptions(item);
             const responseControls = item.responseMode === 'choice'
                 ? `<div class="mixed-quiz-options">${choices.map(option => `<button type="button" class="btn btn-outline" data-mixed-answer="${escapeHtml(option.label)}">${escapeHtml(option.label)}</button>`).join('')}</div>`
-                : `<input id="mixedQuizAnswerInput" class="conjugation-input" autocomplete="off" placeholder="Skriv svaret" onkeydown="if(event.key === 'Enter') { event.preventDefault(); submitMixedQuizTypedAnswer(); }"><div class="button-group"><button type="button" class="btn btn-primary" onclick="submitMixedQuizTypedAnswer()">Sjekk svar</button></div>`;
+                : item.responseMode === 'select'
+                    ? `<label class="mixed-quiz-select-label" for="mixedQuizSelect">Velg svar</label><select id="mixedQuizSelect" class="mixed-quiz-select"><option value="">Velg et svar …</option>${getSelectOptions(item).map(option => `<option value="${escapeHtml(option.label)}">${escapeHtml(option.label)}</option>`).join('')}</select><div class="button-group"><button type="button" class="btn btn-primary" onclick="submitMixedQuizSelectAnswer()">Sjekk svar</button></div>`
+                    : `<input id="mixedQuizAnswerInput" class="conjugation-input" autocomplete="off" placeholder="Skriv svaret" onkeydown="if(event.key === 'Enter') { event.preventDefault(); submitMixedQuizTypedAnswer(); }"><div class="button-group"><button type="button" class="btn btn-primary" onclick="submitMixedQuizTypedAnswer()">Sjekk svar</button></div>`;
             container.innerHTML = `
                 <div class="mixed-quiz-question" data-response-mode="${item.responseMode}" data-accepted-answer="${escapeHtml(getDiagnosisAnswerValue(item.acceptedAnswers[0]))}">
                     <div class="mixed-quiz-type">${mixedQuizTypeLabel(item)}</div>
@@ -4650,6 +4669,13 @@
                 button.addEventListener('click', () => submitMixedQuizAnswer(button.dataset.mixedAnswer));
             });
             document.getElementById('mixedQuizAnswerInput')?.focus();
+            document.getElementById('mixedQuizSelect')?.focus();
+        }
+
+        function submitMixedQuizSelectAnswer() {
+            const select = document.getElementById('mixedQuizSelect');
+            if (!select?.value) return;
+            submitMixedQuizAnswer(select.value);
         }
 
         function getTodayAskedQuestionIds() {
@@ -5178,6 +5204,29 @@
             }));
         }
 
+        // Response mode is session-only. Keep the persisted SR shape unchanged.
+        function getVocabularyResponseMode(srData = {}) {
+            const strength = Math.max(0, Math.min(5, Number(srData.strength) || 0));
+            if (strength >= 4) return 'typed';
+            if (strength >= 2) return 'select';
+            return 'flip';
+        }
+
+        function getVocabularySelectOptions(item, cardPool = cards) {
+            const expected = getExpectedAnswerText(item);
+            const accepted = getVocabularyAcceptedAnswers(item.card, item.direction, expected);
+            const correct = accepted[0]?.value || expected;
+            const candidates = (Array.isArray(cardPool) ? cardPool : [])
+                .filter(card => card.id !== item.card.id)
+                .map(card => item.direction === 'no-es' ? card.es : card.no)
+                .filter(Boolean)
+                .filter(answer => normalizeTypedAnswer(answer) !== normalizeTypedAnswer(correct));
+            const unique = [...new Map(candidates.map(answer => [normalizeTypedAnswer(answer), answer])).values()];
+            const distractors = unique.slice(0, 3);
+            return [{ optionId: correct, label: correct, correct: true },
+                ...distractors.map(answer => ({ optionId: answer, label: answer, correct: false }))];
+        }
+
         function getDueCards(cardList) {
             const today = new Date();
             today.setHours(0, 0, 0, 0);
@@ -5332,6 +5381,11 @@ Vil du øve på ${pronoun} likevel?`
                 sessionCards = shuffleArray([...dueCards, ...filteredNewCards]);
             }
 
+            sessionCards = sessionCards.map(item => ({
+                ...item,
+                responseMode: item.typed ? 'typed' : getVocabularyResponseMode(getDirectionData(item.card, item.direction))
+            }));
+
             if (sessionCards.length === 0 && mode === 'review') {
                 alert('Ingen ord er klare for repetisjon akkurat nå.');
                 return;
@@ -5368,7 +5422,11 @@ Vil du øve på ${pronoun} likevel?`
             sessionTimeLimitMinutes = getLimitValue('sessionTimeLimit', 0);
             currentVocabMode = `chapter:${focusId}`;
             isCustomStudySession = false;
-            sessionCards = shuffleArray(markTypedReviewItems(buildChapterFocusQueue(focusId, { newLimit, reviewLimit })));
+            sessionCards = shuffleArray(markTypedReviewItems(buildChapterFocusQueue(focusId, { newLimit, reviewLimit })))
+                .map(item => ({
+                    ...item,
+                    responseMode: item.typed ? 'typed' : getVocabularyResponseMode(getDirectionData(item.card, item.direction))
+                }));
 
             if (!focus) {
                 alert('Ukjent kapittelvalg.');
@@ -5418,12 +5476,13 @@ Vil du øve på ${pronoun} likevel?`
             const srData = direction === 'no-es' ? card.noEs : card.esNo;
             const isNew = srData.repetitions === 0;
             const front = getVocabPromptText(item);
+            const responseMode = item.responseMode || (item.typed ? 'typed' : getVocabularyResponseMode(srData));
             
             updateVocabProgress();
             
             const cardTypeLabel = isCustomStudySession ? 'Ekstraøving' : (isNew ? 'Nytt kort' : 'Repetisjon');
 
-            if (item.typed) {
+            if (responseMode === 'typed') {
                 document.getElementById('flashcardArea').innerHTML = `
                     <div class="flashcard">
                         <span class="card-type-badge badge-review">Skriv svaret</span>
@@ -5446,6 +5505,30 @@ Vil du øve på ${pronoun} likevel?`
                 const input = document.getElementById('typedVocabInput');
                 setupAccentInput(input);
                 input.focus();
+                updateUndoButtonState();
+                return;
+            }
+
+            if (responseMode === 'select') {
+                const options = getVocabularySelectOptions(item, cards);
+                document.getElementById('flashcardArea').innerHTML = `
+                    <div class="flashcard">
+                        <span class="card-type-badge badge-review">Velg svaret</span>
+                        <span class="direction-badge">${direction === 'no-es' ? '🇳🇴 → 🇪🇸' : '🇪🇸 → 🇳🇴'}</span>
+                        <div class="card-word">${front}</div>
+                        <div class="mt-4">
+                            <label class="mixed-quiz-select-label" for="vocabSelect">Velg svar</label>
+                            <select id="vocabSelect" class="mixed-quiz-select" aria-label="Velg svar">
+                                <option value="">Velg et svar …</option>
+                                ${options.map(option => `<option value="${escapeHtml(option.optionId)}">${escapeHtml(option.label)}</option>`).join('')}
+                            </select>
+                            <div class="conjugation-feedback" id="vocabSelectFeedback"></div>
+                        </div>
+                        <span class="card-category">${getCategoryEmoji(card.category)} ${capitalizeFirst(card.category)}</span>
+                    </div>
+                `;
+                document.getElementById('buttonArea').innerHTML = '<div class="button-group"><button class="btn btn-primary" onclick="submitVocabSelectAnswer()">Sjekk svar</button></div>';
+                document.getElementById('vocabSelect').focus();
                 updateUndoButtonState();
                 return;
             }
@@ -5535,6 +5618,18 @@ Vil du øve på ${pronoun} likevel?`
             `;
         }
 
+        function submitVocabSelectAnswer() {
+            if (!currentCard || (currentCard.responseMode || 'select') !== 'select') return;
+            const select = document.getElementById('vocabSelect');
+            if (!select?.value) return;
+            const feedback = document.getElementById('vocabSelectFeedback');
+            const expected = getExpectedAnswerText(currentCard);
+            const isCorrect = isTypedVocabAnswerCorrect(select.value, expected, getVocabularyAcceptedAnswers(currentCard.card, currentCard.direction, expected).map(item => item.value)).correct;
+            select.disabled = true;
+            feedback.innerHTML = isCorrect ? '<div class="grammar-feedback correct">✓ Riktig!</div>' : `<div class="grammar-feedback incorrect">✗ Riktig svar: <strong>${escapeHtml(expected)}</strong></div>`;
+            document.getElementById('buttonArea').innerHTML = `<div class="button-group"><button class="btn btn-primary" onclick="rateCard(${isCorrect ? 2 : 0})">Neste kort</button></div>`;
+        }
+
         function rateCard(quality) {
             // Snapshot for undo (before we mutate anything)
             try {
@@ -5543,7 +5638,7 @@ Vil du øve på ${pronoun} likevel?`
                 vocabUndoStack.push({
                     currentIndex: currentIndex,
                     sessionStats: { ...sessionStats },
-                    sessionCards: sessionCards.map(it => ({ card: { id: it.card.id }, direction: it.direction, typed: it.typed })),
+                    sessionCards: sessionCards.map(it => ({ card: { id: it.card.id }, direction: it.direction, typed: it.typed, responseMode: it.responseMode })),
                     cardId: snapCard?.id,
                     cardNoEs: snapCard ? { ...snapCard.noEs } : null,
                     cardEsNo: snapCard ? { ...snapCard.esNo } : null,
