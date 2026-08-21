@@ -1207,6 +1207,29 @@ select:focus-visible,
     font-weight: 700;
 }
 
+.mixed-quiz-context,
+.grammar-norwegian-context {
+    margin: -10px auto 22px;
+    max-width: 680px;
+    padding: 10px 14px;
+    border-left: 4px solid var(--primary);
+    border-radius: 8px;
+    background: var(--blue-50, #eff6ff);
+    color: var(--gray-700);
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.mixed-quiz-context-label,
+.grammar-context-label {
+    display: block;
+    margin-bottom: 3px;
+    color: var(--primary);
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
 .answer-constraint {
     display: block;
     margin-top: 8px;
@@ -2077,6 +2100,10 @@ select {
     color: var(--gray-900);
     margin-bottom: 28px;
     line-height: 1.5;
+}
+
+.grammar-norwegian-context {
+    margin: -6px auto 18px;
 }
 
 .grammar-sentence .blank {

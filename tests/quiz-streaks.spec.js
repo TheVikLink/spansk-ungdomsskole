@@ -137,6 +137,7 @@ test.describe('local quiz streaks', () => {
         rows: document.querySelectorAll('.mixed-quiz-review-item').length,
         topActions: Boolean(document.querySelector('.mixed-quiz-result-actions-top')),
         repeatButton: document.querySelector('.mixed-quiz-result-actions-top button')?.textContent,
+        continuation: document.querySelector('.mixed-quiz-continuation')?.textContent,
         explanation: document.querySelector('.mixed-quiz-review-item p:last-child')?.textContent,
         summary: document.getElementById('mixedQuizStreakSummary')?.textContent
       };
@@ -145,6 +146,7 @@ test.describe('local quiz streaks', () => {
     expect(result.rows).toBe(10);
     expect(result.topActions).toBe(true);
     expect(result.repeatButton).toContain('Ta en ny quiz');
+    expect(result.continuation).toContain('flere blandede quizer');
     expect(result.explanation).toContain('Kort forklaring');
     expect(result.summary).toContain('1/5');
   });

@@ -14,6 +14,40 @@ const progressCell = (strength, attempts = strength) => ({
 });
 
 test.describe('adaptive mixed quiz v1', () => {
+  test('keeps recognition items linguistically contextualized and uniquely answerable', async ({ page }) => {
+    await page.goto(appUrl);
+    const result = await page.evaluate(() => diagnosisQuestionCatalog
+      .filter(question => question.responseMode === 'choice')
+      .map(question => {
+        const options = getSelectOptions(question);
+        return {
+          id: question.id,
+          hasNorwegianContext: Boolean(question.promptNo),
+          correctOptions: options.filter(option => option.correct).length,
+          acceptedAnswersInOptions: (question.acceptedAnswers || []).every(answer =>
+            options.some(option => option.correct && option.label === getDiagnosisAnswerValue(answer)))
+        };
+      }));
+
+    expect(result.length).toBeGreaterThan(0);
+    expect(result.every(item => item.hasNorwegianContext)).toBe(true);
+    expect(result.every(item => item.correctOptions === 1)).toBe(true);
+    expect(result.every(item => item.acceptedAnswersInOptions)).toBe(true);
+  });
+
+  test('renders Norwegian context alongside Spanish recognition prompts', async ({ page }) => {
+    await page.goto(appUrl);
+    const result = await page.evaluate(() => {
+      const item = diagnosisQuestionCatalog.find(question => question.responseMode === 'choice');
+      mixedQuizState = { quiz: { items: [{ ...item, responseMode: 'choice' }] }, index: 0, answered: 0, correct: 0, startedAt: new Date(), results: [] };
+      document.getElementById('mixedQuizStudy').classList.remove('hidden');
+      renderMixedQuizQuestion();
+      return document.getElementById('mixedQuizQuestion').textContent;
+    });
+
+    expect(result).toContain('Norsk kontekst');
+  });
+
   test('builds a deterministic ten-question mix with confidence and recent buckets', async ({ page }) => {
     await page.goto(appUrl);
 
@@ -235,6 +269,26 @@ test.describe('adaptive mixed quiz v1', () => {
     });
     expect(Object.keys(result.progress.wordProgress)).toHaveLength(0);
     expect(Object.keys(result.progress.skillProgress)).toHaveLength(1);
+  });
+
+  test('bridges mixed vocabulary answers into the vocabulary card schedule', async ({ page }) => {
+    await page.goto(appUrl);
+    const result = await page.evaluate(() => {
+      localStorage.clear();
+      cards = [{
+        id: 42, no: 'hei', es: 'hola',
+        noEs: { easeFactor: 2.5, interval: 0, repetitions: 0, nextReview: null },
+        esNo: { easeFactor: 2.5, interval: 0, repetitions: 0, nextReview: null }
+      }];
+      answerMixedQuizItem({
+        questionId: 'mixed.vocab.42.noToEs', targetType: 'word', targetId: '42', direction: 'no-es',
+        acceptedAnswers: [{ value: 'hola' }]
+      }, 'hola', '2026-08-21T10:00:00.000Z');
+      return JSON.parse(localStorage.getItem('spansk123Data_v4'))[0].noEs;
+    });
+
+    expect(result.repetitions).toBe(1);
+    expect(result.interval).toBeGreaterThan(0);
   });
 
   test('classifies accent variants separately without changing the accepted answer', async ({ page }) => {

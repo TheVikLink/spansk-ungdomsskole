@@ -68,10 +68,29 @@ test.describe('vocabulary learning mechanics', () => {
       getVocabularyResponseMode({ repetitions: 2, strength: 2 }),
       getVocabularyResponseMode({ repetitions: 3, strength: 3 }),
       getVocabularyResponseMode({ repetitions: 4, strength: 4 }),
-      getVocabularyResponseMode({ repetitions: 5, strength: 5 })
+      getVocabularyResponseMode({ repetitions: 5, strength: 5 }),
+      getVocabularyResponseMode({ repetitions: 2, interval: 1 }),
+      getVocabularyResponseMode({ repetitions: 4, interval: 7 })
     ]);
 
-    expect(modes).toEqual(['flip', 'flip', 'select', 'select', 'typed', 'typed']);
+    expect(modes).toEqual(['flip', 'flip', 'select', 'select', 'typed', 'typed', 'select', 'typed']);
+  });
+
+  test('writes vocabulary ratings to the shared learning progress model', async ({ page }) => {
+    await page.goto(appUrl);
+    const result = await page.evaluate(() => {
+      localStorage.clear();
+      const card = { id: 42, no: 'hei', es: 'hola' };
+      updateVocabularyLearningProgress(card, 'no-es', 'correct', '2026-08-21T10:00:00.000Z');
+      return JSON.parse(localStorage.getItem('spansk123_learningProgress_v1'));
+    });
+
+    expect(result.wordProgress['42'].noToEs).toMatchObject({
+      strength: 2,
+      attempts: 1,
+      correct: 1,
+      lastSeenAt: '2026-08-21T10:00:00.000Z'
+    });
   });
 
   test('builds deterministic select options for a vocabulary card', async ({ page }) => {

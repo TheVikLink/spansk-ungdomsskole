@@ -997,6 +997,16 @@
         };
 
         const diagnosisQuestionCatalog = JSON.parse(document.getElementById('diagnosis-catalog-data').textContent);
+        const diagnosisPromptContextNo = {
+            'diag.a0.identity.soy_de.choice': 'Jeg er fra Norge.',
+            'diag.a0.articles.indefinite_singular.choice': 'Jeg ser et hus.',
+            'diag.a0.articles.definite_singular.choice': 'Jeg ser boka.',
+            'diag.a1.gustar.basic.choice': 'Jeg liker eventyrbøker.',
+            'diag.a1.ser_estar.identity_or_location.choice': 'Madrid ligger i Spania.'
+        };
+        diagnosisQuestionCatalog.forEach(question => {
+            question.promptNo = question.promptNo || diagnosisPromptContextNo[question.id] || null;
+        });
         const getDiagnosisAnswerValue = answer => typeof answer === 'string' ? answer : answer?.value || '';
         const getDiagnosisAnswerValues = question => (question.acceptedAnswers || []).map(getDiagnosisAnswerValue);
         const getDiagnosisOptions = question => (question.options || question.acceptedAnswers || []).map(option => typeof option === 'string' ? { optionId: option, label: option } : option);
@@ -2221,6 +2231,39 @@
             };
         }
 
+        function updateVocabularyLearningProgress(card, direction, resultKind, nowIso = new Date().toISOString()) {
+            const progress = loadLearningProgress(nowIso);
+            const wordId = String(card.id ?? `${card.no || card.norsk}:${card.es || card.spansk}`);
+            if (!progress.wordProgress[wordId]) {
+                const empty = normalizeLearningProgress({ schemaVersion: 1, wordProgress: { temp: { noToEs: null, esToNo: null } }, skillProgress: {} }, nowIso).wordProgress.temp;
+                progress.wordProgress[wordId] = { noToEs: { ...empty.noToEs }, esToNo: { ...empty.esToNo } };
+            }
+            progress.wordProgress[wordId][direction === 'no-es' ? 'noToEs' : 'esToNo'] = updateProgressCell(
+                progress.wordProgress[wordId][direction === 'no-es' ? 'noToEs' : 'esToNo'],
+                resultKind,
+                nowIso
+            );
+            progress.updatedAt = nowIso;
+            saveLearningProgress(progress);
+            return progress;
+        }
+
+        function updateVocabularyCardFromQuiz(item, resultKind) {
+            if (item.targetType !== 'word') return;
+            const card = cards.find(candidate => String(candidate.id) === String(item.targetId));
+            if (!card) return;
+            const direction = item.direction === 'no-es' ? 'noEs' : 'esNo';
+            const source = card[direction];
+            const quality = ['correct', 'accent_or_case_variant'].includes(resultKind) ? 2 : 0;
+            const result = SM2.calculateNextReview(source, quality);
+            card[direction] = { ...source, ...result };
+            if (quality === 0) card[direction].lapses = (card[direction].lapses || 0) + 1;
+            card.lastReview = new Date().toISOString();
+            card.reviews = (card.reviews || 0) + 1;
+            if (quality >= 2) card.correct = (card.correct || 0) + 1;
+            saveData();
+        }
+
         function answerMixedQuizItem(item, answer, nowIso = new Date().toISOString()) {
             const evaluation = evaluateDiagnosisAnswer(item, answer);
             const progress = loadLearningProgress(nowIso);
@@ -2236,6 +2279,7 @@
                 progress.skillProgress[item.targetId] = updateProgressCell(progress.skillProgress[item.targetId], evaluation.resultKind, nowIso);
             }
             saveLearningProgress(progress);
+            updateVocabularyCardFromQuiz(item, evaluation.resultKind);
             return { ...evaluation, progress };
         }
 
@@ -4672,6 +4716,7 @@
                 <div class="mixed-quiz-question" data-response-mode="${item.responseMode}" data-accepted-answer="${escapeHtml(getDiagnosisAnswerValue(item.acceptedAnswers[0]))}">
                     <div class="mixed-quiz-type">${mixedQuizTypeLabel(item)}</div>
                     <div class="mixed-quiz-prompt">${escapeHtml(item.prompt)}${item.answerConstraint?.type === 'startsWith' ? ` <span class="answer-constraint">(begynner på «${escapeHtml(item.answerConstraint.value)}»)</span>` : ''}</div>
+                    ${item.promptNo ? `<div class="mixed-quiz-context"><span class="mixed-quiz-context-label">Norsk kontekst</span>${escapeHtml(item.promptNo)}</div>` : ''}
                     ${item.direction === 'es-no' ? '<button type="button" class="speech-audio-button btn btn-secondary btn-sm" data-speak-spanish>🔊 Spill av</button>' : ''}
                     ${responseControls}
                     <div class="mixed-quiz-feedback" id="mixedQuizFeedback" aria-live="polite"></div>
@@ -4802,6 +4847,7 @@
                         <h2>Quiz ferdig</h2>
                         <p>${mixedQuizState.correct} av ${total} riktige (${accuracy}%).</p>
                         <p id="mixedQuizStreakSummary">${formatQuizStreakSummary(quizStats)}</p>
+                        <p class="mixed-quiz-continuation">Ta gjerne flere blandede quizer for å øve på ordforråd, grammatikk og verb i samme økt.</p>
                         ${newlyMastered.length ? `<div class="quiz-badge-awards"><strong>🏅 Nye merker</strong><p>${newlyMastered.map(badge => escapeHtml(badge.label)).join(' · ')}</p></div>` : ''}
                         <div class="mixed-quiz-result-actions-top" aria-label="Neste steg">
                             <button type="button" class="btn btn-primary" onclick="startMixedQuizFromUi()">▶️ Ta en ny quiz</button>
@@ -5219,7 +5265,11 @@
 
         // Response mode is session-only. Keep the persisted SR shape unchanged.
         function getVocabularyResponseMode(srData = {}) {
-            const strength = Math.max(0, Math.min(5, Number(srData.strength) || 0));
+            const storedStrength = Number(srData.strength);
+            const derivedStrength = Number.isFinite(storedStrength) && storedStrength > 0
+                ? storedStrength
+                : Math.min(5, Math.max(0, Number(srData.repetitions) || 0) + (Number(srData.interval) >= 7 ? 1 : 0));
+            const strength = Math.max(0, Math.min(5, derivedStrength));
             if (strength >= 4) return 'typed';
             if (strength >= 2) return 'select';
             return 'flip';
@@ -5691,6 +5741,7 @@ Vil du øve på ${pronoun} likevel?`
 
                 syncLinkedCardProgress(card, direction);
                 saveData();
+                updateVocabularyLearningProgress(card, direction, quality >= 2 ? 'correct' : 'wrong', card.lastReview);
             }
             
             sessionStats.reviewed++;
@@ -7350,6 +7401,33 @@ Vil du øve på ${pronoun} likevel?`
             }
         };
 
+        const grammarExerciseContextNo = {
+            gustar: [
+                'Jeg liker sjokolade.', 'Jeg liker videospill.', 'Liker du å danse?', 'Broren min liker fotball.',
+                'Jeg liker å høre på musikk.', 'Vi liker skrekkfilmer.', 'María liker katter.', 'Liker du pizza?',
+                'Foreldrene mine liker å reise.', 'Jeg liker ikke grønnsaker.', 'Jeg liker denne sangen veldig godt.', 'Hun liker hunder.'
+            ],
+            demonstratives: [
+                'Denne boka er veldig interessant.', 'Dette huset er stort og står her nær meg.', 'Disse guttene er vennene mine.',
+                'Disse blomstene er pene.', 'Hva er det der borte?', 'Den bilen der borte er faren min sin.',
+                'Det bordet der borte er opptatt.', 'Disse skoene er nye.', 'De filmene der borte er kjedelige.',
+                'Jeg liker denne sangen her.', 'De hundene der borte er store.', 'Hvem er denne jenta her?'
+            ],
+            possessives: [
+                'Broren min heter Pedro.', 'Foreldrene mine er hjemme.', 'Hvor er boka di?', 'Hun bor med familien sin.',
+                'Besteforeldrene mine er veldig hyggelige.', 'Hva heter søstrene dine?', 'Moren vår er lærer.',
+                'Faren vår jobber i en bank.', 'De vil ha pengene sine.', 'Vennene hennes kommer i morgen.',
+                'Jeg liker huset ditt.', 'Barna våre er veldig intelligente.', 'Hvor er nøklene mine?', 'Læreren vår er veldig flink.'
+            ]
+        };
+
+        Object.entries(grammarExerciseContextNo).forEach(([topicId, contexts]) => {
+            grammarTopics[topicId].exercises.forEach((exercise, index) => {
+                exercise.no = contexts[index];
+                exercise.sentence = exercise.sentence.replace(/\s*\(der borte\)/gi, '');
+            });
+        });
+
         // Grammar state
         let grammarProgress = {};
         let currentGrammarTopic = null;
@@ -7443,12 +7521,12 @@ Vil du øve på ${pronoun} likevel?`
                     parts: ['yo', 'me levanto', 'tú', 'te duchas', 'ella', 'se llama'],
                     micro: 'Match pronomenet med personen: me, te, se, nos eller se.'
                 },
-                demonstrative: {
+                demonstratives: {
                     prompt: 'Pekende adjektiv følger både avstand, kjønn og tall.',
                     parts: ['este libro', 'denne', 'esa casa', 'den der', 'aquellos chicos', 'de der borte'],
                     micro: 'Velg først avstand, deretter riktig endelse.'
                 },
-                possessive: {
+                possessives: {
                     prompt: 'Eiendomsord følger tingen som eies, ikke alltid personen som eier.',
                     parts: ['mi libro', 'min bok', 'mis libros', 'mine bøker', 'tu casa', 'ditt hus'],
                     micro: 'Se om tingen som eies er én eller flere.'
@@ -7575,6 +7653,7 @@ Vil du øve på ${pronoun} likevel?`
             document.getElementById('grammarExerciseArea').innerHTML = `
                 <div class="grammar-exercise">
                     ${renderAssignmentSessionGoal('grammar', 'grammatikk')}
+                    ${exercise.no ? `<div class="grammar-norwegian-context"><span class="grammar-context-label">Betydning</span>${escapeHtml(exercise.no)}</div>` : ''}
                     <div class="grammar-sentence">${sentenceHTML}</div>
                     
                     <div class="grammar-options">

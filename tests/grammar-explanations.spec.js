@@ -5,6 +5,32 @@ import { pathToFileURL } from 'node:url';
 const appUrl = pathToFileURL(path.resolve('index.html')).toString();
 
 test.describe('grammar mistake explanations', () => {
+  test('grammar exercises show meaning context and no hidden distance hacks', async ({ page }) => {
+    await page.goto(appUrl);
+    const result = await page.evaluate(() => ['gustar', 'demonstratives', 'possessives'].map(topicId => ({
+      topicId,
+      missingContext: grammarTopics[topicId].exercises.filter(exercise => !exercise.no).length,
+      hiddenDistanceHints: grammarTopics[topicId].exercises.filter(exercise => /der borte/i.test(exercise.sentence)).length
+    })));
+
+    expect(result).toEqual([
+      { topicId: 'gustar', missingContext: 0, hiddenDistanceHints: 0 },
+      { topicId: 'demonstratives', missingContext: 0, hiddenDistanceHints: 0 },
+      { topicId: 'possessives', missingContext: 0, hiddenDistanceHints: 0 }
+    ]);
+  });
+
+  test('uses topic-specific scaffolds for demonstratives and possessives', async ({ page }) => {
+    await page.goto(appUrl);
+    const result = await page.evaluate(() => ({
+      demonstratives: getGrammarScaffold(grammarTopics.demonstratives).prompt,
+      possessives: getGrammarScaffold(grammarTopics.possessives).prompt
+    }));
+
+    expect(result.demonstratives).toContain('Pekende');
+    expect(result.possessives).toContain('Eiendomsord');
+  });
+
   test('returns short topic-specific explanations for wrong grammar answers', async ({ page }) => {
     await page.goto(appUrl);
 
