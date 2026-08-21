@@ -78,6 +78,66 @@ test.describe('adaptive mixed quiz v1', () => {
     expect(result.itemTypes.skill).toBe(6);
     expect(result.first.items.filter(item => item.selectionBucket === 'confidence')).toHaveLength(1);
     expect(result.first.items.filter(item => item.selectionBucket === 'recent')).toHaveLength(2);
+    expect(result.first.items.reduce((counts, item) => {
+      counts[item.responseMode] = (counts[item.responseMode] || 0) + 1;
+      return counts;
+    }, {})).toEqual({ typed: 5, select: 3, choice: 2 });
+  });
+
+  test('builds select options with one correct answer and diagnostic distractors', async ({ page }) => {
+    await page.goto(appUrl);
+    const result = await page.evaluate(() => getSelectOptions({
+      acceptedAnswers: [{ answerId: 'gustan', value: 'gustan' }],
+      options: [
+        { optionId: 'gusta', label: 'gusta' },
+        { optionId: 'gustan', label: 'gustan' },
+        { optionId: 'gusto', label: 'gusto' },
+        { optionId: 'gustas', label: 'gustas' }
+      ]
+    }));
+    expect(result).toHaveLength(4);
+    expect(result.filter(option => option.correct)).toEqual([{ optionId: 'gustan', label: 'gustan', correct: true }]);
+    expect(result.filter(option => !option.correct)).toHaveLength(3);
+  });
+
+  test('mixed quiz converts recognition items to select without submitting on the placeholder', async ({ page }) => {
+    await page.goto(appUrl);
+    const result = await page.evaluate(() => {
+      localStorage.clear();
+      const quiz = buildMixedQuiz({
+        cards: [],
+        skillsCatalog: learningCatalog,
+        learningProgress: { schemaVersion: 1, wordProgress: {}, skillProgress: {} },
+        diagnosis: { status: 'complete', answers: [] },
+        now: '2026-08-11T10:00:00.000Z',
+        seed: 'select-mode',
+        size: 10
+      });
+      mixedQuizState = { quiz, index: quiz.items.findIndex(item => item.responseMode === 'select'), answered: 0, correct: 0, startedAt: new Date(), results: [] };
+      document.getElementById('mixedQuizStudy').classList.remove('hidden');
+      renderMixedQuizQuestion();
+      const before = mixedQuizState.answered;
+      submitMixedQuizSelectAnswer();
+      return { mode: quiz.items.filter(item => item.responseMode === 'select').length, before, after: mixedQuizState.answered, select: Boolean(document.getElementById('mixedQuizSelect')) };
+    });
+    expect(result.mode).toBeGreaterThan(0);
+    expect(result.select).toBe(true);
+    expect(result.after).toBe(result.before);
+  });
+
+  test('keeps both select and multiple-choice recognition modes in a deterministic quiz', async ({ page }) => {
+    await page.goto(appUrl);
+    const modes = await page.evaluate(() => buildMixedQuiz({
+      cards: [],
+      skillsCatalog: learningCatalog,
+      learningProgress: { schemaVersion: 1, wordProgress: {}, skillProgress: {} },
+      diagnosis: { status: 'complete', answers: [] },
+      now: '2026-08-11T10:00:00.000Z',
+      seed: 'mixed-recognition-modes',
+      size: 10
+    }).items.map(item => item.responseMode));
+    expect(modes).toContain('select');
+    expect(modes).toContain('choice');
   });
 
   test('uses documented fallback when there are fewer than ten candidates', async ({ page }) => {

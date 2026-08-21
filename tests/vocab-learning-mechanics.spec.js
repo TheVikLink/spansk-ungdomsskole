@@ -59,6 +59,74 @@ test.describe('vocabulary learning mechanics', () => {
     expect(typed.filter(item => item.typed).map(item => item.id)).toEqual([1, 5, 9]);
   });
 
+  test('progresses review cards from flip to select to typed by strength', async ({ page }) => {
+    await page.goto(appUrl);
+
+    const modes = await page.evaluate(() => [
+      getVocabularyResponseMode({ repetitions: 0, strength: 0 }),
+      getVocabularyResponseMode({ repetitions: 1, strength: 1 }),
+      getVocabularyResponseMode({ repetitions: 2, strength: 2 }),
+      getVocabularyResponseMode({ repetitions: 3, strength: 3 }),
+      getVocabularyResponseMode({ repetitions: 4, strength: 4 }),
+      getVocabularyResponseMode({ repetitions: 5, strength: 5 })
+    ]);
+
+    expect(modes).toEqual(['flip', 'flip', 'select', 'select', 'typed', 'typed']);
+  });
+
+  test('builds deterministic select options for a vocabulary card', async ({ page }) => {
+    await page.goto(appUrl);
+
+    const result = await page.evaluate(() => {
+      const pool = [
+        { id: 1, no: 'rød', es: 'rojo' },
+        { id: 2, no: 'blå', es: 'azul' },
+        { id: 3, no: 'grønn', es: 'verde' },
+        { id: 4, no: 'gul', es: 'amarillo' }
+      ];
+      return getVocabularySelectOptions({ card: pool[0], direction: 'no-es' }, pool);
+    });
+
+    expect(result).toHaveLength(4);
+    expect(result.filter(option => option.correct)).toEqual([
+      { optionId: 'rojo', label: 'rojo', correct: true }
+    ]);
+    expect(new Set(result.map(option => option.label)).size).toBe(4);
+  });
+
+  test('turns a held Spanish vowel into a high accent without opening native accent menus', async ({ page }) => {
+    await page.goto(appUrl);
+    await page.setContent('<input id="accent-test" autocomplete="off">');
+    await page.evaluate(() => setupAccentInput(document.getElementById('accent-test')));
+    const input = page.locator('#accent-test');
+    await input.focus();
+
+    await page.keyboard.press('a');
+    await expect(input).toHaveValue('a');
+
+    await page.keyboard.down('e');
+    await page.waitForTimeout(450);
+    await page.keyboard.up('e');
+    await expect(input).toHaveValue('aé');
+  });
+
+  test('turns held question and exclamation marks into Spanish inverted punctuation', async ({ page }) => {
+    await page.goto(appUrl);
+    await page.setContent('<input id="punctuation-test" autocomplete="off">');
+    await page.evaluate(() => setupAccentInput(document.getElementById('punctuation-test')));
+    const input = page.locator('#punctuation-test');
+    await input.focus();
+
+    await page.keyboard.down('?');
+    await page.waitForTimeout(450);
+    await page.keyboard.up('?');
+    await page.keyboard.down('!');
+    await page.waitForTimeout(450);
+    await page.keyboard.up('!');
+
+    await expect(input).toHaveValue('¿¡');
+  });
+
   test('typed answers classify accent variants while ignoring case and extra spaces', async ({ page }) => {
     await page.goto(appUrl);
 
