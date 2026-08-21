@@ -125,6 +125,38 @@ test.describe('adaptive mixed quiz v1', () => {
     expect(result.after).toBe(result.before);
   });
 
+  test('submits adaptive typed vocabulary responses and shows immediate feedback', async ({ page }) => {
+    await page.goto(appUrl);
+    const result = await page.evaluate(() => {
+      localStorage.clear();
+      const item = {
+        questionId: 'typed-vocab-test',
+        itemType: 'vocabulary',
+        targetType: 'word',
+        prompt: 'hei',
+        direction: 'no-es',
+        responseMode: 'typed',
+        acceptedAnswers: [{ answerId: 'hola', value: 'hola' }]
+      };
+      mixedQuizState = {
+        quiz: { items: [item] }, index: 0, answered: 0, correct: 0,
+        startedAt: new Date(), results: []
+      };
+      document.getElementById('mixedQuizStudy').classList.remove('hidden');
+      renderMixedQuizQuestion();
+      document.getElementById('mixedQuizAnswerInput').value = 'hola';
+      submitMixedQuizTypedAnswer();
+      return {
+        answered: mixedQuizState.answered,
+        feedback: document.getElementById('mixedQuizFeedback').textContent,
+        nextButton: Boolean(document.querySelector('#mixedQuizFeedback button'))
+      };
+    });
+    expect(result.answered).toBe(1);
+    expect(result.feedback).toContain('Riktig');
+    expect(result.nextButton).toBe(true);
+  });
+
   test('keeps both select and multiple-choice recognition modes in a deterministic quiz', async ({ page }) => {
     await page.goto(appUrl);
     const modes = await page.evaluate(() => buildMixedQuiz({

@@ -4123,7 +4123,7 @@
             ["også", "también", "bindeord"],
             ["alltid", "siempre", "bindeord"],
             ["aldri", "nunca", "bindeord"],
-            ["noen ganger", "a veces", "Kapittel 8: Tareas de casa"],
+            ["noen ganger", "a veces", "bindeord"],
             ["vanligvis", "normalmente", "bindeord"],
             ["fordi", "porque", "bindeord"],
             ["derfor", "por eso", "bindeord"],
@@ -4141,14 +4141,14 @@
             ["takk for oppmerksomheten", "gracias por su atención", "bindeord"],
 
             // KAPITTEL 8: TAREAS DE CASA
-            ["å gjøre innkjøp", "hacer las compras", "Kapittel 8: Tareas de casa"],
-            ["å vaske opp", "lavar los platos", "Kapittel 8: Tareas de casa"],
-            ["å vaske badet", "limpiar el cuarto de baño", "Kapittel 8: Tareas de casa"],
-            ["å vaske klær", "lavar la ropa", "Kapittel 8: Tareas de casa"],
-            ["å støvsuge", "pasar la aspiradora", "Kapittel 8: Tareas de casa"],
-            ["å rydde rommet", "arreglar la habitación", "Kapittel 8: Tareas de casa"],
-            ["én gang i uken", "una vez a la semana", "Kapittel 8: Tareas de casa"],
-            ["hver dag", "cada día", "Kapittel 8: Tareas de casa"],
+            ["å gjøre innkjøp", "hacer las compras", "husarbeid"],
+            ["å vaske opp", "lavar los platos", "husarbeid"],
+            ["å vaske badet", "limpiar el cuarto de baño", "husarbeid"],
+            ["å vaske klær", "lavar la ropa", "husarbeid"],
+            ["å støvsuge", "pasar la aspiradora", "husarbeid"],
+            ["å rydde rommet", "arreglar la habitación", "husarbeid"],
+            ["én gang i uken", "una vez a la semana", "tidsuttrykk"],
+            ["hver dag", "cada día", "tidsuttrykk"],
 
             // KAPITTEL 7: GLOSER
             ["frukt", "la fruta", "kapittel 7: gloser"],
@@ -4533,20 +4533,7 @@
         const TYPED_REVIEW_PERCENT = 0.25;
         const LEECH_LAPSE_THRESHOLD = 3;
 
-        const chapterFocusOptions = [
-            {
-                id: 'kapittel-7-mat',
-                title: 'Kapittel 7: Mat og innkjøp',
-                description: 'Frukt, matvarer og handling',
-                categories: ['kapittel 7: gloser']
-            },
-            {
-                id: 'kapittel-8-tareas',
-                title: 'Kapittel 8: Tareas de casa',
-                description: 'Husarbeid og tidsuttrykk',
-                categories: ['Kapittel 8: Tareas de casa']
-            }
-        ];
+        const chapterFocusOptions = [];
 
         // Undo stack for vocab rating (Angre)
         let vocabUndoStack = [];
@@ -4591,6 +4578,14 @@
         // VOCABULARY FUNCTIONS
         // ============================================
 
+        function normalizeLegacyCategory(category, norwegian = '') {
+            if (category === 'kapittel 7: gloser') return 'mat';
+            if (category === 'Kapittel 8: Tareas de casa') {
+                return ['hver dag', 'én gang i uken'].includes(norwegian.toLowerCase()) ? 'tidsuttrykk' : 'husarbeid';
+            }
+            return category;
+        }
+
         function normalizeCard(card, index) {
             const normalized = { ...card };
             normalized.id = normalized.id ?? index;
@@ -4598,7 +4593,7 @@
             normalized.es = normalized.es ?? normalized.spansk ?? '';
             normalized.norsk = normalized.norsk ?? normalized.no ?? '';
             normalized.spansk = normalized.spansk ?? normalized.es ?? '';
-            normalized.category = normalized.category || 'importert';
+            normalized.category = normalizeLegacyCategory(normalized.category || 'importert', normalized.no);
             normalized.noEs = { easeFactor: SM2.defaultEaseFactor, interval: 0, repetitions: 0, nextReview: null, ...(normalized.noEs || {}) };
             normalized.esNo = { easeFactor: SM2.defaultEaseFactor, interval: 0, repetitions: 0, nextReview: null, ...(normalized.esNo || {}) };
             normalized.noEs.lapses = normalized.noEs.lapses || 0;
@@ -4863,7 +4858,7 @@
                     es: item[1],
                     norsk: item[0],
                     spansk: item[1],
-                    category: item[2],
+                    category: normalizeLegacyCategory(item[2], item[0]),
                     noEs: { easeFactor: SM2.defaultEaseFactor, interval: 0, repetitions: 0, nextReview: null },
                     esNo: { easeFactor: SM2.defaultEaseFactor, interval: 0, repetitions: 0, nextReview: null },
                     lastReview: null,
@@ -4886,7 +4881,8 @@
             let changed = false;
 
             glossary.forEach((item, index) => {
-                const [no, es, category] = item;
+                const [no, es, rawCategory] = item;
+                const category = normalizeLegacyCategory(rawCategory, no);
                 const key = `${no.toLowerCase()}|||${es.toLowerCase()}`;
                 const existing = existingByPair.get(key);
 
@@ -5049,8 +5045,7 @@
                 'skole': '📚', 'fag': '📖', 'hjem': '🏠', 'møbler': '🛋️',
                 'gustar': '❤️', 'rutiner': '⏰', 'verbbøying': '📝',
                 'fremtid': '🔮', 'verb': '🏃', 'bindeord': '🔗',
-                'kapittel 7: gloser': '🍎',
-                'Kapittel 8: Tareas de casa': '🧹'
+                'mat': '🍎', 'husarbeid': '🧹'
             };
             return emojis[category] || '📌';
         }
@@ -5375,6 +5370,10 @@ Vil du øve på ${pronoun} likevel?`
             const needsCategories = mode === 'new' || mode === 'mixed';
             if (disclosure) disclosure.open = needsCategories;
             if (startAction) startAction.classList.toggle('hidden', !needsCategories);
+            if (mode === 'new' && selectedCategories.size > 0) {
+                startVocabSession(mode);
+                return;
+            }
             if (!needsCategories) startVocabSession(mode);
         }
 
@@ -5610,7 +5609,7 @@ Vil du øve på ${pronoun} likevel?`
         }
 
         function submitTypedVocabAnswer() {
-            if (!currentCard || !currentCard.typed) return;
+            if (!currentCard || (currentCard.responseMode || (currentCard.typed ? 'typed' : 'flip')) !== 'typed') return;
             const input = document.getElementById('typedVocabInput');
             const feedback = document.getElementById('typedVocabFeedback');
             const expected = getExpectedAnswerText(currentCard);
