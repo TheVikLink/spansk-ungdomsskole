@@ -4801,7 +4801,7 @@
                         : result.resultKind === 'near_miss'
                             ? `Nesten — riktig svar er: <strong>${escapeHtml(formatMixedQuizCorrectAnswers(item))}</strong>`
                             : `✗ Feil — riktig svar: <strong>${escapeHtml(formatMixedQuizCorrectAnswers(item))}</strong>`;
-                feedback.insertAdjacentHTML('beforeend', `<div class="button-group"><button type="button" class="btn btn-primary btn-sm mt-4" onclick="advanceMixedQuizQuestion()">${mixedQuizState.answered >= mixedQuizState.quiz.items.length ? 'Se resultat' : 'Neste'}</button></div>`);
+                feedback.insertAdjacentHTML('beforeend', `<div class="button-group"><button type="button" data-feedback-next class="btn btn-primary btn-sm mt-4" onclick="advanceMixedQuizQuestion()">${mixedQuizState.answered >= mixedQuizState.quiz.items.length ? 'Se resultat' : 'Neste'}</button></div>`);
             }
             document.querySelectorAll('#mixedQuizQuestion input, #mixedQuizQuestion button').forEach(control => {
                 if (!control.matches('#mixedQuizFeedback button')) control.disabled = true;
@@ -4967,6 +4967,12 @@
                 if (diagnosisFeedback && e.key === 'Enter' && e.target?.id !== 'diagnosisAnswerInput') {
                     e.preventDefault();
                     advanceDiagnosisFeedback();
+                    return;
+                }
+                const feedbackNext = document.querySelector('[data-feedback-next]');
+                if (feedbackNext && e.key === 'Enter' && !e.ctrlKey && !e.metaKey && !e.altKey) {
+                    e.preventDefault();
+                    feedbackNext.click();
                     return;
                 }
                 // Undo shortcut (Ctrl+Z / Cmd+Z) in vocab
@@ -5661,7 +5667,7 @@ Vil du øve på ${pronoun} likevel?`
 
             if (evaluation.resultKind === 'correct') {
                 feedback.innerHTML = '<div class="grammar-feedback correct">✓ Riktig!</div>';
-                document.getElementById('buttonArea').innerHTML = '<div class="button-group"><button class="btn btn-primary" onclick="rateCard(2)">Neste kort</button></div>';
+                document.getElementById('buttonArea').innerHTML = '<div class="button-group"><button data-feedback-next class="btn btn-primary" onclick="rateCard(2)">Neste kort</button></div>';
                 return;
             }
 
@@ -5672,7 +5678,7 @@ Vil du øve på ${pronoun} likevel?`
             `;
             document.getElementById('buttonArea').innerHTML = `
                 <div class="button-group">
-                    <button class="btn btn-primary" onclick="rateCard(0)">Neste kort</button>
+                    <button data-feedback-next class="btn btn-primary" onclick="rateCard(0)">Neste kort</button>
                 </div>
             `;
         }
@@ -5686,7 +5692,7 @@ Vil du øve på ${pronoun} likevel?`
             const isCorrect = isTypedVocabAnswerCorrect(select.value, expected, getVocabularyAcceptedAnswers(currentCard.card, currentCard.direction, expected).map(item => item.value)).correct;
             select.disabled = true;
             feedback.innerHTML = isCorrect ? '<div class="grammar-feedback correct">✓ Riktig!</div>' : `<div class="grammar-feedback incorrect">✗ Riktig svar: <strong>${escapeHtml(expected)}</strong></div>`;
-            document.getElementById('buttonArea').innerHTML = `<div class="button-group"><button class="btn btn-primary" onclick="rateCard(${isCorrect ? 2 : 0})">Neste kort</button></div>`;
+            document.getElementById('buttonArea').innerHTML = `<div class="button-group"><button data-feedback-next class="btn btn-primary" onclick="rateCard(${isCorrect ? 2 : 0})">Neste kort</button></div>`;
         }
 
         function rateCard(quality) {
@@ -6317,7 +6323,7 @@ Vil du øve på ${pronoun} likevel?`
             verbAnswerPending = true;
             
             if (evaluation.resultKind === 'correct') {
-                feedback.innerHTML = '✓ Riktig!<div class="button-group"><button class="btn btn-primary btn-sm mt-4" onclick="advanceVerbExercise()">Neste</button></div>';
+                feedback.innerHTML = '✓ Riktig!<div class="button-group"><button data-feedback-next class="btn btn-primary btn-sm mt-4" onclick="advanceVerbExercise()">Neste</button></div>';
                 feedback.className = 'conjugation-feedback correct';
                 input.classList.add('correct');
                 input.classList.remove('incorrect');
@@ -6334,7 +6340,7 @@ Vil du øve på ${pronoun} likevel?`
                 // Show full conjugation table
                 showConjugationTable();
                 
-                feedback.insertAdjacentHTML('beforeend', '<div class="button-group"><button class="btn btn-primary btn-sm mt-4" onclick="advanceVerbExercise()">Neste</button></div>');
+                feedback.insertAdjacentHTML('beforeend', '<div class="button-group"><button data-feedback-next class="btn btn-primary btn-sm mt-4" onclick="advanceVerbExercise()">Neste</button></div>');
             }
         }
 
@@ -7679,7 +7685,7 @@ Vil du øve på ${pronoun} likevel?`
                 document.getElementById('grammarFeedback').innerHTML = `
                     <div class="grammar-feedback correct">
                         ✓ Riktig!
-                        <button class="btn btn-primary btn-sm mt-4" onclick="advanceGrammarExercise()" id="grammarNextBtn" aria-keyshortcuts="Enter">Neste</button>
+                        <button data-feedback-next class="btn btn-primary btn-sm mt-4" onclick="advanceGrammarExercise()" id="grammarNextBtn" aria-keyshortcuts="Enter">Neste</button>
                     </div>
                 `;
             } else {
@@ -7692,7 +7698,7 @@ Vil du øve på ${pronoun} likevel?`
                         ✗ Feil! Riktig svar er: <strong>${exercise.answer}</strong>
                         <div class="explanation">${exercise.hint}</div>
                         <div class="explanation"><strong>Hvorfor?</strong> ${getGrammarMistakeExplanation(currentGrammarTopic.id).replace(/^Hvorfor\?\s*/, '')}</div>
-                        <button class="btn btn-primary btn-sm mt-4" onclick="advanceGrammarExercise()" id="grammarNextBtn" aria-keyshortcuts="Enter">Neste</button>
+                        <button data-feedback-next class="btn btn-primary btn-sm mt-4" onclick="advanceGrammarExercise()" id="grammarNextBtn" aria-keyshortcuts="Enter">Neste</button>
                     </div>
                 `;
                 document.getElementById('grammarNextBtn').focus();
