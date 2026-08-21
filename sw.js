@@ -1,4 +1,4 @@
-const CACHE_NAME = 'spansk123-v3';
+const CACHE_NAME = 'spansk123-v4';
 const APP_SHELL = [
   './',
   './index.html',
