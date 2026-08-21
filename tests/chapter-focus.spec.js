@@ -31,7 +31,7 @@ test.describe('vocabulary category cleanup', () => {
 
     await expect(page.getByRole('button', { name: /Lære nye ord Start en kort økt/ })).toBeVisible();
     await expect(page.locator('[data-chapter-focus]')).toHaveCount(0);
-    await expect(page.locator('#chapterFocusGrid')).not.toContainText('Kapittel 7');
-    await expect(page.locator('#chapterFocusGrid')).not.toContainText('Kapittel 8');
+    await expect(page.locator('text=Kapittel 7')).toHaveCount(0);
+    await expect(page.locator('text=Kapittel 8')).toHaveCount(0);
   });
 });

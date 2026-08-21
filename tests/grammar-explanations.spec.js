@@ -31,6 +31,30 @@ test.describe('grammar mistake explanations', () => {
     expect(result.possessives).toContain('Eiendomsord');
   });
 
+  test('keeps correct-answer feedback visible until the learner advances', async ({ page }) => {
+    await page.goto(appUrl);
+
+    await page.evaluate(() => {
+      localStorage.clear();
+      studentName = 'Elev 12';
+      showMainApp();
+      currentGrammarTopic = grammarTopics.articles;
+      grammarExercises = [{ sentence: '___ casa es grande', answer: 'La', options: ['El', 'La'], hint: 'casa er feminin' }];
+      grammarCurrentIndex = 0;
+      grammarStats = { correct: 0, total: 1, errors: 0 };
+      grammarProgress.articles = { correct: 0, total: 0, recentErrors: 0 };
+      document.getElementById('grammarSettings').classList.add('hidden');
+      document.getElementById('grammarExercise').classList.remove('hidden');
+      showGrammarExercise();
+      [...document.querySelectorAll('#grammarExerciseArea .grammar-option')]
+        .find(button => button.textContent.trim() === 'La')
+        .click();
+    });
+
+    await expect(page.locator('#grammarFeedback')).toContainText('Riktig');
+    await expect(page.locator('#grammarNextBtn')).toHaveCount(1);
+  });
+
   test('returns short topic-specific explanations for wrong grammar answers', async ({ page }) => {
     await page.goto(appUrl);
 

@@ -136,14 +136,6 @@
                         </button>
                     </div>
 
-                    <div class="settings-section">
-                        <h3>🎯 Kapitteløving</h3>
-                        <p class="mb-4 text-gray-500">
-                            Øv på et aktuelt kapittel. Repetisjoner som er klare, blir fortsatt med.
-                        </p>
-                        <div class="vocab-mode-grid" id="chapterFocusGrid" aria-label="Velg kapitteløving"></div>
-                    </div>
-
                     <div class="vocab-limits-grid">
                         <label class="vocab-limit-card">
                             <span class="setting-label">Nye ord</span>
@@ -7690,6 +7682,7 @@ Vil du øve på ${pronoun} likevel?`
                 document.getElementById('grammarFeedback').innerHTML = `
                     <div class="grammar-feedback correct">
                         ✓ Riktig!
+                        <button class="btn btn-primary btn-sm mt-4" onclick="advanceGrammarExercise()" id="grammarNextBtn" aria-keyshortcuts="Enter">Neste</button>
                     </div>
                 `;
             } else {
@@ -7713,9 +7706,6 @@ Vil du øve på ${pronoun} likevel?`
             if (isCorrect) grammarProgress[currentGrammarTopic.id].correct++;
             saveGrammarProgress();
             
-            if (isCorrect) {
-                setTimeout(advanceGrammarExercise, 1000);
-            }
         }
 
         function advanceGrammarExercise() {
