@@ -4703,7 +4703,7 @@
                 ? `<div class="mixed-quiz-options">${choices.map(option => `<button type="button" class="btn btn-outline" data-mixed-answer="${escapeHtml(option.label)}">${escapeHtml(option.label)}</button>`).join('')}</div>`
                 : item.responseMode === 'select'
                     ? `<label class="mixed-quiz-select-label" for="mixedQuizSelect">Velg svar</label><select id="mixedQuizSelect" class="mixed-quiz-select"><option value="">Velg et svar …</option>${getSelectOptions(item).map(option => `<option value="${escapeHtml(option.label)}">${escapeHtml(option.label)}</option>`).join('')}</select><div class="button-group"><button type="button" class="btn btn-primary" onclick="submitMixedQuizSelectAnswer()">Sjekk svar</button></div>`
-                    : `<input id="mixedQuizAnswerInput" class="conjugation-input" autocomplete="off" placeholder="Skriv svaret" onkeydown="if(event.key === 'Enter') { event.preventDefault(); submitMixedQuizTypedAnswer(); }"><div class="button-group"><button type="button" class="btn btn-primary" onclick="submitMixedQuizTypedAnswer()">Sjekk svar</button></div>`;
+                    : `<input id="mixedQuizAnswerInput" class="conjugation-input" autocomplete="off" placeholder="Skriv svaret" onkeydown="if(event.key === 'Enter') { event.preventDefault(); event.stopPropagation(); submitMixedQuizTypedAnswer(); }"><div class="button-group"><button type="button" class="btn btn-primary" onclick="submitMixedQuizTypedAnswer()">Sjekk svar</button></div>`;
             container.innerHTML = `
                 <div class="mixed-quiz-question" data-response-mode="${item.responseMode}" data-accepted-answer="${escapeHtml(getDiagnosisAnswerValue(item.acceptedAnswers[0]))}">
                     <div class="mixed-quiz-type">${mixedQuizTypeLabel(item)}</div>
@@ -6901,44 +6901,11 @@ Vil du øve på ${pronoun} likevel?`
         }
 
         function exportProgress() {
-            const data = { cards, exportDate: new Date().toISOString(), version: 'spansk123_v4' };
-            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `spansk_fremgang_${new Date().toISOString().split('T')[0]}.json`;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
-            markProgressExported();
+            exportAllProgress();
         }
 
         function importProgress() {
-            const input = document.createElement('input');
-            input.type = 'file';
-            input.accept = '.json';
-            input.onchange = (e) => {
-                const file = e.target.files[0];
-                if (!file) return;
-                const reader = new FileReader();
-                reader.onload = (event) => {
-                    try {
-                        const data = JSON.parse(event.target.result);
-                        if (!data.cards) { alert('Ugyldig fil!'); return; }
-                        if (confirm(`Importere data? Dette vil overskrive nåværende fremgang.`)) {
-                            cards = data.cards;
-                            mergeNewVocabulary();
-                            saveData();
-                            updateStats();
-                            populateCategories();
-                            alert('Import fullført!');
-                        }
-                    } catch (err) { alert('Feil ved import: ' + err.message); }
-                };
-                reader.readAsText(file);
-            };
-            input.click();
+            importProgressFile();
         }
 
         // ============================================
