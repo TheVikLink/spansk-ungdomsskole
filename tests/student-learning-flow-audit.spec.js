@@ -132,7 +132,7 @@ test.describe('student learning flow audit', () => {
     expect(result.after.text).toContain('1/5 mot dagens merke');
   });
 
-  test('keeps vocabulary categories collapsed until a new-word mode is selected', async ({ page }) => {
+  test('starts new-word practice when the new-word mode is selected', async ({ page }) => {
     await page.goto(appUrl);
     await page.evaluate(() => {
       localStorage.clear();
@@ -144,8 +144,34 @@ test.describe('student learning flow audit', () => {
     const disclosure = page.locator('#vocabCategoryDisclosure');
     await expect(disclosure).not.toHaveAttribute('open', '');
     await page.locator('.vocab-mode-card.new').click();
-    await expect(disclosure).toHaveAttribute('open', '');
-    await expect(page.locator('#vocabModeStartAction')).toBeVisible();
+    await expect(page.locator('#vocabStudy')).toBeVisible();
+  });
+
+  test('starts a new-word session from the new-word mode card', async ({ page }) => {
+    await page.goto(appUrl);
+    await page.evaluate(() => {
+      localStorage.clear();
+      studentName = 'Elev audit';
+      showMainApp();
+      showPage('vocab');
+    });
+    await page.locator('.vocab-mode-card.new').click();
+    await expect(page.locator('#vocabStudy')).toBeVisible();
+    await expect(page.locator('#vocabSettings')).toBeHidden();
+  });
+
+  test('does not expose legacy chapter categories', async ({ page }) => {
+    await page.goto(appUrl);
+    await page.evaluate(() => {
+      localStorage.clear();
+      studentName = 'Elev audit';
+      showMainApp();
+      showPage('vocab');
+    });
+    await expect(page.locator('#categoryGrid')).not.toContainText('Kapittel 7');
+    await expect(page.locator('#categoryGrid')).not.toContainText('Kapittel 8');
+    await expect(page.locator('#chapterFocusGrid')).not.toContainText('Kapittel 7');
+    await expect(page.locator('#chapterFocusGrid')).not.toContainText('Kapittel 8');
   });
 
   test('explains all Brainmap colors and keeps strength hidden for unstarted nodes', async ({ page }) => {
