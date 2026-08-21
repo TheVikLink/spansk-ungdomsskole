@@ -5661,7 +5661,7 @@ Vil du øve på ${pronoun} likevel?`
 
             if (evaluation.resultKind === 'correct') {
                 feedback.innerHTML = '<div class="grammar-feedback correct">✓ Riktig!</div>';
-                rateCard(2);
+                document.getElementById('buttonArea').innerHTML = '<div class="button-group"><button class="btn btn-primary" onclick="rateCard(2)">Neste kort</button></div>';
                 return;
             }
 
@@ -6317,17 +6317,12 @@ Vil du øve på ${pronoun} likevel?`
             verbAnswerPending = true;
             
             if (evaluation.resultKind === 'correct') {
-                feedback.textContent = '✓ Riktig!';
+                feedback.innerHTML = '✓ Riktig!<div class="button-group"><button class="btn btn-primary btn-sm mt-4" onclick="advanceVerbExercise()">Neste</button></div>';
                 feedback.className = 'conjugation-feedback correct';
                 input.classList.add('correct');
                 input.classList.remove('incorrect');
                 verbStats.correct++;
                 
-                setTimeout(() => {
-                    verbCurrentIndex++;
-                    verbAnswerPending = false;
-                    showVerbExercise();
-                }, 1000);
             } else {
                 feedback.innerHTML = evaluation.resultKind === 'accent_or_case_variant'
                     ? `Nesten riktig — sjekk aksenten. Riktig svar: <strong>${expected}</strong>`
@@ -6339,12 +6334,14 @@ Vil du øve på ${pronoun} likevel?`
                 // Show full conjugation table
                 showConjugationTable();
                 
-                setTimeout(() => {
-                    verbCurrentIndex++;
-                    verbAnswerPending = false;
-                    showVerbExercise();
-                }, 3000);
+                feedback.insertAdjacentHTML('beforeend', '<div class="button-group"><button class="btn btn-primary btn-sm mt-4" onclick="advanceVerbExercise()">Neste</button></div>');
             }
+        }
+
+        function advanceVerbExercise() {
+            verbCurrentIndex++;
+            verbAnswerPending = false;
+            showVerbExercise();
         }
 
         function showVerbHint() {
