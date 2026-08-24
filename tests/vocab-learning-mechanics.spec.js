@@ -161,6 +161,16 @@ test.describe('vocabulary learning mechanics', () => {
     ]));
   });
 
+  test('keeps equivalent vivir meanings distinct and accepts both Norwegian prompts', async ({ page }) => {
+    await page.goto(appUrl);
+    const answers = await page.evaluate(() => ({
+      noToEs: getVocabularyAcceptedAnswers({ no: 'å bo/ å leve', es: 'vivir' }, 'no-es', 'vivir').map(answer => answer.value),
+      esToNo: getVocabularyAcceptedAnswers({ no: 'å bo/ å leve', es: 'vivir' }, 'es-no', 'å bo/ å leve').map(answer => answer.value)
+    }));
+    expect(answers.noToEs).toEqual(['vivir']);
+    expect(answers.esToNo).toEqual(['å bo', 'å leve']);
+  });
+
   test('keeps full verb conjugation tables out of vocabulary cards', async ({ page }) => {
     await page.goto(appUrl);
 
@@ -251,6 +261,119 @@ test.describe('vocabulary learning mechanics', () => {
       enye: { resultKind: 'wrong', correct: false },
       multiWord: { resultKind: 'correct', correct: true }
     });
+  });
+
+  test('accepts clean Norwegian forms for cards with parenthetical annotations', async ({ page }) => {
+    await page.goto(appUrl);
+
+    const result = await page.evaluate(() => {
+      const cases = [
+        { no: 'lilla (v)', es: 'violeta', clean: 'lilla' },
+        { no: 'lat (v)', es: 'vago', clean: 'lat' },
+        { no: 'begravelse (f)', es: 'el Funeral', clean: 'begravelse' },
+        { no: 'begravelse (ord på e)', es: 'entierro', clean: 'begravelse' },
+        { no: 'rom (annet ord, C)', es: 'el cuarto', clean: 'rom' },
+        { no: 'stue (c)', es: 'el cuarto de estar', clean: 'stue' },
+        { no: 'kjøleskap (n)', es: 'la nevera', clean: 'kjøleskap' },
+        { no: 'genser (j)', es: 'el jersey', clean: 'genser' },
+        { no: 'lærer (p)', es: 'el profesor', clean: 'lærer' }
+      ];
+      return cases.map(c => ({
+        label: c.no,
+        clean: c.clean,
+        accepted: getVocabularyAcceptedAnswers({ no: c.no, es: c.es }, 'es-no', c.no).map(a => a.value),
+        evaluation: isTypedVocabAnswerCorrect(c.clean, c.no, getVocabularyAcceptedAnswers({ no: c.no, es: c.es }, 'es-no', c.no).map(a => a.value))
+      }));
+    });
+
+    for (const item of result) {
+      expect(item.accepted, `${item.label} should list clean form "${item.clean}"`).toContain(item.clean);
+      expect(item.evaluation.correct, `${item.label}: clean form "${item.clean}" should be correct`).toBe(true);
+    }
+  });
+
+  test('accepts mamma for la madre in vocabulary practice', async ({ page }) => {
+    await page.goto(appUrl);
+
+    const result = await page.evaluate(() => ({
+      accepted: getVocabularyAcceptedAnswers({ no: 'mor', es: 'la madre' }, 'es-no', 'mor').map(a => a.value),
+      evaluation: isTypedVocabAnswerCorrect('mamma', 'mor', getVocabularyAcceptedAnswers({ no: 'mor', es: 'la madre' }, 'es-no', 'mor').map(a => a.value))
+    }));
+
+    expect(result.accepted).toContain('mamma');
+    expect(result.evaluation.correct).toBe(true);
+  });
+
+  test('accepts buenas tardes as an equivalent for god kveld', async ({ page }) => {
+    await page.goto(appUrl);
+
+    const result = await page.evaluate(() => ({
+      accepted: getVocabularyAcceptedAnswers({ no: 'god kveld', es: 'buenas noches' }, 'no-es', 'buenas noches').map(a => a.value),
+      evaluation: isTypedVocabAnswerCorrect('buenas tardes', 'buenas noches', getVocabularyAcceptedAnswers({ no: 'god kveld', es: 'buenas noches' }, 'no-es', 'buenas noches').map(a => a.value))
+    }));
+
+    expect(result.accepted).toContain('buenas tardes');
+    expect(result.evaluation.correct).toBe(true);
+  });
+
+  test('accepts la novia for kjæreste and kjæresten for el novio', async ({ page }) => {
+    await page.goto(appUrl);
+
+    const result = await page.evaluate(() => ({
+      noToEs: getVocabularyAcceptedAnswers({ no: 'kjæreste', es: 'el novio' }, 'no-es', 'el novio').map(a => a.value),
+      esToNo: getVocabularyAcceptedAnswers({ no: 'kjæreste', es: 'el novio' }, 'es-no', 'kjæreste').map(a => a.value),
+      noviaCorrect: isTypedVocabAnswerCorrect('la novia', 'el novio', getVocabularyAcceptedAnswers({ no: 'kjæreste', es: 'el novio' }, 'no-es', 'el novio').map(a => a.value)),
+      kjærestenCorrect: isTypedVocabAnswerCorrect('kjæresten', 'kjæreste', getVocabularyAcceptedAnswers({ no: 'kjæreste', es: 'el novio' }, 'es-no', 'kjæreste').map(a => a.value))
+    }));
+
+    expect(result.noToEs).toContain('la novia');
+    expect(result.esToNo).toContain('kjæresten');
+    expect(result.esToNo).not.toContain('kjæresteen');
+    expect(result.noviaCorrect.correct).toBe(true);
+    expect(result.kjærestenCorrect.correct).toBe(true);
+  });
+
+  test('generates correct definite forms for Norwegian nouns ending in e', async ({ page }) => {
+    await page.goto(appUrl);
+
+    const result = await page.evaluate(() => {
+      const cases = [
+        { no: 'kusine', es: 'la prima', expected: 'kusinen' },
+        { no: 'tante', es: 'la tía', expected: 'tanten' },
+        { no: 'jakke', es: 'la chaqueta', expected: 'jakken' },
+        { no: 'klokke', es: 'el reloj', expected: 'klokken' },
+        { no: 'lege', es: 'el médico', expected: 'legen' },
+        { no: 'pære', es: 'la pera', expected: 'pæren' },
+        { no: 'teppe', es: 'la alfombra', expected: 'teppet' },
+        { no: 'smykke', es: 'la cadena', expected: 'smykket' }
+      ];
+      return cases.map(c => ({
+        label: c.no,
+        answers: getVocabularyAcceptedAnswers({ no: c.no, es: c.es }, 'es-no', c.no).map(a => a.value),
+        expected: c.expected
+      }));
+    });
+
+    for (const item of result) {
+      expect(item.answers, `${item.label} should include definite form "${item.expected}"`).toContain(item.expected);
+    }
+  });
+
+  test('disambiguates juice prompts by letter after the Spanish article', async ({ page }) => {
+    await page.goto(appUrl);
+
+    const result = await page.evaluate(() => {
+      const pool = [
+        { id: 1, no: 'juice', es: 'el zumo' },
+        { id: 2, no: 'juice', es: 'el jugo' }
+      ];
+      return {
+        zumo: getVocabPromptText({ card: pool[0], direction: 'no-es' }, pool),
+        jugo: getVocabPromptText({ card: pool[1], direction: 'no-es' }, pool)
+      };
+    });
+
+    expect(result.zumo).not.toEqual(result.jugo);
   });
 
   test('leech cards are prioritized before normal due cards, even when future scheduled', async ({ page }) => {

@@ -1046,8 +1046,11 @@
                 { answerId: 'dessuten', value: 'dessuten', canonicalMeaningId: 'ademas_no' }
             ],
             'å bo/ å leve|no-es': [
-                { answerId: 'vivir_bo', value: 'vivir', canonicalMeaningId: 'vivir_es' },
-                { answerId: 'vivir_leve', value: 'vivir', canonicalMeaningId: 'vivir_es' }
+                { answerId: 'vivir', value: 'vivir', canonicalMeaningId: 'vivir_es' }
+            ],
+            'å bo/ å leve|es-no': [
+                { answerId: 'å_bo', value: 'å bo', canonicalMeaningId: 'vivir_no' },
+                { answerId: 'å_leve', value: 'å leve', canonicalMeaningId: 'vivir_no' }
             ],
             'det er vind|es-no': [
                 { answerId: 'det_er_vind', value: 'det er vind', canonicalMeaningId: 'hace_viento_no' },
@@ -1084,6 +1087,59 @@
             'Neste år skal jeg begynne på videregående|no-es': [
                 { answerId: 'empezar_bachillerato', value: 'El año que viene voy a empezar el bachillerato', canonicalMeaningId: 'future_start_high_school' },
                 { answerId: 'comenzar_bachillerato', value: 'El año que viene voy a comenzar el bachillerato', canonicalMeaningId: 'future_start_high_school' }
+            ],
+            'lilla (v)|es-no': [
+                { answerId: 'lilla_v', value: 'lilla (v)', canonicalMeaningId: 'violeta_no' },
+                { answerId: 'lilla', value: 'lilla', canonicalMeaningId: 'violeta_no' }
+            ],
+            'lat (v)|es-no': [
+                { answerId: 'lat_v', value: 'lat (v)', canonicalMeaningId: 'vago_no' },
+                { answerId: 'lat', value: 'lat', canonicalMeaningId: 'vago_no' }
+            ],
+            'begravelse (f)|es-no': [
+                { answerId: 'begravelse_f', value: 'begravelse (f)', canonicalMeaningId: 'funeral_no' },
+                { answerId: 'begravelse_f_clean', value: 'begravelse', canonicalMeaningId: 'funeral_no' }
+            ],
+            'begravelse (ord på e)|es-no': [
+                { answerId: 'begravelse_e', value: 'begravelse (ord på e)', canonicalMeaningId: 'entierro_no' },
+                { answerId: 'begravelse_e_clean', value: 'begravelse', canonicalMeaningId: 'entierro_no' }
+            ],
+            'rom (annet ord, C)|es-no': [
+                { answerId: 'rom_c', value: 'rom (annet ord, C)', canonicalMeaningId: 'cuarto_no' },
+                { answerId: 'rom_c_clean', value: 'rom', canonicalMeaningId: 'cuarto_no' }
+            ],
+            'stue (c)|es-no': [
+                { answerId: 'stue_c', value: 'stue (c)', canonicalMeaningId: 'cuarto_de_estar_no' },
+                { answerId: 'stue_c_clean', value: 'stue', canonicalMeaningId: 'cuarto_de_estar_no' }
+            ],
+            'kjøleskap (n)|es-no': [
+                { answerId: 'kjoleskap_n', value: 'kjøleskap (n)', canonicalMeaningId: 'nevera_no' },
+                { answerId: 'kjoleskap_n_clean', value: 'kjøleskap', canonicalMeaningId: 'nevera_no' }
+            ],
+            'genser (j)|es-no': [
+                { answerId: 'genser_j', value: 'genser (j)', canonicalMeaningId: 'jersey_no' },
+                { answerId: 'genser_j_clean', value: 'genser', canonicalMeaningId: 'jersey_no' }
+            ],
+            'lærer (p)|es-no': [
+                { answerId: 'laerer_p', value: 'lærer (p)', canonicalMeaningId: 'profesor_no' },
+                { answerId: 'laerer_p_clean', value: 'lærer', canonicalMeaningId: 'profesor_no' }
+            ],
+            'mor|es-no': [
+                { answerId: 'mor', value: 'mor', canonicalMeaningId: 'madre_no' },
+                { answerId: 'moren', value: 'moren', canonicalMeaningId: 'madre_no' },
+                { answerId: 'mamma', value: 'mamma', canonicalMeaningId: 'madre_no' }
+            ],
+            'god kveld|no-es': [
+                { answerId: 'buenas_noches', value: 'buenas noches', canonicalMeaningId: 'good_evening_es' },
+                { answerId: 'buenas_tardes', value: 'buenas tardes', canonicalMeaningId: 'good_evening_es' }
+            ],
+            'kjæreste|no-es': [
+                { answerId: 'el_novio', value: 'el novio', canonicalMeaningId: 'boyfriend_es' },
+                { answerId: 'la_novia', value: 'la novia', canonicalMeaningId: 'boyfriend_es' }
+            ],
+            'kjæreste|es-no': [
+                { answerId: 'kjæreste', value: 'kjæreste', canonicalMeaningId: 'novio_no' },
+                { answerId: 'kjæresten', value: 'kjæresten', canonicalMeaningId: 'novio_no' }
             ]
         };
 
@@ -1130,13 +1186,20 @@
             'historie': ['historia', 'historien'],
             'kroppsøving': ['kroppsøvinga', 'kroppsøvingen'],
             'religion / KRLE': ['religionen', 'KRLE-en'],
-            'gang': ['gangen']
+            'gang': ['gangen'],
+            'teppe': ['teppet'],
+            'smykke': ['smykket'],
+            'lommetørkle': ['lommetørklet'],
+            'Valentinsdagen': ['Valentinsdag'],
+            'nasjonaldagen': ['nasjonaldag'],
+            'allehelgensdagen': ['allehelgensdag'],
+            'ungdomsskolen': ['ungdomsskole']
         };
 
         function getNorwegianNounDefiniteForms(card) {
             if (!card || !/^(el|la)\s/i.test(card.es) || !/^[^,()\s]+$/u.test(card.no)) return [];
             if (norwegianNounDefiniteForms[card.no]) return norwegianNounDefiniteForms[card.no];
-            return [`${card.no}en`];
+            return [card.no.endsWith('e') ? `${card.no}n` : `${card.no}en`];
         }
 
         function getVocabularyAcceptedAnswers(card, direction, primaryAnswer) {
@@ -4104,7 +4167,7 @@
             ["samfunnsfag", "las ciencias sociales", "fag"],
             ["naturfag", "las ciencias naturales", "fag"],
             ["kroppsøving", "la educación física", "fag"],
-            ["kunst og håndtverk", "las artes manuales", "fag"],
+            ["kunst og håndverk", "las artes manuales", "fag"],
             ["religion / KRLE", "la religión", "fag"],
             
             // HJEM
@@ -4243,7 +4306,7 @@
             ["allikevel", "sin embargo", "bindeord"],
             ["på den ene siden", "por un lado", "bindeord"],
             ["på den andre siden", "por otro lado", "bindeord"],
-            ["først og fremst", "sobretodo", "bindeord"],
+            ["først og fremst", "sobre todo", "bindeord"],
             ["samtidig", "al mismo tiempo", "bindeord"],
             ["selvfølgelig", "claro", "bindeord"],
             ["jeg skal snakke om", "voy a hablar sobre", "bindeord"],
@@ -5306,7 +5369,8 @@
 
             if (!hasAmbiguousPrompt) return prompt;
 
-            return `${prompt} (${expectedAnswer.trim().charAt(0).toLocaleLowerCase('es-ES')})`;
+            const hintBase = expectedAnswer.trim().replace(/^(el|la|los|las)\s+/i, '');
+            return `${prompt} (${hintBase.charAt(0).toLocaleLowerCase('es-ES')})`;
         }
 
         function isLeechReviewData(srData) {
@@ -6738,14 +6802,27 @@ Vil du øve på ${pronoun} likevel?`
         }
 
         function splitAlternativeTranslations(row) {
-            const alternatives = row.spansk
+            const spanskAlternatives = row.spansk
+                .split(/\s+\/\s+/)
+                .map(part => part.trim())
+                .filter(Boolean);
+            const norskAlternatives = row.norsk
                 .split(/\s+\/\s+/)
                 .map(part => part.trim())
                 .filter(Boolean);
 
-            if (alternatives.length <= 1) return [row];
+            if (spanskAlternatives.length <= 1 && norskAlternatives.length <= 1) return [row];
 
-            return alternatives.map(spansk => ({ ...row, spansk }));
+            const spanskOptions = spanskAlternatives.length > 1 ? spanskAlternatives : [row.spansk];
+            const norskOptions = norskAlternatives.length > 1 ? norskAlternatives : [row.norsk];
+
+            const result = [];
+            for (const spansk of spanskOptions) {
+                for (const norsk of norskOptions) {
+                    result.push({ ...row, spansk, norsk });
+                }
+            }
+            return result;
         }
 
         function parseChapterVocabularyLine(line, category) {
@@ -6782,14 +6859,18 @@ Vil du øve på ${pronoun} likevel?`
 
             rows.forEach((row, index) => {
                 const word = normalizeImportedTeacherWord(row);
-                const reason = validateTeacherWord(word, index + 1, cardList, pendingKeys);
+                const splits = splitAlternativeTranslations(word);
 
-                if (reason) {
-                    problems.push({ row: index + 1, reason });
-                    return;
+                for (const splitWord of splits) {
+                    const reason = validateTeacherWord(splitWord, index + 1, cardList, pendingKeys);
+
+                    if (reason) {
+                        problems.push({ row: index + 1, reason });
+                        continue;
+                    }
+
+                    valid.push(splitWord);
                 }
-
-                valid.push(word);
             });
 
             return {
