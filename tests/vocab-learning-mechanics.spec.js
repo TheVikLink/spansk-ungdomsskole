@@ -190,6 +190,15 @@ test.describe('vocabulary learning mechanics', () => {
     await expect(input).toHaveValue('¿¡');
   });
 
+  test('installs the accent helper on every normal text field', async ({ page }) => {
+    await page.goto(appUrl);
+    const input = page.locator('#addWordSpansk');
+    await page.evaluate(() => document.getElementById('addWordSpansk').dispatchEvent(new KeyboardEvent('keydown', { key: 'e', bubbles: true })));
+    await page.waitForTimeout(450);
+    await page.evaluate(() => document.getElementById('addWordSpansk').dispatchEvent(new KeyboardEvent('keyup', { key: 'e', bubbles: true })));
+    await expect(input).toHaveValue('é');
+  });
+
   test('typed answers classify accent variants while ignoring case and extra spaces', async ({ page }) => {
     await page.goto(appUrl);
 

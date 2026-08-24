@@ -6998,6 +6998,8 @@ Vil du øve på ${pronoun} likevel?`
         let longPressTimer = null;
 
         function setupAccentInput(inputElement) {
+            if (!inputElement || inputElement.dataset.accentInputReady === 'true') return;
+            inputElement.dataset.accentInputReady = 'true';
             inputElement.addEventListener('keydown', (e) => {
                 const key = e.key;
                 
@@ -7045,6 +7047,17 @@ Vil du øve på ${pronoun} likevel?`
                     longPressTimer = null;
                 }
             });
+        }
+
+        function setupAccentInputs(root = document) {
+            const scope = root.querySelectorAll ? root : document;
+            scope.querySelectorAll('input:not([type]), input[type="text"], textarea').forEach(setupAccentInput);
+        }
+
+        setupAccentInputs();
+        if (!window.accentInputObserver) {
+            window.accentInputObserver = new MutationObserver(() => setupAccentInputs());
+            window.accentInputObserver.observe(document.body, { childList: true, subtree: true });
         }
 
         function insertCharacter(input, char) {
