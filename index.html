@@ -1004,6 +1004,10 @@
         const getDiagnosisOptions = question => (question.options || question.acceptedAnswers || []).map(option => typeof option === 'string' ? { optionId: option, label: option } : option);
 
         const vocabularyAnswerAlternatives = {
+            'bror|es-no': [
+                { answerId: 'bror', value: 'bror', canonicalMeaningId: 'hermano_no' },
+                { answerId: 'broren', value: 'broren', canonicalMeaningId: 'hermano_no' }
+            ],
             'elev|no-es': [
                 { answerId: 'el_alumno', value: 'el alumno', canonicalMeaningId: 'student' },
                 { answerId: 'el_estudiante', value: 'el estudiante', canonicalMeaningId: 'student' }

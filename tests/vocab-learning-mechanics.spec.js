@@ -113,6 +113,18 @@ test.describe('vocabulary learning mechanics', () => {
     expect(new Set(result.map(option => option.label)).size).toBe(4);
   });
 
+  test('accepts both indefinite and definite Norwegian forms for el hermano', async ({ page }) => {
+    await page.goto(appUrl);
+
+    const result = await page.evaluate(() => ({
+      bror: isTypedVocabAnswerCorrect('bror', 'bror', getVocabularyAcceptedAnswers({ no: 'bror', es: 'el hermano' }, 'es-no', 'bror').map(item => item.value)),
+      broren: isTypedVocabAnswerCorrect('broren', 'bror', getVocabularyAcceptedAnswers({ no: 'bror', es: 'el hermano' }, 'es-no', 'bror').map(item => item.value))
+    }));
+
+    expect(result.bror).toEqual({ resultKind: 'correct', correct: true });
+    expect(result.broren).toEqual({ resultKind: 'correct', correct: true });
+  });
+
   test('turns a held Spanish vowel into a high accent without opening native accent menus', async ({ page }) => {
     await page.goto(appUrl);
     await page.setContent('<input id="accent-test" autocomplete="off">');
