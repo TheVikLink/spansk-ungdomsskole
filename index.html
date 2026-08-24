@@ -2027,6 +2027,8 @@
                         ${answerControls}
                     </div>
                 `;
+                const diagnosisInput = document.getElementById('diagnosisAnswerInput');
+                if (diagnosisInput) setupAccentInput(diagnosisInput);
                 document.getElementById('diagnosisAnswerInput')?.focus();
                 return;
             }
@@ -4706,6 +4708,11 @@
             return normalized;
         }
 
+        function isVocabularyCardEligible(card) {
+            const norwegianPrompt = card.no || card.norsk || '';
+            return card.category !== 'verbbøying' && !/^bøying av verbet/i.test(norwegianPrompt);
+        }
+
         function init() {
             loadData();
             loadActiveAssignment();
@@ -4780,6 +4787,8 @@
                     <div class="mixed-quiz-feedback" id="mixedQuizFeedback" aria-live="polite"></div>
                 </div>
             `;
+            const mixedQuizInput = container.querySelector('#mixedQuizAnswerInput');
+            if (mixedQuizInput) setupAccentInput(mixedQuizInput);
             if (item.direction === 'es-no') attachSpanishAudioControl(container, item.prompt);
             container.querySelectorAll('[data-mixed-answer]').forEach(button => {
                 button.addEventListener('click', () => submitMixedQuizAnswer(button.dataset.mixedAnswer));
@@ -4953,10 +4962,11 @@
         function loadData() {
             const saved = readStoredJson('spansk123Data_v4', null);
             if (saved) {
-                cards = saved.map((card, index) => normalizeCard(card, index));
+                cards = saved.map((card, index) => normalizeCard(card, index)).filter(isVocabularyCardEligible);
                 mergeNewVocabulary();
+                saveData();
             } else {
-                cards = glossary.map((item, index) => ({
+                cards = glossary.filter(item => item[2] !== 'verbbøying' && !/^bøying av verbet/i.test(item[0])).map((item, index) => ({
                     id: index,
                     no: item[0],
                     es: item[1],
@@ -4987,6 +4997,7 @@
             glossary.forEach((item, index) => {
                 const [no, es, rawCategory] = item;
                 const category = normalizeLegacyCategory(rawCategory, no);
+                if (category === 'verbbøying' || /^bøying av verbet/i.test(no)) return;
                 const key = `${no.toLowerCase()}|||${es.toLowerCase()}`;
                 const existing = existingByPair.get(key);
 

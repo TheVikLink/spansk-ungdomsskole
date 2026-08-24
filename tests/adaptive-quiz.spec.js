@@ -452,6 +452,24 @@ test.describe('adaptive mixed quiz v1', () => {
     await expect(page.locator('#mixedQuizStats')).toContainText('1 / 10');
   });
 
+  test('uses the Spanish accent helper in mixed quiz text answers', async ({ page }) => {
+    await page.goto(appUrl);
+    await page.evaluate(() => {
+      mixedQuizState = {
+        quiz: { items: [{ prompt: 'Skriv et ord', itemType: 'vocabulary', responseMode: 'typed', acceptedAnswers: [{ value: 'qué' }] }] },
+        index: 0, answered: 0, correct: 0, startedAt: new Date(), results: []
+      };
+      document.getElementById('mixedQuizStudy').classList.remove('hidden');
+      renderMixedQuizQuestion();
+    });
+
+    const input = page.locator('#mixedQuizAnswerInput');
+    await page.evaluate(() => document.getElementById('mixedQuizAnswerInput').dispatchEvent(new KeyboardEvent('keydown', { key: 'e', bubbles: true })));
+    await page.waitForTimeout(450);
+    await page.evaluate(() => document.getElementById('mixedQuizAnswerInput').dispatchEvent(new KeyboardEvent('keyup', { key: 'e', bubbles: true })));
+    await expect(input).toHaveValue('é');
+  });
+
   test('labels a wrong mixed-quiz answer explicitly', async ({ page }) => {
     await page.goto(appUrl);
     await page.evaluate(() => {

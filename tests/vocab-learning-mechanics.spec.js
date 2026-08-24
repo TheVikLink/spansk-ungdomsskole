@@ -145,6 +145,18 @@ test.describe('vocabulary learning mechanics', () => {
     }
   });
 
+  test('keeps full verb conjugation tables out of vocabulary cards', async ({ page }) => {
+    await page.goto(appUrl);
+
+    const result = await page.evaluate(() => {
+      localStorage.clear();
+      loadData();
+      return cards.filter(card => card.category === 'verbbøying' || /^bøying av verbet/i.test(card.no));
+    });
+
+    expect(result).toEqual([]);
+  });
+
   test('turns a held Spanish vowel into a high accent without opening native accent menus', async ({ page }) => {
     await page.goto(appUrl);
     await page.setContent('<input id="accent-test" autocomplete="off">');
