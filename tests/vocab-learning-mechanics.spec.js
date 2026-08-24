@@ -145,6 +145,13 @@ test.describe('vocabulary learning mechanics', () => {
     }
   });
 
+  test('accepts gangen for el pasillo', async ({ page }) => {
+    await page.goto(appUrl);
+    const answers = await page.evaluate(() => getVocabularyAcceptedAnswers({ no: 'gang', es: 'el pasillo' }, 'es-no', 'gang').map(answer => answer.value));
+    expect(answers).toContain('gang');
+    expect(answers).toContain('gangen');
+  });
+
   test('keeps full verb conjugation tables out of vocabulary cards', async ({ page }) => {
     await page.goto(appUrl);
 
