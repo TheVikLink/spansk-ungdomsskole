@@ -34,6 +34,7 @@ test.describe('verb focus categories', () => {
 
     expect(selection.focuses).toEqual(['stem-e-i', 'stem-e-ie', 'stem-o-ue']);
     expect(selection.verbs).toEqual([
+      'comenzar',
       'decir',
       'dormir',
       'empezar',

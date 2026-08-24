@@ -1080,6 +1080,10 @@
             'skoleklasse|es-no': [
                 { answerId: 'skoletime', value: 'skoletime', canonicalMeaningId: 'clase_no' },
                 { answerId: 'skoleklasse', value: 'skoleklasse', canonicalMeaningId: 'clase_no' }
+            ],
+            'Neste år skal jeg begynne på videregående|no-es': [
+                { answerId: 'empezar_bachillerato', value: 'El año que viene voy a empezar el bachillerato', canonicalMeaningId: 'future_start_high_school' },
+                { answerId: 'comenzar_bachillerato', value: 'El año que viene voy a comenzar el bachillerato', canonicalMeaningId: 'future_start_high_school' }
             ]
         };
 
@@ -4519,6 +4523,13 @@
                 presente: ["empiezo", "empiezas", "empieza", "empezamos", "empezáis", "empiezan"],
                 participio: "empezado"
             },
+            comenzar: {
+                infinitive: "comenzar",
+                translation: "å begynne",
+                type: "stammeendring e→ie",
+                presente: ["comienzo", "comienzas", "comienza", "comenzamos", "comenzáis", "comienzan"],
+                participio: "comenzado"
+            },
             entender: {
                 infinitive: "entender",
                 translation: "å forstå",
@@ -6203,7 +6214,7 @@ Vil du øve på ${pronoun} likevel?`
             if (focus === 'ar') return ['hablar', 'trabajar', 'estudiar', 'bailar', 'comprar'];
             if (focus === 'erir') return ['comer', 'beber', 'leer', 'aprender', 'vivir', 'escribir'];
             if (focus === 'irregular') return ['ser', 'estar', 'ir', 'hacer', 'saber', 'salir', 'ver'];
-            if (focus === 'stem-e-ie') return ['querer', 'preferir', 'empezar', 'entender', 'tener', 'venir'];
+            if (focus === 'stem-e-ie') return ['querer', 'preferir', 'empezar', 'comenzar', 'entender', 'tener', 'venir'];
             if (focus === 'stem-o-ue') return ['poder', 'dormir', 'volver'];
             if (focus === 'stem-e-i') return ['pedir', 'repetir', 'servir', 'decir'];
             return [];

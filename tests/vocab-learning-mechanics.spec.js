@@ -152,6 +152,15 @@ test.describe('vocabulary learning mechanics', () => {
     expect(answers).toContain('gangen');
   });
 
+  test('accepts equivalent comenzar and empezar sentence answers', async ({ page }) => {
+    await page.goto(appUrl);
+    const answers = await page.evaluate(() => getVocabularyAcceptedAnswers({ no: 'Neste år skal jeg begynne på videregående', es: 'El año que viene voy a empezar el bachillerato' }, 'no-es', 'El año que viene voy a empezar el bachillerato').map(answer => answer.value));
+    expect(answers).toEqual(expect.arrayContaining([
+      'El año que viene voy a empezar el bachillerato',
+      'El año que viene voy a comenzar el bachillerato'
+    ]));
+  });
+
   test('keeps full verb conjugation tables out of vocabulary cards', async ({ page }) => {
     await page.goto(appUrl);
 
