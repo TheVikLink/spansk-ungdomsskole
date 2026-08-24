@@ -291,6 +291,31 @@ test.describe('adaptive mixed quiz v1', () => {
     expect(result.interval).toBeGreaterThan(0);
   });
 
+  test('shares one directional progress cell between mixed quiz and vocabulary practice', async ({ page }) => {
+    await page.goto(appUrl);
+    const result = await page.evaluate(() => {
+      localStorage.clear();
+      const card = {
+        id: 42, no: 'hei', es: 'hola',
+        noEs: { easeFactor: 2.5, interval: 0, repetitions: 0, nextReview: null },
+        esNo: { easeFactor: 2.5, interval: 0, repetitions: 0, nextReview: null }
+      };
+      cards = [card];
+      answerMixedQuizItem({
+        questionId: 'mixed.vocab.42.noToEs', targetType: 'word', targetId: '42', direction: 'noToEs',
+        acceptedAnswers: [{ value: 'hola' }]
+      }, 'hola', '2026-08-21T10:00:00.000Z');
+      updateVocabularyLearningProgress(card, 'no-es', 'correct', '2026-08-21T10:05:00.000Z');
+      const progress = JSON.parse(localStorage.getItem('spansk123_learningProgress_v1'));
+      const schedule = JSON.parse(localStorage.getItem('spansk123Data_v4'))[0];
+      return { cell: progress.wordProgress['42'].noToEs, schedule: schedule.noEs };
+    });
+
+    expect(result.cell).toMatchObject({ strength: 3, attempts: 2, correct: 2 });
+    expect(result.schedule.repetitions).toBe(1);
+    expect(result.schedule.interval).toBeGreaterThan(0);
+  });
+
   test('classifies accent variants separately without changing the accepted answer', async ({ page }) => {
     await page.goto(appUrl);
 

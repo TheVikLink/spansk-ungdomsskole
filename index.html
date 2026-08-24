@@ -2309,7 +2309,7 @@
             if (item.targetType !== 'word') return;
             const card = cards.find(candidate => String(candidate.id) === String(item.targetId));
             if (!card) return;
-            const direction = item.direction === 'no-es' ? 'noEs' : 'esNo';
+            const direction = ['no-es', 'noToEs'].includes(item.direction) ? 'noEs' : 'esNo';
             const source = card[direction];
             const quality = ['correct', 'accent_or_case_variant'].includes(resultKind) ? 2 : 0;
             const result = SM2.calculateNextReview(source, quality);
@@ -2331,7 +2331,8 @@
                         esToNo: normalizeLearningProgress({ schemaVersion: 1, wordProgress: { temp: { noToEs: null, esToNo: null } }, skillProgress: {} }, nowIso).wordProgress.temp.esToNo
                     };
                 }
-                progress.wordProgress[item.targetId][item.direction] = updateProgressCell(progress.wordProgress[item.targetId][item.direction], evaluation.resultKind, nowIso);
+                const progressDirection = item.direction === 'no-es' ? 'noToEs' : item.direction === 'es-no' ? 'esToNo' : item.direction;
+                progress.wordProgress[item.targetId][progressDirection] = updateProgressCell(progress.wordProgress[item.targetId][progressDirection], evaluation.resultKind, nowIso);
             } else {
                 progress.skillProgress[item.targetId] = updateProgressCell(progress.skillProgress[item.targetId], evaluation.resultKind, nowIso);
             }
