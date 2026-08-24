@@ -125,6 +125,26 @@ test.describe('vocabulary learning mechanics', () => {
     expect(result.broren).toEqual({ resultKind: 'correct', correct: true });
   });
 
+  test('covers every simple el/la noun with an explicit Norwegian definite form', async ({ page }) => {
+    await page.goto(appUrl);
+
+    const result = await page.evaluate(() => {
+      localStorage.clear();
+      loadData();
+      const nounCards = cards.filter(card => /^(el|la)\s/i.test(card.es) && /^[^,()\s]+$/u.test(card.no));
+      return nounCards.map(card => ({
+        no: card.no,
+        es: card.es,
+        answers: getVocabularyAcceptedAnswers(card, 'es-no', card.no).map(answer => answer.value)
+      }));
+    });
+
+    expect(result).not.toHaveLength(0);
+    for (const card of result) {
+      expect(card.answers, `${card.es} (${card.no}) mangler bestemt norsk variant`).toContainEqual(expect.not.stringMatching(new RegExp(`^${card.no}$`, 'i')));
+    }
+  });
+
   test('turns a held Spanish vowel into a high accent without opening native accent menus', async ({ page }) => {
     await page.goto(appUrl);
     await page.setContent('<input id="accent-test" autocomplete="off">');

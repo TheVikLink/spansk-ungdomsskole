@@ -1083,9 +1083,70 @@
             ]
         };
 
+        const norwegianNounDefiniteForms = {
+            'jula': ['jul'],
+            'nyttårsaften': ['nyttårsaftenen'],
+            'julaften': ['julaftenen'],
+            'sankthansaften': ['sankthansaftenen'],
+            'påskeuken': ['påskeuke', 'påskeuken'],
+            'hode': ['hodet'],
+            'øye': ['øyet'],
+            'belte': ['beltet'],
+            'skjørt': ['skjørtet'],
+            'hår': ['håret'],
+            'kjøkken': ['kjøkkenet'],
+            'vindu': ['vinduet'],
+            'hus': ['huset'],
+            'møbel': ['møbelet'],
+            'bord': ['bordet'],
+            'skap': ['skapet'],
+            'kjøleskap': ['kjøleskapet'],
+            'skrivebord': ['skrivebordet'],
+            'bilde': ['bildet'],
+            'speil': ['speilet'],
+            'eple': ['eplet'],
+            'egg': ['egget'],
+            'brød': ['brødet'],
+            'kjøtt': ['kjøttet'],
+            'sukker': ['sukkeret'],
+            'salt': ['saltet'],
+            'melk': ['melka', 'melken'],
+            'vann': ['vannet'],
+            'politi': ['politiet'],
+            'golf': ['golfen'],
+            'håndball': ['håndballen'],
+            'volleyball': ['volleyballen'],
+            'innebandy': ['innebandyen'],
+            'tennis': ['tennisen'],
+            'bordtennis': ['bordtennisen'],
+            'ishockey': ['ishockeyen'],
+            'rom': ['rommet'],
+            'videregående': ['videregående skole'],
+            'engelsk': ['engelsken'],
+            'historie': ['historia', 'historien'],
+            'kroppsøving': ['kroppsøvinga', 'kroppsøvingen'],
+            'religion / KRLE': ['religionen', 'KRLE-en']
+        };
+
+        function getNorwegianNounDefiniteForms(card) {
+            if (!card || !/^(el|la)\s/i.test(card.es) || !/^[^,()\s]+$/u.test(card.no)) return [];
+            if (norwegianNounDefiniteForms[card.no]) return norwegianNounDefiniteForms[card.no];
+            return [`${card.no}en`];
+        }
+
         function getVocabularyAcceptedAnswers(card, direction, primaryAnswer) {
             const alternatives = vocabularyAnswerAlternatives[`${card.no}|${direction}`];
-            return alternatives?.length ? alternatives : [{ answerId: 'primary', value: primaryAnswer, canonicalMeaningId: `${card.no}:${direction}` }];
+            if (alternatives?.length) return alternatives;
+            if (direction === 'es-no') {
+                const nounForms = getNorwegianNounDefiniteForms(card);
+                if (nounForms.length) {
+                    return [
+                        { answerId: 'primary', value: primaryAnswer, canonicalMeaningId: `${card.no}:${direction}` },
+                        ...nounForms.map((value, index) => ({ answerId: `noun-form-${index + 1}`, value, canonicalMeaningId: `${card.no}:${direction}` }))
+                    ];
+                }
+            }
+            return [{ answerId: 'primary', value: primaryAnswer, canonicalMeaningId: `${card.no}:${direction}` }];
         }
 
         // ============================================
