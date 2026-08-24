@@ -113,6 +113,50 @@ test.describe('vocabulary learning mechanics', () => {
     expect(new Set(result.map(option => option.label)).size).toBe(4);
   });
 
+  test('accepts both indefinite and definite Norwegian forms for el hermano', async ({ page }) => {
+    await page.goto(appUrl);
+
+    const result = await page.evaluate(() => ({
+      bror: isTypedVocabAnswerCorrect('bror', 'bror', getVocabularyAcceptedAnswers({ no: 'bror', es: 'el hermano' }, 'es-no', 'bror').map(item => item.value)),
+      broren: isTypedVocabAnswerCorrect('broren', 'bror', getVocabularyAcceptedAnswers({ no: 'bror', es: 'el hermano' }, 'es-no', 'bror').map(item => item.value))
+    }));
+
+    expect(result.bror).toEqual({ resultKind: 'correct', correct: true });
+    expect(result.broren).toEqual({ resultKind: 'correct', correct: true });
+  });
+
+  test('covers every simple el/la noun with an explicit Norwegian definite form', async ({ page }) => {
+    await page.goto(appUrl);
+
+    const result = await page.evaluate(() => {
+      localStorage.clear();
+      loadData();
+      const nounCards = cards.filter(card => /^(el|la)\s/i.test(card.es) && /^[^,()\s]+$/u.test(card.no));
+      return nounCards.map(card => ({
+        no: card.no,
+        es: card.es,
+        answers: getVocabularyAcceptedAnswers(card, 'es-no', card.no).map(answer => answer.value)
+      }));
+    });
+
+    expect(result).not.toHaveLength(0);
+    for (const card of result) {
+      expect(card.answers, `${card.es} (${card.no}) mangler bestemt norsk variant`).toContainEqual(expect.not.stringMatching(new RegExp(`^${card.no}$`, 'i')));
+    }
+  });
+
+  test('keeps full verb conjugation tables out of vocabulary cards', async ({ page }) => {
+    await page.goto(appUrl);
+
+    const result = await page.evaluate(() => {
+      localStorage.clear();
+      loadData();
+      return cards.filter(card => card.category === 'verbbøying' || /^bøying av verbet/i.test(card.no));
+    });
+
+    expect(result).toEqual([]);
+  });
+
   test('turns a held Spanish vowel into a high accent without opening native accent menus', async ({ page }) => {
     await page.goto(appUrl);
     await page.setContent('<input id="accent-test" autocomplete="off">');
@@ -144,6 +188,15 @@ test.describe('vocabulary learning mechanics', () => {
     await page.keyboard.up('!');
 
     await expect(input).toHaveValue('¿¡');
+  });
+
+  test('installs the accent helper on every normal text field', async ({ page }) => {
+    await page.goto(appUrl);
+    const input = page.locator('#addWordSpansk');
+    await page.evaluate(() => document.getElementById('addWordSpansk').dispatchEvent(new KeyboardEvent('keydown', { key: 'e', bubbles: true })));
+    await page.waitForTimeout(450);
+    await page.evaluate(() => document.getElementById('addWordSpansk').dispatchEvent(new KeyboardEvent('keyup', { key: 'e', bubbles: true })));
+    await expect(input).toHaveValue('é');
   });
 
   test('typed answers classify accent variants while ignoring case and extra spaces', async ({ page }) => {

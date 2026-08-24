@@ -1004,6 +1004,10 @@
         const getDiagnosisOptions = question => (question.options || question.acceptedAnswers || []).map(option => typeof option === 'string' ? { optionId: option, label: option } : option);
 
         const vocabularyAnswerAlternatives = {
+            'bror|es-no': [
+                { answerId: 'bror', value: 'bror', canonicalMeaningId: 'hermano_no' },
+                { answerId: 'broren', value: 'broren', canonicalMeaningId: 'hermano_no' }
+            ],
             'elev|no-es': [
                 { answerId: 'el_alumno', value: 'el alumno', canonicalMeaningId: 'student' },
                 { answerId: 'el_estudiante', value: 'el estudiante', canonicalMeaningId: 'student' }
@@ -1079,9 +1083,70 @@
             ]
         };
 
+        const norwegianNounDefiniteForms = {
+            'jula': ['jul'],
+            'nyttårsaften': ['nyttårsaftenen'],
+            'julaften': ['julaftenen'],
+            'sankthansaften': ['sankthansaftenen'],
+            'påskeuken': ['påskeuke', 'påskeuken'],
+            'hode': ['hodet'],
+            'øye': ['øyet'],
+            'belte': ['beltet'],
+            'skjørt': ['skjørtet'],
+            'hår': ['håret'],
+            'kjøkken': ['kjøkkenet'],
+            'vindu': ['vinduet'],
+            'hus': ['huset'],
+            'møbel': ['møbelet'],
+            'bord': ['bordet'],
+            'skap': ['skapet'],
+            'kjøleskap': ['kjøleskapet'],
+            'skrivebord': ['skrivebordet'],
+            'bilde': ['bildet'],
+            'speil': ['speilet'],
+            'eple': ['eplet'],
+            'egg': ['egget'],
+            'brød': ['brødet'],
+            'kjøtt': ['kjøttet'],
+            'sukker': ['sukkeret'],
+            'salt': ['saltet'],
+            'melk': ['melka', 'melken'],
+            'vann': ['vannet'],
+            'politi': ['politiet'],
+            'golf': ['golfen'],
+            'håndball': ['håndballen'],
+            'volleyball': ['volleyballen'],
+            'innebandy': ['innebandyen'],
+            'tennis': ['tennisen'],
+            'bordtennis': ['bordtennisen'],
+            'ishockey': ['ishockeyen'],
+            'rom': ['rommet'],
+            'videregående': ['videregående skole'],
+            'engelsk': ['engelsken'],
+            'historie': ['historia', 'historien'],
+            'kroppsøving': ['kroppsøvinga', 'kroppsøvingen'],
+            'religion / KRLE': ['religionen', 'KRLE-en']
+        };
+
+        function getNorwegianNounDefiniteForms(card) {
+            if (!card || !/^(el|la)\s/i.test(card.es) || !/^[^,()\s]+$/u.test(card.no)) return [];
+            if (norwegianNounDefiniteForms[card.no]) return norwegianNounDefiniteForms[card.no];
+            return [`${card.no}en`];
+        }
+
         function getVocabularyAcceptedAnswers(card, direction, primaryAnswer) {
             const alternatives = vocabularyAnswerAlternatives[`${card.no}|${direction}`];
-            return alternatives?.length ? alternatives : [{ answerId: 'primary', value: primaryAnswer, canonicalMeaningId: `${card.no}:${direction}` }];
+            if (alternatives?.length) return alternatives;
+            if (direction === 'es-no') {
+                const nounForms = getNorwegianNounDefiniteForms(card);
+                if (nounForms.length) {
+                    return [
+                        { answerId: 'primary', value: primaryAnswer, canonicalMeaningId: `${card.no}:${direction}` },
+                        ...nounForms.map((value, index) => ({ answerId: `noun-form-${index + 1}`, value, canonicalMeaningId: `${card.no}:${direction}` }))
+                    ];
+                }
+            }
+            return [{ answerId: 'primary', value: primaryAnswer, canonicalMeaningId: `${card.no}:${direction}` }];
         }
 
         // ============================================
@@ -1962,6 +2027,8 @@
                         ${answerControls}
                     </div>
                 `;
+                const diagnosisInput = document.getElementById('diagnosisAnswerInput');
+                if (diagnosisInput) setupAccentInput(diagnosisInput);
                 document.getElementById('diagnosisAnswerInput')?.focus();
                 return;
             }
@@ -2244,7 +2311,7 @@
             if (item.targetType !== 'word') return;
             const card = cards.find(candidate => String(candidate.id) === String(item.targetId));
             if (!card) return;
-            const direction = item.direction === 'no-es' ? 'noEs' : 'esNo';
+            const direction = ['no-es', 'noToEs'].includes(item.direction) ? 'noEs' : 'esNo';
             const source = card[direction];
             const quality = ['correct', 'accent_or_case_variant'].includes(resultKind) ? 2 : 0;
             const result = SM2.calculateNextReview(source, quality);
@@ -2266,7 +2333,8 @@
                         esToNo: normalizeLearningProgress({ schemaVersion: 1, wordProgress: { temp: { noToEs: null, esToNo: null } }, skillProgress: {} }, nowIso).wordProgress.temp.esToNo
                     };
                 }
-                progress.wordProgress[item.targetId][item.direction] = updateProgressCell(progress.wordProgress[item.targetId][item.direction], evaluation.resultKind, nowIso);
+                const progressDirection = item.direction === 'no-es' ? 'noToEs' : item.direction === 'es-no' ? 'esToNo' : item.direction;
+                progress.wordProgress[item.targetId][progressDirection] = updateProgressCell(progress.wordProgress[item.targetId][progressDirection], evaluation.resultKind, nowIso);
             } else {
                 progress.skillProgress[item.targetId] = updateProgressCell(progress.skillProgress[item.targetId], evaluation.resultKind, nowIso);
             }
@@ -4640,6 +4708,11 @@
             return normalized;
         }
 
+        function isVocabularyCardEligible(card) {
+            const norwegianPrompt = card.no || card.norsk || '';
+            return card.category !== 'verbbøying' && !/^bøying av verbet/i.test(norwegianPrompt);
+        }
+
         function init() {
             loadData();
             loadActiveAssignment();
@@ -4703,7 +4776,7 @@
                 ? `<div class="mixed-quiz-options">${choices.map(option => `<button type="button" class="btn btn-outline" data-mixed-answer="${escapeHtml(option.label)}">${escapeHtml(option.label)}</button>`).join('')}</div>`
                 : item.responseMode === 'select'
                     ? `<label class="mixed-quiz-select-label" for="mixedQuizSelect">Velg svar</label><select id="mixedQuizSelect" class="mixed-quiz-select"><option value="">Velg et svar …</option>${getSelectOptions(item).map(option => `<option value="${escapeHtml(option.label)}">${escapeHtml(option.label)}</option>`).join('')}</select><div class="button-group"><button type="button" class="btn btn-primary" onclick="submitMixedQuizSelectAnswer()">Sjekk svar</button></div>`
-                    : `<input id="mixedQuizAnswerInput" class="conjugation-input" autocomplete="off" placeholder="Skriv svaret" onkeydown="if(event.key === 'Enter') { event.preventDefault(); submitMixedQuizTypedAnswer(); }"><div class="button-group"><button type="button" class="btn btn-primary" onclick="submitMixedQuizTypedAnswer()">Sjekk svar</button></div>`;
+                    : `<input id="mixedQuizAnswerInput" class="conjugation-input" autocomplete="off" placeholder="Skriv svaret" onkeydown="if(event.key === 'Enter') { event.preventDefault(); event.stopPropagation(); submitMixedQuizTypedAnswer(); }"><div class="button-group"><button type="button" class="btn btn-primary" onclick="submitMixedQuizTypedAnswer()">Sjekk svar</button></div>`;
             container.innerHTML = `
                 <div class="mixed-quiz-question" data-response-mode="${item.responseMode}" data-accepted-answer="${escapeHtml(getDiagnosisAnswerValue(item.acceptedAnswers[0]))}">
                     <div class="mixed-quiz-type">${mixedQuizTypeLabel(item)}</div>
@@ -4714,6 +4787,8 @@
                     <div class="mixed-quiz-feedback" id="mixedQuizFeedback" aria-live="polite"></div>
                 </div>
             `;
+            const mixedQuizInput = container.querySelector('#mixedQuizAnswerInput');
+            if (mixedQuizInput) setupAccentInput(mixedQuizInput);
             if (item.direction === 'es-no') attachSpanishAudioControl(container, item.prompt);
             container.querySelectorAll('[data-mixed-answer]').forEach(button => {
                 button.addEventListener('click', () => submitMixedQuizAnswer(button.dataset.mixedAnswer));
@@ -4801,7 +4876,7 @@
                         : result.resultKind === 'near_miss'
                             ? `Nesten — riktig svar er: <strong>${escapeHtml(formatMixedQuizCorrectAnswers(item))}</strong>`
                             : `✗ Feil — riktig svar: <strong>${escapeHtml(formatMixedQuizCorrectAnswers(item))}</strong>`;
-                feedback.insertAdjacentHTML('beforeend', `<div class="button-group"><button type="button" class="btn btn-primary btn-sm mt-4" onclick="advanceMixedQuizQuestion()">${mixedQuizState.answered >= mixedQuizState.quiz.items.length ? 'Se resultat' : 'Neste'}</button></div>`);
+                feedback.insertAdjacentHTML('beforeend', `<div class="button-group"><button type="button" data-feedback-next class="btn btn-primary btn-sm mt-4" onclick="advanceMixedQuizQuestion()">${mixedQuizState.answered >= mixedQuizState.quiz.items.length ? 'Se resultat' : 'Neste'}</button></div>`);
             }
             document.querySelectorAll('#mixedQuizQuestion input, #mixedQuizQuestion button').forEach(control => {
                 if (!control.matches('#mixedQuizFeedback button')) control.disabled = true;
@@ -4887,10 +4962,11 @@
         function loadData() {
             const saved = readStoredJson('spansk123Data_v4', null);
             if (saved) {
-                cards = saved.map((card, index) => normalizeCard(card, index));
+                cards = saved.map((card, index) => normalizeCard(card, index)).filter(isVocabularyCardEligible);
                 mergeNewVocabulary();
+                saveData();
             } else {
-                cards = glossary.map((item, index) => ({
+                cards = glossary.filter(item => item[2] !== 'verbbøying' && !/^bøying av verbet/i.test(item[0])).map((item, index) => ({
                     id: index,
                     no: item[0],
                     es: item[1],
@@ -4921,6 +4997,7 @@
             glossary.forEach((item, index) => {
                 const [no, es, rawCategory] = item;
                 const category = normalizeLegacyCategory(rawCategory, no);
+                if (category === 'verbbøying' || /^bøying av verbet/i.test(no)) return;
                 const key = `${no.toLowerCase()}|||${es.toLowerCase()}`;
                 const existing = existingByPair.get(key);
 
@@ -4967,6 +5044,12 @@
                 if (diagnosisFeedback && e.key === 'Enter' && e.target?.id !== 'diagnosisAnswerInput') {
                     e.preventDefault();
                     advanceDiagnosisFeedback();
+                    return;
+                }
+                const feedbackNext = document.querySelector('[data-feedback-next]');
+                if (feedbackNext && e.key === 'Enter' && !e.ctrlKey && !e.metaKey && !e.altKey) {
+                    e.preventDefault();
+                    feedbackNext.click();
                     return;
                 }
                 // Undo shortcut (Ctrl+Z / Cmd+Z) in vocab
@@ -5661,7 +5744,7 @@ Vil du øve på ${pronoun} likevel?`
 
             if (evaluation.resultKind === 'correct') {
                 feedback.innerHTML = '<div class="grammar-feedback correct">✓ Riktig!</div>';
-                rateCard(2);
+                document.getElementById('buttonArea').innerHTML = '<div class="button-group"><button data-feedback-next class="btn btn-primary" onclick="rateCard(2)">Neste kort</button></div>';
                 return;
             }
 
@@ -5672,7 +5755,7 @@ Vil du øve på ${pronoun} likevel?`
             `;
             document.getElementById('buttonArea').innerHTML = `
                 <div class="button-group">
-                    <button class="btn btn-primary" onclick="rateCard(0)">Neste kort</button>
+                    <button data-feedback-next class="btn btn-primary" onclick="rateCard(0)">Neste kort</button>
                 </div>
             `;
         }
@@ -5686,7 +5769,7 @@ Vil du øve på ${pronoun} likevel?`
             const isCorrect = isTypedVocabAnswerCorrect(select.value, expected, getVocabularyAcceptedAnswers(currentCard.card, currentCard.direction, expected).map(item => item.value)).correct;
             select.disabled = true;
             feedback.innerHTML = isCorrect ? '<div class="grammar-feedback correct">✓ Riktig!</div>' : `<div class="grammar-feedback incorrect">✗ Riktig svar: <strong>${escapeHtml(expected)}</strong></div>`;
-            document.getElementById('buttonArea').innerHTML = `<div class="button-group"><button class="btn btn-primary" onclick="rateCard(${isCorrect ? 2 : 0})">Neste kort</button></div>`;
+            document.getElementById('buttonArea').innerHTML = `<div class="button-group"><button data-feedback-next class="btn btn-primary" onclick="rateCard(${isCorrect ? 2 : 0})">Neste kort</button></div>`;
         }
 
         function rateCard(quality) {
@@ -6317,17 +6400,12 @@ Vil du øve på ${pronoun} likevel?`
             verbAnswerPending = true;
             
             if (evaluation.resultKind === 'correct') {
-                feedback.textContent = '✓ Riktig!';
+                feedback.innerHTML = '✓ Riktig!<div class="button-group"><button data-feedback-next class="btn btn-primary btn-sm mt-4" onclick="advanceVerbExercise()">Neste</button></div>';
                 feedback.className = 'conjugation-feedback correct';
                 input.classList.add('correct');
                 input.classList.remove('incorrect');
                 verbStats.correct++;
                 
-                setTimeout(() => {
-                    verbCurrentIndex++;
-                    verbAnswerPending = false;
-                    showVerbExercise();
-                }, 1000);
             } else {
                 feedback.innerHTML = evaluation.resultKind === 'accent_or_case_variant'
                     ? `Nesten riktig — sjekk aksenten. Riktig svar: <strong>${expected}</strong>`
@@ -6339,12 +6417,14 @@ Vil du øve på ${pronoun} likevel?`
                 // Show full conjugation table
                 showConjugationTable();
                 
-                setTimeout(() => {
-                    verbCurrentIndex++;
-                    verbAnswerPending = false;
-                    showVerbExercise();
-                }, 3000);
+                feedback.insertAdjacentHTML('beforeend', '<div class="button-group"><button data-feedback-next class="btn btn-primary btn-sm mt-4" onclick="advanceVerbExercise()">Neste</button></div>');
             }
+        }
+
+        function advanceVerbExercise() {
+            verbCurrentIndex++;
+            verbAnswerPending = false;
+            showVerbExercise();
         }
 
         function showVerbHint() {
@@ -6898,44 +6978,11 @@ Vil du øve på ${pronoun} likevel?`
         }
 
         function exportProgress() {
-            const data = { cards, exportDate: new Date().toISOString(), version: 'spansk123_v4' };
-            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `spansk_fremgang_${new Date().toISOString().split('T')[0]}.json`;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
-            markProgressExported();
+            exportAllProgress();
         }
 
         function importProgress() {
-            const input = document.createElement('input');
-            input.type = 'file';
-            input.accept = '.json';
-            input.onchange = (e) => {
-                const file = e.target.files[0];
-                if (!file) return;
-                const reader = new FileReader();
-                reader.onload = (event) => {
-                    try {
-                        const data = JSON.parse(event.target.result);
-                        if (!data.cards) { alert('Ugyldig fil!'); return; }
-                        if (confirm(`Importere data? Dette vil overskrive nåværende fremgang.`)) {
-                            cards = data.cards;
-                            mergeNewVocabulary();
-                            saveData();
-                            updateStats();
-                            populateCategories();
-                            alert('Import fullført!');
-                        }
-                    } catch (err) { alert('Feil ved import: ' + err.message); }
-                };
-                reader.readAsText(file);
-            };
-            input.click();
+            importProgressFile();
         }
 
         // ============================================
@@ -6951,6 +6998,8 @@ Vil du øve på ${pronoun} likevel?`
         let longPressTimer = null;
 
         function setupAccentInput(inputElement) {
+            if (!inputElement || inputElement.dataset.accentInputReady === 'true') return;
+            inputElement.dataset.accentInputReady = 'true';
             inputElement.addEventListener('keydown', (e) => {
                 const key = e.key;
                 
@@ -6998,6 +7047,17 @@ Vil du øve på ${pronoun} likevel?`
                     longPressTimer = null;
                 }
             });
+        }
+
+        function setupAccentInputs(root = document) {
+            const scope = root.querySelectorAll ? root : document;
+            scope.querySelectorAll('input:not([type]), input[type="text"], textarea').forEach(setupAccentInput);
+        }
+
+        setupAccentInputs();
+        if (!window.accentInputObserver) {
+            window.accentInputObserver = new MutationObserver(() => setupAccentInputs());
+            window.accentInputObserver.observe(document.body, { childList: true, subtree: true });
         }
 
         function insertCharacter(input, char) {
@@ -7682,7 +7742,7 @@ Vil du øve på ${pronoun} likevel?`
                 document.getElementById('grammarFeedback').innerHTML = `
                     <div class="grammar-feedback correct">
                         ✓ Riktig!
-                        <button class="btn btn-primary btn-sm mt-4" onclick="advanceGrammarExercise()" id="grammarNextBtn" aria-keyshortcuts="Enter">Neste</button>
+                        <button data-feedback-next class="btn btn-primary btn-sm mt-4" onclick="advanceGrammarExercise()" id="grammarNextBtn" aria-keyshortcuts="Enter">Neste</button>
                     </div>
                 `;
             } else {
@@ -7695,7 +7755,7 @@ Vil du øve på ${pronoun} likevel?`
                         ✗ Feil! Riktig svar er: <strong>${exercise.answer}</strong>
                         <div class="explanation">${exercise.hint}</div>
                         <div class="explanation"><strong>Hvorfor?</strong> ${getGrammarMistakeExplanation(currentGrammarTopic.id).replace(/^Hvorfor\?\s*/, '')}</div>
-                        <button class="btn btn-primary btn-sm mt-4" onclick="advanceGrammarExercise()" id="grammarNextBtn" aria-keyshortcuts="Enter">Neste</button>
+                        <button data-feedback-next class="btn btn-primary btn-sm mt-4" onclick="advanceGrammarExercise()" id="grammarNextBtn" aria-keyshortcuts="Enter">Neste</button>
                     </div>
                 `;
                 document.getElementById('grammarNextBtn').focus();

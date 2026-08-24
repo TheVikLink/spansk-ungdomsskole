@@ -102,6 +102,10 @@ for (const question of questions) {
     for (const answer of question.acceptedAnswers || []) {
       if (!optionIds.has(answer.answerId)) failures.push(`Question ${question.id} accepted answer ${answer.answerId} is not an option`);
     }
+    const acceptedOptionCount = (question.options || []).filter(option =>
+      (question.acceptedAnswers || []).some(answer => answer.answerId === option.optionId)
+    ).length;
+    if (acceptedOptionCount !== 1) failures.push(`Choice question ${question.id} must have exactly one accepted option, found ${acceptedOptionCount}`);
   }
   if (question.targetType === 'skill' && !skillIds.has(question.targetId)) failures.push(`Question ${question.id} targets unknown skill ${question.targetId}`);
   if (question.targetType === 'word') {

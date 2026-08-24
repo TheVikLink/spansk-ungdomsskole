@@ -170,8 +170,8 @@ test.describe('student learning flow audit', () => {
     });
     await expect(page.locator('#categoryGrid')).not.toContainText('Kapittel 7');
     await expect(page.locator('#categoryGrid')).not.toContainText('Kapittel 8');
-    await expect(page.locator('#chapterFocusGrid')).not.toContainText('Kapittel 7');
-    await expect(page.locator('#chapterFocusGrid')).not.toContainText('Kapittel 8');
+    await expect(page.locator('text=Kapittel 7')).toHaveCount(0);
+    await expect(page.locator('text=Kapittel 8')).toHaveCount(0);
   });
 
   test('explains all Brainmap colors and keeps strength hidden for unstarted nodes', async ({ page }) => {

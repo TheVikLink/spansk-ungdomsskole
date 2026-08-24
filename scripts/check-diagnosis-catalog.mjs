@@ -28,6 +28,8 @@ for (const question of questions) {
     if (options.length < 2 || optionIds.size !== options.length) failures.push(`${question.id}: invalid options`);
     if (options.some(option => !option.optionId || !option.label)) failures.push(`${question.id}: malformed option`);
     if (answers.some(answer => !optionIds.has(answer.answerId))) failures.push(`${question.id}: accepted answer is not an option`);
+    const acceptedOptionCount = options.filter(option => answers.some(answer => answer.answerId === option.optionId)).length;
+    if (acceptedOptionCount !== 1) failures.push(`${question.id}: expected exactly one accepted option, found ${acceptedOptionCount}`);
   }
 }
 
