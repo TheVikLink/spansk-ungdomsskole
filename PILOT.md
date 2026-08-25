@@ -23,17 +23,17 @@ Elevene tar dagens blandede quiz individuelt. Den kombinerer ordforråd, grammat
 
 Lærerens observasjonspunkt: Får elevene tilstrekkelig kontekst til å vite hvilket svar som forventes? Noter eventuelle riktige synonymer som mangler.
 
-### 2. Verbduell i par – 10–15 minutter
+### 2. Adaptiv gloselæring – 5–10 minutter
 
-To elever velger samme verbfokus. Elev A leser person og tid, elev B svarer i verbmodus. Bytt etter fem oppgaver. Ved feil bruker elevene bøyingstabellen som forklaring, ikke som første hint.
+Elevene velger en adaptiv gloseøkt. Systemet blander nye ord og repetisjon, og bruker smart repetisjon til å prioritere hva eleven bør møte igjen. Eleven svarer begge veier, norsk → spansk og spansk → norsk, og vurderer eller gjennomfører oppgavene i appens eksisterende flyt.
 
-Lærerens observasjonspunkt: Er det person, tid og infinitiv tydelig nok før eleven svarer?
+Lærerens observasjonspunkt: Opplever eleven at vanskelige ord kommer tilbake, mens ord som sitter får lengre mellomrom? Kontroller også at eleven forstår forskjellen på nye ord og repetisjon.
 
-### 3. Gloseinnsjekk – 5 minutter
+### 3. Egen verb- eller grammatikkøkt – 10 minutter
 
-Elevene velger «Lære nye ord» eller «Repetere ord». Avslutt med at hver elev skriver ned ett ord de husket og ett ord de svarte feil på. Elevene kan sende inn anonym tilbakemelding på svar de mener ble vurdert feil.
+Elevene velger enten Verb eller Grammatikk i appen. I Verb øver de på bøying i tilgjengelige verbtider med appens svar- og feedbackflyt. I Grammatikk arbeider de med korte, tematiske oppgaver og får forklaring ved behov.
 
-Lærerens observasjonspunkt: Skill mellom manglende kunnskap, manglende aksent og et svar som faktisk burde vært godkjent som synonym eller bøyd form.
+Lærerens observasjonspunkt: Skill mellom manglende kunnskap, manglende aksent og et svar som faktisk burde vært godkjent som synonym eller bøyd form. Ikke legg til parøvelser eller andre arbeidsformer som ikke finnes i appen.
 
 ## Personvern i piloten
 
