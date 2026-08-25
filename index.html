@@ -5536,6 +5536,34 @@
             return item.direction === 'no-es' ? item.card.es : item.card.no;
         }
 
+        function getDisplayAnswerText(item) {
+            const raw = getExpectedAnswerText(item);
+            return String(raw).replace(/\s*\([^)]*\)/g, '').trim();
+        }
+
+        function getCardSynonymHint(item, cardList = cards) {
+            const card = item.card;
+            const direction = item.direction;
+            const promptBase = direction === 'no-es' ? card.no : card.es;
+            const answerBase = direction === 'no-es' ? card.es : card.no;
+            const cleanPrompt = promptBase.replace(/\s*\([^)]*\)/g, '').trim();
+
+            const synonyms = cardList
+                .filter(other => {
+                    if (other.id === card.id) return false;
+                    const otherPrompt = direction === 'no-es' ? other.no : other.es;
+                    const otherAnswer = direction === 'no-es' ? other.es : other.no;
+                    const otherClean = otherPrompt.replace(/\s*\([^)]*\)/g, '').trim();
+                    return otherClean === cleanPrompt && otherAnswer !== answerBase;
+                })
+                .map(other => direction === 'no-es' ? other.es : other.no);
+
+            if (synonyms.length === 0) return null;
+            const unique = [...new Set(synonyms)];
+            const promptLabel = direction === 'no-es' ? cleanPrompt : answerBase.replace(/\s*\([^)]*\)/g, '').trim();
+            return `Et annet ord for ${promptLabel} er ${unique.join(' og ')}`;
+        }
+
         function normalizeTypedAnswer(text) {
             return String(text || '').trim().toLocaleLowerCase('es-ES');
         }
@@ -5968,7 +5996,8 @@ Vil du øve på ${pronoun} likevel?`
             const srData = direction === 'no-es' ? card.noEs : card.esNo;
             const isNew = srData.repetitions === 0;
             const front = getVocabPromptText(item);
-            const back = getExpectedAnswerText(item);
+            const back = getDisplayAnswerText(item);
+            const synonymHint = getCardSynonymHint(item);
             const intervals = [0, 1, 2, 3].map(q => SM2.getIntervalText(q, srData));
             
             const cardTypeLabel = isCustomStudySession ? 'Ekstraøving' : (isNew ? 'Nytt kort' : 'Repetisjon');
@@ -5983,6 +6012,7 @@ Vil du øve på ${pronoun} likevel?`
                     </span>
                     <div class="card-word mb-2 text-lg text-gray-500">${front}</div>
                     <div class="card-answer">${back}</div>
+                    ${synonymHint ? `<div class="card-synonym-hint text-sm text-gray-400 mt-2">${escapeHtml(synonymHint)}</div>` : ''}
                     <span class="card-category">${getCategoryEmoji(card.category)} ${capitalizeFirst(card.category)}</span>
                 </div>
                 ${direction === 'no-es' ? '<button type="button" class="speech-audio-button btn btn-secondary btn-sm" data-speak-spanish>🔊 Spill av</button>' : ''}

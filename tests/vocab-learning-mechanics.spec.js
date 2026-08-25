@@ -376,6 +376,66 @@ test.describe('vocabulary learning mechanics', () => {
     expect(result.zumo).not.toEqual(result.jugo);
   });
 
+  test('shows clean form without parenthetical on card back in es-no direction', async ({ page }) => {
+    await page.goto(appUrl);
+
+    const result = await page.evaluate(() => {
+      const card = { id: 1, no: 'begravelse (f)', es: 'el Funeral' };
+      return {
+        esNoBack: getDisplayAnswerText({ card, direction: 'es-no' }),
+        noEsBack: getDisplayAnswerText({ card, direction: 'no-es' })
+      };
+    });
+
+    expect(result.esNoBack).toBe('begravelse');
+    expect(result.noEsBack).toBe('el Funeral');
+  });
+
+  test('shows synonym hint for words with multiple Spanish translations', async ({ page }) => {
+    await page.goto(appUrl);
+
+    const result = await page.evaluate(() => {
+      localStorage.clear();
+      loadData();
+      const card = cards.find(c => c.no === 'begravelse (f)');
+      if (!card) return null;
+      return getCardSynonymHint({ card, direction: 'no-es' });
+    });
+
+    expect(result).toBeTruthy();
+    expect(result).toContain('begravelse');
+    expect(result).toContain('entierro');
+  });
+
+  test('shows synonym hint for words with multiple Norwegian translations', async ({ page }) => {
+    await page.goto(appUrl);
+
+    const result = await page.evaluate(() => {
+      localStorage.clear();
+      loadData();
+      const card = cards.find(c => c.es === 'la clase' && c.no === 'skoletime');
+      if (!card) return null;
+      return getCardSynonymHint({ card, direction: 'es-no' });
+    });
+
+    expect(result).toBeTruthy();
+    expect(result).toContain('skoleklasse');
+  });
+
+  test('returns null synonym hint for words without glossary synonyms', async ({ page }) => {
+    await page.goto(appUrl);
+
+    const result = await page.evaluate(() => {
+      localStorage.clear();
+      loadData();
+      const card = cards.find(c => c.no === 'hund' || c.no === 'bror');
+      if (!card) return 'no card';
+      return getCardSynonymHint({ card, direction: 'no-es' });
+    });
+
+    expect(result).toBeNull();
+  });
+
   test('leech cards are prioritized before normal due cards, even when future scheduled', async ({ page }) => {
     await page.goto(appUrl);
 
