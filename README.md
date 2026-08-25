@@ -69,6 +69,8 @@ Målet for første pilot er å gi spansklærere et lavterskel supplement til und
 - Best egnet for gloser, repetisjon, verb, grammatikk og korte øvingsøkter i eller mellom timer
 - Feide, lærerinnlogging og skole-/kommuneadministrasjon vurderes som en senere fase etter egen personvern- og datamodell
 
+Se [PILOT.md](PILOT.md) for ferdig lærerpitch, tre pilotaktiviteter, personvernforklaring, evalueringsspørsmål og pilotens suksesskriterier.
+
 ## 🛠️ Oppsett for lærere
 
 ### 1. Bruk standard lokal pilotflyt
