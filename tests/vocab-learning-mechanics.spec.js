@@ -161,6 +161,16 @@ test.describe('vocabulary learning mechanics', () => {
     ]));
   });
 
+  test('accepts Norwegian synonyms and Spanish school abbreviation variants', async ({ page }) => {
+    await page.goto(appUrl);
+    const answers = await page.evaluate(() => ({
+      responsible: getVocabularyAcceptedAnswers({ no: 'ansvarsfull', es: 'responsable' }, 'es-no', 'ansvarsfull').map(answer => answer.value),
+      school: getVocabularyAcceptedAnswers({ no: 'ungdomsskolen', es: 'la E.S.O' }, 'no-es', 'la E.S.O').map(answer => answer.value)
+    }));
+    expect(answers.responsible).toEqual(expect.arrayContaining(['ansvarlig', 'ansvarsfull']));
+    expect(answers.school).toEqual(expect.arrayContaining(['la E.S.O.', 'la escuela secundaria']));
+  });
+
   test('keeps equivalent vivir meanings distinct and accepts both Norwegian prompts', async ({ page }) => {
     await page.goto(appUrl);
     const answers = await page.evaluate(() => ({
