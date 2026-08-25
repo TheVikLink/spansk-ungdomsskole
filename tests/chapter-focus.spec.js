@@ -34,4 +34,18 @@ test.describe('vocabulary category cleanup', () => {
     await expect(page.locator('text=Kapittel 7')).toHaveCount(0);
     await expect(page.locator('text=Kapittel 8')).toHaveCount(0);
   });
+
+  test('keeps category selection secondary to the learner-first practice modes', async ({ page }) => {
+    await page.goto(appUrl);
+    await page.evaluate(() => {
+      localStorage.clear();
+      studentName = 'Elev 5';
+      showMainApp();
+      showPage('vocab');
+    });
+
+    await expect(page.locator('.vocab-mode-card')).toHaveCount(3);
+    await expect(page.locator('#vocabCategoryDisclosure')).not.toHaveAttribute('open', '');
+    await expect(page.getByRole('button', { name: /Repetere ord Øv på alle/, exact: false })).toBeVisible();
+  });
 });
