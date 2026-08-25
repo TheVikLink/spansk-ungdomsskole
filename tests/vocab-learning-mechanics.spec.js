@@ -168,8 +168,22 @@ test.describe('vocabulary learning mechanics', () => {
       school: getVocabularyAcceptedAnswers({ no: 'ungdomsskolen', es: 'la E.S.O' }, 'no-es', 'la E.S.O').map(answer => answer.value)
     }));
     expect(answers.responsible).toEqual(expect.arrayContaining(['ansvarlig', 'ansvarsfull']));
-    expect(answers.school).toEqual(expect.arrayContaining(['la E.S.O.', 'la escuela secundaria']));
-  });
+  expect(answers.school).toEqual(expect.arrayContaining(['la E.S.O.', 'la escuela secundaria']));
+});
+
+test('keeps a held accent key alive while typing the next letter', async ({ page }) => {
+  await page.goto(appUrl);
+  await page.setContent('<input id="accent-sequence-test" autocomplete="off">');
+  await page.evaluate(() => setupAccentInput(document.getElementById('accent-sequence-test')));
+  const input = page.locator('#accent-sequence-test');
+  await input.focus();
+  await page.keyboard.down('e');
+  await page.waitForTimeout(100);
+  await page.keyboard.press('n');
+  await page.waitForTimeout(350);
+  await page.keyboard.up('e');
+  await expect(input).toHaveValue('én');
+});
 
   test('keeps equivalent vivir meanings distinct and accepts both Norwegian prompts', async ({ page }) => {
     await page.goto(appUrl);

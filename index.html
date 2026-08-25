@@ -7316,11 +7316,10 @@ Vil du øve på ${pronoun} likevel?`
             '?': '¿', '!': '¡'
         };
 
-        let longPressTimer = null;
-
         function setupAccentInput(inputElement) {
             if (!inputElement || inputElement.dataset.accentInputReady === 'true') return;
             inputElement.dataset.accentInputReady = 'true';
+            const longPressTimers = new Map();
             inputElement.addEventListener('keydown', (e) => {
                 const key = e.key;
                 
@@ -7337,24 +7336,25 @@ Vil du øve på ${pronoun} likevel?`
                 }
                 
                 // Clear any existing timer
-                if (longPressTimer) {
-                    clearTimeout(longPressTimer);
-                    longPressTimer = null;
+                if (longPressTimers.has(key)) {
+                    clearTimeout(longPressTimers.get(key));
+                    longPressTimers.delete(key);
                 }
                 
                 const start = inputElement.selectionStart;
                 insertCharacter(inputElement, key);
                 const insertedPosition = start + 1;
 
-                longPressTimer = setTimeout(() => {
+                const timer = setTimeout(() => {
                     const value = inputElement.value;
                     const insertedChar = value.charAt(insertedPosition - 1);
                     if (insertedChar === key) {
                         inputElement.value = value.substring(0, insertedPosition - 1) + accentMap[key] + value.substring(insertedPosition);
                         inputElement.selectionStart = inputElement.selectionEnd = insertedPosition;
                     }
-                    longPressTimer = null;
+                    longPressTimers.delete(key);
                 }, 400);
+                longPressTimers.set(key, timer);
             });
 
             inputElement.addEventListener('keyup', (e) => {
@@ -7363,9 +7363,9 @@ Vil du øve på ${pronoun} likevel?`
                 if (!accentMap[key]) return;
                 
                 // Cancel the accent replacement if key released quickly
-                if (longPressTimer) {
-                    clearTimeout(longPressTimer);
-                    longPressTimer = null;
+                if (longPressTimers.has(key)) {
+                    clearTimeout(longPressTimers.get(key));
+                    longPressTimers.delete(key);
                 }
             });
         }
