@@ -10,6 +10,7 @@
     "check:diagnosis-catalog": "node scripts/check-diagnosis-catalog.mjs",
     "check:content": "node scripts/check-content-quality.mjs",
     "check:content-accuracy": "node scripts/check-content-accuracy.mjs",
+    "build:corpus": "node scripts/build-reference-corpus.mjs",
     "extract:items": "node scripts/extract-all-items.mjs",
     "test:content-accuracy": "playwright test tests/content-accuracy-audit.spec.js --browser chromium",
     "test:backup-privacy": "playwright test tests/backup-privacy.spec.js --browser chromium",

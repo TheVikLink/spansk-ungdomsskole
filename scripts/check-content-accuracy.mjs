@@ -9,6 +9,14 @@ function fail(checkId, message) {
   failures.push(`[${checkId}] ${message}`);
 }
 
+// Load reference corpus if available
+let referenceCorpus = null;
+try {
+  referenceCorpus = JSON.parse(readFileSync('scripts/reference-corpus.json', 'utf8'));
+} catch {
+  // corpus not yet built; corpus-dependent checks will be skipped
+}
+
 // --- Check 1: parenthetical-annotation-has-clean-form ---
 // Every glossary `no` containing a parenthetical annotation must have a
 // vocabularyAnswerAlternatives entry that lists the clean form as accepted.
@@ -269,6 +277,101 @@ for (const exercise of items.grammar) {
   }
 }
 
+// --- Corpus-dependent checks (run only if reference corpus is available) ---
+
+let corpusChecksRan = 0;
+let corpusChecksSkipped = [];
+
+if (referenceCorpus) {
+  // Replicate getVocabularyAcceptedAnswers logic from the app
+  function getAcceptedAnswersForCard(card, direction) {
+    const altKey = `${card.no}|${direction}`;
+    const alternatives = items.vocabularyAnswerAlternatives[altKey];
+    if (alternatives?.length) return alternatives.map(a => a.value);
+
+    if (direction === 'es-no') {
+      // Check definite forms for el/la nouns
+      if (/^(el|la)\s/i.test(card.es) && /^[^,()\s]+$/u.test(card.no)) {
+        const explicit = items.norwegianNounDefiniteForms[card.no];
+        if (explicit) return [card.no, ...explicit];
+        const autoForm = card.no.endsWith('e') ? `${card.no}n` : `${card.no}en`;
+        return [card.no, autoForm];
+      }
+    }
+    return [direction === 'no-es' ? card.es : card.no];
+  }
+
+  function normalize(text) {
+    return String(text || '').trim().toLowerCase().replace(/\s+/g, ' ');
+  }
+
+  // --- Check 14: synonym-coverage-no-to-es ---
+  // For each glossary `no`, check that all valid Spanish translations in the
+  // corpus are accepted in the no-es direction.
+  for (const card of items.glossary) {
+    const validEs = referenceCorpus.noToEs[card.no];
+    if (!validEs || validEs.length <= 1) continue;
+
+    for (const es of validEs) {
+      if (normalize(es) === normalize(card.es)) continue; // canonical already accepted
+      const accepted = getAcceptedAnswersForCard(card, 'no-es').map(normalize);
+      if (!accepted.includes(normalize(es))) {
+        fail('synonym-coverage-no-to-es',
+          `"${card.no}" should accept "${es}" (from reference corpus) but only accepts [${accepted.join(', ')}]`);
+      }
+    }
+  }
+  corpusChecksRan++;
+
+  // --- Check 15: synonym-coverage-es-to-no ---
+  // For each glossary `es`, check that all valid Norwegian translations in the
+  // corpus are accepted in the es-no direction.
+  for (const card of items.glossary) {
+    const validNo = referenceCorpus.esToNo[card.es];
+    if (!validNo || validNo.length <= 1) continue;
+
+    for (const no of validNo) {
+      if (normalize(no) === normalize(card.no)) continue; // canonical already accepted
+      const accepted = getAcceptedAnswersForCard(card, 'es-no').map(normalize);
+      if (!accepted.includes(normalize(no))) {
+        fail('synonym-coverage-es-to-no',
+          `"${card.es}" should accept "${no}" (from reference corpus) but only accepts [${accepted.join(', ')}]`);
+      }
+    }
+  }
+  corpusChecksRan++;
+
+  // --- Check 16: corpus-orphan ---
+  // Flag reference corpus entries that don't exist in the glossary.
+  const glossaryNos = new Set(items.glossary.map(c => c.no));
+  const glossaryEss = new Set(items.glossary.map(c => c.es));
+  for (const no of Object.keys(referenceCorpus.noToEs)) {
+    if (!glossaryNos.has(no)) {
+      // Allow clean forms of parenthetical annotations
+      const cleanMatch = items.glossary.some(c => c.no.replace(/\s*\([^)]*\)/g, '').trim() === no);
+      if (!cleanMatch) {
+        fail('corpus-orphan',
+          `Reference corpus noToEs key "${no}" is not in the glossary`);
+      }
+    }
+  }
+  for (const es of Object.keys(referenceCorpus.esToNo)) {
+    if (!glossaryEss.has(es)) {
+      fail('corpus-orphan',
+        `Reference corpus esToNo key "${es}" is not in the glossary`);
+    }
+  }
+  corpusChecksRan++;
+} else {
+  corpusChecksSkipped = [
+    'synonym-coverage-no-to-es (requires reference corpus: run npm run build:corpus)',
+    'synonym-coverage-es-to-no (requires reference corpus: run npm run build:corpus)',
+    'corpus-orphan (requires reference corpus)',
+    'translation-idiomaticity (requires expert review)',
+    'distractor-validity-in-context (requires semantic analysis)'
+  ];
+}
+
 // --- Report ---
 const mechanicalChecks = [
   'parenthetical-annotation-has-clean-form',
@@ -287,7 +390,9 @@ const mechanicalChecks = [
 ];
 
 const corpusDependentChecks = [
-  'synonym-coverage (requires expert-curated reference corpus)',
+  'synonym-coverage-no-to-es',
+  'synonym-coverage-es-to-no',
+  'corpus-orphan',
   'translation-idiomaticity (requires expert review)',
   'distractor-validity-in-context (requires semantic analysis)'
 ];
@@ -295,10 +400,16 @@ const corpusDependentChecks = [
 if (failures.length > 0) {
   console.error('Content accuracy check FAILED:\n');
   console.error(failures.join('\n'));
-  console.error(`\n${failures.length} failure(s) across ${mechanicalChecks.length} mechanical checks.`);
-  console.error(`\nCorpus-dependent checks skipped (need reference data): ${corpusDependentChecks.join(', ')}`);
+  const totalChecks = mechanicalChecks.length + corpusChecksRan;
+  console.error(`\n${failures.length} failure(s) across ${totalChecks} checks.`);
+  if (corpusChecksSkipped.length > 0) {
+    console.error(`\nCorpus-dependent checks skipped: ${corpusChecksSkipped.join(', ')}`);
+  }
   process.exit(1);
 }
 
-console.log(`Content accuracy check passed (${mechanicalChecks.length} mechanical checks, ${items.glossary.length} glossary items, ${items.grammar.length} grammar exercises, ${items.verbs.length} verbs, ${items.sentencePuzzles.length} puzzles).`);
-console.log(`Corpus-dependent checks skipped (need reference data): ${corpusDependentChecks.join(', ')}`);
+const totalChecks = mechanicalChecks.length + corpusChecksRan;
+console.log(`Content accuracy check passed (${totalChecks} checks: ${mechanicalChecks.length} mechanical + ${corpusChecksRan} corpus-based, ${items.glossary.length} glossary items, ${items.grammar.length} grammar exercises, ${items.verbs.length} verbs, ${items.sentencePuzzles.length} puzzles).`);
+if (corpusChecksSkipped.length > 0) {
+  console.log(`Corpus-dependent checks skipped: ${corpusChecksSkipped.join(', ')}`);
+}

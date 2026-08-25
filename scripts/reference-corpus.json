@@ -1,0 +1,3259 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-08-25T06:55:47.069Z",
+  "noToEs": {
+    "1": [
+      "uno"
+    ],
+    "2": [
+      "dos"
+    ],
+    "3": [
+      "tres"
+    ],
+    "4": [
+      "cuatro"
+    ],
+    "5": [
+      "cinco"
+    ],
+    "6": [
+      "seis"
+    ],
+    "7": [
+      "siete"
+    ],
+    "8": [
+      "ocho"
+    ],
+    "9": [
+      "nueve"
+    ],
+    "10": [
+      "diez"
+    ],
+    "11": [
+      "once"
+    ],
+    "12": [
+      "doce"
+    ],
+    "13": [
+      "trece"
+    ],
+    "14": [
+      "catorce"
+    ],
+    "15": [
+      "quince"
+    ],
+    "16": [
+      "dieciséis"
+    ],
+    "17": [
+      "diecisiete"
+    ],
+    "18": [
+      "dieciocho"
+    ],
+    "19": [
+      "diecinueve"
+    ],
+    "20": [
+      "veinte"
+    ],
+    "26": [
+      "veintiséis"
+    ],
+    "30": [
+      "treinta"
+    ],
+    "39": [
+      "treinta y nueve"
+    ],
+    "40": [
+      "cuarenta"
+    ],
+    "43": [
+      "cuarenta y tres"
+    ],
+    "50": [
+      "cincuenta"
+    ],
+    "54": [
+      "cincuenta y cuatro"
+    ],
+    "60": [
+      "sesenta"
+    ],
+    "62": [
+      "sesenta y dos"
+    ],
+    "70": [
+      "setenta"
+    ],
+    "78": [
+      "setenta y ocho"
+    ],
+    "80": [
+      "ochenta"
+    ],
+    "87": [
+      "ochenta y siete"
+    ],
+    "90": [
+      "noventa"
+    ],
+    "91": [
+      "noventa y uno"
+    ],
+    "100": [
+      "cien"
+    ],
+    "110": [
+      "ciento diez"
+    ],
+    "123": [
+      "ciento veintitrés"
+    ],
+    "200": [
+      "doscientos"
+    ],
+    "245": [
+      "doscientos cuarenta y cinco"
+    ],
+    "300": [
+      "trescientos"
+    ],
+    "400": [
+      "cuatrocientos"
+    ],
+    "500": [
+      "quinientos"
+    ],
+    "600": [
+      "seiscientos"
+    ],
+    "700": [
+      "setecientos"
+    ],
+    "800": [
+      "ochocientos"
+    ],
+    "870": [
+      "ochocientos setenta"
+    ],
+    "900": [
+      "novecientos"
+    ],
+    "1000": [
+      "mil"
+    ],
+    "1200": [
+      "mil doscientos"
+    ],
+    "1589": [
+      "mil quinientos ochenta y nueve"
+    ],
+    "1945": [
+      "mil novecientos cuarenta y cinco"
+    ],
+    "1996": [
+      "mil novecientos noventa y seis"
+    ],
+    "2000": [
+      "dos mil"
+    ],
+    "2011": [
+      "dos mil once"
+    ],
+    "2019": [
+      "dos mil diecinueve"
+    ],
+    "4000": [
+      "cuatro mil"
+    ],
+    "10 000": [
+      "diez mil"
+    ],
+    "Gratulerer med dagen": [
+      "¡Feliz cumpleaños!"
+    ],
+    "Når har du bursdag?": [
+      "¿Cuándo es tu cumpleaños?"
+    ],
+    "Bursdagen min er 7. juli": [
+      "Mi cumpleaños es el siete de julio"
+    ],
+    "Når er bursdagen til Marius?": [
+      "¿Cuándo es el cumpleaños de Marius?"
+    ],
+    "Bursdagen til Marius er 26. juni": [
+      "El cumpleaños de Marius es el veintiséis de junio"
+    ],
+    "hei": [
+      "hola"
+    ],
+    "takk": [
+      "gracias"
+    ],
+    "god morgen": [
+      "buenos días"
+    ],
+    "god dag": [
+      "buenos días"
+    ],
+    "god kveld": [
+      "buenas noches",
+      "buenas tardes"
+    ],
+    "ha det": [
+      "adiós",
+      "hasta luego"
+    ],
+    "Norge": [
+      "Noruega"
+    ],
+    "Sverige": [
+      "Suecia"
+    ],
+    "Danmark": [
+      "Dinamarca"
+    ],
+    "Finland": [
+      "Finlandia"
+    ],
+    "Island": [
+      "Islandia"
+    ],
+    "Russland": [
+      "Rusia"
+    ],
+    "Tyskland": [
+      "Alemania"
+    ],
+    "Østerrike": [
+      "Austria"
+    ],
+    "Nederland": [
+      "Los Países Bajos"
+    ],
+    "Frankrike": [
+      "Francia"
+    ],
+    "Italia": [
+      "Italia"
+    ],
+    "Belgia": [
+      "Bélgica"
+    ],
+    "Spania": [
+      "España"
+    ],
+    "Portugal": [
+      "Portugal"
+    ],
+    "England": [
+      "Inglaterra"
+    ],
+    "Irland": [
+      "Irlanda"
+    ],
+    "Hellas": [
+      "Grecia"
+    ],
+    "Sveits": [
+      "Suiza"
+    ],
+    "rød": [
+      "rojo"
+    ],
+    "blå": [
+      "azul"
+    ],
+    "gul": [
+      "amarillo"
+    ],
+    "grønn": [
+      "verde"
+    ],
+    "grå": [
+      "gris"
+    ],
+    "brun": [
+      "marrón"
+    ],
+    "hvit": [
+      "blanco"
+    ],
+    "svart": [
+      "negro"
+    ],
+    "rosa": [
+      "rosa"
+    ],
+    "lilla (v)": [
+      "violeta"
+    ],
+    "oransje": [
+      "naranja"
+    ],
+    "turkis": [
+      "turquesa"
+    ],
+    "vinter": [
+      "el invierno"
+    ],
+    "vår": [
+      "la primavera"
+    ],
+    "sommer": [
+      "el verano"
+    ],
+    "høst": [
+      "el otoño"
+    ],
+    "det regner": [
+      "llueve"
+    ],
+    "det snør": [
+      "nieva"
+    ],
+    "det er klart / skyfritt": [
+      "está despejado"
+    ],
+    "det er overskyet": [
+      "está nublado"
+    ],
+    "det er fem varmegrader": [
+      "hace cinco grados sobre cero"
+    ],
+    "det er fem kuldegrader": [
+      "hace cinco grados bajo cero"
+    ],
+    "det er fint vær": [
+      "hace buen tiempo"
+    ],
+    "det er dårlig vær": [
+      "hace mal tiempo"
+    ],
+    "det er sol": [
+      "hace sol"
+    ],
+    "det er vind": [
+      "hace viento"
+    ],
+    "det blåser": [
+      "hace viento"
+    ],
+    "det er varmt": [
+      "hace calor"
+    ],
+    "det er kaldt": [
+      "hace frío"
+    ],
+    "jula": [
+      "La Navidad"
+    ],
+    "nyttårsaften": [
+      "La Nochevieja"
+    ],
+    "julaften": [
+      "La Nochebuena"
+    ],
+    "sankthansaften": [
+      "La Noche de San Juan"
+    ],
+    "påskeuken": [
+      "La Semana Santa"
+    ],
+    "Valentinsdagen": [
+      "El Día de San Valentín"
+    ],
+    "nasjonaldagen": [
+      "El día Nacional"
+    ],
+    "de hellige tre kongers aften": [
+      "El Día de los Reyes"
+    ],
+    "allehelgensdagen": [
+      "El Día de los Muertos"
+    ],
+    "fødselsdag": [
+      "El Cumpleaños"
+    ],
+    "konfirmasjon": [
+      "La Confirmación"
+    ],
+    "barnedåp": [
+      "El Bautizo"
+    ],
+    "bryllup": [
+      "La Boda"
+    ],
+    "begravelse (f)": [
+      "el Funeral"
+    ],
+    "begravelse (ord på e)": [
+      "entierro"
+    ],
+    "høy": [
+      "alto"
+    ],
+    "lav": [
+      "bajo"
+    ],
+    "mørkhåret": [
+      "moreno"
+    ],
+    "blond": [
+      "rubio"
+    ],
+    "rødhåret": [
+      "pelirrojo"
+    ],
+    "skallet": [
+      "calvo"
+    ],
+    "pen/kjekk": [
+      "guapo"
+    ],
+    "vakker": [
+      "hermoso"
+    ],
+    "blå øyne": [
+      "los ojos azules"
+    ],
+    "brune øyne": [
+      "los ojos marrones"
+    ],
+    "grønne øyne": [
+      "los ojos verdes"
+    ],
+    "mørkt hår": [
+      "el pelo moreno"
+    ],
+    "blondt hår": [
+      "el pelo rubio"
+    ],
+    "rødt hår": [
+      "el pelo pelirrojo"
+    ],
+    "kort hår": [
+      "el pelo corto"
+    ],
+    "langt hår": [
+      "el pelo largo"
+    ],
+    "rett hår": [
+      "el pelo liso"
+    ],
+    "krøllete hår": [
+      "el pelo rizado"
+    ],
+    "hestehale": [
+      "la cola de caballo"
+    ],
+    "pannelugg": [
+      "el flequillo"
+    ],
+    "fletter": [
+      "las trenzas"
+    ],
+    "briller": [
+      "las gafas"
+    ],
+    "skjegg": [
+      "la barba"
+    ],
+    "bart": [
+      "el bigote"
+    ],
+    "fregner": [
+      "las pecas"
+    ],
+    "smilehull": [
+      "los hoyuelos"
+    ],
+    "arr": [
+      "la cicatriz"
+    ],
+    "kjedelig": [
+      "aburrido"
+    ],
+    "omtenksom": [
+      "cariñoso"
+    ],
+    "morsom": [
+      "gracioso"
+    ],
+    "pratsom": [
+      "hablador"
+    ],
+    "utålmodig": [
+      "impaciente"
+    ],
+    "intelligent": [
+      "inteligente"
+    ],
+    "ryddig": [
+      "ordenado"
+    ],
+    "tålmodig": [
+      "paciente"
+    ],
+    "ansvarsfull": [
+      "responsable"
+    ],
+    "snill/ hyggelig": [
+      "simpático"
+    ],
+    "sosial": [
+      "sociable"
+    ],
+    "sta": [
+      "terco"
+    ],
+    "sjenert": [
+      "tímido"
+    ],
+    "lat (v)": [
+      "vago"
+    ],
+    "bror": [
+      "el hermano"
+    ],
+    "søster": [
+      "la hermana"
+    ],
+    "fetter": [
+      "el primo"
+    ],
+    "kusine": [
+      "la prima"
+    ],
+    "tante": [
+      "la tía"
+    ],
+    "onkel": [
+      "el tío"
+    ],
+    "mor": [
+      "la madre"
+    ],
+    "far": [
+      "el padre"
+    ],
+    "bestemor": [
+      "la abuela"
+    ],
+    "bestefar": [
+      "el abuelo"
+    ],
+    "kjæreste": [
+      "el novio",
+      "la novia"
+    ],
+    "stefar": [
+      "el padrastro"
+    ],
+    "stemor": [
+      "la madrastra"
+    ],
+    "stebror": [
+      "el hermanastro"
+    ],
+    "stesøster": [
+      "la hermanastra"
+    ],
+    "halvbror": [
+      "el medio hermano"
+    ],
+    "halvsøster": [
+      "la media hermana"
+    ],
+    "storebror": [
+      "el hermano mayor"
+    ],
+    "lillesøster": [
+      "la hermana menor"
+    ],
+    "Familien min består av fem personer": [
+      "En mi familia somos cinco"
+    ],
+    "Hvem bor du sammen med?": [
+      "¿Con quién vives?"
+    ],
+    "Jeg bor sammen med moren og broren min": [
+      "Vivo con mi madre y mi hermano"
+    ],
+    "Foreldrene mine er skilt": [
+      "Mis padres están divorciados"
+    ],
+    "Foreldrene mine er gift": [
+      "Mis padres están casados"
+    ],
+    "Hva heter broren din?": [
+      "¿Cómo se llama tu hermano?"
+    ],
+    "Broren min heter..": [
+      "Mi hermano se llama.."
+    ],
+    "Hvor mange år er broren din?": [
+      "¿Cuántos años tiene tu hermano?"
+    ],
+    "Broren min er åtte år": [
+      "Mi hermano tiene ocho años"
+    ],
+    "å ha på seg": [
+      "llevar"
+    ],
+    "å kle på seg": [
+      "ponerse"
+    ],
+    "støvler": [
+      "las botas"
+    ],
+    "t-skjorte": [
+      "la camiseta"
+    ],
+    "bikini": [
+      "el biquini"
+    ],
+    "skjorte": [
+      "la camisa"
+    ],
+    "jeans": [
+      "los vaqueros"
+    ],
+    "lue": [
+      "el gorro"
+    ],
+    "caps": [
+      "la gorra"
+    ],
+    "belte": [
+      "el cinturón"
+    ],
+    "sokker": [
+      "los calcetines"
+    ],
+    "genser (j)": [
+      "el jersey"
+    ],
+    "tøfler": [
+      "las zapatillas"
+    ],
+    "sko": [
+      "los zapatos"
+    ],
+    "høyhælte sko": [
+      "los zapatos de tacón"
+    ],
+    "sandaler": [
+      "las sandalias"
+    ],
+    "treningssko": [
+      "las zapatillas deportivas"
+    ],
+    "jakke": [
+      "la chaqueta"
+    ],
+    "kjole": [
+      "el vestido"
+    ],
+    "skjørt": [
+      "la falda"
+    ],
+    "håndveske": [
+      "el bolso"
+    ],
+    "solbriller": [
+      "las gafas de sol"
+    ],
+    "skjerf": [
+      "la bufanda"
+    ],
+    "sjal": [
+      "el chal"
+    ],
+    "hatt": [
+      "el sombrero"
+    ],
+    "lommetørkle": [
+      "el pañuelo"
+    ],
+    "slips": [
+      "la corbata"
+    ],
+    "paraply": [
+      "el paraguas"
+    ],
+    "ring": [
+      "el anillo"
+    ],
+    "armbånd": [
+      "la pulsera"
+    ],
+    "klokke": [
+      "el reloj"
+    ],
+    "smykke": [
+      "la cadena"
+    ],
+    "øreringer": [
+      "los pendientes"
+    ],
+    "advokat": [
+      "el abogado"
+    ],
+    "brannmann": [
+      "el bombero"
+    ],
+    "snekker": [
+      "el carpintero"
+    ],
+    "kokk": [
+      "el cocinero"
+    ],
+    "tannlege": [
+      "el dentista"
+    ],
+    "elektriker": [
+      "el electricista"
+    ],
+    "sykepleier": [
+      "el enfermero"
+    ],
+    "bonde": [
+      "el granjero"
+    ],
+    "lege": [
+      "el médico"
+    ],
+    "frisør": [
+      "el peluquero"
+    ],
+    "journalist": [
+      "el periodista"
+    ],
+    "politi": [
+      "el policía"
+    ],
+    "lærer (p)": [
+      "el profesor"
+    ],
+    "dyrlege": [
+      "el veterinario"
+    ],
+    "hva jobber du med?": [
+      "¿en qué trabajas?"
+    ],
+    "hvor jobber du?": [
+      "¿Dónde trabajas?"
+    ],
+    "Når jobber du?": [
+      "¿Cuándo trabajas?"
+    ],
+    "Hva jobber moren din med?": [
+      "¿En qué trabaja tu madre?"
+    ],
+    "golf": [
+      "el golf"
+    ],
+    "amerikansk fotball": [
+      "el fútbol americano"
+    ],
+    "håndball": [
+      "el balonmano"
+    ],
+    "volleyball": [
+      "el voleibol"
+    ],
+    "badminton": [
+      "bádminton"
+    ],
+    "innebandy": [
+      "el floorball"
+    ],
+    "tennis": [
+      "el tenis"
+    ],
+    "bordtennis": [
+      "el tenis de mesa"
+    ],
+    "ishockey": [
+      "el hockey sobre hielo"
+    ],
+    "dataspill": [
+      "videojuegos"
+    ],
+    "langrenn": [
+      "esquí de fondo"
+    ],
+    "alpint": [
+      "esquí alpino"
+    ],
+    "å handle": [
+      "ir de compras"
+    ],
+    "å sykle": [
+      "montar en bici"
+    ],
+    "å synge i kor": [
+      "cantar en un coro"
+    ],
+    "å se på TV": [
+      "ver la tele"
+    ],
+    "å spille gitar": [
+      "tocar la guitarra"
+    ],
+    "å spille piano": [
+      "tocar el piano"
+    ],
+    "å trene på treningssenteret": [
+      "entrenar en el gimnasio"
+    ],
+    "å høre musikk": [
+      "escuchar música"
+    ],
+    "å være med venner": [
+      "estar con amigos"
+    ],
+    "å dra ut med venner": [
+      "salir con mis amigos"
+    ],
+    "å danse på fritiden": [
+      "bailar en mi tiempo libre"
+    ],
+    "å gå tur": [
+      "hacer senderismo"
+    ],
+    "å slappe av": [
+      "relajarse"
+    ],
+    "å surfe på internett": [
+      "navegar por internet"
+    ],
+    "Har du klokke?": [
+      "¿Tienes reloj?"
+    ],
+    "Vet du hva klokka er?": [
+      "¿Sabes qué hora es?"
+    ],
+    "Når skal du spise?": [
+      "¿A qué hora vas a comer?"
+    ],
+    "jeg skal spise klokka åtte": [
+      "voy a comer a las ocho"
+    ],
+    "Den er 13:00": [
+      "Es la una"
+    ],
+    "Den er kvart over ett": [
+      "es la una y cuarto"
+    ],
+    "Den er halv to": [
+      "es la una y media"
+    ],
+    "Den er to": [
+      "son las dos"
+    ],
+    "den er ti over halv tre": [
+      "son las tres menos veinte"
+    ],
+    "den er ti på tre": [
+      "son las tres menos diez"
+    ],
+    "klokken åtte om morgenen": [
+      "a las ocho de la mañana"
+    ],
+    "klokka seks på ettermiddagen": [
+      "a las seis de la tarde"
+    ],
+    "klokka tolv på natta": [
+      "a las doce de la noche"
+    ],
+    "Klokken er akkurat 5": [
+      "Son las cinco en punto"
+    ],
+    "hver dag": [
+      "cada día",
+      "todos los días"
+    ],
+    "på mandag": [
+      "el lunes"
+    ],
+    "på mandager": [
+      "los lunes"
+    ],
+    "tirsdag": [
+      "martes"
+    ],
+    "onsdag": [
+      "miércoles"
+    ],
+    "torsdag": [
+      "jueves"
+    ],
+    "fredag": [
+      "viernes"
+    ],
+    "på morgenen": [
+      "por la mañana"
+    ],
+    "for noen dager siden": [
+      "hace unos días"
+    ],
+    "hver uke": [
+      "cada semana"
+    ],
+    "ofte": [
+      "a menudo"
+    ],
+    "sjelden": [
+      "raramente"
+    ],
+    "på ettermiddagen": [
+      "por la tarde"
+    ],
+    "før": [
+      "antes"
+    ],
+    "i kveld": [
+      "esta noche"
+    ],
+    "i morgen": [
+      "mañana"
+    ],
+    "i går": [
+      "ayer"
+    ],
+    "på kvelden": [
+      "por la noche"
+    ],
+    "etter / etterpå": [
+      "después"
+    ],
+    "hode": [
+      "la cabeza"
+    ],
+    "øye": [
+      "el ojo"
+    ],
+    "munn": [
+      "la boca"
+    ],
+    "hånd": [
+      "la mano"
+    ],
+    "fot": [
+      "el pie"
+    ],
+    "elev": [
+      "el alumno",
+      "el estudiante"
+    ],
+    "spansklærer": [
+      "el profesor de español"
+    ],
+    "skoletime": [
+      "la clase"
+    ],
+    "skoleklasse": [
+      "la clase"
+    ],
+    "tavle": [
+      "la pizarra"
+    ],
+    "kart": [
+      "el mapa"
+    ],
+    "papirkurv": [
+      "la papelera"
+    ],
+    "bok": [
+      "el libro"
+    ],
+    "PC": [
+      "el ordenador"
+    ],
+    "ungdomsskolen": [
+      "la E.S.O"
+    ],
+    "pult": [
+      "el pupitre"
+    ],
+    "stol": [
+      "la silla"
+    ],
+    "sekk": [
+      "la mochila"
+    ],
+    "pennal": [
+      "el estuche"
+    ],
+    "blyant": [
+      "el lápiz"
+    ],
+    "penn": [
+      "el bolígrafo"
+    ],
+    "viskelær": [
+      "la goma"
+    ],
+    "blyantspisser": [
+      "el sacapuntas"
+    ],
+    "linjal": [
+      "la regla"
+    ],
+    "videregående": [
+      "el bachillerato"
+    ],
+    "engelsk": [
+      "el inglés"
+    ],
+    "matte": [
+      "las matemáticas"
+    ],
+    "historie": [
+      "la historia"
+    ],
+    "samfunnsfag": [
+      "las ciencias sociales"
+    ],
+    "naturfag": [
+      "las ciencias naturales"
+    ],
+    "kroppsøving": [
+      "la educación física"
+    ],
+    "kunst og håndverk": [
+      "las artes manuales"
+    ],
+    "religion / KRLE": [
+      "la religión"
+    ],
+    "rom": [
+      "la habitación"
+    ],
+    "rom (annet ord, C)": [
+      "el cuarto"
+    ],
+    "bad": [
+      "el baño"
+    ],
+    "spisestue": [
+      "el comedor"
+    ],
+    "gang": [
+      "el pasillo"
+    ],
+    "loft": [
+      "el ático"
+    ],
+    "dør": [
+      "la puerta"
+    ],
+    "soverom": [
+      "el dormitorio"
+    ],
+    "arbeidsrom": [
+      "el cuarto de trabajo"
+    ],
+    "stue (c)": [
+      "el cuarto de estar"
+    ],
+    "kjøkken": [
+      "la cocina"
+    ],
+    "kjeller": [
+      "el sótano"
+    ],
+    "vindu": [
+      "la ventana"
+    ],
+    "hus": [
+      "la casa"
+    ],
+    "møbel": [
+      "el mueble"
+    ],
+    "sofa": [
+      "el sofá"
+    ],
+    "bord": [
+      "la mesa"
+    ],
+    "TV": [
+      "el televisor"
+    ],
+    "skap": [
+      "el armario"
+    ],
+    "plakat": [
+      "el póster"
+    ],
+    "kjøleskap (n)": [
+      "la nevera"
+    ],
+    "skrivebord": [
+      "el escritorio"
+    ],
+    "bokhylle": [
+      "la estantería"
+    ],
+    "kommode": [
+      "la cómoda"
+    ],
+    "lenestol": [
+      "el sillón"
+    ],
+    "teppe": [
+      "la alfombra"
+    ],
+    "oppvaskmaskin": [
+      "el lavavajillas"
+    ],
+    "seng": [
+      "la cama"
+    ],
+    "lampe": [
+      "la lámpara"
+    ],
+    "bilde / maleri (c)": [
+      "el cuadro"
+    ],
+    "ovn": [
+      "el horno"
+    ],
+    "speil": [
+      "el espejo"
+    ],
+    "jeg liker": [
+      "me gusta"
+    ],
+    "jeg liker ikke": [
+      "no me gusta"
+    ],
+    "du liker": [
+      "te gusta"
+    ],
+    "du liker ikke": [
+      "no te gusta"
+    ],
+    "han/hun liker": [
+      "le gusta"
+    ],
+    "jeg liker denne boken": [
+      "me gusta este libro"
+    ],
+    "jeg liker disse bøkene": [
+      "me gustan estos libros"
+    ],
+    "jeg elsker (me ....)": [
+      "me encanta"
+    ],
+    "jeg blir irritert av": [
+      "me molesta"
+    ],
+    "jeg våkner": [
+      "me despierto"
+    ],
+    "jeg står opp": [
+      "me levanto"
+    ],
+    "jeg dusjer": [
+      "me ducho"
+    ],
+    "jeg pusser tennene": [
+      "me cepillo los dientes"
+    ],
+    "jeg sminker meg": [
+      "me maquillo"
+    ],
+    "jeg barberer meg": [
+      "me afeito"
+    ],
+    "jeg børster håret": [
+      "me peino"
+    ],
+    "jeg kler på meg": [
+      "me visto"
+    ],
+    "jeg legger meg": [
+      "me acuesto"
+    ],
+    "jeg spiser frokost": [
+      "desayuno"
+    ],
+    "jeg går ut av huset": [
+      "salgo de la casa"
+    ],
+    "jeg drar på skolen": [
+      "voy a la escuela"
+    ],
+    "jeg spiser lunsj": [
+      "almuerzo"
+    ],
+    "jeg drar hjem": [
+      "voy a casa"
+    ],
+    "jeg drar på trening": [
+      "voy al entrenamiento"
+    ],
+    "jeg spiser middag": [
+      "ceno"
+    ],
+    "jeg sover": [
+      "duermo"
+    ],
+    "jeg står opp tidlig": [
+      "me levanto temprano"
+    ],
+    "jeg tar på meg en t-skjorte": [
+      "me pongo una camiseta"
+    ],
+    "jeg går til skolen": [
+      "voy a pie a la escuela"
+    ],
+    "bøying av verbet SER, som betyr å være": [
+      "soy, eres, es, somos, sois, son"
+    ],
+    "bøying av verbet tener, som betyr å ha": [
+      "tengo, tienes, tiene, tenemos, tenéis, tienen"
+    ],
+    "bøying av verbet ir": [
+      "voy, vas, va, vamos, vais, van"
+    ],
+    "bøying av verbet estar, som betyr å være/å befinne seg": [
+      "estoy, estás, está, estamos, estáis, están"
+    ],
+    "bøying av verbet hablar, som betyr å snakke": [
+      "hablo, hablas, habla, hablamos, habláis, hablan"
+    ],
+    "bøying av verbet comer, som betyr å spise": [
+      "como, comes, come, comemos, coméis, comen"
+    ],
+    "bøying av verbet vivir, som betyr å bo": [
+      "vivo, vives, vive, vivimos, vivís, viven"
+    ],
+    "bøying av verbet poder, som betyr å kunne": [
+      "puedo, puedes, puede, podemos, podéis, pueden"
+    ],
+    "bøying av verbet decir, som betyr å si": [
+      "digo, dices, dice, decimos, decís, dicen"
+    ],
+    "bøying av verbet hacer, som betyr å gjøre": [
+      "hago, haces, hace, hacemos, hacéis, hacen"
+    ],
+    "bøying av verbet querer, som betyr å ville": [
+      "quiero, quieres, quiere, queremos, queréis, quieren"
+    ],
+    "bøying av verbet saber, som betyr å vite": [
+      "sé, sabes, sabe, sabemos, sabéis, saben"
+    ],
+    "bøying av verbet salir, som betyr å gå ut": [
+      "salgo, sales, sale, salimos, salís, salen"
+    ],
+    "bøying av verbet venir, som betyr å komme": [
+      "vengo, vienes, viene, venimos, venís, vienen"
+    ],
+    "jeg skal gjøre noe": [
+      "voy a hacer algo"
+    ],
+    "hva skal du gjøre i dag?": [
+      "¿Qué vas a hacer hoy?"
+    ],
+    "hva skal du gjøre i morgen?": [
+      "¿Qué vas a hacer mañana?"
+    ],
+    "I dag skal jeg være med venner": [
+      "Hoy voy a estar con mis amigos"
+    ],
+    "I morgen skal jeg besøke bestemora mi": [
+      "Mañana voy a visitar mi abuela"
+    ],
+    "Hva skal du gjøre til neste år?": [
+      "¿Qué vas a hacer el año que viene?"
+    ],
+    "Neste år skal jeg begynne på videregående": [
+      "El año que viene voy a comenzar el bachillerato",
+      "El año que viene voy a empezar el bachillerato",
+      "El próximo año voy a comenzar el bachillerato",
+      "El próximo año voy a empezar el bachillerato"
+    ],
+    "å snakke": [
+      "hablar"
+    ],
+    "å jobbe": [
+      "trabajar"
+    ],
+    "å trene": [
+      "entrenar"
+    ],
+    "å danse": [
+      "bailar"
+    ],
+    "å kjøpe": [
+      "comprar"
+    ],
+    "å spise": [
+      "comer"
+    ],
+    "å drikke": [
+      "beber"
+    ],
+    "å lese": [
+      "leer"
+    ],
+    "å studere": [
+      "estudiar"
+    ],
+    "å bo/ å leve": [
+      "vivir"
+    ],
+    "å skrive": [
+      "escribir"
+    ],
+    "å høre": [
+      "escuchar"
+    ],
+    "å se": [
+      "ver"
+    ],
+    "å lære": [
+      "aprender"
+    ],
+    "å vinne": [
+      "ganar"
+    ],
+    "å glemme": [
+      "olvidar"
+    ],
+    "å hjelpe": [
+      "ayudar"
+    ],
+    "å synge": [
+      "cantar"
+    ],
+    "å vente": [
+      "esperar"
+    ],
+    "å spørre": [
+      "preguntar"
+    ],
+    "å betale": [
+      "pagar"
+    ],
+    "å reise": [
+      "viajar"
+    ],
+    "og": [
+      "y"
+    ],
+    "eller": [
+      "o"
+    ],
+    "men": [
+      "pero"
+    ],
+    "også": [
+      "también"
+    ],
+    "alltid": [
+      "siempre"
+    ],
+    "aldri": [
+      "nunca"
+    ],
+    "noen ganger": [
+      "a veces"
+    ],
+    "vanligvis": [
+      "normalmente"
+    ],
+    "fordi": [
+      "porque"
+    ],
+    "derfor": [
+      "por eso"
+    ],
+    "kanskje": [
+      "quizás"
+    ],
+    "dermed / deretter / så": [
+      "entonces"
+    ],
+    "i tillegg / dessuten": [
+      "además"
+    ],
+    "selv om": [
+      "aunque"
+    ],
+    "allikevel": [
+      "sin embargo"
+    ],
+    "på den ene siden": [
+      "por un lado"
+    ],
+    "på den andre siden": [
+      "por otro lado"
+    ],
+    "først og fremst": [
+      "sobre todo"
+    ],
+    "samtidig": [
+      "al mismo tiempo"
+    ],
+    "selvfølgelig": [
+      "claro"
+    ],
+    "jeg skal snakke om": [
+      "voy a hablar sobre"
+    ],
+    "takk for oppmerksomheten": [
+      "gracias por su atención"
+    ],
+    "å gjøre innkjøp": [
+      "hacer las compras"
+    ],
+    "å vaske opp": [
+      "lavar los platos"
+    ],
+    "å vaske badet": [
+      "limpiar el cuarto de baño"
+    ],
+    "å vaske klær": [
+      "lavar la ropa"
+    ],
+    "å støvsuge": [
+      "pasar la aspiradora"
+    ],
+    "å rydde rommet": [
+      "arreglar la habitación"
+    ],
+    "én gang i uken": [
+      "una vez a la semana"
+    ],
+    "frukt": [
+      "la fruta"
+    ],
+    "pære": [
+      "la pera"
+    ],
+    "appelsin": [
+      "la naranja"
+    ],
+    "banan": [
+      "el plátano"
+    ],
+    "eple": [
+      "la manzana"
+    ],
+    "fersken": [
+      "el melocotón"
+    ],
+    "drue": [
+      "la uva"
+    ],
+    "melon": [
+      "el melón"
+    ],
+    "vannmelon": [
+      "la sandía"
+    ],
+    "sitron": [
+      "el limón"
+    ],
+    "grønnsak": [
+      "la verdura"
+    ],
+    "tomat": [
+      "el tomate"
+    ],
+    "agurk": [
+      "el pepino"
+    ],
+    "løk": [
+      "la cebolla"
+    ],
+    "hvitløk": [
+      "el ajo"
+    ],
+    "salat": [
+      "la lechuga"
+    ],
+    "paprika": [
+      "el pimiento"
+    ],
+    "gulrot": [
+      "la zanahoria"
+    ],
+    "potet": [
+      "la patata"
+    ],
+    "matvare": [
+      "el alimento"
+    ],
+    "kjeks": [
+      "la galleta"
+    ],
+    "brød": [
+      "el pan"
+    ],
+    "marmelade": [
+      "la mermelada"
+    ],
+    "korn, frokostblanding": [
+      "los cereales"
+    ],
+    "pølse": [
+      "la salchicha"
+    ],
+    "skinke": [
+      "el jamón"
+    ],
+    "kjøtt": [
+      "la carne"
+    ],
+    "kylling": [
+      "el pollo"
+    ],
+    "pasta": [
+      "la pasta"
+    ],
+    "ris": [
+      "el arroz"
+    ],
+    "egg": [
+      "el huevo"
+    ],
+    "fisk": [
+      "el pescado"
+    ],
+    "sukker": [
+      "el azúcar"
+    ],
+    "salt": [
+      "la sal"
+    ],
+    "bakverk": [
+      "el pastel"
+    ],
+    "smør": [
+      "la mantequilla"
+    ],
+    "ost": [
+      "el queso"
+    ],
+    "yoghurt": [
+      "el yogur"
+    ],
+    "melk": [
+      "la leche"
+    ],
+    "leskedrikk": [
+      "el refresco"
+    ],
+    "juice": [
+      "el jugo",
+      "el zumo"
+    ],
+    "sjokoladedrikk": [
+      "el Cola Cao"
+    ],
+    "vann": [
+      "el agua"
+    ],
+    "behøve": [
+      "necesitar"
+    ],
+    "etterpå": [
+      "después"
+    ],
+    "forberede, tilberede": [
+      "preparar"
+    ],
+    "supermarked": [
+      "el supermercado"
+    ],
+    "kjøpe": [
+      "comprar"
+    ],
+    "det som": [
+      "lo que"
+    ],
+    "har nettopp kommet tilbake": [
+      "acaba de regresar"
+    ],
+    "å nettopp ha gjort noe": [
+      "acabar de"
+    ],
+    "olivenolje": [
+      "el aceite de oliva"
+    ],
+    "naturligvis": [
+      "por supuesto"
+    ],
+    "lengst inn/bak": [
+      "al fondo"
+    ],
+    "pommes frites": [
+      "las patatas fritas"
+    ],
+    "oliven": [
+      "la aceituna"
+    ],
+    "småspise": [
+      "picar"
+    ],
+    "drikke": [
+      "beber"
+    ],
+    "kassadame": [
+      "la cajera"
+    ]
+  },
+  "esToNo": {
+    "uno": [
+      "1"
+    ],
+    "dos": [
+      "2"
+    ],
+    "tres": [
+      "3"
+    ],
+    "cuatro": [
+      "4"
+    ],
+    "cinco": [
+      "5"
+    ],
+    "seis": [
+      "6"
+    ],
+    "siete": [
+      "7"
+    ],
+    "ocho": [
+      "8"
+    ],
+    "nueve": [
+      "9"
+    ],
+    "diez": [
+      "10"
+    ],
+    "once": [
+      "11"
+    ],
+    "doce": [
+      "12"
+    ],
+    "trece": [
+      "13"
+    ],
+    "catorce": [
+      "14"
+    ],
+    "quince": [
+      "15"
+    ],
+    "dieciséis": [
+      "16"
+    ],
+    "diecisiete": [
+      "17"
+    ],
+    "dieciocho": [
+      "18"
+    ],
+    "diecinueve": [
+      "19"
+    ],
+    "veinte": [
+      "20"
+    ],
+    "veintiséis": [
+      "26"
+    ],
+    "treinta": [
+      "30"
+    ],
+    "treinta y nueve": [
+      "39"
+    ],
+    "cuarenta": [
+      "40"
+    ],
+    "cuarenta y tres": [
+      "43"
+    ],
+    "cincuenta": [
+      "50"
+    ],
+    "cincuenta y cuatro": [
+      "54"
+    ],
+    "sesenta": [
+      "60"
+    ],
+    "sesenta y dos": [
+      "62"
+    ],
+    "setenta": [
+      "70"
+    ],
+    "setenta y ocho": [
+      "78"
+    ],
+    "ochenta": [
+      "80"
+    ],
+    "ochenta y siete": [
+      "87"
+    ],
+    "noventa": [
+      "90"
+    ],
+    "noventa y uno": [
+      "91"
+    ],
+    "cien": [
+      "100"
+    ],
+    "ciento diez": [
+      "110"
+    ],
+    "ciento veintitrés": [
+      "123"
+    ],
+    "doscientos": [
+      "200"
+    ],
+    "doscientos cuarenta y cinco": [
+      "245"
+    ],
+    "trescientos": [
+      "300"
+    ],
+    "cuatrocientos": [
+      "400"
+    ],
+    "quinientos": [
+      "500"
+    ],
+    "seiscientos": [
+      "600"
+    ],
+    "setecientos": [
+      "700"
+    ],
+    "ochocientos": [
+      "800"
+    ],
+    "novecientos": [
+      "900"
+    ],
+    "mil": [
+      "1000"
+    ],
+    "ochocientos setenta": [
+      "870"
+    ],
+    "mil doscientos": [
+      "1200"
+    ],
+    "mil quinientos ochenta y nueve": [
+      "1589"
+    ],
+    "dos mil": [
+      "2000"
+    ],
+    "cuatro mil": [
+      "4000"
+    ],
+    "diez mil": [
+      "10 000"
+    ],
+    "mil novecientos cuarenta y cinco": [
+      "1945"
+    ],
+    "mil novecientos noventa y seis": [
+      "1996"
+    ],
+    "dos mil once": [
+      "2011"
+    ],
+    "dos mil diecinueve": [
+      "2019"
+    ],
+    "¡Feliz cumpleaños!": [
+      "Gratulerer med dagen"
+    ],
+    "¿Cuándo es tu cumpleaños?": [
+      "Når har du bursdag?"
+    ],
+    "Mi cumpleaños es el siete de julio": [
+      "Bursdagen min er 7. juli"
+    ],
+    "¿Cuándo es el cumpleaños de Marius?": [
+      "Når er bursdagen til Marius?"
+    ],
+    "El cumpleaños de Marius es el veintiséis de junio": [
+      "Bursdagen til Marius er 26. juni"
+    ],
+    "hola": [
+      "hallo",
+      "hei"
+    ],
+    "gracias": [
+      "takk"
+    ],
+    "buenos días": [
+      "god dag",
+      "god morgen"
+    ],
+    "buenas noches": [
+      "god kveld"
+    ],
+    "adiós": [
+      "farvel",
+      "ha det"
+    ],
+    "Noruega": [
+      "Norge"
+    ],
+    "Suecia": [
+      "Sverige"
+    ],
+    "Dinamarca": [
+      "Danmark"
+    ],
+    "Finlandia": [
+      "Finland"
+    ],
+    "Islandia": [
+      "Island"
+    ],
+    "Rusia": [
+      "Russland"
+    ],
+    "Alemania": [
+      "Tyskland"
+    ],
+    "Austria": [
+      "Østerrike"
+    ],
+    "Los Países Bajos": [
+      "Nederland"
+    ],
+    "Francia": [
+      "Frankrike"
+    ],
+    "Italia": [
+      "Italia"
+    ],
+    "Bélgica": [
+      "Belgia"
+    ],
+    "España": [
+      "Spania"
+    ],
+    "Portugal": [
+      "Portugal"
+    ],
+    "Inglaterra": [
+      "England"
+    ],
+    "Irlanda": [
+      "Irland"
+    ],
+    "Grecia": [
+      "Hellas"
+    ],
+    "Suiza": [
+      "Sveits"
+    ],
+    "rojo": [
+      "rød"
+    ],
+    "azul": [
+      "blå"
+    ],
+    "amarillo": [
+      "gul"
+    ],
+    "verde": [
+      "grønn"
+    ],
+    "gris": [
+      "grå"
+    ],
+    "marrón": [
+      "brun"
+    ],
+    "blanco": [
+      "hvit"
+    ],
+    "negro": [
+      "svart"
+    ],
+    "rosa": [
+      "rosa"
+    ],
+    "violeta": [
+      "lilla",
+      "lilla (v)"
+    ],
+    "naranja": [
+      "oransje"
+    ],
+    "turquesa": [
+      "turkis"
+    ],
+    "el invierno": [
+      "vinter"
+    ],
+    "la primavera": [
+      "vår"
+    ],
+    "el verano": [
+      "sommer"
+    ],
+    "el otoño": [
+      "høst"
+    ],
+    "llueve": [
+      "det regner"
+    ],
+    "nieva": [
+      "det snør"
+    ],
+    "está despejado": [
+      "det er klart / skyfritt"
+    ],
+    "está nublado": [
+      "det er overskyet"
+    ],
+    "hace cinco grados sobre cero": [
+      "det er fem varmegrader"
+    ],
+    "hace cinco grados bajo cero": [
+      "det er fem kuldegrader"
+    ],
+    "hace buen tiempo": [
+      "det er fint vær"
+    ],
+    "hace mal tiempo": [
+      "det er dårlig vær"
+    ],
+    "hace sol": [
+      "det er sol"
+    ],
+    "hace viento": [
+      "det blåser",
+      "det er vind"
+    ],
+    "hace calor": [
+      "det er varmt"
+    ],
+    "hace frío": [
+      "det er kaldt"
+    ],
+    "La Navidad": [
+      "jula"
+    ],
+    "La Nochevieja": [
+      "nyttårsaften"
+    ],
+    "La Nochebuena": [
+      "julaften"
+    ],
+    "La Noche de San Juan": [
+      "sankthansaften"
+    ],
+    "La Semana Santa": [
+      "påskeuken"
+    ],
+    "El Día de San Valentín": [
+      "Valentinsdagen"
+    ],
+    "El día Nacional": [
+      "nasjonaldagen"
+    ],
+    "El Día de los Reyes": [
+      "de hellige tre kongers aften"
+    ],
+    "El Día de los Muertos": [
+      "allehelgensdagen"
+    ],
+    "El Cumpleaños": [
+      "fødselsdag"
+    ],
+    "La Confirmación": [
+      "konfirmasjon"
+    ],
+    "El Bautizo": [
+      "barnedåp"
+    ],
+    "La Boda": [
+      "bryllup"
+    ],
+    "el Funeral": [
+      "begravelse",
+      "begravelse (f)"
+    ],
+    "entierro": [
+      "begravelse",
+      "begravelse (ord på e)"
+    ],
+    "alto": [
+      "høy"
+    ],
+    "bajo": [
+      "lav"
+    ],
+    "moreno": [
+      "mørkhåret"
+    ],
+    "rubio": [
+      "blond"
+    ],
+    "pelirrojo": [
+      "rødhåret"
+    ],
+    "calvo": [
+      "skallet"
+    ],
+    "guapo": [
+      "kjekk",
+      "pen",
+      "pen/kjekk"
+    ],
+    "hermoso": [
+      "vakker"
+    ],
+    "los ojos azules": [
+      "blå øyne"
+    ],
+    "los ojos marrones": [
+      "brune øyne"
+    ],
+    "los ojos verdes": [
+      "grønne øyne"
+    ],
+    "el pelo moreno": [
+      "mørkt hår"
+    ],
+    "el pelo rubio": [
+      "blondt hår"
+    ],
+    "el pelo pelirrojo": [
+      "rødt hår"
+    ],
+    "el pelo corto": [
+      "kort hår"
+    ],
+    "el pelo largo": [
+      "langt hår"
+    ],
+    "el pelo liso": [
+      "rett hår"
+    ],
+    "el pelo rizado": [
+      "krøllete hår"
+    ],
+    "la cola de caballo": [
+      "hestehale"
+    ],
+    "el flequillo": [
+      "pannelugg"
+    ],
+    "las trenzas": [
+      "fletter"
+    ],
+    "las gafas": [
+      "briller"
+    ],
+    "la barba": [
+      "skjegg"
+    ],
+    "el bigote": [
+      "bart"
+    ],
+    "las pecas": [
+      "fregner"
+    ],
+    "los hoyuelos": [
+      "smilehull"
+    ],
+    "la cicatriz": [
+      "arr"
+    ],
+    "aburrido": [
+      "kjedelig"
+    ],
+    "cariñoso": [
+      "omtenksom"
+    ],
+    "gracioso": [
+      "morsom"
+    ],
+    "hablador": [
+      "pratsom"
+    ],
+    "impaciente": [
+      "utålmodig"
+    ],
+    "inteligente": [
+      "intelligent"
+    ],
+    "ordenado": [
+      "ryddig"
+    ],
+    "paciente": [
+      "tålmodig"
+    ],
+    "responsable": [
+      "ansvarsfull"
+    ],
+    "simpático": [
+      "hyggelig",
+      "snill",
+      "snill/ hyggelig"
+    ],
+    "sociable": [
+      "sosial"
+    ],
+    "terco": [
+      "sta"
+    ],
+    "tímido": [
+      "sjenert"
+    ],
+    "vago": [
+      "lat",
+      "lat (v)"
+    ],
+    "el hermano": [
+      "bror",
+      "broren"
+    ],
+    "la hermana": [
+      "søster",
+      "søsteren"
+    ],
+    "el primo": [
+      "fetter"
+    ],
+    "la prima": [
+      "kusine"
+    ],
+    "la tía": [
+      "tante"
+    ],
+    "el tío": [
+      "onkel"
+    ],
+    "la madre": [
+      "mamma",
+      "mor",
+      "moren"
+    ],
+    "el padre": [
+      "far",
+      "faren"
+    ],
+    "la abuela": [
+      "bestemor",
+      "bestemoren"
+    ],
+    "el abuelo": [
+      "bestefar",
+      "bestefaren"
+    ],
+    "el novio": [
+      "kjæreste",
+      "kjæresten"
+    ],
+    "el padrastro": [
+      "stefar"
+    ],
+    "la madrastra": [
+      "stemor"
+    ],
+    "el hermanastro": [
+      "stebror"
+    ],
+    "la hermanastra": [
+      "stesøster"
+    ],
+    "el medio hermano": [
+      "halvbror"
+    ],
+    "la media hermana": [
+      "halvsøster"
+    ],
+    "el hermano mayor": [
+      "storebror"
+    ],
+    "la hermana menor": [
+      "lillesøster"
+    ],
+    "En mi familia somos cinco": [
+      "Familien min består av fem personer"
+    ],
+    "¿Con quién vives?": [
+      "Hvem bor du sammen med?"
+    ],
+    "Vivo con mi madre y mi hermano": [
+      "Jeg bor sammen med moren og broren min"
+    ],
+    "Mis padres están divorciados": [
+      "Foreldrene mine er skilt"
+    ],
+    "Mis padres están casados": [
+      "Foreldrene mine er gift"
+    ],
+    "¿Cómo se llama tu hermano?": [
+      "Hva heter broren din?"
+    ],
+    "Mi hermano se llama..": [
+      "Broren min heter.."
+    ],
+    "¿Cuántos años tiene tu hermano?": [
+      "Hvor mange år er broren din?"
+    ],
+    "Mi hermano tiene ocho años": [
+      "Broren min er åtte år"
+    ],
+    "llevar": [
+      "å ha på seg"
+    ],
+    "ponerse": [
+      "å kle på seg"
+    ],
+    "las botas": [
+      "støvler"
+    ],
+    "la camiseta": [
+      "t-skjorte"
+    ],
+    "el biquini": [
+      "bikini"
+    ],
+    "la camisa": [
+      "skjorte"
+    ],
+    "los vaqueros": [
+      "jeans"
+    ],
+    "el gorro": [
+      "lue"
+    ],
+    "la gorra": [
+      "caps"
+    ],
+    "el cinturón": [
+      "belte"
+    ],
+    "los calcetines": [
+      "sokker"
+    ],
+    "el jersey": [
+      "genser",
+      "genser (j)"
+    ],
+    "las zapatillas": [
+      "tøfler"
+    ],
+    "los zapatos": [
+      "sko"
+    ],
+    "los zapatos de tacón": [
+      "høyhælte sko"
+    ],
+    "las sandalias": [
+      "sandaler"
+    ],
+    "las zapatillas deportivas": [
+      "treningssko"
+    ],
+    "la chaqueta": [
+      "jakke"
+    ],
+    "el vestido": [
+      "kjole"
+    ],
+    "la falda": [
+      "skjørt"
+    ],
+    "el bolso": [
+      "håndveske"
+    ],
+    "las gafas de sol": [
+      "solbriller"
+    ],
+    "la bufanda": [
+      "skjerf"
+    ],
+    "el chal": [
+      "sjal"
+    ],
+    "el sombrero": [
+      "hatt"
+    ],
+    "el pañuelo": [
+      "lommetørkle"
+    ],
+    "la corbata": [
+      "slips"
+    ],
+    "el paraguas": [
+      "paraply"
+    ],
+    "el anillo": [
+      "ring"
+    ],
+    "la pulsera": [
+      "armbånd"
+    ],
+    "el reloj": [
+      "klokke"
+    ],
+    "la cadena": [
+      "smykke"
+    ],
+    "los pendientes": [
+      "øreringer"
+    ],
+    "el abogado": [
+      "advokat"
+    ],
+    "el bombero": [
+      "brannmann"
+    ],
+    "el carpintero": [
+      "snekker"
+    ],
+    "el cocinero": [
+      "kokk"
+    ],
+    "el dentista": [
+      "tannlege"
+    ],
+    "el electricista": [
+      "elektriker"
+    ],
+    "el enfermero": [
+      "sykepleier"
+    ],
+    "el granjero": [
+      "bonde"
+    ],
+    "el médico": [
+      "lege"
+    ],
+    "el peluquero": [
+      "frisør"
+    ],
+    "el periodista": [
+      "journalist"
+    ],
+    "el policía": [
+      "politi"
+    ],
+    "el profesor": [
+      "lærer",
+      "lærer (p)"
+    ],
+    "el veterinario": [
+      "dyrlege"
+    ],
+    "¿en qué trabajas?": [
+      "hva jobber du med?"
+    ],
+    "¿Dónde trabajas?": [
+      "hvor jobber du?"
+    ],
+    "¿Cuándo trabajas?": [
+      "Når jobber du?"
+    ],
+    "¿En qué trabaja tu madre?": [
+      "Hva jobber moren din med?"
+    ],
+    "el golf": [
+      "golf"
+    ],
+    "el fútbol americano": [
+      "amerikansk fotball"
+    ],
+    "el balonmano": [
+      "håndball"
+    ],
+    "el voleibol": [
+      "volleyball"
+    ],
+    "bádminton": [
+      "badminton"
+    ],
+    "el floorball": [
+      "innebandy"
+    ],
+    "el tenis": [
+      "tennis"
+    ],
+    "el tenis de mesa": [
+      "bordtennis"
+    ],
+    "el hockey sobre hielo": [
+      "ishockey"
+    ],
+    "videojuegos": [
+      "dataspill"
+    ],
+    "esquí de fondo": [
+      "langrenn"
+    ],
+    "esquí alpino": [
+      "alpint"
+    ],
+    "ir de compras": [
+      "å handle"
+    ],
+    "montar en bici": [
+      "å sykle"
+    ],
+    "cantar en un coro": [
+      "å synge i kor"
+    ],
+    "ver la tele": [
+      "å se på TV"
+    ],
+    "tocar la guitarra": [
+      "å spille gitar"
+    ],
+    "tocar el piano": [
+      "å spille piano"
+    ],
+    "entrenar en el gimnasio": [
+      "å trene på treningssenteret"
+    ],
+    "escuchar música": [
+      "å høre musikk"
+    ],
+    "estar con amigos": [
+      "å være med venner"
+    ],
+    "salir con mis amigos": [
+      "å dra ut med venner"
+    ],
+    "bailar en mi tiempo libre": [
+      "å danse på fritiden"
+    ],
+    "hacer senderismo": [
+      "å gå tur"
+    ],
+    "relajarse": [
+      "å slappe av"
+    ],
+    "navegar por internet": [
+      "å surfe på internett"
+    ],
+    "¿Tienes reloj?": [
+      "Har du klokke?"
+    ],
+    "¿Sabes qué hora es?": [
+      "Vet du hva klokka er?"
+    ],
+    "¿A qué hora vas a comer?": [
+      "Når skal du spise?"
+    ],
+    "voy a comer a las ocho": [
+      "jeg skal spise klokka åtte"
+    ],
+    "Es la una": [
+      "Den er 13:00"
+    ],
+    "es la una y cuarto": [
+      "Den er kvart over ett"
+    ],
+    "es la una y media": [
+      "Den er halv to"
+    ],
+    "son las dos": [
+      "Den er to"
+    ],
+    "son las tres menos veinte": [
+      "den er ti over halv tre"
+    ],
+    "son las tres menos diez": [
+      "den er ti på tre"
+    ],
+    "a las ocho de la mañana": [
+      "klokken åtte om morgenen"
+    ],
+    "a las seis de la tarde": [
+      "klokka seks på ettermiddagen"
+    ],
+    "a las doce de la noche": [
+      "klokka tolv på natta"
+    ],
+    "Son las cinco en punto": [
+      "Klokken er akkurat 5"
+    ],
+    "todos los días": [
+      "hver dag"
+    ],
+    "el lunes": [
+      "på mandag"
+    ],
+    "los lunes": [
+      "på mandager"
+    ],
+    "martes": [
+      "tirsdag"
+    ],
+    "miércoles": [
+      "onsdag"
+    ],
+    "jueves": [
+      "torsdag"
+    ],
+    "viernes": [
+      "fredag"
+    ],
+    "por la mañana": [
+      "på morgenen"
+    ],
+    "hace unos días": [
+      "for noen dager siden"
+    ],
+    "cada semana": [
+      "hver uke"
+    ],
+    "a menudo": [
+      "ofte"
+    ],
+    "raramente": [
+      "sjelden"
+    ],
+    "por la tarde": [
+      "på ettermiddagen"
+    ],
+    "antes": [
+      "før"
+    ],
+    "esta noche": [
+      "i kveld"
+    ],
+    "mañana": [
+      "i morgen"
+    ],
+    "ayer": [
+      "i går"
+    ],
+    "por la noche": [
+      "på kvelden"
+    ],
+    "después": [
+      "etter",
+      "etter / etterpå",
+      "etterpå"
+    ],
+    "la cabeza": [
+      "hode"
+    ],
+    "el ojo": [
+      "øye"
+    ],
+    "la boca": [
+      "munn"
+    ],
+    "la mano": [
+      "hånd"
+    ],
+    "el pie": [
+      "fot"
+    ],
+    "el alumno": [
+      "elev"
+    ],
+    "el profesor de español": [
+      "spansklærer"
+    ],
+    "la clase": [
+      "skoleklasse",
+      "skoletime"
+    ],
+    "la pizarra": [
+      "tavle"
+    ],
+    "el mapa": [
+      "kart"
+    ],
+    "la papelera": [
+      "papirkurv"
+    ],
+    "el libro": [
+      "bok"
+    ],
+    "el ordenador": [
+      "PC"
+    ],
+    "la E.S.O": [
+      "ungdomsskolen"
+    ],
+    "el pupitre": [
+      "pult"
+    ],
+    "la silla": [
+      "stol"
+    ],
+    "la mochila": [
+      "sekk"
+    ],
+    "el estuche": [
+      "pennal"
+    ],
+    "el lápiz": [
+      "blyant"
+    ],
+    "el bolígrafo": [
+      "penn"
+    ],
+    "la goma": [
+      "viskelær"
+    ],
+    "el sacapuntas": [
+      "blyantspisser"
+    ],
+    "la regla": [
+      "linjal"
+    ],
+    "el bachillerato": [
+      "videregående"
+    ],
+    "el inglés": [
+      "engelsk"
+    ],
+    "las matemáticas": [
+      "matte"
+    ],
+    "la historia": [
+      "historie"
+    ],
+    "las ciencias sociales": [
+      "samfunnsfag"
+    ],
+    "las ciencias naturales": [
+      "naturfag"
+    ],
+    "la educación física": [
+      "kroppsøving"
+    ],
+    "las artes manuales": [
+      "kunst og håndverk"
+    ],
+    "la religión": [
+      "KRLE",
+      "religion",
+      "religion / KRLE"
+    ],
+    "la habitación": [
+      "rom"
+    ],
+    "el cuarto": [
+      "rom",
+      "rom (annet ord, C)"
+    ],
+    "el baño": [
+      "bad"
+    ],
+    "el comedor": [
+      "spisestue"
+    ],
+    "el pasillo": [
+      "gang"
+    ],
+    "el ático": [
+      "loft"
+    ],
+    "la puerta": [
+      "dør"
+    ],
+    "el dormitorio": [
+      "soverom"
+    ],
+    "el cuarto de trabajo": [
+      "arbeidsrom"
+    ],
+    "el cuarto de estar": [
+      "stue",
+      "stue (c)"
+    ],
+    "la cocina": [
+      "kjøkken"
+    ],
+    "el sótano": [
+      "kjeller"
+    ],
+    "la ventana": [
+      "vindu"
+    ],
+    "la casa": [
+      "hus"
+    ],
+    "el mueble": [
+      "møbel"
+    ],
+    "el sofá": [
+      "sofa"
+    ],
+    "la mesa": [
+      "bord"
+    ],
+    "el televisor": [
+      "TV"
+    ],
+    "el armario": [
+      "skap"
+    ],
+    "el póster": [
+      "plakat"
+    ],
+    "la nevera": [
+      "kjøleskap",
+      "kjøleskap (n)"
+    ],
+    "el escritorio": [
+      "skrivebord"
+    ],
+    "la estantería": [
+      "bokhylle"
+    ],
+    "la cómoda": [
+      "kommode"
+    ],
+    "el sillón": [
+      "lenestol"
+    ],
+    "la alfombra": [
+      "teppe"
+    ],
+    "el lavavajillas": [
+      "oppvaskmaskin"
+    ],
+    "la cama": [
+      "seng"
+    ],
+    "la lámpara": [
+      "lampe"
+    ],
+    "el cuadro": [
+      "bilde",
+      "bilde / maleri (c)",
+      "maleri"
+    ],
+    "el horno": [
+      "ovn"
+    ],
+    "el espejo": [
+      "speil"
+    ],
+    "me gusta": [
+      "jeg liker"
+    ],
+    "no me gusta": [
+      "jeg liker ikke"
+    ],
+    "te gusta": [
+      "du liker"
+    ],
+    "no te gusta": [
+      "du liker ikke"
+    ],
+    "le gusta": [
+      "han liker",
+      "han/hun liker",
+      "hun liker"
+    ],
+    "me gusta este libro": [
+      "jeg liker denne boken"
+    ],
+    "me gustan estos libros": [
+      "jeg liker disse bøkene"
+    ],
+    "me encanta": [
+      "jeg elsker (me ....)"
+    ],
+    "me molesta": [
+      "jeg blir irritert av"
+    ],
+    "me despierto": [
+      "jeg våkner"
+    ],
+    "me levanto": [
+      "jeg står opp"
+    ],
+    "me ducho": [
+      "jeg dusjer"
+    ],
+    "me cepillo los dientes": [
+      "jeg pusser tennene"
+    ],
+    "me maquillo": [
+      "jeg sminker meg"
+    ],
+    "me afeito": [
+      "jeg barberer meg"
+    ],
+    "me peino": [
+      "jeg børster håret"
+    ],
+    "me visto": [
+      "jeg kler på meg"
+    ],
+    "me acuesto": [
+      "jeg legger meg"
+    ],
+    "desayuno": [
+      "jeg spiser frokost"
+    ],
+    "salgo de la casa": [
+      "jeg går ut av huset"
+    ],
+    "voy a la escuela": [
+      "jeg drar på skolen"
+    ],
+    "almuerzo": [
+      "jeg spiser lunsj"
+    ],
+    "voy a casa": [
+      "jeg drar hjem"
+    ],
+    "voy al entrenamiento": [
+      "jeg drar på trening"
+    ],
+    "ceno": [
+      "jeg spiser middag"
+    ],
+    "duermo": [
+      "jeg sover"
+    ],
+    "me levanto temprano": [
+      "jeg står opp tidlig"
+    ],
+    "me pongo una camiseta": [
+      "jeg tar på meg en t-skjorte"
+    ],
+    "voy a pie a la escuela": [
+      "jeg går til skolen"
+    ],
+    "soy, eres, es, somos, sois, son": [
+      "bøying av verbet SER, som betyr å være"
+    ],
+    "tengo, tienes, tiene, tenemos, tenéis, tienen": [
+      "bøying av verbet tener, som betyr å ha"
+    ],
+    "voy, vas, va, vamos, vais, van": [
+      "bøying av verbet ir"
+    ],
+    "estoy, estás, está, estamos, estáis, están": [
+      "bøying av verbet estar, som betyr å være/å befinne seg"
+    ],
+    "hablo, hablas, habla, hablamos, habláis, hablan": [
+      "bøying av verbet hablar, som betyr å snakke"
+    ],
+    "como, comes, come, comemos, coméis, comen": [
+      "bøying av verbet comer, som betyr å spise"
+    ],
+    "vivo, vives, vive, vivimos, vivís, viven": [
+      "bøying av verbet vivir, som betyr å bo"
+    ],
+    "puedo, puedes, puede, podemos, podéis, pueden": [
+      "bøying av verbet poder, som betyr å kunne"
+    ],
+    "digo, dices, dice, decimos, decís, dicen": [
+      "bøying av verbet decir, som betyr å si"
+    ],
+    "hago, haces, hace, hacemos, hacéis, hacen": [
+      "bøying av verbet hacer, som betyr å gjøre"
+    ],
+    "quiero, quieres, quiere, queremos, queréis, quieren": [
+      "bøying av verbet querer, som betyr å ville"
+    ],
+    "sé, sabes, sabe, sabemos, sabéis, saben": [
+      "bøying av verbet saber, som betyr å vite"
+    ],
+    "salgo, sales, sale, salimos, salís, salen": [
+      "bøying av verbet salir, som betyr å gå ut"
+    ],
+    "vengo, vienes, viene, venimos, venís, vienen": [
+      "bøying av verbet venir, som betyr å komme"
+    ],
+    "voy a hacer algo": [
+      "jeg skal gjøre noe"
+    ],
+    "¿Qué vas a hacer hoy?": [
+      "hva skal du gjøre i dag?"
+    ],
+    "¿Qué vas a hacer mañana?": [
+      "hva skal du gjøre i morgen?"
+    ],
+    "Hoy voy a estar con mis amigos": [
+      "I dag skal jeg være med venner"
+    ],
+    "Mañana voy a visitar mi abuela": [
+      "I morgen skal jeg besøke bestemora mi"
+    ],
+    "¿Qué vas a hacer el año que viene?": [
+      "Hva skal du gjøre til neste år?"
+    ],
+    "El año que viene voy a empezar el bachillerato": [
+      "Neste år skal jeg begynne på videregående"
+    ],
+    "hablar": [
+      "å snakke"
+    ],
+    "trabajar": [
+      "å jobbe"
+    ],
+    "entrenar": [
+      "å trene"
+    ],
+    "bailar": [
+      "å danse"
+    ],
+    "comprar": [
+      "kjøpe",
+      "å kjøpe"
+    ],
+    "comer": [
+      "å spise"
+    ],
+    "beber": [
+      "drikke",
+      "å drikke"
+    ],
+    "leer": [
+      "å lese"
+    ],
+    "estudiar": [
+      "å studere"
+    ],
+    "vivir": [
+      "å bo",
+      "å bo/ å leve",
+      "å leve"
+    ],
+    "escribir": [
+      "å skrive"
+    ],
+    "escuchar": [
+      "å høre"
+    ],
+    "ver": [
+      "å se"
+    ],
+    "aprender": [
+      "å lære"
+    ],
+    "ganar": [
+      "å vinne"
+    ],
+    "olvidar": [
+      "å glemme"
+    ],
+    "ayudar": [
+      "å hjelpe"
+    ],
+    "cantar": [
+      "å synge"
+    ],
+    "esperar": [
+      "å vente"
+    ],
+    "preguntar": [
+      "å spørre"
+    ],
+    "pagar": [
+      "å betale"
+    ],
+    "viajar": [
+      "å reise"
+    ],
+    "y": [
+      "og"
+    ],
+    "o": [
+      "eller"
+    ],
+    "pero": [
+      "men"
+    ],
+    "también": [
+      "også"
+    ],
+    "siempre": [
+      "alltid"
+    ],
+    "nunca": [
+      "aldri"
+    ],
+    "a veces": [
+      "noen ganger"
+    ],
+    "normalmente": [
+      "vanligvis"
+    ],
+    "porque": [
+      "fordi"
+    ],
+    "por eso": [
+      "derfor"
+    ],
+    "quizás": [
+      "kanskje"
+    ],
+    "entonces": [
+      "deretter",
+      "dermed",
+      "dermed / deretter / så",
+      "så"
+    ],
+    "además": [
+      "dessuten",
+      "i tillegg",
+      "i tillegg / dessuten"
+    ],
+    "aunque": [
+      "selv om"
+    ],
+    "sin embargo": [
+      "allikevel"
+    ],
+    "por un lado": [
+      "på den ene siden"
+    ],
+    "por otro lado": [
+      "på den andre siden"
+    ],
+    "sobre todo": [
+      "først og fremst"
+    ],
+    "al mismo tiempo": [
+      "samtidig"
+    ],
+    "claro": [
+      "selvfølgelig"
+    ],
+    "voy a hablar sobre": [
+      "jeg skal snakke om"
+    ],
+    "gracias por su atención": [
+      "takk for oppmerksomheten"
+    ],
+    "hacer las compras": [
+      "å gjøre innkjøp"
+    ],
+    "lavar los platos": [
+      "å vaske opp"
+    ],
+    "limpiar el cuarto de baño": [
+      "å vaske badet"
+    ],
+    "lavar la ropa": [
+      "å vaske klær"
+    ],
+    "pasar la aspiradora": [
+      "å støvsuge"
+    ],
+    "arreglar la habitación": [
+      "å rydde rommet"
+    ],
+    "una vez a la semana": [
+      "én gang i uken"
+    ],
+    "cada día": [
+      "hver dag"
+    ],
+    "la fruta": [
+      "frukt"
+    ],
+    "la pera": [
+      "pære"
+    ],
+    "la naranja": [
+      "appelsin"
+    ],
+    "el plátano": [
+      "banan"
+    ],
+    "la manzana": [
+      "eple"
+    ],
+    "el melocotón": [
+      "fersken"
+    ],
+    "la uva": [
+      "drue"
+    ],
+    "el melón": [
+      "melon"
+    ],
+    "la sandía": [
+      "vannmelon"
+    ],
+    "el limón": [
+      "sitron"
+    ],
+    "la verdura": [
+      "grønnsak"
+    ],
+    "el tomate": [
+      "tomat"
+    ],
+    "el pepino": [
+      "agurk"
+    ],
+    "la cebolla": [
+      "løk"
+    ],
+    "el ajo": [
+      "hvitløk"
+    ],
+    "la lechuga": [
+      "salat"
+    ],
+    "el pimiento": [
+      "paprika"
+    ],
+    "la zanahoria": [
+      "gulrot"
+    ],
+    "la patata": [
+      "potet"
+    ],
+    "el alimento": [
+      "matvare"
+    ],
+    "la galleta": [
+      "kjeks"
+    ],
+    "el pan": [
+      "brød"
+    ],
+    "la mermelada": [
+      "marmelade"
+    ],
+    "los cereales": [
+      "korn, frokostblanding"
+    ],
+    "la salchicha": [
+      "pølse"
+    ],
+    "el jamón": [
+      "skinke"
+    ],
+    "la carne": [
+      "kjøtt"
+    ],
+    "el pollo": [
+      "kylling"
+    ],
+    "la pasta": [
+      "pasta"
+    ],
+    "el arroz": [
+      "ris"
+    ],
+    "el huevo": [
+      "egg"
+    ],
+    "el pescado": [
+      "fisk"
+    ],
+    "el azúcar": [
+      "sukker"
+    ],
+    "la sal": [
+      "salt"
+    ],
+    "el pastel": [
+      "bakverk"
+    ],
+    "la mantequilla": [
+      "smør"
+    ],
+    "el queso": [
+      "ost"
+    ],
+    "el yogur": [
+      "yoghurt"
+    ],
+    "la leche": [
+      "melk"
+    ],
+    "el refresco": [
+      "leskedrikk"
+    ],
+    "el zumo": [
+      "juice"
+    ],
+    "el jugo": [
+      "juice"
+    ],
+    "el Cola Cao": [
+      "sjokoladedrikk"
+    ],
+    "el agua": [
+      "vann"
+    ],
+    "necesitar": [
+      "behøve"
+    ],
+    "preparar": [
+      "forberede, tilberede"
+    ],
+    "el supermercado": [
+      "supermarked"
+    ],
+    "lo que": [
+      "det som"
+    ],
+    "acaba de regresar": [
+      "har nettopp kommet tilbake"
+    ],
+    "acabar de": [
+      "å nettopp ha gjort noe"
+    ],
+    "el aceite de oliva": [
+      "olivenolje"
+    ],
+    "por supuesto": [
+      "naturligvis"
+    ],
+    "al fondo": [
+      "lengst inn/bak"
+    ],
+    "las patatas fritas": [
+      "pommes frites"
+    ],
+    "la aceituna": [
+      "oliven"
+    ],
+    "picar": [
+      "småspise"
+    ],
+    "la cajera": [
+      "kassadame"
+    ]
+  },
+  "notes": "Curated reference corpus for A0-A1 Spanish. Pre-populated from glossary pairs, vocabularyAnswerAlternatives, and manually curated synonyms. Requires expert review for completeness. See thoughts/shared/plans/2026-08-24_content-audit-infrastructure.md."
+}
