@@ -82,6 +82,23 @@ bd --no-daemon sync
 ## Verification Gates
 This repo currently has no package scripts or automated test suite. Use the strongest available checks for the touched area.
 
+### Content audit infrastructure
+
+- `npm run extract:items` — extracts every curriculum item to `output/audit-items.json` (glossary, diagnosis, grammar, verbs, puzzles, prepositions, answer alternatives, definite forms).
+- `npm run check:content-accuracy` — runs 13 mechanical invariant checks on the extracted catalog (parenthetical annotations, definite-form endings, orphan maps, prompt collisions, verb conjugation completeness, grammar distractor identity, sentence puzzle integrity, accent/ñ presence, Norwegian context coverage). Corpus-dependent checks (synonym coverage, idiom correctness, distractor validity) require expert review and are documented but skipped automatically.
+- `tests/answer-acceptance-fuzz.spec.js` — fuzz-tests every glossary pair, diagnosis answer, and verb conjugation for correct acceptance, accent/ñ classification, and definite-form acceptance.
+- `tests/student-feedback.spec.js` — regression tests for the student feedback channel (storage, export, delete, anonymity, reset).
+
+### Student feedback channel privacy model
+
+Students can flag items they believe were unfairly marked wrong via a «Jeg mener svaret mitt er riktig» button after wrong answers in vocabulary, mixed quiz, verb, and grammar sessions.
+
+**Data collected:** item reference, prompt shown, student answer, expected answer, student explanation (free-text), student label (anonymous by default), timestamp.
+
+**Storage:** `localStorage` key `spansk123_studentFeedback_v1`, schema v1. No automatic transmission. Teacher exports JSON manually from Settings → Tilbakemeldinger. `resetAllData()` clears feedback.
+
+**Guardrail compliance:** Not silent (student actively writes and saves). No backend. No third-party services. Anonymous by default. Export is manual. Documented in README.md.
+
 Minimum for documentation/workflow changes:
 ```bash
 bd --no-daemon list --json

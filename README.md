@@ -50,6 +50,16 @@ En gratis, interaktiv læringsapp for spansk på ungdomsskolenivå (A0-A1 CEFR).
 - Elever blir ikke lagt inn i en felles klasse, og standardversjonen har ingen sentral lærerinnboks.
 - Personvernoppsettet er laget for en lokal pilot. Feide, skolekontoer og eventuell sentral datalagring krever en egen data- og personvernmodell.
 
+### 📢 Tilbakemeldinger på oppgaver
+
+Elever kan melde inn når de mener et svar er feilvurdert ved å klikke «Jeg mener svaret mitt er riktig» etter feil svar. Innspillet lagres **bare lokalt** på enheten.
+
+- **Anonym som standard** – eleven må aktivt velge å signere med elevkode.
+- **Lærer kan eksportere** alle innspill som JSON-fil fra Innstillinger → Tilbakemeldinger.
+- **Send JSON-filen til utvikler** for gjennomgang og oppdatering av ordlisten.
+- Ingen data sendes automatisk til noen server.
+- Advarsel i dialogen: «Skriv ikke navn på andre elever.»
+
 ## 🎒 Skolestartpilot
 
 Målet for første pilot er å gi spansklærere et lavterskel supplement til undervisningen uten innlogging, elevkontoer eller sentral datalagring.

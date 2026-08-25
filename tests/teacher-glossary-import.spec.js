@@ -140,4 +140,66 @@ test.describe('teacher glossary import validation', () => {
       { row: 3, reason: 'Finnes allerede i samme kategori: god kveld - Buenas Noches' }
     ]);
   });
+
+  test('splits Norwegian alternative translations on slash separator', async ({ page }) => {
+    await page.goto(appUrl);
+
+    const result = await page.evaluate(() => {
+      localStorage.clear();
+      cards = [];
+
+      const summary = analyzeTeacherWordImport({
+        category: 'test-norsk-alt',
+        words: [
+          ['mor / mamma', 'la madre']
+        ]
+      });
+
+      return {
+        valid: summary.valid,
+        importResult: applyTeacherWordImport(summary),
+        cards: cards.map(c => ({ no: c.no, es: c.es }))
+      };
+    });
+
+    expect(result.valid).toEqual([
+      { norsk: 'mor', spansk: 'la madre', category: 'test-norsk-alt' },
+      { norsk: 'mamma', spansk: 'la madre', category: 'test-norsk-alt' }
+    ]);
+    expect(result.cards).toEqual([
+      { no: 'mor', es: 'la madre' },
+      { no: 'mamma', es: 'la madre' }
+    ]);
+  });
+
+  test('splits both Norwegian and Spanish alternatives into cross-product cards', async ({ page }) => {
+    await page.goto(appUrl);
+
+    const result = await page.evaluate(() => {
+      localStorage.clear();
+      cards = [];
+
+      const summary = analyzeTeacherWordImport({
+        category: 'test-cross',
+        words: [
+          ['bror / broren', 'el hermano / la hermana']
+        ]
+      });
+
+      applyTeacherWordImport(summary);
+
+      return {
+        valid: summary.valid,
+        cards: cards.map(c => ({ no: c.no, es: c.es }))
+      };
+    });
+
+    expect(result.valid).toHaveLength(4);
+    expect(result.cards).toEqual(expect.arrayContaining([
+      { no: 'bror', es: 'el hermano' },
+      { no: 'bror', es: 'la hermana' },
+      { no: 'broren', es: 'el hermano' },
+      { no: 'broren', es: 'la hermana' }
+    ]));
+  });
 });
