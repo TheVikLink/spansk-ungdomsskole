@@ -171,6 +171,26 @@ test.describe('vocabulary learning mechanics', () => {
   expect(answers.school).toEqual(expect.arrayContaining(['la E.S.O.', 'la escuela secundaria']));
 });
 
+test('accepts natural Spanish alternatives for å gå tur', async ({ page }) => {
+  await page.goto(appUrl);
+  const answers = await page.evaluate(() => getVocabularyAcceptedAnswers(
+    { no: 'å gå tur', es: 'hacer senderismo' },
+    'no-es',
+    'hacer senderismo'
+  ).map(answer => answer.value));
+  expect(answers).toEqual(expect.arrayContaining(['hacer senderismo', 'hacer caminatas']));
+});
+
+test('accepts natural Norwegian alternatives for ir de compras', async ({ page }) => {
+  await page.goto(appUrl);
+  const answers = await page.evaluate(() => getVocabularyAcceptedAnswers(
+    { no: 'å handle', es: 'ir de compras' },
+    'es-no',
+    'å handle'
+  ).map(answer => answer.value));
+  expect(answers).toEqual(expect.arrayContaining(['å handle', 'å dra på shopping']));
+});
+
 test('keeps a held accent key alive while typing the next letter', async ({ page }) => {
   await page.goto(appUrl);
   await page.setContent('<input id="accent-sequence-test" autocomplete="off">');
