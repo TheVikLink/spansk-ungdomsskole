@@ -7329,6 +7329,7 @@ Vil du øve på ${pronoun} likevel?`
                 // accent picker. A quick press still inserts the plain key;
                 // holding it replaces that key with the Spanish high accent.
                 e.preventDefault();
+                e.stopImmediatePropagation();
                 
                 // Ignore key repeat
                 if (e.repeat) {
@@ -7355,7 +7356,7 @@ Vil du øve på ${pronoun} likevel?`
                     longPressTimers.delete(key);
                 }, 400);
                 longPressTimers.set(key, timer);
-            });
+            }, true);
 
             inputElement.addEventListener('keyup', (e) => {
                 const key = e.key;
@@ -7367,7 +7368,7 @@ Vil du øve på ${pronoun} likevel?`
                     clearTimeout(longPressTimers.get(key));
                     longPressTimers.delete(key);
                 }
-            });
+            }, true);
         }
 
         function setupAccentInputs(root = document) {
