@@ -188,7 +188,7 @@ test('accepts natural Norwegian alternatives for ir de compras', async ({ page }
     'es-no',
     'å handle'
   ).map(answer => answer.value));
-  expect(answers).toEqual(expect.arrayContaining(['å handle', 'å dra på shopping']));
+  expect(answers).toEqual(expect.arrayContaining(['å handle', 'å dra på shopping', 'å shoppe']));
 });
 
 test('keeps a held accent key alive while typing the next letter', async ({ page }) => {
