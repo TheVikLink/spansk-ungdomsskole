@@ -1,0 +1,2509 @@
+{
+  "id": "cygnet",
+  "license": "verify-per-source-dataset",
+  "attribution": "Cygnet and contributing wordnets; see provenance database",
+  "retrievedAt": "2026-08-28T12:52:56.306Z",
+  "sha256": "732eea8711c2a6d70ce6e6d6fd45fc6439f4372f8985580947a162ab4e19d572",
+  "candidates": [
+    {
+      "pairId": "oransje--naranja--farger--es-no",
+      "direction": "es-no",
+      "candidate": "appelsin",
+      "canonicalMeaningId": "cygnet:i77762",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": true,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i77762:NOUN",
+          "relation": "contradiction",
+          "synsetId": "i77762",
+          "partOfSpeechMatch": true,
+          "unambiguous": false
+        }
+      ]
+    },
+    {
+      "pairId": "vinter--el-invierno--vær--no-es",
+      "direction": "no-es",
+      "candidate": "invierno",
+      "canonicalMeaningId": "cygnet:i117312",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i117312:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i117312",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "sommer--el-verano--vær--no-es",
+      "direction": "no-es",
+      "candidate": "verano",
+      "canonicalMeaningId": "cygnet:i117310",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i117310:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i117310",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "høst--el-otoño--vær--no-es",
+      "direction": "no-es",
+      "candidate": "otoño",
+      "canonicalMeaningId": "cygnet:i117308",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i117308:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i117308",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "fødselsdag--el-cumpleaños--høytider--no-es",
+      "direction": "no-es",
+      "candidate": "cumpleaños",
+      "canonicalMeaningId": "cygnet:i117384",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i117384:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i117384",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "bryllup--la-boda--høytider--no-es",
+      "direction": "no-es",
+      "candidate": "boda",
+      "canonicalMeaningId": "cygnet:i75876",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i75876:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i75876",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "pen-kjekk--guapo--utseende--es-no",
+      "direction": "es-no",
+      "candidate": "vakker",
+      "canonicalMeaningId": "cygnet:i1196",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": true,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i1196:ADJ",
+          "relation": "contradiction",
+          "synsetId": "i1196",
+          "partOfSpeechMatch": true,
+          "unambiguous": false
+        }
+      ]
+    },
+    {
+      "pairId": "vakker--hermoso--utseende--no-es",
+      "direction": "no-es",
+      "candidate": "guapo",
+      "canonicalMeaningId": "cygnet:i1196",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": true,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i1196:ADJ",
+          "relation": "contradiction",
+          "synsetId": "i1196",
+          "partOfSpeechMatch": true,
+          "unambiguous": false
+        }
+      ]
+    },
+    {
+      "pairId": "skjegg--la-barba--utseende--no-es",
+      "direction": "no-es",
+      "candidate": "barba",
+      "canonicalMeaningId": "cygnet:i64611",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i64611:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i64611",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "bror--el-hermano--familie--no-es",
+      "direction": "no-es",
+      "candidate": "hermano",
+      "canonicalMeaningId": "cygnet:i88708",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i88708:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i88708",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "søster--la-hermana--familie--no-es",
+      "direction": "no-es",
+      "candidate": "hermana",
+      "canonicalMeaningId": "cygnet:i93015",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i93015:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i93015",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "tante--la-tía--familie--no-es",
+      "direction": "no-es",
+      "candidate": "tía",
+      "canonicalMeaningId": "cygnet:i88357",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i88357:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i88357",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "onkel--el-tío--familie--no-es",
+      "direction": "no-es",
+      "candidate": "tío",
+      "canonicalMeaningId": "cygnet:i93825",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i93825:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i93825",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "mor--la-madre--familie--no-es",
+      "direction": "no-es",
+      "candidate": "madre",
+      "canonicalMeaningId": "cygnet:i91462",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i91462:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i91462",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "far--el-padre--familie--no-es",
+      "direction": "no-es",
+      "candidate": "padre",
+      "canonicalMeaningId": "cygnet:i89901",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i89901:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i89901",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "bestemor--la-abuela--familie--no-es",
+      "direction": "no-es",
+      "candidate": "abuela",
+      "canonicalMeaningId": "cygnet:i90289",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i90289:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i90289",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "bestemor--la-abuela--familie--no-es",
+      "direction": "no-es",
+      "candidate": "abuelo",
+      "canonicalMeaningId": "cygnet:i90289",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": true,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i90289:NOUN",
+          "relation": "contradiction",
+          "synsetId": "i90289",
+          "partOfSpeechMatch": true,
+          "unambiguous": false
+        }
+      ]
+    },
+    {
+      "pairId": "bestefar--el-abuelo--familie--no-es",
+      "direction": "no-es",
+      "candidate": "abuelo",
+      "canonicalMeaningId": "cygnet:i90287",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i90287:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i90287",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "bestefar--el-abuelo--familie--es-no",
+      "direction": "es-no",
+      "candidate": "bestemor",
+      "canonicalMeaningId": "cygnet:i90289",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": true,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i90289:NOUN",
+          "relation": "contradiction",
+          "synsetId": "i90289",
+          "partOfSpeechMatch": true,
+          "unambiguous": false
+        }
+      ]
+    },
+    {
+      "pairId": "t-skjorte--la-camiseta--klær--no-es",
+      "direction": "no-es",
+      "candidate": "camisa",
+      "canonicalMeaningId": "cygnet:i55249",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": true,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i55249:NOUN",
+          "relation": "contradiction",
+          "synsetId": "i55249",
+          "partOfSpeechMatch": true,
+          "unambiguous": false
+        }
+      ]
+    },
+    {
+      "pairId": "t-skjorte--la-camiseta--klær--no-es",
+      "direction": "no-es",
+      "candidate": "camiseta",
+      "canonicalMeaningId": "cygnet:i55249",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i55249:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i55249",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "t-skjorte--la-camiseta--klær--no-es",
+      "direction": "no-es",
+      "candidate": "jersey",
+      "canonicalMeaningId": "cygnet:i55249",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": true,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i55249:NOUN",
+          "relation": "contradiction",
+          "synsetId": "i55249",
+          "partOfSpeechMatch": true,
+          "unambiguous": false
+        }
+      ]
+    },
+    {
+      "pairId": "t-skjorte--la-camiseta--klær--es-no",
+      "direction": "es-no",
+      "candidate": "skjorte",
+      "canonicalMeaningId": "cygnet:i58807",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": true,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i58807:NOUN",
+          "relation": "contradiction",
+          "synsetId": "i58807",
+          "partOfSpeechMatch": true,
+          "unambiguous": false
+        }
+      ]
+    },
+    {
+      "pairId": "skjorte--la-camisa--klær--no-es",
+      "direction": "no-es",
+      "candidate": "camisa",
+      "canonicalMeaningId": "cygnet:i58807",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i58807:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i58807",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "skjorte--la-camisa--klær--no-es",
+      "direction": "no-es",
+      "candidate": "camiseta",
+      "canonicalMeaningId": "cygnet:i58807",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": true,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i58807:NOUN",
+          "relation": "contradiction",
+          "synsetId": "i58807",
+          "partOfSpeechMatch": true,
+          "unambiguous": false
+        }
+      ]
+    },
+    {
+      "pairId": "skjorte--la-camisa--klær--es-no",
+      "direction": "es-no",
+      "candidate": "T-skjorte",
+      "canonicalMeaningId": "cygnet:i55249",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": true,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i55249:NOUN",
+          "relation": "contradiction",
+          "synsetId": "i55249",
+          "partOfSpeechMatch": true,
+          "unambiguous": false
+        }
+      ]
+    },
+    {
+      "pairId": "jeans--los-vaqueros--klær--no-es",
+      "direction": "no-es",
+      "candidate": "jeans",
+      "canonicalMeaningId": "cygnet:i55242",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i55242:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i55242",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "lue--el-gorro--klær--no-es",
+      "direction": "no-es",
+      "candidate": "gorra",
+      "canonicalMeaningId": "cygnet:i51473",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": true,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i51473:NOUN",
+          "relation": "contradiction",
+          "synsetId": "i51473",
+          "partOfSpeechMatch": true,
+          "unambiguous": false
+        }
+      ]
+    },
+    {
+      "pairId": "caps--la-gorra--klær--es-no",
+      "direction": "es-no",
+      "candidate": "lue",
+      "canonicalMeaningId": "cygnet:i51473",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": true,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i51473:NOUN",
+          "relation": "contradiction",
+          "synsetId": "i51473",
+          "partOfSpeechMatch": true,
+          "unambiguous": false
+        }
+      ]
+    },
+    {
+      "pairId": "belte--el-cinturón--klær--no-es",
+      "direction": "no-es",
+      "candidate": "cinturón",
+      "canonicalMeaningId": "cygnet:i50691",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i50691:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i50691",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "genser-j--el-jersey--klær--es-no",
+      "direction": "es-no",
+      "candidate": "T-skjorte",
+      "canonicalMeaningId": "cygnet:i55249",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": true,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i55249:NOUN",
+          "relation": "contradiction",
+          "synsetId": "i55249",
+          "partOfSpeechMatch": true,
+          "unambiguous": false
+        }
+      ]
+    },
+    {
+      "pairId": "jakke--la-chaqueta--klær--no-es",
+      "direction": "no-es",
+      "candidate": "chaqueta",
+      "canonicalMeaningId": "cygnet:i55213",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i55213:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i55213",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "skjørt--la-falda--klær--no-es",
+      "direction": "no-es",
+      "candidate": "falda",
+      "canonicalMeaningId": "cygnet:i59017",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i59017:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i59017",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "hatt--el-sombrero--klær--no-es",
+      "direction": "no-es",
+      "candidate": "sombrero",
+      "canonicalMeaningId": "cygnet:i54674",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i54674:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i54674",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "slips--la-corbata--klær--no-es",
+      "direction": "no-es",
+      "candidate": "corbata",
+      "canonicalMeaningId": "cygnet:i56546",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i56546:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i56546",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "paraply--el-paraguas--klær--no-es",
+      "direction": "no-es",
+      "candidate": "paraguas",
+      "canonicalMeaningId": "cygnet:i60698",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i60698:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i60698",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "ring--el-anillo--klær--no-es",
+      "direction": "no-es",
+      "candidate": "anillo",
+      "canonicalMeaningId": "cygnet:i58184",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i58184:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i58184",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "klokke--el-reloj--klær--no-es",
+      "direction": "no-es",
+      "candidate": "reloj",
+      "canonicalMeaningId": "cygnet:i52025",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i52025:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i52025",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "brannmann--el-bombero--yrker--no-es",
+      "direction": "no-es",
+      "candidate": "bombero",
+      "canonicalMeaningId": "cygnet:i89960",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i89960:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i89960",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "kokk--el-cocinero--yrker--no-es",
+      "direction": "no-es",
+      "candidate": "cocinero",
+      "canonicalMeaningId": "cygnet:i89215",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i89215:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i89215",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "sykepleier--el-enfermero--yrker--no-es",
+      "direction": "no-es",
+      "candidate": "enfermero",
+      "canonicalMeaningId": "cygnet:i91672",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i91672:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i91672",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "bonde--el-granjero--yrker--no-es",
+      "direction": "no-es",
+      "candidate": "granjero",
+      "canonicalMeaningId": "cygnet:i89889",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i89889:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i89889",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "lege--el-médico--yrker--no-es",
+      "direction": "no-es",
+      "candidate": "médico",
+      "canonicalMeaningId": "cygnet:i89560",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i89560:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i89560",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "journalist--el-periodista--yrker--no-es",
+      "direction": "no-es",
+      "candidate": "periodista",
+      "canonicalMeaningId": "cygnet:i92531",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i92531:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i92531",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "golf--el-golf--hobbyer--no-es",
+      "direction": "no-es",
+      "candidate": "golf",
+      "canonicalMeaningId": "cygnet:i37860",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i37860:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i37860",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "tennis--el-tenis--hobbyer--no-es",
+      "direction": "no-es",
+      "candidate": "tenis",
+      "canonicalMeaningId": "cygnet:i37921",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i37921:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i37921",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "hode--la-cabeza--kropp--no-es",
+      "direction": "no-es",
+      "candidate": "cabeza",
+      "canonicalMeaningId": "cygnet:i66025",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i66025:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i66025",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "øye--el-ojo--kropp--no-es",
+      "direction": "no-es",
+      "candidate": "ojo",
+      "canonicalMeaningId": "cygnet:i64868",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i64868:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i64868",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "munn--la-boca--kropp--no-es",
+      "direction": "no-es",
+      "candidate": "boca",
+      "canonicalMeaningId": "cygnet:i64824",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i64824:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i64824",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "fot--el-pie--kropp--no-es",
+      "direction": "no-es",
+      "candidate": "pie",
+      "canonicalMeaningId": "cygnet:i50499",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i50499:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i50499",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "elev--el-alumno--skole--no-es",
+      "direction": "no-es",
+      "candidate": "alumno",
+      "canonicalMeaningId": "cygnet:i92757",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i92757:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i92757",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "kart--el-mapa--skole--no-es",
+      "direction": "no-es",
+      "candidate": "mapa",
+      "canonicalMeaningId": "cygnet:i56008",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i56008:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i56008",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "bok--el-libro--skole--no-es",
+      "direction": "no-es",
+      "candidate": "libro",
+      "canonicalMeaningId": "cygnet:i50953",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i50953:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i50953",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "pult--el-pupitre--skole--es-no",
+      "direction": "es-no",
+      "candidate": "skrivebord",
+      "canonicalMeaningId": "cygnet:i52811",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": true,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i52811:NOUN",
+          "relation": "contradiction",
+          "synsetId": "i52811",
+          "partOfSpeechMatch": true,
+          "unambiguous": false
+        }
+      ]
+    },
+    {
+      "pairId": "stol--la-silla--skole--no-es",
+      "direction": "no-es",
+      "candidate": "silla",
+      "canonicalMeaningId": "cygnet:i51746",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i51746:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i51746",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "blyant--el-lápiz--skole--no-es",
+      "direction": "no-es",
+      "candidate": "lápiz",
+      "canonicalMeaningId": "cygnet:i57109",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i57109:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i57109",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "penn--el-bolígrafo--skole--no-es",
+      "direction": "no-es",
+      "candidate": "bolígrafo",
+      "canonicalMeaningId": "cygnet:i57103",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i57103:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i57103",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "linjal--la-regla--skole--no-es",
+      "direction": "no-es",
+      "candidate": "regla",
+      "canonicalMeaningId": "cygnet:i58340",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i58340:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i58340",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "historie--la-historia--fag--no-es",
+      "direction": "no-es",
+      "candidate": "historia",
+      "canonicalMeaningId": "cygnet:i68917",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i68917:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i68917",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "rom--la-habitación--hjem--no-es",
+      "direction": "no-es",
+      "candidate": "cuarto",
+      "canonicalMeaningId": "cygnet:i58265",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": true,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i58265:NOUN",
+          "relation": "contradiction",
+          "synsetId": "i58265",
+          "partOfSpeechMatch": true,
+          "unambiguous": false
+        }
+      ]
+    },
+    {
+      "pairId": "rom--la-habitación--hjem--no-es",
+      "direction": "no-es",
+      "candidate": "habitación",
+      "canonicalMeaningId": "cygnet:i58265",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i58265:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i58265",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "rom-annet-ord-c--el-cuarto--hjem--es-no",
+      "direction": "es-no",
+      "candidate": "soverom",
+      "canonicalMeaningId": "cygnet:i50650",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": true,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i50650:NOUN",
+          "relation": "contradiction",
+          "synsetId": "i50650",
+          "partOfSpeechMatch": true,
+          "unambiguous": false
+        }
+      ]
+    },
+    {
+      "pairId": "rom-annet-ord-c--el-cuarto--hjem--es-no",
+      "direction": "es-no",
+      "candidate": "rom",
+      "canonicalMeaningId": "cygnet:i58265",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": true,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i58265:NOUN",
+          "relation": "contradiction",
+          "synsetId": "i58265",
+          "partOfSpeechMatch": true,
+          "unambiguous": false
+        }
+      ]
+    },
+    {
+      "pairId": "gang--el-pasillo--hjem--no-es",
+      "direction": "no-es",
+      "candidate": "pasillo",
+      "canonicalMeaningId": "cygnet:i54575",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i54575:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i54575",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "loft--el-ático--hjem--no-es",
+      "direction": "no-es",
+      "candidate": "loft",
+      "canonicalMeaningId": "cygnet:i55795",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i55795:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i55795",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "loft--el-ático--hjem--no-es",
+      "direction": "no-es",
+      "candidate": "ático",
+      "canonicalMeaningId": "cygnet:i55795",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i55795:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i55795",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "dør--la-puerta--hjem--no-es",
+      "direction": "no-es",
+      "candidate": "puerta",
+      "canonicalMeaningId": "cygnet:i53050",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i53050:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i53050",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "soverom--el-dormitorio--hjem--no-es",
+      "direction": "no-es",
+      "candidate": "cuarto",
+      "canonicalMeaningId": "cygnet:i50650",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": true,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i50650:NOUN",
+          "relation": "contradiction",
+          "synsetId": "i50650",
+          "partOfSpeechMatch": true,
+          "unambiguous": false
+        }
+      ]
+    },
+    {
+      "pairId": "soverom--el-dormitorio--hjem--no-es",
+      "direction": "no-es",
+      "candidate": "dormitorio",
+      "canonicalMeaningId": "cygnet:i50650",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i50650:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i50650",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "soverom--el-dormitorio--hjem--no-es",
+      "direction": "no-es",
+      "candidate": "habitación",
+      "canonicalMeaningId": "cygnet:i50650",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": true,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i50650:NOUN",
+          "relation": "contradiction",
+          "synsetId": "i50650",
+          "partOfSpeechMatch": true,
+          "unambiguous": false
+        }
+      ]
+    },
+    {
+      "pairId": "kjøkken--la-cocina--hjem--no-es",
+      "direction": "no-es",
+      "candidate": "cocina",
+      "canonicalMeaningId": "cygnet:i55397",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i55397:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i55397",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "kjeller--el-sótano--hjem--no-es",
+      "direction": "no-es",
+      "candidate": "sótano",
+      "canonicalMeaningId": "cygnet:i50513",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i50513:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i50513",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "vindu--la-ventana--hjem--no-es",
+      "direction": "no-es",
+      "candidate": "ventana",
+      "canonicalMeaningId": "cygnet:i61169",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i61169:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i61169",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "hus--la-casa--hjem--no-es",
+      "direction": "no-es",
+      "candidate": "casa",
+      "canonicalMeaningId": "cygnet:i53274",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i53274:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i53274",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "hus--la-casa--hjem--no-es",
+      "direction": "no-es",
+      "candidate": "habitación",
+      "canonicalMeaningId": "cygnet:i53274",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": true,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i53274:NOUN",
+          "relation": "contradiction",
+          "synsetId": "i53274",
+          "partOfSpeechMatch": true,
+          "unambiguous": false
+        }
+      ]
+    },
+    {
+      "pairId": "møbel--el-mueble--møbler--no-es",
+      "direction": "no-es",
+      "candidate": "mueble",
+      "canonicalMeaningId": "cygnet:i54111",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i54111:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i54111",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "sofa--el-sofá--møbler--no-es",
+      "direction": "no-es",
+      "candidate": "sofá",
+      "canonicalMeaningId": "cygnet:i59184",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i59184:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i59184",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "sofa--el-sofá--møbler--no-es",
+      "direction": "no-es",
+      "candidate": "sillón",
+      "canonicalMeaningId": "cygnet:i59184",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": true,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i59184:NOUN",
+          "relation": "contradiction",
+          "synsetId": "i59184",
+          "partOfSpeechMatch": true,
+          "unambiguous": false
+        }
+      ]
+    },
+    {
+      "pairId": "bord--la-mesa--møbler--no-es",
+      "direction": "no-es",
+      "candidate": "mesa",
+      "canonicalMeaningId": "cygnet:i59922",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i59922:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i59922",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "tv--el-televisor--møbler--no-es",
+      "direction": "no-es",
+      "candidate": "televisor",
+      "canonicalMeaningId": "cygnet:i60084",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i60084:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i60084",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "tv--el-televisor--møbler--no-es",
+      "direction": "no-es",
+      "candidate": "tv",
+      "canonicalMeaningId": "cygnet:i60090",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i60090:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i60090",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "skap--el-armario--møbler--no-es",
+      "direction": "no-es",
+      "candidate": "armario",
+      "canonicalMeaningId": "cygnet:i51341",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i51341:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i51341",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "skrivebord--el-escritorio--møbler--no-es",
+      "direction": "no-es",
+      "candidate": "escritorio",
+      "canonicalMeaningId": "cygnet:i52811",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i52811:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i52811",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "skrivebord--el-escritorio--møbler--no-es",
+      "direction": "no-es",
+      "candidate": "pupitre",
+      "canonicalMeaningId": "cygnet:i52811",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": true,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i52811:NOUN",
+          "relation": "contradiction",
+          "synsetId": "i52811",
+          "partOfSpeechMatch": true,
+          "unambiguous": false
+        }
+      ]
+    },
+    {
+      "pairId": "kommode--la-cómoda--møbler--no-es",
+      "direction": "no-es",
+      "candidate": "cómoda",
+      "canonicalMeaningId": "cygnet:i51832",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i51832:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i51832",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "lenestol--el-sillón--møbler--no-es",
+      "direction": "no-es",
+      "candidate": "sillón",
+      "canonicalMeaningId": "cygnet:i50150",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i50150:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i50150",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "teppe--la-alfombra--møbler--no-es",
+      "direction": "no-es",
+      "candidate": "alfombra",
+      "canonicalMeaningId": "cygnet:i58337",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i58337:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i58337",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "seng--la-cama--møbler--no-es",
+      "direction": "no-es",
+      "candidate": "cama",
+      "canonicalMeaningId": "cygnet:i50635",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i50635:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i50635",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "lampe--la-lámpara--møbler--no-es",
+      "direction": "no-es",
+      "candidate": "lámpara",
+      "canonicalMeaningId": "cygnet:i55499",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i55499:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i55499",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "ovn--el-horno--møbler--no-es",
+      "direction": "no-es",
+      "candidate": "horno",
+      "canonicalMeaningId": "cygnet:i56823",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i56823:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i56823",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "speil--el-espejo--møbler--no-es",
+      "direction": "no-es",
+      "candidate": "espejo",
+      "canonicalMeaningId": "cygnet:i56291",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i56291:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i56291",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "å-kjøpe--comprar--verb--es-no",
+      "direction": "es-no",
+      "candidate": "kjøpe",
+      "canonicalMeaningId": "cygnet:i32788",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": true,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i32788:VERB",
+          "relation": "contradiction",
+          "synsetId": "i32788",
+          "partOfSpeechMatch": true,
+          "unambiguous": false
+        }
+      ]
+    },
+    {
+      "pairId": "å-drikke--beber--verb--es-no",
+      "direction": "es-no",
+      "candidate": "drikke",
+      "canonicalMeaningId": "cygnet:i78658",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": true,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i78658:NOUN",
+          "relation": "contradiction",
+          "synsetId": "i78658",
+          "partOfSpeechMatch": true,
+          "unambiguous": false
+        }
+      ]
+    },
+    {
+      "pairId": "frukt--la-fruta--kapittel-7-gloser--no-es",
+      "direction": "no-es",
+      "candidate": "fruta",
+      "canonicalMeaningId": "cygnet:i105676",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i105676:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i105676",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "appelsin--la-naranja--kapittel-7-gloser--no-es",
+      "direction": "no-es",
+      "candidate": "naranja",
+      "canonicalMeaningId": "cygnet:i77762",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i77762:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i77762",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "banan--el-plátano--kapittel-7-gloser--no-es",
+      "direction": "no-es",
+      "candidate": "plátano",
+      "canonicalMeaningId": "cygnet:i77804",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i77804:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i77804",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "eple--la-manzana--kapittel-7-gloser--no-es",
+      "direction": "no-es",
+      "candidate": "manzana",
+      "canonicalMeaningId": "cygnet:i77708",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i77708:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i77708",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "melon--el-melón--kapittel-7-gloser--no-es",
+      "direction": "no-es",
+      "candidate": "melón",
+      "canonicalMeaningId": "cygnet:i66106",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i66106:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i66106",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "sitron--el-limón--kapittel-7-gloser--no-es",
+      "direction": "no-es",
+      "candidate": "limón",
+      "canonicalMeaningId": "cygnet:i77775",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i77775:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i77775",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "grønnsak--la-verdura--kapittel-7-gloser--no-es",
+      "direction": "no-es",
+      "candidate": "verdura",
+      "canonicalMeaningId": "cygnet:i77501",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i77501:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i77501",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "tomat--el-tomate--kapittel-7-gloser--no-es",
+      "direction": "no-es",
+      "candidate": "tomate",
+      "canonicalMeaningId": "cygnet:i77675",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i77675:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i77675",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "agurk--el-pepino--kapittel-7-gloser--no-es",
+      "direction": "no-es",
+      "candidate": "pepino",
+      "canonicalMeaningId": "cygnet:i77565",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i77565:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i77565",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "løk--la-cebolla--kapittel-7-gloser--no-es",
+      "direction": "no-es",
+      "candidate": "cebolla",
+      "canonicalMeaningId": "cygnet:i102321",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i102321:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i102321",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "hvitløk--el-ajo--kapittel-7-gloser--no-es",
+      "direction": "no-es",
+      "candidate": "ajo",
+      "canonicalMeaningId": "cygnet:i78211",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i78211:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i78211",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "gulrot--la-zanahoria--kapittel-7-gloser--no-es",
+      "direction": "no-es",
+      "candidate": "zanahoria",
+      "canonicalMeaningId": "cygnet:i104745",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i104745:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i104745",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "potet--la-patata--kapittel-7-gloser--no-es",
+      "direction": "no-es",
+      "candidate": "patata",
+      "canonicalMeaningId": "cygnet:i104549",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i104549:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i104549",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "kjeks--la-galleta--kapittel-7-gloser--no-es",
+      "direction": "no-es",
+      "candidate": "galleta",
+      "canonicalMeaningId": "cygnet:i76995",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i76995:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i76995",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "brød--el-pan--kapittel-7-gloser--no-es",
+      "direction": "no-es",
+      "candidate": "pan",
+      "canonicalMeaningId": "cygnet:i77313",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i77313:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i77313",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "brød--el-pan--kapittel-7-gloser--no-es",
+      "direction": "no-es",
+      "candidate": "pastel",
+      "canonicalMeaningId": "cygnet:i76902",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": true,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i76902:NOUN",
+          "relation": "contradiction",
+          "synsetId": "i76902",
+          "partOfSpeechMatch": true,
+          "unambiguous": false
+        }
+      ]
+    },
+    {
+      "pairId": "marmelade--la-mermelada--kapittel-7-gloser--no-es",
+      "direction": "no-es",
+      "candidate": "mermelada",
+      "canonicalMeaningId": "cygnet:i77052",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i77052:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i77052",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "pølse--la-salchicha--kapittel-7-gloser--no-es",
+      "direction": "no-es",
+      "candidate": "salchicha",
+      "canonicalMeaningId": "cygnet:i77287",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i77287:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i77287",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "skinke--el-jamón--kapittel-7-gloser--no-es",
+      "direction": "no-es",
+      "candidate": "jamón",
+      "canonicalMeaningId": "cygnet:i77246",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i77246:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i77246",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "kjøtt--la-carne--kapittel-7-gloser--no-es",
+      "direction": "no-es",
+      "candidate": "carne",
+      "canonicalMeaningId": "cygnet:i77100",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i77100:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i77100",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "ris--el-arroz--kapittel-7-gloser--no-es",
+      "direction": "no-es",
+      "candidate": "arroz",
+      "canonicalMeaningId": "cygnet:i78125",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i78125:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i78125",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "egg--el-huevo--kapittel-7-gloser--no-es",
+      "direction": "no-es",
+      "candidate": "huevo",
+      "canonicalMeaningId": "cygnet:i78362",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i78362:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i78362",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "fisk--el-pescado--kapittel-7-gloser--no-es",
+      "direction": "no-es",
+      "candidate": "pescado",
+      "canonicalMeaningId": "cygnet:i48880",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i48880:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i48880",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "sukker--el-azúcar--kapittel-7-gloser--no-es",
+      "direction": "no-es",
+      "candidate": "azúcar",
+      "canonicalMeaningId": "cygnet:i78493",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i78493:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i78493",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "salt--la-sal--kapittel-7-gloser--no-es",
+      "direction": "no-es",
+      "candidate": "sal",
+      "canonicalMeaningId": "cygnet:i116037",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i116037:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i116037",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "bakverk--el-pastel--kapittel-7-gloser--no-es",
+      "direction": "no-es",
+      "candidate": "pastel",
+      "canonicalMeaningId": "cygnet:i76902",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i76902:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i76902",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "bakverk--el-pastel--kapittel-7-gloser--es-no",
+      "direction": "es-no",
+      "candidate": "brød",
+      "canonicalMeaningId": "cygnet:i76902",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": true,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i76902:NOUN",
+          "relation": "contradiction",
+          "synsetId": "i76902",
+          "partOfSpeechMatch": true,
+          "unambiguous": false
+        }
+      ]
+    },
+    {
+      "pairId": "smør--la-mantequilla--kapittel-7-gloser--no-es",
+      "direction": "no-es",
+      "candidate": "mantequilla",
+      "canonicalMeaningId": "cygnet:i78414",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i78414:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i78414",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "ost--el-queso--kapittel-7-gloser--no-es",
+      "direction": "no-es",
+      "candidate": "queso",
+      "canonicalMeaningId": "cygnet:i78427",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i78427:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i78427",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "melk--la-leche--kapittel-7-gloser--no-es",
+      "direction": "no-es",
+      "candidate": "leche",
+      "canonicalMeaningId": "cygnet:i78383",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i78383:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i78383",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "vann--el-agua--kapittel-7-gloser--no-es",
+      "direction": "no-es",
+      "candidate": "agua",
+      "canonicalMeaningId": "cygnet:i115069",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i115069:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i115069",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    },
+    {
+      "pairId": "supermarked--el-supermercado--kapittel-7-gloser--no-es",
+      "direction": "no-es",
+      "candidate": "supermercado",
+      "canonicalMeaningId": "cygnet:i59809",
+      "sources": [
+        "cygnet"
+      ],
+      "falsePositive": false,
+      "evidence": [
+        {
+          "source": "cygnet",
+          "entryId": "i59809:NOUN",
+          "relation": "same_synset",
+          "synsetId": "i59809",
+          "partOfSpeechMatch": true,
+          "unambiguous": true
+        }
+      ]
+    }
+  ]
+}

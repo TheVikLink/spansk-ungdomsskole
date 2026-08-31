@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "sources": [
+    {
+      "id": "norsk-ordbank",
+      "url": "https://ordbank.uib.no/api/swagger.json",
+      "resource": "Norsk ordbank",
+      "license": "verify-before-snapshot",
+      "role": "morphology"
+    },
+    {
+      "id": "ordvev",
+      "url": "https://www.nb.no/sbfil/leksikalske_databaser/norsk_ordvev_nob_1.1.2.zip",
+      "resource": "Norsk ordvev – bokmål v1.1.2",
+      "license": "CC-BY-4.0",
+      "role": "semantic"
+    },
+    {
+      "id": "omwn",
+      "url": "https://github.com/omwn/omw-data/releases/download/v1.4/omw-1.4.tar.xz",
+      "resource": "Open Multilingual Wordnet",
+      "license": "verify-per-language",
+      "role": "cross-lingual-semantic"
+    },
+    {
+      "id": "cygnet",
+      "url": "https://github.com/omwn/cygnet",
+      "resource": "Cygnet",
+      "license": "verify-per-source-dataset",
+      "role": "cross-lingual-semantic"
+    },
+    {
+      "id": "wiktionary",
+      "url": "https://en.wiktionary.org/w/api.php",
+      "resource": "Wiktionary API",
+      "license": "CC-BY-SA-4.0",
+      "role": "candidate-only"
+    }
+  ]
+}
