@@ -22,7 +22,16 @@ function extractLearningCatalog() {
 }
 
 const validLevels = new Set(['A0', 'A0+', 'A1', 'A1+']);
-const validSourceNotes = new Set(['written-original', 'teacher-authored', 'public-curriculum-inspired']);
+const validSourceNotes = new Set([
+  'written-original',
+  'teacher-authored',
+  'public-curriculum-inspired',
+  'curriculum-derived',
+  'a0-foundation',
+  'grammar-topic',
+  'verb-database',
+  'preposition-database'
+]);
 const expectedDiagnosisIds = [
   'diag.vocab.greeting.hola.es_no',
   'diag.vocab.greeting.takk.no_es',

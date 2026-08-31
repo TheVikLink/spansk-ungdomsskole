@@ -42,7 +42,7 @@ test.describe('brainmap v1 progress model', () => {
       }
     }));
 
-    expect(model.skills).toHaveLength(8);
+    expect(model.skills.length).toBeGreaterThan(20);
     expect(model.skills.find(node => node.id === 'a0.identity.me_llamo')).toMatchObject({ status: 'red', strength: 1 });
     expect(model.skills.some(node => node.id === 'unknown.future.skill')).toBe(false);
     expect(model.vocabularyAreas.find(area => area.id === 'Hilsener')).toMatchObject({
@@ -67,9 +67,9 @@ test.describe('brainmap v1 progress model', () => {
         'a1.ser_estar.identity_or_location': { strength: 5, attempts: 5, correct: 5, lapses: 0, dueAt: null, lastSeenAt: '2026-08-07T10:01:00.000Z' }
       }
     }));
-    const group = model.groups.find(node => node.id === 'Setninger og uttrykk');
+    const group = model.groups.find(node => node.id === 'A0::Setninger og uttrykk');
 
-    expect(group).toMatchObject({ status: 'yellow' });
+    expect(group).toMatchObject({ status: 'red' });
   });
 
   test('renders microskills without removing legacy category practice buttons', async ({ page }) => {
@@ -96,9 +96,9 @@ test.describe('brainmap v1 progress model', () => {
       showPage('brainmap');
     });
 
-    await expect(page.locator('[data-brainmap-group]')).toHaveCount(3);
+    expect(await page.locator('[data-brainmap-group]').count()).toBeGreaterThan(3);
     await expect(page.locator('[data-brainmap-group]').first()).not.toHaveAttribute('open', '');
-    await expect(page.locator('[data-brainmap-skill-action]')).toHaveCount(8);
+    expect(await page.locator('[data-brainmap-skill-action]').count()).toBeGreaterThan(20);
     await expect(page.locator('[data-brainmap-group] [data-brainmap-skill-action]').first()).toBeHidden();
 
     await page.locator('[data-brainmap-group] summary').first().press('Enter');
@@ -135,5 +135,32 @@ test.describe('brainmap v1 progress model', () => {
       expect.objectContaining({ id: 'hilsener', label: 'Hilsener', count: 1, mastered: 1 }),
       expect.objectContaining({ id: 'ekstra', label: 'Ekstra', count: 1, mastered: 0 })
     ]);
+  });
+
+  test('filters skills by level and category without changing progress values', async ({ page }) => {
+    await page.goto(appUrl);
+    const result = await page.evaluate(() => {
+      const model = buildBrainmapModel({ schemaVersion: 1, skillProgress: { 'a0.identity.me_llamo': { strength: 2, attempts: 1 } }, wordProgress: {} });
+      return {
+        a0: filterBrainmapModel(model, { level: 'A0', category: 'all' }).skills,
+        verbs: filterBrainmapModel(model, { level: 'all', category: 'Verb i presens' }).skills,
+        original: model.skills.find(skill => skill.id === 'a0.identity.me_llamo')
+      };
+    });
+    expect(result.a0.every(skill => skill.level === 'A0')).toBe(true);
+    expect(result.verbs.every(skill => skill.group === 'Verb i presens')).toBe(true);
+    expect(result.original).toMatchObject({ strength: 2, attempts: 1 });
+  });
+
+  test('renders filter controls and narrows the visible skill nodes', async ({ page }) => {
+    await page.goto(appUrl);
+    await page.evaluate(() => { localStorage.clear(); studentName = 'Elev filter'; showMainApp(); showPage('brainmap'); });
+    const allCount = await page.locator('[data-brainmap-skill-action]').count();
+    await page.selectOption('#brainmapLevelFilter', 'A0');
+    const a0Count = await page.locator('[data-brainmap-skill-action]').count();
+    expect(allCount).toBeGreaterThan(a0Count);
+    expect(await page.locator('[data-brainmap-skill-action]').evaluateAll(nodes => nodes.every(node => node.querySelector('.brainmap-node-level')?.textContent === 'A0'))).toBe(true);
+    await page.selectOption('#brainmapCategoryFilter', 'Artikler og substantiv');
+    expect(await page.locator('[data-brainmap-skill-action]').count()).toBeGreaterThan(0);
   });
 });

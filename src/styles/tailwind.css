@@ -2377,6 +2377,33 @@ select {
     font-weight: 600;
 }
 
+.brainmap-filters {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: .5rem .75rem;
+    margin: .75rem 0 1rem;
+    padding: .75rem;
+    border: 1px solid var(--gray-200);
+    border-radius: .75rem;
+    background: var(--gray-50);
+}
+
+.brainmap-filters label {
+    font-size: .875rem;
+    font-weight: 700;
+    color: var(--gray-700);
+}
+
+.brainmap-filters select {
+    min-height: 2.5rem;
+    padding: .4rem 2rem .4rem .65rem;
+    border: 1px solid var(--gray-300);
+    border-radius: .5rem;
+    background: white;
+    color: var(--gray-900);
+}
+
 .brainmap-vocabulary-title {
     margin-top: 32px;
 }

@@ -970,6 +970,7 @@
         let quizStatsWriteBlocked = false;
         let diagnosisWriteBlocked = false;
         let diagnosisFeedback = null;
+        let brainmapFilterState = { level: 'all', category: 'all' };
 
         const learningCatalog = {
             skills: [
@@ -980,7 +981,53 @@
                 { id: 'a1.verbs.regular_ar.present', level: 'A1', group: 'Verb i presens', label: 'Bøye regelrette -ar-verb i presens', sourceNote: 'written-original' },
                 { id: 'a1.verbs.regular_er.present', level: 'A1', group: 'Verb i presens', label: 'Bøye regelrette -er-verb i presens', sourceNote: 'written-original' },
                 { id: 'a1.gustar.basic', level: 'A1', group: 'Setninger og uttrykk', label: 'Bruke gustar med én ting eller aktivitet', sourceNote: 'written-original' },
-                { id: 'a1.ser_estar.identity_or_location', level: 'A1', group: 'Setninger og uttrykk', label: 'Velge ser eller estar for identitet og sted', sourceNote: 'written-original' }
+                { id: 'a1.ser_estar.identity_or_location', level: 'A1', group: 'Setninger og uttrykk', label: 'Velge ser eller estar for identitet og sted', sourceNote: 'written-original' },
+                { id: 'a0.identity.age', level: 'A0', group: 'Setninger og uttrykk', label: 'Si hvor gammel du er med tener años', contentStatus: 'ready', sourceNote: 'a0-foundation' },
+                { id: 'a0.existential.hay', level: 'A0', group: 'Setninger og uttrykk', label: 'Bruke hay for å si at noe finnes', contentStatus: 'ready', sourceNote: 'a0-foundation' },
+                { id: 'a0.possession.tener', level: 'A0', group: 'Setninger og uttrykk', label: 'Si at du har noe med tener', contentStatus: 'ready', sourceNote: 'a0-foundation' },
+                { id: 'a0.greetings.como_estas', level: 'A0', group: 'Setninger og uttrykk', label: 'Spørre og svare på hvordan det går', contentStatus: 'ready', sourceNote: 'a0-foundation' },
+                { id: 'a0.work.trabajar', level: 'A0', group: 'Setninger og uttrykk', label: 'Fortelle hva du jobber med', contentStatus: 'ready', sourceNote: 'a0-foundation' },
+                { id: 'a0.location.vivo_en', level: 'A0', group: 'Preposisjoner og bindeord', label: 'Si hvor du bor med vivo en', contentStatus: 'ready', sourceNote: 'a0-foundation' },
+                { id: 'a0.articles.definite_plural', level: 'A0', group: 'Artikler og substantiv', label: 'Bruke los og las', contentStatus: 'ready', sourceNote: 'grammar-topic' },
+                { id: 'a0.professions.zero_article', level: 'A0', group: 'Artikler og substantiv', label: 'Utelate artikkel foran yrker', contentStatus: 'ready', sourceNote: 'a0-foundation' },
+                { id: 'a0.questions.que_es_eso', level: 'A0', group: 'Spørsmål og spørreord', label: 'Spørre hva noe er med qué', contentStatus: 'ready', sourceNote: 'a0-foundation' },
+                { id: 'a1.verbs.regular_ir.present', level: 'A1', group: 'Verb, tid og bøying', label: 'Bøye regelrette -ir-verb i presens', contentStatus: 'ready', sourceNote: 'verb-database' },
+                { id: 'a1.verbs.ser.present', level: 'A1', group: 'Verb, tid og bøying', label: 'Bøye ser i presens', contentStatus: 'ready', sourceNote: 'verb-database' },
+                { id: 'a1.verbs.estar.present', level: 'A1', group: 'Verb, tid og bøying', label: 'Bøye estar i presens', contentStatus: 'ready', sourceNote: 'verb-database' },
+                { id: 'a1.verbs.ir.present', level: 'A1', group: 'Verb, tid og bøying', label: 'Bøye ir i presens', contentStatus: 'ready', sourceNote: 'verb-database' },
+                { id: 'a1.verbs.tener.present', level: 'A1', group: 'Verb, tid og bøying', label: 'Bøye tener i presens', contentStatus: 'ready', sourceNote: 'verb-database' },
+                { id: 'a1.verbs.hacer.present', level: 'A1', group: 'Verb, tid og bøying', label: 'Bøye hacer i presens', contentStatus: 'ready', sourceNote: 'verb-database' },
+                { id: 'a1.verbs.modal.present', level: 'A1', group: 'Verb, tid og bøying', label: 'Bruke poder, querer og deber med infinitiv', contentStatus: 'ready', sourceNote: 'verb-database' },
+                { id: 'a1.verbs.reflexive.present', level: 'A1', group: 'Verb, tid og bøying', label: 'Bøye refleksive verb i presens', contentStatus: 'ready', sourceNote: 'grammar-topic' },
+                { id: 'a1.verbs.near_future', level: 'A1', group: 'Verb, tid og bøying', label: 'Fortelle om nær framtid med ir a', contentStatus: 'planned', sourceNote: 'curriculum-derived' },
+                { id: 'a1.adjectives.gender_number', level: 'A1', group: 'Adjektiv og adverb', label: 'Bøye adjektiv etter kjønn og tall', contentStatus: 'ready', sourceNote: 'grammar-topic' },
+                { id: 'a1.adjectives.demonstratives', level: 'A1', group: 'Adjektiv og adverb', label: 'Bruke pekende adjektiv', contentStatus: 'ready', sourceNote: 'grammar-topic' },
+                { id: 'a1.adjectives.possessives', level: 'A1', group: 'Adjektiv og adverb', label: 'Bruke eiendomsord', contentStatus: 'ready', sourceNote: 'grammar-topic' },
+                { id: 'a1.time.clock', level: 'A1', group: 'Tall, klokkeslett og dato', label: 'Fortelle hva klokka er', contentStatus: 'planned', sourceNote: 'curriculum-derived' },
+                { id: 'a1.time.dates', level: 'A1', group: 'Tall, klokkeslett og dato', label: 'Si datoer og ukedager', contentStatus: 'planned', sourceNote: 'curriculum-derived' },
+                { id: 'a1.negation.no', level: 'A1', group: 'Negasjon', label: 'Lage negative setninger med no', contentStatus: 'planned', sourceNote: 'curriculum-derived' },
+                { id: 'a1.questions.interrogatives', level: 'A1', group: 'Spørsmål og spørreord', label: 'Bruke grunnleggende spørreord', contentStatus: 'planned', sourceNote: 'curriculum-derived' },
+                { id: 'a1.prepositions.basic', level: 'A1', group: 'Preposisjoner og bindeord', label: 'Bruke grunnleggende preposisjoner', contentStatus: 'ready', sourceNote: 'preposition-database' },
+                { id: 'a1.pronouns.subject', level: 'A1', group: 'Pronomen', label: 'Velge riktig subjektpronomen', contentStatus: 'planned', sourceNote: 'curriculum-derived' },
+                { id: 'a1.nouns.gender_number', level: 'A1', group: 'Artikler og substantiv', label: 'Finne kjønn og tall på substantiv', contentStatus: 'planned', sourceNote: 'curriculum-derived' },
+                { id: 'a1.nouns.plural_z', level: 'A1', group: 'Artikler og substantiv', label: 'Lage flertall av ord på -z', contentStatus: 'planned', sourceNote: 'curriculum-derived' },
+                { id: 'a1.articles.al_del', level: 'A1', group: 'Artikler og substantiv', label: 'Bruke al og del', contentStatus: 'planned', sourceNote: 'curriculum-derived' },
+                { id: 'a1.adjectives.muy_mucho', level: 'A1', group: 'Adjektiv og adverb', label: 'Skille mellom muy og mucho', contentStatus: 'planned', sourceNote: 'curriculum-derived' },
+                { id: 'a1.adjectives.colours', level: 'A1', group: 'Adjektiv og adverb', label: 'Bruke farger med riktig samsvar', contentStatus: 'planned', sourceNote: 'curriculum-derived' },
+                { id: 'a1.adverbs.mente', level: 'A1', group: 'Adjektiv og adverb', label: 'Lage enkle adverb på -mente', contentStatus: 'planned', sourceNote: 'curriculum-derived' },
+                { id: 'a1.gustar.activities', level: 'A1', group: 'Setninger og uttrykk', label: 'Si at du liker å gjøre noe med gustar', contentStatus: 'planned', sourceNote: 'curriculum-derived' },
+                { id: 'a1.ser_estar.origin', level: 'A1', group: 'Setninger og uttrykk', label: 'Bruke ser for opprinnelse og nasjonalitet', contentStatus: 'planned', sourceNote: 'curriculum-derived' },
+                { id: 'a1.ser_estar.weather', level: 'A1', group: 'Setninger og uttrykk', label: 'Snakke om vær med hace, hay og está', contentStatus: 'planned', sourceNote: 'curriculum-derived' },
+                { id: 'a1.ser_estar.time', level: 'A1', group: 'Setninger og uttrykk', label: 'Bruke ser for klokkeslett og dato', contentStatus: 'planned', sourceNote: 'curriculum-derived' },
+                { id: 'a1.reflexive.llamarse', level: 'A1', group: 'Setninger og uttrykk', label: 'Bruke llamarse for å si navn', contentStatus: 'planned', sourceNote: 'curriculum-derived' },
+                { id: 'a1.questions.que', level: 'A1', group: 'Spørsmål og spørreord', label: 'Spørre med qué', contentStatus: 'planned', sourceNote: 'curriculum-derived' },
+                { id: 'a1.questions.quien', level: 'A1', group: 'Spørsmål og spørreord', label: 'Spørre med quién', contentStatus: 'planned', sourceNote: 'curriculum-derived' },
+                { id: 'a1.questions.donde_cuando', level: 'A1', group: 'Spørsmål og spørreord', label: 'Spørre hvor og når', contentStatus: 'planned', sourceNote: 'curriculum-derived' },
+                { id: 'a1.prepositions.de_possession', level: 'A1', group: 'Preposisjoner og bindeord', label: 'Bruke de for å uttrykke eierskap', contentStatus: 'planned', sourceNote: 'curriculum-derived' },
+                { id: 'a1.prepositions.a_en', level: 'A1', group: 'Preposisjoner og bindeord', label: 'Skille mellom a og en', contentStatus: 'planned', sourceNote: 'curriculum-derived' },
+                { id: 'a1.prepositions.por_para', level: 'A1', group: 'Preposisjoner og bindeord', label: 'Skille mellom por og para', contentStatus: 'planned', sourceNote: 'curriculum-derived' },
+                { id: 'a1.pronouns.tu_tu', level: 'A1', group: 'Pronomen', label: 'Skille mellom tú og tu', contentStatus: 'planned', sourceNote: 'curriculum-derived' },
+                { id: 'a1.pronouns.el_el', level: 'A1', group: 'Pronomen', label: 'Skille mellom él og el', contentStatus: 'planned', sourceNote: 'curriculum-derived' }
             ],
             words: [
                 { id: 'core.hola', level: 'A0', area: 'Hilsener', no: 'hei', es: 'hola', sourceNote: 'written-original' },
@@ -989,6 +1036,9 @@
                 { id: 'core.cinco', level: 'A0', area: 'Tall', no: 'fem', es: 'cinco', sourceNote: 'written-original' }
             ]
         };
+        learningCatalog.skills.forEach(skill => {
+            skill.contentStatus = skill.contentStatus || 'ready';
+        });
 
         const diagnosisQuestionCatalog = JSON.parse(document.getElementById('diagnosis-catalog-data').textContent);
         const diagnosisPromptContextNo = {
@@ -1006,196 +1056,1829 @@
         const getDiagnosisOptions = question => (question.options || question.acceptedAnswers || []).map(option => typeof option === 'string' ? { optionId: option, label: option } : option);
 
         const vocabularyAnswerAlternatives = {
-            'bror|es-no': [
-                { answerId: 'bror', value: 'bror', canonicalMeaningId: 'hermano_no' },
-                { answerId: 'broren', value: 'broren', canonicalMeaningId: 'hermano_no' }
-            ],
-            'elev|no-es': [
-                { answerId: 'el_alumno', value: 'el alumno', canonicalMeaningId: 'student' },
-                { answerId: 'el_estudiante', value: 'el estudiante', canonicalMeaningId: 'student' }
-            ],
-            'å gå tur|no-es': [
-                { answerId: 'hacer_senderismo', value: 'hacer senderismo', canonicalMeaningId: 'go_for_a_walk_es' },
-                { answerId: 'hacer_caminatas', value: 'hacer caminatas', canonicalMeaningId: 'go_for_a_walk_es' }
-            ],
-            'å handle|es-no': [
-                { answerId: 'å_handle', value: 'å handle', canonicalMeaningId: 'go_shopping_no' },
-                { answerId: 'å_dra_på_shopping', value: 'å dra på shopping', canonicalMeaningId: 'go_shopping_no' },
-                { answerId: 'å_shoppe', value: 'å shoppe', canonicalMeaningId: 'go_shopping_no' }
-            ],
-            'pen/kjekk|es-no': [
-                { answerId: 'pen', value: 'pen', canonicalMeaningId: 'guapo_no' },
-                { answerId: 'kjekk', value: 'kjekk', canonicalMeaningId: 'guapo_no' }
-            ],
-            'snill/ hyggelig|es-no': [
-                { answerId: 'snill', value: 'snill', canonicalMeaningId: 'simpatico_no' },
-                { answerId: 'hyggelig', value: 'hyggelig', canonicalMeaningId: 'simpatico_no' }
-            ],
-            'etter / etterpå|es-no': [
-                { answerId: 'etter', value: 'etter', canonicalMeaningId: 'despues_no' },
-                { answerId: 'etterpå', value: 'etterpå', canonicalMeaningId: 'despues_no' }
-            ],
-            'religion / KRLE|es-no': [
-                { answerId: 'religion', value: 'religion', canonicalMeaningId: 'religion_no' },
-                { answerId: 'KRLE', value: 'KRLE', canonicalMeaningId: 'religion_no' }
-            ],
-            'bilde / maleri (c)|es-no': [
-                { answerId: 'bilde', value: 'bilde', canonicalMeaningId: 'cuadro_no' },
-                { answerId: 'maleri', value: 'maleri', canonicalMeaningId: 'cuadro_no' }
-            ],
-            'han/hun liker|es-no': [
-                { answerId: 'han liker', value: 'han liker', canonicalMeaningId: 'le_gusta_no' },
-                { answerId: 'hun liker', value: 'hun liker', canonicalMeaningId: 'le_gusta_no' }
-            ],
-            'dermed / deretter / så|es-no': [
-                { answerId: 'dermed', value: 'dermed', canonicalMeaningId: 'entonces_no' },
-                { answerId: 'deretter', value: 'deretter', canonicalMeaningId: 'entonces_no' },
-                { answerId: 'så', value: 'så', canonicalMeaningId: 'entonces_no' }
-            ],
-            'i tillegg / dessuten|es-no': [
-                { answerId: 'i tillegg', value: 'i tillegg', canonicalMeaningId: 'ademas_no' },
-                { answerId: 'dessuten', value: 'dessuten', canonicalMeaningId: 'ademas_no' }
-            ],
-            'å bo/ å leve|no-es': [
-                { answerId: 'vivir', value: 'vivir', canonicalMeaningId: 'vivir_es' }
-            ],
-            'å bo/ å leve|es-no': [
-                { answerId: 'å_bo', value: 'å bo', canonicalMeaningId: 'vivir_no' },
-                { answerId: 'å_leve', value: 'å leve', canonicalMeaningId: 'vivir_no' }
-            ],
-            'det er vind|es-no': [
-                { answerId: 'det_er_vind', value: 'det er vind', canonicalMeaningId: 'hace_viento_no' },
-                { answerId: 'det_blaser', value: 'det blåser', canonicalMeaningId: 'hace_viento_no' }
-            ],
-            'det blåser|es-no': [
-                { answerId: 'det_er_vind', value: 'det er vind', canonicalMeaningId: 'hace_viento_no' },
-                { answerId: 'det_blaser', value: 'det blåser', canonicalMeaningId: 'hace_viento_no' }
-            ],
-            'å kjøpe|es-no': [
-                { answerId: 'a_kjope', value: 'å kjøpe', canonicalMeaningId: 'comprar_no' },
-                { answerId: 'kjope', value: 'kjøpe', canonicalMeaningId: 'comprar_no' }
-            ],
-            'kjøpe|es-no': [
-                { answerId: 'a_kjope', value: 'å kjøpe', canonicalMeaningId: 'comprar_no' },
-                { answerId: 'kjope', value: 'kjøpe', canonicalMeaningId: 'comprar_no' }
-            ],
-            'å drikke|es-no': [
-                { answerId: 'a_drikke', value: 'å drikke', canonicalMeaningId: 'beber_no' },
-                { answerId: 'drikke', value: 'drikke', canonicalMeaningId: 'beber_no' }
-            ],
-            'drikke|es-no': [
-                { answerId: 'a_drikke', value: 'å drikke', canonicalMeaningId: 'beber_no' },
-                { answerId: 'drikke', value: 'drikke', canonicalMeaningId: 'beber_no' }
-            ],
-            'skoletime|es-no': [
-                { answerId: 'skoletime', value: 'skoletime', canonicalMeaningId: 'clase_no' },
-                { answerId: 'skoleklasse', value: 'skoleklasse', canonicalMeaningId: 'clase_no' }
-            ],
-            'skoleklasse|es-no': [
-                { answerId: 'skoletime', value: 'skoletime', canonicalMeaningId: 'clase_no' },
-                { answerId: 'skoleklasse', value: 'skoleklasse', canonicalMeaningId: 'clase_no' }
-            ],
-            'Neste år skal jeg begynne på videregående|no-es': [
-                { answerId: 'empezar_bachillerato', value: 'El año que viene voy a empezar el bachillerato', canonicalMeaningId: 'future_start_high_school' },
-                { answerId: 'comenzar_bachillerato', value: 'El año que viene voy a comenzar el bachillerato', canonicalMeaningId: 'future_start_high_school' },
-                { answerId: 'empezar_proximo', value: 'El próximo año voy a empezar el bachillerato', canonicalMeaningId: 'future_start_high_school' },
-                { answerId: 'comenzar_proximo', value: 'El próximo año voy a comenzar el bachillerato', canonicalMeaningId: 'future_start_high_school' }
-            ],
-            'lilla (v)|es-no': [
-                { answerId: 'lilla_v', value: 'lilla (v)', canonicalMeaningId: 'violeta_no' },
-                { answerId: 'lilla', value: 'lilla', canonicalMeaningId: 'violeta_no' }
-            ],
-            'lat (v)|es-no': [
-                { answerId: 'lat_v', value: 'lat (v)', canonicalMeaningId: 'vago_no' },
-                { answerId: 'lat', value: 'lat', canonicalMeaningId: 'vago_no' }
-            ],
-            'begravelse (f)|es-no': [
-                { answerId: 'begravelse_f', value: 'begravelse (f)', canonicalMeaningId: 'funeral_no' },
-                { answerId: 'begravelse_f_clean', value: 'begravelse', canonicalMeaningId: 'funeral_no' }
-            ],
-            'begravelse (ord på e)|es-no': [
-                { answerId: 'begravelse_e', value: 'begravelse (ord på e)', canonicalMeaningId: 'entierro_no' },
-                { answerId: 'begravelse_e_clean', value: 'begravelse', canonicalMeaningId: 'entierro_no' }
-            ],
-            'rom (annet ord, C)|es-no': [
-                { answerId: 'rom_c', value: 'rom (annet ord, C)', canonicalMeaningId: 'cuarto_no' },
-                { answerId: 'rom_c_clean', value: 'rom', canonicalMeaningId: 'cuarto_no' }
-            ],
-            'stue (c)|es-no': [
-                { answerId: 'stue_c', value: 'stue (c)', canonicalMeaningId: 'cuarto_de_estar_no' },
-                { answerId: 'stue_c_clean', value: 'stue', canonicalMeaningId: 'cuarto_de_estar_no' }
-            ],
-            'kjøleskap (n)|es-no': [
-                { answerId: 'kjoleskap_n', value: 'kjøleskap (n)', canonicalMeaningId: 'nevera_no' },
-                { answerId: 'kjoleskap_n_clean', value: 'kjøleskap', canonicalMeaningId: 'nevera_no' }
-            ],
-            'genser (j)|es-no': [
-                { answerId: 'genser_j', value: 'genser (j)', canonicalMeaningId: 'jersey_no' },
-                { answerId: 'genser_j_clean', value: 'genser', canonicalMeaningId: 'jersey_no' }
-            ],
-            'lærer (p)|es-no': [
-                { answerId: 'laerer_p', value: 'lærer (p)', canonicalMeaningId: 'profesor_no' },
-                { answerId: 'laerer_p_clean', value: 'lærer', canonicalMeaningId: 'profesor_no' }
-            ],
-            'mor|es-no': [
-                { answerId: 'mor', value: 'mor', canonicalMeaningId: 'madre_no' },
-                { answerId: 'moren', value: 'moren', canonicalMeaningId: 'madre_no' },
-                { answerId: 'mamma', value: 'mamma', canonicalMeaningId: 'madre_no' }
-            ],
-            'god kveld|no-es': [
-                { answerId: 'buenas_noches', value: 'buenas noches', canonicalMeaningId: 'good_evening_es' },
-                { answerId: 'buenas_tardes', value: 'buenas tardes', canonicalMeaningId: 'good_evening_es' }
-            ],
-            'kjæreste|no-es': [
-                { answerId: 'el_novio', value: 'el novio', canonicalMeaningId: 'boyfriend_es' },
-                { answerId: 'la_novia', value: 'la novia', canonicalMeaningId: 'boyfriend_es' }
-            ],
-            'kjæreste|es-no': [
-                { answerId: 'kjæreste', value: 'kjæreste', canonicalMeaningId: 'novio_no' },
-                { answerId: 'kjæresten', value: 'kjæresten', canonicalMeaningId: 'novio_no' }
-            ],
-            'ansvarsfull|es-no': [
-                { answerId: 'ansvarlig', value: 'ansvarlig', canonicalMeaningId: 'responsable_no' },
-                { answerId: 'ansvarsfull', value: 'ansvarsfull', canonicalMeaningId: 'responsable_no' }
-            ],
-            'ungdomsskolen|no-es': [
-                { answerId: 'la_eso', value: 'la E.S.O.', canonicalMeaningId: 'secondary_school_es' },
-                { answerId: 'la_escuela_secundaria', value: 'la escuela secundaria', canonicalMeaningId: 'secondary_school_es' }
-            ],
-            'hver dag|no-es': [
-                { answerId: 'todos_los_dias', value: 'todos los días', canonicalMeaningId: 'every_day_es' },
-                { answerId: 'cada_dia', value: 'cada día', canonicalMeaningId: 'every_day_es' }
-            ],
-            'juice|no-es': [
-                { answerId: 'el_zumo', value: 'el zumo', canonicalMeaningId: 'juice_es' },
-                { answerId: 'el_jugo', value: 'el jugo', canonicalMeaningId: 'juice_es' }
-            ],
-            'ha det|no-es': [
-                { answerId: 'adios', value: 'adiós', canonicalMeaningId: 'goodbye_es' },
-                { answerId: 'hasta_luego', value: 'hasta luego', canonicalMeaningId: 'goodbye_es' }
-            ],
-            'hei|es-no': [
-                { answerId: 'hei', value: 'hei', canonicalMeaningId: 'hello_no' },
-                { answerId: 'hallo', value: 'hallo', canonicalMeaningId: 'hello_no' }
-            ],
-            'ha det|es-no': [
-                { answerId: 'ha_det', value: 'ha det', canonicalMeaningId: 'goodbye_no' },
-                { answerId: 'farvel', value: 'farvel', canonicalMeaningId: 'goodbye_no' }
-            ],
-            'god morgen|es-no': [
-                { answerId: 'god_morgen', value: 'god morgen', canonicalMeaningId: 'good_morning_no' },
-                { answerId: 'god_dag', value: 'god dag', canonicalMeaningId: 'good_morning_no' }
-            ],
-            'god dag|es-no': [
-                { answerId: 'god_dag', value: 'god dag', canonicalMeaningId: 'good_day_no' },
-                { answerId: 'god_morgen', value: 'god morgen', canonicalMeaningId: 'good_day_no' }
-            ],
-            'etterpå|es-no': [
-                { answerId: 'etterpå', value: 'etterpå', canonicalMeaningId: 'after_no' },
-                { answerId: 'etter', value: 'etter', canonicalMeaningId: 'after_no' },
-                { answerId: 'etter_etterpå', value: 'etter / etterpå', canonicalMeaningId: 'after_no' }
-            ]
-        };
+    "agurk|no-es": [
+        {
+            "answerId": "primary",
+            "value": "el pepino",
+            "canonicalMeaningId": "cygnet:i77565"
+        },
+        {
+            "answerId": "pepino",
+            "value": "pepino",
+            "canonicalMeaningId": "cygnet:i77565"
+        }
+    ],
+    "ansvarsfull|es-no": [
+        {
+            "answerId": "ansvarlig",
+            "value": "ansvarlig",
+            "canonicalMeaningId": "responsable_no"
+        },
+        {
+            "answerId": "ansvarsfull",
+            "value": "ansvarsfull",
+            "canonicalMeaningId": "responsable_no"
+        }
+    ],
+    "appelsin|no-es": [
+        {
+            "answerId": "primary",
+            "value": "la naranja",
+            "canonicalMeaningId": "cygnet:i77762"
+        },
+        {
+            "answerId": "naranja",
+            "value": "naranja",
+            "canonicalMeaningId": "cygnet:i77762"
+        }
+    ],
+    "bakverk|no-es": [
+        {
+            "answerId": "primary",
+            "value": "el pastel",
+            "canonicalMeaningId": "cygnet:i76902"
+        },
+        {
+            "answerId": "pastel",
+            "value": "pastel",
+            "canonicalMeaningId": "cygnet:i76902"
+        }
+    ],
+    "banan|no-es": [
+        {
+            "answerId": "primary",
+            "value": "el plátano",
+            "canonicalMeaningId": "cygnet:i77804"
+        },
+        {
+            "answerId": "plátano",
+            "value": "plátano",
+            "canonicalMeaningId": "cygnet:i77804"
+        }
+    ],
+    "begravelse (f)|es-no": [
+        {
+            "answerId": "begravelse_f",
+            "value": "begravelse (f)",
+            "canonicalMeaningId": "funeral_no"
+        },
+        {
+            "answerId": "begravelse_f_clean",
+            "value": "begravelse",
+            "canonicalMeaningId": "funeral_no"
+        }
+    ],
+    "begravelse (ord på e)|es-no": [
+        {
+            "answerId": "begravelse_e",
+            "value": "begravelse (ord på e)",
+            "canonicalMeaningId": "entierro_no"
+        },
+        {
+            "answerId": "begravelse_e_clean",
+            "value": "begravelse",
+            "canonicalMeaningId": "entierro_no"
+        }
+    ],
+    "belte|no-es": [
+        {
+            "answerId": "cinturón",
+            "value": "cinturón",
+            "canonicalMeaningId": "cygnet:i50691"
+        },
+        {
+            "answerId": "primary",
+            "value": "el cinturón",
+            "canonicalMeaningId": "cygnet:i50691"
+        }
+    ],
+    "bestefar|no-es": [
+        {
+            "answerId": "abuelo",
+            "value": "abuelo",
+            "canonicalMeaningId": "cygnet:i90287"
+        },
+        {
+            "answerId": "primary",
+            "value": "el abuelo",
+            "canonicalMeaningId": "cygnet:i90287"
+        }
+    ],
+    "bestemor|no-es": [
+        {
+            "answerId": "abuela",
+            "value": "abuela",
+            "canonicalMeaningId": "cygnet:i90289"
+        },
+        {
+            "answerId": "primary",
+            "value": "la abuela",
+            "canonicalMeaningId": "cygnet:i90289"
+        }
+    ],
+    "bilde / maleri (c)|es-no": [
+        {
+            "answerId": "bilde",
+            "value": "bilde",
+            "canonicalMeaningId": "cuadro_no"
+        },
+        {
+            "answerId": "maleri",
+            "value": "maleri",
+            "canonicalMeaningId": "cuadro_no"
+        }
+    ],
+    "blyant|no-es": [
+        {
+            "answerId": "primary",
+            "value": "el lápiz",
+            "canonicalMeaningId": "cygnet:i57109"
+        },
+        {
+            "answerId": "lápiz",
+            "value": "lápiz",
+            "canonicalMeaningId": "cygnet:i57109"
+        }
+    ],
+    "bok|no-es": [
+        {
+            "answerId": "primary",
+            "value": "el libro",
+            "canonicalMeaningId": "cygnet:i50953"
+        },
+        {
+            "answerId": "libro",
+            "value": "libro",
+            "canonicalMeaningId": "cygnet:i50953"
+        }
+    ],
+    "bonde|no-es": [
+        {
+            "answerId": "primary",
+            "value": "el granjero",
+            "canonicalMeaningId": "cygnet:i89889"
+        },
+        {
+            "answerId": "granjero",
+            "value": "granjero",
+            "canonicalMeaningId": "cygnet:i89889"
+        }
+    ],
+    "bord|no-es": [
+        {
+            "answerId": "primary",
+            "value": "la mesa",
+            "canonicalMeaningId": "cygnet:i59922"
+        },
+        {
+            "answerId": "mesa",
+            "value": "mesa",
+            "canonicalMeaningId": "cygnet:i59922"
+        }
+    ],
+    "brannmann|no-es": [
+        {
+            "answerId": "bombero",
+            "value": "bombero",
+            "canonicalMeaningId": "cygnet:i89960"
+        },
+        {
+            "answerId": "primary",
+            "value": "el bombero",
+            "canonicalMeaningId": "cygnet:i89960"
+        }
+    ],
+    "bror|es-no": [
+        {
+            "answerId": "bror",
+            "value": "bror",
+            "canonicalMeaningId": "hermano_no"
+        },
+        {
+            "answerId": "broren",
+            "value": "broren",
+            "canonicalMeaningId": "hermano_no"
+        }
+    ],
+    "bror|no-es": [
+        {
+            "answerId": "primary",
+            "value": "el hermano",
+            "canonicalMeaningId": "cygnet:i88708"
+        },
+        {
+            "answerId": "hermano",
+            "value": "hermano",
+            "canonicalMeaningId": "cygnet:i88708"
+        }
+    ],
+    "bryllup|no-es": [
+        {
+            "answerId": "boda",
+            "value": "boda",
+            "canonicalMeaningId": "cygnet:i75876"
+        },
+        {
+            "answerId": "primary",
+            "value": "La Boda",
+            "canonicalMeaningId": "cygnet:i75876"
+        }
+    ],
+    "brød|no-es": [
+        {
+            "answerId": "primary",
+            "value": "el pan",
+            "canonicalMeaningId": "cygnet:i77313"
+        },
+        {
+            "answerId": "pan",
+            "value": "pan",
+            "canonicalMeaningId": "cygnet:i77313"
+        }
+    ],
+    "Bursdagen min er 7. juli|es-no": [
+        {
+            "answerId": "birthday_numeric",
+            "value": "Bursdagen min er 7. juli",
+            "canonicalMeaningId": "birthday_july_7_no"
+        },
+        {
+            "answerId": "birthday_words_no",
+            "value": "Bursdagen min er sjuende juli",
+            "canonicalMeaningId": "birthday_july_7_no"
+        },
+        {
+            "answerId": "birthday_words_no_article",
+            "value": "Bursdagen min er den sjuende juli",
+            "canonicalMeaningId": "birthday_july_7_no"
+        }
+    ],
+    "Bursdagen min er 7. juli|no-es": [
+        {
+            "answerId": "birthday_words",
+            "value": "Mi cumpleaños es el siete de julio",
+            "canonicalMeaningId": "birthday_july_7_es"
+        },
+        {
+            "answerId": "birthday_digit",
+            "value": "Mi cumpleaños es el 7 de julio",
+            "canonicalMeaningId": "birthday_july_7_es"
+        }
+    ],
+    "dermed / deretter / så|es-no": [
+        {
+            "answerId": "dermed",
+            "value": "dermed",
+            "canonicalMeaningId": "entonces_no"
+        },
+        {
+            "answerId": "deretter",
+            "value": "deretter",
+            "canonicalMeaningId": "entonces_no"
+        },
+        {
+            "answerId": "så",
+            "value": "så",
+            "canonicalMeaningId": "entonces_no"
+        }
+    ],
+    "det blåser|es-no": [
+        {
+            "answerId": "det_er_vind",
+            "value": "det er vind",
+            "canonicalMeaningId": "hace_viento_no"
+        },
+        {
+            "answerId": "det_blaser",
+            "value": "det blåser",
+            "canonicalMeaningId": "hace_viento_no"
+        }
+    ],
+    "det er vind|es-no": [
+        {
+            "answerId": "det_er_vind",
+            "value": "det er vind",
+            "canonicalMeaningId": "hace_viento_no"
+        },
+        {
+            "answerId": "det_blaser",
+            "value": "det blåser",
+            "canonicalMeaningId": "hace_viento_no"
+        }
+    ],
+    "drikke|es-no": [
+        {
+            "answerId": "a_drikke",
+            "value": "å drikke",
+            "canonicalMeaningId": "beber_no"
+        },
+        {
+            "answerId": "drikke",
+            "value": "drikke",
+            "canonicalMeaningId": "beber_no"
+        }
+    ],
+    "dør|no-es": [
+        {
+            "answerId": "primary",
+            "value": "la puerta",
+            "canonicalMeaningId": "cygnet:i53050"
+        },
+        {
+            "answerId": "puerta",
+            "value": "puerta",
+            "canonicalMeaningId": "cygnet:i53050"
+        }
+    ],
+    "egg|no-es": [
+        {
+            "answerId": "primary",
+            "value": "el huevo",
+            "canonicalMeaningId": "cygnet:i78362"
+        },
+        {
+            "answerId": "huevo",
+            "value": "huevo",
+            "canonicalMeaningId": "cygnet:i78362"
+        }
+    ],
+    "elev|no-es": [
+        {
+            "answerId": "alumno",
+            "value": "alumno",
+            "canonicalMeaningId": "cygnet:i92757"
+        },
+        {
+            "answerId": "primary",
+            "value": "el alumno",
+            "canonicalMeaningId": "cygnet:i92757"
+        },
+        {
+            "answerId": "el_estudiante",
+            "value": "el estudiante",
+            "canonicalMeaningId": "student"
+        }
+    ],
+    "eple|no-es": [
+        {
+            "answerId": "primary",
+            "value": "la manzana",
+            "canonicalMeaningId": "cygnet:i77708"
+        },
+        {
+            "answerId": "manzana",
+            "value": "manzana",
+            "canonicalMeaningId": "cygnet:i77708"
+        }
+    ],
+    "etter / etterpå|es-no": [
+        {
+            "answerId": "etter",
+            "value": "etter",
+            "canonicalMeaningId": "despues_no"
+        },
+        {
+            "answerId": "etterpå",
+            "value": "etterpå",
+            "canonicalMeaningId": "despues_no"
+        }
+    ],
+    "etterpå|es-no": [
+        {
+            "answerId": "etterpå",
+            "value": "etterpå",
+            "canonicalMeaningId": "after_no"
+        },
+        {
+            "answerId": "etter",
+            "value": "etter",
+            "canonicalMeaningId": "after_no"
+        },
+        {
+            "answerId": "etter_etterpå",
+            "value": "etter / etterpå",
+            "canonicalMeaningId": "after_no"
+        }
+    ],
+    "far|no-es": [
+        {
+            "answerId": "primary",
+            "value": "el padre",
+            "canonicalMeaningId": "cygnet:i89901"
+        },
+        {
+            "answerId": "padre",
+            "value": "padre",
+            "canonicalMeaningId": "cygnet:i89901"
+        }
+    ],
+    "fisk|no-es": [
+        {
+            "answerId": "primary",
+            "value": "el pescado",
+            "canonicalMeaningId": "cygnet:i48880"
+        },
+        {
+            "answerId": "pescado",
+            "value": "pescado",
+            "canonicalMeaningId": "cygnet:i48880"
+        }
+    ],
+    "fot|no-es": [
+        {
+            "answerId": "primary",
+            "value": "el pie",
+            "canonicalMeaningId": "cygnet:i50499"
+        },
+        {
+            "answerId": "pie",
+            "value": "pie",
+            "canonicalMeaningId": "cygnet:i50499"
+        }
+    ],
+    "frukt|no-es": [
+        {
+            "answerId": "fruta",
+            "value": "fruta",
+            "canonicalMeaningId": "cygnet:i105676"
+        },
+        {
+            "answerId": "primary",
+            "value": "la fruta",
+            "canonicalMeaningId": "cygnet:i105676"
+        }
+    ],
+    "fødselsdag|no-es": [
+        {
+            "answerId": "cumpleaños",
+            "value": "cumpleaños",
+            "canonicalMeaningId": "cygnet:i117384"
+        },
+        {
+            "answerId": "primary",
+            "value": "El Cumpleaños",
+            "canonicalMeaningId": "cygnet:i117384"
+        }
+    ],
+    "gang|no-es": [
+        {
+            "answerId": "primary",
+            "value": "el pasillo",
+            "canonicalMeaningId": "cygnet:i54575"
+        },
+        {
+            "answerId": "pasillo",
+            "value": "pasillo",
+            "canonicalMeaningId": "cygnet:i54575"
+        }
+    ],
+    "genser (j)|es-no": [
+        {
+            "answerId": "genser_j",
+            "value": "genser (j)",
+            "canonicalMeaningId": "jersey_no"
+        },
+        {
+            "answerId": "genser_j_clean",
+            "value": "genser",
+            "canonicalMeaningId": "jersey_no"
+        }
+    ],
+    "god dag|es-no": [
+        {
+            "answerId": "god_dag",
+            "value": "god dag",
+            "canonicalMeaningId": "good_day_no"
+        },
+        {
+            "answerId": "god_morgen",
+            "value": "god morgen",
+            "canonicalMeaningId": "good_day_no"
+        }
+    ],
+    "god kveld|no-es": [
+        {
+            "answerId": "buenas_noches",
+            "value": "buenas noches",
+            "canonicalMeaningId": "good_evening_es"
+        },
+        {
+            "answerId": "buenas_tardes",
+            "value": "buenas tardes",
+            "canonicalMeaningId": "good_evening_es"
+        }
+    ],
+    "god morgen|es-no": [
+        {
+            "answerId": "god_morgen",
+            "value": "god morgen",
+            "canonicalMeaningId": "good_morning_no"
+        },
+        {
+            "answerId": "god_dag",
+            "value": "god dag",
+            "canonicalMeaningId": "good_morning_no"
+        }
+    ],
+    "golf|no-es": [
+        {
+            "answerId": "primary",
+            "value": "el golf",
+            "canonicalMeaningId": "cygnet:i37860"
+        },
+        {
+            "answerId": "golf",
+            "value": "golf",
+            "canonicalMeaningId": "cygnet:i37860"
+        }
+    ],
+    "grønnsak|no-es": [
+        {
+            "answerId": "primary",
+            "value": "la verdura",
+            "canonicalMeaningId": "cygnet:i77501"
+        },
+        {
+            "answerId": "verdura",
+            "value": "verdura",
+            "canonicalMeaningId": "cygnet:i77501"
+        }
+    ],
+    "gulrot|no-es": [
+        {
+            "answerId": "primary",
+            "value": "la zanahoria",
+            "canonicalMeaningId": "cygnet:i104745"
+        },
+        {
+            "answerId": "zanahoria",
+            "value": "zanahoria",
+            "canonicalMeaningId": "cygnet:i104745"
+        }
+    ],
+    "ha det|es-no": [
+        {
+            "answerId": "ha_det",
+            "value": "ha det",
+            "canonicalMeaningId": "goodbye_no"
+        },
+        {
+            "answerId": "farvel",
+            "value": "farvel",
+            "canonicalMeaningId": "goodbye_no"
+        }
+    ],
+    "ha det|no-es": [
+        {
+            "answerId": "adios",
+            "value": "adiós",
+            "canonicalMeaningId": "goodbye_es"
+        },
+        {
+            "answerId": "hasta_luego",
+            "value": "hasta luego",
+            "canonicalMeaningId": "goodbye_es"
+        }
+    ],
+    "han/hun liker|es-no": [
+        {
+            "answerId": "han liker",
+            "value": "han liker",
+            "canonicalMeaningId": "le_gusta_no"
+        },
+        {
+            "answerId": "hun liker",
+            "value": "hun liker",
+            "canonicalMeaningId": "le_gusta_no"
+        }
+    ],
+    "hatt|no-es": [
+        {
+            "answerId": "primary",
+            "value": "el sombrero",
+            "canonicalMeaningId": "cygnet:i54674"
+        },
+        {
+            "answerId": "sombrero",
+            "value": "sombrero",
+            "canonicalMeaningId": "cygnet:i54674"
+        }
+    ],
+    "hei|es-no": [
+        {
+            "answerId": "hei",
+            "value": "hei",
+            "canonicalMeaningId": "hello_no"
+        },
+        {
+            "answerId": "hallo",
+            "value": "hallo",
+            "canonicalMeaningId": "hello_no"
+        }
+    ],
+    "historie|no-es": [
+        {
+            "answerId": "historia",
+            "value": "historia",
+            "canonicalMeaningId": "cygnet:i68917"
+        },
+        {
+            "answerId": "primary",
+            "value": "la historia",
+            "canonicalMeaningId": "cygnet:i68917"
+        }
+    ],
+    "hode|no-es": [
+        {
+            "answerId": "cabeza",
+            "value": "cabeza",
+            "canonicalMeaningId": "cygnet:i66025"
+        },
+        {
+            "answerId": "primary",
+            "value": "la cabeza",
+            "canonicalMeaningId": "cygnet:i66025"
+        }
+    ],
+    "hus|no-es": [
+        {
+            "answerId": "casa",
+            "value": "casa",
+            "canonicalMeaningId": "cygnet:i53274"
+        },
+        {
+            "answerId": "primary",
+            "value": "la casa",
+            "canonicalMeaningId": "cygnet:i53274"
+        }
+    ],
+    "hver dag|no-es": [
+        {
+            "answerId": "todos_los_dias",
+            "value": "todos los días",
+            "canonicalMeaningId": "every_day_es"
+        },
+        {
+            "answerId": "cada_dia",
+            "value": "cada día",
+            "canonicalMeaningId": "every_day_es"
+        }
+    ],
+    "hvitløk|no-es": [
+        {
+            "answerId": "ajo",
+            "value": "ajo",
+            "canonicalMeaningId": "cygnet:i78211"
+        },
+        {
+            "answerId": "primary",
+            "value": "el ajo",
+            "canonicalMeaningId": "cygnet:i78211"
+        }
+    ],
+    "høst|no-es": [
+        {
+            "answerId": "primary",
+            "value": "el otoño",
+            "canonicalMeaningId": "cygnet:i117308"
+        },
+        {
+            "answerId": "otoño",
+            "value": "otoño",
+            "canonicalMeaningId": "cygnet:i117308"
+        }
+    ],
+    "i tillegg / dessuten|es-no": [
+        {
+            "answerId": "i tillegg",
+            "value": "i tillegg",
+            "canonicalMeaningId": "ademas_no"
+        },
+        {
+            "answerId": "dessuten",
+            "value": "dessuten",
+            "canonicalMeaningId": "ademas_no"
+        }
+    ],
+    "jakke|no-es": [
+        {
+            "answerId": "chaqueta",
+            "value": "chaqueta",
+            "canonicalMeaningId": "cygnet:i55213"
+        },
+        {
+            "answerId": "primary",
+            "value": "la chaqueta",
+            "canonicalMeaningId": "cygnet:i55213"
+        }
+    ],
+    "jeans|no-es": [
+        {
+            "answerId": "jeans",
+            "value": "jeans",
+            "canonicalMeaningId": "cygnet:i55242"
+        },
+        {
+            "answerId": "primary",
+            "value": "los vaqueros",
+            "canonicalMeaningId": "cygnet:i55242"
+        }
+    ],
+    "jeg blir irritert av|es-no": [
+        {
+            "answerId": "det_plager_meg",
+            "value": "det plager meg",
+            "canonicalMeaningId": "molestar_no"
+        },
+        {
+            "answerId": "det_irriterer_meg",
+            "value": "det irriterer meg",
+            "canonicalMeaningId": "molestar_no"
+        },
+        {
+            "answerId": "jeg_blir_irritert_av",
+            "value": "jeg blir irritert av",
+            "canonicalMeaningId": "molestar_no"
+        }
+    ],
+    "journalist|no-es": [
+        {
+            "answerId": "primary",
+            "value": "el periodista",
+            "canonicalMeaningId": "cygnet:i92531"
+        },
+        {
+            "answerId": "periodista",
+            "value": "periodista",
+            "canonicalMeaningId": "cygnet:i92531"
+        }
+    ],
+    "juice|no-es": [
+        {
+            "answerId": "el_zumo",
+            "value": "el zumo",
+            "canonicalMeaningId": "juice_es"
+        },
+        {
+            "answerId": "el_jugo",
+            "value": "el jugo",
+            "canonicalMeaningId": "juice_es"
+        }
+    ],
+    "kart|no-es": [
+        {
+            "answerId": "primary",
+            "value": "el mapa",
+            "canonicalMeaningId": "cygnet:i56008"
+        },
+        {
+            "answerId": "mapa",
+            "value": "mapa",
+            "canonicalMeaningId": "cygnet:i56008"
+        }
+    ],
+    "kjeks|no-es": [
+        {
+            "answerId": "galleta",
+            "value": "galleta",
+            "canonicalMeaningId": "cygnet:i76995"
+        },
+        {
+            "answerId": "primary",
+            "value": "la galleta",
+            "canonicalMeaningId": "cygnet:i76995"
+        }
+    ],
+    "kjeller|no-es": [
+        {
+            "answerId": "primary",
+            "value": "el sótano",
+            "canonicalMeaningId": "cygnet:i50513"
+        },
+        {
+            "answerId": "sótano",
+            "value": "sótano",
+            "canonicalMeaningId": "cygnet:i50513"
+        }
+    ],
+    "kjæreste|es-no": [
+        {
+            "answerId": "kjæreste",
+            "value": "kjæreste",
+            "canonicalMeaningId": "novio_no"
+        },
+        {
+            "answerId": "kjæresten",
+            "value": "kjæresten",
+            "canonicalMeaningId": "novio_no"
+        }
+    ],
+    "kjæreste|no-es": [
+        {
+            "answerId": "el_novio",
+            "value": "el novio",
+            "canonicalMeaningId": "boyfriend_es"
+        },
+        {
+            "answerId": "la_novia",
+            "value": "la novia",
+            "canonicalMeaningId": "boyfriend_es"
+        }
+    ],
+    "kjøkken|no-es": [
+        {
+            "answerId": "cocina",
+            "value": "cocina",
+            "canonicalMeaningId": "cygnet:i55397"
+        },
+        {
+            "answerId": "primary",
+            "value": "la cocina",
+            "canonicalMeaningId": "cygnet:i55397"
+        }
+    ],
+    "kjøleskap (n)|es-no": [
+        {
+            "answerId": "kjoleskap_n",
+            "value": "kjøleskap (n)",
+            "canonicalMeaningId": "nevera_no"
+        },
+        {
+            "answerId": "kjoleskap_n_clean",
+            "value": "kjøleskap",
+            "canonicalMeaningId": "nevera_no"
+        }
+    ],
+    "kjøpe|es-no": [
+        {
+            "answerId": "a_kjope",
+            "value": "å kjøpe",
+            "canonicalMeaningId": "comprar_no"
+        },
+        {
+            "answerId": "kjope",
+            "value": "kjøpe",
+            "canonicalMeaningId": "comprar_no"
+        }
+    ],
+    "kjøtt|no-es": [
+        {
+            "answerId": "carne",
+            "value": "carne",
+            "canonicalMeaningId": "cygnet:i77100"
+        },
+        {
+            "answerId": "primary",
+            "value": "la carne",
+            "canonicalMeaningId": "cygnet:i77100"
+        }
+    ],
+    "klokke|no-es": [
+        {
+            "answerId": "primary",
+            "value": "el reloj",
+            "canonicalMeaningId": "cygnet:i52025"
+        },
+        {
+            "answerId": "reloj",
+            "value": "reloj",
+            "canonicalMeaningId": "cygnet:i52025"
+        }
+    ],
+    "kokk|no-es": [
+        {
+            "answerId": "cocinero",
+            "value": "cocinero",
+            "canonicalMeaningId": "cygnet:i89215"
+        },
+        {
+            "answerId": "primary",
+            "value": "el cocinero",
+            "canonicalMeaningId": "cygnet:i89215"
+        }
+    ],
+    "kommode|no-es": [
+        {
+            "answerId": "cómoda",
+            "value": "cómoda",
+            "canonicalMeaningId": "cygnet:i51832"
+        },
+        {
+            "answerId": "primary",
+            "value": "la cómoda",
+            "canonicalMeaningId": "cygnet:i51832"
+        }
+    ],
+    "lampe|no-es": [
+        {
+            "answerId": "primary",
+            "value": "la lámpara",
+            "canonicalMeaningId": "cygnet:i55499"
+        },
+        {
+            "answerId": "lámpara",
+            "value": "lámpara",
+            "canonicalMeaningId": "cygnet:i55499"
+        }
+    ],
+    "lat (v)|es-no": [
+        {
+            "answerId": "lat_v",
+            "value": "lat (v)",
+            "canonicalMeaningId": "vago_no"
+        },
+        {
+            "answerId": "lat",
+            "value": "lat",
+            "canonicalMeaningId": "vago_no"
+        }
+    ],
+    "lege|no-es": [
+        {
+            "answerId": "primary",
+            "value": "el médico",
+            "canonicalMeaningId": "cygnet:i89560"
+        },
+        {
+            "answerId": "médico",
+            "value": "médico",
+            "canonicalMeaningId": "cygnet:i89560"
+        }
+    ],
+    "lenestol|no-es": [
+        {
+            "answerId": "primary",
+            "value": "el sillón",
+            "canonicalMeaningId": "cygnet:i50150"
+        },
+        {
+            "answerId": "sillón",
+            "value": "sillón",
+            "canonicalMeaningId": "cygnet:i50150"
+        }
+    ],
+    "lilla (v)|es-no": [
+        {
+            "answerId": "lilla_v",
+            "value": "lilla (v)",
+            "canonicalMeaningId": "violeta_no"
+        },
+        {
+            "answerId": "lilla",
+            "value": "lilla",
+            "canonicalMeaningId": "violeta_no"
+        }
+    ],
+    "linjal|no-es": [
+        {
+            "answerId": "primary",
+            "value": "la regla",
+            "canonicalMeaningId": "cygnet:i58340"
+        },
+        {
+            "answerId": "regla",
+            "value": "regla",
+            "canonicalMeaningId": "cygnet:i58340"
+        }
+    ],
+    "loft|no-es": [
+        {
+            "answerId": "ático",
+            "value": "ático",
+            "canonicalMeaningId": "cygnet:i55795"
+        },
+        {
+            "answerId": "primary",
+            "value": "el ático",
+            "canonicalMeaningId": "cygnet:i55795"
+        },
+        {
+            "answerId": "loft",
+            "value": "loft",
+            "canonicalMeaningId": "cygnet:i55795"
+        }
+    ],
+    "lærer (p)|es-no": [
+        {
+            "answerId": "laerer_p",
+            "value": "lærer (p)",
+            "canonicalMeaningId": "profesor_no"
+        },
+        {
+            "answerId": "laerer_p_clean",
+            "value": "lærer",
+            "canonicalMeaningId": "profesor_no"
+        }
+    ],
+    "løk|no-es": [
+        {
+            "answerId": "cebolla",
+            "value": "cebolla",
+            "canonicalMeaningId": "cygnet:i102321"
+        },
+        {
+            "answerId": "primary",
+            "value": "la cebolla",
+            "canonicalMeaningId": "cygnet:i102321"
+        }
+    ],
+    "marmelade|no-es": [
+        {
+            "answerId": "primary",
+            "value": "la mermelada",
+            "canonicalMeaningId": "cygnet:i77052"
+        },
+        {
+            "answerId": "mermelada",
+            "value": "mermelada",
+            "canonicalMeaningId": "cygnet:i77052"
+        }
+    ],
+    "melk|no-es": [
+        {
+            "answerId": "primary",
+            "value": "la leche",
+            "canonicalMeaningId": "cygnet:i78383"
+        },
+        {
+            "answerId": "leche",
+            "value": "leche",
+            "canonicalMeaningId": "cygnet:i78383"
+        }
+    ],
+    "melon|no-es": [
+        {
+            "answerId": "primary",
+            "value": "el melón",
+            "canonicalMeaningId": "cygnet:i66106"
+        },
+        {
+            "answerId": "melón",
+            "value": "melón",
+            "canonicalMeaningId": "cygnet:i66106"
+        }
+    ],
+    "mor|es-no": [
+        {
+            "answerId": "mor",
+            "value": "mor",
+            "canonicalMeaningId": "madre_no"
+        },
+        {
+            "answerId": "moren",
+            "value": "moren",
+            "canonicalMeaningId": "madre_no"
+        },
+        {
+            "answerId": "mamma",
+            "value": "mamma",
+            "canonicalMeaningId": "madre_no"
+        }
+    ],
+    "mor|no-es": [
+        {
+            "answerId": "primary",
+            "value": "la madre",
+            "canonicalMeaningId": "cygnet:i91462"
+        },
+        {
+            "answerId": "madre",
+            "value": "madre",
+            "canonicalMeaningId": "cygnet:i91462"
+        }
+    ],
+    "munn|no-es": [
+        {
+            "answerId": "boca",
+            "value": "boca",
+            "canonicalMeaningId": "cygnet:i64824"
+        },
+        {
+            "answerId": "primary",
+            "value": "la boca",
+            "canonicalMeaningId": "cygnet:i64824"
+        }
+    ],
+    "møbel|no-es": [
+        {
+            "answerId": "primary",
+            "value": "el mueble",
+            "canonicalMeaningId": "cygnet:i54111"
+        },
+        {
+            "answerId": "mueble",
+            "value": "mueble",
+            "canonicalMeaningId": "cygnet:i54111"
+        }
+    ],
+    "Neste år skal jeg begynne på videregående|no-es": [
+        {
+            "answerId": "empezar_bachillerato",
+            "value": "El año que viene voy a empezar el bachillerato",
+            "canonicalMeaningId": "future_start_high_school"
+        },
+        {
+            "answerId": "comenzar_bachillerato",
+            "value": "El año que viene voy a comenzar el bachillerato",
+            "canonicalMeaningId": "future_start_high_school"
+        },
+        {
+            "answerId": "empezar_proximo",
+            "value": "El próximo año voy a empezar el bachillerato",
+            "canonicalMeaningId": "future_start_high_school"
+        },
+        {
+            "answerId": "comenzar_proximo",
+            "value": "El próximo año voy a comenzar el bachillerato",
+            "canonicalMeaningId": "future_start_high_school"
+        }
+    ],
+    "onkel|no-es": [
+        {
+            "answerId": "primary",
+            "value": "el tío",
+            "canonicalMeaningId": "cygnet:i93825"
+        },
+        {
+            "answerId": "tío",
+            "value": "tío",
+            "canonicalMeaningId": "cygnet:i93825"
+        }
+    ],
+    "ost|no-es": [
+        {
+            "answerId": "primary",
+            "value": "el queso",
+            "canonicalMeaningId": "cygnet:i78427"
+        },
+        {
+            "answerId": "queso",
+            "value": "queso",
+            "canonicalMeaningId": "cygnet:i78427"
+        }
+    ],
+    "ovn|no-es": [
+        {
+            "answerId": "primary",
+            "value": "el horno",
+            "canonicalMeaningId": "cygnet:i56823"
+        },
+        {
+            "answerId": "horno",
+            "value": "horno",
+            "canonicalMeaningId": "cygnet:i56823"
+        }
+    ],
+    "paraply|no-es": [
+        {
+            "answerId": "primary",
+            "value": "el paraguas",
+            "canonicalMeaningId": "cygnet:i60698"
+        },
+        {
+            "answerId": "paraguas",
+            "value": "paraguas",
+            "canonicalMeaningId": "cygnet:i60698"
+        }
+    ],
+    "pen/kjekk|es-no": [
+        {
+            "answerId": "pen",
+            "value": "pen",
+            "canonicalMeaningId": "guapo_no"
+        },
+        {
+            "answerId": "kjekk",
+            "value": "kjekk",
+            "canonicalMeaningId": "guapo_no"
+        }
+    ],
+    "penn|no-es": [
+        {
+            "answerId": "bolígrafo",
+            "value": "bolígrafo",
+            "canonicalMeaningId": "cygnet:i57103"
+        },
+        {
+            "answerId": "primary",
+            "value": "el bolígrafo",
+            "canonicalMeaningId": "cygnet:i57103"
+        }
+    ],
+    "potet|no-es": [
+        {
+            "answerId": "primary",
+            "value": "la patata",
+            "canonicalMeaningId": "cygnet:i104549"
+        },
+        {
+            "answerId": "patata",
+            "value": "patata",
+            "canonicalMeaningId": "cygnet:i104549"
+        }
+    ],
+    "pølse|no-es": [
+        {
+            "answerId": "primary",
+            "value": "la salchicha",
+            "canonicalMeaningId": "cygnet:i77287"
+        },
+        {
+            "answerId": "salchicha",
+            "value": "salchicha",
+            "canonicalMeaningId": "cygnet:i77287"
+        }
+    ],
+    "religion / KRLE|es-no": [
+        {
+            "answerId": "religion",
+            "value": "religion",
+            "canonicalMeaningId": "religion_no"
+        },
+        {
+            "answerId": "KRLE",
+            "value": "KRLE",
+            "canonicalMeaningId": "religion_no"
+        }
+    ],
+    "ring|no-es": [
+        {
+            "answerId": "anillo",
+            "value": "anillo",
+            "canonicalMeaningId": "cygnet:i58184"
+        },
+        {
+            "answerId": "primary",
+            "value": "el anillo",
+            "canonicalMeaningId": "cygnet:i58184"
+        }
+    ],
+    "ris|no-es": [
+        {
+            "answerId": "arroz",
+            "value": "arroz",
+            "canonicalMeaningId": "cygnet:i78125"
+        },
+        {
+            "answerId": "primary",
+            "value": "el arroz",
+            "canonicalMeaningId": "cygnet:i78125"
+        }
+    ],
+    "rom (annet ord, C)|es-no": [
+        {
+            "answerId": "rom_c",
+            "value": "rom (annet ord, C)",
+            "canonicalMeaningId": "cuarto_no"
+        },
+        {
+            "answerId": "rom_c_clean",
+            "value": "rom",
+            "canonicalMeaningId": "cuarto_no"
+        }
+    ],
+    "rom|no-es": [
+        {
+            "answerId": "habitación",
+            "value": "habitación",
+            "canonicalMeaningId": "cygnet:i58265"
+        },
+        {
+            "answerId": "primary",
+            "value": "la habitación",
+            "canonicalMeaningId": "cygnet:i58265"
+        }
+    ],
+    "salt|no-es": [
+        {
+            "answerId": "primary",
+            "value": "la sal",
+            "canonicalMeaningId": "cygnet:i116037"
+        },
+        {
+            "answerId": "sal",
+            "value": "sal",
+            "canonicalMeaningId": "cygnet:i116037"
+        }
+    ],
+    "seng|no-es": [
+        {
+            "answerId": "cama",
+            "value": "cama",
+            "canonicalMeaningId": "cygnet:i50635"
+        },
+        {
+            "answerId": "primary",
+            "value": "la cama",
+            "canonicalMeaningId": "cygnet:i50635"
+        }
+    ],
+    "sitron|no-es": [
+        {
+            "answerId": "primary",
+            "value": "el limón",
+            "canonicalMeaningId": "cygnet:i77775"
+        },
+        {
+            "answerId": "limón",
+            "value": "limón",
+            "canonicalMeaningId": "cygnet:i77775"
+        }
+    ],
+    "skap|no-es": [
+        {
+            "answerId": "armario",
+            "value": "armario",
+            "canonicalMeaningId": "cygnet:i51341"
+        },
+        {
+            "answerId": "primary",
+            "value": "el armario",
+            "canonicalMeaningId": "cygnet:i51341"
+        }
+    ],
+    "skinke|no-es": [
+        {
+            "answerId": "primary",
+            "value": "el jamón",
+            "canonicalMeaningId": "cygnet:i77246"
+        },
+        {
+            "answerId": "jamón",
+            "value": "jamón",
+            "canonicalMeaningId": "cygnet:i77246"
+        }
+    ],
+    "skjegg|no-es": [
+        {
+            "answerId": "barba",
+            "value": "barba",
+            "canonicalMeaningId": "cygnet:i64611"
+        },
+        {
+            "answerId": "primary",
+            "value": "la barba",
+            "canonicalMeaningId": "cygnet:i64611"
+        }
+    ],
+    "skjorte|no-es": [
+        {
+            "answerId": "camisa",
+            "value": "camisa",
+            "canonicalMeaningId": "cygnet:i58807"
+        },
+        {
+            "answerId": "primary",
+            "value": "la camisa",
+            "canonicalMeaningId": "cygnet:i58807"
+        }
+    ],
+    "skjørt|no-es": [
+        {
+            "answerId": "falda",
+            "value": "falda",
+            "canonicalMeaningId": "cygnet:i59017"
+        },
+        {
+            "answerId": "primary",
+            "value": "la falda",
+            "canonicalMeaningId": "cygnet:i59017"
+        }
+    ],
+    "skoleklasse|es-no": [
+        {
+            "answerId": "skoletime",
+            "value": "skoletime",
+            "canonicalMeaningId": "clase_no"
+        },
+        {
+            "answerId": "skoleklasse",
+            "value": "skoleklasse",
+            "canonicalMeaningId": "clase_no"
+        }
+    ],
+    "skoletime|es-no": [
+        {
+            "answerId": "skoletime",
+            "value": "skoletime",
+            "canonicalMeaningId": "clase_no"
+        },
+        {
+            "answerId": "skoleklasse",
+            "value": "skoleklasse",
+            "canonicalMeaningId": "clase_no"
+        }
+    ],
+    "skrivebord|no-es": [
+        {
+            "answerId": "primary",
+            "value": "el escritorio",
+            "canonicalMeaningId": "cygnet:i52811"
+        },
+        {
+            "answerId": "escritorio",
+            "value": "escritorio",
+            "canonicalMeaningId": "cygnet:i52811"
+        }
+    ],
+    "slips|no-es": [
+        {
+            "answerId": "corbata",
+            "value": "corbata",
+            "canonicalMeaningId": "cygnet:i56546"
+        },
+        {
+            "answerId": "primary",
+            "value": "la corbata",
+            "canonicalMeaningId": "cygnet:i56546"
+        }
+    ],
+    "smør|no-es": [
+        {
+            "answerId": "primary",
+            "value": "la mantequilla",
+            "canonicalMeaningId": "cygnet:i78414"
+        },
+        {
+            "answerId": "mantequilla",
+            "value": "mantequilla",
+            "canonicalMeaningId": "cygnet:i78414"
+        }
+    ],
+    "snill/ hyggelig|es-no": [
+        {
+            "answerId": "snill",
+            "value": "snill",
+            "canonicalMeaningId": "simpatico_no"
+        },
+        {
+            "answerId": "hyggelig",
+            "value": "hyggelig",
+            "canonicalMeaningId": "simpatico_no"
+        }
+    ],
+    "sofa|no-es": [
+        {
+            "answerId": "primary",
+            "value": "el sofá",
+            "canonicalMeaningId": "cygnet:i59184"
+        },
+        {
+            "answerId": "sofá",
+            "value": "sofá",
+            "canonicalMeaningId": "cygnet:i59184"
+        }
+    ],
+    "sommer|no-es": [
+        {
+            "answerId": "primary",
+            "value": "el verano",
+            "canonicalMeaningId": "cygnet:i117310"
+        },
+        {
+            "answerId": "verano",
+            "value": "verano",
+            "canonicalMeaningId": "cygnet:i117310"
+        }
+    ],
+    "soverom|no-es": [
+        {
+            "answerId": "dormitorio",
+            "value": "dormitorio",
+            "canonicalMeaningId": "cygnet:i50650"
+        },
+        {
+            "answerId": "primary",
+            "value": "el dormitorio",
+            "canonicalMeaningId": "cygnet:i50650"
+        }
+    ],
+    "speil|no-es": [
+        {
+            "answerId": "primary",
+            "value": "el espejo",
+            "canonicalMeaningId": "cygnet:i56291"
+        },
+        {
+            "answerId": "espejo",
+            "value": "espejo",
+            "canonicalMeaningId": "cygnet:i56291"
+        }
+    ],
+    "stol|no-es": [
+        {
+            "answerId": "primary",
+            "value": "la silla",
+            "canonicalMeaningId": "cygnet:i51746"
+        },
+        {
+            "answerId": "silla",
+            "value": "silla",
+            "canonicalMeaningId": "cygnet:i51746"
+        }
+    ],
+    "stue (c)|es-no": [
+        {
+            "answerId": "stue_c",
+            "value": "stue (c)",
+            "canonicalMeaningId": "cuarto_de_estar_no"
+        },
+        {
+            "answerId": "stue_c_clean",
+            "value": "stue",
+            "canonicalMeaningId": "cuarto_de_estar_no"
+        }
+    ],
+    "sukker|no-es": [
+        {
+            "answerId": "azúcar",
+            "value": "azúcar",
+            "canonicalMeaningId": "cygnet:i78493"
+        },
+        {
+            "answerId": "primary",
+            "value": "el azúcar",
+            "canonicalMeaningId": "cygnet:i78493"
+        }
+    ],
+    "supermarked|no-es": [
+        {
+            "answerId": "primary",
+            "value": "el supermercado",
+            "canonicalMeaningId": "cygnet:i59809"
+        },
+        {
+            "answerId": "supermercado",
+            "value": "supermercado",
+            "canonicalMeaningId": "cygnet:i59809"
+        }
+    ],
+    "sykepleier|no-es": [
+        {
+            "answerId": "primary",
+            "value": "el enfermero",
+            "canonicalMeaningId": "cygnet:i91672"
+        },
+        {
+            "answerId": "enfermero",
+            "value": "enfermero",
+            "canonicalMeaningId": "cygnet:i91672"
+        },
+        {
+            "answerId": "la_enfermera",
+            "value": "la enfermera",
+            "canonicalMeaningId": "nurse_es"
+        }
+    ],
+    "søster|no-es": [
+        {
+            "answerId": "hermana",
+            "value": "hermana",
+            "canonicalMeaningId": "cygnet:i93015"
+        },
+        {
+            "answerId": "primary",
+            "value": "la hermana",
+            "canonicalMeaningId": "cygnet:i93015"
+        }
+    ],
+    "t-skjorte|no-es": [
+        {
+            "answerId": "camiseta",
+            "value": "camiseta",
+            "canonicalMeaningId": "cygnet:i55249"
+        },
+        {
+            "answerId": "primary",
+            "value": "la camiseta",
+            "canonicalMeaningId": "cygnet:i55249"
+        }
+    ],
+    "tante|no-es": [
+        {
+            "answerId": "primary",
+            "value": "la tía",
+            "canonicalMeaningId": "cygnet:i88357"
+        },
+        {
+            "answerId": "tía",
+            "value": "tía",
+            "canonicalMeaningId": "cygnet:i88357"
+        }
+    ],
+    "tennis|no-es": [
+        {
+            "answerId": "primary",
+            "value": "el tenis",
+            "canonicalMeaningId": "cygnet:i37921"
+        },
+        {
+            "answerId": "tenis",
+            "value": "tenis",
+            "canonicalMeaningId": "cygnet:i37921"
+        }
+    ],
+    "teppe|no-es": [
+        {
+            "answerId": "alfombra",
+            "value": "alfombra",
+            "canonicalMeaningId": "cygnet:i58337"
+        },
+        {
+            "answerId": "primary",
+            "value": "la alfombra",
+            "canonicalMeaningId": "cygnet:i58337"
+        }
+    ],
+    "tomat|no-es": [
+        {
+            "answerId": "primary",
+            "value": "el tomate",
+            "canonicalMeaningId": "cygnet:i77675"
+        },
+        {
+            "answerId": "tomate",
+            "value": "tomate",
+            "canonicalMeaningId": "cygnet:i77675"
+        }
+    ],
+    "TV|no-es": [
+        {
+            "answerId": "primary",
+            "value": "el televisor",
+            "canonicalMeaningId": "cygnet:i60084"
+        },
+        {
+            "answerId": "televisor",
+            "value": "televisor",
+            "canonicalMeaningId": "cygnet:i60084"
+        },
+        {
+            "answerId": "tv",
+            "value": "tv",
+            "canonicalMeaningId": "cygnet:i60090"
+        }
+    ],
+    "ungdomsskolen|no-es": [
+        {
+            "answerId": "la_eso",
+            "value": "la E.S.O.",
+            "canonicalMeaningId": "secondary_school_es"
+        },
+        {
+            "answerId": "la_escuela_secundaria",
+            "value": "la escuela secundaria",
+            "canonicalMeaningId": "secondary_school_es"
+        }
+    ],
+    "vann|no-es": [
+        {
+            "answerId": "agua",
+            "value": "agua",
+            "canonicalMeaningId": "cygnet:i115069"
+        },
+        {
+            "answerId": "primary",
+            "value": "el agua",
+            "canonicalMeaningId": "cygnet:i115069"
+        }
+    ],
+    "vindu|no-es": [
+        {
+            "answerId": "primary",
+            "value": "la ventana",
+            "canonicalMeaningId": "cygnet:i61169"
+        },
+        {
+            "answerId": "ventana",
+            "value": "ventana",
+            "canonicalMeaningId": "cygnet:i61169"
+        }
+    ],
+    "vinter|no-es": [
+        {
+            "answerId": "primary",
+            "value": "el invierno",
+            "canonicalMeaningId": "cygnet:i117312"
+        },
+        {
+            "answerId": "invierno",
+            "value": "invierno",
+            "canonicalMeaningId": "cygnet:i117312"
+        }
+    ],
+    "øye|no-es": [
+        {
+            "answerId": "primary",
+            "value": "el ojo",
+            "canonicalMeaningId": "cygnet:i64868"
+        },
+        {
+            "answerId": "ojo",
+            "value": "ojo",
+            "canonicalMeaningId": "cygnet:i64868"
+        }
+    ],
+    "å bo/ å leve|es-no": [
+        {
+            "answerId": "å_bo",
+            "value": "å bo",
+            "canonicalMeaningId": "vivir_no"
+        },
+        {
+            "answerId": "å_leve",
+            "value": "å leve",
+            "canonicalMeaningId": "vivir_no"
+        }
+    ],
+    "å bo/ å leve|no-es": [
+        {
+            "answerId": "vivir",
+            "value": "vivir",
+            "canonicalMeaningId": "vivir_es"
+        }
+    ],
+    "å drikke|es-no": [
+        {
+            "answerId": "a_drikke",
+            "value": "å drikke",
+            "canonicalMeaningId": "beber_no"
+        },
+        {
+            "answerId": "drikke",
+            "value": "drikke",
+            "canonicalMeaningId": "beber_no"
+        }
+    ],
+    "å gå tur|no-es": [
+        {
+            "answerId": "hacer_senderismo",
+            "value": "hacer senderismo",
+            "canonicalMeaningId": "go_for_a_walk_es"
+        },
+        {
+            "answerId": "hacer_caminatas",
+            "value": "hacer caminatas",
+            "canonicalMeaningId": "go_for_a_walk_es"
+        }
+    ],
+    "å ha på seg|es-no": [
+        {
+            "answerId": "å_ha_på_seg",
+            "value": "å ha på seg",
+            "canonicalMeaningId": "llevar_no"
+        },
+        {
+            "answerId": "å_gå_med",
+            "value": "å gå med",
+            "canonicalMeaningId": "llevar_no"
+        },
+        {
+            "answerId": "å_bære",
+            "value": "å bære",
+            "canonicalMeaningId": "llevar_no"
+        },
+        {
+            "answerId": "å_ta_med",
+            "value": "å ta med",
+            "canonicalMeaningId": "llevar_no"
+        },
+        {
+            "answerId": "å_bringe",
+            "value": "å bringe",
+            "canonicalMeaningId": "llevar_no"
+        }
+    ],
+    "å handle|es-no": [
+        {
+            "answerId": "å_handle",
+            "value": "å handle",
+            "canonicalMeaningId": "go_shopping_no"
+        },
+        {
+            "answerId": "å_dra_på_shopping",
+            "value": "å dra på shopping",
+            "canonicalMeaningId": "go_shopping_no"
+        },
+        {
+            "answerId": "å_shoppe",
+            "value": "å shoppe",
+            "canonicalMeaningId": "go_shopping_no"
+        }
+    ],
+    "å kjøpe|es-no": [
+        {
+            "answerId": "a_kjope",
+            "value": "å kjøpe",
+            "canonicalMeaningId": "comprar_no"
+        },
+        {
+            "answerId": "kjope",
+            "value": "kjøpe",
+            "canonicalMeaningId": "comprar_no"
+        }
+    ]
+};
 
         const norwegianNounDefiniteForms = {
             'jula': ['jul'],
@@ -1258,7 +2941,9 @@
 
         function getVocabularyAcceptedAnswers(card, direction, primaryAnswer) {
             const alternatives = vocabularyAnswerAlternatives[`${card.no}|${direction}`];
-            if (alternatives?.length) return alternatives;
+            const occupationVariants = getOccupationGenderVariants(card, primaryAnswer);
+            if (alternatives?.length) return [...alternatives, ...occupationVariants.filter(variant => !alternatives.some(item => item.value === variant.value))];
+            if (occupationVariants.length) return occupationVariants;
             if (direction === 'es-no') {
                 const nounForms = getNorwegianNounDefiniteForms(card);
                 if (nounForms.length) {
@@ -1269,6 +2954,30 @@
                 }
             }
             return [{ answerId: 'primary', value: primaryAnswer, canonicalMeaningId: `${card.no}:${direction}` }];
+        }
+
+        function getOccupationGenderVariants(card, primaryAnswer) {
+            if (!card || card.category !== 'yrker' || !/^(el|la)\s+/i.test(String(card.es))) return [];
+            const match = String(card.es).match(/^(el|la)\s+(.+)$/i);
+            if (!match) return [];
+            const [, article, noun] = match;
+            const invariant = /(?:ista|ía|atleta)$/i.test(noun);
+            const feminineNoun = invariant ? noun : noun
+                .replace(/médico$/i, 'médica')
+                .replace(/or$/i, 'ora')
+                .replace(/o$/i, 'a');
+            const masculineNoun = invariant ? noun : noun
+                .replace(/médica$/i, 'médico')
+                .replace(/ora$/i, 'or')
+                .replace(/a$/i, 'o');
+            const feminine = `la ${feminineNoun}`;
+            const masculine = `el ${masculineNoun}`;
+            const values = [primaryAnswer, article.toLowerCase() === 'el' ? feminine : masculine];
+            return [...new Set(values)].map((value, index) => ({
+                answerId: `occupation-gender-${index + 1}`,
+                value,
+                canonicalMeaningId: `${card.no}:occupation`
+            }));
         }
 
         // ============================================
@@ -1676,23 +3385,28 @@
             return backupKey;
         }
 
+        function getLegacyGrammarProgress() {
+            const legacy = readStoredJson('spansk123Grammar_v1', null);
+            return legacy?.progress && typeof legacy.progress === 'object' ? legacy.progress : {};
+        }
+
         function loadLearningProgress(nowIso = new Date().toISOString()) {
             learningProgressWriteBlocked = false;
             const rawValue = localStorage.getItem(LEARNING_PROGRESS_KEY);
-            if (!rawValue) return normalizeLearningProgress(null, nowIso);
+            if (!rawValue) return migrateLegacyGrammarProgress(normalizeLearningProgress(null, nowIso), getLegacyGrammarProgress());
 
             try {
                 const parsed = JSON.parse(rawValue);
                 if (Number(parsed?.schemaVersion) > LEARNING_PROGRESS_SCHEMA_VERSION) {
                     backupUnsupportedLearningProgress(rawValue);
                     learningProgressWriteBlocked = true;
-                    return normalizeLearningProgress(null, nowIso);
+                    return migrateLegacyGrammarProgress(normalizeLearningProgress(null, nowIso), getLegacyGrammarProgress());
                 }
-                return normalizeLearningProgress(parsed, nowIso);
+                return migrateLegacyGrammarProgress(normalizeLearningProgress(parsed, nowIso), getLegacyGrammarProgress());
             } catch (error) {
                 console.warn(`Could not parse ${LEARNING_PROGRESS_KEY}; preserving corrupt value before recovery.`, error);
                 backupCorruptStorageValue(LEARNING_PROGRESS_KEY, rawValue);
-                return normalizeLearningProgress(null, nowIso);
+                return migrateLegacyGrammarProgress(normalizeLearningProgress(null, nowIso), getLegacyGrammarProgress());
             }
         }
 
@@ -1701,6 +3415,108 @@
             const normalized = normalizeLearningProgress(progress);
             localStorage.setItem(LEARNING_PROGRESS_KEY, JSON.stringify(normalized));
             return true;
+        }
+
+        function updateLearningProgress({
+            progress = loadLearningProgress(),
+            targetType,
+            targetId,
+            direction = null,
+            resultKind = 'wrong',
+            nowIso = new Date().toISOString()
+        } = {}) {
+            const next = normalizeLearningProgress(progress, nowIso);
+            const id = String(targetId || '').trim();
+            if (!id) throw new Error('Læringsmålet mangler ID');
+            if (targetType === 'skill') {
+                next.skillProgress[id] = updateProgressCell(next.skillProgress[id], resultKind, nowIso);
+            } else if (targetType === 'word') {
+                if (!['noToEs', 'esToNo'].includes(direction)) throw new Error('Ordprogresjon mangler gyldig retning');
+                if (!next.wordProgress[id]) {
+                    const emptyCell = { strength: 0, attempts: 0, correct: 0, lapses: 0, dueAt: null, lastSeenAt: null };
+                    next.wordProgress[id] = { noToEs: { ...emptyCell }, esToNo: { ...emptyCell } };
+                }
+                next.wordProgress[id][direction] = updateProgressCell(next.wordProgress[id][direction], resultKind, nowIso);
+            } else {
+                throw new Error('Ukjent læringsmåltype');
+            }
+            next.updatedAt = nowIso;
+            return next;
+        }
+
+        function selectGrammarExercises(exercises = [], progress = loadLearningProgress(), nowIso = new Date().toISOString(), limit = 10) {
+            const now = new Date(nowIso).getTime();
+            const rank = exercise => {
+                const cell = progress?.skillProgress?.[exercise.skillId] || {};
+                const strength = Number(cell.strength) || 0;
+                const attempts = Number(cell.attempts) || 0;
+                const dueAt = new Date(cell.dueAt || '').getTime();
+                const due = Number.isFinite(dueAt) && dueAt <= now;
+                if (due && strength < 4) return 0;
+                if (attempts === 0) return 1;
+                if (strength < 4) return 2;
+                return 3;
+            };
+            return [...exercises].sort((a, b) => {
+                const rankDifference = rank(a) - rank(b);
+                if (rankDifference) return rankDifference;
+                const aCell = progress?.skillProgress?.[a.skillId] || {};
+                const bCell = progress?.skillProgress?.[b.skillId] || {};
+                const strengthDifference = (Number(aCell.strength) || 0) - (Number(bCell.strength) || 0);
+                if (strengthDifference) return strengthDifference;
+                const lapseDifference = (Number(bCell.lapses) || 0) - (Number(aCell.lapses) || 0);
+                if (lapseDifference) return lapseDifference;
+                return String(a.id || a.sentence || '').localeCompare(String(b.id || b.sentence || ''));
+            }).slice(0, Math.max(0, Number(limit) || 0));
+        }
+
+        function getGrammarTopicSkillId(topicId) {
+            return {
+                articles: 'a0.articles.indefinite_singular',
+                adjectives: 'a1.adjectives.gender_number',
+                serEstar: 'a1.ser_estar.identity_or_location',
+                gustar: 'a1.gustar.basic',
+                reflexive: 'a1.verbs.reflexive.present',
+                demonstratives: 'a1.adjectives.demonstratives',
+                possessives: 'a1.adjectives.possessives'
+            }[topicId] || null;
+        }
+
+        function getGrammarExerciseSkillId(topicId, exercise = {}) {
+            if (exercise.skillId) return exercise.skillId;
+            if (topicId === 'articles') {
+                const answer = String(exercise.answer || '').toLowerCase();
+                if (['un', 'una'].includes(answer)) return 'a0.articles.indefinite_singular';
+                if (['los', 'las'].includes(answer)) return 'a0.articles.definite_plural';
+                return 'a0.articles.definite_singular';
+            }
+            if (topicId === 'serEstar') {
+                const sentence = String(exercise.sentence || '').toLowerCase();
+                if (sentence.includes('de noruega') || sentence.includes('nacionalidad') || sentence.includes('origen')) return 'a1.ser_estar.origin';
+            }
+            return getGrammarTopicSkillId(topicId);
+        }
+
+        function migrateLegacyGrammarProgress(progress, legacyGrammarProgress = {}) {
+            const next = normalizeLearningProgress(progress);
+            const topicSkillIds = Object.fromEntries(Object.keys(legacyGrammarProgress).map(topicId => [topicId, getGrammarTopicSkillId(topicId)]));
+            Object.entries(legacyGrammarProgress).forEach(([topicId, legacy]) => {
+                const skillId = topicSkillIds[topicId];
+                const total = Math.max(0, Math.round(Number(legacy?.total) || 0));
+                if (!skillId || total === 0) return;
+                const existing = next.skillProgress[skillId];
+                if (existing?.attempts > 0) return;
+                const correct = Math.max(0, Math.min(total, Math.round(Number(legacy.correct) || 0)));
+                next.skillProgress[skillId] = {
+                    strength: Math.max(0, Math.min(5, Math.round((correct / total) * 5))),
+                    attempts: total,
+                    correct,
+                    lapses: Math.max(0, Math.round(Number(legacy.recentErrors) || 0)),
+                    dueAt: null,
+                    lastSeenAt: null
+                };
+            });
+            return next;
         }
 
         function normalizeDiagnosisState(data) {
@@ -2071,37 +3887,14 @@
             const attempt = state.answers.length + 1;
             const responseId = `${state.sessionId || 'legacy-session'}:${question.id}:${attempt}`;
             if (state.processedResponseIds.includes(responseId)) return state;
-            const progress = loadLearningProgress(nowIso);
-            if (question.targetType === 'word') {
-                if (!progress.wordProgress[question.targetId]) {
-                    progress.wordProgress[question.targetId] = {
-                        noToEs: updateProgressCell(null, 'skipped', nowIso),
-                        esToNo: updateProgressCell(null, 'skipped', nowIso)
-                    };
-                    progress.wordProgress[question.targetId].noToEs = normalizeLearningProgress({
-                        schemaVersion: LEARNING_PROGRESS_SCHEMA_VERSION,
-                        wordProgress: { temp: { noToEs: null, esToNo: null } },
-                        skillProgress: {}
-                    }).wordProgress.temp.noToEs;
-                    progress.wordProgress[question.targetId].esToNo = normalizeLearningProgress({
-                        schemaVersion: LEARNING_PROGRESS_SCHEMA_VERSION,
-                        wordProgress: { temp: { noToEs: null, esToNo: null } },
-                        skillProgress: {}
-                    }).wordProgress.temp.esToNo;
-                }
-                progress.wordProgress[question.targetId][question.direction] = updateProgressCell(
-                    progress.wordProgress[question.targetId][question.direction],
-                    evaluation.resultKind,
-                    nowIso
-                );
-            } else {
-                progress.skillProgress[question.targetId] = updateProgressCell(
-                    progress.skillProgress[question.targetId],
-                    evaluation.resultKind,
-                    nowIso
-                );
-            }
-            progress.updatedAt = nowIso;
+            const progress = updateLearningProgress({
+                progress: loadLearningProgress(nowIso),
+                targetType: question.targetType,
+                targetId: question.targetId,
+                direction: question.targetType === 'word' ? question.direction : null,
+                resultKind: evaluation.resultKind,
+                nowIso
+            });
             saveLearningProgress(progress);
 
             state.answers.push({
@@ -2406,6 +4199,76 @@
             return mixedQuizSeedScore(question.id, 'mixed-response-mode') % 2 === 0 ? 'select' : 'choice';
         }
 
+        function getNextPracticeRecommendation(candidates = [], nowIso = new Date().toISOString()) {
+            const now = new Date(nowIso).getTime();
+            const eligible = candidates.filter(candidate => candidate.skillStatus !== 'planned');
+            if (!eligible.length) return candidates.length
+                ? null
+                : { kind: 'mixedQuiz', targetId: null, label: 'Dagens quiz', reason: 'Blandet øving holder læringen i gang.', action: 'Start dagens quiz' };
+            const isDue = candidate => candidate.dueAt && Number.isFinite(new Date(candidate.dueAt).getTime()) && new Date(candidate.dueAt).getTime() <= now;
+            const rank = candidate => {
+                const due = isDue(candidate);
+                const strength = Number(candidate.strength) || 0;
+                const attempts = Number(candidate.attempts) || 0;
+                if (due && strength < 4) return 0;
+                if (attempts > 0 && strength < 2) return 1;
+                if (attempts === 0) return 2;
+                if (strength < 4) return 3;
+                return 4;
+            };
+            const selected = [...eligible].sort((a, b) => {
+                const rankDifference = rank(a) - rank(b);
+                if (rankDifference) return rankDifference;
+                const strengthDifference = (Number(a.strength) || 0) - (Number(b.strength) || 0);
+                if (strengthDifference) return strengthDifference;
+                const lapseDifference = (Number(b.lapses) || 0) - (Number(a.lapses) || 0);
+                if (lapseDifference) return lapseDifference;
+                return String(a.questionId || a.targetId).localeCompare(String(b.questionId || b.targetId));
+            })[0];
+            const kind = selected.itemType === 'vocabulary' ? 'vocabulary' : selected.skillKind || 'skill';
+            const label = selected.prompt || selected.label || selected.targetId;
+            const reason = rank(selected) === 0
+                ? 'Dette er forfalt og trenger repetisjon.'
+                : (Number(selected.attempts) || 0) === 0
+                    ? 'Dette er en ny ferdighet du ikke har prøvd ennå.'
+                    : 'Dette er et område som fortsatt trenger øving.';
+            return { kind, targetId: selected.targetId, questionId: selected.questionId, label, reason, action: 'Start øving' };
+        }
+
+        function buildGrammarSkillCandidates({ skillsCatalog = learningCatalog, learningProgress = loadLearningProgress() } = {}) {
+            const skillsById = new Map((skillsCatalog.skills || []).map(skill => [skill.id, skill]));
+            return Object.values(grammarTopics).flatMap(topic => topic.exercises.map((exercise, index) => {
+                const skillId = exercise.skillId || getGrammarExerciseSkillId(topic.id, exercise);
+                const skill = skillsById.get(skillId);
+                if (!skill || skill.contentStatus === 'planned') return null;
+                const cell = getMixedQuizCandidateCell({ targetType: 'skill', targetId: skillId }, learningProgress);
+                const questionId = `mixed.grammar.${topic.id}.${index}`;
+                return {
+                    questionId,
+                    targetType: 'skill',
+                    targetId: skillId,
+                    prompt: String(exercise.sentence || '').replace('___', '______'),
+                    promptNo: exercise.no || null,
+                    instructionNb: 'Velg riktig svar.',
+                    responseMode: 'choice',
+                    sourceResponseMode: 'choice',
+                    acceptedAnswers: [{ answerId: `${questionId}.answer`, value: exercise.answer }],
+                    options: (exercise.options || []).map(option => ({ optionId: String(option), label: String(option) })),
+                    primaryConstruct: `grammar_${topic.id}`,
+                    secondaryConstructs: [],
+                    itemType: 'skill',
+                    skillKind: 'grammar',
+                    skillStatus: skill.contentStatus || 'ready',
+                    strength: Number(cell.strength) || 0,
+                    attempts: Number(cell.attempts) || 0,
+                    lapses: Number(cell.lapses) || 0,
+                    dueAt: cell.dueAt || null,
+                    lastSeenAt: cell.lastSeenAt || null,
+                    recent: (Number(cell.attempts) || 0) === 0
+                };
+            }).filter(Boolean));
+        }
+
         function buildMixedQuizCandidates({ cards = [], skillsCatalog = learningCatalog, learningProgress, diagnosis }) {
             const candidates = [];
             const catalogWordIds = new Set((skillsCatalog.words || []).map(word => word.id));
@@ -2428,6 +4291,7 @@
                     questionId: question.id,
                     itemType: question.targetType === 'word' ? 'vocabulary' : 'skill',
                     skillKind: skill?.group === 'Verb i presens' ? 'verb' : 'grammar',
+                    skillStatus: skill?.contentStatus || 'ready',
                     strength: Number(cell.strength) || 0,
                     attempts: Number(cell.attempts) || 0,
                     lapses: Number(cell.lapses) || 0,
@@ -2435,6 +4299,10 @@
                     lastSeenAt: cell.lastSeenAt || null,
                     recent: (Number(cell.attempts) || 0) === 0 || diagnosisWeak
                 });
+            });
+
+            buildGrammarSkillCandidates({ skillsCatalog, learningProgress }).forEach(grammarCandidate => {
+                if (!candidates.some(candidate => candidate.questionId === grammarCandidate.questionId)) candidates.push(grammarCandidate);
             });
 
             cards.forEach(card => {
@@ -2490,7 +4358,7 @@
             const selected = [];
             const selectedIds = new Set();
             let fallbackUsed = false;
-            const responseModeTargets = { typed: 4, select: 4, choice: 2 };
+            const responseModeTargets = { typed: 5, select: 3, choice: 2 };
 
             const canSelect = candidate => !selectedIds.has(candidate.questionId) && !(
                 candidate.targetType === 'word' && selected.some(item => item.targetType === 'word' && item.targetId === candidate.targetId && item.direction === candidate.direction)
@@ -2561,18 +4429,15 @@
         }
 
         function updateVocabularyLearningProgress(card, direction, resultKind, nowIso = new Date().toISOString()) {
-            const progress = loadLearningProgress(nowIso);
             const wordId = String(card.id ?? `${card.no || card.norsk}:${card.es || card.spansk}`);
-            if (!progress.wordProgress[wordId]) {
-                const empty = normalizeLearningProgress({ schemaVersion: 1, wordProgress: { temp: { noToEs: null, esToNo: null } }, skillProgress: {} }, nowIso).wordProgress.temp;
-                progress.wordProgress[wordId] = { noToEs: { ...empty.noToEs }, esToNo: { ...empty.esToNo } };
-            }
-            progress.wordProgress[wordId][direction === 'no-es' ? 'noToEs' : 'esToNo'] = updateProgressCell(
-                progress.wordProgress[wordId][direction === 'no-es' ? 'noToEs' : 'esToNo'],
+            const progress = updateLearningProgress({
+                progress: loadLearningProgress(nowIso),
+                targetType: 'word',
+                targetId: wordId,
+                direction: direction === 'no-es' ? 'noToEs' : 'esToNo',
                 resultKind,
                 nowIso
-            );
-            progress.updatedAt = nowIso;
+            });
             saveLearningProgress(progress);
             return progress;
         }
@@ -2595,20 +4460,18 @@
 
         function answerMixedQuizItem(item, answer, nowIso = new Date().toISOString()) {
             const evaluation = evaluateDiagnosisAnswer(item, answer);
-            const progress = loadLearningProgress(nowIso);
-            if (item.targetType === 'word') {
-                if (!progress.wordProgress[item.targetId]) {
-                    progress.wordProgress[item.targetId] = {
-                        noToEs: normalizeLearningProgress({ schemaVersion: 1, wordProgress: { temp: { noToEs: null, esToNo: null } }, skillProgress: {} }, nowIso).wordProgress.temp.noToEs,
-                        esToNo: normalizeLearningProgress({ schemaVersion: 1, wordProgress: { temp: { noToEs: null, esToNo: null } }, skillProgress: {} }, nowIso).wordProgress.temp.esToNo
-                    };
-                }
-                const progressDirection = item.direction === 'no-es' ? 'noToEs' : item.direction === 'es-no' ? 'esToNo' : item.direction;
-                progress.wordProgress[item.targetId][progressDirection] = updateProgressCell(progress.wordProgress[item.targetId][progressDirection], evaluation.resultKind, nowIso);
-            } else {
-                progress.skillProgress[item.targetId] = updateProgressCell(progress.skillProgress[item.targetId], evaluation.resultKind, nowIso);
+            let progress = loadLearningProgress(nowIso);
+            if (item.targetId) {
+                progress = updateLearningProgress({
+                    progress,
+                    targetType: item.targetType,
+                    targetId: item.targetId,
+                    direction: item.targetType === 'word' ? (item.direction === 'no-es' ? 'noToEs' : item.direction === 'es-no' ? 'esToNo' : item.direction) : null,
+                    resultKind: evaluation.resultKind,
+                    nowIso
+                });
+                saveLearningProgress(progress);
             }
-            saveLearningProgress(progress);
             updateVocabularyCardFromQuiz(item, evaluation.resultKind);
             return { ...evaluation, progress };
         }
@@ -3839,6 +5702,25 @@
         // NAVIGATION
         // ============================================
 
+        function getCurrentNextPracticeRecommendation() {
+            const diagnosis = loadDiagnosisState();
+            if (diagnosis.status !== 'complete') return null;
+            return getNextPracticeRecommendation(
+                buildMixedQuizCandidates({ cards, skillsCatalog: learningCatalog, learningProgress: loadLearningProgress(), diagnosis }),
+                new Date().toISOString()
+            );
+        }
+
+        function startRecommendedPractice() {
+            const recommendation = getCurrentNextPracticeRecommendation();
+            if (!recommendation || recommendation.kind === 'mixedQuiz') return startDailyQuizFromHome();
+            if (recommendation.kind === 'vocabulary') {
+                const card = cards.find(item => String(item.id ?? `${item.no || item.norsk}:${item.es || item.spansk}`) === String(recommendation.targetId));
+                return card ? selectCategoryAndStudy(card.category) : startDailyQuizFromHome();
+            }
+            return startBrainmapSkillPractice(recommendation.targetId);
+        }
+
         function renderHomePage() {
             const content = document.getElementById('homePrimaryContent');
             if (!content) return;
@@ -3850,6 +5732,7 @@
                 ? `${formatQuizStreakSummary(quizStats)}`
                 : 'Du har ikke øvd i dag ennå.';
             const badges = getMasteryBadges(loadLearningProgress());
+            const recommendation = diagnosisComplete ? getCurrentNextPracticeRecommendation() : null;
             content.innerHTML = `
                 <section class="home-primary-action" aria-labelledby="homeQuizTitle">
                     <div class="home-primary-copy">
@@ -3859,6 +5742,10 @@
                     </div>
                     <button type="button" class="btn btn-primary btn-large" id="homeStartMixedQuizBtn" onclick="startDailyQuizFromHome()" ${diagnosisComplete ? '' : 'disabled'}>${dailyQuizComplete ? 'Ta en ny quiz' : diagnosisComplete ? 'Start dagens quiz' : 'Start nivåtest først'}</button>
                 </section>
+                ${recommendation ? `<section class="home-next-practice" id="homeNextPractice" aria-labelledby="homeNextPracticeTitle">
+                    <div><span class="home-eyebrow">Anbefalt nå</span><h2 id="homeNextPracticeTitle">Neste anbefalte øving</h2><p><strong>${escapeHtml(recommendation.label)}</strong><br>${escapeHtml(recommendation.reason)}</p></div>
+                    <button type="button" class="btn btn-secondary" onclick="startRecommendedPractice()">Start anbefalt øving</button>
+                </section>` : ''}
                 <p class="home-streak" id="homeQuizStreak">${streakText}</p>
                 <p class="home-offline-hint" id="homeOfflineHint">Fungerer også uten internett etter at appen er lastet inn.</p>
                 ${badges.length ? `<section class="home-badges" aria-labelledby="homeBadgesTitle"><h2 id="homeBadgesTitle">🏅 Merker du har fått</h2><div class="badge-list">${badges.map(badge => `<span class="mastery-badge">${escapeHtml(badge.label)}</span>`).join('')}</div></section>` : ''}
@@ -6244,7 +8131,7 @@ Vil du øve på ${pronoun} likevel?`
         }
 
         function getBrainmapSkillActionDescriptors() {
-            return {
+            const descriptors = {
                 'a0.identity.me_llamo': { kind: 'skillDetail', label: 'Les og øv på å si hva du heter', practiceSkillId: 'a0.identity.me_llamo' },
                 'a0.identity.soy_de': { kind: 'skillDetail', label: 'Les og øv på å si hvor du er fra', practiceSkillId: 'a0.identity.soy_de' },
                 'a0.articles.indefinite_singular': { kind: 'grammar', topicId: 'articles', label: 'Øv på un og una' },
@@ -6252,8 +8139,28 @@ Vil du øve på ${pronoun} likevel?`
                 'a1.verbs.regular_ar.present': { kind: 'verbs', focus: 'ar', label: 'Øv på regelrette -ar-verb' },
                 'a1.verbs.regular_er.present': { kind: 'verbs', focus: 'erir', label: 'Øv på -er- og -ir-verb' },
                 'a1.gustar.basic': { kind: 'grammar', topicId: 'gustar', label: 'Øv på gustar' },
-                'a1.ser_estar.identity_or_location': { kind: 'grammar', topicId: 'serEstar', label: 'Øv på ser og estar' }
+                'a1.ser_estar.identity_or_location': { kind: 'grammar', topicId: 'serEstar', label: 'Øv på ser og estar' },
+                'a0.articles.definite_plural': { kind: 'grammar', topicId: 'articles', label: 'Øv på los og las' },
+                'a1.verbs.regular_ir.present': { kind: 'verbs', focus: 'erir', label: 'Øv på regelrette -ir-verb' },
+                'a1.verbs.ser.present': { kind: 'verbs', focus: 'irregular', label: 'Øv på ser' },
+                'a1.verbs.estar.present': { kind: 'verbs', focus: 'irregular', label: 'Øv på estar' },
+                'a1.verbs.ir.present': { kind: 'verbs', focus: 'irregular', label: 'Øv på ir' },
+                'a1.verbs.tener.present': { kind: 'verbs', focus: 'irregular', label: 'Øv på tener' },
+                'a1.verbs.hacer.present': { kind: 'verbs', focus: 'irregular', label: 'Øv på hacer' },
+                'a1.verbs.modal.present': { kind: 'verbs', focus: 'irregular', label: 'Øv på modalverb' },
+                'a1.verbs.reflexive.present': { kind: 'grammar', topicId: 'reflexive', label: 'Øv på refleksive verb' },
+                'a1.adjectives.gender_number': { kind: 'grammar', topicId: 'adjectives', label: 'Øv på adjektivsamsvar' },
+                'a1.adjectives.demonstratives': { kind: 'grammar', topicId: 'demonstratives', label: 'Øv på pekende adjektiv' },
+                'a1.adjectives.possessives': { kind: 'grammar', topicId: 'possessives', label: 'Øv på eiendomsord' },
+                'a1.prepositions.basic': { kind: 'planned', label: 'Preposisjonsøving kommer snart' }
             };
+            learningCatalog.skills.forEach(skill => {
+                if (!descriptors[skill.id]) descriptors[skill.id] = {
+                    kind: 'planned',
+                    label: 'Innhold kommer snart'
+                };
+            });
+            return descriptors;
         }
 
         function showBrainmapSkillDetail(skillId) {
@@ -6267,7 +8174,9 @@ Vil du øve på ${pronoun} likevel?`
                     <button type="button" class="btn btn-sm btn-outline brainmap-detail-close" onclick="closeBrainmapSkillDetail()">Lukk</button>
                     <h3 id="brainmapSkillDetailTitle">${escapeHtml(skill.label)}</h3>
                     <p>Her får du en kort forklaring før du øver aktivt.</p>
-                    <button type="button" class="btn btn-primary" onclick="startBrainmapSkillPractice('${skillId}')">${escapeHtml(descriptor.label)}</button>
+                    ${descriptor.kind === 'planned'
+                        ? '<p class="brainmap-detail-planned">Dette emnet er registrert i læringskartet, men har ikke egen øving ennå.</p>'
+                        : `<button type="button" class="btn btn-primary" onclick="startBrainmapSkillPractice('${skillId}')">${escapeHtml(descriptor.label)}</button>`}
                 </div>
             `;
             container.classList.remove('hidden');
@@ -6302,6 +8211,7 @@ Vil du øve på ${pronoun} likevel?`
         function activateBrainmapSkill(skillId) {
             const descriptor = getBrainmapSkillActionDescriptors()[skillId];
             if (!descriptor) return;
+            if (descriptor.kind === 'planned') return showBrainmapSkillDetail(skillId);
             if (descriptor.kind === 'skillDetail') return showBrainmapSkillDetail(skillId);
             if (descriptor.kind === 'grammar') {
                 showPage('grammar');
@@ -6363,15 +8273,17 @@ Vil du øve på ${pronoun} likevel?`
                 };
             });
 
-            const groups = Array.from(new Set(learningCatalog.skills.map(skill => skill.group))).map(group => {
-                const children = skills.filter(skill => skill.group === group);
+            const groups = Array.from(new Set(learningCatalog.skills.map(skill => `${skill.level}::${skill.group}`))).map(groupKey => {
+                const [level, group] = groupKey.split('::');
+                const children = skills.filter(skill => skill.level === level && skill.group === group);
                 const strength = children.reduce((sum, child) => sum + child.strength, 0) / Math.max(1, children.length);
                 const attempts = children.reduce((sum, child) => sum + child.attempts, 0);
                 const status = getBrainmapStatus({ strength, attempts });
                 const hasAttemptedRedChild = children.some(child => child.attempts > 0 && child.status === 'red');
                 return {
-                    id: group,
-                    label: group,
+                    id: groupKey,
+                    level,
+                    label: `${level} · ${group}`,
                     nodeType: 'group',
                     strength,
                     attempts,
@@ -6384,9 +8296,41 @@ Vil du øve på ${pronoun} likevel?`
             return { skills, vocabularyAreas, groups };
         }
 
+        function filterBrainmapModel(model, filter = {}) {
+            const level = filter.level || 'all';
+            const category = filter.category || 'all';
+            const skills = model.skills.filter(skill =>
+                (level === 'all' || skill.level === level) &&
+                (category === 'all' || skill.group === category)
+            );
+            const groups = model.groups.map(group => {
+                const children = skills.filter(skill => group.childIds.includes(skill.id));
+                const strength = children.reduce((sum, child) => sum + child.strength, 0) / Math.max(1, children.length);
+                const attempts = children.reduce((sum, child) => sum + child.attempts, 0);
+                const status = getBrainmapStatus({ strength, attempts });
+                const hasAttemptedRedChild = children.some(child => child.attempts > 0 && child.status === 'red');
+                return {
+                    ...group,
+                    strength,
+                    attempts,
+                    status: hasAttemptedRedChild && ['green', 'gold'].includes(status.key) ? 'yellow' : status.key,
+                    statusLabel: hasAttemptedRedChild && ['green', 'gold'].includes(status.key) ? 'På vei' : status.label,
+                    childIds: children.map(child => child.id)
+                };
+            }).filter(group => group.childIds.length > 0);
+            return { ...model, skills, groups };
+        }
+
+        function setBrainmapFilter(field, value) {
+            brainmapFilterState = { ...brainmapFilterState, [field]: value || 'all' };
+            renderBrainmap();
+        }
+
         function renderBrainmap() {
             const categories = getCategories();
-            const model = buildBrainmapModel();
+            const baseModel = buildBrainmapModel();
+            const model = filterBrainmapModel(baseModel, brainmapFilterState);
+            const skillCategories = [...new Set(baseModel.skills.map(skill => skill.group))].sort((a, b) => a.localeCompare(b, 'no'));
             const themes = {
                 'Grunnleggende': ['tall', 'farger', 'bursdag', 'klokka', 'tidsuttrykk'],
                 'Mennesker': ['familie', 'familie-setninger', 'utseende', 'personlighet', 'yrker'],
@@ -6408,6 +8352,17 @@ Vil du øve på ${pronoun} likevel?`
                         </div>
                     <h4 class="brainmap-section-title">Ferdigheter</h4>
                     <p class="brainmap-interaction-hint">Trykk på et emne for å lese kort og øve.</p>
+                    <div class="brainmap-filters" aria-label="Filtrer ferdigheter">
+                        <label for="brainmapLevelFilter">Nivå</label>
+                        <select id="brainmapLevelFilter" onchange="setBrainmapFilter('level', this.value)">
+                            ${[['all', 'Alle nivåer'], ['A0', 'A0'], ['A1', 'A1']].map(([value, label]) => `<option value="${value}" ${brainmapFilterState.level === value ? 'selected' : ''}>${label}</option>`).join('')}
+                        </select>
+                        <label for="brainmapCategoryFilter">Kategori</label>
+                        <select id="brainmapCategoryFilter" onchange="setBrainmapFilter('category', this.value)">
+                            <option value="all" ${brainmapFilterState.category === 'all' ? 'selected' : ''}>Alle kategorier</option>
+                            ${skillCategories.map(category => `<option value="${escapeHtml(category)}" ${brainmapFilterState.category === category ? 'selected' : ''}>${escapeHtml(category)}</option>`).join('')}
+                        </select>
+                    </div>
                     <div id="brainmapSkillDetail" class="brainmap-skill-detail hidden"></div>
                 </div>
                     <div id="brainmapMicroskills" class="brainmap-cluster-list">
@@ -7405,6 +9360,26 @@ Vil du øve på ${pronoun} likevel?`
         // ============================================
 
         const grammarTopics = {
+            a0Foundation: {
+                id: 'a0Foundation',
+                name: 'A0 grunnmur',
+                icon: '🌱',
+                description: 'De viktigste første setningene på spansk',
+                theory: {
+                    title: 'A0 grunnmur',
+                    content: '<p>Øv på korte setninger du trenger for å presentere deg selv og beskrive enkle ting.</p>'
+                },
+                exercises: [
+                    { skillId: 'a0.identity.age', sentence: 'Tengo ___ años', answer: 'catorce', options: ['catorce', 'soy', 'vivo', 'hay'], hint: 'På spansk sier du «jeg har fjorten år».', no: 'Jeg er fjorten år.' },
+                    { skillId: 'a0.existential.hay', sentence: '___ un libro en la mesa', answer: 'Hay', options: ['Hay', 'Soy', 'Tengo', 'Vivo'], hint: 'Bruk hay når du sier at noe finnes eller er et sted.', no: 'Det er en bok på bordet.' },
+                    { skillId: 'a0.possession.tener', sentence: 'Yo ___ una hermana', answer: 'tengo', options: ['tengo', 'hay', 'soy', 'vivo'], hint: 'Tener betyr å ha. Med yo blir det tengo.', no: 'Jeg har en søster.' },
+                    { skillId: 'a0.greetings.como_estas', sentence: '—¿Cómo estás? —___ bien, gracias', answer: 'Estoy', options: ['Estoy', 'Tengo', 'Hay', 'Vivo'], hint: 'Svar på hvordan du har det med estoy.', no: '—Hvordan har du det? —Jeg har det bra, takk.' },
+                    { skillId: 'a0.work.trabajar', sentence: 'Yo ___ en una escuela', answer: 'trabajo', options: ['trabajo', 'trabajas', 'trabajar', 'hay'], hint: 'Med yo får regelrette -ar-verb endelsen -o.', no: 'Jeg jobber på en skole.' },
+                    { skillId: 'a0.location.vivo_en', sentence: '___ en Oslo', answer: 'Vivo', options: ['Vivo', 'Soy', 'Tengo', 'Hay'], hint: 'Vivo en betyr «jeg bor i».', no: 'Jeg bor i Oslo.' },
+                    { skillId: 'a0.professions.zero_article', sentence: 'Mi madre es ___ profesora', answer: 'profesora', options: ['profesora', 'una profesora', 'la profesora', 'hay'], hint: 'Etter ser bruker du vanligvis ikke un/una foran yrker.', no: 'Moren min er lærer.' },
+                    { skillId: 'a0.questions.que_es_eso', sentence: '¿___ es eso?', answer: 'Qué', options: ['Qué', 'Quién', 'Dónde', 'Cuándo'], hint: 'Qué betyr «hva».', no: 'Hva er det?' }
+                ]
+            },
             articles: {
                 id: 'articles',
                 name: 'Artikler',
@@ -8023,8 +9998,12 @@ Vil du øve på ${pronoun} likevel?`
             document.getElementById('grammarExercise').classList.remove('hidden');
             document.getElementById('grammarTheoryArea').innerHTML = '';
             
-            // Shuffle and pick exercises
-            grammarExercises = shuffleArray([...currentGrammarTopic.exercises]).slice(0, 10);
+            // Prioritize exercises that are due, weak, or new for their micro-skill.
+            const preparedExercises = currentGrammarTopic.exercises.map(exercise => ({
+                ...exercise,
+                skillId: exercise.skillId || getGrammarExerciseSkillId(currentGrammarTopic.id, exercise)
+            }));
+            grammarExercises = selectGrammarExercises(preparedExercises, loadLearningProgress(), new Date().toISOString(), 10);
             grammarCurrentIndex = 0;
             grammarStats = { correct: 0, total: grammarExercises.length, errors: 0 };
             grammarSessionStartTime = new Date();
@@ -8079,6 +10058,14 @@ Vil du øve på ${pronoun} likevel?`
         function selectGrammarAnswer(answer, buttonElement) {
             const exercise = grammarExercises[grammarCurrentIndex];
             const isCorrect = answer.toLowerCase() === exercise.answer.toLowerCase();
+            if (exercise.skillId) {
+                const progress = updateLearningProgress({
+                    targetType: 'skill',
+                    targetId: exercise.skillId,
+                    resultKind: isCorrect ? 'correct' : 'wrong'
+                });
+                saveLearningProgress(progress);
+            }
             
             // Disable all buttons
             document.querySelectorAll('.grammar-option').forEach(btn => {

@@ -32,8 +32,11 @@ En gratis, interaktiv læringsapp for spansk på ungdomsskolenivå (A0-A1 CEFR).
 - Mestringsbadges ved 80%+ korrekt
 
 ### 🧠 Brainmap
-- Visuell oversikt over all læring
-- Fargekoding: grønn (mestret), gul (i læring), grå (ny)
+- Visuell oversikt over A0- og A1-mikroskills og ordforråd
+- Mikroskills er gruppert etter nivå og språkområde
+- Fargekoding: grå (ikke startet), rød (trenger øving), gul (på vei), grønn (god kontroll), gull (svært sterk)
+- Ferdigheter uten ferdig øvingsrute vises åpent som planlagt innhold og skjules ikke som om de var mestret
+- Eksisterende lokal progresjon og eksport/import beholdes når Brainmap-katalogen utvides
 
 ### 📝 Ukeslekse
 - Sporer øvingsdager automatisk
@@ -86,6 +89,12 @@ Last opp `index.html` til GitHub Pages, Netlify, eller skolens server.
 ## 📚 Innhold og rettigheter
 
 Ikke importer eller del skannede læreboksider, uttrukket forlagsinnhold eller annet materiale du ikke har rettigheter til. Kapittelimporten er ment for lærerens egne ordlister og manuelt godkjent innhold.
+
+### Utvikleraudit av svarvarianter
+
+Repoet har en offline audit-pipeline for å finne mulige norske/spanske svarvarianter. Kildeuttrekk legges i `scripts/audit-sources/snapshots/` bare når lisensen tillater lokal lagring, og må ha provenance, lisens og hash. Kildene brukes kun til forslag; en utvikler/lærer må sette `status` til `approved` før en variant kan legges i appens svaralternativer. `tradere` og lignende kandidater skal derfor kunne stå som `false_positive` uten å påvirke elevfasiten.
+
+Kjør lokal rapport med `npm run audit:curriculum`. Etter automatisk klassifisering kan godkjente kandidater eksporteres med `npm run audit:approved` og legges inn med `npm run audit:apply -- --apply`. Kommandoen bruker kun `auto_approved`/`approved`, og bevarer eksisterende canonical answers. Vanlig audit har ingen nettverkskall. Kilderegisteret og nettverksbasert oppdatering av snapshots er en separat utviklerprosess og skal ikke kjøres fra elevens nettleser.
 
 ## 📁 Filstruktur
 
