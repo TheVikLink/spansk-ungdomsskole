@@ -118,19 +118,19 @@
                     </div>
 
                     <div class="vocab-mode-grid" aria-label="Velg gloseøkt">
-                        <button type="button" class="vocab-mode-card review" onclick="startVocabSession('review')">
+                        <button type="button" class="vocab-mode-card review" data-vocab-mode="review" aria-pressed="false" onclick="startVocabSession('review')">
                             <span class="vocab-mode-icon">🔁</span>
                             <span class="vocab-mode-title">Repetere ord</span>
                             <span class="vocab-mode-text">Øv på alle ord som er klare for repetisjon.</span>
                             <span class="vocab-mode-meta" id="reviewModeMeta">0 ord klare</span>
                         </button>
-                        <button type="button" class="vocab-mode-card mixed" onclick="selectVocabMode('mixed')">
+                        <button type="button" class="vocab-mode-card mixed" data-vocab-mode="mixed" aria-pressed="true" onclick="selectVocabMode('mixed')">
                             <span class="vocab-mode-icon">🌱</span>
                             <span class="vocab-mode-title">Repetere ord og lære nye ord</span>
                             <span class="vocab-mode-text">Ta repetisjonene først, og legg til nye ord fra valgte kategorier.</span>
                             <span class="vocab-mode-meta" id="mixedModeMeta">Velg kategori under</span>
                         </button>
-                        <button type="button" class="vocab-mode-card new" onclick="selectVocabMode('new')">
+                        <button type="button" class="vocab-mode-card new" data-vocab-mode="new" aria-pressed="false" onclick="selectVocabMode('new')">
                             <span class="vocab-mode-icon">✨</span>
                             <span class="vocab-mode-title">Lære nye ord</span>
                             <span class="vocab-mode-text">Start en kort økt med nye ord fra kategoriene du velger.</span>
@@ -7756,6 +7756,11 @@ Vil du øve på ${pronoun} likevel?`
 
         function selectVocabMode(mode) {
             currentVocabMode = mode;
+            document.querySelectorAll('[data-vocab-mode]').forEach(card => {
+                const selected = card.dataset.vocabMode === mode;
+                card.classList.toggle('selected', selected);
+                card.setAttribute('aria-pressed', String(selected));
+            });
             const disclosure = document.getElementById('vocabCategoryDisclosure');
             const startAction = document.getElementById('vocabModeStartAction');
             const needsCategories = mode === 'new' || mode === 'mixed';
@@ -9381,13 +9386,14 @@ Vil du øve på ${pronoun} likevel?`
                 }
                 
                 const start = inputElement.selectionStart;
-                insertCharacter(inputElement, key);
+                const plainCharacter = e.shiftKey ? key.toUpperCase() : key;
+                insertCharacter(inputElement, plainCharacter);
                 const insertedPosition = start + 1;
 
                 const timer = setTimeout(() => {
                     const value = inputElement.value;
                     const insertedChar = value.charAt(insertedPosition - 1);
-                    if (insertedChar === key) {
+                    if (!e.shiftKey && insertedChar === key) {
                         inputElement.value = value.substring(0, insertedPosition - 1) + accentMap[key] + value.substring(insertedPosition);
                         inputElement.selectionStart = inputElement.selectionEnd = insertedPosition;
                     }

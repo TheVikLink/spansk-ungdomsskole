@@ -289,6 +289,20 @@ test('keeps a held accent key alive while typing the next letter', async ({ page
     await expect(input).toHaveValue('aé');
   });
 
+  test('does not turn an ordinary uppercase Spanish letter into an accent', async ({ page }) => {
+    await page.goto(appUrl);
+    await page.setContent('<input id="uppercase-test" autocomplete="off">');
+    await page.evaluate(() => setupAccentInput(document.getElementById('uppercase-test')));
+    const input = page.locator('#uppercase-test');
+    await input.focus();
+    await page.keyboard.down('Shift');
+    await page.keyboard.down('e');
+    await page.keyboard.up('e');
+    await page.keyboard.up('Shift');
+    await page.keyboard.type('s');
+    await expect(input).toHaveValue('Es');
+  });
+
   test('turns held question and exclamation marks into Spanish inverted punctuation', async ({ page }) => {
     await page.goto(appUrl);
     await page.setContent('<input id="punctuation-test" autocomplete="off">');
