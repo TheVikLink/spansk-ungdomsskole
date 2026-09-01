@@ -8,7 +8,7 @@ test.describe('fortellingsbasert diktat', () => {
   test('viser fem historier og filtrerer på nivå og region', async ({ page }) => {
     await page.goto(appUrl);
     await page.evaluate(() => { localStorage.clear(); studentName = 'Diktat-test'; showMainApp(); });
-    await page.getByRole('button', { name: /Diktat/ }).click();
+    await page.locator('#navDictation').click();
     await expect(page.locator('#dictationPage')).toBeVisible();
     await expect(page.locator('.dictation-story-card')).toHaveCount(5);
     await page.locator('#dictationLevelFilter').selectOption('A0');
