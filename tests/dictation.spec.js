@@ -21,6 +21,7 @@ test.describe('fortellingsbasert diktat', () => {
     await page.goto(appUrl);
     await page.evaluate(() => { localStorage.clear(); studentName = 'Diktat-test'; showMainApp(); showPage('dictation'); });
     await page.getByRole('button', { name: /Start historien/ }).first().click();
+    await page.getByRole('button', { name: 'Start øvelsen' }).click();
     await expect(page.locator('#dictationAnswer')).toBeVisible();
     await expect(page.locator('#dictationSolution')).toBeHidden();
     await page.locator('#dictationAnswer').fill('Me llamo Ana.');
@@ -30,5 +31,18 @@ test.describe('fortellingsbasert diktat', () => {
     await expect.poll(() => page.evaluate(() => Object.keys(localStorage).filter(k => k.includes('dictation')).map(k => [k, localStorage.getItem(k)]))).toEqual([]);
     await page.getByRole('button', { name: 'Neste segment' }).click();
     await expect(page.locator('#dictationAnswer')).toBeVisible();
+  });
+
+  test('kan høre hele historien før øvelsen starter, og lydkilden følger fasiten', async ({ page }) => {
+    await page.goto(appUrl);
+    await page.evaluate(() => { localStorage.clear(); studentName = 'Diktat-test'; showMainApp(); showPage('dictation'); });
+    await page.getByRole('button', { name: 'Start historien' }).nth(2).click();
+    await expect(page.locator('#dictationFullStoryAudio')).toBeVisible();
+    await expect(page.locator('#dictationAnswer')).toBeHidden();
+    await page.getByRole('button', { name: 'Start øvelsen' }).click();
+    await expect(page.locator('#dictationExercise audio')).toHaveAttribute('src', /antigua-1\.mp3$/);
+    const expected = await page.evaluate(() => DICTATION_STORIES.find(s => s.id === 'antigua-volcan').segments[0][0]);
+    await expect(page.locator('#dictationAnswer')).toBeVisible();
+    expect(expected).toBe('Sofía vive en Antigua Guatemala.');
   });
 });
