@@ -45,4 +45,13 @@ test.describe('fortellingsbasert diktat', () => {
     await expect(page.locator('#dictationAnswer')).toBeVisible();
     expect(expected).toBe('Sofía vive en Antigua Guatemala.');
   });
+
+  test('bruker de innspilte WAV-filene i Madrid- og Oaxaca-mappene', async ({ page }) => {
+    await page.goto(appUrl);
+    await page.evaluate(() => { localStorage.clear(); studentName = 'Diktat-test'; showMainApp(); showPage('dictation'); });
+    await page.getByRole('button', { name: 'Start historien' }).nth(1).click();
+    await expect(page.locator('#dictationFullStoryAudio')).toHaveAttribute('src', /Luis%20est.*Oaxaca.*\.wav$/);
+    await page.getByRole('button', { name: 'Start øvelsen' }).click();
+    await expect(page.locator('#dictationSegmentAudio')).toHaveAttribute('src', /Luis%20est.*Oaxaca.*1\.wav$/);
+  });
 });
