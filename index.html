@@ -9363,6 +9363,19 @@ Vil du øve på ${pronoun} likevel?`
             if (!inputElement || inputElement.dataset.accentInputReady === 'true') return;
             inputElement.dataset.accentInputReady = 'true';
             const longPressTimers = new Map();
+            const suppressNativeAccentPicker = (e) => {
+                if (accentMap[e.key]) {
+                    e.preventDefault();
+                    e.stopImmediatePropagation();
+                }
+            };
+            inputElement.addEventListener('keypress', suppressNativeAccentPicker, true);
+            inputElement.addEventListener('beforeinput', (e) => {
+                if (e.inputType === 'insertText' && /^[aeiounAEIOUN]$/u.test(e.data || '')) {
+                    e.preventDefault();
+                    e.stopImmediatePropagation();
+                }
+            }, true);
             inputElement.addEventListener('keydown', (e) => {
                 const key = e.key;
                 
@@ -9406,6 +9419,8 @@ Vil du øve på ${pronoun} likevel?`
                 const key = e.key;
                 
                 if (!accentMap[key]) return;
+                e.preventDefault();
+                e.stopImmediatePropagation();
                 
                 // Cancel the accent replacement if key released quickly
                 if (longPressTimers.has(key)) {
