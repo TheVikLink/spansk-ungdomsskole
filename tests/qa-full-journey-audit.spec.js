@@ -232,7 +232,7 @@ test('QA: full student journey audit', async ({ page }) => {
             verbTableSeen = /hablo|hablas|habla|tabell|bøying/i.test(fbText);
             await checkpoint('s5-verb-wrong-feedback', 'Feil svar: bøyingstabell synlig?');
         }
-        await page.getByRole('button', { name: /Neste|Se resultat|Avslutt/ }).click();
+        await page.locator('#verbFeedback [data-feedback-next]').click();
     }
     await checkpoint('s5-verb-done', `Verbøkt ferdig. Tabell ved feil: ${verbTableSeen}`);
     if (!verbTableSeen) {

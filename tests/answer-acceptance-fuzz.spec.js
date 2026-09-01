@@ -93,8 +93,6 @@ test.describe('answer-acceptance fuzz and accent regression', () => {
       for (const card of cards) {
         if (!/^(el|la)\s/i.test(card.es)) continue;
         if (!/^[^,()\s]+$/u.test(card.no)) continue;
-        if (vocabularyAnswerAlternatives[`${card.no}|es-no`]) continue;
-
         const definiteForms = getNorwegianNounDefiniteForms(card);
         if (definiteForms.length === 0) continue;
 

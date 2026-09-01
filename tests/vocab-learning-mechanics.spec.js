@@ -181,6 +181,40 @@ test('accepts natural Spanish alternatives for å gå tur', async ({ page }) => 
   expect(answers).toEqual(expect.arrayContaining(['hacer senderismo', 'hacer caminatas']));
 });
 
+test('shows a number-writing hint for every Spanish-to-Norwegian number card', async ({ page }) => {
+  await page.goto(appUrl);
+  const result = await page.evaluate(() => getVocabularyFrontHint({
+    direction: 'es-no', card: { category: 'tall', es: 'mil quinientos', no: '1500' }
+  }));
+  expect(result).toBe('Skriv med tall');
+});
+
+test('accepts Norwegian indefinite and definite singular forms for article nouns', async ({ page }) => {
+  await page.goto(appUrl);
+  const result = await page.evaluate(() => getVocabularyAcceptedAnswers(
+    { no: 'frisør', es: 'el peluquero', category: 'yrker' }, 'es-no', 'frisør'
+  ).map(answer => answer.value));
+  expect(result).toEqual(expect.arrayContaining(['frisør', 'frisøren']));
+});
+
+test('accepts the optional Spanish definite article for weekdays', async ({ page }) => {
+  await page.goto(appUrl);
+  const result = await page.evaluate(() => getVocabularyAcceptedAnswers(
+    { no: 'fredag', es: 'viernes', category: 'ukedager' }, 'no-es', 'viernes'
+  ).map(answer => answer.value));
+  expect(result).toEqual(expect.arrayContaining(['viernes', 'el viernes']));
+});
+
+test('excludes conjugation tables from vocabulary cards', async ({ page }) => {
+  await page.goto(appUrl);
+  const result = await page.evaluate(() => isVocabularyCardEligible({
+    no: 'bøying av verbet estar, som betyr å være',
+    es: 'estoy, estás, está, estamos, estáis, están',
+    category: 'verbbøying'
+  }));
+  expect(result).toBe(false);
+});
+
 test('accepts natural Norwegian alternatives for ir de compras', async ({ page }) => {
   await page.goto(appUrl);
   const answers = await page.evaluate(() => getVocabularyAcceptedAnswers(
@@ -225,6 +259,18 @@ test('keeps a held accent key alive while typing the next letter', async ({ page
     });
 
     expect(result).toEqual([]);
+  });
+
+  test('keeps infinitives and single conjugation cards in vocabulary', async ({ page }) => {
+    await page.goto(appUrl);
+
+    const result = await page.evaluate(() => [
+      isVocabularyCardEligible({ no: 'å være', es: 'ser', category: 'verb' }),
+      isVocabularyCardEligible({ no: 'jeg spiller', es: 'juego', category: 'verb' }),
+      isVocabularyCardEligible({ no: 'bøying av verbet ser, som betyr å være', es: 'soy, eres, es, somos, sois, son', category: 'verbbøying' })
+    ]);
+
+    expect(result).toEqual([true, true, false]);
   });
 
   test('turns a held Spanish vowel into a high accent without opening native accent menus', async ({ page }) => {
