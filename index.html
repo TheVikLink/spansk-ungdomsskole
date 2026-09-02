@@ -999,6 +999,7 @@
         function saveDictationCompletion(storyId) { const data=loadDictationData(); const story=DICTATION_STORIES.find(s=>s.id===storyId); if(!story)return false; if(!data.completed.some(x=>x.storyId===storyId)) data.completed.push({storyId,completedOn:dictationDate()}); localStorage.setItem(DICTATION_KEY,JSON.stringify(data)); return true; }
         function normalizeDictationAnswer(value) { return String(value||'').normalize('NFC').trim().replace(/\s+/gu,' ').toLocaleLowerCase('es').replace(/^[¿¡,.!?:;«»"']+|[,.!?:;«»"']+$/gu,''); }
         function compareDictationAnswer(answer, expected) { const a=normalizeDictationAnswer(answer), e=normalizeDictationAnswer(expected); if(a===e)return 'exact'; if(a && (e.includes(a)||a.includes(e)))return 'near'; return 'different'; }
+        function dictationHintsForSegment(story, text) { return (story.hints || []).filter(hint => { const spanish = String(hint).split(' = ')[0].trim(); const normalizedText = normalizeDictationAnswer(text); const term = normalizeDictationAnswer(spanish); const withoutArticle = term.replace(/^(el|la|los|las|un|una)\s+/u, ''); return term && (normalizedText.includes(term) || (withoutArticle && normalizedText.includes(withoutArticle))); }); }
         function renderDictationOverview() { const level=document.getElementById('dictationLevelFilter')?.value||'all', region=document.getElementById('dictationRegionFilter')?.value||'all'; const list=document.getElementById('dictationStoryList'); if(!list)return; list.innerHTML=DICTATION_STORIES.filter(s=>(level==='all'||s.level===level)&&(region==='all'||s.region===region)).map(s=>`<article class="dictation-story-card"><h3>${escapeHtml(s.title)}</h3><p>${escapeHtml(s.intro)}</p><p class="dictation-meta">${s.level} · ${s.region} · ${escapeHtml(s.place)}</p><button class="btn btn-primary" onclick="startDictation('${s.id}')">Start historien</button></article>`).join(''); }
         function startDictation(storyId) { const story=DICTATION_STORIES.find(s=>s.id===storyId); if(!story)return; dictationState={story,index:0,submitted:false,answer:'',answers:[]}; document.getElementById('dictationOverview').classList.add('hidden'); document.getElementById('dictationExercise').classList.remove('hidden'); renderDictationPreview(); }
         function dictationAudioUrl(story, filename) { const file = /\.[a-z0-9]+$/iu.test(filename) ? filename : `${filename}.${story.audioExt || 'mp3'}`; return `audio/diktat/${encodeURIComponent(story.audioDir || '').replaceAll('%20',' ')}${story.audioDir ? '/' : ''}${encodeURIComponent(file)}`; }
@@ -1068,6 +1069,10 @@
         }, true);
         renderDictationSegment = function() {
             renderDictationSegmentFinal();
+            const currentText = dictationState?.story?.segments?.[dictationState.index]?.[0] || '';
+            const visibleHints = dictationHintsForSegment(dictationState.story, currentText);
+            const hintElement = document.querySelector('.dictation-hints');
+            if (hintElement) hintElement.innerHTML = visibleHints.length ? `Hint: ${visibleHints.map(escapeHtml).join(' · ')}` : '';
             const input = document.getElementById('dictationAnswer');
             if (!input) return;
             if (dictationState.submitted) { document.getElementById('dictationExercise').addEventListener('keydown', event => { if (event.key === 'Enter') { event.preventDefault(); nextDictationSegment(); } }, { once: true }); return; }

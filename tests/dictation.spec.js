@@ -60,7 +60,7 @@ test.describe('fortellingsbasert diktat', () => {
     await page.evaluate(() => { localStorage.clear(); studentName = 'Diktat-test'; showMainApp(); showPage('dictation'); });
     await page.getByRole('button', { name: 'Start historien' }).first().click();
     await page.getByRole('button', { name: 'Start øvelsen' }).click();
-    await expect(page.locator('.dictation-hints')).toContainText('la plaza = torget');
+    await expect(page.locator('.dictation-hints')).toHaveText('');
     await expect(page.getByRole('button', { name: 'Sett inn á' })).toBeVisible();
     await page.getByRole('button', { name: 'Sett inn á' }).click();
     await expect(page.locator('#dictationAnswer')).toHaveValue('á');
@@ -68,6 +68,9 @@ test.describe('fortellingsbasert diktat', () => {
     await expect(page.locator('#dictationSolution')).toBeVisible();
     await page.keyboard.press('Enter');
     await expect(page.locator('#dictationExercise .study-header')).toContainText('2 / 8');
+    await page.getByRole('button', { name: 'Sjekk svar' }).click();
+    await page.getByRole('button', { name: 'Neste segment' }).click();
+    await expect(page.locator('.dictation-hints')).toContainText('la plaza = torget');
   });
 
   test('bruker spansk-først-formatet i alle historiehint', async ({ page }) => {
@@ -75,5 +78,17 @@ test.describe('fortellingsbasert diktat', () => {
     const hints = await page.evaluate(() => DICTATION_STORIES.flatMap(story => story.hints));
     expect(hints.length).toBeGreaterThan(0);
     expect(hints.every(hint => /^.+ = .+$/u.test(hint) && !hint.includes(':'))).toBe(true);
+  });
+
+  test('viser bare hint som finnes i aktuell fasit', async ({ page }) => {
+    await page.goto(appUrl);
+    await page.evaluate(() => { localStorage.clear(); studentName = 'Diktat-test'; showMainApp(); showPage('dictation'); });
+    await page.getByRole('button', { name: 'Start historien' }).nth(1).click();
+    await page.getByRole('button', { name: 'Start øvelsen' }).click();
+    await expect(page.locator('.dictation-hints')).toHaveText('');
+    await page.locator('#dictationAnswer').fill('Luis está en Oaxaca.');
+    await page.getByRole('button', { name: 'Sjekk svar' }).click();
+    await page.getByRole('button', { name: 'Neste segment' }).click();
+    await expect(page.locator('.dictation-hints')).toContainText('el mercado = marked');
   });
 });
