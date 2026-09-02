@@ -40,7 +40,7 @@ test.describe('fortellingsbasert diktat', () => {
     await expect(page.locator('#dictationFullStoryAudio')).toBeVisible();
     await expect(page.locator('#dictationAnswer')).toBeHidden();
     await page.getByRole('button', { name: 'Start øvelsen' }).click();
-    await expect(page.locator('#dictationExercise audio')).toHaveAttribute('src', /antigua-1\.mp3$/);
+    await expect(page.locator('#dictationExercise audio')).toHaveAttribute('src', /Sofi%CC%81a%20vive%20en%20antigua%20Guatemala%201\.wav$/);
     const expected = await page.evaluate(() => DICTATION_STORIES.find(s => s.id === 'antigua-volcan').segments[0][0]);
     await expect(page.locator('#dictationAnswer')).toBeVisible();
     expect(expected).toBe('Sofía vive en Antigua Guatemala.');
