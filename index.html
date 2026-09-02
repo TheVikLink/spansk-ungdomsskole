@@ -987,7 +987,7 @@
         let brainmapFilterState = { level: 'all', category: 'all' };
         const DICTATION_KEY = 'spansk123_dictation_v1';
         const DICTATION_STORIES = [
-            { id:'madrid-plaza', title:'En morgen i Madrid', level:'A0', region:'Spania', place:'Madrid', theme:'Byliv', intro:'Ana går til torget en solrik morgen.', hints:['torget: la plaza'], audioDir:'Ana vive en Madrid', audioExt:'wav', fullAudio:'Ana vive en Madrid full.m4a', segments:[['Ana vive en Madrid.','Ana vive en Madrid 1'],['Por la mañana, sale de casa.','Ana vive en Madrid 2'],['Camina hasta la plaza.','Ana vive en Madrid 3'],['Hay muchas personas.','Ana vive en Madrid 4'],['Ana compra pan.','Ana vive en Madrid 5'],['Después, ve un perro pequeño.','Ana vive en Madrid 6'],['El perro tiene una pelota roja.','Ana vive en Madrid 7'],['Ana vuelve a casa contenta.','Ana vive en Madrid 8']] },
+            { id:'madrid-plaza', title:'En morgen i Madrid', level:'A0', region:'Spania', place:'Madrid', theme:'Byliv', intro:'Ana går til torget en solrik morgen.', hints:['la plaza = torget'], audioDir:'Ana vive en Madrid', audioExt:'wav', fullAudio:'Ana vive en Madrid full.m4a', segments:[['Ana vive en Madrid.','Ana vive en Madrid 1'],['Por la mañana, sale de casa.','Ana vive en Madrid 2'],['Camina hasta la plaza.','Ana vive en Madrid 3'],['Hay muchas personas.','Ana vive en Madrid 4'],['Ana compra pan.','Ana vive en Madrid 5'],['Después, ve un perro pequeño.','Ana vive en Madrid 6'],['El perro tiene una pelota roja.','Ana vive en Madrid 7'],['Ana vuelve a casa contenta.','Ana vive en Madrid 8']] },
             { id:'oaxaca-mercado', title:'Markedet i Oaxaca', level:'A0', region:'Mexico', place:'Oaxaca', theme:'Mat og marked', intro:'Luis besøker et fargerikt marked.', hints:['marked: el mercado'], audioDir:'Luis está en Oaxaca', audioExt:'wav', fullAudio:'Luis está en Oaxaca .wav', segments:[['Luis está en Oaxaca.','Luis está en Oaxaca 1'],['Visita un mercado grande.','Luis está en Oaxaca 2'],['Hay frutas de muchos colores.','Luis está en Oaxaca 3'],['Luis compra dos mangos.','Luis está en Oaxaca 4'],['La vendedora sonríe.','Luis está en Oaxaca 5'],['También compra una botella de agua.','Luis está en Oaxaca 6'],['El mercado tiene música.','Luis está en Oaxaca 7'],['Luis vuelve feliz a casa.','Luis está en Oaxaca 8']] },
             { id:'antigua-volcan', title:'Utsikten i Antigua', level:'A1', region:'Mellom-Amerika', place:'Antigua Guatemala', theme:'Natur og utsikt', intro:'Sofía ser en vulkan fra byen.', hints:['vulkan: el volcán'], segments:[['Sofía vive en Antigua Guatemala.','antigua-1'],['Por la tarde, camina con su hermano.','antigua-2'],['Las calles son bonitas.','antigua-3'],['Desde la plaza, ven un volcán.','antigua-4'],['El volcán está detrás de las casas.','antigua-5'],['El cielo es azul y claro.','antigua-6'],['Sofía hace una foto.','antigua-7'],['Después, toma un chocolate caliente.','antigua-8']] },
             { id:'buenosaires-biblioteca', title:'Biblioteket i Buenos Aires', level:'A1', region:'Sør-Amerika', place:'Buenos Aires', theme:'Bøker og fritid', intro:'Tomás finner en spennende bok.', hints:['bibliotek: la biblioteca'], segments:[['Tomás vive en Buenos Aires.','ba-1'],['Le gusta leer en la biblioteca.','ba-2'],['Un sábado, busca un libro nuevo.','ba-3'],['El libro habla de animales.','ba-4'],['Tomás se sienta cerca de la ventana.','ba-5'],['Lee durante una hora.','ba-6'],['Después, escribe una nota.','ba-7'],['Vuelve a casa en autobús.','ba-8']] },
@@ -1016,6 +1016,20 @@
             if (!submitted) setTimeout(focusDictationAnswer, 0);
         }
         function showDictationAudioError() { document.getElementById('dictationAudioError')?.classList.remove('hidden'); }
+        function insertDictationAccent(character) { const input=document.getElementById('dictationAnswer'); if(!input)return; const start=input.selectionStart, end=input.selectionEnd; input.setRangeText(character,start,end,'end'); input.focus(); }
+        const renderDictationSegmentWithRecordedAudio = renderDictationSegment;
+        renderDictationSegment = function() {
+            renderDictationSegmentWithRecordedAudio();
+            const input=document.getElementById('dictationAnswer'); if(!input)return;
+            if(!dictationState.submitted) {
+                input.setAttribute('onkeydown', "if(event.key==='Enter'){event.preventDefault();submitDictationAnswer();}");
+                input.insertAdjacentHTML('afterend','<div class="dictation-accent-buttons" aria-label="Aksentknapper">'+['á','é','í','ó','ú','ü','ñ','¿','¡'].map(c=>`<button type="button" aria-label="Sett inn ${c}" onclick="insertDictationAccent('${c}')">${c}</button>`).join('')+'</div>');
+            } else {
+                const next=document.querySelector('#dictationSolution + button');
+                next?.setAttribute('onkeydown', "if(event.key==='Enter'){event.preventDefault();nextDictationSegment();}");
+                document.getElementById('dictationExercise').setAttribute('onkeydown', "if(event.key==='Enter' && event.target.tagName!=='TEXTAREA'){event.preventDefault();nextDictationSegment();}");
+            }
+        };
         function selectDictationStars(value) { document.querySelectorAll('.dictation-stars button').forEach((button,index)=>button.textContent=index<value?'★':'☆'); }
         function submitDictationAnswer() { if(!dictationState)return; dictationState.answer=document.getElementById('dictationAnswer')?.value||''; dictationState.submitted=true; renderDictationSegment(); }
         function nextDictationSegment() { if(!dictationState)return; if(dictationState.index<dictationState.story.segments.length-1){dictationState.index++;dictationState.submitted=false;renderDictationSegment();}else{saveDictationCompletion(dictationState.story.id); document.getElementById('dictationExercise').innerHTML=`<div class="completion-screen"><h2>Historien er ferdig!</h2><p>${escapeHtml(dictationState.story.theme)} · ${escapeHtml(dictationState.story.place)}</p><p>${dictationState.story.segments.map(s=>escapeHtml(s[0])).join(' ')}</p><button class="btn btn-primary" onclick="endDictation()">Tilbake til historiene</button></div>`; } }
@@ -1046,6 +1060,22 @@
             const solution = dictationState.story.segments.map(segment => escapeHtml(segment[0])).join('<br>');
             document.getElementById('dictationExercise').innerHTML = `<div class="completion-screen"><h2>Historien er ferdig!</h2><p>${escapeHtml(dictationState.story.theme)} · ${escapeHtml(dictationState.story.place)}</p><h3>Det du skrev</h3><p>${ownText}</p><h3>Fasit</h3><p>${solution}</p><button class="btn btn-primary" onclick="endDictation()">Tilbake til historiene</button></div>`;
         }
+        const renderDictationSegmentFinal = renderDictationSegment;
+        document.addEventListener('keydown', event => {
+            if (event.key !== 'Enter' || !dictationState) return;
+            if (event.target?.id === 'dictationAnswer' && !dictationState.submitted) { event.preventDefault(); event.stopPropagation(); submitDictationAnswer(); }
+            else if (dictationState.submitted && !document.getElementById('dictationExercise')?.classList.contains('hidden')) { event.preventDefault(); event.stopPropagation(); nextDictationSegment(); }
+        }, true);
+        renderDictationSegment = function() {
+            renderDictationSegmentFinal();
+            const input = document.getElementById('dictationAnswer');
+            if (!input) return;
+            if (dictationState.submitted) { document.getElementById('dictationExercise').addEventListener('keydown', event => { if (event.key === 'Enter') { event.preventDefault(); nextDictationSegment(); } }, { once: true }); return; }
+            input.setAttribute('onkeydown', "if(event.key==='Enter'){event.preventDefault();submitDictationAnswer();}");
+            input.onkeydown = event => { if (event.key === 'Enter') { event.preventDefault(); submitDictationAnswer(); } };
+            input.addEventListener('keydown', event => { if (event.key === 'Enter') { event.preventDefault(); submitDictationAnswer(); } });
+            input.insertAdjacentHTML('afterend', '<div class="dictation-accent-buttons" aria-label="Aksentknapper">' + ['á','é','í','ó','ú','ü','ñ','¿','¡'].map(c => `<button type="button" aria-label="Sett inn ${c}" onclick="insertDictationAccent('${c}')">${c}</button>`).join('') + '</div>');
+        };
 
         const learningCatalog = {
             skills: [

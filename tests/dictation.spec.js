@@ -54,4 +54,19 @@ test.describe('fortellingsbasert diktat', () => {
     await page.getByRole('button', { name: 'Start øvelsen' }).click();
     await expect(page.locator('#dictationSegmentAudio')).toHaveAttribute('src', /Luis%20est.*Oaxaca.*1\.wav$/);
   });
+
+  test('viser hint med spansk først, bruker aksentknapper og sender med Enter', async ({ page }) => {
+    await page.goto(appUrl);
+    await page.evaluate(() => { localStorage.clear(); studentName = 'Diktat-test'; showMainApp(); showPage('dictation'); });
+    await page.getByRole('button', { name: 'Start historien' }).first().click();
+    await page.getByRole('button', { name: 'Start øvelsen' }).click();
+    await expect(page.locator('.dictation-hints')).toContainText('la plaza = torget');
+    await expect(page.getByRole('button', { name: 'Sett inn á' })).toBeVisible();
+    await page.getByRole('button', { name: 'Sett inn á' }).click();
+    await expect(page.locator('#dictationAnswer')).toHaveValue('á');
+    await page.locator('#dictationAnswer').press('Enter');
+    await expect(page.locator('#dictationSolution')).toBeVisible();
+    await page.keyboard.press('Enter');
+    await expect(page.locator('#dictationExercise .study-header')).toContainText('2 / 8');
+  });
 });
