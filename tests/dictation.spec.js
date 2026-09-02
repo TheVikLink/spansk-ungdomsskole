@@ -69,4 +69,11 @@ test.describe('fortellingsbasert diktat', () => {
     await page.keyboard.press('Enter');
     await expect(page.locator('#dictationExercise .study-header')).toContainText('2 / 8');
   });
+
+  test('bruker spansk-først-formatet i alle historiehint', async ({ page }) => {
+    await page.goto(appUrl);
+    const hints = await page.evaluate(() => DICTATION_STORIES.flatMap(story => story.hints));
+    expect(hints.length).toBeGreaterThan(0);
+    expect(hints.every(hint => /^.+ = .+$/u.test(hint) && !hint.includes(':'))).toBe(true);
+  });
 });
