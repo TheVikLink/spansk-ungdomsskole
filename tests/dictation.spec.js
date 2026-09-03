@@ -40,7 +40,7 @@ test.describe('fortellingsbasert diktat', () => {
     await expect(page.locator('#dictationFullStoryAudio')).toBeVisible();
     await expect(page.locator('#dictationAnswer')).toBeHidden();
     await page.getByRole('button', { name: 'Start øvelsen' }).click();
-    await expect(page.locator('#dictationExercise audio')).toHaveAttribute('src', /Sofi%CC%81a%20vive%20en%20antigua%20Guatemala%201\.wav$/);
+    await expect(page.locator('#dictationExercise audio')).toHaveAttribute('src', /Sof%C3%ADa.*1\.wav$/);
     const expected = await page.evaluate(() => DICTATION_STORIES.find(s => s.id === 'antigua-volcan').segments[0][0]);
     await expect(page.locator('#dictationAnswer')).toBeVisible();
     expect(expected).toBe('Sofía vive en Antigua Guatemala.');
@@ -51,6 +51,10 @@ test.describe('fortellingsbasert diktat', () => {
     await page.evaluate(() => { localStorage.clear(); studentName = 'Diktat-test'; showMainApp(); showPage('dictation'); });
     await page.getByRole('button', { name: 'Start historien' }).nth(2).click();
     await page.getByRole('button', { name: 'Start øvelsen' }).click();
+    const failedRequests = [];
+    page.on('response', response => {
+      if (response.url().includes('/audio/diktat/') && response.status() >= 400) failedRequests.push(`${response.status()} ${response.url()}`);
+    });
 
     for (let index = 1; index <= 8; index += 1) {
       await expect(page.locator('#dictationSegmentAudio')).toHaveAttribute('src', new RegExp(`${index}\\.wav$`));
@@ -59,6 +63,7 @@ test.describe('fortellingsbasert diktat', () => {
         await page.getByRole('button', { name: 'Neste segment' }).click();
       }
     }
+    expect(failedRequests).toEqual([]);
   });
 
   test('bruker de innspilte WAV-filene i Madrid- og Oaxaca-mappene', async ({ page }) => {
