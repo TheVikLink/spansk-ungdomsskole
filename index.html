@@ -993,6 +993,13 @@
             { id:'buenosaires-biblioteca', title:'Biblioteket i Buenos Aires', level:'A1', region:'Sør-Amerika', place:'Buenos Aires', theme:'Bøker og fritid', intro:'Tomás finner en spennende bok.', hints:['la biblioteca = bibliotek'], segments:[['Tomás vive en Buenos Aires.','ba-1'],['Le gusta leer en la biblioteca.','ba-2'],['Un sábado, busca un libro nuevo.','ba-3'],['El libro habla de animales.','ba-4'],['Tomás se sienta cerca de la ventana.','ba-5'],['Lee durante una hora.','ba-6'],['Después, escribe una nota.','ba-7'],['Vuelve a casa en autobús.','ba-8']] },
             { id:'barcelona-bici', title:'En sykkeltur i Barcelona', level:'A1+', region:'Spania', place:'Barcelona', theme:'By og transport', intro:'Nora sykler langs havet.', hints:['la bicicleta = sykkel'], segments:[['Nora pasa una semana en Barcelona.','bcn-1'],['Cada mañana, monta en bicicleta.','bcn-2'],['Pedalea cerca del mar.','bcn-3'],['El aire es fresco y limpio.','bcn-4'],['Un día, encuentra un parque tranquilo.','bcn-5'],['Se sienta bajo un árbol.','bcn-6'],['Escucha a los pájaros.','bcn-7'],['Por la tarde, vuelve al hotel.','bcn-8']] }
         ];
+        const DICTATION_TRANSLATIONS = {
+            'madrid-plaza':['Ana bor i Madrid.','Om morgenen går hun hjemmefra.','Hun går til torget.','Det er mange mennesker der.','Ana kjøper brød.','Etterpå ser hun en liten hund.','Hunden har en rød ball.','Ana går fornøyd hjem.'],
+            'oaxaca-mercado':['Luis er i Oaxaca.','Han besøker et stort marked.','Det er frukt i mange farger.','Luis kjøper to mangoer.','Selgeren smiler.','Han kjøper også en flaske vann.','Det er musikk på markedet.','Luis går glad hjem.'],
+            'antigua-volcan':['Sofía bor i Antigua Guatemala.','Om ettermiddagen går hun med broren sin.','Gatene er fine.','Fra torget ser de en vulkan.','Vulkanen er bak husene.','Himmelen er blå og klar.','Sofía tar et bilde.','Etterpå drikker hun varm sjokolade.'],
+            'buenosaires-biblioteca':['Tomás bor i Buenos Aires.','Han liker å lese på biblioteket.','En lørdag leter han etter en ny bok.','Boken handler om dyr.','Tomás setter seg nær vinduet.','Han leser i en time.','Etterpå skriver han en lapp.','Han tar bussen hjem.'],
+            'barcelona-bici':['Nora er en uke i Barcelona.','Hver morgen sykler hun.','Hun sykler nær havet.','Luften er frisk og ren.','En dag finner hun en rolig park.','Hun setter seg under et tre.','Hun lytter til fuglene.','Om ettermiddagen sykler hun tilbake til hotellet.']
+        };
         let dictationState = null;
         function dictationDate(date = new Date()) { const d = new Date(date); return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`; }
         function loadDictationData() { try { const data=JSON.parse(localStorage.getItem(DICTATION_KEY)||'{"version":1,"completed":[]}'); return data?.version===1&&Array.isArray(data.completed)?data:{version:1,completed:[]}; } catch { return {version:1,completed:[]}; } }
@@ -1058,8 +1065,9 @@
             }
             saveDictationCompletion(dictationState.story.id);
             const ownText = dictationState.answers.map(answer => escapeHtml(answer || '')).join('<br>');
+            const translation = (DICTATION_TRANSLATIONS[dictationState.story.id] || []).map(escapeHtml).join('<br>');
             const solution = dictationState.story.segments.map(segment => escapeHtml(segment[0])).join('<br>');
-            document.getElementById('dictationExercise').innerHTML = `<div class="completion-screen"><h2>Historien er ferdig!</h2><p>${escapeHtml(dictationState.story.theme)} · ${escapeHtml(dictationState.story.place)}</p><h3>Det du skrev</h3><p>${ownText}</p><h3>Fasit</h3><p>${solution}</p><button class="btn btn-primary" onclick="endDictation()">Tilbake til historiene</button></div>`;
+            document.getElementById('dictationExercise').innerHTML = `<div class="completion-screen"><h2>Historien er ferdig!</h2><p>${escapeHtml(dictationState.story.theme)} · ${escapeHtml(dictationState.story.place)}</p><h3>Det du skrev</h3><p class="completion-answer">${ownText}</p><div class="completion-reading"><section><h3>Spansk fasit</h3><p>${solution}</p></section><section><h3>Norsk oversettelse</h3><p>${translation}</p></section></div><button class="btn btn-primary" onclick="endDictation()">Tilbake til historiene</button></div>`;
         }
         const renderDictationSegmentFinal = renderDictationSegment;
         document.addEventListener('keydown', event => {

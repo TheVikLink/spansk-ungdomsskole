@@ -63,6 +63,10 @@ test.describe('fortellingsbasert diktat', () => {
         await page.getByRole('button', { name: 'Neste segment' }).click();
       }
     }
+    await page.getByRole('button', { name: 'Sjekk svar' }).click();
+    await page.getByRole('button', { name: 'Neste segment' }).click();
+    await expect(page.locator('.completion-reading section')).toHaveCount(2);
+    await expect(page.locator('.completion-reading')).toContainText('Norsk oversettelse');
     expect(failedRequests).toEqual([]);
   });
 
