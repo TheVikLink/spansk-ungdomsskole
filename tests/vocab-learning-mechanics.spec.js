@@ -225,6 +225,14 @@ test('accepts natural Norwegian alternatives for ir de compras', async ({ page }
   expect(answers).toEqual(expect.arrayContaining(['å handle', 'å dra på shopping', 'å shoppe']));
 });
 
+test('accepts selvfølgelig as a translation for por supuesto', async ({ page }) => {
+  await page.goto(appUrl);
+  const answers = await page.evaluate(() => getVocabularyAcceptedAnswers(
+    { no: 'naturligvis', es: 'por supuesto' }, 'es-no', 'naturligvis'
+  ).map(answer => answer.value));
+  expect(answers).toEqual(expect.arrayContaining(['naturligvis', 'selvfølgelig']));
+});
+
 test('keeps a held accent key alive while typing the next letter', async ({ page }) => {
   await page.goto(appUrl);
   await page.setContent('<input id="accent-sequence-test" autocomplete="off">');
