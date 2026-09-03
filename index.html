@@ -8083,7 +8083,6 @@ Vil du øve på ${pronoun} likevel?`
                         ${direction === 'no-es' ? '🇳🇴 → 🇪🇸' : '🇪🇸 → 🇳🇴'}
                     </span>
                     <div class="card-word mb-2 text-lg text-gray-500">${front}</div>
-                    ${getVocabularyFrontHint(item) ? `<div class="card-hint">${getVocabularyFrontHint(item)}</div>` : ''}
                     <div class="card-answer">${back}</div>
                     ${synonymHint ? `<div class="card-synonym-hint text-sm text-gray-400 mt-2">${escapeHtml(synonymHint)}</div>` : ''}
                     <span class="card-category">${getCategoryEmoji(card.category)} ${capitalizeFirst(card.category)}</span>
