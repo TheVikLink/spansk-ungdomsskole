@@ -1,0 +1,18 @@
+[
+  {
+    "spansk": "por supuesto",
+    "norsk": "naturligvis",
+    "godkjente": ["selvfølgelig"],
+    "retning": "es-no",
+    "status": "approved",
+    "merknad": "Begge er idiomatiske og naturlige oversettelser."
+  },
+  {
+    "spansk": "la Navidad",
+    "norsk": "jula",
+    "godkjente": ["jul"],
+    "retning": "es-no",
+    "status": "approved",
+    "merknad": "Bestemt form er vanlig i norsk bruk."
+  }
+]

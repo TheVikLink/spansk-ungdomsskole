@@ -1174,18 +1174,6 @@
         const getDiagnosisOptions = question => (question.options || question.acceptedAnswers || []).map(option => typeof option === 'string' ? { optionId: option, label: option } : option);
 
         const vocabularyAnswerAlternatives = {
-    "naturligvis|es-no": [
-        {
-            "answerId": "naturligvis",
-            "value": "naturligvis",
-            "canonicalMeaningId": "por_supuesto_no"
-        },
-        {
-            "answerId": "selvfølgelig",
-            "value": "selvfølgelig",
-            "canonicalMeaningId": "por_supuesto_no"
-        }
-    ],
     "agurk|no-es": [
         {
             "answerId": "primary",
@@ -1955,6 +1943,18 @@
             "canonicalMeaningId": "juice_es"
         }
     ],
+    "jula|es-no": [
+        {
+            "answerId": "manual-1",
+            "value": "jul",
+            "canonicalMeaningId": "manual:la Navidad"
+        },
+        {
+            "answerId": "primary",
+            "value": "jula",
+            "canonicalMeaningId": "manual:la Navidad"
+        }
+    ],
     "kart|no-es": [
         {
             "answerId": "primary",
@@ -2299,6 +2299,18 @@
             "answerId": "mueble",
             "value": "mueble",
             "canonicalMeaningId": "cygnet:i54111"
+        }
+    ],
+    "naturligvis|es-no": [
+        {
+            "answerId": "naturligvis",
+            "value": "naturligvis",
+            "canonicalMeaningId": "por_supuesto_no"
+        },
+        {
+            "answerId": "selvfølgelig",
+            "value": "selvfølgelig",
+            "canonicalMeaningId": "por_supuesto_no"
         }
     ],
     "Neste år skal jeg begynne på videregående|no-es": [

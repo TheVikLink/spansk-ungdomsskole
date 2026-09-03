@@ -9,7 +9,21 @@ const html = readFileSync(htmlPath, 'utf8');
 const items = extractAllItems(html);
 const report = JSON.parse(readFileSync(reportPath, 'utf8'));
 const generated = buildApprovedAlternatives(items.glossary, report.candidates);
-const merged = mergeApprovedAlternatives(items.vocabularyAnswerAlternatives, generated);
+const manual = JSON.parse(readFileSync('data/godkjente-oversettelser.json', 'utf8'));
+const manualAlternatives = {};
+for (const entry of manual.filter(item => item.status === 'approved')) {
+  const key = `${entry.norsk}|${entry.retning}`;
+  const values = [entry.norsk, ...(entry.godkjente || [])];
+  manualAlternatives[key] = values.map((value, index) => ({
+    answerId: index === 0 ? 'primary' : `manual-${index}`,
+    value,
+    canonicalMeaningId: `manual:${entry.spansk}`
+  }));
+}
+const merged = mergeApprovedAlternatives(
+  mergeApprovedAlternatives(items.vocabularyAnswerAlternatives, generated),
+  manualAlternatives
+);
 const source = `const vocabularyAnswerAlternatives = ${JSON.stringify(merged, null, 4)};`;
 const start = html.indexOf('const vocabularyAnswerAlternatives = {');
 if (start === -1) throw new Error('Could not find vocabularyAnswerAlternatives declaration');
