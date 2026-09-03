@@ -14,6 +14,7 @@
     "audit:curriculum": "node scripts/audit-curriculum.mjs",
     "audit:approved": "node scripts/generate-approved-alternatives.mjs",
     "audit:apply": "node scripts/apply-approved-alternatives.mjs",
+    "generate:vocabulary-canonical": "node scripts/generate-vocabulary-canonical.mjs",
     "test:curriculum-audit": "node --test tests/curriculum-audit.test.mjs",
     "test:cygnet-sqlite": "node --test tests/cygnet-sqlite.test.mjs",
     "audit:cygnet-snapshot": "node scripts/audit-sources/build-cygnet-snapshot.mjs",

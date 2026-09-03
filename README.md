@@ -94,7 +94,7 @@ Ikke importer eller del skannede læreboksider, uttrukket forlagsinnhold eller a
 
 Repoet har en offline audit-pipeline for å finne mulige norske/spanske svarvarianter. Kildeuttrekk legges i `scripts/audit-sources/snapshots/` bare når lisensen tillater lokal lagring, og må ha provenance, lisens og hash. Kildene brukes kun til forslag; en utvikler/lærer må sette `status` til `approved` før en variant kan legges i appens svaralternativer. `tradere` og lignende kandidater skal derfor kunne stå som `false_positive` uten å påvirke elevfasiten.
 
-Manuelle, godkjente oversettelser føres i [`data/godkjente-oversettelser.json`](data/godkjente-oversettelser.json). Legg nye varianter i `godkjente`, behold `status` som `approved`, og kjør `npm run audit:apply -- --apply` for å oppdatere appens svaralternativer.
+Hele ordlisten og fasiten for begge retninger føres i [`data/vocabulary-canonical.json`](data/vocabulary-canonical.json). Rediger `norsk`, `spansk`, `kategori` eller svarlistene `svar.es-no`/`svar.no-es` direkte. Kjør deretter `npm run audit:apply -- output/curriculum-audit-report.json --apply` for å oppdatere `index.html`.
 
 Kjør lokal rapport med `npm run audit:curriculum`. Etter automatisk klassifisering kan godkjente kandidater eksporteres med `npm run audit:approved` og legges inn med `npm run audit:apply -- --apply`. Kommandoen bruker kun `auto_approved`/`approved`, og bevarer eksisterende canonical answers. Vanlig audit har ingen nettverkskall. Kilderegisteret og nettverksbasert oppdatering av snapshots er en separat utviklerprosess og skal ikke kjøres fra elevens nettleser.
 

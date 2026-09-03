@@ -1,0 +1,7752 @@
+{
+  "schemaVersion": 1,
+  "description": "Canonical vocabulary source. Edit entries and regenerate index.html.",
+  "entries": [
+    {
+      "id": "vocab-0001",
+      "norsk": "1",
+      "spansk": "uno",
+      "kategori": "tall",
+      "svar": {
+        "es-no": [
+          "1"
+        ],
+        "no-es": [
+          "uno"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0002",
+      "norsk": "2",
+      "spansk": "dos",
+      "kategori": "tall",
+      "svar": {
+        "es-no": [
+          "2"
+        ],
+        "no-es": [
+          "dos"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0003",
+      "norsk": "3",
+      "spansk": "tres",
+      "kategori": "tall",
+      "svar": {
+        "es-no": [
+          "3"
+        ],
+        "no-es": [
+          "tres"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0004",
+      "norsk": "4",
+      "spansk": "cuatro",
+      "kategori": "tall",
+      "svar": {
+        "es-no": [
+          "4"
+        ],
+        "no-es": [
+          "cuatro"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0005",
+      "norsk": "5",
+      "spansk": "cinco",
+      "kategori": "tall",
+      "svar": {
+        "es-no": [
+          "5"
+        ],
+        "no-es": [
+          "cinco"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0006",
+      "norsk": "6",
+      "spansk": "seis",
+      "kategori": "tall",
+      "svar": {
+        "es-no": [
+          "6"
+        ],
+        "no-es": [
+          "seis"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0007",
+      "norsk": "7",
+      "spansk": "siete",
+      "kategori": "tall",
+      "svar": {
+        "es-no": [
+          "7"
+        ],
+        "no-es": [
+          "siete"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0008",
+      "norsk": "8",
+      "spansk": "ocho",
+      "kategori": "tall",
+      "svar": {
+        "es-no": [
+          "8"
+        ],
+        "no-es": [
+          "ocho"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0009",
+      "norsk": "9",
+      "spansk": "nueve",
+      "kategori": "tall",
+      "svar": {
+        "es-no": [
+          "9"
+        ],
+        "no-es": [
+          "nueve"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0010",
+      "norsk": "10",
+      "spansk": "diez",
+      "kategori": "tall",
+      "svar": {
+        "es-no": [
+          "10"
+        ],
+        "no-es": [
+          "diez"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0011",
+      "norsk": "11",
+      "spansk": "once",
+      "kategori": "tall",
+      "svar": {
+        "es-no": [
+          "11"
+        ],
+        "no-es": [
+          "once"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0012",
+      "norsk": "12",
+      "spansk": "doce",
+      "kategori": "tall",
+      "svar": {
+        "es-no": [
+          "12"
+        ],
+        "no-es": [
+          "doce"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0013",
+      "norsk": "13",
+      "spansk": "trece",
+      "kategori": "tall",
+      "svar": {
+        "es-no": [
+          "13"
+        ],
+        "no-es": [
+          "trece"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0014",
+      "norsk": "14",
+      "spansk": "catorce",
+      "kategori": "tall",
+      "svar": {
+        "es-no": [
+          "14"
+        ],
+        "no-es": [
+          "catorce"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0015",
+      "norsk": "15",
+      "spansk": "quince",
+      "kategori": "tall",
+      "svar": {
+        "es-no": [
+          "15"
+        ],
+        "no-es": [
+          "quince"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0016",
+      "norsk": "16",
+      "spansk": "dieciséis",
+      "kategori": "tall",
+      "svar": {
+        "es-no": [
+          "16"
+        ],
+        "no-es": [
+          "dieciséis"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0017",
+      "norsk": "17",
+      "spansk": "diecisiete",
+      "kategori": "tall",
+      "svar": {
+        "es-no": [
+          "17"
+        ],
+        "no-es": [
+          "diecisiete"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0018",
+      "norsk": "18",
+      "spansk": "dieciocho",
+      "kategori": "tall",
+      "svar": {
+        "es-no": [
+          "18"
+        ],
+        "no-es": [
+          "dieciocho"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0019",
+      "norsk": "19",
+      "spansk": "diecinueve",
+      "kategori": "tall",
+      "svar": {
+        "es-no": [
+          "19"
+        ],
+        "no-es": [
+          "diecinueve"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0020",
+      "norsk": "20",
+      "spansk": "veinte",
+      "kategori": "tall",
+      "svar": {
+        "es-no": [
+          "20"
+        ],
+        "no-es": [
+          "veinte"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0021",
+      "norsk": "26",
+      "spansk": "veintiséis",
+      "kategori": "tall",
+      "svar": {
+        "es-no": [
+          "26"
+        ],
+        "no-es": [
+          "veintiséis"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0022",
+      "norsk": "30",
+      "spansk": "treinta",
+      "kategori": "tall",
+      "svar": {
+        "es-no": [
+          "30"
+        ],
+        "no-es": [
+          "treinta"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0023",
+      "norsk": "39",
+      "spansk": "treinta y nueve",
+      "kategori": "tall",
+      "svar": {
+        "es-no": [
+          "39"
+        ],
+        "no-es": [
+          "treinta y nueve"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0024",
+      "norsk": "40",
+      "spansk": "cuarenta",
+      "kategori": "tall",
+      "svar": {
+        "es-no": [
+          "40"
+        ],
+        "no-es": [
+          "cuarenta"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0025",
+      "norsk": "43",
+      "spansk": "cuarenta y tres",
+      "kategori": "tall",
+      "svar": {
+        "es-no": [
+          "43"
+        ],
+        "no-es": [
+          "cuarenta y tres"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0026",
+      "norsk": "50",
+      "spansk": "cincuenta",
+      "kategori": "tall",
+      "svar": {
+        "es-no": [
+          "50"
+        ],
+        "no-es": [
+          "cincuenta"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0027",
+      "norsk": "54",
+      "spansk": "cincuenta y cuatro",
+      "kategori": "tall",
+      "svar": {
+        "es-no": [
+          "54"
+        ],
+        "no-es": [
+          "cincuenta y cuatro"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0028",
+      "norsk": "60",
+      "spansk": "sesenta",
+      "kategori": "tall",
+      "svar": {
+        "es-no": [
+          "60"
+        ],
+        "no-es": [
+          "sesenta"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0029",
+      "norsk": "62",
+      "spansk": "sesenta y dos",
+      "kategori": "tall",
+      "svar": {
+        "es-no": [
+          "62"
+        ],
+        "no-es": [
+          "sesenta y dos"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0030",
+      "norsk": "70",
+      "spansk": "setenta",
+      "kategori": "tall",
+      "svar": {
+        "es-no": [
+          "70"
+        ],
+        "no-es": [
+          "setenta"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0031",
+      "norsk": "78",
+      "spansk": "setenta y ocho",
+      "kategori": "tall",
+      "svar": {
+        "es-no": [
+          "78"
+        ],
+        "no-es": [
+          "setenta y ocho"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0032",
+      "norsk": "80",
+      "spansk": "ochenta",
+      "kategori": "tall",
+      "svar": {
+        "es-no": [
+          "80"
+        ],
+        "no-es": [
+          "ochenta"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0033",
+      "norsk": "87",
+      "spansk": "ochenta y siete",
+      "kategori": "tall",
+      "svar": {
+        "es-no": [
+          "87"
+        ],
+        "no-es": [
+          "ochenta y siete"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0034",
+      "norsk": "90",
+      "spansk": "noventa",
+      "kategori": "tall",
+      "svar": {
+        "es-no": [
+          "90"
+        ],
+        "no-es": [
+          "noventa"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0035",
+      "norsk": "91",
+      "spansk": "noventa y uno",
+      "kategori": "tall",
+      "svar": {
+        "es-no": [
+          "91"
+        ],
+        "no-es": [
+          "noventa y uno"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0036",
+      "norsk": "100",
+      "spansk": "cien",
+      "kategori": "tall",
+      "svar": {
+        "es-no": [
+          "100"
+        ],
+        "no-es": [
+          "cien"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0037",
+      "norsk": "110",
+      "spansk": "ciento diez",
+      "kategori": "tall",
+      "svar": {
+        "es-no": [
+          "110"
+        ],
+        "no-es": [
+          "ciento diez"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0038",
+      "norsk": "123",
+      "spansk": "ciento veintitrés",
+      "kategori": "tall",
+      "svar": {
+        "es-no": [
+          "123"
+        ],
+        "no-es": [
+          "ciento veintitrés"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0039",
+      "norsk": "200",
+      "spansk": "doscientos",
+      "kategori": "tall",
+      "svar": {
+        "es-no": [
+          "200"
+        ],
+        "no-es": [
+          "doscientos"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0040",
+      "norsk": "245",
+      "spansk": "doscientos cuarenta y cinco",
+      "kategori": "tall",
+      "svar": {
+        "es-no": [
+          "245"
+        ],
+        "no-es": [
+          "doscientos cuarenta y cinco"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0041",
+      "norsk": "300",
+      "spansk": "trescientos",
+      "kategori": "tall",
+      "svar": {
+        "es-no": [
+          "300"
+        ],
+        "no-es": [
+          "trescientos"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0042",
+      "norsk": "400",
+      "spansk": "cuatrocientos",
+      "kategori": "tall",
+      "svar": {
+        "es-no": [
+          "400"
+        ],
+        "no-es": [
+          "cuatrocientos"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0043",
+      "norsk": "500",
+      "spansk": "quinientos",
+      "kategori": "tall",
+      "svar": {
+        "es-no": [
+          "500"
+        ],
+        "no-es": [
+          "quinientos"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0044",
+      "norsk": "600",
+      "spansk": "seiscientos",
+      "kategori": "tall",
+      "svar": {
+        "es-no": [
+          "600"
+        ],
+        "no-es": [
+          "seiscientos"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0045",
+      "norsk": "700",
+      "spansk": "setecientos",
+      "kategori": "tall",
+      "svar": {
+        "es-no": [
+          "700"
+        ],
+        "no-es": [
+          "setecientos"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0046",
+      "norsk": "800",
+      "spansk": "ochocientos",
+      "kategori": "tall",
+      "svar": {
+        "es-no": [
+          "800"
+        ],
+        "no-es": [
+          "ochocientos"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0047",
+      "norsk": "900",
+      "spansk": "novecientos",
+      "kategori": "tall",
+      "svar": {
+        "es-no": [
+          "900"
+        ],
+        "no-es": [
+          "novecientos"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0048",
+      "norsk": "1000",
+      "spansk": "mil",
+      "kategori": "tall",
+      "svar": {
+        "es-no": [
+          "1000"
+        ],
+        "no-es": [
+          "mil"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0049",
+      "norsk": "870",
+      "spansk": "ochocientos setenta",
+      "kategori": "tall",
+      "svar": {
+        "es-no": [
+          "870"
+        ],
+        "no-es": [
+          "ochocientos setenta"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0050",
+      "norsk": "1200",
+      "spansk": "mil doscientos",
+      "kategori": "tall",
+      "svar": {
+        "es-no": [
+          "1200"
+        ],
+        "no-es": [
+          "mil doscientos"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0051",
+      "norsk": "1589",
+      "spansk": "mil quinientos ochenta y nueve",
+      "kategori": "tall",
+      "svar": {
+        "es-no": [
+          "1589"
+        ],
+        "no-es": [
+          "mil quinientos ochenta y nueve"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0052",
+      "norsk": "2000",
+      "spansk": "dos mil",
+      "kategori": "tall",
+      "svar": {
+        "es-no": [
+          "2000"
+        ],
+        "no-es": [
+          "dos mil"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0053",
+      "norsk": "4000",
+      "spansk": "cuatro mil",
+      "kategori": "tall",
+      "svar": {
+        "es-no": [
+          "4000"
+        ],
+        "no-es": [
+          "cuatro mil"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0054",
+      "norsk": "10 000",
+      "spansk": "diez mil",
+      "kategori": "tall",
+      "svar": {
+        "es-no": [
+          "10 000"
+        ],
+        "no-es": [
+          "diez mil"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0055",
+      "norsk": "1945",
+      "spansk": "mil novecientos cuarenta y cinco",
+      "kategori": "tall",
+      "svar": {
+        "es-no": [
+          "1945"
+        ],
+        "no-es": [
+          "mil novecientos cuarenta y cinco"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0056",
+      "norsk": "1996",
+      "spansk": "mil novecientos noventa y seis",
+      "kategori": "tall",
+      "svar": {
+        "es-no": [
+          "1996"
+        ],
+        "no-es": [
+          "mil novecientos noventa y seis"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0057",
+      "norsk": "2011",
+      "spansk": "dos mil once",
+      "kategori": "tall",
+      "svar": {
+        "es-no": [
+          "2011"
+        ],
+        "no-es": [
+          "dos mil once"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0058",
+      "norsk": "2019",
+      "spansk": "dos mil diecinueve",
+      "kategori": "tall",
+      "svar": {
+        "es-no": [
+          "2019"
+        ],
+        "no-es": [
+          "dos mil diecinueve"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0059",
+      "norsk": "Gratulerer med dagen",
+      "spansk": "¡Feliz cumpleaños!",
+      "kategori": "bursdag",
+      "svar": {
+        "es-no": [
+          "Gratulerer med dagen"
+        ],
+        "no-es": [
+          "¡Feliz cumpleaños!"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0060",
+      "norsk": "Når har du bursdag?",
+      "spansk": "¿Cuándo es tu cumpleaños?",
+      "kategori": "bursdag",
+      "svar": {
+        "es-no": [
+          "Når har du bursdag?"
+        ],
+        "no-es": [
+          "¿Cuándo es tu cumpleaños?"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0061",
+      "norsk": "Bursdagen min er 7. juli",
+      "spansk": "Mi cumpleaños es el siete de julio",
+      "kategori": "bursdag",
+      "svar": {
+        "es-no": [
+          "Bursdagen min er 7. juli",
+          "Bursdagen min er den sjuende juli",
+          "Bursdagen min er sjuende juli"
+        ],
+        "no-es": [
+          "Mi cumpleaños es el siete de julio",
+          "Mi cumpleaños es el 7 de julio"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0062",
+      "norsk": "Når er bursdagen til Marius?",
+      "spansk": "¿Cuándo es el cumpleaños de Marius?",
+      "kategori": "bursdag",
+      "svar": {
+        "es-no": [
+          "Når er bursdagen til Marius?"
+        ],
+        "no-es": [
+          "¿Cuándo es el cumpleaños de Marius?"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0063",
+      "norsk": "Bursdagen til Marius er 26. juni",
+      "spansk": "El cumpleaños de Marius es el veintiséis de junio",
+      "kategori": "bursdag",
+      "svar": {
+        "es-no": [
+          "Bursdagen til Marius er 26. juni"
+        ],
+        "no-es": [
+          "El cumpleaños de Marius es el veintiséis de junio"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0064",
+      "norsk": "hei",
+      "spansk": "hola",
+      "kategori": "hilsener",
+      "svar": {
+        "es-no": [
+          "hei",
+          "hallo"
+        ],
+        "no-es": [
+          "hola"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0065",
+      "norsk": "takk",
+      "spansk": "gracias",
+      "kategori": "hilsener",
+      "svar": {
+        "es-no": [
+          "takk"
+        ],
+        "no-es": [
+          "gracias"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0066",
+      "norsk": "god morgen",
+      "spansk": "buenos días",
+      "kategori": "hilsener",
+      "svar": {
+        "es-no": [
+          "god morgen",
+          "god dag"
+        ],
+        "no-es": [
+          "buenos días"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0067",
+      "norsk": "god dag",
+      "spansk": "buenos días",
+      "kategori": "hilsener",
+      "svar": {
+        "es-no": [
+          "god dag",
+          "god morgen"
+        ],
+        "no-es": [
+          "buenos días"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0068",
+      "norsk": "god kveld",
+      "spansk": "buenas noches",
+      "kategori": "hilsener",
+      "svar": {
+        "es-no": [
+          "god kveld"
+        ],
+        "no-es": [
+          "buenas noches",
+          "buenas tardes"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0069",
+      "norsk": "ha det",
+      "spansk": "adiós",
+      "kategori": "hilsener",
+      "svar": {
+        "es-no": [
+          "ha det",
+          "farvel"
+        ],
+        "no-es": [
+          "adiós",
+          "hasta luego"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0070",
+      "norsk": "Norge",
+      "spansk": "Noruega",
+      "kategori": "land",
+      "svar": {
+        "es-no": [
+          "Norge"
+        ],
+        "no-es": [
+          "Noruega"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0071",
+      "norsk": "Sverige",
+      "spansk": "Suecia",
+      "kategori": "land",
+      "svar": {
+        "es-no": [
+          "Sverige"
+        ],
+        "no-es": [
+          "Suecia"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0072",
+      "norsk": "Danmark",
+      "spansk": "Dinamarca",
+      "kategori": "land",
+      "svar": {
+        "es-no": [
+          "Danmark"
+        ],
+        "no-es": [
+          "Dinamarca"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0073",
+      "norsk": "Finland",
+      "spansk": "Finlandia",
+      "kategori": "land",
+      "svar": {
+        "es-no": [
+          "Finland"
+        ],
+        "no-es": [
+          "Finlandia"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0074",
+      "norsk": "Island",
+      "spansk": "Islandia",
+      "kategori": "land",
+      "svar": {
+        "es-no": [
+          "Island"
+        ],
+        "no-es": [
+          "Islandia"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0075",
+      "norsk": "Russland",
+      "spansk": "Rusia",
+      "kategori": "land",
+      "svar": {
+        "es-no": [
+          "Russland"
+        ],
+        "no-es": [
+          "Rusia"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0076",
+      "norsk": "Tyskland",
+      "spansk": "Alemania",
+      "kategori": "land",
+      "svar": {
+        "es-no": [
+          "Tyskland"
+        ],
+        "no-es": [
+          "Alemania"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0077",
+      "norsk": "Østerrike",
+      "spansk": "Austria",
+      "kategori": "land",
+      "svar": {
+        "es-no": [
+          "Østerrike"
+        ],
+        "no-es": [
+          "Austria"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0078",
+      "norsk": "Nederland",
+      "spansk": "Los Países Bajos",
+      "kategori": "land",
+      "svar": {
+        "es-no": [
+          "Nederland"
+        ],
+        "no-es": [
+          "Los Países Bajos"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0079",
+      "norsk": "Frankrike",
+      "spansk": "Francia",
+      "kategori": "land",
+      "svar": {
+        "es-no": [
+          "Frankrike"
+        ],
+        "no-es": [
+          "Francia"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0080",
+      "norsk": "Italia",
+      "spansk": "Italia",
+      "kategori": "land",
+      "svar": {
+        "es-no": [
+          "Italia"
+        ],
+        "no-es": [
+          "Italia"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0081",
+      "norsk": "Belgia",
+      "spansk": "Bélgica",
+      "kategori": "land",
+      "svar": {
+        "es-no": [
+          "Belgia"
+        ],
+        "no-es": [
+          "Bélgica"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0082",
+      "norsk": "Spania",
+      "spansk": "España",
+      "kategori": "land",
+      "svar": {
+        "es-no": [
+          "Spania"
+        ],
+        "no-es": [
+          "España"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0083",
+      "norsk": "Portugal",
+      "spansk": "Portugal",
+      "kategori": "land",
+      "svar": {
+        "es-no": [
+          "Portugal"
+        ],
+        "no-es": [
+          "Portugal"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0084",
+      "norsk": "England",
+      "spansk": "Inglaterra",
+      "kategori": "land",
+      "svar": {
+        "es-no": [
+          "England"
+        ],
+        "no-es": [
+          "Inglaterra"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0085",
+      "norsk": "Irland",
+      "spansk": "Irlanda",
+      "kategori": "land",
+      "svar": {
+        "es-no": [
+          "Irland"
+        ],
+        "no-es": [
+          "Irlanda"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0086",
+      "norsk": "Hellas",
+      "spansk": "Grecia",
+      "kategori": "land",
+      "svar": {
+        "es-no": [
+          "Hellas"
+        ],
+        "no-es": [
+          "Grecia"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0087",
+      "norsk": "Sveits",
+      "spansk": "Suiza",
+      "kategori": "land",
+      "svar": {
+        "es-no": [
+          "Sveits"
+        ],
+        "no-es": [
+          "Suiza"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0088",
+      "norsk": "rød",
+      "spansk": "rojo",
+      "kategori": "farger",
+      "svar": {
+        "es-no": [
+          "rød"
+        ],
+        "no-es": [
+          "rojo"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0089",
+      "norsk": "blå",
+      "spansk": "azul",
+      "kategori": "farger",
+      "svar": {
+        "es-no": [
+          "blå"
+        ],
+        "no-es": [
+          "azul"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0090",
+      "norsk": "gul",
+      "spansk": "amarillo",
+      "kategori": "farger",
+      "svar": {
+        "es-no": [
+          "gul"
+        ],
+        "no-es": [
+          "amarillo"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0091",
+      "norsk": "grønn",
+      "spansk": "verde",
+      "kategori": "farger",
+      "svar": {
+        "es-no": [
+          "grønn"
+        ],
+        "no-es": [
+          "verde"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0092",
+      "norsk": "grå",
+      "spansk": "gris",
+      "kategori": "farger",
+      "svar": {
+        "es-no": [
+          "grå"
+        ],
+        "no-es": [
+          "gris"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0093",
+      "norsk": "brun",
+      "spansk": "marrón",
+      "kategori": "farger",
+      "svar": {
+        "es-no": [
+          "brun"
+        ],
+        "no-es": [
+          "marrón"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0094",
+      "norsk": "hvit",
+      "spansk": "blanco",
+      "kategori": "farger",
+      "svar": {
+        "es-no": [
+          "hvit"
+        ],
+        "no-es": [
+          "blanco"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0095",
+      "norsk": "svart",
+      "spansk": "negro",
+      "kategori": "farger",
+      "svar": {
+        "es-no": [
+          "svart"
+        ],
+        "no-es": [
+          "negro"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0096",
+      "norsk": "rosa",
+      "spansk": "rosa",
+      "kategori": "farger",
+      "svar": {
+        "es-no": [
+          "rosa"
+        ],
+        "no-es": [
+          "rosa"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0097",
+      "norsk": "lilla (v)",
+      "spansk": "violeta",
+      "kategori": "farger",
+      "svar": {
+        "es-no": [
+          "lilla (v)",
+          "lilla"
+        ],
+        "no-es": [
+          "violeta"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0098",
+      "norsk": "oransje",
+      "spansk": "naranja",
+      "kategori": "farger",
+      "svar": {
+        "es-no": [
+          "oransje"
+        ],
+        "no-es": [
+          "naranja"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0099",
+      "norsk": "turkis",
+      "spansk": "turquesa",
+      "kategori": "farger",
+      "svar": {
+        "es-no": [
+          "turkis"
+        ],
+        "no-es": [
+          "turquesa"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0100",
+      "norsk": "vinter",
+      "spansk": "el invierno",
+      "kategori": "vær",
+      "svar": {
+        "es-no": [
+          "vinter"
+        ],
+        "no-es": [
+          "el invierno",
+          "invierno"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0101",
+      "norsk": "vår",
+      "spansk": "la primavera",
+      "kategori": "vær",
+      "svar": {
+        "es-no": [
+          "vår"
+        ],
+        "no-es": [
+          "la primavera"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0102",
+      "norsk": "sommer",
+      "spansk": "el verano",
+      "kategori": "vær",
+      "svar": {
+        "es-no": [
+          "sommer"
+        ],
+        "no-es": [
+          "el verano",
+          "verano"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0103",
+      "norsk": "høst",
+      "spansk": "el otoño",
+      "kategori": "vær",
+      "svar": {
+        "es-no": [
+          "høst"
+        ],
+        "no-es": [
+          "el otoño",
+          "otoño"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0104",
+      "norsk": "det regner",
+      "spansk": "llueve",
+      "kategori": "vær",
+      "svar": {
+        "es-no": [
+          "det regner"
+        ],
+        "no-es": [
+          "llueve"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0105",
+      "norsk": "det snør",
+      "spansk": "nieva",
+      "kategori": "vær",
+      "svar": {
+        "es-no": [
+          "det snør"
+        ],
+        "no-es": [
+          "nieva"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0106",
+      "norsk": "det er klart / skyfritt",
+      "spansk": "está despejado",
+      "kategori": "vær",
+      "svar": {
+        "es-no": [
+          "det er klart / skyfritt"
+        ],
+        "no-es": [
+          "está despejado"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0107",
+      "norsk": "det er overskyet",
+      "spansk": "está nublado",
+      "kategori": "vær",
+      "svar": {
+        "es-no": [
+          "det er overskyet"
+        ],
+        "no-es": [
+          "está nublado"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0108",
+      "norsk": "det er fem varmegrader",
+      "spansk": "hace cinco grados sobre cero",
+      "kategori": "vær",
+      "svar": {
+        "es-no": [
+          "det er fem varmegrader"
+        ],
+        "no-es": [
+          "hace cinco grados sobre cero"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0109",
+      "norsk": "det er fem kuldegrader",
+      "spansk": "hace cinco grados bajo cero",
+      "kategori": "vær",
+      "svar": {
+        "es-no": [
+          "det er fem kuldegrader"
+        ],
+        "no-es": [
+          "hace cinco grados bajo cero"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0110",
+      "norsk": "det er fint vær",
+      "spansk": "hace buen tiempo",
+      "kategori": "vær",
+      "svar": {
+        "es-no": [
+          "det er fint vær"
+        ],
+        "no-es": [
+          "hace buen tiempo"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0111",
+      "norsk": "det er dårlig vær",
+      "spansk": "hace mal tiempo",
+      "kategori": "vær",
+      "svar": {
+        "es-no": [
+          "det er dårlig vær"
+        ],
+        "no-es": [
+          "hace mal tiempo"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0112",
+      "norsk": "det er sol",
+      "spansk": "hace sol",
+      "kategori": "vær",
+      "svar": {
+        "es-no": [
+          "det er sol"
+        ],
+        "no-es": [
+          "hace sol"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0113",
+      "norsk": "det er vind",
+      "spansk": "hace viento",
+      "kategori": "vær",
+      "svar": {
+        "es-no": [
+          "det er vind",
+          "det blåser"
+        ],
+        "no-es": [
+          "hace viento"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0114",
+      "norsk": "det blåser",
+      "spansk": "hace viento",
+      "kategori": "vær",
+      "svar": {
+        "es-no": [
+          "det blåser",
+          "det er vind"
+        ],
+        "no-es": [
+          "hace viento"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0115",
+      "norsk": "det er varmt",
+      "spansk": "hace calor",
+      "kategori": "vær",
+      "svar": {
+        "es-no": [
+          "det er varmt"
+        ],
+        "no-es": [
+          "hace calor"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0116",
+      "norsk": "det er kaldt",
+      "spansk": "hace frío",
+      "kategori": "vær",
+      "svar": {
+        "es-no": [
+          "det er kaldt"
+        ],
+        "no-es": [
+          "hace frío"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0117",
+      "norsk": "jula",
+      "spansk": "La Navidad",
+      "kategori": "høytider",
+      "svar": {
+        "es-no": [
+          "jula",
+          "jul"
+        ],
+        "no-es": [
+          "La Navidad"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0118",
+      "norsk": "nyttårsaften",
+      "spansk": "La Nochevieja",
+      "kategori": "høytider",
+      "svar": {
+        "es-no": [
+          "nyttårsaften",
+          "nyttårsaftenen"
+        ],
+        "no-es": [
+          "La Nochevieja"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0119",
+      "norsk": "julaften",
+      "spansk": "La Nochebuena",
+      "kategori": "høytider",
+      "svar": {
+        "es-no": [
+          "julaften",
+          "julaftenen"
+        ],
+        "no-es": [
+          "La Nochebuena"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0120",
+      "norsk": "sankthansaften",
+      "spansk": "La Noche de San Juan",
+      "kategori": "høytider",
+      "svar": {
+        "es-no": [
+          "sankthansaften",
+          "sankthansaftenen"
+        ],
+        "no-es": [
+          "La Noche de San Juan"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0121",
+      "norsk": "påskeuken",
+      "spansk": "La Semana Santa",
+      "kategori": "høytider",
+      "svar": {
+        "es-no": [
+          "påskeuken",
+          "påskeuke"
+        ],
+        "no-es": [
+          "La Semana Santa"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0122",
+      "norsk": "Valentinsdagen",
+      "spansk": "El Día de San Valentín",
+      "kategori": "høytider",
+      "svar": {
+        "es-no": [
+          "Valentinsdagen",
+          "Valentinsdag"
+        ],
+        "no-es": [
+          "El Día de San Valentín"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0123",
+      "norsk": "nasjonaldagen",
+      "spansk": "El día Nacional",
+      "kategori": "høytider",
+      "svar": {
+        "es-no": [
+          "nasjonaldagen",
+          "nasjonaldag"
+        ],
+        "no-es": [
+          "El día Nacional"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0124",
+      "norsk": "de hellige tre kongers aften",
+      "spansk": "El Día de los Reyes",
+      "kategori": "høytider",
+      "svar": {
+        "es-no": [
+          "de hellige tre kongers aften"
+        ],
+        "no-es": [
+          "El Día de los Reyes"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0125",
+      "norsk": "allehelgensdagen",
+      "spansk": "El Día de los Muertos",
+      "kategori": "høytider",
+      "svar": {
+        "es-no": [
+          "allehelgensdagen",
+          "allehelgensdag"
+        ],
+        "no-es": [
+          "El Día de los Muertos"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0126",
+      "norsk": "fødselsdag",
+      "spansk": "El Cumpleaños",
+      "kategori": "høytider",
+      "svar": {
+        "es-no": [
+          "fødselsdag"
+        ],
+        "no-es": [
+          "El Cumpleaños",
+          "cumpleaños"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0127",
+      "norsk": "konfirmasjon",
+      "spansk": "La Confirmación",
+      "kategori": "høytider",
+      "svar": {
+        "es-no": [
+          "konfirmasjon"
+        ],
+        "no-es": [
+          "La Confirmación"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0128",
+      "norsk": "barnedåp",
+      "spansk": "El Bautizo",
+      "kategori": "høytider",
+      "svar": {
+        "es-no": [
+          "barnedåp"
+        ],
+        "no-es": [
+          "El Bautizo"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0129",
+      "norsk": "bryllup",
+      "spansk": "La Boda",
+      "kategori": "høytider",
+      "svar": {
+        "es-no": [
+          "bryllup"
+        ],
+        "no-es": [
+          "La Boda",
+          "boda"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0130",
+      "norsk": "begravelse (f)",
+      "spansk": "el Funeral",
+      "kategori": "høytider",
+      "svar": {
+        "es-no": [
+          "begravelse (f)",
+          "begravelse"
+        ],
+        "no-es": [
+          "el Funeral"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0131",
+      "norsk": "begravelse (ord på e)",
+      "spansk": "entierro",
+      "kategori": "høytider",
+      "svar": {
+        "es-no": [
+          "begravelse (ord på e)",
+          "begravelse"
+        ],
+        "no-es": [
+          "entierro"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0132",
+      "norsk": "høy",
+      "spansk": "alto",
+      "kategori": "utseende",
+      "svar": {
+        "es-no": [
+          "høy"
+        ],
+        "no-es": [
+          "alto"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0133",
+      "norsk": "lav",
+      "spansk": "bajo",
+      "kategori": "utseende",
+      "svar": {
+        "es-no": [
+          "lav"
+        ],
+        "no-es": [
+          "bajo"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0134",
+      "norsk": "mørkhåret",
+      "spansk": "moreno",
+      "kategori": "utseende",
+      "svar": {
+        "es-no": [
+          "mørkhåret"
+        ],
+        "no-es": [
+          "moreno"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0135",
+      "norsk": "blond",
+      "spansk": "rubio",
+      "kategori": "utseende",
+      "svar": {
+        "es-no": [
+          "blond"
+        ],
+        "no-es": [
+          "rubio"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0136",
+      "norsk": "rødhåret",
+      "spansk": "pelirrojo",
+      "kategori": "utseende",
+      "svar": {
+        "es-no": [
+          "rødhåret"
+        ],
+        "no-es": [
+          "pelirrojo"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0137",
+      "norsk": "skallet",
+      "spansk": "calvo",
+      "kategori": "utseende",
+      "svar": {
+        "es-no": [
+          "skallet"
+        ],
+        "no-es": [
+          "calvo"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0138",
+      "norsk": "pen/kjekk",
+      "spansk": "guapo",
+      "kategori": "utseende",
+      "svar": {
+        "es-no": [
+          "pen/kjekk",
+          "kjekk",
+          "pen"
+        ],
+        "no-es": [
+          "guapo"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0139",
+      "norsk": "vakker",
+      "spansk": "hermoso",
+      "kategori": "utseende",
+      "svar": {
+        "es-no": [
+          "vakker"
+        ],
+        "no-es": [
+          "hermoso"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0140",
+      "norsk": "blå øyne",
+      "spansk": "los ojos azules",
+      "kategori": "utseende",
+      "svar": {
+        "es-no": [
+          "blå øyne"
+        ],
+        "no-es": [
+          "los ojos azules"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0141",
+      "norsk": "brune øyne",
+      "spansk": "los ojos marrones",
+      "kategori": "utseende",
+      "svar": {
+        "es-no": [
+          "brune øyne"
+        ],
+        "no-es": [
+          "los ojos marrones"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0142",
+      "norsk": "grønne øyne",
+      "spansk": "los ojos verdes",
+      "kategori": "utseende",
+      "svar": {
+        "es-no": [
+          "grønne øyne"
+        ],
+        "no-es": [
+          "los ojos verdes"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0143",
+      "norsk": "mørkt hår",
+      "spansk": "el pelo moreno",
+      "kategori": "utseende",
+      "svar": {
+        "es-no": [
+          "mørkt hår"
+        ],
+        "no-es": [
+          "el pelo moreno"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0144",
+      "norsk": "blondt hår",
+      "spansk": "el pelo rubio",
+      "kategori": "utseende",
+      "svar": {
+        "es-no": [
+          "blondt hår"
+        ],
+        "no-es": [
+          "el pelo rubio"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0145",
+      "norsk": "rødt hår",
+      "spansk": "el pelo pelirrojo",
+      "kategori": "utseende",
+      "svar": {
+        "es-no": [
+          "rødt hår"
+        ],
+        "no-es": [
+          "el pelo pelirrojo"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0146",
+      "norsk": "kort hår",
+      "spansk": "el pelo corto",
+      "kategori": "utseende",
+      "svar": {
+        "es-no": [
+          "kort hår"
+        ],
+        "no-es": [
+          "el pelo corto"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0147",
+      "norsk": "langt hår",
+      "spansk": "el pelo largo",
+      "kategori": "utseende",
+      "svar": {
+        "es-no": [
+          "langt hår"
+        ],
+        "no-es": [
+          "el pelo largo"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0148",
+      "norsk": "rett hår",
+      "spansk": "el pelo liso",
+      "kategori": "utseende",
+      "svar": {
+        "es-no": [
+          "rett hår"
+        ],
+        "no-es": [
+          "el pelo liso"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0149",
+      "norsk": "krøllete hår",
+      "spansk": "el pelo rizado",
+      "kategori": "utseende",
+      "svar": {
+        "es-no": [
+          "krøllete hår"
+        ],
+        "no-es": [
+          "el pelo rizado"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0150",
+      "norsk": "hestehale",
+      "spansk": "la cola de caballo",
+      "kategori": "utseende",
+      "svar": {
+        "es-no": [
+          "hestehale"
+        ],
+        "no-es": [
+          "la cola de caballo"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0151",
+      "norsk": "pannelugg",
+      "spansk": "el flequillo",
+      "kategori": "utseende",
+      "svar": {
+        "es-no": [
+          "pannelugg"
+        ],
+        "no-es": [
+          "el flequillo"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0152",
+      "norsk": "fletter",
+      "spansk": "las trenzas",
+      "kategori": "utseende",
+      "svar": {
+        "es-no": [
+          "fletter"
+        ],
+        "no-es": [
+          "las trenzas"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0153",
+      "norsk": "briller",
+      "spansk": "las gafas",
+      "kategori": "utseende",
+      "svar": {
+        "es-no": [
+          "briller"
+        ],
+        "no-es": [
+          "las gafas"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0154",
+      "norsk": "skjegg",
+      "spansk": "la barba",
+      "kategori": "utseende",
+      "svar": {
+        "es-no": [
+          "skjegg"
+        ],
+        "no-es": [
+          "la barba",
+          "barba"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0155",
+      "norsk": "bart",
+      "spansk": "el bigote",
+      "kategori": "utseende",
+      "svar": {
+        "es-no": [
+          "bart"
+        ],
+        "no-es": [
+          "el bigote"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0156",
+      "norsk": "fregner",
+      "spansk": "las pecas",
+      "kategori": "utseende",
+      "svar": {
+        "es-no": [
+          "fregner"
+        ],
+        "no-es": [
+          "las pecas"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0157",
+      "norsk": "smilehull",
+      "spansk": "los hoyuelos",
+      "kategori": "utseende",
+      "svar": {
+        "es-no": [
+          "smilehull"
+        ],
+        "no-es": [
+          "los hoyuelos"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0158",
+      "norsk": "arr",
+      "spansk": "la cicatriz",
+      "kategori": "utseende",
+      "svar": {
+        "es-no": [
+          "arr"
+        ],
+        "no-es": [
+          "la cicatriz"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0159",
+      "norsk": "kjedelig",
+      "spansk": "aburrido",
+      "kategori": "personlighet",
+      "svar": {
+        "es-no": [
+          "kjedelig"
+        ],
+        "no-es": [
+          "aburrido"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0160",
+      "norsk": "omtenksom",
+      "spansk": "cariñoso",
+      "kategori": "personlighet",
+      "svar": {
+        "es-no": [
+          "omtenksom"
+        ],
+        "no-es": [
+          "cariñoso"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0161",
+      "norsk": "morsom",
+      "spansk": "gracioso",
+      "kategori": "personlighet",
+      "svar": {
+        "es-no": [
+          "morsom"
+        ],
+        "no-es": [
+          "gracioso"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0162",
+      "norsk": "pratsom",
+      "spansk": "hablador",
+      "kategori": "personlighet",
+      "svar": {
+        "es-no": [
+          "pratsom"
+        ],
+        "no-es": [
+          "hablador"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0163",
+      "norsk": "utålmodig",
+      "spansk": "impaciente",
+      "kategori": "personlighet",
+      "svar": {
+        "es-no": [
+          "utålmodig"
+        ],
+        "no-es": [
+          "impaciente"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0164",
+      "norsk": "intelligent",
+      "spansk": "inteligente",
+      "kategori": "personlighet",
+      "svar": {
+        "es-no": [
+          "intelligent"
+        ],
+        "no-es": [
+          "inteligente"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0165",
+      "norsk": "ryddig",
+      "spansk": "ordenado",
+      "kategori": "personlighet",
+      "svar": {
+        "es-no": [
+          "ryddig"
+        ],
+        "no-es": [
+          "ordenado"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0166",
+      "norsk": "tålmodig",
+      "spansk": "paciente",
+      "kategori": "personlighet",
+      "svar": {
+        "es-no": [
+          "tålmodig"
+        ],
+        "no-es": [
+          "paciente"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0167",
+      "norsk": "ansvarsfull",
+      "spansk": "responsable",
+      "kategori": "personlighet",
+      "svar": {
+        "es-no": [
+          "ansvarsfull",
+          "ansvarlig"
+        ],
+        "no-es": [
+          "responsable"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0168",
+      "norsk": "snill/ hyggelig",
+      "spansk": "simpático",
+      "kategori": "personlighet",
+      "svar": {
+        "es-no": [
+          "snill/ hyggelig",
+          "hyggelig",
+          "snill"
+        ],
+        "no-es": [
+          "simpático"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0169",
+      "norsk": "sosial",
+      "spansk": "sociable",
+      "kategori": "personlighet",
+      "svar": {
+        "es-no": [
+          "sosial"
+        ],
+        "no-es": [
+          "sociable"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0170",
+      "norsk": "sta",
+      "spansk": "terco",
+      "kategori": "personlighet",
+      "svar": {
+        "es-no": [
+          "sta"
+        ],
+        "no-es": [
+          "terco"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0171",
+      "norsk": "sjenert",
+      "spansk": "tímido",
+      "kategori": "personlighet",
+      "svar": {
+        "es-no": [
+          "sjenert"
+        ],
+        "no-es": [
+          "tímido"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0172",
+      "norsk": "lat (v)",
+      "spansk": "vago",
+      "kategori": "personlighet",
+      "svar": {
+        "es-no": [
+          "lat (v)",
+          "lat"
+        ],
+        "no-es": [
+          "vago"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0173",
+      "norsk": "bror",
+      "spansk": "el hermano",
+      "kategori": "familie",
+      "svar": {
+        "es-no": [
+          "bror",
+          "broren"
+        ],
+        "no-es": [
+          "el hermano",
+          "hermano"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0174",
+      "norsk": "søster",
+      "spansk": "la hermana",
+      "kategori": "familie",
+      "svar": {
+        "es-no": [
+          "søster",
+          "søsteren"
+        ],
+        "no-es": [
+          "la hermana",
+          "hermana"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0175",
+      "norsk": "fetter",
+      "spansk": "el primo",
+      "kategori": "familie",
+      "svar": {
+        "es-no": [
+          "fetter"
+        ],
+        "no-es": [
+          "el primo"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0176",
+      "norsk": "kusine",
+      "spansk": "la prima",
+      "kategori": "familie",
+      "svar": {
+        "es-no": [
+          "kusine"
+        ],
+        "no-es": [
+          "la prima"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0177",
+      "norsk": "tante",
+      "spansk": "la tía",
+      "kategori": "familie",
+      "svar": {
+        "es-no": [
+          "tante"
+        ],
+        "no-es": [
+          "la tía",
+          "tía"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0178",
+      "norsk": "onkel",
+      "spansk": "el tío",
+      "kategori": "familie",
+      "svar": {
+        "es-no": [
+          "onkel"
+        ],
+        "no-es": [
+          "el tío",
+          "tío"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0179",
+      "norsk": "mor",
+      "spansk": "la madre",
+      "kategori": "familie",
+      "svar": {
+        "es-no": [
+          "mor",
+          "mamma",
+          "moren"
+        ],
+        "no-es": [
+          "la madre",
+          "madre"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0180",
+      "norsk": "far",
+      "spansk": "el padre",
+      "kategori": "familie",
+      "svar": {
+        "es-no": [
+          "far",
+          "faren"
+        ],
+        "no-es": [
+          "el padre",
+          "padre"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0181",
+      "norsk": "bestemor",
+      "spansk": "la abuela",
+      "kategori": "familie",
+      "svar": {
+        "es-no": [
+          "bestemor",
+          "bestemoren"
+        ],
+        "no-es": [
+          "la abuela",
+          "abuela"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0182",
+      "norsk": "bestefar",
+      "spansk": "el abuelo",
+      "kategori": "familie",
+      "svar": {
+        "es-no": [
+          "bestefar",
+          "bestefaren"
+        ],
+        "no-es": [
+          "el abuelo",
+          "abuelo"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0183",
+      "norsk": "kjæreste",
+      "spansk": "el novio",
+      "kategori": "familie",
+      "svar": {
+        "es-no": [
+          "kjæreste",
+          "kjæresten"
+        ],
+        "no-es": [
+          "el novio",
+          "la novia"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0184",
+      "norsk": "stefar",
+      "spansk": "el padrastro",
+      "kategori": "familie",
+      "svar": {
+        "es-no": [
+          "stefar"
+        ],
+        "no-es": [
+          "el padrastro"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0185",
+      "norsk": "stemor",
+      "spansk": "la madrastra",
+      "kategori": "familie",
+      "svar": {
+        "es-no": [
+          "stemor"
+        ],
+        "no-es": [
+          "la madrastra"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0186",
+      "norsk": "stebror",
+      "spansk": "el hermanastro",
+      "kategori": "familie",
+      "svar": {
+        "es-no": [
+          "stebror"
+        ],
+        "no-es": [
+          "el hermanastro"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0187",
+      "norsk": "stesøster",
+      "spansk": "la hermanastra",
+      "kategori": "familie",
+      "svar": {
+        "es-no": [
+          "stesøster"
+        ],
+        "no-es": [
+          "la hermanastra"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0188",
+      "norsk": "halvbror",
+      "spansk": "el medio hermano",
+      "kategori": "familie",
+      "svar": {
+        "es-no": [
+          "halvbror"
+        ],
+        "no-es": [
+          "el medio hermano"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0189",
+      "norsk": "halvsøster",
+      "spansk": "la media hermana",
+      "kategori": "familie",
+      "svar": {
+        "es-no": [
+          "halvsøster"
+        ],
+        "no-es": [
+          "la media hermana"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0190",
+      "norsk": "storebror",
+      "spansk": "el hermano mayor",
+      "kategori": "familie",
+      "svar": {
+        "es-no": [
+          "storebror"
+        ],
+        "no-es": [
+          "el hermano mayor"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0191",
+      "norsk": "lillesøster",
+      "spansk": "la hermana menor",
+      "kategori": "familie",
+      "svar": {
+        "es-no": [
+          "lillesøster"
+        ],
+        "no-es": [
+          "la hermana menor"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0192",
+      "norsk": "Familien min består av fem personer",
+      "spansk": "En mi familia somos cinco",
+      "kategori": "familie-setninger",
+      "svar": {
+        "es-no": [
+          "Familien min består av fem personer"
+        ],
+        "no-es": [
+          "En mi familia somos cinco"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0193",
+      "norsk": "Hvem bor du sammen med?",
+      "spansk": "¿Con quién vives?",
+      "kategori": "familie-setninger",
+      "svar": {
+        "es-no": [
+          "Hvem bor du sammen med?"
+        ],
+        "no-es": [
+          "¿Con quién vives?"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0194",
+      "norsk": "Jeg bor sammen med moren og broren min",
+      "spansk": "Vivo con mi madre y mi hermano",
+      "kategori": "familie-setninger",
+      "svar": {
+        "es-no": [
+          "Jeg bor sammen med moren og broren min"
+        ],
+        "no-es": [
+          "Vivo con mi madre y mi hermano"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0195",
+      "norsk": "Foreldrene mine er skilt",
+      "spansk": "Mis padres están divorciados",
+      "kategori": "familie-setninger",
+      "svar": {
+        "es-no": [
+          "Foreldrene mine er skilt"
+        ],
+        "no-es": [
+          "Mis padres están divorciados"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0196",
+      "norsk": "Foreldrene mine er gift",
+      "spansk": "Mis padres están casados",
+      "kategori": "familie-setninger",
+      "svar": {
+        "es-no": [
+          "Foreldrene mine er gift"
+        ],
+        "no-es": [
+          "Mis padres están casados"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0197",
+      "norsk": "Hva heter broren din?",
+      "spansk": "¿Cómo se llama tu hermano?",
+      "kategori": "familie-setninger",
+      "svar": {
+        "es-no": [
+          "Hva heter broren din?"
+        ],
+        "no-es": [
+          "¿Cómo se llama tu hermano?"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0198",
+      "norsk": "Broren min heter..",
+      "spansk": "Mi hermano se llama..",
+      "kategori": "familie-setninger",
+      "svar": {
+        "es-no": [
+          "Broren min heter.."
+        ],
+        "no-es": [
+          "Mi hermano se llama.."
+        ]
+      }
+    },
+    {
+      "id": "vocab-0199",
+      "norsk": "Hvor mange år er broren din?",
+      "spansk": "¿Cuántos años tiene tu hermano?",
+      "kategori": "familie-setninger",
+      "svar": {
+        "es-no": [
+          "Hvor mange år er broren din?"
+        ],
+        "no-es": [
+          "¿Cuántos años tiene tu hermano?"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0200",
+      "norsk": "Broren min er åtte år",
+      "spansk": "Mi hermano tiene ocho años",
+      "kategori": "familie-setninger",
+      "svar": {
+        "es-no": [
+          "Broren min er åtte år"
+        ],
+        "no-es": [
+          "Mi hermano tiene ocho años"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0201",
+      "norsk": "å ha på seg",
+      "spansk": "llevar",
+      "kategori": "klær",
+      "svar": {
+        "es-no": [
+          "å ha på seg",
+          "å bringe",
+          "å bære",
+          "å gå med",
+          "å ta med"
+        ],
+        "no-es": [
+          "llevar"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0202",
+      "norsk": "å kle på seg",
+      "spansk": "ponerse",
+      "kategori": "klær",
+      "svar": {
+        "es-no": [
+          "å kle på seg"
+        ],
+        "no-es": [
+          "ponerse"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0203",
+      "norsk": "støvler",
+      "spansk": "las botas",
+      "kategori": "klær",
+      "svar": {
+        "es-no": [
+          "støvler"
+        ],
+        "no-es": [
+          "las botas"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0204",
+      "norsk": "t-skjorte",
+      "spansk": "la camiseta",
+      "kategori": "klær",
+      "svar": {
+        "es-no": [
+          "t-skjorte"
+        ],
+        "no-es": [
+          "la camiseta",
+          "camiseta"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0205",
+      "norsk": "bikini",
+      "spansk": "el biquini",
+      "kategori": "klær",
+      "svar": {
+        "es-no": [
+          "bikini"
+        ],
+        "no-es": [
+          "el biquini"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0206",
+      "norsk": "skjorte",
+      "spansk": "la camisa",
+      "kategori": "klær",
+      "svar": {
+        "es-no": [
+          "skjorte"
+        ],
+        "no-es": [
+          "la camisa",
+          "camisa"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0207",
+      "norsk": "jeans",
+      "spansk": "los vaqueros",
+      "kategori": "klær",
+      "svar": {
+        "es-no": [
+          "jeans"
+        ],
+        "no-es": [
+          "los vaqueros",
+          "jeans"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0208",
+      "norsk": "lue",
+      "spansk": "el gorro",
+      "kategori": "klær",
+      "svar": {
+        "es-no": [
+          "lue"
+        ],
+        "no-es": [
+          "el gorro"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0209",
+      "norsk": "caps",
+      "spansk": "la gorra",
+      "kategori": "klær",
+      "svar": {
+        "es-no": [
+          "caps"
+        ],
+        "no-es": [
+          "la gorra"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0210",
+      "norsk": "belte",
+      "spansk": "el cinturón",
+      "kategori": "klær",
+      "svar": {
+        "es-no": [
+          "belte",
+          "beltet"
+        ],
+        "no-es": [
+          "el cinturón",
+          "cinturón"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0211",
+      "norsk": "sokker",
+      "spansk": "los calcetines",
+      "kategori": "klær",
+      "svar": {
+        "es-no": [
+          "sokker"
+        ],
+        "no-es": [
+          "los calcetines"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0212",
+      "norsk": "genser (j)",
+      "spansk": "el jersey",
+      "kategori": "klær",
+      "svar": {
+        "es-no": [
+          "genser (j)",
+          "genser"
+        ],
+        "no-es": [
+          "el jersey"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0213",
+      "norsk": "tøfler",
+      "spansk": "las zapatillas",
+      "kategori": "klær",
+      "svar": {
+        "es-no": [
+          "tøfler"
+        ],
+        "no-es": [
+          "las zapatillas"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0214",
+      "norsk": "sko",
+      "spansk": "los zapatos",
+      "kategori": "klær",
+      "svar": {
+        "es-no": [
+          "sko"
+        ],
+        "no-es": [
+          "los zapatos"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0215",
+      "norsk": "høyhælte sko",
+      "spansk": "los zapatos de tacón",
+      "kategori": "klær",
+      "svar": {
+        "es-no": [
+          "høyhælte sko"
+        ],
+        "no-es": [
+          "los zapatos de tacón"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0216",
+      "norsk": "sandaler",
+      "spansk": "las sandalias",
+      "kategori": "klær",
+      "svar": {
+        "es-no": [
+          "sandaler"
+        ],
+        "no-es": [
+          "las sandalias"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0217",
+      "norsk": "treningssko",
+      "spansk": "las zapatillas deportivas",
+      "kategori": "klær",
+      "svar": {
+        "es-no": [
+          "treningssko"
+        ],
+        "no-es": [
+          "las zapatillas deportivas"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0218",
+      "norsk": "jakke",
+      "spansk": "la chaqueta",
+      "kategori": "klær",
+      "svar": {
+        "es-no": [
+          "jakke"
+        ],
+        "no-es": [
+          "la chaqueta",
+          "chaqueta"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0219",
+      "norsk": "kjole",
+      "spansk": "el vestido",
+      "kategori": "klær",
+      "svar": {
+        "es-no": [
+          "kjole"
+        ],
+        "no-es": [
+          "el vestido"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0220",
+      "norsk": "skjørt",
+      "spansk": "la falda",
+      "kategori": "klær",
+      "svar": {
+        "es-no": [
+          "skjørt",
+          "skjørtet"
+        ],
+        "no-es": [
+          "la falda",
+          "falda"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0221",
+      "norsk": "håndveske",
+      "spansk": "el bolso",
+      "kategori": "klær",
+      "svar": {
+        "es-no": [
+          "håndveske"
+        ],
+        "no-es": [
+          "el bolso"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0222",
+      "norsk": "solbriller",
+      "spansk": "las gafas de sol",
+      "kategori": "klær",
+      "svar": {
+        "es-no": [
+          "solbriller"
+        ],
+        "no-es": [
+          "las gafas de sol"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0223",
+      "norsk": "skjerf",
+      "spansk": "la bufanda",
+      "kategori": "klær",
+      "svar": {
+        "es-no": [
+          "skjerf"
+        ],
+        "no-es": [
+          "la bufanda"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0224",
+      "norsk": "sjal",
+      "spansk": "el chal",
+      "kategori": "klær",
+      "svar": {
+        "es-no": [
+          "sjal"
+        ],
+        "no-es": [
+          "el chal"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0225",
+      "norsk": "hatt",
+      "spansk": "el sombrero",
+      "kategori": "klær",
+      "svar": {
+        "es-no": [
+          "hatt"
+        ],
+        "no-es": [
+          "el sombrero",
+          "sombrero"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0226",
+      "norsk": "lommetørkle",
+      "spansk": "el pañuelo",
+      "kategori": "klær",
+      "svar": {
+        "es-no": [
+          "lommetørkle",
+          "lommetørklet"
+        ],
+        "no-es": [
+          "el pañuelo"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0227",
+      "norsk": "slips",
+      "spansk": "la corbata",
+      "kategori": "klær",
+      "svar": {
+        "es-no": [
+          "slips"
+        ],
+        "no-es": [
+          "la corbata",
+          "corbata"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0228",
+      "norsk": "paraply",
+      "spansk": "el paraguas",
+      "kategori": "klær",
+      "svar": {
+        "es-no": [
+          "paraply"
+        ],
+        "no-es": [
+          "el paraguas",
+          "paraguas"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0229",
+      "norsk": "ring",
+      "spansk": "el anillo",
+      "kategori": "klær",
+      "svar": {
+        "es-no": [
+          "ring"
+        ],
+        "no-es": [
+          "el anillo",
+          "anillo"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0230",
+      "norsk": "armbånd",
+      "spansk": "la pulsera",
+      "kategori": "klær",
+      "svar": {
+        "es-no": [
+          "armbånd"
+        ],
+        "no-es": [
+          "la pulsera"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0231",
+      "norsk": "klokke",
+      "spansk": "el reloj",
+      "kategori": "klær",
+      "svar": {
+        "es-no": [
+          "klokke"
+        ],
+        "no-es": [
+          "el reloj",
+          "reloj"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0232",
+      "norsk": "smykke",
+      "spansk": "la cadena",
+      "kategori": "klær",
+      "svar": {
+        "es-no": [
+          "smykke",
+          "smykket"
+        ],
+        "no-es": [
+          "la cadena"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0233",
+      "norsk": "øreringer",
+      "spansk": "los pendientes",
+      "kategori": "klær",
+      "svar": {
+        "es-no": [
+          "øreringer"
+        ],
+        "no-es": [
+          "los pendientes"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0234",
+      "norsk": "advokat",
+      "spansk": "el abogado",
+      "kategori": "yrker",
+      "svar": {
+        "es-no": [
+          "advokat"
+        ],
+        "no-es": [
+          "el abogado"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0235",
+      "norsk": "brannmann",
+      "spansk": "el bombero",
+      "kategori": "yrker",
+      "svar": {
+        "es-no": [
+          "brannmann"
+        ],
+        "no-es": [
+          "el bombero",
+          "bombero"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0236",
+      "norsk": "snekker",
+      "spansk": "el carpintero",
+      "kategori": "yrker",
+      "svar": {
+        "es-no": [
+          "snekker"
+        ],
+        "no-es": [
+          "el carpintero"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0237",
+      "norsk": "kokk",
+      "spansk": "el cocinero",
+      "kategori": "yrker",
+      "svar": {
+        "es-no": [
+          "kokk"
+        ],
+        "no-es": [
+          "el cocinero",
+          "cocinero"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0238",
+      "norsk": "tannlege",
+      "spansk": "el dentista",
+      "kategori": "yrker",
+      "svar": {
+        "es-no": [
+          "tannlege"
+        ],
+        "no-es": [
+          "el dentista"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0239",
+      "norsk": "elektriker",
+      "spansk": "el electricista",
+      "kategori": "yrker",
+      "svar": {
+        "es-no": [
+          "elektriker"
+        ],
+        "no-es": [
+          "el electricista"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0240",
+      "norsk": "sykepleier",
+      "spansk": "el enfermero",
+      "kategori": "yrker",
+      "svar": {
+        "es-no": [
+          "sykepleier"
+        ],
+        "no-es": [
+          "el enfermero",
+          "enfermero",
+          "la enfermera"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0241",
+      "norsk": "bonde",
+      "spansk": "el granjero",
+      "kategori": "yrker",
+      "svar": {
+        "es-no": [
+          "bonde"
+        ],
+        "no-es": [
+          "el granjero",
+          "granjero"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0242",
+      "norsk": "lege",
+      "spansk": "el médico",
+      "kategori": "yrker",
+      "svar": {
+        "es-no": [
+          "lege"
+        ],
+        "no-es": [
+          "el médico",
+          "médico"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0243",
+      "norsk": "frisør",
+      "spansk": "el peluquero",
+      "kategori": "yrker",
+      "svar": {
+        "es-no": [
+          "frisør"
+        ],
+        "no-es": [
+          "el peluquero"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0244",
+      "norsk": "journalist",
+      "spansk": "el periodista",
+      "kategori": "yrker",
+      "svar": {
+        "es-no": [
+          "journalist"
+        ],
+        "no-es": [
+          "el periodista",
+          "periodista"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0245",
+      "norsk": "politi",
+      "spansk": "el policía",
+      "kategori": "yrker",
+      "svar": {
+        "es-no": [
+          "politi",
+          "politiet"
+        ],
+        "no-es": [
+          "el policía"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0246",
+      "norsk": "lærer (p)",
+      "spansk": "el profesor",
+      "kategori": "yrker",
+      "svar": {
+        "es-no": [
+          "lærer (p)",
+          "lærer"
+        ],
+        "no-es": [
+          "el profesor"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0247",
+      "norsk": "dyrlege",
+      "spansk": "el veterinario",
+      "kategori": "yrker",
+      "svar": {
+        "es-no": [
+          "dyrlege"
+        ],
+        "no-es": [
+          "el veterinario"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0248",
+      "norsk": "hva jobber du med?",
+      "spansk": "¿en qué trabajas?",
+      "kategori": "yrker",
+      "svar": {
+        "es-no": [
+          "hva jobber du med?"
+        ],
+        "no-es": [
+          "¿en qué trabajas?"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0249",
+      "norsk": "hvor jobber du?",
+      "spansk": "¿Dónde trabajas?",
+      "kategori": "yrker",
+      "svar": {
+        "es-no": [
+          "hvor jobber du?"
+        ],
+        "no-es": [
+          "¿Dónde trabajas?"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0250",
+      "norsk": "Når jobber du?",
+      "spansk": "¿Cuándo trabajas?",
+      "kategori": "yrker",
+      "svar": {
+        "es-no": [
+          "Når jobber du?"
+        ],
+        "no-es": [
+          "¿Cuándo trabajas?"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0251",
+      "norsk": "Hva jobber moren din med?",
+      "spansk": "¿En qué trabaja tu madre?",
+      "kategori": "yrker",
+      "svar": {
+        "es-no": [
+          "Hva jobber moren din med?"
+        ],
+        "no-es": [
+          "¿En qué trabaja tu madre?"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0252",
+      "norsk": "golf",
+      "spansk": "el golf",
+      "kategori": "hobbyer",
+      "svar": {
+        "es-no": [
+          "golf",
+          "golfen"
+        ],
+        "no-es": [
+          "el golf",
+          "golf"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0253",
+      "norsk": "amerikansk fotball",
+      "spansk": "el fútbol americano",
+      "kategori": "hobbyer",
+      "svar": {
+        "es-no": [
+          "amerikansk fotball"
+        ],
+        "no-es": [
+          "el fútbol americano"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0254",
+      "norsk": "håndball",
+      "spansk": "el balonmano",
+      "kategori": "hobbyer",
+      "svar": {
+        "es-no": [
+          "håndball",
+          "håndballen"
+        ],
+        "no-es": [
+          "el balonmano"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0255",
+      "norsk": "volleyball",
+      "spansk": "el voleibol",
+      "kategori": "hobbyer",
+      "svar": {
+        "es-no": [
+          "volleyball",
+          "volleyballen"
+        ],
+        "no-es": [
+          "el voleibol"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0256",
+      "norsk": "badminton",
+      "spansk": "bádminton",
+      "kategori": "hobbyer",
+      "svar": {
+        "es-no": [
+          "badminton"
+        ],
+        "no-es": [
+          "bádminton"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0257",
+      "norsk": "innebandy",
+      "spansk": "el floorball",
+      "kategori": "hobbyer",
+      "svar": {
+        "es-no": [
+          "innebandy",
+          "innebandyen"
+        ],
+        "no-es": [
+          "el floorball"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0258",
+      "norsk": "tennis",
+      "spansk": "el tenis",
+      "kategori": "hobbyer",
+      "svar": {
+        "es-no": [
+          "tennis",
+          "tennisen"
+        ],
+        "no-es": [
+          "el tenis",
+          "tenis"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0259",
+      "norsk": "bordtennis",
+      "spansk": "el tenis de mesa",
+      "kategori": "hobbyer",
+      "svar": {
+        "es-no": [
+          "bordtennis",
+          "bordtennisen"
+        ],
+        "no-es": [
+          "el tenis de mesa"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0260",
+      "norsk": "ishockey",
+      "spansk": "el hockey sobre hielo",
+      "kategori": "hobbyer",
+      "svar": {
+        "es-no": [
+          "ishockey",
+          "ishockeyen"
+        ],
+        "no-es": [
+          "el hockey sobre hielo"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0261",
+      "norsk": "dataspill",
+      "spansk": "videojuegos",
+      "kategori": "hobbyer",
+      "svar": {
+        "es-no": [
+          "dataspill"
+        ],
+        "no-es": [
+          "videojuegos"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0262",
+      "norsk": "langrenn",
+      "spansk": "esquí de fondo",
+      "kategori": "hobbyer",
+      "svar": {
+        "es-no": [
+          "langrenn"
+        ],
+        "no-es": [
+          "esquí de fondo"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0263",
+      "norsk": "alpint",
+      "spansk": "esquí alpino",
+      "kategori": "hobbyer",
+      "svar": {
+        "es-no": [
+          "alpint"
+        ],
+        "no-es": [
+          "esquí alpino"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0264",
+      "norsk": "å handle",
+      "spansk": "ir de compras",
+      "kategori": "hobbyer",
+      "svar": {
+        "es-no": [
+          "å handle",
+          "å dra på shopping",
+          "å shoppe"
+        ],
+        "no-es": [
+          "ir de compras"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0265",
+      "norsk": "å sykle",
+      "spansk": "montar en bici",
+      "kategori": "hobbyer",
+      "svar": {
+        "es-no": [
+          "å sykle"
+        ],
+        "no-es": [
+          "montar en bici"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0266",
+      "norsk": "å synge i kor",
+      "spansk": "cantar en un coro",
+      "kategori": "hobbyer",
+      "svar": {
+        "es-no": [
+          "å synge i kor"
+        ],
+        "no-es": [
+          "cantar en un coro"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0267",
+      "norsk": "å se på TV",
+      "spansk": "ver la tele",
+      "kategori": "hobbyer",
+      "svar": {
+        "es-no": [
+          "å se på TV"
+        ],
+        "no-es": [
+          "ver la tele"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0268",
+      "norsk": "å spille gitar",
+      "spansk": "tocar la guitarra",
+      "kategori": "hobbyer",
+      "svar": {
+        "es-no": [
+          "å spille gitar"
+        ],
+        "no-es": [
+          "tocar la guitarra"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0269",
+      "norsk": "å spille piano",
+      "spansk": "tocar el piano",
+      "kategori": "hobbyer",
+      "svar": {
+        "es-no": [
+          "å spille piano"
+        ],
+        "no-es": [
+          "tocar el piano"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0270",
+      "norsk": "å trene på treningssenteret",
+      "spansk": "entrenar en el gimnasio",
+      "kategori": "hobbyer",
+      "svar": {
+        "es-no": [
+          "å trene på treningssenteret"
+        ],
+        "no-es": [
+          "entrenar en el gimnasio"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0271",
+      "norsk": "å høre musikk",
+      "spansk": "escuchar música",
+      "kategori": "hobbyer",
+      "svar": {
+        "es-no": [
+          "å høre musikk"
+        ],
+        "no-es": [
+          "escuchar música"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0272",
+      "norsk": "å være med venner",
+      "spansk": "estar con amigos",
+      "kategori": "hobbyer",
+      "svar": {
+        "es-no": [
+          "å være med venner"
+        ],
+        "no-es": [
+          "estar con amigos"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0273",
+      "norsk": "å dra ut med venner",
+      "spansk": "salir con mis amigos",
+      "kategori": "hobbyer",
+      "svar": {
+        "es-no": [
+          "å dra ut med venner"
+        ],
+        "no-es": [
+          "salir con mis amigos"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0274",
+      "norsk": "å danse på fritiden",
+      "spansk": "bailar en mi tiempo libre",
+      "kategori": "hobbyer",
+      "svar": {
+        "es-no": [
+          "å danse på fritiden"
+        ],
+        "no-es": [
+          "bailar en mi tiempo libre"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0275",
+      "norsk": "å gå tur",
+      "spansk": "hacer senderismo",
+      "kategori": "hobbyer",
+      "svar": {
+        "es-no": [
+          "å gå tur"
+        ],
+        "no-es": [
+          "hacer senderismo",
+          "hacer caminatas"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0276",
+      "norsk": "å slappe av",
+      "spansk": "relajarse",
+      "kategori": "hobbyer",
+      "svar": {
+        "es-no": [
+          "å slappe av"
+        ],
+        "no-es": [
+          "relajarse"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0277",
+      "norsk": "å surfe på internett",
+      "spansk": "navegar por internet",
+      "kategori": "hobbyer",
+      "svar": {
+        "es-no": [
+          "å surfe på internett"
+        ],
+        "no-es": [
+          "navegar por internet"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0278",
+      "norsk": "Har du klokke?",
+      "spansk": "¿Tienes reloj?",
+      "kategori": "klokka",
+      "svar": {
+        "es-no": [
+          "Har du klokke?"
+        ],
+        "no-es": [
+          "¿Tienes reloj?"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0279",
+      "norsk": "Vet du hva klokka er?",
+      "spansk": "¿Sabes qué hora es?",
+      "kategori": "klokka",
+      "svar": {
+        "es-no": [
+          "Vet du hva klokka er?"
+        ],
+        "no-es": [
+          "¿Sabes qué hora es?"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0280",
+      "norsk": "Når skal du spise?",
+      "spansk": "¿A qué hora vas a comer?",
+      "kategori": "klokka",
+      "svar": {
+        "es-no": [
+          "Når skal du spise?"
+        ],
+        "no-es": [
+          "¿A qué hora vas a comer?"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0281",
+      "norsk": "jeg skal spise klokka åtte",
+      "spansk": "voy a comer a las ocho",
+      "kategori": "klokka",
+      "svar": {
+        "es-no": [
+          "jeg skal spise klokka åtte"
+        ],
+        "no-es": [
+          "voy a comer a las ocho"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0282",
+      "norsk": "Den er 13:00",
+      "spansk": "Es la una",
+      "kategori": "klokka",
+      "svar": {
+        "es-no": [
+          "Den er 13:00"
+        ],
+        "no-es": [
+          "Es la una"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0283",
+      "norsk": "Den er kvart over ett",
+      "spansk": "es la una y cuarto",
+      "kategori": "klokka",
+      "svar": {
+        "es-no": [
+          "Den er kvart over ett"
+        ],
+        "no-es": [
+          "es la una y cuarto"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0284",
+      "norsk": "Den er halv to",
+      "spansk": "es la una y media",
+      "kategori": "klokka",
+      "svar": {
+        "es-no": [
+          "Den er halv to"
+        ],
+        "no-es": [
+          "es la una y media"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0285",
+      "norsk": "Den er to",
+      "spansk": "son las dos",
+      "kategori": "klokka",
+      "svar": {
+        "es-no": [
+          "Den er to"
+        ],
+        "no-es": [
+          "son las dos"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0286",
+      "norsk": "den er ti over halv tre",
+      "spansk": "son las tres menos veinte",
+      "kategori": "klokka",
+      "svar": {
+        "es-no": [
+          "den er ti over halv tre"
+        ],
+        "no-es": [
+          "son las tres menos veinte"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0287",
+      "norsk": "den er ti på tre",
+      "spansk": "son las tres menos diez",
+      "kategori": "klokka",
+      "svar": {
+        "es-no": [
+          "den er ti på tre"
+        ],
+        "no-es": [
+          "son las tres menos diez"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0288",
+      "norsk": "klokken åtte om morgenen",
+      "spansk": "a las ocho de la mañana",
+      "kategori": "klokka",
+      "svar": {
+        "es-no": [
+          "klokken åtte om morgenen"
+        ],
+        "no-es": [
+          "a las ocho de la mañana"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0289",
+      "norsk": "klokka seks på ettermiddagen",
+      "spansk": "a las seis de la tarde",
+      "kategori": "klokka",
+      "svar": {
+        "es-no": [
+          "klokka seks på ettermiddagen"
+        ],
+        "no-es": [
+          "a las seis de la tarde"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0290",
+      "norsk": "klokka tolv på natta",
+      "spansk": "a las doce de la noche",
+      "kategori": "klokka",
+      "svar": {
+        "es-no": [
+          "klokka tolv på natta"
+        ],
+        "no-es": [
+          "a las doce de la noche"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0291",
+      "norsk": "Klokken er akkurat 5",
+      "spansk": "Son las cinco en punto",
+      "kategori": "klokka",
+      "svar": {
+        "es-no": [
+          "Klokken er akkurat 5"
+        ],
+        "no-es": [
+          "Son las cinco en punto"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0292",
+      "norsk": "hver dag",
+      "spansk": "todos los días",
+      "kategori": "tidsuttrykk",
+      "svar": {
+        "es-no": [
+          "hver dag"
+        ],
+        "no-es": [
+          "todos los días",
+          "cada día"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0293",
+      "norsk": "på mandag",
+      "spansk": "el lunes",
+      "kategori": "tidsuttrykk",
+      "svar": {
+        "es-no": [
+          "på mandag"
+        ],
+        "no-es": [
+          "el lunes"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0294",
+      "norsk": "på mandager",
+      "spansk": "los lunes",
+      "kategori": "tidsuttrykk",
+      "svar": {
+        "es-no": [
+          "på mandager"
+        ],
+        "no-es": [
+          "los lunes"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0295",
+      "norsk": "tirsdag",
+      "spansk": "martes",
+      "kategori": "ukedager",
+      "svar": {
+        "es-no": [
+          "tirsdag"
+        ],
+        "no-es": [
+          "martes"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0296",
+      "norsk": "onsdag",
+      "spansk": "miércoles",
+      "kategori": "ukedager",
+      "svar": {
+        "es-no": [
+          "onsdag"
+        ],
+        "no-es": [
+          "miércoles"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0297",
+      "norsk": "torsdag",
+      "spansk": "jueves",
+      "kategori": "ukedager",
+      "svar": {
+        "es-no": [
+          "torsdag"
+        ],
+        "no-es": [
+          "jueves"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0298",
+      "norsk": "fredag",
+      "spansk": "viernes",
+      "kategori": "ukedager",
+      "svar": {
+        "es-no": [
+          "fredag"
+        ],
+        "no-es": [
+          "viernes"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0299",
+      "norsk": "på morgenen",
+      "spansk": "por la mañana",
+      "kategori": "tidsuttrykk",
+      "svar": {
+        "es-no": [
+          "på morgenen"
+        ],
+        "no-es": [
+          "por la mañana"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0300",
+      "norsk": "for noen dager siden",
+      "spansk": "hace unos días",
+      "kategori": "tidsuttrykk",
+      "svar": {
+        "es-no": [
+          "for noen dager siden"
+        ],
+        "no-es": [
+          "hace unos días"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0301",
+      "norsk": "hver uke",
+      "spansk": "cada semana",
+      "kategori": "Kapittel 8: Tareas de casa",
+      "svar": {
+        "es-no": [
+          "hver uke"
+        ],
+        "no-es": [
+          "cada semana"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0302",
+      "norsk": "ofte",
+      "spansk": "a menudo",
+      "kategori": "tidsuttrykk",
+      "svar": {
+        "es-no": [
+          "ofte"
+        ],
+        "no-es": [
+          "a menudo"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0303",
+      "norsk": "sjelden",
+      "spansk": "raramente",
+      "kategori": "tidsuttrykk",
+      "svar": {
+        "es-no": [
+          "sjelden"
+        ],
+        "no-es": [
+          "raramente"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0304",
+      "norsk": "på ettermiddagen",
+      "spansk": "por la tarde",
+      "kategori": "tidsuttrykk",
+      "svar": {
+        "es-no": [
+          "på ettermiddagen"
+        ],
+        "no-es": [
+          "por la tarde"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0305",
+      "norsk": "før",
+      "spansk": "antes",
+      "kategori": "tidsuttrykk",
+      "svar": {
+        "es-no": [
+          "før"
+        ],
+        "no-es": [
+          "antes"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0306",
+      "norsk": "i kveld",
+      "spansk": "esta noche",
+      "kategori": "tidsuttrykk",
+      "svar": {
+        "es-no": [
+          "i kveld"
+        ],
+        "no-es": [
+          "esta noche"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0307",
+      "norsk": "i morgen",
+      "spansk": "mañana",
+      "kategori": "tidsuttrykk",
+      "svar": {
+        "es-no": [
+          "i morgen"
+        ],
+        "no-es": [
+          "mañana"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0308",
+      "norsk": "i går",
+      "spansk": "ayer",
+      "kategori": "tidsuttrykk",
+      "svar": {
+        "es-no": [
+          "i går"
+        ],
+        "no-es": [
+          "ayer"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0309",
+      "norsk": "på kvelden",
+      "spansk": "por la noche",
+      "kategori": "tidsuttrykk",
+      "svar": {
+        "es-no": [
+          "på kvelden"
+        ],
+        "no-es": [
+          "por la noche"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0310",
+      "norsk": "etter / etterpå",
+      "spansk": "después",
+      "kategori": "tidsuttrykk",
+      "svar": {
+        "es-no": [
+          "etter / etterpå",
+          "etter",
+          "etterpå"
+        ],
+        "no-es": [
+          "después"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0311",
+      "norsk": "hode",
+      "spansk": "la cabeza",
+      "kategori": "kropp",
+      "svar": {
+        "es-no": [
+          "hode",
+          "hodet"
+        ],
+        "no-es": [
+          "la cabeza",
+          "cabeza"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0312",
+      "norsk": "øye",
+      "spansk": "el ojo",
+      "kategori": "kropp",
+      "svar": {
+        "es-no": [
+          "øye",
+          "øyet"
+        ],
+        "no-es": [
+          "el ojo",
+          "ojo"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0313",
+      "norsk": "munn",
+      "spansk": "la boca",
+      "kategori": "kropp",
+      "svar": {
+        "es-no": [
+          "munn"
+        ],
+        "no-es": [
+          "la boca",
+          "boca"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0314",
+      "norsk": "hånd",
+      "spansk": "la mano",
+      "kategori": "kropp",
+      "svar": {
+        "es-no": [
+          "hånd"
+        ],
+        "no-es": [
+          "la mano"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0315",
+      "norsk": "fot",
+      "spansk": "el pie",
+      "kategori": "kropp",
+      "svar": {
+        "es-no": [
+          "fot"
+        ],
+        "no-es": [
+          "el pie",
+          "pie"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0316",
+      "norsk": "elev",
+      "spansk": "el alumno",
+      "kategori": "skole",
+      "svar": {
+        "es-no": [
+          "elev"
+        ],
+        "no-es": [
+          "el alumno",
+          "alumno",
+          "el estudiante"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0317",
+      "norsk": "spansklærer",
+      "spansk": "el profesor de español",
+      "kategori": "skole",
+      "svar": {
+        "es-no": [
+          "spansklærer"
+        ],
+        "no-es": [
+          "el profesor de español"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0318",
+      "norsk": "skoletime",
+      "spansk": "la clase",
+      "kategori": "skole",
+      "svar": {
+        "es-no": [
+          "skoletime",
+          "skoleklasse"
+        ],
+        "no-es": [
+          "la clase"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0319",
+      "norsk": "skoleklasse",
+      "spansk": "la clase",
+      "kategori": "skole",
+      "svar": {
+        "es-no": [
+          "skoleklasse",
+          "skoletime"
+        ],
+        "no-es": [
+          "la clase"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0320",
+      "norsk": "tavle",
+      "spansk": "la pizarra",
+      "kategori": "skole",
+      "svar": {
+        "es-no": [
+          "tavle"
+        ],
+        "no-es": [
+          "la pizarra"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0321",
+      "norsk": "kart",
+      "spansk": "el mapa",
+      "kategori": "skole",
+      "svar": {
+        "es-no": [
+          "kart"
+        ],
+        "no-es": [
+          "el mapa",
+          "mapa"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0322",
+      "norsk": "papirkurv",
+      "spansk": "la papelera",
+      "kategori": "skole",
+      "svar": {
+        "es-no": [
+          "papirkurv"
+        ],
+        "no-es": [
+          "la papelera"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0323",
+      "norsk": "bok",
+      "spansk": "el libro",
+      "kategori": "skole",
+      "svar": {
+        "es-no": [
+          "bok"
+        ],
+        "no-es": [
+          "el libro",
+          "libro"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0324",
+      "norsk": "PC",
+      "spansk": "el ordenador",
+      "kategori": "skole",
+      "svar": {
+        "es-no": [
+          "PC"
+        ],
+        "no-es": [
+          "el ordenador"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0325",
+      "norsk": "ungdomsskolen",
+      "spansk": "la E.S.O",
+      "kategori": "skole",
+      "svar": {
+        "es-no": [
+          "ungdomsskolen",
+          "ungdomsskole"
+        ],
+        "no-es": [
+          "la E.S.O",
+          "la E.S.O.",
+          "la escuela secundaria"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0326",
+      "norsk": "pult",
+      "spansk": "el pupitre",
+      "kategori": "skole",
+      "svar": {
+        "es-no": [
+          "pult"
+        ],
+        "no-es": [
+          "el pupitre"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0327",
+      "norsk": "stol",
+      "spansk": "la silla",
+      "kategori": "skole",
+      "svar": {
+        "es-no": [
+          "stol"
+        ],
+        "no-es": [
+          "la silla",
+          "silla"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0328",
+      "norsk": "sekk",
+      "spansk": "la mochila",
+      "kategori": "skole",
+      "svar": {
+        "es-no": [
+          "sekk"
+        ],
+        "no-es": [
+          "la mochila"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0329",
+      "norsk": "pennal",
+      "spansk": "el estuche",
+      "kategori": "skole",
+      "svar": {
+        "es-no": [
+          "pennal"
+        ],
+        "no-es": [
+          "el estuche"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0330",
+      "norsk": "blyant",
+      "spansk": "el lápiz",
+      "kategori": "skole",
+      "svar": {
+        "es-no": [
+          "blyant"
+        ],
+        "no-es": [
+          "el lápiz",
+          "lápiz"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0331",
+      "norsk": "penn",
+      "spansk": "el bolígrafo",
+      "kategori": "skole",
+      "svar": {
+        "es-no": [
+          "penn"
+        ],
+        "no-es": [
+          "el bolígrafo",
+          "bolígrafo"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0332",
+      "norsk": "viskelær",
+      "spansk": "la goma",
+      "kategori": "skole",
+      "svar": {
+        "es-no": [
+          "viskelær"
+        ],
+        "no-es": [
+          "la goma"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0333",
+      "norsk": "blyantspisser",
+      "spansk": "el sacapuntas",
+      "kategori": "skole",
+      "svar": {
+        "es-no": [
+          "blyantspisser"
+        ],
+        "no-es": [
+          "el sacapuntas"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0334",
+      "norsk": "linjal",
+      "spansk": "la regla",
+      "kategori": "skole",
+      "svar": {
+        "es-no": [
+          "linjal"
+        ],
+        "no-es": [
+          "la regla",
+          "regla"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0335",
+      "norsk": "videregående",
+      "spansk": "el bachillerato",
+      "kategori": "skole",
+      "svar": {
+        "es-no": [
+          "videregående",
+          "videregående skole"
+        ],
+        "no-es": [
+          "el bachillerato"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0336",
+      "norsk": "engelsk",
+      "spansk": "el inglés",
+      "kategori": "fag",
+      "svar": {
+        "es-no": [
+          "engelsk",
+          "engelsken"
+        ],
+        "no-es": [
+          "el inglés"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0337",
+      "norsk": "matte",
+      "spansk": "las matemáticas",
+      "kategori": "fag",
+      "svar": {
+        "es-no": [
+          "matte"
+        ],
+        "no-es": [
+          "las matemáticas"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0338",
+      "norsk": "historie",
+      "spansk": "la historia",
+      "kategori": "fag",
+      "svar": {
+        "es-no": [
+          "historie",
+          "historia",
+          "historien"
+        ],
+        "no-es": [
+          "la historia",
+          "historia"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0339",
+      "norsk": "samfunnsfag",
+      "spansk": "las ciencias sociales",
+      "kategori": "fag",
+      "svar": {
+        "es-no": [
+          "samfunnsfag"
+        ],
+        "no-es": [
+          "las ciencias sociales"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0340",
+      "norsk": "naturfag",
+      "spansk": "las ciencias naturales",
+      "kategori": "fag",
+      "svar": {
+        "es-no": [
+          "naturfag"
+        ],
+        "no-es": [
+          "las ciencias naturales"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0341",
+      "norsk": "kroppsøving",
+      "spansk": "la educación física",
+      "kategori": "fag",
+      "svar": {
+        "es-no": [
+          "kroppsøving",
+          "kroppsøvinga",
+          "kroppsøvingen"
+        ],
+        "no-es": [
+          "la educación física"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0342",
+      "norsk": "kunst og håndverk",
+      "spansk": "las artes manuales",
+      "kategori": "fag",
+      "svar": {
+        "es-no": [
+          "kunst og håndverk"
+        ],
+        "no-es": [
+          "las artes manuales"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0343",
+      "norsk": "religion / KRLE",
+      "spansk": "la religión",
+      "kategori": "fag",
+      "svar": {
+        "es-no": [
+          "religion / KRLE",
+          "KRLE",
+          "religion",
+          "religionen",
+          "KRLE-en"
+        ],
+        "no-es": [
+          "la religión"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0344",
+      "norsk": "rom",
+      "spansk": "la habitación",
+      "kategori": "hjem",
+      "svar": {
+        "es-no": [
+          "rom",
+          "rommet"
+        ],
+        "no-es": [
+          "la habitación",
+          "habitación"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0345",
+      "norsk": "rom (annet ord, C)",
+      "spansk": "el cuarto",
+      "kategori": "hjem",
+      "svar": {
+        "es-no": [
+          "rom (annet ord, C)",
+          "rom"
+        ],
+        "no-es": [
+          "el cuarto"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0346",
+      "norsk": "bad",
+      "spansk": "el baño",
+      "kategori": "hjem",
+      "svar": {
+        "es-no": [
+          "bad"
+        ],
+        "no-es": [
+          "el baño"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0347",
+      "norsk": "spisestue",
+      "spansk": "el comedor",
+      "kategori": "hjem",
+      "svar": {
+        "es-no": [
+          "spisestue"
+        ],
+        "no-es": [
+          "el comedor"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0348",
+      "norsk": "gang",
+      "spansk": "el pasillo",
+      "kategori": "hjem",
+      "svar": {
+        "es-no": [
+          "gang",
+          "gangen"
+        ],
+        "no-es": [
+          "el pasillo",
+          "pasillo"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0349",
+      "norsk": "loft",
+      "spansk": "el ático",
+      "kategori": "hjem",
+      "svar": {
+        "es-no": [
+          "loft"
+        ],
+        "no-es": [
+          "el ático",
+          "ático",
+          "loft"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0350",
+      "norsk": "dør",
+      "spansk": "la puerta",
+      "kategori": "hjem",
+      "svar": {
+        "es-no": [
+          "dør"
+        ],
+        "no-es": [
+          "la puerta",
+          "puerta"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0351",
+      "norsk": "soverom",
+      "spansk": "el dormitorio",
+      "kategori": "hjem",
+      "svar": {
+        "es-no": [
+          "soverom"
+        ],
+        "no-es": [
+          "el dormitorio",
+          "dormitorio"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0352",
+      "norsk": "arbeidsrom",
+      "spansk": "el cuarto de trabajo",
+      "kategori": "hjem",
+      "svar": {
+        "es-no": [
+          "arbeidsrom"
+        ],
+        "no-es": [
+          "el cuarto de trabajo"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0353",
+      "norsk": "stue (c)",
+      "spansk": "el cuarto de estar",
+      "kategori": "hjem",
+      "svar": {
+        "es-no": [
+          "stue (c)",
+          "stue"
+        ],
+        "no-es": [
+          "el cuarto de estar"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0354",
+      "norsk": "kjøkken",
+      "spansk": "la cocina",
+      "kategori": "hjem",
+      "svar": {
+        "es-no": [
+          "kjøkken",
+          "kjøkkenet"
+        ],
+        "no-es": [
+          "la cocina",
+          "cocina"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0355",
+      "norsk": "kjeller",
+      "spansk": "el sótano",
+      "kategori": "hjem",
+      "svar": {
+        "es-no": [
+          "kjeller"
+        ],
+        "no-es": [
+          "el sótano",
+          "sótano"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0356",
+      "norsk": "vindu",
+      "spansk": "la ventana",
+      "kategori": "hjem",
+      "svar": {
+        "es-no": [
+          "vindu",
+          "vinduet"
+        ],
+        "no-es": [
+          "la ventana",
+          "ventana"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0357",
+      "norsk": "hus",
+      "spansk": "la casa",
+      "kategori": "hjem",
+      "svar": {
+        "es-no": [
+          "hus",
+          "huset"
+        ],
+        "no-es": [
+          "la casa",
+          "casa"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0358",
+      "norsk": "møbel",
+      "spansk": "el mueble",
+      "kategori": "møbler",
+      "svar": {
+        "es-no": [
+          "møbel",
+          "møbelet"
+        ],
+        "no-es": [
+          "el mueble",
+          "mueble"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0359",
+      "norsk": "sofa",
+      "spansk": "el sofá",
+      "kategori": "møbler",
+      "svar": {
+        "es-no": [
+          "sofa"
+        ],
+        "no-es": [
+          "el sofá",
+          "sofá"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0360",
+      "norsk": "bord",
+      "spansk": "la mesa",
+      "kategori": "møbler",
+      "svar": {
+        "es-no": [
+          "bord",
+          "bordet"
+        ],
+        "no-es": [
+          "la mesa",
+          "mesa"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0361",
+      "norsk": "TV",
+      "spansk": "el televisor",
+      "kategori": "møbler",
+      "svar": {
+        "es-no": [
+          "TV"
+        ],
+        "no-es": [
+          "el televisor",
+          "televisor",
+          "tv"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0362",
+      "norsk": "skap",
+      "spansk": "el armario",
+      "kategori": "møbler",
+      "svar": {
+        "es-no": [
+          "skap",
+          "skapet"
+        ],
+        "no-es": [
+          "el armario",
+          "armario"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0363",
+      "norsk": "plakat",
+      "spansk": "el póster",
+      "kategori": "møbler",
+      "svar": {
+        "es-no": [
+          "plakat"
+        ],
+        "no-es": [
+          "el póster"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0364",
+      "norsk": "kjøleskap (n)",
+      "spansk": "la nevera",
+      "kategori": "møbler",
+      "svar": {
+        "es-no": [
+          "kjøleskap (n)",
+          "kjøleskap"
+        ],
+        "no-es": [
+          "la nevera"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0365",
+      "norsk": "skrivebord",
+      "spansk": "el escritorio",
+      "kategori": "møbler",
+      "svar": {
+        "es-no": [
+          "skrivebord",
+          "skrivebordet"
+        ],
+        "no-es": [
+          "el escritorio",
+          "escritorio"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0366",
+      "norsk": "bokhylle",
+      "spansk": "la estantería",
+      "kategori": "møbler",
+      "svar": {
+        "es-no": [
+          "bokhylle"
+        ],
+        "no-es": [
+          "la estantería"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0367",
+      "norsk": "kommode",
+      "spansk": "la cómoda",
+      "kategori": "møbler",
+      "svar": {
+        "es-no": [
+          "kommode"
+        ],
+        "no-es": [
+          "la cómoda",
+          "cómoda"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0368",
+      "norsk": "lenestol",
+      "spansk": "el sillón",
+      "kategori": "møbler",
+      "svar": {
+        "es-no": [
+          "lenestol"
+        ],
+        "no-es": [
+          "el sillón",
+          "sillón"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0369",
+      "norsk": "teppe",
+      "spansk": "la alfombra",
+      "kategori": "møbler",
+      "svar": {
+        "es-no": [
+          "teppe",
+          "teppet"
+        ],
+        "no-es": [
+          "la alfombra",
+          "alfombra"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0370",
+      "norsk": "oppvaskmaskin",
+      "spansk": "el lavavajillas",
+      "kategori": "møbler",
+      "svar": {
+        "es-no": [
+          "oppvaskmaskin"
+        ],
+        "no-es": [
+          "el lavavajillas"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0371",
+      "norsk": "seng",
+      "spansk": "la cama",
+      "kategori": "møbler",
+      "svar": {
+        "es-no": [
+          "seng"
+        ],
+        "no-es": [
+          "la cama",
+          "cama"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0372",
+      "norsk": "lampe",
+      "spansk": "la lámpara",
+      "kategori": "møbler",
+      "svar": {
+        "es-no": [
+          "lampe"
+        ],
+        "no-es": [
+          "la lámpara",
+          "lámpara"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0373",
+      "norsk": "bilde / maleri (c)",
+      "spansk": "el cuadro",
+      "kategori": "møbler",
+      "svar": {
+        "es-no": [
+          "bilde / maleri (c)",
+          "bilde",
+          "maleri"
+        ],
+        "no-es": [
+          "el cuadro"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0374",
+      "norsk": "ovn",
+      "spansk": "el horno",
+      "kategori": "møbler",
+      "svar": {
+        "es-no": [
+          "ovn"
+        ],
+        "no-es": [
+          "el horno",
+          "horno"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0375",
+      "norsk": "speil",
+      "spansk": "el espejo",
+      "kategori": "møbler",
+      "svar": {
+        "es-no": [
+          "speil",
+          "speilet"
+        ],
+        "no-es": [
+          "el espejo",
+          "espejo"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0376",
+      "norsk": "jeg liker",
+      "spansk": "me gusta",
+      "kategori": "gustar",
+      "svar": {
+        "es-no": [
+          "jeg liker"
+        ],
+        "no-es": [
+          "me gusta"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0377",
+      "norsk": "jeg liker ikke",
+      "spansk": "no me gusta",
+      "kategori": "gustar",
+      "svar": {
+        "es-no": [
+          "jeg liker ikke"
+        ],
+        "no-es": [
+          "no me gusta"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0378",
+      "norsk": "du liker",
+      "spansk": "te gusta",
+      "kategori": "gustar",
+      "svar": {
+        "es-no": [
+          "du liker"
+        ],
+        "no-es": [
+          "te gusta"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0379",
+      "norsk": "du liker ikke",
+      "spansk": "no te gusta",
+      "kategori": "gustar",
+      "svar": {
+        "es-no": [
+          "du liker ikke"
+        ],
+        "no-es": [
+          "no te gusta"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0380",
+      "norsk": "han/hun liker",
+      "spansk": "le gusta",
+      "kategori": "gustar",
+      "svar": {
+        "es-no": [
+          "han/hun liker",
+          "han liker",
+          "hun liker"
+        ],
+        "no-es": [
+          "le gusta"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0381",
+      "norsk": "jeg liker denne boken",
+      "spansk": "me gusta este libro",
+      "kategori": "gustar",
+      "svar": {
+        "es-no": [
+          "jeg liker denne boken"
+        ],
+        "no-es": [
+          "me gusta este libro"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0382",
+      "norsk": "jeg liker disse bøkene",
+      "spansk": "me gustan estos libros",
+      "kategori": "gustar",
+      "svar": {
+        "es-no": [
+          "jeg liker disse bøkene"
+        ],
+        "no-es": [
+          "me gustan estos libros"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0383",
+      "norsk": "jeg elsker (me ....)",
+      "spansk": "me encanta",
+      "kategori": "gustar",
+      "svar": {
+        "es-no": [
+          "jeg elsker (me ....)"
+        ],
+        "no-es": [
+          "me encanta"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0384",
+      "norsk": "jeg blir irritert av",
+      "spansk": "me molesta",
+      "kategori": "gustar",
+      "svar": {
+        "es-no": [
+          "jeg blir irritert av",
+          "det irriterer meg",
+          "det plager meg"
+        ],
+        "no-es": [
+          "me molesta"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0385",
+      "norsk": "jeg våkner",
+      "spansk": "me despierto",
+      "kategori": "rutiner",
+      "svar": {
+        "es-no": [
+          "jeg våkner"
+        ],
+        "no-es": [
+          "me despierto"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0386",
+      "norsk": "jeg står opp",
+      "spansk": "me levanto",
+      "kategori": "rutiner",
+      "svar": {
+        "es-no": [
+          "jeg står opp"
+        ],
+        "no-es": [
+          "me levanto"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0387",
+      "norsk": "jeg dusjer",
+      "spansk": "me ducho",
+      "kategori": "rutiner",
+      "svar": {
+        "es-no": [
+          "jeg dusjer"
+        ],
+        "no-es": [
+          "me ducho"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0388",
+      "norsk": "jeg pusser tennene",
+      "spansk": "me cepillo los dientes",
+      "kategori": "rutiner",
+      "svar": {
+        "es-no": [
+          "jeg pusser tennene"
+        ],
+        "no-es": [
+          "me cepillo los dientes"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0389",
+      "norsk": "jeg sminker meg",
+      "spansk": "me maquillo",
+      "kategori": "rutiner",
+      "svar": {
+        "es-no": [
+          "jeg sminker meg"
+        ],
+        "no-es": [
+          "me maquillo"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0390",
+      "norsk": "jeg barberer meg",
+      "spansk": "me afeito",
+      "kategori": "rutiner",
+      "svar": {
+        "es-no": [
+          "jeg barberer meg"
+        ],
+        "no-es": [
+          "me afeito"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0391",
+      "norsk": "jeg børster håret",
+      "spansk": "me peino",
+      "kategori": "rutiner",
+      "svar": {
+        "es-no": [
+          "jeg børster håret"
+        ],
+        "no-es": [
+          "me peino"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0392",
+      "norsk": "jeg kler på meg",
+      "spansk": "me visto",
+      "kategori": "rutiner",
+      "svar": {
+        "es-no": [
+          "jeg kler på meg"
+        ],
+        "no-es": [
+          "me visto"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0393",
+      "norsk": "jeg legger meg",
+      "spansk": "me acuesto",
+      "kategori": "rutiner",
+      "svar": {
+        "es-no": [
+          "jeg legger meg"
+        ],
+        "no-es": [
+          "me acuesto"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0394",
+      "norsk": "jeg spiser frokost",
+      "spansk": "desayuno",
+      "kategori": "rutiner",
+      "svar": {
+        "es-no": [
+          "jeg spiser frokost"
+        ],
+        "no-es": [
+          "desayuno"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0395",
+      "norsk": "jeg går ut av huset",
+      "spansk": "salgo de la casa",
+      "kategori": "rutiner",
+      "svar": {
+        "es-no": [
+          "jeg går ut av huset"
+        ],
+        "no-es": [
+          "salgo de la casa"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0396",
+      "norsk": "jeg drar på skolen",
+      "spansk": "voy a la escuela",
+      "kategori": "rutiner",
+      "svar": {
+        "es-no": [
+          "jeg drar på skolen"
+        ],
+        "no-es": [
+          "voy a la escuela"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0397",
+      "norsk": "jeg spiser lunsj",
+      "spansk": "almuerzo",
+      "kategori": "rutiner",
+      "svar": {
+        "es-no": [
+          "jeg spiser lunsj"
+        ],
+        "no-es": [
+          "almuerzo"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0398",
+      "norsk": "jeg drar hjem",
+      "spansk": "voy a casa",
+      "kategori": "rutiner",
+      "svar": {
+        "es-no": [
+          "jeg drar hjem"
+        ],
+        "no-es": [
+          "voy a casa"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0399",
+      "norsk": "jeg drar på trening",
+      "spansk": "voy al entrenamiento",
+      "kategori": "rutiner",
+      "svar": {
+        "es-no": [
+          "jeg drar på trening"
+        ],
+        "no-es": [
+          "voy al entrenamiento"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0400",
+      "norsk": "jeg spiser middag",
+      "spansk": "ceno",
+      "kategori": "rutiner",
+      "svar": {
+        "es-no": [
+          "jeg spiser middag"
+        ],
+        "no-es": [
+          "ceno"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0401",
+      "norsk": "jeg sover",
+      "spansk": "duermo",
+      "kategori": "rutiner",
+      "svar": {
+        "es-no": [
+          "jeg sover"
+        ],
+        "no-es": [
+          "duermo"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0402",
+      "norsk": "jeg står opp tidlig",
+      "spansk": "me levanto temprano",
+      "kategori": "rutiner",
+      "svar": {
+        "es-no": [
+          "jeg står opp tidlig"
+        ],
+        "no-es": [
+          "me levanto temprano"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0403",
+      "norsk": "jeg tar på meg en t-skjorte",
+      "spansk": "me pongo una camiseta",
+      "kategori": "rutiner",
+      "svar": {
+        "es-no": [
+          "jeg tar på meg en t-skjorte"
+        ],
+        "no-es": [
+          "me pongo una camiseta"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0404",
+      "norsk": "jeg går til skolen",
+      "spansk": "voy a pie a la escuela",
+      "kategori": "rutiner",
+      "svar": {
+        "es-no": [
+          "jeg går til skolen"
+        ],
+        "no-es": [
+          "voy a pie a la escuela"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0405",
+      "norsk": "bøying av verbet SER, som betyr å være",
+      "spansk": "soy, eres, es, somos, sois, son",
+      "kategori": "verbbøying",
+      "svar": {
+        "es-no": [
+          "bøying av verbet SER, som betyr å være"
+        ],
+        "no-es": [
+          "soy, eres, es, somos, sois, son"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0406",
+      "norsk": "bøying av verbet tener, som betyr å ha",
+      "spansk": "tengo, tienes, tiene, tenemos, tenéis, tienen",
+      "kategori": "verbbøying",
+      "svar": {
+        "es-no": [
+          "bøying av verbet tener, som betyr å ha"
+        ],
+        "no-es": [
+          "tengo, tienes, tiene, tenemos, tenéis, tienen"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0407",
+      "norsk": "bøying av verbet ir",
+      "spansk": "voy, vas, va, vamos, vais, van",
+      "kategori": "verbbøying",
+      "svar": {
+        "es-no": [
+          "bøying av verbet ir"
+        ],
+        "no-es": [
+          "voy, vas, va, vamos, vais, van"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0408",
+      "norsk": "bøying av verbet estar, som betyr å være/å befinne seg",
+      "spansk": "estoy, estás, está, estamos, estáis, están",
+      "kategori": "verbbøying",
+      "svar": {
+        "es-no": [
+          "bøying av verbet estar, som betyr å være/å befinne seg"
+        ],
+        "no-es": [
+          "estoy, estás, está, estamos, estáis, están"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0409",
+      "norsk": "bøying av verbet hablar, som betyr å snakke",
+      "spansk": "hablo, hablas, habla, hablamos, habláis, hablan",
+      "kategori": "verbbøying",
+      "svar": {
+        "es-no": [
+          "bøying av verbet hablar, som betyr å snakke"
+        ],
+        "no-es": [
+          "hablo, hablas, habla, hablamos, habláis, hablan"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0410",
+      "norsk": "bøying av verbet comer, som betyr å spise",
+      "spansk": "como, comes, come, comemos, coméis, comen",
+      "kategori": "verbbøying",
+      "svar": {
+        "es-no": [
+          "bøying av verbet comer, som betyr å spise"
+        ],
+        "no-es": [
+          "como, comes, come, comemos, coméis, comen"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0411",
+      "norsk": "bøying av verbet vivir, som betyr å bo",
+      "spansk": "vivo, vives, vive, vivimos, vivís, viven",
+      "kategori": "verbbøying",
+      "svar": {
+        "es-no": [
+          "bøying av verbet vivir, som betyr å bo"
+        ],
+        "no-es": [
+          "vivo, vives, vive, vivimos, vivís, viven"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0412",
+      "norsk": "bøying av verbet poder, som betyr å kunne",
+      "spansk": "puedo, puedes, puede, podemos, podéis, pueden",
+      "kategori": "verbbøying",
+      "svar": {
+        "es-no": [
+          "bøying av verbet poder, som betyr å kunne"
+        ],
+        "no-es": [
+          "puedo, puedes, puede, podemos, podéis, pueden"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0413",
+      "norsk": "bøying av verbet decir, som betyr å si",
+      "spansk": "digo, dices, dice, decimos, decís, dicen",
+      "kategori": "verbbøying",
+      "svar": {
+        "es-no": [
+          "bøying av verbet decir, som betyr å si"
+        ],
+        "no-es": [
+          "digo, dices, dice, decimos, decís, dicen"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0414",
+      "norsk": "bøying av verbet hacer, som betyr å gjøre",
+      "spansk": "hago, haces, hace, hacemos, hacéis, hacen",
+      "kategori": "verbbøying",
+      "svar": {
+        "es-no": [
+          "bøying av verbet hacer, som betyr å gjøre"
+        ],
+        "no-es": [
+          "hago, haces, hace, hacemos, hacéis, hacen"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0415",
+      "norsk": "bøying av verbet querer, som betyr å ville",
+      "spansk": "quiero, quieres, quiere, queremos, queréis, quieren",
+      "kategori": "verbbøying",
+      "svar": {
+        "es-no": [
+          "bøying av verbet querer, som betyr å ville"
+        ],
+        "no-es": [
+          "quiero, quieres, quiere, queremos, queréis, quieren"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0416",
+      "norsk": "bøying av verbet saber, som betyr å vite",
+      "spansk": "sé, sabes, sabe, sabemos, sabéis, saben",
+      "kategori": "verbbøying",
+      "svar": {
+        "es-no": [
+          "bøying av verbet saber, som betyr å vite"
+        ],
+        "no-es": [
+          "sé, sabes, sabe, sabemos, sabéis, saben"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0417",
+      "norsk": "bøying av verbet salir, som betyr å gå ut",
+      "spansk": "salgo, sales, sale, salimos, salís, salen",
+      "kategori": "verbbøying",
+      "svar": {
+        "es-no": [
+          "bøying av verbet salir, som betyr å gå ut"
+        ],
+        "no-es": [
+          "salgo, sales, sale, salimos, salís, salen"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0418",
+      "norsk": "bøying av verbet venir, som betyr å komme",
+      "spansk": "vengo, vienes, viene, venimos, venís, vienen",
+      "kategori": "verbbøying",
+      "svar": {
+        "es-no": [
+          "bøying av verbet venir, som betyr å komme"
+        ],
+        "no-es": [
+          "vengo, vienes, viene, venimos, venís, vienen"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0419",
+      "norsk": "jeg skal gjøre noe",
+      "spansk": "voy a hacer algo",
+      "kategori": "fremtid",
+      "svar": {
+        "es-no": [
+          "jeg skal gjøre noe"
+        ],
+        "no-es": [
+          "voy a hacer algo"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0420",
+      "norsk": "hva skal du gjøre i dag?",
+      "spansk": "¿Qué vas a hacer hoy?",
+      "kategori": "fremtid",
+      "svar": {
+        "es-no": [
+          "hva skal du gjøre i dag?"
+        ],
+        "no-es": [
+          "¿Qué vas a hacer hoy?"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0421",
+      "norsk": "hva skal du gjøre i morgen?",
+      "spansk": "¿Qué vas a hacer mañana?",
+      "kategori": "fremtid",
+      "svar": {
+        "es-no": [
+          "hva skal du gjøre i morgen?"
+        ],
+        "no-es": [
+          "¿Qué vas a hacer mañana?"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0422",
+      "norsk": "I dag skal jeg være med venner",
+      "spansk": "Hoy voy a estar con mis amigos",
+      "kategori": "fremtid",
+      "svar": {
+        "es-no": [
+          "I dag skal jeg være med venner"
+        ],
+        "no-es": [
+          "Hoy voy a estar con mis amigos"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0423",
+      "norsk": "I morgen skal jeg besøke bestemora mi",
+      "spansk": "Mañana voy a visitar mi abuela",
+      "kategori": "fremtid",
+      "svar": {
+        "es-no": [
+          "I morgen skal jeg besøke bestemora mi"
+        ],
+        "no-es": [
+          "Mañana voy a visitar mi abuela"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0424",
+      "norsk": "Hva skal du gjøre til neste år?",
+      "spansk": "¿Qué vas a hacer el año que viene?",
+      "kategori": "fremtid",
+      "svar": {
+        "es-no": [
+          "Hva skal du gjøre til neste år?"
+        ],
+        "no-es": [
+          "¿Qué vas a hacer el año que viene?"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0425",
+      "norsk": "Neste år skal jeg begynne på videregående",
+      "spansk": "El año que viene voy a empezar el bachillerato",
+      "kategori": "fremtid",
+      "svar": {
+        "es-no": [
+          "Neste år skal jeg begynne på videregående"
+        ],
+        "no-es": [
+          "El año que viene voy a empezar el bachillerato",
+          "El año que viene voy a comenzar el bachillerato",
+          "El próximo año voy a comenzar el bachillerato",
+          "El próximo año voy a empezar el bachillerato"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0426",
+      "norsk": "å snakke",
+      "spansk": "hablar",
+      "kategori": "verb",
+      "svar": {
+        "es-no": [
+          "å snakke"
+        ],
+        "no-es": [
+          "hablar"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0427",
+      "norsk": "å jobbe",
+      "spansk": "trabajar",
+      "kategori": "verb",
+      "svar": {
+        "es-no": [
+          "å jobbe"
+        ],
+        "no-es": [
+          "trabajar"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0428",
+      "norsk": "å trene",
+      "spansk": "entrenar",
+      "kategori": "verb",
+      "svar": {
+        "es-no": [
+          "å trene"
+        ],
+        "no-es": [
+          "entrenar"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0429",
+      "norsk": "å danse",
+      "spansk": "bailar",
+      "kategori": "verb",
+      "svar": {
+        "es-no": [
+          "å danse"
+        ],
+        "no-es": [
+          "bailar"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0430",
+      "norsk": "å kjøpe",
+      "spansk": "comprar",
+      "kategori": "verb",
+      "svar": {
+        "es-no": [
+          "å kjøpe",
+          "kjøpe"
+        ],
+        "no-es": [
+          "comprar"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0431",
+      "norsk": "å spise",
+      "spansk": "comer",
+      "kategori": "verb",
+      "svar": {
+        "es-no": [
+          "å spise"
+        ],
+        "no-es": [
+          "comer"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0432",
+      "norsk": "å drikke",
+      "spansk": "beber",
+      "kategori": "verb",
+      "svar": {
+        "es-no": [
+          "å drikke",
+          "drikke"
+        ],
+        "no-es": [
+          "beber"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0433",
+      "norsk": "å lese",
+      "spansk": "leer",
+      "kategori": "verb",
+      "svar": {
+        "es-no": [
+          "å lese"
+        ],
+        "no-es": [
+          "leer"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0434",
+      "norsk": "å studere",
+      "spansk": "estudiar",
+      "kategori": "verb",
+      "svar": {
+        "es-no": [
+          "å studere"
+        ],
+        "no-es": [
+          "estudiar"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0435",
+      "norsk": "å bo/ å leve",
+      "spansk": "vivir",
+      "kategori": "verb",
+      "svar": {
+        "es-no": [
+          "å bo/ å leve",
+          "å bo",
+          "å leve"
+        ],
+        "no-es": [
+          "vivir"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0436",
+      "norsk": "å skrive",
+      "spansk": "escribir",
+      "kategori": "verb",
+      "svar": {
+        "es-no": [
+          "å skrive"
+        ],
+        "no-es": [
+          "escribir"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0437",
+      "norsk": "å høre",
+      "spansk": "escuchar",
+      "kategori": "verb",
+      "svar": {
+        "es-no": [
+          "å høre"
+        ],
+        "no-es": [
+          "escuchar"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0438",
+      "norsk": "å se",
+      "spansk": "ver",
+      "kategori": "verb",
+      "svar": {
+        "es-no": [
+          "å se"
+        ],
+        "no-es": [
+          "ver"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0439",
+      "norsk": "å lære",
+      "spansk": "aprender",
+      "kategori": "verb",
+      "svar": {
+        "es-no": [
+          "å lære"
+        ],
+        "no-es": [
+          "aprender"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0440",
+      "norsk": "å vinne",
+      "spansk": "ganar",
+      "kategori": "verb",
+      "svar": {
+        "es-no": [
+          "å vinne"
+        ],
+        "no-es": [
+          "ganar"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0441",
+      "norsk": "å glemme",
+      "spansk": "olvidar",
+      "kategori": "verb",
+      "svar": {
+        "es-no": [
+          "å glemme"
+        ],
+        "no-es": [
+          "olvidar"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0442",
+      "norsk": "å hjelpe",
+      "spansk": "ayudar",
+      "kategori": "verb",
+      "svar": {
+        "es-no": [
+          "å hjelpe"
+        ],
+        "no-es": [
+          "ayudar"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0443",
+      "norsk": "å synge",
+      "spansk": "cantar",
+      "kategori": "verb",
+      "svar": {
+        "es-no": [
+          "å synge"
+        ],
+        "no-es": [
+          "cantar"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0444",
+      "norsk": "å vente",
+      "spansk": "esperar",
+      "kategori": "verb",
+      "svar": {
+        "es-no": [
+          "å vente"
+        ],
+        "no-es": [
+          "esperar"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0445",
+      "norsk": "å spørre",
+      "spansk": "preguntar",
+      "kategori": "verb",
+      "svar": {
+        "es-no": [
+          "å spørre"
+        ],
+        "no-es": [
+          "preguntar"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0446",
+      "norsk": "å betale",
+      "spansk": "pagar",
+      "kategori": "verb",
+      "svar": {
+        "es-no": [
+          "å betale"
+        ],
+        "no-es": [
+          "pagar"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0447",
+      "norsk": "å reise",
+      "spansk": "viajar",
+      "kategori": "verb",
+      "svar": {
+        "es-no": [
+          "å reise"
+        ],
+        "no-es": [
+          "viajar"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0448",
+      "norsk": "og",
+      "spansk": "y",
+      "kategori": "bindeord",
+      "svar": {
+        "es-no": [
+          "og"
+        ],
+        "no-es": [
+          "y"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0449",
+      "norsk": "eller",
+      "spansk": "o",
+      "kategori": "bindeord",
+      "svar": {
+        "es-no": [
+          "eller"
+        ],
+        "no-es": [
+          "o"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0450",
+      "norsk": "men",
+      "spansk": "pero",
+      "kategori": "bindeord",
+      "svar": {
+        "es-no": [
+          "men"
+        ],
+        "no-es": [
+          "pero"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0451",
+      "norsk": "også",
+      "spansk": "también",
+      "kategori": "bindeord",
+      "svar": {
+        "es-no": [
+          "også"
+        ],
+        "no-es": [
+          "también"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0452",
+      "norsk": "alltid",
+      "spansk": "siempre",
+      "kategori": "bindeord",
+      "svar": {
+        "es-no": [
+          "alltid"
+        ],
+        "no-es": [
+          "siempre"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0453",
+      "norsk": "aldri",
+      "spansk": "nunca",
+      "kategori": "bindeord",
+      "svar": {
+        "es-no": [
+          "aldri"
+        ],
+        "no-es": [
+          "nunca"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0454",
+      "norsk": "noen ganger",
+      "spansk": "a veces",
+      "kategori": "bindeord",
+      "svar": {
+        "es-no": [
+          "noen ganger"
+        ],
+        "no-es": [
+          "a veces"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0455",
+      "norsk": "vanligvis",
+      "spansk": "normalmente",
+      "kategori": "bindeord",
+      "svar": {
+        "es-no": [
+          "vanligvis"
+        ],
+        "no-es": [
+          "normalmente"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0456",
+      "norsk": "fordi",
+      "spansk": "porque",
+      "kategori": "bindeord",
+      "svar": {
+        "es-no": [
+          "fordi"
+        ],
+        "no-es": [
+          "porque"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0457",
+      "norsk": "derfor",
+      "spansk": "por eso",
+      "kategori": "bindeord",
+      "svar": {
+        "es-no": [
+          "derfor"
+        ],
+        "no-es": [
+          "por eso"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0458",
+      "norsk": "kanskje",
+      "spansk": "quizás",
+      "kategori": "bindeord",
+      "svar": {
+        "es-no": [
+          "kanskje"
+        ],
+        "no-es": [
+          "quizás"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0459",
+      "norsk": "dermed / deretter / så",
+      "spansk": "entonces",
+      "kategori": "bindeord",
+      "svar": {
+        "es-no": [
+          "dermed / deretter / så",
+          "deretter",
+          "dermed",
+          "så"
+        ],
+        "no-es": [
+          "entonces"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0460",
+      "norsk": "i tillegg / dessuten",
+      "spansk": "además",
+      "kategori": "bindeord",
+      "svar": {
+        "es-no": [
+          "i tillegg / dessuten",
+          "dessuten",
+          "i tillegg"
+        ],
+        "no-es": [
+          "además"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0461",
+      "norsk": "selv om",
+      "spansk": "aunque",
+      "kategori": "bindeord",
+      "svar": {
+        "es-no": [
+          "selv om"
+        ],
+        "no-es": [
+          "aunque"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0462",
+      "norsk": "allikevel",
+      "spansk": "sin embargo",
+      "kategori": "bindeord",
+      "svar": {
+        "es-no": [
+          "allikevel"
+        ],
+        "no-es": [
+          "sin embargo"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0463",
+      "norsk": "på den ene siden",
+      "spansk": "por un lado",
+      "kategori": "bindeord",
+      "svar": {
+        "es-no": [
+          "på den ene siden"
+        ],
+        "no-es": [
+          "por un lado"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0464",
+      "norsk": "på den andre siden",
+      "spansk": "por otro lado",
+      "kategori": "bindeord",
+      "svar": {
+        "es-no": [
+          "på den andre siden"
+        ],
+        "no-es": [
+          "por otro lado"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0465",
+      "norsk": "først og fremst",
+      "spansk": "sobre todo",
+      "kategori": "bindeord",
+      "svar": {
+        "es-no": [
+          "først og fremst"
+        ],
+        "no-es": [
+          "sobre todo"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0466",
+      "norsk": "samtidig",
+      "spansk": "al mismo tiempo",
+      "kategori": "bindeord",
+      "svar": {
+        "es-no": [
+          "samtidig"
+        ],
+        "no-es": [
+          "al mismo tiempo"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0467",
+      "norsk": "selvfølgelig",
+      "spansk": "claro",
+      "kategori": "bindeord",
+      "svar": {
+        "es-no": [
+          "selvfølgelig"
+        ],
+        "no-es": [
+          "claro"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0468",
+      "norsk": "jeg skal snakke om",
+      "spansk": "voy a hablar sobre",
+      "kategori": "bindeord",
+      "svar": {
+        "es-no": [
+          "jeg skal snakke om"
+        ],
+        "no-es": [
+          "voy a hablar sobre"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0469",
+      "norsk": "takk for oppmerksomheten",
+      "spansk": "gracias por su atención",
+      "kategori": "bindeord",
+      "svar": {
+        "es-no": [
+          "takk for oppmerksomheten"
+        ],
+        "no-es": [
+          "gracias por su atención"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0470",
+      "norsk": "å gjøre innkjøp",
+      "spansk": "hacer las compras",
+      "kategori": "husarbeid",
+      "svar": {
+        "es-no": [
+          "å gjøre innkjøp"
+        ],
+        "no-es": [
+          "hacer las compras"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0471",
+      "norsk": "å vaske opp",
+      "spansk": "lavar los platos",
+      "kategori": "husarbeid",
+      "svar": {
+        "es-no": [
+          "å vaske opp"
+        ],
+        "no-es": [
+          "lavar los platos"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0472",
+      "norsk": "å vaske badet",
+      "spansk": "limpiar el cuarto de baño",
+      "kategori": "husarbeid",
+      "svar": {
+        "es-no": [
+          "å vaske badet"
+        ],
+        "no-es": [
+          "limpiar el cuarto de baño"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0473",
+      "norsk": "å vaske klær",
+      "spansk": "lavar la ropa",
+      "kategori": "husarbeid",
+      "svar": {
+        "es-no": [
+          "å vaske klær"
+        ],
+        "no-es": [
+          "lavar la ropa"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0474",
+      "norsk": "å støvsuge",
+      "spansk": "pasar la aspiradora",
+      "kategori": "husarbeid",
+      "svar": {
+        "es-no": [
+          "å støvsuge"
+        ],
+        "no-es": [
+          "pasar la aspiradora"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0475",
+      "norsk": "å rydde rommet",
+      "spansk": "arreglar la habitación",
+      "kategori": "husarbeid",
+      "svar": {
+        "es-no": [
+          "å rydde rommet"
+        ],
+        "no-es": [
+          "arreglar la habitación"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0476",
+      "norsk": "én gang i uken",
+      "spansk": "una vez a la semana",
+      "kategori": "tidsuttrykk",
+      "svar": {
+        "es-no": [
+          "én gang i uken"
+        ],
+        "no-es": [
+          "una vez a la semana"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0477",
+      "norsk": "hver dag",
+      "spansk": "cada día",
+      "kategori": "tidsuttrykk",
+      "svar": {
+        "es-no": [
+          "hver dag"
+        ],
+        "no-es": [
+          "cada día",
+          "todos los días"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0478",
+      "norsk": "frukt",
+      "spansk": "la fruta",
+      "kategori": "kapittel 7: gloser",
+      "svar": {
+        "es-no": [
+          "frukt"
+        ],
+        "no-es": [
+          "la fruta",
+          "fruta"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0479",
+      "norsk": "pære",
+      "spansk": "la pera",
+      "kategori": "kapittel 7: gloser",
+      "svar": {
+        "es-no": [
+          "pære"
+        ],
+        "no-es": [
+          "la pera"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0480",
+      "norsk": "appelsin",
+      "spansk": "la naranja",
+      "kategori": "kapittel 7: gloser",
+      "svar": {
+        "es-no": [
+          "appelsin"
+        ],
+        "no-es": [
+          "la naranja",
+          "naranja"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0481",
+      "norsk": "banan",
+      "spansk": "el plátano",
+      "kategori": "kapittel 7: gloser",
+      "svar": {
+        "es-no": [
+          "banan"
+        ],
+        "no-es": [
+          "el plátano",
+          "plátano"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0482",
+      "norsk": "eple",
+      "spansk": "la manzana",
+      "kategori": "kapittel 7: gloser",
+      "svar": {
+        "es-no": [
+          "eple",
+          "eplet"
+        ],
+        "no-es": [
+          "la manzana",
+          "manzana"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0483",
+      "norsk": "fersken",
+      "spansk": "el melocotón",
+      "kategori": "kapittel 7: gloser",
+      "svar": {
+        "es-no": [
+          "fersken"
+        ],
+        "no-es": [
+          "el melocotón"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0484",
+      "norsk": "drue",
+      "spansk": "la uva",
+      "kategori": "kapittel 7: gloser",
+      "svar": {
+        "es-no": [
+          "drue"
+        ],
+        "no-es": [
+          "la uva"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0485",
+      "norsk": "melon",
+      "spansk": "el melón",
+      "kategori": "kapittel 7: gloser",
+      "svar": {
+        "es-no": [
+          "melon"
+        ],
+        "no-es": [
+          "el melón",
+          "melón"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0486",
+      "norsk": "vannmelon",
+      "spansk": "la sandía",
+      "kategori": "kapittel 7: gloser",
+      "svar": {
+        "es-no": [
+          "vannmelon"
+        ],
+        "no-es": [
+          "la sandía"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0487",
+      "norsk": "sitron",
+      "spansk": "el limón",
+      "kategori": "kapittel 7: gloser",
+      "svar": {
+        "es-no": [
+          "sitron"
+        ],
+        "no-es": [
+          "el limón",
+          "limón"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0488",
+      "norsk": "grønnsak",
+      "spansk": "la verdura",
+      "kategori": "kapittel 7: gloser",
+      "svar": {
+        "es-no": [
+          "grønnsak"
+        ],
+        "no-es": [
+          "la verdura",
+          "verdura"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0489",
+      "norsk": "tomat",
+      "spansk": "el tomate",
+      "kategori": "kapittel 7: gloser",
+      "svar": {
+        "es-no": [
+          "tomat"
+        ],
+        "no-es": [
+          "el tomate",
+          "tomate"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0490",
+      "norsk": "agurk",
+      "spansk": "el pepino",
+      "kategori": "kapittel 7: gloser",
+      "svar": {
+        "es-no": [
+          "agurk"
+        ],
+        "no-es": [
+          "el pepino",
+          "pepino"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0491",
+      "norsk": "løk",
+      "spansk": "la cebolla",
+      "kategori": "kapittel 7: gloser",
+      "svar": {
+        "es-no": [
+          "løk"
+        ],
+        "no-es": [
+          "la cebolla",
+          "cebolla"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0492",
+      "norsk": "hvitløk",
+      "spansk": "el ajo",
+      "kategori": "kapittel 7: gloser",
+      "svar": {
+        "es-no": [
+          "hvitløk"
+        ],
+        "no-es": [
+          "el ajo",
+          "ajo"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0493",
+      "norsk": "salat",
+      "spansk": "la lechuga",
+      "kategori": "kapittel 7: gloser",
+      "svar": {
+        "es-no": [
+          "salat"
+        ],
+        "no-es": [
+          "la lechuga"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0494",
+      "norsk": "paprika",
+      "spansk": "el pimiento",
+      "kategori": "kapittel 7: gloser",
+      "svar": {
+        "es-no": [
+          "paprika"
+        ],
+        "no-es": [
+          "el pimiento"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0495",
+      "norsk": "gulrot",
+      "spansk": "la zanahoria",
+      "kategori": "kapittel 7: gloser",
+      "svar": {
+        "es-no": [
+          "gulrot"
+        ],
+        "no-es": [
+          "la zanahoria",
+          "zanahoria"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0496",
+      "norsk": "potet",
+      "spansk": "la patata",
+      "kategori": "kapittel 7: gloser",
+      "svar": {
+        "es-no": [
+          "potet"
+        ],
+        "no-es": [
+          "la patata",
+          "patata"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0497",
+      "norsk": "matvare",
+      "spansk": "el alimento",
+      "kategori": "kapittel 7: gloser",
+      "svar": {
+        "es-no": [
+          "matvare"
+        ],
+        "no-es": [
+          "el alimento"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0498",
+      "norsk": "kjeks",
+      "spansk": "la galleta",
+      "kategori": "kapittel 7: gloser",
+      "svar": {
+        "es-no": [
+          "kjeks"
+        ],
+        "no-es": [
+          "la galleta",
+          "galleta"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0499",
+      "norsk": "brød",
+      "spansk": "el pan",
+      "kategori": "kapittel 7: gloser",
+      "svar": {
+        "es-no": [
+          "brød",
+          "brødet"
+        ],
+        "no-es": [
+          "el pan",
+          "pan"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0500",
+      "norsk": "marmelade",
+      "spansk": "la mermelada",
+      "kategori": "kapittel 7: gloser",
+      "svar": {
+        "es-no": [
+          "marmelade"
+        ],
+        "no-es": [
+          "la mermelada",
+          "mermelada"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0501",
+      "norsk": "korn, frokostblanding",
+      "spansk": "los cereales",
+      "kategori": "kapittel 7: gloser",
+      "svar": {
+        "es-no": [
+          "korn, frokostblanding"
+        ],
+        "no-es": [
+          "los cereales"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0502",
+      "norsk": "pølse",
+      "spansk": "la salchicha",
+      "kategori": "kapittel 7: gloser",
+      "svar": {
+        "es-no": [
+          "pølse"
+        ],
+        "no-es": [
+          "la salchicha",
+          "salchicha"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0503",
+      "norsk": "skinke",
+      "spansk": "el jamón",
+      "kategori": "kapittel 7: gloser",
+      "svar": {
+        "es-no": [
+          "skinke"
+        ],
+        "no-es": [
+          "el jamón",
+          "jamón"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0504",
+      "norsk": "kjøtt",
+      "spansk": "la carne",
+      "kategori": "kapittel 7: gloser",
+      "svar": {
+        "es-no": [
+          "kjøtt",
+          "kjøttet"
+        ],
+        "no-es": [
+          "la carne",
+          "carne"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0505",
+      "norsk": "kylling",
+      "spansk": "el pollo",
+      "kategori": "kapittel 7: gloser",
+      "svar": {
+        "es-no": [
+          "kylling"
+        ],
+        "no-es": [
+          "el pollo"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0506",
+      "norsk": "pasta",
+      "spansk": "la pasta",
+      "kategori": "kapittel 7: gloser",
+      "svar": {
+        "es-no": [
+          "pasta"
+        ],
+        "no-es": [
+          "la pasta"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0507",
+      "norsk": "ris",
+      "spansk": "el arroz",
+      "kategori": "kapittel 7: gloser",
+      "svar": {
+        "es-no": [
+          "ris"
+        ],
+        "no-es": [
+          "el arroz",
+          "arroz"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0508",
+      "norsk": "egg",
+      "spansk": "el huevo",
+      "kategori": "kapittel 7: gloser",
+      "svar": {
+        "es-no": [
+          "egg",
+          "egget"
+        ],
+        "no-es": [
+          "el huevo",
+          "huevo"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0509",
+      "norsk": "fisk",
+      "spansk": "el pescado",
+      "kategori": "kapittel 7: gloser",
+      "svar": {
+        "es-no": [
+          "fisk"
+        ],
+        "no-es": [
+          "el pescado",
+          "pescado"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0510",
+      "norsk": "sukker",
+      "spansk": "el azúcar",
+      "kategori": "kapittel 7: gloser",
+      "svar": {
+        "es-no": [
+          "sukker",
+          "sukkeret"
+        ],
+        "no-es": [
+          "el azúcar",
+          "azúcar"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0511",
+      "norsk": "salt",
+      "spansk": "la sal",
+      "kategori": "kapittel 7: gloser",
+      "svar": {
+        "es-no": [
+          "salt",
+          "saltet"
+        ],
+        "no-es": [
+          "la sal",
+          "sal"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0512",
+      "norsk": "bakverk",
+      "spansk": "el pastel",
+      "kategori": "kapittel 7: gloser",
+      "svar": {
+        "es-no": [
+          "bakverk"
+        ],
+        "no-es": [
+          "el pastel",
+          "pastel"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0513",
+      "norsk": "smør",
+      "spansk": "la mantequilla",
+      "kategori": "kapittel 7: gloser",
+      "svar": {
+        "es-no": [
+          "smør"
+        ],
+        "no-es": [
+          "la mantequilla",
+          "mantequilla"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0514",
+      "norsk": "ost",
+      "spansk": "el queso",
+      "kategori": "kapittel 7: gloser",
+      "svar": {
+        "es-no": [
+          "ost"
+        ],
+        "no-es": [
+          "el queso",
+          "queso"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0515",
+      "norsk": "yoghurt",
+      "spansk": "el yogur",
+      "kategori": "kapittel 7: gloser",
+      "svar": {
+        "es-no": [
+          "yoghurt"
+        ],
+        "no-es": [
+          "el yogur"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0516",
+      "norsk": "melk",
+      "spansk": "la leche",
+      "kategori": "kapittel 7: gloser",
+      "svar": {
+        "es-no": [
+          "melk",
+          "melka",
+          "melken"
+        ],
+        "no-es": [
+          "la leche",
+          "leche"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0517",
+      "norsk": "leskedrikk",
+      "spansk": "el refresco",
+      "kategori": "kapittel 7: gloser",
+      "svar": {
+        "es-no": [
+          "leskedrikk"
+        ],
+        "no-es": [
+          "el refresco"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0518",
+      "norsk": "juice",
+      "spansk": "el zumo",
+      "kategori": "kapittel 7: gloser",
+      "svar": {
+        "es-no": [
+          "juice"
+        ],
+        "no-es": [
+          "el zumo",
+          "el jugo"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0519",
+      "norsk": "juice",
+      "spansk": "el jugo",
+      "kategori": "kapittel 7: gloser",
+      "svar": {
+        "es-no": [
+          "juice"
+        ],
+        "no-es": [
+          "el jugo",
+          "el zumo"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0520",
+      "norsk": "sjokoladedrikk",
+      "spansk": "el Cola Cao",
+      "kategori": "kapittel 7: gloser",
+      "svar": {
+        "es-no": [
+          "sjokoladedrikk"
+        ],
+        "no-es": [
+          "el Cola Cao"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0521",
+      "norsk": "vann",
+      "spansk": "el agua",
+      "kategori": "kapittel 7: gloser",
+      "svar": {
+        "es-no": [
+          "vann",
+          "vannet"
+        ],
+        "no-es": [
+          "el agua",
+          "agua"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0522",
+      "norsk": "behøve",
+      "spansk": "necesitar",
+      "kategori": "kapittel 7: gloser",
+      "svar": {
+        "es-no": [
+          "behøve"
+        ],
+        "no-es": [
+          "necesitar"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0523",
+      "norsk": "etterpå",
+      "spansk": "después",
+      "kategori": "kapittel 7: gloser",
+      "svar": {
+        "es-no": [
+          "etterpå",
+          "etter",
+          "etter / etterpå"
+        ],
+        "no-es": [
+          "después"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0524",
+      "norsk": "forberede, tilberede",
+      "spansk": "preparar",
+      "kategori": "kapittel 7: gloser",
+      "svar": {
+        "es-no": [
+          "forberede, tilberede"
+        ],
+        "no-es": [
+          "preparar"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0525",
+      "norsk": "supermarked",
+      "spansk": "el supermercado",
+      "kategori": "kapittel 7: gloser",
+      "svar": {
+        "es-no": [
+          "supermarked"
+        ],
+        "no-es": [
+          "el supermercado",
+          "supermercado"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0526",
+      "norsk": "kjøpe",
+      "spansk": "comprar",
+      "kategori": "kapittel 7: gloser",
+      "svar": {
+        "es-no": [
+          "kjøpe",
+          "å kjøpe"
+        ],
+        "no-es": [
+          "comprar"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0527",
+      "norsk": "det som",
+      "spansk": "lo que",
+      "kategori": "kapittel 7: gloser",
+      "svar": {
+        "es-no": [
+          "det som"
+        ],
+        "no-es": [
+          "lo que"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0528",
+      "norsk": "har nettopp kommet tilbake",
+      "spansk": "acaba de regresar",
+      "kategori": "kapittel 7: gloser",
+      "svar": {
+        "es-no": [
+          "har nettopp kommet tilbake"
+        ],
+        "no-es": [
+          "acaba de regresar"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0529",
+      "norsk": "å nettopp ha gjort noe",
+      "spansk": "acabar de",
+      "kategori": "kapittel 7: gloser",
+      "svar": {
+        "es-no": [
+          "å nettopp ha gjort noe"
+        ],
+        "no-es": [
+          "acabar de"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0530",
+      "norsk": "olivenolje",
+      "spansk": "el aceite de oliva",
+      "kategori": "kapittel 7: gloser",
+      "svar": {
+        "es-no": [
+          "olivenolje"
+        ],
+        "no-es": [
+          "el aceite de oliva"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0531",
+      "norsk": "naturligvis",
+      "spansk": "por supuesto",
+      "kategori": "kapittel 7: gloser",
+      "svar": {
+        "es-no": [
+          "naturligvis",
+          "selvfølgelig"
+        ],
+        "no-es": [
+          "por supuesto"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0532",
+      "norsk": "lengst inn/bak",
+      "spansk": "al fondo",
+      "kategori": "kapittel 7: gloser",
+      "svar": {
+        "es-no": [
+          "lengst inn/bak"
+        ],
+        "no-es": [
+          "al fondo"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0533",
+      "norsk": "pommes frites",
+      "spansk": "las patatas fritas",
+      "kategori": "kapittel 7: gloser",
+      "svar": {
+        "es-no": [
+          "pommes frites"
+        ],
+        "no-es": [
+          "las patatas fritas"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0534",
+      "norsk": "oliven",
+      "spansk": "la aceituna",
+      "kategori": "kapittel 7: gloser",
+      "svar": {
+        "es-no": [
+          "oliven"
+        ],
+        "no-es": [
+          "la aceituna"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0535",
+      "norsk": "småspise",
+      "spansk": "picar",
+      "kategori": "kapittel 7: gloser",
+      "svar": {
+        "es-no": [
+          "småspise"
+        ],
+        "no-es": [
+          "picar"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0536",
+      "norsk": "drikke",
+      "spansk": "beber",
+      "kategori": "kapittel 7: gloser",
+      "svar": {
+        "es-no": [
+          "drikke",
+          "å drikke"
+        ],
+        "no-es": [
+          "beber"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0537",
+      "norsk": "kassadame",
+      "spansk": "la cajera",
+      "kategori": "kapittel 7: gloser",
+      "svar": {
+        "es-no": [
+          "kassadame"
+        ],
+        "no-es": [
+          "la cajera"
+        ]
+      }
+    }
+  ]
+}
