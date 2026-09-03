@@ -46,6 +46,21 @@ test.describe('fortellingsbasert diktat', () => {
     expect(expected).toBe('Sofía vive en Antigua Guatemala.');
   });
 
+  test('bruker WAV-kilde for alle Sofía-segmenter', async ({ page }) => {
+    await page.goto(appUrl);
+    await page.evaluate(() => { localStorage.clear(); studentName = 'Diktat-test'; showMainApp(); showPage('dictation'); });
+    await page.getByRole('button', { name: 'Start historien' }).nth(2).click();
+    await page.getByRole('button', { name: 'Start øvelsen' }).click();
+
+    for (let index = 1; index <= 8; index += 1) {
+      await expect(page.locator('#dictationSegmentAudio')).toHaveAttribute('src', new RegExp(`${index}\\.wav$`));
+      if (index < 8) {
+        await page.getByRole('button', { name: 'Sjekk svar' }).click();
+        await page.getByRole('button', { name: 'Neste segment' }).click();
+      }
+    }
+  });
+
   test('bruker de innspilte WAV-filene i Madrid- og Oaxaca-mappene', async ({ page }) => {
     await page.goto(appUrl);
     await page.evaluate(() => { localStorage.clear(); studentName = 'Diktat-test'; showMainApp(); showPage('dictation'); });
