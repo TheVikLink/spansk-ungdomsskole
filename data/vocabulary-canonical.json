@@ -9,7 +9,9 @@
       "kategori": "tall",
       "svar": {
         "es-no": [
-          "1"
+          "1",
+          "én",
+          "ein"
         ],
         "no-es": [
           "uno"
@@ -23,7 +25,8 @@
       "kategori": "tall",
       "svar": {
         "es-no": [
-          "2"
+          "2",
+          "to"
         ],
         "no-es": [
           "dos"
@@ -37,7 +40,8 @@
       "kategori": "tall",
       "svar": {
         "es-no": [
-          "3"
+          "3",
+          "tre"
         ],
         "no-es": [
           "tres"
@@ -51,7 +55,8 @@
       "kategori": "tall",
       "svar": {
         "es-no": [
-          "4"
+          "4",
+          "fire"
         ],
         "no-es": [
           "cuatro"
@@ -65,7 +70,8 @@
       "kategori": "tall",
       "svar": {
         "es-no": [
-          "5"
+          "5",
+          "fem"
         ],
         "no-es": [
           "cinco"
@@ -79,7 +85,8 @@
       "kategori": "tall",
       "svar": {
         "es-no": [
-          "6"
+          "6",
+          "seks"
         ],
         "no-es": [
           "seis"
@@ -93,7 +100,8 @@
       "kategori": "tall",
       "svar": {
         "es-no": [
-          "7"
+          "7",
+          "syv"
         ],
         "no-es": [
           "siete"
@@ -107,7 +115,8 @@
       "kategori": "tall",
       "svar": {
         "es-no": [
-          "8"
+          "8",
+          "åtte"
         ],
         "no-es": [
           "ocho"
@@ -121,7 +130,8 @@
       "kategori": "tall",
       "svar": {
         "es-no": [
-          "9"
+          "9",
+          "ni"
         ],
         "no-es": [
           "nueve"
@@ -135,7 +145,8 @@
       "kategori": "tall",
       "svar": {
         "es-no": [
-          "10"
+          "10",
+          "ti"
         ],
         "no-es": [
           "diez"
@@ -149,7 +160,8 @@
       "kategori": "tall",
       "svar": {
         "es-no": [
-          "11"
+          "11",
+          "elleve"
         ],
         "no-es": [
           "once"
@@ -163,7 +175,8 @@
       "kategori": "tall",
       "svar": {
         "es-no": [
-          "12"
+          "12",
+          "tolv"
         ],
         "no-es": [
           "doce"
@@ -177,7 +190,8 @@
       "kategori": "tall",
       "svar": {
         "es-no": [
-          "13"
+          "13",
+          "tretten"
         ],
         "no-es": [
           "trece"
@@ -191,7 +205,8 @@
       "kategori": "tall",
       "svar": {
         "es-no": [
-          "14"
+          "14",
+          "fjorten"
         ],
         "no-es": [
           "catorce"
@@ -205,7 +220,8 @@
       "kategori": "tall",
       "svar": {
         "es-no": [
-          "15"
+          "15",
+          "femten"
         ],
         "no-es": [
           "quince"
@@ -219,7 +235,8 @@
       "kategori": "tall",
       "svar": {
         "es-no": [
-          "16"
+          "16",
+          "seksten"
         ],
         "no-es": [
           "dieciséis"
@@ -233,7 +250,8 @@
       "kategori": "tall",
       "svar": {
         "es-no": [
-          "17"
+          "17",
+          "sytten"
         ],
         "no-es": [
           "diecisiete"
@@ -247,7 +265,8 @@
       "kategori": "tall",
       "svar": {
         "es-no": [
-          "18"
+          "18",
+          "atten"
         ],
         "no-es": [
           "dieciocho"
@@ -261,7 +280,8 @@
       "kategori": "tall",
       "svar": {
         "es-no": [
-          "19"
+          "19",
+          "nitten"
         ],
         "no-es": [
           "diecinueve"
@@ -275,7 +295,8 @@
       "kategori": "tall",
       "svar": {
         "es-no": [
-          "20"
+          "20",
+          "tjue"
         ],
         "no-es": [
           "veinte"
@@ -289,7 +310,8 @@
       "kategori": "tall",
       "svar": {
         "es-no": [
-          "26"
+          "26",
+          "tjueseks"
         ],
         "no-es": [
           "veintiséis"
@@ -303,7 +325,8 @@
       "kategori": "tall",
       "svar": {
         "es-no": [
-          "30"
+          "30",
+          "tretti"
         ],
         "no-es": [
           "treinta"
@@ -317,7 +340,8 @@
       "kategori": "tall",
       "svar": {
         "es-no": [
-          "39"
+          "39",
+          "trettini"
         ],
         "no-es": [
           "treinta y nueve"
@@ -331,7 +355,8 @@
       "kategori": "tall",
       "svar": {
         "es-no": [
-          "40"
+          "40",
+          "førti"
         ],
         "no-es": [
           "cuarenta"
@@ -345,7 +370,8 @@
       "kategori": "tall",
       "svar": {
         "es-no": [
-          "43"
+          "43",
+          "førtitre"
         ],
         "no-es": [
           "cuarenta y tres"
@@ -359,7 +385,8 @@
       "kategori": "tall",
       "svar": {
         "es-no": [
-          "50"
+          "50",
+          "femti"
         ],
         "no-es": [
           "cincuenta"
@@ -373,7 +400,8 @@
       "kategori": "tall",
       "svar": {
         "es-no": [
-          "54"
+          "54",
+          "femtifire"
         ],
         "no-es": [
           "cincuenta y cuatro"
@@ -387,7 +415,8 @@
       "kategori": "tall",
       "svar": {
         "es-no": [
-          "60"
+          "60",
+          "seksti"
         ],
         "no-es": [
           "sesenta"
@@ -401,7 +430,8 @@
       "kategori": "tall",
       "svar": {
         "es-no": [
-          "62"
+          "62",
+          "sekstito"
         ],
         "no-es": [
           "sesenta y dos"
@@ -415,7 +445,8 @@
       "kategori": "tall",
       "svar": {
         "es-no": [
-          "70"
+          "70",
+          "sytti"
         ],
         "no-es": [
           "setenta"
@@ -429,7 +460,8 @@
       "kategori": "tall",
       "svar": {
         "es-no": [
-          "78"
+          "78",
+          "syttiåtte"
         ],
         "no-es": [
           "setenta y ocho"
@@ -443,7 +475,8 @@
       "kategori": "tall",
       "svar": {
         "es-no": [
-          "80"
+          "80",
+          "åtti"
         ],
         "no-es": [
           "ochenta"
@@ -457,7 +490,8 @@
       "kategori": "tall",
       "svar": {
         "es-no": [
-          "87"
+          "87",
+          "åttisyv"
         ],
         "no-es": [
           "ochenta y siete"
@@ -471,7 +505,8 @@
       "kategori": "tall",
       "svar": {
         "es-no": [
-          "90"
+          "90",
+          "nitti"
         ],
         "no-es": [
           "noventa"
@@ -485,7 +520,9 @@
       "kategori": "tall",
       "svar": {
         "es-no": [
-          "91"
+          "91",
+          "nittién",
+          "nittiein"
         ],
         "no-es": [
           "noventa y uno"
@@ -499,7 +536,9 @@
       "kategori": "tall",
       "svar": {
         "es-no": [
-          "100"
+          "100",
+          "én hundre",
+          "eitt hundre"
         ],
         "no-es": [
           "cien"
@@ -513,7 +552,9 @@
       "kategori": "tall",
       "svar": {
         "es-no": [
-          "110"
+          "110",
+          "én hundre og ti",
+          "eitt hundre og ti"
         ],
         "no-es": [
           "ciento diez"
@@ -527,7 +568,9 @@
       "kategori": "tall",
       "svar": {
         "es-no": [
-          "123"
+          "123",
+          "én hundre og tjuetre",
+          "eitt hundre og tjuetre"
         ],
         "no-es": [
           "ciento veintitrés"
@@ -541,7 +584,8 @@
       "kategori": "tall",
       "svar": {
         "es-no": [
-          "200"
+          "200",
+          "to hundre"
         ],
         "no-es": [
           "doscientos"
@@ -555,7 +599,8 @@
       "kategori": "tall",
       "svar": {
         "es-no": [
-          "245"
+          "245",
+          "to hundre og førtifem"
         ],
         "no-es": [
           "doscientos cuarenta y cinco"
@@ -569,7 +614,8 @@
       "kategori": "tall",
       "svar": {
         "es-no": [
-          "300"
+          "300",
+          "tre hundre"
         ],
         "no-es": [
           "trescientos"
@@ -583,7 +629,8 @@
       "kategori": "tall",
       "svar": {
         "es-no": [
-          "400"
+          "400",
+          "fire hundre"
         ],
         "no-es": [
           "cuatrocientos"
@@ -597,7 +644,8 @@
       "kategori": "tall",
       "svar": {
         "es-no": [
-          "500"
+          "500",
+          "fem hundre"
         ],
         "no-es": [
           "quinientos"
@@ -611,7 +659,8 @@
       "kategori": "tall",
       "svar": {
         "es-no": [
-          "600"
+          "600",
+          "seks hundre"
         ],
         "no-es": [
           "seiscientos"
@@ -625,7 +674,8 @@
       "kategori": "tall",
       "svar": {
         "es-no": [
-          "700"
+          "700",
+          "syv hundre"
         ],
         "no-es": [
           "setecientos"
@@ -639,7 +689,8 @@
       "kategori": "tall",
       "svar": {
         "es-no": [
-          "800"
+          "800",
+          "åtte hundre"
         ],
         "no-es": [
           "ochocientos"
@@ -653,7 +704,8 @@
       "kategori": "tall",
       "svar": {
         "es-no": [
-          "900"
+          "900",
+          "ni hundre"
         ],
         "no-es": [
           "novecientos"
@@ -667,7 +719,9 @@
       "kategori": "tall",
       "svar": {
         "es-no": [
-          "1000"
+          "1000",
+          "ett tusen",
+          "eitt tusen"
         ],
         "no-es": [
           "mil"
@@ -681,7 +735,8 @@
       "kategori": "tall",
       "svar": {
         "es-no": [
-          "870"
+          "870",
+          "åtte hundre og sytti"
         ],
         "no-es": [
           "ochocientos setenta"
@@ -695,7 +750,9 @@
       "kategori": "tall",
       "svar": {
         "es-no": [
-          "1200"
+          "1200",
+          "ett tusen to hundre",
+          "eitt tusen to hundre"
         ],
         "no-es": [
           "mil doscientos"
@@ -709,7 +766,9 @@
       "kategori": "tall",
       "svar": {
         "es-no": [
-          "1589"
+          "1589",
+          "ett tusen fem hundre og åttini",
+          "eitt tusen fem hundre og åttini"
         ],
         "no-es": [
           "mil quinientos ochenta y nueve"
@@ -723,7 +782,8 @@
       "kategori": "tall",
       "svar": {
         "es-no": [
-          "2000"
+          "2000",
+          "to tusen"
         ],
         "no-es": [
           "dos mil"
@@ -737,7 +797,8 @@
       "kategori": "tall",
       "svar": {
         "es-no": [
-          "4000"
+          "4000",
+          "fire tusen"
         ],
         "no-es": [
           "cuatro mil"
@@ -751,7 +812,8 @@
       "kategori": "tall",
       "svar": {
         "es-no": [
-          "10 000"
+          "10 000",
+          "ti tusen"
         ],
         "no-es": [
           "diez mil"
@@ -765,7 +827,9 @@
       "kategori": "tall",
       "svar": {
         "es-no": [
-          "1945"
+          "1945",
+          "ett tusen ni hundre og førtifem",
+          "eitt tusen ni hundre og førtifem"
         ],
         "no-es": [
           "mil novecientos cuarenta y cinco"
@@ -779,7 +843,9 @@
       "kategori": "tall",
       "svar": {
         "es-no": [
-          "1996"
+          "1996",
+          "ett tusen ni hundre og nittiseks",
+          "eitt tusen ni hundre og nittiseks"
         ],
         "no-es": [
           "mil novecientos noventa y seis"
@@ -793,7 +859,8 @@
       "kategori": "tall",
       "svar": {
         "es-no": [
-          "2011"
+          "2011",
+          "to tusen elleve"
         ],
         "no-es": [
           "dos mil once"
@@ -807,7 +874,8 @@
       "kategori": "tall",
       "svar": {
         "es-no": [
-          "2019"
+          "2019",
+          "to tusen nitten"
         ],
         "no-es": [
           "dos mil diecinueve"
@@ -4920,9 +4988,9 @@
         "es-no": [
           "religion / KRLE",
           "KRLE",
+          "KRLE-en",
           "religion",
-          "religionen",
-          "KRLE-en"
+          "religionen"
         ],
         "no-es": [
           "la religión"
