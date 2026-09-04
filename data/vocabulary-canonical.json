@@ -101,7 +101,8 @@
       "svar": {
         "es-no": [
           "7",
-          "syv"
+          "syv",
+          "sju"
         ],
         "no-es": [
           "siete"
@@ -491,7 +492,8 @@
       "svar": {
         "es-no": [
           "87",
-          "åttisyv"
+          "åttisyv",
+          "åttisju"
         ],
         "no-es": [
           "ochenta y siete"
@@ -537,8 +539,9 @@
       "svar": {
         "es-no": [
           "100",
-          "én hundre",
-          "eitt hundre"
+          "ett hundre",
+          "eitt hundre",
+          "én hundre"
         ],
         "no-es": [
           "cien"
@@ -553,8 +556,9 @@
       "svar": {
         "es-no": [
           "110",
-          "én hundre og ti",
-          "eitt hundre og ti"
+          "ett hundre og ti",
+          "eitt hundre og ti",
+          "én hundre og ti"
         ],
         "no-es": [
           "ciento diez"
@@ -569,8 +573,9 @@
       "svar": {
         "es-no": [
           "123",
-          "én hundre og tjuetre",
-          "eitt hundre og tjuetre"
+          "ett hundre og tjuetre",
+          "eitt hundre og tjuetre",
+          "én hundre og tjuetre"
         ],
         "no-es": [
           "ciento veintitrés"
@@ -585,6 +590,7 @@
       "svar": {
         "es-no": [
           "200",
+          "ett hundre",
           "to hundre"
         ],
         "no-es": [
@@ -600,6 +606,7 @@
       "svar": {
         "es-no": [
           "245",
+          "ett hundre og førtifem",
           "to hundre og førtifem"
         ],
         "no-es": [
@@ -615,6 +622,7 @@
       "svar": {
         "es-no": [
           "300",
+          "ett hundre",
           "tre hundre"
         ],
         "no-es": [
@@ -630,6 +638,7 @@
       "svar": {
         "es-no": [
           "400",
+          "ett hundre",
           "fire hundre"
         ],
         "no-es": [
@@ -645,6 +654,7 @@
       "svar": {
         "es-no": [
           "500",
+          "ett hundre",
           "fem hundre"
         ],
         "no-es": [
@@ -660,6 +670,7 @@
       "svar": {
         "es-no": [
           "600",
+          "ett hundre",
           "seks hundre"
         ],
         "no-es": [
@@ -675,6 +686,7 @@
       "svar": {
         "es-no": [
           "700",
+          "ett hundre",
           "syv hundre"
         ],
         "no-es": [
@@ -690,6 +702,7 @@
       "svar": {
         "es-no": [
           "800",
+          "ett hundre",
           "åtte hundre"
         ],
         "no-es": [
@@ -705,6 +718,7 @@
       "svar": {
         "es-no": [
           "900",
+          "ett hundre",
           "ni hundre"
         ],
         "no-es": [
@@ -736,6 +750,7 @@
       "svar": {
         "es-no": [
           "870",
+          "ett hundre og sytti",
           "åtte hundre og sytti"
         ],
         "no-es": [
@@ -751,8 +766,9 @@
       "svar": {
         "es-no": [
           "1200",
-          "ett tusen to hundre",
-          "eitt tusen to hundre"
+          "ett tusen ett hundre",
+          "eitt tusen to hundre",
+          "ett tusen to hundre"
         ],
         "no-es": [
           "mil doscientos"
@@ -767,8 +783,9 @@
       "svar": {
         "es-no": [
           "1589",
-          "ett tusen fem hundre og åttini",
-          "eitt tusen fem hundre og åttini"
+          "ett tusen ett hundre og åttini",
+          "eitt tusen fem hundre og åttini",
+          "ett tusen fem hundre og åttini"
         ],
         "no-es": [
           "mil quinientos ochenta y nueve"
@@ -828,8 +845,9 @@
       "svar": {
         "es-no": [
           "1945",
-          "ett tusen ni hundre og førtifem",
-          "eitt tusen ni hundre og førtifem"
+          "ett tusen ett hundre og førtifem",
+          "eitt tusen ni hundre og førtifem",
+          "ett tusen ni hundre og førtifem"
         ],
         "no-es": [
           "mil novecientos cuarenta y cinco"
@@ -844,8 +862,9 @@
       "svar": {
         "es-no": [
           "1996",
-          "ett tusen ni hundre og nittiseks",
-          "eitt tusen ni hundre og nittiseks"
+          "ett tusen ett hundre og nittiseks",
+          "eitt tusen ni hundre og nittiseks",
+          "ett tusen ni hundre og nittiseks"
         ],
         "no-es": [
           "mil novecientos noventa y seis"

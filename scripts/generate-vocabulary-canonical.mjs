@@ -8,9 +8,9 @@ const tens = ['', '', 'tjue', 'tretti', 'førti', 'femti', 'seksti', 'sytti', '�
 function norwegianNumber(value, nynorsk = false) {
   const n = Number(String(value).replace(/\s/gu, ''));
   if (!Number.isInteger(n) || n < 0 || n > 99999) return null;
-  if (n < 20) return small[n].replace(/^én$/, nynorsk ? 'ein' : 'én');
-  if (n < 100) return tens[Math.floor(n / 10)] + (n % 10 ? (n % 10 === 1 ? (nynorsk ? 'ein' : 'én') : small[n % 10]) : '');
-  if (n < 1000) return `${nynorsk && Math.floor(n / 100) === 1 ? 'eitt' : small[Math.floor(n / 100)].replace(/^én$/, nynorsk ? 'ein' : 'én')} hundre${n % 100 ? ` og ${norwegianNumber(n % 100, nynorsk)}` : ''}`;
+  if (n < 20) return small[n].replace(/^én$/, nynorsk ? 'ein' : 'én').replace(/^syv$/, nynorsk ? 'sju' : 'syv');
+  if (n < 100) return tens[Math.floor(n / 10)] + (n % 10 ? (n % 10 === 1 ? (nynorsk ? 'ein' : 'én') : small[n % 10].replace(/^syv$/, nynorsk ? 'sju' : 'syv')) : '');
+  if (n < 1000) return `${nynorsk && Math.floor(n / 100) === 1 ? 'eitt' : (nynorsk ? small[Math.floor(n / 100)].replace(/^én$/, 'ein') : 'ett')} hundre${n % 100 ? ` og ${norwegianNumber(n % 100, nynorsk)}` : ''}`;
   const thousands = Math.floor(n / 1000);
   return `${thousands === 1 ? (nynorsk ? 'eitt' : 'ett') : norwegianNumber(thousands, nynorsk)} tusen${n % 1000 ? ` ${norwegianNumber(n % 1000, nynorsk)}` : ''}`;
 }
