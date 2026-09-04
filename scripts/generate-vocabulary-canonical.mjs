@@ -19,7 +19,7 @@ const entries = glossary.map((card, index) => {
   const esKey = `${card.no}|no-es`;
   const values = key => (vocabularyAnswerAlternatives[key] || []).map(answer => answer.value);
   const numeric = card.category === 'tall' ? card.no.replace(/\s/gu, '') : '';
-  const numberVariants = numeric && /^\d+$/u.test(numeric) ? [norwegianNumber(numeric), norwegianNumber(numeric, true)] : [];
+  const numberVariants = numeric && /^\d+$/u.test(numeric) ? [norwegianNumber(numeric), norwegianNumber(numeric, true), numeric === '1' ? 'en' : null] : [];
   return {
     id: `vocab-${String(index + 1).padStart(4, '0')}`,
     norsk: card.no,
