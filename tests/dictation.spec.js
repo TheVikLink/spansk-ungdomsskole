@@ -10,7 +10,9 @@ test.describe('fortellingsbasert diktat', () => {
     await page.evaluate(() => { localStorage.clear(); studentName = 'Diktat-test'; showMainApp(); });
     await page.locator('#navDictation').click();
     await expect(page.locator('#dictationPage')).toBeVisible();
-    await expect(page.locator('.dictation-story-card')).toHaveCount(5);
+    await expect(page.locator('.dictation-story-card')).toHaveCount(3);
+    await expect(page.getByRole('heading', { name: 'Biblioteket i Buenos Aires' })).toHaveCount(0);
+    await expect(page.getByRole('heading', { name: 'En sykkeltur i Barcelona' })).toHaveCount(0);
     await page.locator('#dictationLevelFilter').selectOption('A0');
     await expect(page.locator('.dictation-story-card:visible')).toHaveCount(2);
     await page.locator('#dictationRegionFilter').selectOption('Mexico');
