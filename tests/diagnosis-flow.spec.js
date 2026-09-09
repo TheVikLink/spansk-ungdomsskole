@@ -56,7 +56,8 @@ test.describe('diagnosis quiz v1', () => {
     });
 
     await expect(page.locator('#diagnosisPanel')).toContainText('jeg snakker');
-    await expect(page.locator('#diagnosisPanel')).not.toContainText('yo + hablar');
+    await expect(page.locator('#diagnosisPanel')).toContainText('yo + hablar');
+    await expect(page.locator('#diagnosisPanel')).toContainText('presens');
   });
 
   test('answering a diagnosis question stores the answer and updates one progress cell', async ({ page }) => {
