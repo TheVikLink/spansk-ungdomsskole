@@ -176,7 +176,7 @@ test.describe('diagnosis quiz v1', () => {
     await page.click('button:has-text("Start")');
 
     await expect(page.getByRole('heading', { name: 'Finn nivået mitt' })).toBeVisible();
-    await page.getByRole('button', { name: 'Start diagnose' }).click();
+    await page.locator('#homeStartMixedQuizBtn').click();
 
     for (let i = 0; i < 12; i++) {
       const responseMode = await page.locator('#diagnosisPanel').getAttribute('data-response-mode');
@@ -203,7 +203,7 @@ test.describe('diagnosis quiz v1', () => {
 
     await page.fill('#studentNameInput', 'Elevkode 8A-13');
     await page.getByRole('button', { name: 'Start' }).click();
-    await page.getByRole('button', { name: 'Start diagnose' }).click();
+    await page.locator('#homeStartMixedQuizBtn').click();
 
     for (let i = 0; i < 12; i++) {
       const responseMode = await page.locator('#diagnosisPanel').getAttribute('data-response-mode');

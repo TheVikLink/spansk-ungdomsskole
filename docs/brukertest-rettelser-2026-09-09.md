@@ -72,3 +72,9 @@ De fire diktatreproduksjonene feilet før retting; deretter bestod **16 tester**
 ## Menneskelig sluttkontroll
 
 Beads `spansk-ungdomsskole-ee0` samler lærerens faglige kontroll, moderert elevpilot, fysisk mobil/lyd og bruk over flere uker. Dette er ikke gjennomført av automatiske tester. Ingen publisering eller faktisk elevstudie inngår i rettingsmandatet.
+
+## Første time og første dags oppsummering (F13/F14, del av F15)
+
+Hovedknappen starter nivåtesten ved første besøk. Lærerveiledningen er synlig før elevkode, og åpner én avgrenset leksjon om bestemte artikler. PILOT.md er skrevet om til faglig gjennomgang og liten moderert prøve før eventuell helklassebruk, med konkret 20-minutters opplegg og reserve. Dagens og ukens oppsummering er tilgjengelige fra første dag, uten automatisk utskrift eller innsending. Start anerkjenner registrert aktivitet også uten dagsquiz.
+
+Fire nye nettlesertester dekker reelle startklikk på 390/1440 px, lærerinngang før kode og én besvart grammatikkoppgave → Start → dagens rapport uten utskriftskall. Eldre tester er oppdatert fra deaktivert hovedknapp og todagerssperre til den nye tilgjengelige flyten.

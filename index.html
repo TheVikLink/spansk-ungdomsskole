@@ -6,7 +6,7 @@
     <title>Spansk på 1-2-3 | Læringsapp</title>
     <meta name="theme-color" content="#dc2626">
     <link rel="manifest" href="./manifest.webmanifest">
-    <meta name="app-build" content="9055e528eb8afdca">
+    <meta name="app-build" content="1fac2d95cfdecc00">
     <link href="./dist/tailwind.css" rel="stylesheet">
 </head>
 <body>
@@ -35,6 +35,7 @@
                 Hvis nettleserdata slettes, kan fremgangen bare hentes tilbake fra en sikkerhetskopi. Elevkoden gjenoppretter ikke data. Velg «Importer fremgang fra fil» på denne eller en ny enhet.
             </p>
         </div>
+        <div id="welcomeTeacherGuide"></div>
     </div>
 
     <div class="container hidden" id="mainApp">
@@ -91,7 +92,7 @@
             <div id="vocabSettings">
                 <div class="page-header">
                     <h2>📚 Gloselæring</h2>
-                    <p>Lær ordforråd med spaced repetition - begge veier!</p>
+                    <p>Lær ordforråd med repetisjon over tid – begge veier!</p>
                 </div>
 
                 <section class="mixed-quiz-launcher" id="mixedQuizLauncher" aria-labelledby="mixedQuizLauncherTitle">
@@ -520,13 +521,14 @@
             </div>
 
             <div class="homework-submit-section">
-                <h3>✅ Lever ukeslekse</h3>
+                <h3>✅ Vis det du har øvd på</h3>
                 <p class="mb-4 text-gray-500">
-                    Når du har øvd nok denne uken, kan du lage en rapport. Gloser, verbbøying og grammatikk teller.
+                    Vis en lokal oppsummering til læreren allerede første dag. Gloser, verbbøying og grammatikk teller. Ingen data sendes.
                 </p>
                 <button class="btn btn-primary btn-large" onclick="submitHomework()" id="submitHomeworkBtn">
-                    📄 Lag PDF-rapport
+                    Vis ukens oppsummering
                 </button>
+                <button class="btn btn-secondary btn-large" onclick="showWeeklyReportForPrint('today')">Vis dagens oppsummering</button>
                 <p class="homework-hint" id="homeworkHint"></p>
             </div>
 
@@ -10937,6 +10939,31 @@
             showPage('home');
         }
 
+        function renderTeacherGuide() {
+            return `<details class="first-lesson-guide my-5 rounded-lg border border-gray-200 bg-white p-4 text-left text-gray-800">
+                <summary class="cursor-pointer font-bold">For læreren: første 20 minutter</summary>
+                <p>Et supplement til undervisningen. Start med en lærerstyrt demonstrasjon og liten, moderert utprøving. Faglig lærerkontroll og elevpilot gjenstår før selvstendig helklassebruk.</p>
+                <p><strong>Mål:</strong> Velge el, la, los og las foran et substantiv.</p>
+                <ol><li>0–3 min: Forklar målet og at fremgangen bare lagres på enheten. Bruk kallenavn eller elevkode.</li>
+                <li>3–6 min: Åpne artikkelforklaringen nedenfor. Vis ett eksempel på kjønn og tall.</li>
+                <li>6–16 min: La elevene velge og begrunne svar. Ved usikkerhet: les hintet og prøv neste oppgave. Elever som er ferdige, lager en ny setning muntlig.</li>
+                <li>16–20 min: Avslutt økten og åpne dagens oppsummering i Lekse. Be eleven nevne én regel og én ting de trenger hjelp til. Vis hvordan fremgang lastes ned.</li></ol>
+                <button class="btn btn-primary mt-3" onclick="startFirstLesson()">Start felles artikkeløving</button>
+                <p>Ingen lærerinnboks eller automatisk innsending. Innspill må vises til læreren på elevens enhet.</p>
+                <a href="./PILOT.md">Les opplegget og spørsmålene til pilotgjennomgangen</a>
+            </details>`;
+        }
+
+        function startFirstLesson() {
+            if (!document.getElementById('welcomeScreen').classList.contains('hidden')) {
+                studentName = document.getElementById('studentNameInput').value.trim() || 'Utprøving';
+                localStorage.setItem('spansk123_studentName', studentName);
+                showMainApp();
+            }
+            if (showPage('grammar') === false) return;
+            openGrammarTopicTheory('articles');
+        }
+
         function showSettings() {
             const modal = document.createElement('div');
             modal.className = 'settings-modal';
@@ -10944,7 +10971,7 @@
                 <div class="settings-modal-content">
                     <h2>⚙️ Innstillinger</h2>
                     <label class="mb-2 block text-gray-700">Fornavn eller elevkode:</label>
-                    <input type="text" id="settingsNameInput" value="${escapeHtml(studentName)}" placeholder="Fornavn eller elevkode">
+                    <input type="text" id="settingsNameInput" value="${escapeHtml(studentName).replaceAll('"', '&quot;')}" placeholder="Fornavn eller elevkode">
                     <p class="login-hint mt-2 text-xs">Lagres lokalt og står i oppsummeringer og fremgangsfiler. Koden er ikke en konto og gjenoppretter ikke slettede data. Bruk samme nettleser, eller importer sikkerhetskopien på en ny enhet.</p>
                     <div class="button-group">
                         <button class="btn btn-primary" onclick="saveSettings()">Lagre</button>
@@ -11976,14 +12003,14 @@
                 panel.removeAttribute('data-accepted-answer');
                 panel.innerHTML = `
                     <div class="page-header">
-                        <h2>${diagnosisWasSkipped ? 'Diagnose hoppet over' : 'Resultat'}</h2>
-                        <p>${diagnosisWasSkipped ? 'Tidligere fremgang er importert. Du starter på A0 og kan ta diagnose senere fra denne siden.' : 'Fremgangen er lagret bare på denne enheten.'}</p>
+                        <h2>${diagnosisWasSkipped ? 'Nivåtest hoppet over' : 'Resultat'}</h2>
+                        <p>${diagnosisWasSkipped ? 'Tidligere fremgang er importert. Du starter på A0 og kan ta nivåtesten senere fra denne siden.' : 'Fremgangen er lagret bare på denne enheten.'}</p>
                     </div>
                     <div class="homework-summary">
                         <strong id="diagnosisResultBand">${state.resultBand || 'A0'}</strong>
                         <p>Dette er et foreløpig øvingsforslag fra noen få oppgaver, ikke en vurdering av hele spansknivået ditt.</p>
                         <p>Anbefalt å øve videre på: ${escapeHtml(recommended)}</p>
-                        ${diagnosisWasSkipped ? '<button class="btn btn-secondary mt-3" onclick="startDiagnosisFromUi()">Ta diagnose nå</button>' : ''}
+                        ${diagnosisWasSkipped ? '<button class="btn btn-secondary mt-3" onclick="startDiagnosisFromUi()">Ta nivåtest nå</button>' : ''}
                     </div>
                 `;
                 return;
@@ -12060,7 +12087,7 @@
                     <h2>Finn nivået mitt</h2>
                     <p>Svar på 12 korte spørsmål. Du kan bruke kallenavn eller elevkode. Svarene lagres bare på denne enheten og følger med hvis du eksporterer fremgangen.</p>
                 </div>
-                <button class="btn btn-primary btn-large" onclick="startDiagnosisFromUi()">Start diagnose</button>
+                <button class="btn btn-primary btn-large" onclick="startDiagnosisFromUi()">Start nivåtest</button>
             `;
         }
 
@@ -12885,32 +12912,22 @@
             // Count practice days this week.
             const practiceDays = days.filter(d => d.practiced).length;
             const requiredDays = getHomeworkRequiredDays();
-            const canSubmit = practiceDays >= requiredDays;
+            const targetReached = practiceDays >= requiredDays;
 
             // Summary
             const summaryHtml = `
                 <p><strong>Øvingsdager denne uken:</strong> ${practiceDays} av ${requiredDays} påkrevd</p>
-                <p class="mt-2 ${canSubmit ? 'text-emerald-500' : 'text-amber-500'}">
-                    ${canSubmit ? '✅ Du kan levere ukesleksen!' : `⏳ Øv ${requiredDays - practiceDays} dag(er) til for å kunne levere.`}
+                <p class="mt-2 ${targetReached ? 'text-emerald-500' : 'text-amber-500'}">
+                    ${targetReached ? 'Ukens mål for øvingsdager er nådd.' : `Øv ${requiredDays - practiceDays} dag(er) til for å nå ukens mål. Du kan vise oppsummeringen nå.`}
                 </p>
             `;
             document.getElementById('homeworkSummary').innerHTML = summaryHtml;
 
-            // Submit button state
             const submitBtn = document.getElementById('submitHomeworkBtn');
-            submitBtn.disabled = !canSubmit;
-            submitBtn.className = canSubmit
-                ? 'btn btn-primary btn-large'
-                : 'btn btn-secondary btn-large homework-submit-disabled';
+            submitBtn.disabled = false;
+            submitBtn.className = 'btn btn-primary btn-large';
             submitBtn.style.opacity = '1';
-
-            // Hint
-            const hintEl = document.getElementById('homeworkHint');
-            if (canSubmit) {
-                hintEl.textContent = 'Klikk for å lage en lokal rapport. Velg "Lagre som PDF" i utskriftsvinduet.';
-            } else {
-                hintEl.textContent = 'Øv litt flere dager, så kan du lage rapport.';
-            }
+            document.getElementById('homeworkHint').textContent = 'Oppsummeringen vises bare her. Ingen data er sendt. Velg utskrift/PDF hvis læreren ber om det.';
 
             renderActiveAssignmentPanel();
 
@@ -13112,7 +13129,7 @@
 
         function buildWeeklyReportData(days = getWeekDays()) {
             const weekStart = days[0].dateStr;
-            const weekEnd = days[6].dateStr;
+            const weekEnd = days[days.length - 1].dateStr;
             const weekHistory = practiceHistory.filter(e => e.date >= weekStart && e.date <= weekEnd);
             const totalWords = weekHistory.reduce((sum, e) => sum + e.words, 0);
             const totalCorrect = weekHistory.reduce((sum, e) => sum + e.correct, 0);
@@ -13122,12 +13139,13 @@
             const formatDate = dateStr => new Date(dateStr).toLocaleDateString('no-NO');
 
             return {
+                title: days.length === 1 ? 'Dagens oppsummering' : 'Ukens oppsummering',
                 generatedAt: new Date().toLocaleString('no-NO'),
                 studentName: studentName || 'Ikke satt',
                 weekRange: `${formatDate(weekStart)}-${formatDate(weekEnd)}`,
                 practiceDays: practiceDays.map(day => day.name),
                 practiceDayCount: practiceDays.length,
-                requiredDays: getHomeworkRequiredDays(),
+                requiredDays: days.length === 1 ? 1 : getHomeworkRequiredDays(),
                 totalWords,
                 totalCorrect,
                 totalSessions,
@@ -13163,7 +13181,7 @@
 
             return `
                 <div class="weekly-report">
-                    <h1>Ukesrapport i spansk</h1>
+                    <h1>${escapeHtml(report.title || 'Ukens oppsummering')}</h1><p>Ingen data er sendt. Dette er en lokal visning av øving på denne enheten.</p>
                     <p><strong>Elev:</strong> ${escapeHtml(report.studentName)}</p>
                     <p><strong>Uke:</strong> ${escapeHtml(report.weekRange)}</p>
                     <p><strong>Laget:</strong> ${escapeHtml(report.generatedAt)}</p>
@@ -13195,8 +13213,8 @@
                         </div>
                     </div>
 
-                    <h2>Øving denne uken</h2>
-                    <p>Dager utenom spansktimene: ${escapeHtml(report.practiceDays.join(', ') || 'Ingen')}</p>
+                    <h2>Registrert øving</h2>
+                    <p>Registrerte dager: ${escapeHtml(report.practiceDays.join(', ') || 'Ingen')}</p>
                     <table class="weekly-report-table">
                         <thead>
                             <tr>
@@ -13209,7 +13227,7 @@
                         <tbody>${entriesHtml}</tbody>
                     </table>
 
-                    <div class="weekly-report-actions">
+                    <p><strong>Snakk med læreren:</strong> Hva husker du nå? Hva trenger du hjelp til? Vis én oppgave eller forklar en regel med egne ord.</p><div class="weekly-report-actions">
                         <button class="btn btn-primary" onclick="window.print()">Skriv ut / lagre som PDF</button>
                         <button class="btn btn-secondary" onclick="closeWeeklyReport()">Tilbake</button>
                     </div>
@@ -13223,34 +13241,26 @@
             document.body.classList.remove('printing-weekly-report');
         }
 
-        function showWeeklyReportForPrint() {
+        function showWeeklyReportForPrint(period = 'week') {
             closeWeeklyReport();
-            const report = buildWeeklyReportData();
+            const report = buildWeeklyReportData(period === 'today' ? getWeekDays().filter(day => day.isToday) : getWeekDays());
             const root = document.createElement('div');
             root.id = 'weeklyReportPrintRoot';
             root.innerHTML = renderWeeklyReportHtml(report);
             document.body.appendChild(root);
             document.body.classList.add('printing-weekly-report');
-            window.print();
             return report;
         }
 
         function submitHomework() {
             const days = getWeekDays();
             const practiceDays = days.filter(d => d.practiced);
-            const requiredDays = getHomeworkRequiredDays();
-
-            if (practiceDays.length < requiredDays) {
-                alert(`Du må øve minst ${requiredDays} dag(er) denne uken før du kan levere!`);
-                return { submittedExternally: false, reason: 'not_enough_practice' };
-            }
-
             const summary = buildHomeworkSubmissionSummary(days, practiceDays);
 
             const report = showWeeklyReportForPrint();
             const hintEl = document.getElementById('homeworkHint');
             hintEl.textContent = `Lokal rapport: ${summary.daysStr}, ${summary.totalWords} oppgaver, ${summary.accuracy}% riktig. Ingen data er sendt.`;
-            showToast('Lokal rapport er klar. Velg "Lagre som PDF" i utskriftsvinduet.', 'success');
+            showToast('Oppsummeringen vises lokalt. Ingen data er sendt.', 'success');
             return { submittedExternally: false, summary, report };
         }
 
@@ -13740,6 +13750,15 @@
             );
         }
 
+        function getTodayActivityText() {
+            const entries = practiceHistory.filter(entry => entry.date === getLocalDateString() && entry.words > 0);
+            const dictations = loadDictationData().completed.filter(entry => entry.completedOn === getLocalDateString()).length;
+            const labels = { vocabulary: 'gloser', verbs: 'verb', grammar: 'grammatikk', 'mixed-quiz': 'blandet quiz', practice: 'øving' };
+            const activities = [...new Set(entries.map(entry => labels[entry.activity] || 'øving'))];
+            const words = entries.reduce((sum, entry) => sum + entry.words, 0);
+            return [words ? `I dag: ${words} besvarte oppgaver i ${activities.join(', ')}.` : '', dictations ? `${dictations} diktathistorie(r) forsøkt.` : ''].filter(Boolean).join(' ');
+        }
+
         function startRecommendedPractice() {
             const recommendation = getCurrentNextPracticeRecommendation();
             if (!recommendation || recommendation.kind === 'mixedQuiz') return startDailyQuizFromHome();
@@ -13757,9 +13776,8 @@
             const quizStats = loadQuizStats();
             const dailyQuizComplete = hasCompletedDailyQuizForDate(quizStats, getLocalDateString());
             const todayQuizCount = quizStats.dailyQuizCounts[getLocalDateString()] || 0;
-            const streakText = dailyQuizComplete
-                ? `${formatQuizStreakSummary(quizStats)}`
-                : 'Du har ikke øvd i dag ennå.';
+            const activityText = getTodayActivityText();
+            const streakText = activityText || (dailyQuizComplete ? formatQuizStreakSummary(quizStats) : 'Ingen registrert øving i dag ennå.');
             const badges = getMasteryBadges(loadLearningProgress());
             const recommendation = diagnosisComplete ? getCurrentNextPracticeRecommendation() : null;
             content.innerHTML = `
@@ -13769,7 +13787,7 @@
                         <h1 id="homeQuizTitle">${dailyQuizComplete ? 'Ta en ny quiz' : 'Dagens quiz'}</h1>
                         <p>${dailyQuizComplete ? `Bra jobbet. Du har tatt ${todayQuizCount} quiz i dag. Ta en til for mer variert øving.` : diagnosisComplete ? 'Ti korte spørsmål fra ordforråd, grammatikk og verb.' : 'Ta nivåtesten først, så lager vi en quiz som passer deg.'}</p>
                     </div>
-                    <button type="button" class="btn btn-primary btn-large" id="homeStartMixedQuizBtn" onclick="startDailyQuizFromHome()" ${diagnosisComplete ? '' : 'disabled'}>${dailyQuizComplete ? 'Ta en ny quiz' : diagnosisComplete ? 'Start dagens quiz' : 'Start nivåtest først'}</button>
+                    <button type="button" class="btn btn-primary btn-large" id="homeStartMixedQuizBtn" onclick="startDailyQuizFromHome()">${dailyQuizComplete ? 'Ta en ny quiz' : diagnosisComplete ? 'Start dagens quiz' : 'Start nivåtest'}</button>
                 </section>
                 ${recommendation ? `<section class="home-next-practice" id="homeNextPractice" aria-labelledby="homeNextPracticeTitle">
                     <div><span class="home-eyebrow">Anbefalt nå</span><h2 id="homeNextPracticeTitle">Neste anbefalte øving</h2><p><strong>${escapeHtml(recommendation.label)}</strong><br>${escapeHtml(recommendation.reason)}</p></div>
@@ -13777,13 +13795,14 @@
                 </section>` : ''}
                 <p class="home-streak" id="homeQuizStreak">${streakText}</p>
                 <p class="home-offline-hint" id="homeOfflineHint">Gloser og grammatikk fungerer uten nett når appen er lagret i nettleseren. Diktatlyd må lastes ned separat i Lytteøvelser. ${location.protocol === 'file:' ? 'Denne lokale filen bruker lyd fra den tilhørende lydmappen.' : ''}</p>
+                ${renderTeacherGuide()}
                 <p id="appVersionLabel">Versjon ${escapeHtml(document.querySelector('meta[name="app-build"]').content)} <button class="btn btn-outline btn-sm" onclick="checkForAppUpdate()">Se etter oppdateringer</button></p>
                 ${badges.length ? `<section class="home-badges" aria-labelledby="homeBadgesTitle"><h2 id="homeBadgesTitle">🏅 Merker du har fått</h2><div class="badge-list">${badges.map(badge => `<span class="mastery-badge">${escapeHtml(badge.label)}</span>`).join('')}</div></section>` : ''}
             `;
         }
 
         function startDailyQuizFromHome() {
-            if (loadDiagnosisState().status !== 'complete') return;
+            if (loadDiagnosisState().status !== 'complete') { startDiagnosisFromUi(); return; }
             showPage('vocab');
             startMixedQuizFromUi();
         }
@@ -21975,6 +21994,8 @@ Vil du øve på ${pronoun} likevel?`
             return String(str).replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
         }
 
+
+        document.getElementById('welcomeTeacherGuide').innerHTML = renderTeacherGuide();
 
         // Initialize app
         let appRegistration = null;

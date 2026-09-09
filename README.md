@@ -177,3 +177,9 @@ MIT License - bruk fritt i undervisning!
 ---
 
 **Spørsmål?** Åpne en [issue](https://github.com/TheVikLink/spansk-ungdomsskole/issues)
+
+### Første undervisningsøkt og dagens oppsummering
+
+Velkomstsiden og Start har «For læreren: første 20 minutter», med direkte vei til bestemte artikler (el/la/los/las). [PILOT.md](PILOT.md) beskriver mål, støtte, utfordring og avslutning. Hovedknappen starter nivåtesten hvis den ikke er gjennomført.
+
+Lekser → «Vis dagens oppsummering» fungerer fra første dag. Ukemålet sperrer ikke visning. Rapporten åpnes lokalt uten automatisk utskrift eller innsending; eleven velger selv utskrift/PDF ved behov. Start viser dagens besvarte gloser, verb, grammatikk og blandet quiz samt ferdig forsøkt diktat.

@@ -63,10 +63,10 @@ test.describe('privacy wording and local backup reminder', () => {
       };
     });
 
-    expect(styles.disabled).toBe(true);
+    expect(styles.disabled).toBe(false);
     expect(styles.buttonOpacity).toBe('1');
-    expect(styles.buttonColor).not.toBe('rgb(255, 255, 255)');
-    expect(styles.hintText).toContain('Øv litt flere dager');
+    expect(styles.buttonColor).not.toBe(styles.buttonBackground);
+    expect(styles.hintText).toContain('Ingen data er sendt');
     expect(styles.hintColor).not.toBe('rgb(255, 255, 255)');
     expect(styles.summaryColor).not.toBe('rgb(255, 255, 255)');
   });
