@@ -80,7 +80,7 @@ bd --no-daemon sync
 ```
 
 ## Verification Gates
-This repo currently has no package scripts or automated test suite. Use the strongest available checks for the touched area.
+This repo has package scripts, catalog checks, and Playwright regression tests. Run `npm run build:app` after app/CSS/service-worker edits and `npm run test:all` before delivery. The browser runner includes all local regression specs; three opt-in audit/deployment captures remain separate. Offline tests start their own local HTTP server.
 
 ### Content audit infrastructure
 

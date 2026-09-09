@@ -146,9 +146,9 @@ test.describe('local quiz streaks', () => {
     expect(result.rows).toBe(10);
     expect(result.topActions).toBe(true);
     expect(result.repeatButton).toContain('Ta en ny quiz');
-    expect(result.continuation).toContain('flere blandede quizer');
+    expect(result.continuation).toContain('Velg ett mål');
     expect(result.explanation).toContain('Kort forklaring');
-    expect(result.summary).toContain('1/5');
+    expect(result.summary).toContain('1 quiz i dag');
   });
 
   test('opens incorrect review rows and keeps correct rows collapsed', async ({ page }) => {
@@ -188,7 +188,7 @@ test.describe('local quiz streaks', () => {
       const progress = {
         schemaVersion: 1,
         skillProgress: {
-          'a1.verbs.regular_ar.present': { strength: 4, attempts: 3, correct: 3, lapses: 0 }
+          'a1.verbs.regular_ar.present': { strength: 4, attempts: 6, verbForms: ['hablar:0','hablar:1','hablar:2','trabajar:0','trabajar:1','trabajar:2'], correct: 3, lapses: 0 }
         },
         wordProgress: {}
       };

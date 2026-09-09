@@ -6,7 +6,7 @@
     <title>Spansk på 1-2-3 | Læringsapp</title>
     <meta name="theme-color" content="#dc2626">
     <link rel="manifest" href="./manifest.webmanifest">
-    <meta name="app-build" content="1fac2d95cfdecc00">
+    <meta name="app-build" content="3b7d7d7ef7b25a93">
     <link href="./dist/tailwind.css" rel="stylesheet">
 </head>
 <body>
@@ -296,7 +296,7 @@
         <div id="brainmapPage" class="panel hidden">
             <div class="page-header">
                 <h2>🧠 Brainmap</h2>
-                <p>Se fremgangen din og velg kategorier å øve på</p>
+                <p>Se svarene dine på øvde oppgaver og velg neste mål. Fargene er øvingsforslag, ikke en sikker vurdering av hele ferdigheten.</p>
             </div>
             <div id="brainmapContent"></div>
         </div>
@@ -958,7 +958,7 @@
                         <ul class="space-y-2 text-sm text-gray-700">
                             <li>• Velg fire kort som passer sammen.</li>
                             <li>• Finn fire grupper for å fullføre brettet.</li>
-                            <li>• Etter tre feil får du et norsk kategorihint.</li>
+                            <li>• Etter et forsøk kan du be om betydninger. Etter tre feil får du et kategorihint.</li>
                             <li>• Ingen tidtaking og ingen lagring av persondata.</li>
                         </ul>
                     </div>
@@ -966,6 +966,16 @@
                         <h3 class="mb-2 text-lg font-bold text-gray-900">Tips</h3>
                         <p class="text-sm">Se etter ord som naturlig hører sammen, for eksempel mat, farger eller familie.</p>
                     </div>
+                </div>
+                <div class="rounded-lg border border-gray-200 bg-white p-4 mt-4">
+                    <label for="lingoLinksPool">Velg ordutvalg</label>
+                    <select id="lingoLinksPool" onchange="renderLingoLinksThemeChoices()">
+                        <option value="starter">Starttemaer: familie, mat, farger og tall</option>
+                        <option value="practiced">Bare ord jeg har øvd på</option>
+                        <option value="themes">Lærervalg: velg fire temaer</option>
+                    </select>
+                    <div id="lingoLinksThemes" class="grid gap-2 mt-3 sm:grid-cols-2"></div>
+                    <p id="lingoLinksPoolStatus" role="status"></p>
                 </div>
                 <div class="button-group mt-6">
                     <button class="btn btn-primary btn-large" onclick="startLingoLinks()">Start Lingo Links</button>
@@ -985,6 +995,8 @@
                     </div>
                     <div id="lingoLinksBoard" class="grid grid-cols-2 gap-2 sm:grid-cols-4" role="group" aria-label="Spanske gloser"></div>
                     <div id="lingoLinksFeedback" class="mt-4 min-h-8 text-sm" aria-live="polite"></div>
+                    <button id="lingoLinksMeaningButton" class="btn btn-outline hidden" onclick="showLingoLinksMeanings()">Vis betydningen av valgte ord</button>
+                    <div id="lingoLinksMeaning" aria-live="polite"></div>
                     <div class="button-group mt-4">
                         <button class="btn btn-primary" id="lingoLinksCheckButton" onclick="submitLingoLinksGroup()">Sjekk gruppe</button>
                         <button class="btn btn-primary hidden" id="lingoLinksResultButton" onclick="completeLingoLinks()">Se resultat</button>
@@ -1009,6 +1021,7 @@
                             <div class="session-stat-label">hint brukt</div>
                         </div>
                     </div>
+                    <div id="lingoLinksRecall" class="text-left"></div>
                     <div class="button-group">
                         <button class="btn btn-primary btn-large" onclick="startLingoLinks()">Spill igjen</button>
                         <button class="btn btn-secondary" onclick="showGameSetup('lingo-links')">Se info</button>
@@ -1092,7 +1105,7 @@
                     "practice": { "topicId": "articles", "label": "Øv på el, la, los og las", "options": ["El", "La", "Los", "Las"] },
                     "transferExercises": [
                         { "id": "a0.articles.definite.transfer.bicicletas", "skillId": "a0.articles.definite_plural", "sentence": "___ bicicletas son nuevas", "no": "Syklene er nye.", "answer": "Las", "options": ["El", "La", "Los", "Las"], "hint": "bicicletas er feminin flertall" },
-                        { "id": "a0.articles.definite.transfer.ventanas", "skillId": "a0.articles.definite_plural", "sentence": "___ ventanas están abiertas", "no": "Vinduene er ved siden av døra.", "answer": "Las", "options": ["El", "La", "Los", "Las"], "hint": "ventanas ender på -a og er feminin flertall" },
+                        { "id": "a0.articles.definite.transfer.ventanas", "skillId": "a0.articles.definite_plural", "sentence": "___ ventanas están al lado de la puerta", "no": "Vinduene er ved siden av døra.", "answer": "Las", "options": ["El", "La", "Los", "Las"], "hint": "ventanas ender på -a og er feminin flertall" },
                         { "id": "a0.articles.definite.transfer.flores", "skillId": "a0.articles.definite_plural", "sentence": "___ flores son bonitas", "no": "Blomstene er fine.", "answer": "Las", "options": ["El", "La", "Los", "Las"], "hint": "flores er hunkjønn flertall" },
                         { "id": "a0.articles.definite.transfer.problema", "skillId": "a0.articles.definite_singular", "sentence": "___ problema es difícil", "no": "Problemet er vanskelig.", "answer": "El", "options": ["El", "La", "Los", "Las"], "hint": "problema ender på -ma, men er hankjønn" },
                         { "id": "a0.articles.definite.transfer.perros", "skillId": "a0.articles.definite_plural", "sentence": "___ perros son grandes", "no": "Hundene er store.", "answer": "Los", "options": ["El", "La", "Los", "Las"], "hint": "perros ender på -o og er maskulin flertall" }
@@ -11036,6 +11049,11 @@
             });
         }
 
+        function renderStudentFeedbackButton(context) {
+            const attribute = escapeHtml(JSON.stringify(context)).replaceAll('"', '&quot;');
+            return `<button type="button" class="btn btn-sm btn-outline mt-2" data-feedback-context="${attribute}" onclick="showFeedbackDialog(JSON.parse(this.dataset.feedbackContext))">🤔 Jeg mener svaret mitt er riktig</button>`;
+        }
+
         function loadStudentFeedback() {
             const data = readStoredJson(STUDENT_FEEDBACK_KEY, null);
             if (!data || data.schemaVersion !== STUDENT_FEEDBACK_SCHEMA_VERSION || !Array.isArray(data.entries)) {
@@ -11302,7 +11320,8 @@
                     correct: Math.max(0, Math.round(Number(source.correct) || 0)),
                     lapses: Math.max(0, Math.round(Number(source.lapses) || 0)),
                     dueAt: normalizeProgressDate(source.dueAt),
-                    lastSeenAt: normalizeProgressDate(source.lastSeenAt)
+                    lastSeenAt: normalizeProgressDate(source.lastSeenAt),
+                    ...(Array.isArray(source.verbForms) ? { verbForms: [...new Set(source.verbForms.filter(form => typeof form === 'string' && /^[a-záéíóúüñ]+:[0-5]$/.test(form)))].slice(0, 204) } : {})
                 };
             };
             const wordProgress = {};
@@ -11405,13 +11424,22 @@
             targetId,
             direction = null,
             resultKind = 'wrong',
+            verbForm = null,
             nowIso = new Date().toISOString()
         } = {}) {
             const next = normalizeLearningProgress(progress, nowIso);
             const id = String(targetId || '').trim();
             if (!id) throw new Error('Læringsmålet mangler ID');
             if (targetType === 'skill') {
-                next.skillProgress[id] = updateProgressCell(next.skillProgress[id], resultKind, nowIso);
+                const previous = next.skillProgress[id] || {};
+                next.skillProgress[id] = updateProgressCell(previous, resultKind, nowIso);
+                if (previous.verbForms || verbForm) {
+                    const forms = new Set(previous.verbForms || []);
+                    if (verbForm && getVerbPracticeSkillId({ verb: verbDatabase[verbForm.split(':')[0]], tense: 'presente' }) === id) {
+                        if (resultKind === 'correct') forms.add(verbForm); else forms.delete(verbForm);
+                    }
+                    next.skillProgress[id].verbForms = [...forms];
+                }
             } else if (targetType === 'word') {
                 if (!['noToEs', 'esToNo'].includes(direction)) throw new Error('Ordprogresjon mangler gyldig retning');
                 if (!next.wordProgress[id]) {
@@ -11720,11 +11748,11 @@
         function getMasteryBadges(progress = loadLearningProgress()) {
             return learningCatalog.skills.flatMap(skill => {
                 const cell = progress?.skillProgress?.[skill.id] || {};
-                if ((Number(cell.attempts) || 0) < 3 || (Number(cell.strength) || 0) < 4) return [];
+                if ((Number(cell.attempts) || 0) < 3 || (Number(cell.strength) || 0) < 4 || !hasVariedVerbEvidence(skill.id, cell)) return [];
                 return [{
                     id: `mastery:${skill.id}`,
                     skillId: skill.id,
-                    label: `Mestret: ${skill.label}`
+                    label: `Gode svar på øvde oppgaver: ${skill.label}`
                 }];
             });
         }
@@ -12215,7 +12243,7 @@
                 return String(a.questionId || a.targetId).localeCompare(String(b.questionId || b.targetId));
             })[0];
             const kind = selected.itemType === 'vocabulary' ? 'vocabulary' : selected.skillKind || 'skill';
-            const label = selected.prompt || selected.label || selected.targetId;
+            const label = learningCatalog.skills.find(skill => skill.id === selected.targetId)?.label || selected.label || selected.prompt || selected.targetId;
             const reason = rank(selected) === 0
                 ? 'Dette er forfalt og trenger repetisjon.'
                 : (Number(selected.attempts) || 0) === 0
@@ -12910,13 +12938,15 @@
             document.getElementById('homeworkWeek').innerHTML = weekHtml;
 
             // Count practice days this week.
-            const practiceDays = days.filter(d => d.practiced).length;
+            const allPracticeDays = days.filter(d => d.practiced).length;
+            const practiceDays = activeAssignment ? new Set(getActiveAssignmentEntries().filter(entry => days.some(day => day.dateStr === entry.date)).map(entry => entry.date)).size : allPracticeDays;
             const requiredDays = getHomeworkRequiredDays();
             const targetReached = practiceDays >= requiredDays;
 
             // Summary
             const summaryHtml = `
-                <p><strong>Øvingsdager denne uken:</strong> ${practiceDays} av ${requiredDays} påkrevd</p>
+                <p><strong>${activeAssignment ? 'Pakkeøving denne uken' : 'Øvingsdager denne uken'}:</strong> ${practiceDays} av ${requiredDays} påkrevd</p>
+                <p>All øving denne uken: ${allPracticeDays} dag(er). Kalenderen viser også øving utenfor pakken.</p>
                 <p class="mt-2 ${targetReached ? 'text-emerald-500' : 'text-amber-500'}">
                     ${targetReached ? 'Ukens mål for øvingsdager er nådd.' : `Øv ${requiredDays - practiceDays} dag(er) til for å nå ukens mål. Du kan vise oppsummeringen nå.`}
                 </p>
@@ -13034,14 +13064,16 @@
             startGrammarTopic(topicId, { assignmentId: activeAssignment.id });
         }
 
+        function getActiveAssignmentEntries() {
+            const importedDate = activeAssignment?.importedAt ? getLocalDateString(new Date(activeAssignment.importedAt)) : null;
+            return practiceHistory.filter(entry => activeAssignment?.id && entry.assignmentId === activeAssignment.id && entry.words > 0 && (!importedDate || entry.date >= importedDate) && entry.date <= getLocalDateString());
+        }
+
         function getAssignmentMinuteProgress() {
             const targets = normalizeAssignmentMinuteTargets(activeAssignment?.minuteTargets || {});
             const progress = { vocabulary: 0, verbs: 0, grammar: 0 };
 
-            practiceHistory.forEach(entry => {
-                if (!activeAssignment?.id || entry.assignmentId !== activeAssignment.id) return;
-                const importedDate = activeAssignment.importedAt ? getLocalDateString(new Date(activeAssignment.importedAt)) : null;
-                if ((importedDate && entry.date < importedDate) || entry.date > getLocalDateString()) return;
+            getActiveAssignmentEntries().forEach(entry => {
                 const activity = entry.activity;
                 if (activity && Object.prototype.hasOwnProperty.call(progress, activity)) {
                     progress[activity] += Number(entry.minutes) || 0;
@@ -13137,6 +13169,8 @@
             const accuracy = totalWords > 0 ? Math.round((totalCorrect / totalWords) * 100) : 0;
             const practiceDays = days.filter(d => d.practiced);
             const formatDate = dateStr => new Date(dateStr).toLocaleDateString('no-NO');
+            const assignmentEntries = getActiveAssignmentEntries().filter(entry => entry.date >= weekStart && entry.date <= weekEnd);
+            const dictations = loadDictationData().completed.filter(entry => entry.completedOn >= weekStart && entry.completedOn <= weekEnd).length;
 
             return {
                 title: days.length === 1 ? 'Dagens oppsummering' : 'Ukens oppsummering',
@@ -13151,8 +13185,11 @@
                 totalSessions,
                 accuracy,
                 entries: weekHistory,
+                dictations,
                 activeAssignment: activeAssignment ? {
                     title: activeAssignment.assignmentTitle,
+                    practiceDayCount: new Set(assignmentEntries.map(entry => entry.date)).size,
+                    totalWords: assignmentEntries.reduce((sum,entry) => sum + entry.words, 0),
                     teacher: activeAssignment.teacherDisplayName || 'Ikke satt',
                     dueDate: activeAssignment.dueDate || 'Ikke satt',
                     instructions: activeAssignment.instructions || '',
@@ -13177,7 +13214,7 @@
                         </tr>
                     `;
                 }).join('')
-                : '<tr><td colspan="4">Ingen øving registrert denne uken.</td></tr>';
+                : '<tr><td colspan="4">Ingen gloser, verb, grammatikk eller quizsvar registrert i perioden.</td></tr>';
 
             return `
                 <div class="weekly-report">
@@ -13190,6 +13227,7 @@
                         <h2>Leksepakke</h2>
                         <p><strong>${escapeHtml(assignment.title)}</strong></p>
                         <p>Lærer: ${escapeHtml(assignment.teacher)}</p>
+                        <p>Registrert i denne pakken i perioden: ${assignment.totalWords} besvarte oppgaver på ${assignment.practiceDayCount} dag(er). Resten av oppsummeringen viser all øving, også utenfor pakken.</p>
                         <p>Frist: ${escapeHtml(assignment.dueDate)}</p>
                         ${assignment.instructions ? `<p>${escapeHtml(assignment.instructions)}</p>` : ''}
                     ` : '<h2>Leksepakke</h2><p>Ingen leksepakke er hentet.</p>'}
@@ -13213,7 +13251,8 @@
                         </div>
                     </div>
 
-                    <h2>Registrert øving</h2>
+                    <h2>All registrert øving</h2>
+                    ${report.dictations ? `<p>Diktat: ${report.dictations} historie(r) forsøkt med svar i alle deler. Dette er aktivitetsregistrering, ikke antall riktige oppgaver.</p>` : ''}
                     <p>Registrerte dager: ${escapeHtml(report.practiceDays.join(', ') || 'Ingen')}</p>
                     <table class="weekly-report-table">
                         <thead>
@@ -17208,7 +17247,7 @@
                             : `✗ Feil — riktig svar: <strong>${escapeHtml(formatMixedQuizCorrectAnswers(item))}</strong>`;
                 feedback.insertAdjacentHTML('beforeend', `<div class="button-group"><button type="button" data-feedback-next class="btn btn-primary btn-sm mt-4" onclick="advanceMixedQuizQuestion()">${mixedQuizState.answered >= mixedQuizState.quiz.items.length ? 'Se resultat' : 'Neste'}</button></div>`);
                 if (result.resultKind !== 'correct') {
-                    feedback.insertAdjacentHTML('beforeend', `<button type="button" class="btn btn-sm btn-outline mt-2" onclick="showFeedbackDialog({itemRef:'quiz:${escapeHtml(item.questionId)}',source:'quiz',prompt:'${escapeHtml(item.prompt).replace(/'/g, "\\'")}',studentAnswer:'${escapeHtml(String(answer || '')).replace(/'/g, "\\'")}',expectedAnswer:'${escapeHtml(formatMixedQuizCorrectAnswers(item)).replace(/'/g, "\\'")}'})">🤔 Jeg mener svaret mitt er riktig</button>`);
+                    feedback.insertAdjacentHTML('beforeend', renderStudentFeedbackButton({itemRef:`quiz:${item.questionId}`,source:'quiz',prompt:item.prompt,studentAnswer:String(answer || ''),expectedAnswer:formatMixedQuizCorrectAnswers(item)}));
                 }
             }
             document.querySelectorAll('#mixedQuizQuestion input, #mixedQuizQuestion button').forEach(control => {
@@ -17256,8 +17295,9 @@
                         <h2>${mixedQuizState.answered === total ? 'Quiz ferdig' : 'Quiz avsluttet'}</h2>
                         <p>${mixedQuizState.answered} av ${total} oppgaver besvart. ${mixedQuizState.answered ? `${mixedQuizState.correct} riktige (${accuracy}%).` : 'Ingen svar ennå.'}</p>
                         <p id="mixedQuizStreakSummary">${formatQuizStreakSummary(quizStats)}</p>
-                        <p class="mixed-quiz-continuation">Ta gjerne flere blandede quizer for å øve på ordforråd, grammatikk og verb i samme økt.</p>
+                        <p class="mixed-quiz-continuation">Velg ett mål nedenfor. Forklar regelen etter et feil svar, eller prøv nye former hvis oppgavene gikk lett.</p>
                         ${newlyMastered.length ? `<div class="quiz-badge-awards"><strong>🏅 Nye merker</strong><p>${newlyMastered.map(badge => escapeHtml(badge.label)).join(' · ')}</p></div>` : ''}
+                        ${renderFocusedNextStep(results)}
                         <div class="mixed-quiz-result-actions-top" aria-label="Neste steg">
                             <button type="button" class="btn btn-primary" onclick="startMixedQuizFromUi()">▶️ Ta en ny quiz</button>
                             <button type="button" class="btn btn-secondary" onclick="showPage('brainmap')">🧠 Se Brainmap</button>
@@ -17290,8 +17330,7 @@
 
         function formatQuizStreakSummary(quizStats = loadQuizStats()) {
             const todayCount = quizStats.dailyQuizCounts[getLocalDateString()] || 0;
-            const fiveProgress = Math.min(todayCount, 5);
-            return `🔥 ${quizStats.currentStreak} dag${quizStats.currentStreak === 1 ? '' : 'er'} på rad · ${todayCount} quiz i dag · ${fiveProgress}/5 mot dagens merke`;
+            return `🔥 ${quizStats.currentStreak} dag${quizStats.currentStreak === 1 ? '' : 'er'} på rad · ${todayCount} quiz i dag. Dette viser aktivitet, ikke mestring av et helt tema.`;
         }
 
 
@@ -18148,7 +18187,7 @@ Vil du øve på ${pronoun} likevel?`
                 <div class="grammar-feedback ${evaluation.resultKind === 'accent_or_case_variant' ? 'near-miss' : 'incorrect'}">
                     ${evaluation.resultKind === 'accent_or_case_variant' ? 'Nesten riktig — sjekk aksenten.' : '✗ Feil.'} Godkjente svar: <strong>${getVocabularyAcceptedAnswers(currentCard.card, currentCard.direction, expected).map(item => escapeHtml(item.value)).join(' / ')}</strong>
                 </div>
-                <button type="button" class="btn btn-sm btn-outline mt-2" onclick="showFeedbackDialog({itemRef:'vocab:${escapeHtml(currentCard.card.no)}:${escapeHtml(currentCard.card.es)}:${currentCard.direction}',source:'gloser',prompt:'${escapeHtml(getVocabPromptText(currentCard)).replace(/'/g, "\\'")}',studentAnswer:'${escapeHtml(input.value).replace(/'/g, "\\'")}',expectedAnswer:'${escapeHtml(expected).replace(/'/g, "\\'")}'})">🤔 Jeg mener svaret mitt er riktig</button>
+                ${renderStudentFeedbackButton({itemRef:`vocab:${currentCard.card.no}:${currentCard.card.es}:${currentCard.direction}`,source:'gloser',prompt:getVocabPromptText(currentCard),studentAnswer:input.value,expectedAnswer:expected})}
             `;
             document.getElementById('buttonArea').innerHTML = `
                 <div class="button-group">
@@ -18292,8 +18331,8 @@ Vil du øve på ${pronoun} likevel?`
             if (attempts === 0) return { key: 'gray', label: 'Ikke startet', strength, attempts };
             if (strength < 2) return { key: 'red', label: 'Trenger øving', strength, attempts };
             if (strength < 4) return { key: 'yellow', label: 'På vei', strength, attempts };
-            if (strength < 5) return { key: 'green', label: 'God kontroll', strength, attempts };
-            return { key: 'gold', label: 'Svært sterk', strength, attempts };
+            if (strength < 5) return { key: 'green', label: 'Gode svar på øvde oppgaver', strength, attempts };
+            return { key: 'gold', label: 'Sterke svar på øvde oppgaver', strength, attempts };
         }
 
         function getBrainmapProgressCell(progress, targetId, direction = null) {
@@ -18397,6 +18436,7 @@ Vil du øve på ${pronoun} likevel?`
         }
 
         function startBrainmapSkillPractice(skillId) {
+            if (startFocusedVerbPractice(skillId)) return;
             const matching = buildMixedQuizCandidates({ cards, skillsCatalog: learningCatalog, learningProgress: loadLearningProgress(), diagnosis: loadDiagnosisState() })
                 .filter(candidate => candidate.targetId === skillId)
                 .slice(0, 3);
@@ -18429,6 +18469,7 @@ Vil du øve på ${pronoun} likevel?`
                 return;
             }
             if (descriptor.kind === 'verbs') {
+                if (startFocusedVerbPractice(skillId)) return;
                 abandonActiveSession();
                 selectedVerbFocuses = new Set([descriptor.focus]);
                 showPage('verbs');
@@ -18438,7 +18479,7 @@ Vil du øve på ${pronoun} likevel?`
         function buildBrainmapModel(progress = loadLearningProgress()) {
             const skills = learningCatalog.skills.map(skill => {
                 const cell = getBrainmapProgressCell(progress, skill.id);
-                const status = getBrainmapStatus(cell);
+                const status = getBrainmapStatus(hasVariedVerbEvidence(skill.id, cell) ? cell : { ...cell, strength: Math.min(Number(cell.strength) || 0, 3) });
                 return { ...skill, nodeType: 'skill', strength: status.strength, attempts: status.attempts, status: status.key, statusLabel: status.label };
             });
 
@@ -18773,6 +18814,67 @@ Vil du øve på ${pronoun} likevel?`
             document.getElementById('tense' + capitalizeFirst(tense)).classList.add('active');
         }
 
+        let verbPracticeChallenge = false;
+        let verbPracticeGuidance = '';
+        const focusedVerbFormsSeen = new Map(); // Only this page session; no raw answers or identifiers.
+        function getPracticePronoun(index) { return ['yo', 'tú', 'ella', 'nosotros', 'vosotros', 'ellos'][index]; }
+
+        function getVerbPracticeSkillId(exercise) {
+            if (exercise?.tense !== 'presente' || !exercise.verb) return null;
+            const verb = exercise.verb;
+            const regular = /^regular -(ar|er|ir)$/.exec(verb.type);
+            if (regular) return `a1.verbs.regular_${regular[1]}.present`;
+            if (['ser', 'estar', 'ir', 'tener', 'hacer'].includes(verb.infinitive)) return `a1.verbs.${verb.infinitive}.present`;
+            // Isolated modal forms do not demonstrate use with another infinitive.
+            return null;
+        }
+
+        function hasVariedVerbEvidence(skillId, cell = {}) {
+            if (!/^a1\.verbs\.(regular_ar|regular_er|regular_ir|ser|estar|ir|tener|hacer)\.present$/.test(skillId)) return true;
+            const forms = (cell.verbForms || []).filter(form => {
+                const [key, person] = form.split(':');
+                return /^[0-5]$/.test(person) && getVerbPracticeSkillId({verb:verbDatabase[key],tense:'presente'}) === skillId;
+            });
+            const verbs = new Set(forms.map(form => form.split(':')[0]));
+            const people = new Set(forms.map(form => form.split(':')[1]));
+            return forms.length >= (skillId.includes('regular_') ? 6 : 3) && people.size >= 3 && verbs.size >= (skillId.includes('regular_') ? 2 : 1);
+        }
+
+        function startFocusedVerbPractice(skillId) {
+            const verbs = Object.values(verbDatabase).filter(verb => getVerbPracticeSkillId({verb,tense:'presente'}) === skillId);
+            if (!verbs.length) return false;
+            const cell = loadLearningProgress().skillProgress[skillId] || {};
+            const challenge = (Number(cell.strength) || 0) >= 4;
+            const people = challenge ? [0, 1, 2, 3, 4, 5] : [0, 1, 2, 3, 5];
+            const seen = focusedVerbFormsSeen.get(skillId) || new Set();
+            // Interleave persons and verbs; exhaust new forms before reusing any.
+            const pool = people.flatMap(pronounIndex => verbs.map(verb => ({verb,pronounIndex,tense:'presente'})));
+            const unseen = pool.filter(exercise => !seen.has(`${exercise.verb.infinitive}:${exercise.pronounIndex}`));
+            const exercises = [...unseen, ...pool.filter(exercise => seen.has(`${exercise.verb.infinitive}:${exercise.pronounIndex}`))].slice(0, 5);
+            exercises.forEach(exercise => seen.add(`${exercise.verb.infinitive}:${exercise.pronounIndex}`));
+            focusedVerbFormsSeen.set(skillId, seen);
+            const regular = verbs[0].type.startsWith('regular');
+            const guidance = challenge
+                ? 'Skriv personordet og verbformen i presens. Ved él/ella skriver du ella. Bruk deretter ett av verbene i en ny setning til læreren.'
+                : regular ? 'Finn stammen: ta bort -ar, -er eller -ir. Se personordet og velg presensendingen. Skriv bare verbformen. Etter et forsøk kan du sammenligne med bøyingen.'
+                : 'Se personordet. Skriv bare verbformen i presens. Etter et forsøk kan du sammenligne med bøyingen og prøve neste person.';
+            abandonActiveSession();
+            showPage('verbs');
+            selectedVerbs = new Set(verbs.map(verb => verb.infinitive));
+            selectedTense = 'presente';
+            startVerbSession({exercises,challenge,guidance});
+            return true;
+        }
+
+        function renderFocusedNextStep(results) {
+            const targets = results.filter(result => result.skillId);
+            const target = targets.find(result => !result.correct) || targets[0];
+            if (!target) return '<p>Velg to ord fra denne quizen. Skjul fasiten og skriv dem på spansk før du sammenligner.</p>';
+            const skill = learningCatalog.skills.find(item => item.id === target.skillId);
+            if (!skill) return '';
+            return `<div class="grammar-feedback"><strong>Neste mål: ${escapeHtml(skill.label)}</strong><p>${target.correct ? 'Prøv nye oppgaver og forklar ett eksempel med egne ord.' : 'Se forklaringen under det feilaktige svaret. Prøv deretter en kort økt på samme mål.'}</p><button class="btn btn-primary" onclick="startBrainmapSkillPractice('${skill.id}')">Øv på dette målet</button></div>`;
+        }
+
         function startVerbSession(options = {}) {
             if (selectedVerbs.size === 0) {
                 alert('Velg minst ett verb!');
@@ -18795,7 +18897,9 @@ Vil du øve på ${pronoun} likevel?`
             });
 
             // Shuffle and limit
-            verbSessionExercises = shuffleArray(verbSessionExercises).slice(0, 20);
+            verbSessionExercises = options.exercises || shuffleArray(verbSessionExercises).slice(0, 20);
+            verbPracticeChallenge = options.challenge || false;
+            verbPracticeGuidance = options.guidance || '';
             verbCurrentIndex = 0;
             verbStats = { correct: 0, answered: 0, total: verbSessionExercises.length };
             beginPracticeSession('verbs', options.assignmentId);
@@ -18834,9 +18938,12 @@ Vil du øve på ${pronoun} likevel?`
                 expectedAnswer = haberPresente[pronounIndex] + ' ' + verb.participio;
             }
 
+            if (verbPracticeChallenge) expectedAnswer = `${getPracticePronoun(pronounIndex)} ${expectedAnswer}`;
+
             document.getElementById('verbExerciseArea').innerHTML = `
                 <div class="conjugation-exercise">
                     ${renderAssignmentSessionGoal('verbs', 'verb')}
+                    ${verbPracticeGuidance ? `<p id="verbPracticeGoal" class="grammar-feedback">${escapeHtml(verbPracticeGuidance)}</p>` : ''}
                     <div class="conjugation-verb">${verb.infinitive}</div>
                     <div class="conjugation-translation">${verb.translation}</div>
                     <div class="conjugation-tense">${tenseDisplay}</div>
@@ -18895,12 +19002,15 @@ Vil du øve på ${pronoun} likevel?`
                 input.classList.remove('correct');
 
                 feedback.insertAdjacentHTML('beforeend', '<div class="button-group"><button data-feedback-next class="btn btn-primary btn-sm mt-4" onclick="advanceVerbExercise()">Neste</button></div>');
-                feedback.insertAdjacentHTML('beforeend', `<button type="button" class="btn btn-sm btn-outline mt-2" onclick="showFeedbackDialog({itemRef:'verb:${escapeHtml(verbSessionExercises[verbCurrentIndex].verb.infinitive)}:${verbSessionExercises[verbCurrentIndex].tense}:${verbSessionExercises[verbCurrentIndex].pronounIndex}',source:'verb',prompt:'${escapeHtml(verbSessionExercises[verbCurrentIndex].verb.infinitive + ' ' + verbSessionExercises[verbCurrentIndex].tense).replace(/'/g, "\\'")}',studentAnswer:'${escapeHtml(input.value).replace(/'/g, "\\'")}',expectedAnswer:'${escapeHtml(expected).replace(/'/g, "\\'")}'})">🤔 Jeg mener svaret mitt er riktig</button>`);
+                feedback.insertAdjacentHTML('beforeend', renderStudentFeedbackButton({itemRef:`verb:${verbSessionExercises[verbCurrentIndex].verb.infinitive}:${verbSessionExercises[verbCurrentIndex].tense}:${verbSessionExercises[verbCurrentIndex].pronounIndex}`,source:'verb',prompt:verbSessionExercises[verbCurrentIndex].verb.infinitive+' '+verbSessionExercises[verbCurrentIndex].tense,studentAnswer:input.value,expectedAnswer:expected}));
 
                 // Render after adding controls so the feedback node is not
                 // replaced before its buttons are attached.
                 showConjugationTable();
             }
+            const exercise = verbSessionExercises[verbCurrentIndex];
+            const skillId = getVerbPracticeSkillId(exercise);
+            if (skillId) saveLearningProgress(updateLearningProgress({ targetType: 'skill', targetId: skillId, resultKind: evaluation.resultKind, verbForm: `${exercise.verb.infinitive}:${exercise.pronounIndex}` }));
             checkpointPracticeSession('verbs', verbStats.answered, verbStats.correct, verbSessionStartTime);
         }
 
@@ -20525,7 +20635,7 @@ Vil du øve på ${pronoun} likevel?`
                         ✗ Feil! Riktig svar er: <strong>${exercise.answer}</strong>
                         <div class="explanation">${escapeHtml(exercise.hint || exercise.explanation || getGrammarMistakeExplanation(currentGrammarTopic.id))}</div>
                         <div class="explanation"><strong>Hvorfor?</strong> ${getGrammarMistakeExplanation(currentGrammarTopic.id).replace(/^Hvorfor\?\s*/, '')}</div>
-                        <button type="button" class="btn btn-sm btn-outline mt-2" onclick="showFeedbackDialog({itemRef:'grammar:${currentGrammarTopic.id}:${grammarCurrentIndex}',source:'grammatikk',prompt:'${escapeHtml(exercise.sentence).replace(/'/g, "\\'")}',studentAnswer:'${escapeHtml(answer).replace(/'/g, "\\'")}',expectedAnswer:'${escapeHtml(exercise.answer).replace(/'/g, "\\'")}'})">🤔 Jeg mener svaret mitt er riktig</button>
+                        ${renderStudentFeedbackButton({itemRef:`grammar:${currentGrammarTopic.id}:${grammarCurrentIndex}`,source:'grammatikk',prompt:exercise.sentence,studentAnswer:answer,expectedAnswer:exercise.answer})}
                         <button data-feedback-next class="btn btn-primary btn-sm mt-4" onclick="advanceGrammarExercise()" id="grammarNextBtn" aria-keyshortcuts="Enter">Neste</button>
                     </div>
                 `;
@@ -20843,7 +20953,26 @@ Vil du øve på ${pronoun} likevel?`
                     ? 'Velg ordbrikker før du sjekker setningen.'
                     : 'Ikke helt. Prøv å flytte ordene til en mer spansk rekkefølge.';
                 feedback.className = 'sentence-puzzle-feedback wrong';
+                if (spSelectedWords.length) feedback.insertAdjacentHTML('beforeend', '<div><button class="btn btn-outline" onclick="showSentencePuzzleHint()">Forklar en plassering</button><p id="spPlacementHint"></p></div>');
             }
+        }
+
+        function showSentencePuzzleHint() {
+            const root = document.getElementById('spPlacementHint');
+            if (!root || !spCurrentPuzzle) return;
+            const words = spCurrentPuzzle.words;
+            const mismatch = words.findIndex((word,index) => spSelectedWords[index]?.word !== word);
+            const first = words[0];
+            const explanation = first === 'Me' ? (words[1] === 'llamo' ? 'Me llamo betyr «jeg heter». Me står foran llamo.' : 'Me gusta betyr «jeg liker» når det som likes er entall eller en aktivitet. Me står foran gusta.')
+                : ['El', 'La'].includes(first) ? `${first} er artikkelen til ${words[1]}. Sett artikkelen rett foran substantivet.`
+                : ['Ella', 'Ellos'].includes(first) ? `${first} viser hvem som gjør noe. I denne modellsetningen står personordet foran verbet ${words[1]}.`
+                : first === 'Tengo' ? 'Tengo betyr «jeg har». Antallet står foran substantivet: dos hermanos.'
+                : first === '¿Cómo' ? 'Cómo spør etter hvordan: ¿Cómo te llamas? betyr «Hva heter du?». Te står foran llamas.'
+                : first === '¿Dónde' ? 'Dónde betyr «hvor». Spørreordet kommer først i denne setningen.'
+                : first === '¿Cuántos' ? 'Cuántos betyr «hvor mange». Det står rett foran hermanos, som er det vi teller.'
+                : first === '¿Te' ? 'Te gusta brukes for å spørre om du liker én ting. Te står foran gusta.'
+                : `Begynn med «${first}». Verbformen forteller hvem som gjør handlingen. Sammenlign med den norske setningen.`;
+            root.textContent = `${explanation} I denne modellsetningen er ord ${mismatch + 1} «${words[Math.max(0,mismatch)]}». Flytt én brikke og prøv igjen.`;
         }
 
         function resetSentencePuzzleRound() {
@@ -20890,6 +21019,51 @@ Vil du øve på ${pronoun} likevel?`
             complete: false
         };
 
+        function renderLingoLinksThemeChoices() {
+            const root = document.getElementById('lingoLinksThemes');
+            root.innerHTML = '';
+            if (document.getElementById('lingoLinksPool').value !== 'themes') return;
+            const categories = [...new Set(cards.map(card => card.category))].filter(category => cards.filter(card => card.category === category).length >= 4).sort((a,b) => a.localeCompare(b, 'nb'));
+            categories.forEach(category => {
+                const label = document.createElement('label');
+                const input = document.createElement('input');
+                input.type = 'checkbox'; input.value = category; input.dataset.llTheme = '';
+                input.checked = ['familie', 'mat', 'farger', 'tall'].includes(category);
+                label.append(input, document.createTextNode(' ' + getLingoLinksCategoryLabel(category)));
+                root.append(label);
+            });
+        }
+
+        function showLingoLinksMeanings() {
+            if (!lingoLinksState.lastAttemptIds?.length || lingoLinksState.complete) return;
+            lingoLinksState.meaningHints = (lingoLinksState.meaningHints || 0) + 1;
+            document.getElementById('lingoLinksMeaning').innerHTML = lingoLinksState.lastAttemptIds.map(id => {
+                const card = lingoLinksState.cards.find(card => card.id === id);
+                return `<p>${escapeHtml(card.es)} → ${escapeHtml(card.no || card.norsk || 'Betydning mangler i denne ordlisten.')}</p>`;
+            }).join('');
+        }
+
+        function renderLingoLinksRecall() {
+            const root = document.getElementById('lingoLinksRecall');
+            lingoLinksState.recallCards = lingoLinksState.groups.slice(0, 2).map(group => lingoLinksState.cards.find(card => card.id === group.cards[0])).filter(card => card && (card.no || card.norsk));
+            if (!lingoLinksState.recallCards.length) { root.textContent = 'Forklar to av ordene til en medelev.'; return; }
+            root.innerHTML = `<h3>Hva husker du uten brettet?</h3><p>Skriv de to ordene på spansk før du sjekker. Dette er en etteroppgave, ikke en mestringstest.</p>${lingoLinksState.recallCards.map((card,index) => `<label class="block mt-3" for="llRecall${index}">${escapeHtml(card.no || card.norsk)}</label><input class="conjugation-input" id="llRecall${index}" autocomplete="off">`).join('')}<button class="btn btn-primary mt-3" onclick="checkLingoLinksRecall()">Sjekk de to ordene</button><p id="lingoLinksRecallFeedback" aria-live="polite"></p>`;
+            root.querySelectorAll('input').forEach(setupAccentInput);
+        }
+
+        function checkLingoLinksRecall() {
+            let correct = 0;
+            const details = lingoLinksState.recallCards.map((card,index) => {
+                const answer = document.getElementById(`llRecall${index}`).value;
+                const accepted = getVocabularyAcceptedAnswers(card, 'no-es', card.es);
+                const evaluations = accepted.map(value => evaluateTypedAnswer(answer, typeof value === 'string' ? value : value.value));
+                const result = evaluations.find(result => result.resultKind === 'correct') || evaluations[0];
+                if (result.resultKind === 'correct') correct++;
+                return `${escapeHtml(card.no || card.norsk)}: ${result.resultKind === 'correct' ? 'riktig' : `sammenlign med ${escapeHtml(card.es)}`}`;
+            });
+            document.getElementById('lingoLinksRecallFeedback').innerHTML = `${correct} av ${details.length} riktige. ${details.join(' · ')}`;
+        }
+
         function createLingoLinksRound(sourceCards = cards) {
             const grouped = new Map();
             sourceCards
@@ -20921,12 +21095,20 @@ Vil du øve på ${pronoun} likevel?`
 
         function startLingoLinks() {
             loadData();
-            const round = createLingoLinksRound(cards);
+            const pool = document.getElementById('lingoLinksPool').value;
+            const themes = pool === 'themes' ? [...document.querySelectorAll('[data-ll-theme]:checked')].map(input => input.value) : ['familie', 'mat', 'farger', 'tall'];
+            const status = document.getElementById('lingoLinksPoolStatus');
+            if (pool === 'themes' && themes.length !== 4) { status.textContent = 'Velg nøyaktig fire temaer.'; return; }
+            const source = pool === 'practiced' ? cards.filter(card => card.reviews > 0 || card.noEs?.repetitions > 0 || card.esNo?.repetitions > 0) : cards.filter(card => themes.includes(card.category));
+            const round = createLingoLinksRound(source);
             if (!round) {
-                showToast('Det finnes ikke nok egnede gloser til et Lingo Links-brett ennå.', 'error');
+                status.textContent = 'Du trenger fire temaer med minst fire ord i hvert. Øv på flere ord, eller velg Starttemaer. Ingen uøvde ord er lagt til automatisk.';
                 return;
             }
             lingoLinksState = round;
+            status.textContent = '';
+            document.getElementById('lingoLinksMeaning').textContent = '';
+            document.getElementById('lingoLinksRecall').textContent = '';
             document.getElementById('lingoLinksSetup').classList.add('hidden');
             document.getElementById('lingoLinksComplete').classList.add('hidden');
             document.getElementById('lingoLinksGame').classList.remove('hidden');
@@ -20944,12 +21126,13 @@ Vil du øve på ${pronoun} likevel?`
             const board = document.getElementById('lingoLinksBoard');
             if (!board) return;
             const solved = new Set(lingoLinksState.solvedCategories);
-            board.innerHTML = lingoLinksState.cards.map(card => {
+            board.innerHTML = lingoLinksState.cards.map((card, cardIndex) => {
                 const group = lingoLinksState.groups.find(item => item.cards.includes(card.id));
                 const isSolved = group && solved.has(group.category);
                 const isSelected = lingoLinksState.selectedIds.includes(card.id);
-                return `<button type="button" class="rounded-lg border-2 p-3 text-center text-sm font-semibold transition ${isSolved ? 'border-green-300 bg-green-50 text-green-800' : isSelected ? 'border-indigo-500 bg-indigo-50 text-indigo-900' : 'border-gray-200 bg-white text-gray-800 hover:border-indigo-300'}" data-ll-card data-ll-card-id="${escapeHtml(String(card.id))}" aria-pressed="${isSelected}" ${isSolved ? 'disabled' : ''} onclick="toggleLingoLinksCard(${JSON.stringify(card.id).replace(/</g, '\\u003c')})">${escapeHtml(card.es)}${isSolved ? `<span class="mt-1 block text-xs font-normal">${escapeHtml(getLingoLinksCategoryLabel(group.category))}</span>` : ''}</button>`;
+                return `<button type="button" class="rounded-lg border-2 p-3 text-center text-sm font-semibold transition ${isSolved ? 'border-green-300 bg-green-50 text-green-800' : isSelected ? 'border-indigo-500 bg-indigo-50 text-indigo-900' : 'border-gray-200 bg-white text-gray-800 hover:border-indigo-300'}" data-ll-card data-ll-card-id="${escapeHtml(String(card.id)).replaceAll('"', '&quot;')}" aria-pressed="${isSelected}" ${isSolved ? 'disabled' : ''} onclick="toggleLingoLinksCard(lingoLinksState.cards[${cardIndex}].id)">${escapeHtml(card.es)}${isSolved ? `<span class="mt-1 block text-xs font-normal">${escapeHtml(getLingoLinksCategoryLabel(group.category))}</span>` : ''}</button>`;
             }).join('');
+            document.getElementById('lingoLinksMeaningButton').classList.toggle('hidden', !lingoLinksState.lastAttemptIds?.length || lingoLinksState.complete);
             const solvedCount = lingoLinksState.solvedCategories.length;
             document.getElementById('lingoLinksProgress').textContent = `${solvedCount} av 4 grupper`;
             document.getElementById('lingoLinksMistakes').textContent = `Feil: ${lingoLinksState.mistakes}`;
@@ -20987,6 +21170,8 @@ Vil du øve på ${pronoun} likevel?`
                 return;
             }
 
+            lingoLinksState.lastAttemptIds = [...lingoLinksState.selectedIds];
+            document.getElementById('lingoLinksMeaning').textContent = '';
             const selected = new Set(lingoLinksState.selectedIds);
             const group = lingoLinksState.groups.find(item =>
                 !lingoLinksState.solvedCategories.includes(item.category)
@@ -21021,9 +21206,10 @@ Vil du øve på ${pronoun} likevel?`
 
         function completeLingoLinks() {
             document.getElementById('lingoLinksFinalMistakes').textContent = lingoLinksState.mistakes;
-            document.getElementById('lingoLinksFinalHints').textContent = lingoLinksState.hintShown ? '1' : '0';
+            document.getElementById('lingoLinksFinalHints').textContent = (lingoLinksState.hintShown ? 1 : 0) + (lingoLinksState.meaningHints || 0);
             document.getElementById('lingoLinksGame').classList.add('hidden');
             document.getElementById('lingoLinksComplete').classList.remove('hidden');
+            renderLingoLinksRecall();
         }
 
         // ============================================
@@ -21103,6 +21289,7 @@ Vil du øve på ${pronoun} likevel?`
                 document.getElementById('sentencePuzzleGame').classList.add('hidden');
                 document.getElementById('sentencePuzzleComplete').classList.add('hidden');
             } else if (game === 'lingo-links') {
+                renderLingoLinksThemeChoices();
                 document.getElementById('gamesMenu').classList.add('hidden');
                 document.getElementById('lingoLinksSetup').classList.remove('hidden');
                 document.getElementById('lingoLinksGame').classList.add('hidden');

@@ -23,7 +23,8 @@ test.describe('skolestart pilot audit', () => {
 
     await expect(page.locator('#homePage')).toBeVisible();
     await expect(page.locator('#diagnosisPanel')).toContainText('Finn nivået mitt');
-    await expect(page.getByRole('button', { name: 'Start nivåtest først' })).toBeDisabled();
+    await expect(page.locator('#homeStartMixedQuizBtn')).toHaveText('Start nivåtest');
+    await expect(page.locator('#homeStartMixedQuizBtn')).toBeEnabled();
   });
 
   test('imported progress restores the pupil without requiring diagnosis again', async ({ page }) => {
@@ -43,7 +44,7 @@ test.describe('skolestart pilot audit', () => {
     });
 
     await expect(page.locator('#homePage')).toBeVisible();
-    await expect(page.locator('#diagnosisPanel')).toContainText('Diagnose hoppet over');
+    await expect(page.locator('#diagnosisPanel')).toContainText('Nivåtest hoppet over');
     await expect(page.getByRole('button', { name: 'Start dagens quiz' })).toBeEnabled();
   });
 

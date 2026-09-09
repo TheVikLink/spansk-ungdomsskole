@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { pathToFileURL } from 'node:url';
 import path from 'node:path';
+import { startStaticAppServer } from './helpers/static-app-server.js';
 const appUrl = pathToFileURL(path.resolve('index.html')).toString();
 async function start(page) {
   await page.goto(appUrl);
@@ -62,14 +63,22 @@ test('F11: Enter on dictation end and inside feedback keeps its native meaning',
 });
 
 test('F09: audio failure is visible in preview and segment and disables dependent actions', async ({ page }) => {
-  await page.goto(appUrl);
-  await page.evaluate(() => { studentName = 'Test'; showMainApp(); showPage('dictation'); startDictation('madrid-plaza'); });
-  await page.locator('#dictationFullStoryAudio').evaluate(audio => audio.dispatchEvent(new Event('error')));
-  await expect(page.locator('#dictationAudioError')).toBeVisible();
-  await expect(page.getByRole('button', { name: 'Start øvelsen', exact: true })).toBeDisabled();
-  await page.getByRole('button', { name: 'Prøv lyden igjen', exact: true }).click();
-  await page.getByRole('button', { name: 'Start øvelsen', exact: true }).click();
-  await page.locator('#dictationSegmentAudio').evaluate(audio => audio.dispatchEvent(new Event('error')));
-  await expect(page.locator('#dictationAudioError')).toBeVisible();
-  await expect(page.getByRole('button', { name: 'Sjekk svar', exact: true })).toBeDisabled();
+  let failAudio = true;
+  const server = await startStaticAppServer({transform: (filename, bytes) => {
+    if (failAudio && /\.(wav|m4a)$/.test(filename)) throw new Error('audio unavailable');
+    return bytes;
+  }});
+  try {
+    await page.goto(server.url);
+    await page.evaluate(() => { studentName = 'Test'; showMainApp(); showPage('dictation'); startDictation('madrid-plaza'); });
+    await expect(page.locator('#dictationAudioError')).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Start øvelsen', exact: true })).toBeDisabled();
+    failAudio = false;
+    await page.getByRole('button', { name: 'Prøv lyden igjen', exact: true }).click();
+    await expect(page.getByRole('button', { name: 'Start øvelsen', exact: true })).toBeEnabled();
+    failAudio = true;
+    await page.getByRole('button', { name: 'Start øvelsen', exact: true }).click();
+    await expect(page.locator('#dictationAudioError')).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Sjekk svar', exact: true })).toBeDisabled();
+  } finally { await server.close(); }
 });

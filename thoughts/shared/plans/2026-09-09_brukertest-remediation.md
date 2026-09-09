@@ -125,3 +125,9 @@ Lever en kontrollert kodeendring med testbevis per funn, oppdatert Beads, og en 
 De positive regresjonskravene er: lokal bruk uten konto, eksport/import til ren profil og eldre filer, korrekt aksent/ñ-policy, aktiv elevinnsats og resultat → teori → tilbake uten endret fremgang eller dobbeltregistrering.
 
 Teknisk mål kan avsluttes når den avtalte tekniske leveransen er ferdig og alle nødvendige automatiserbare kontroller er bestått. Menneskelige pilotkriterier og eventuell uautorisert publisering må stå tydelig utenfor denne ferdigmeldingen. Hvis mandatet i stedet krever lærerens godkjenning eller publisert kontroll som del av selve målet, kan det ikke markeres fullført før disse kravene er oppfylt.
+
+### Konkret avgrensning for F15/F19
+
+Verbtrening kobles til eksisterende presensmål. Et valgfritt `verbForms`-felt i eksisterende lokale ferdighetsceller lagrer bare korrekt besvarte oppgavereferanser (verb/person), ikke rå elevtekst; eksport, import og sletting følger samme nøkkel. Ulike verb og personer kreves før brede verbgrupper kan vise sterke oppgaveresultater. Terskelen er produktveiledning, ikke validert mestring. Isolerte modalformer tilskrives ikke ferdighet i bruk med infinitiv.
+
+Målrettet verbøving gjenbruker eksisterende bøying med støtte eller større skrivekrav og unngår gjentakelser mens nye former finnes i samme sidebesøk. Lingo Links får fire valgte temaer eller kun øvde ord, betydningshjelp etter et forsøk og to skriftlige gjenkallingsoppgaver. Puslespill får én forklart plassering etter innsats. Spillstøtten legger ikke til lagring eller nye spill. Læringseffekt vurderes fortsatt i den menneskelige piloten.

@@ -98,3 +98,13 @@ test('F11: Enter selects the focused puzzle tile instead of checking the sentenc
   await expect(page.locator('#spBuiltSentence')).toContainText(word.trim());
   await expect(page.locator('#spFeedback')).toBeEmpty();
 });
+
+test('F11: quoted answers can open feedback without breaking the action or changing their text', async ({page}) => {
+  await page.goto(appUrl);
+  await page.evaluate(() => { localStorage.clear(); showMainApp(); showPage('verbs'); selectedVerbs = new Set(['hablar']); selectedTense='presente'; startVerbSession(); });
+  const answer = `él dice "hola" y 'adiós'`;
+  await page.locator('#verbInput').fill(answer);
+  await page.getByRole('button',{name:'✓ Sjekk svar',exact:true}).click();
+  await page.getByRole('button',{name:'🤔 Jeg mener svaret mitt er riktig',exact:true}).click();
+  await expect(page.locator('[role="dialog"]')).toContainText(answer);
+});

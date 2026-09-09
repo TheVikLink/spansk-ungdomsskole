@@ -51,7 +51,7 @@ for (const width of [1440, 390]) {
       await expect(page.locator('#mixedQuizFeedback')).toContainText('✓ Riktig!');
       await page.locator('[data-feedback-next]').click();
     }
-    await expect(page.locator('.mixed-quiz-results')).toContainText('2 av 2 riktige');
+    await expect(page.locator('.mixed-quiz-results')).toContainText('2 av 2 oppgaver besvart. 2 riktige (100%).');
   });
 }
 

@@ -78,3 +78,67 @@ Beads `spansk-ungdomsskole-ee0` samler lærerens faglige kontroll, moderert elev
 Hovedknappen starter nivåtesten ved første besøk. Lærerveiledningen er synlig før elevkode, og åpner én avgrenset leksjon om bestemte artikler. PILOT.md er skrevet om til faglig gjennomgang og liten moderert prøve før eventuell helklassebruk, med konkret 20-minutters opplegg og reserve. Dagens og ukens oppsummering er tilgjengelige fra første dag, uten automatisk utskrift eller innsending. Start anerkjenner registrert aktivitet også uten dagsquiz.
 
 Fire nye nettlesertester dekker reelle startklikk på 390/1440 px, lærerinngang før kode og én besvart grammatikkoppgave → Start → dagens rapport uten utskriftskall. Eldre tester er oppdatert fra deaktivert hovedknapp og todagerssperre til den nye tilgjengelige flyten.
+
+
+## F15/F19: konkrete mål, variasjon og spillstøtte
+
+Separate presenssvar oppdaterer de relevante verbferdighetene. Fremtidsformer tilskrives ikke presens, og en isolert modalform tilskrives ikke bruk sammen med infinitiv. Regelrette verbgrupper trenger riktige svar på minst seks former, to verb og tre personer før sterke oppgaveresultater/merker vises. Eldre import uten variasjonsgrunnlag gir ikke et slikt merke. Oppgavereferanser følger eksisterende lokal eksport; ingen nye råsvar lagres.
+
+Målrettet verbøving bruker fem oppgaver og velger nye former så lenge utvalget rekker. En svak profil får hjelp til stamme/person/ending og en bøyingstabell etter feil; en sterk profil må skrive personord og verbform. Begge syntetiske profilene gjennomførte tre runder med 15 ulike former på mobilbredde. Neste mål har navn på ferdigheten, og fem quizer om dagen er ikke lenger det synlige læringsmålet. Variasjonsgrensen er en forsiktig produktregel, ikke en forskningsvalidert mestringsterskel. Utvidet adaptiv støtte utover disse rutene inngår ikke i denne rettingen.
+
+Lingo Links har fire starttemaer, lærerens valg av fire temaer og et utvalg med bare tidligere øvde ord. For lite innhold gir beskjed uten automatisk påfyll. Etter et faktisk gruppeforsøk kan eleven vise betydninger; kategorihintet etter tre feil beholdes. Etter brettet skal to ord skrives uten brettet. Setningspuslespillet tilbyr én forklart plassering etter et forsøk. Reelle mobilklikk dekker feil, betydningshjelp, fullført brett og begge gjenkallingsordene. Om elever lærer av støtten, må prøves med mennesker.
+
+Fire nye F15-tester var røde før retting. Spillreproduksjonene bekreftet manglende temavalg, og nye kontroller dekker også hjelp etter innsats. 24 tester bestod for veiledet øving, spill og quizmerker; 38 oppfølgingskontroller bestod for pakker, mobil, nivåtest, riktig svarvariant og læringsflyt.
+
+## Supplerende kontroll av overgangene
+
+Anførselstegn i et skrevet svar kunne ødelegge knappen til elevinnspill. Feilen ble gjenskapt og rettet ved å holde svarinnholdet utenfor selve handlingskoden; den samme løsningen brukes i gloser, quiz, verb og grammatikk. En ny test åpner dialogen med både doble og enkle anførselstegn og kontrollerer uendret svartekst.
+
+Den generelle ukeoversikten og den aktive pakkens oppgaver/dager vises nå separat. En ny pakke får null egne oppgaver og dager selv om generell ukeøving finnes. Diktathistorier vises som forsøkte historier, ikke som oppgaver med beregnet treffprosent.
+
+Innholdskontrollen hadde en eldre avhengighet av mellomrom i HTML-kildens glosearrayer. Den kontrollerer nå de uttrukne ordparene uavhengig av kildeformatering, med de samme 18 påkrevde rettelsene og negative kontrollene. Et vindu-eksempel i en overføringsoppgave fikk også samsvarende spansk og norsk tekst.
+
+## Dekning av rapportens funn
+
+| Funn | Teknisk resultat og hovedbevis |
+|---|---|
+| F01 | Hint bevarer Neste og svar; `report-practice-navigation`. |
+| F02 | Klikkbar meny med langt navn og stor tekst på seks bredder; `report-mobile-navigation`. |
+| F03 | Registrerte svarvarianter beholdes gjennom quizbyggeren; `report-answer-fairness`, `answer-acceptance-fuzz`. |
+| F04 | Instruksjon/kontekst og naturlige varianter; `report-answer-fairness`, `diagnosis-flow`. |
+| F05 | Gyldig yrkessetning og synlig begrensning også i quiz; `report-content-feedback`. |
+| F06 | 0/1/alle svar, faktisk antall og idempotent avslutning; `report-session-accounting`. |
+| F07 | Pakke-ID/periode, separate pakkedager og alle temaer; `report-session-accounting`, `assignment-package`. |
+| F08 | Kode er lokal etikett, virkelig filgjenoppretting; `report-delivery-smoke`, `backup-privacy`. |
+| F09 | Feil/ny prøving og eksplisitt full lydnedlasting; `report-offline-update`, `report-dictation`. |
+| F10 | Konkret A0-teori og hint uten undefined; `report-content-feedback`, `grammar-lessons`. |
+| F11 | Fokus, Enter, hint, innspill og sitattegn; `report-practice-navigation`, `student-feedback`, `report-dictation`. |
+| F12 | Eldre v4 og bygg A → B i brukt profil, også uten nett; `report-offline-update`. |
+| F13 | Fungerende første handling og avgrenset lærerinngang; `report-classroom-flow`, PILOT.md. |
+| F14 | Dagens lokale oppsummering fra dag én; `report-classroom-flow`. |
+| F15 | All registrert øving anerkjennes, konkrete mål og varierte verbformer; `report-guided-practice`. |
+| F16 | Nøktern diktatrespons, ingen tom fullføring, nye datoer; `report-dictation`, `report-content-feedback`. |
+| F17 | Separat innspilleksport, innhold i sikkerhetskopi og ingen automatisk mottaker; `report-session-accounting`, `student-feedback`. |
+| F18 | Besvart arbeid lagres før Neste; avbrudd forklares og import bevares; `report-session-accounting`, `report-delivery-smoke`. |
+| F19 | Temavalg, betydningshjelp og kort gjenkalling; `report-game-support`. |
+
+De 16 opprinnelige scenarioene har teknisk dekning gjennom disse testene og læreropplegget. Scenarioenes krav om ekte elever, klassekoordinering, alternativsammenligning med lærer og flere ukers observasjon er fortsatt menneskelig prøvearbeid i `ee0`. Ingen test av publisert versjon er påstått; oppdateringene er prøvd på lokal HTTP-server.
+
+
+Lydfeiltesten ble gjort deterministisk: en kunstig `error`-hendelse på en gyldig lydfil kunne bli etterfulgt av en reell `loadedmetadata`-hendelse. Testen serverer nå faktisk HTTP-feil, åpner forbindelsen for ny prøving og feiler neste segment. Den bestod tre påfølgende kjøringer uten test-retries. Appens lydflyt ble ikke endret for å tilfredsstille den kunstige hendelsen.
+
+**Ekstra nettleserdekning:** 47 tester bestod i installert WebKit for lærerstart, hint/tastatur, mobilmeny, opptelling, pakker, spillstøtte, målrettet verbøving og eksport/import. Dette er nettleserautomatisering på Mac, ikke en fysisk iPhone-test. Firefox var ikke installert.
+
+**Virkelig filflytting:** `report-delivery-smoke` laster ned en JSON-fil via brukerknappen og importerer den via filvelgeren i en separat, ren nettleserkontekst. Aktivitet og verbformgrunnlag ble bevart. Testen observerte bare GET-forespørsler til appens lokale origin i den prøvde elevruten, uten automatisk overføring av elevdata. Desktop- og mobilskjermbilder fra sluttflyten er kontrollert i `output/brukertest-rettelser/`.
+
+## Samlet sluttverifikasjon
+
+Kjørt 9. september 2026 på appbygg **3b7d7d7ef7b25a93**:
+
+- `npm run build:app` og `npm run check:offline-build`: bestått; HTML og service worker peker på samme appinnhold.
+- `npm run test:all`: bestått. 18 beskyttede innholdsrettelser, 16 innholdskontroller, 7 publiserte leksjoner, 12 nivåtestoppgaver, 60 katalogferdigheter, 2 Node-tester og **308 Chromium-tester**. Ingen tester hoppet over; nettleserdelen tok 44,3 sekunder.
+- Ekstra WebKit-kjøring av `report-classroom-flow`, `report-practice-navigation`, `report-mobile-navigation`, `report-session-accounting`, `report-game-support`, `report-guided-practice` og `import-export-compat`: **47 bestod**.
+- Lydfeil/ny prøving fra ekte HTTP-server: **3 av 3** påfølgende kontroller bestod.
+- `git diff --check`: bestått.
+
+De historiske testantallene tidligere i dokumentet beskriver delkontroller, og skal ikke summeres med sluttkjøringen. CI kjører nå samme `test:all` og omfatter de nye rapportregresjonene. Manuelle auditopptak og probe mot offentlig nettsted er eksplisitt separate kommandoer. Det er ikke gjort deploy, fysisk enhetstest, spansklærergodkjenning eller reell elevstudie.

@@ -18,6 +18,8 @@ test('F05: the profession task produces a valid sentence and states its article 
     return exercise.sentence.replace('___', exercise.answer);
   });
   expect(sentence).toBe('Mi madre es profesora');
+  const quizInstruction = await page.evaluate(() => buildGrammarSkillCandidates().find(item => item.targetId === 'a0.professions.zero_article').instructionNb);
+  expect(quizInstruction).toContain('uten artikkel');
   await expect(page.locator('#grammarExerciseArea')).toContainText('uten artikkel');
   await page.getByRole('button', { name: 'profesora', exact: true }).click();
   await expect(page.locator('#grammarFeedback')).toContainText('Riktig');
@@ -54,7 +56,7 @@ test('F10: A0 theory covers the actual tasks and hay/estar examples stay about l
   }));
   for (const term of ['tengo', 'vivo', 'trabajo', 'hay', 'profesora']) expect(content.foundation.toLowerCase()).toContain(term);
   expect(content.contrast.every(sentence => !sentence.includes('abiertas'))).toBe(true);
-  expect(content.lessons).not.toContain('Las ventanas están abiertas');
+  expect(content.lessons).not.toContain('ventanas están abiertas');
 });
 
 test('F16: empty and fragment dictation answers get modest, distinct feedback', async ({ page }) => {

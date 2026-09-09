@@ -1,6 +1,9 @@
 import { readFileSync } from 'node:fs';
+import { extractGlossary } from './lib/extract-all-items.mjs';
 
 const html = readFileSync('index.html', 'utf8');
+// Protect actual tuples regardless of source formatting. Keep prose checks too.
+const checkedSource = html + '\n' + extractGlossary(html).map(row => `[${row.map(value => JSON.stringify(value)).join(', ')}]`).join('\n');
 
 const forbiddenFragments = [
   {
@@ -101,13 +104,13 @@ const requiredFragments = [
 const failures = [];
 
 for (const fragment of forbiddenFragments) {
-  if (html.includes(fragment.text)) {
+  if (checkedSource.includes(fragment.text)) {
     failures.push(`Forbidden fragment found: "${fragment.text}" (${fragment.reason})`);
   }
 }
 
 for (const fragment of requiredFragments) {
-  if (!html.includes(fragment)) {
+  if (!checkedSource.includes(fragment)) {
     failures.push(`Required corrected fragment missing: "${fragment}"`);
   }
 }

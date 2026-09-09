@@ -7,20 +7,20 @@ En gratis, interaktiv læringsapp for spansk på ungdomsskolenivå (A0-A1 CEFR).
 ## ✨ Funksjoner
 
 ### 📚 Gloselæring
-- **443 gloser** på ungdomsskolenivå
-- Spaced repetition (SM-2 algoritme) for effektiv læring
+- **Over 500 gloser** på ungdomsskolenivå
+- Repetisjon over tid med SM-2-algoritmen
 - Lær begge veier: Norsk → Spansk og Spansk → Norsk
 - Kategorisert etter tema (familie, mat, dyr, farger, osv.)
 - Importer gloser fra JSON-fil
 
 ### 🏃 Verbøving
-- 20+ vanlige spanske verb
+- 34 spanske verb
 - Tre tider: Presens, Futuro (ir a + infinitiv), Presens perfektum
 - Fullstendig bøyingstabell ved feil svar
 - Hint-funksjon
 
 ### 📖 Grammatikk
-- 7 grammatikktemaer med adaptive øvelser:
+- 9 grammatikktemaer med målrettet øving, blant annet:
   - Artikler (el/la/un/una)
   - Adjektivsamsvar
   - Ser vs Estar
@@ -29,20 +29,21 @@ En gratis, interaktiv læringsapp for spansk på ungdomsskolenivå (A0-A1 CEFR).
   - Pekende adjektiv
   - Eiendomsord
 - Teori vises automatisk ved behov
-- Mestringsbadges ved 80%+ korrekt
+- Sju korte grammatikkleksjoner med vei fra resultat til forklaring og ny øving
+- Resultater beskriver besvarte oppgaver; de er ikke en validert mestringsvurdering
 
 ### 🧠 Brainmap
 - Visuell oversikt over A0- og A1-mikroskills og ordforråd
 - Mikroskills er gruppert etter nivå og språkområde
-- Fargekoding: grå (ikke startet), rød (trenger øving), gul (på vei), grønn (god kontroll), gull (svært sterk)
+- Fargekoding: grå (ikke startet), rød (trenger øving), gul (på vei), grønn/gull (gode/sterke svar på øvde oppgaver)
 - Ferdigheter uten ferdig øvingsrute vises åpent som planlagt innhold og skjules ikke som om de var mestret
 - Eksisterende lokal progresjon og eksport/import beholdes når Brainmap-katalogen utvides
 
 ### 📝 Ukeslekse
 - Sporer øvingsdager automatisk
 - Lager lokal lekseoppsummering uten å sende data
-- Krav: Øv minst 2 dager per uke
-- Spesifikke gloser kan deles med elever som lærerimport, og en tydeligere leksepakke-flyt er planlagt før bred skolepilot
+- Standardmål: øv to dager per uke; dagens oppsummering er tilgjengelig fra første dag
+- Læreren kan lage og dele en lokal leksepakke med gloser, verbgrupper, flere grammatikktemaer og tidsmål
 
 ## 🔒 Personvern
 
@@ -61,7 +62,7 @@ Besvarte gloser, verb, grammatikk og quizoppgaver lagres fortløpende. Ved omlas
 
 Historikken bruker fortsatt `spansk123_practiceHistory` og fremgangseksport `spansk123_export_v1`. Nye poster har valgfrie lokale økt- og pakkereferanser (`sessionId`, `assignmentId`) og status (`inProgress`, `interrupted`), i tillegg til eksisterende dato, aktivitet, antall, riktige svar og tid. Referansene hindrer dobbeltelling og skiller leksepakker; de identifiserer ikke elever og sendes ikke ut. Ingen nye fritekstsvar eller lydopptak legges til historikken. Økten dateres på første besvarte oppgave etter lokal kalender. Historikken beholder de siste 30 dagene ved ny registrering; den samlede læringsfremgangen beholdes. Eksport/import og «Slett all data» omfatter disse feltene.
 
-Pakkens tidsmål teller bare økter startet med pakkens egne knapper, fra importdatoen. Eldre historikk uten pakketilknytning beholdes som generell øving. Tid er medgått økttid og kan inkludere pauser; den dokumenterer ikke konsentrasjon. Null svar gir ingen øvingstid. Hver nylaget leksepakke har egen ID; ny import av samme fil beholder tilknytningen.
+Pakkens tidsmål teller bare økter startet med pakkens egne knapper, fra importdatoen. Ukens pakkedager telles separat fra all øving. Rapporten viser pakkens egne antall ved siden av den generelle oversikten. Eldre historikk uten pakketilknytning beholdes som generell øving. Tid er medgått økttid og kan inkludere pauser; den dokumenterer ikke konsentrasjon. Null svar gir ingen øvingstid. Hver nylaget leksepakke har egen ID; ny import av samme fil beholder tilknytningen.
 
 ### 📢 Tilbakemeldinger på oppgaver
 
@@ -84,19 +85,19 @@ Målet for første pilot er å gi spansklærere et lavterskel supplement til und
 - Best egnet for gloser, repetisjon, verb, grammatikk og korte øvingsøkter i eller mellom timer
 - Feide, lærerinnlogging og skole-/kommuneadministrasjon vurderes som en senere fase etter egen personvern- og datamodell
 
-Se [PILOT.md](PILOT.md) for ferdig lærerpitch, tre pilotaktiviteter, personvernforklaring, evalueringsspørsmål og pilotens suksesskriterier.
+Begynn med faglig lærerkontroll og en kort demonstrasjon eller liten, moderert prøve. Se [PILOT.md](PILOT.md) for ett konkret 20-minutters opplegg, reserveplan og spørsmål før eventuell selvstendig helklassebruk. Ingen slik elevpilot er gjennomført som del av den tekniske rettingen.
 
 ## 🛠️ Oppsett for lærere
 
 ### 1. Bruk standard lokal pilotflyt
 
-For demo og første klassepilot trenger du bare GitHub Pages-lenken. Elevene skriver elevkode eller fornavn, øver lokalt og kan laste ned fremgang som JSON-fil. Leksefanen viser en lokal oppsummering, men sender ingenting.
+Før en demonstrasjon kontrollerer læreren valgt innhold og versjonsmerket. Den offentlige lenken oppdateres først ved en egen publisering; en lokal retting eller PR endrer ikke den publiserte appen. Elevene skriver elevkode eller fornavn, øver lokalt og kan laste ned fremgang som JSON-fil. Leksefanen viser en lokal oppsummering, men sender ingenting.
 
 Standardversjonen har ikke en felles klasse som elevene blir meldt inn i. Hvis en lærer vil bruke egne gloser, deler læreren en JSON-fil basert på `eksempel-gloser-laerer.json`, og eleven importerer filen lokalt i appen.
 
 ### 2. Deploy
 
-Kjør `npm run build:app` og `npm run check:offline-build` før levering. Publiser `index.html`, `dist/tailwind.css`, `sw.js`, `manifest.webmanifest` og de tilhørende `audio/diktat/`-mappene sammen på GitHub Pages, Netlify eller skolens HTTPS-server. Bare HTML-filen er ikke tilstrekkelig. Bevar relative stier, aksenter og mellomrom i lydfilnavn. Lokal åpning av HTML-filen fungerer med CSS- og lydmappene ved siden av, men installasjon og nettleserens offline-cache krever HTTPS eller localhost.
+Kjør `npm run build:app` og `npm run check:offline-build` før levering. Publiser `index.html`, `dist/tailwind.css`, `sw.js`, `manifest.webmanifest`, `PILOT.md` og de tilhørende `audio/diktat/`-mappene sammen på GitHub Pages, Netlify eller skolens HTTPS-server. Bare HTML-filen er ikke tilstrekkelig. Bevar relative stier, aksenter og mellomrom i lydfilnavn. Lokal åpning av HTML-filen fungerer med CSS- og lydmappene ved siden av, men installasjon og nettleserens offline-cache krever HTTPS eller localhost.
 
 Byggkommandoen gir HTML og service worker samme innholdsstyrte versjon. Etter oppdatering får en åpen app beskjed om at en ny versjon er klar. Eleven avslutter økten og velger «Last inn oppdateringen»; aktivt svar tømmes ikke automatisk. En eldre v4-installasjon kan trenge én ekstra omlasting etter at den nye service workeren er hentet. Fremgang ligger i lokal lagring og slettes ikke ved oppdatering.
 
@@ -125,6 +126,9 @@ Kjør lokal rapport med `npm run audit:curriculum`. Etter automatisk klassifiser
 ├── eksempel-gloser-laerer.json # Mal for lærerimport
 ├── manifest.webmanifest    # PWA-metadata
 ├── sw.js                   # Lokal/offline cache
+├── dist/tailwind.css        # Bygd stilark
+├── audio/diktat/            # Lydfiler med opprinnelige filnavn
+├── PILOT.md                # Første 20 minutter og menneskelig prøve
 └── README.md
 ```
 
@@ -183,3 +187,15 @@ MIT License - bruk fritt i undervisning!
 Velkomstsiden og Start har «For læreren: første 20 minutter», med direkte vei til bestemte artikler (el/la/los/las). [PILOT.md](PILOT.md) beskriver mål, støtte, utfordring og avslutning. Hovedknappen starter nivåtesten hvis den ikke er gjennomført.
 
 Lekser → «Vis dagens oppsummering» fungerer fra første dag. Ukemålet sperrer ikke visning. Rapporten åpnes lokalt uten automatisk utskrift eller innsending; eleven velger selv utskrift/PDF ved behov. Start viser dagens besvarte gloser, verb, grammatikk og blandet quiz samt ferdig forsøkt diktat.
+
+### Målrettet øving og spillstøtte
+
+Vanlig verbtrening oppdaterer ferdighetskartet for de relevante presensmålene. Isolert bøying av modalverb dokumenterer ikke bruk sammen med infinitiv, og fremtidsformer teller ikke som presens. Regelrette grupper trenger riktige svar på minst seks ulike former, minst to verb og tre personer før de kan gi et sterkt kartresultat eller oppgavemerke. Dette er en forsiktig produktregel, ikke en validert mestringsterskel. Gamle sikkerhetskopier mangler dette variasjonsgrunnlaget og gir ikke automatisk et bredt verbmerke.
+
+Den eksisterende lokale `learningProgress.skillProgress` kan ha `verbForms`, en begrenset liste med oppgavereferanser som `hablar:0`. Ingen råsvar lagres i feltet. Det følger fremgangseksport/import og slettes med fremgangen. En feil på formen fjerner den fra listen over riktige former. Målrettede runder unngår allerede valgte former så lenge det finnes nye i samme sidebesøk; dette utvalgsminnet forsvinner ved omlasting. Støttet øving ber om verbformen, mens sterke tidligere svar gir en runde med personord og verbform.
+
+Lingo Links tilbyr fire starttemaer, lærerens valg av fire temaer eller bare tidligere øvde ord. Et for lite utvalg gir beskjed uten å fylle på med ukjente ord. Etter et gruppeforsøk kan eleven vise betydningen av de fire ordene. Etter brettet følger to ord som skal skrives uten brettet. Setningspuslespillet tilbyr en forklart plassering etter et forsøk. Disse spillenes svar og etteroppgaver lagres bare i minnet mens aktiviteten er åpen.
+
+### Samlet verifikasjon
+
+`npm run build:app` bygger CSS og felles versjonsmerke. `npm run test:all` kontrollerer innhold, kataloger, leksjoner og offline-bygg og kjører alle lokale nettleserregresjoner, inkludert `report-*.spec.js`. De tre manuelle auditopptakene/deploy-probene kjøres separat; offentlig versjon testes først etter autorisert publisering.

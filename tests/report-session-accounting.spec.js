@@ -165,3 +165,19 @@ test('F07/F18: reimport, local calendar, export to clean profile and undo retain
   expect(await page.evaluate(() => practiceHistory.reduce((n, e) => n + e.words, 0))).toBe(2);
   expect(await page.evaluate(() => getWeekDays().map(d => d.dateStr).includes(getLocalDateString()))).toBe(true);
 });
+
+test('F07: general weekly work is separated from a newly imported package in the report', async ({page}) => {
+  await page.goto(appUrl);
+  const result=await page.evaluate(()=>{
+    localStorage.clear();showMainApp();
+    activeAssignment={id:'package-B',assignmentTitle:'Ny pakke',importedAt:new Date().toISOString(),requiredPracticeDays:3,minuteTargets:{},grammarTopics:[],vocabulary:[]};
+    practiceHistory=[{date:getLocalDateString(),words:4,correct:3,sessions:1,activity:'verbs',assignmentId:'package-A',minutes:4}];
+    showPage('homework');
+    return {report:buildWeeklyReportData(), summary:document.getElementById('homeworkSummary').textContent};
+  });
+  expect(result.report.totalWords).toBe(4);
+  expect(result.report.activeAssignment.totalWords).toBe(0);
+  expect(result.report.activeAssignment.practiceDayCount).toBe(0);
+  expect(result.summary).toContain('0 av 3');
+  expect(result.summary).toContain('All øving');
+});

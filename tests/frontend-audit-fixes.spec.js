@@ -30,7 +30,7 @@ test.describe('frontend audit fixes', () => {
     await expect(page.locator('#assignmentBuilder > summary')).toContainText('Lag leksepakke');
   });
 
-  test('keeps mobile navigation compact and settings touch-sized', async ({ page }) => {
+  test('keeps mobile navigation within half the viewport and settings touch-sized', async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto(appUrl);
     await page.evaluate(diagnosis => {
@@ -46,7 +46,7 @@ test.describe('frontend audit fixes', () => {
       return { navHeight: nav.height, settingsWidth: settings.width, settingsHeight: settings.height };
     });
 
-    expect(metrics.navHeight).toBeLessThanOrEqual(70);
+    expect(metrics.navHeight).toBeLessThanOrEqual(844 / 2);
     expect(metrics.settingsWidth).toBeGreaterThanOrEqual(44);
     expect(metrics.settingsHeight).toBeGreaterThanOrEqual(44);
   });

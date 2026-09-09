@@ -6,7 +6,7 @@ Appen gir aktiv spanskøving uten konto. Den tekniske rettingen etter [brukertes
 
 **Mål:** Eleven velger bestemt artikkel i entall og flertall: el, la, los og las.
 
-Åpne «For læreren: første 20 minutter» på velkomstsiden eller Start. «Åpne første undervisningsøkt» åpner leksjonen om bestemte artikler uten at eleven må ta en nivåtest. Læreren kontrollerer eksemplene og øvingsoppgavene før timen. En eventuell elevkode er bare en lokal etikett, ikke en konto eller nøkkel til gammel fremgang.
+Åpne «For læreren: første 20 minutter» på velkomstsiden eller Start. «Start felles artikkeløving» åpner leksjonen om bestemte artikler uten at eleven må ta en nivåtest. Læreren kontrollerer eksemplene og øvingsoppgavene før timen. En eventuell elevkode er bare en lokal etikett, ikke en konto eller nøkkel til gammel fremgang.
 
 1. **0–3 minutter:** Vis målet og startknappen. Bruk samme nettleser og enhet som sist. Vis at fremgangen blir på enheten og at læreren ikke mottar noe automatisk.
 2. **3–6 minutter:** Les regelen sammen. Modellér «el libro → los libros» og «la casa → las casas». La eleven forklare hva som endrer seg før svaret vises.
