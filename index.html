@@ -10849,7 +10849,11 @@
 
         function closeSettings() {
             const modal = document.querySelector('.settings-modal');
-            if (modal) modal.remove();
+            if (modal) {
+                const returnFocus = modal.returnFocus;
+                modal.remove();
+                if (returnFocus?.isConnected) returnFocus.focus();
+            }
         }
 
         function resetAllData() {
@@ -10945,15 +10949,19 @@
         function showFeedbackDialog(feedbackContext) {
             const modal = document.createElement('div');
             modal.className = 'settings-modal';
+            modal.setAttribute('role', 'dialog');
+            modal.setAttribute('aria-modal', 'true');
+            modal.setAttribute('aria-labelledby', 'feedbackDialogTitle');
+            modal.returnFocus = document.activeElement;
             modal.innerHTML = `
                 <div class="settings-modal-content">
-                    <h2>🤔 Jeg mener svaret mitt er riktig</h2>
+                    <h2 id="feedbackDialogTitle">🤔 Jeg mener svaret mitt er riktig</h2>
                     <div class="mb-4 text-sm text-gray-600">
                         <p><strong>Oppgave:</strong> ${escapeHtml(feedbackContext.prompt)}</p>
                         <p><strong>Ditt svar:</strong> ${escapeHtml(feedbackContext.studentAnswer)}</p>
                         <p><strong>Vist fasit:</strong> ${escapeHtml(feedbackContext.expectedAnswer)}</p>
                     </div>
-                    <label class="mb-2 block text-gray-700">Forklar hvorfor (valgfritt, men hjelper oss):</label>
+                    <label for="feedbackExplanation" class="mb-2 block text-gray-700">Forklar hvorfor (valgfritt, men hjelper oss):</label>
                     <textarea id="feedbackExplanation" class="add-word-input" rows="3" placeholder="F.eks: «Broren min er også riktig for el hermano»"></textarea>
                     <p class="login-hint mt-2 text-xs">Forklaringen lagres bare på denne enheten. Lærer kan eksportere og sende til utvikler. Skriv ikke navn på andre elever.</p>
                     <label class="mt-3 flex items-center gap-2 text-sm">
@@ -10966,6 +10974,26 @@
                 </div>
             `;
             document.body.appendChild(modal);
+            modal.addEventListener('keydown', event => {
+                event.stopPropagation();
+                if (event.key === 'Escape') {
+                    event.preventDefault();
+                    closeSettings();
+                } else if (event.key === 'Tab') {
+                    const controls = [...modal.querySelectorAll('textarea, input, button, a[href], [tabindex="0"]')]
+                        .filter(control => !control.disabled && control.getClientRects().length);
+                    const first = controls[0];
+                    const last = controls[controls.length - 1];
+                    if (event.shiftKey && document.activeElement === first) {
+                        event.preventDefault();
+                        last?.focus();
+                    } else if (!event.shiftKey && document.activeElement === last) {
+                        event.preventDefault();
+                        first?.focus();
+                    }
+                }
+            });
+            modal.querySelector('textarea').focus();
         }
 
         function submitFeedbackDialog(contextJson) {
@@ -17148,12 +17176,19 @@
 
         function setupKeyboardShortcuts() {
             document.addEventListener('keydown', (e) => {
+                if (e.defaultPrevented || e.isComposing || document.querySelector('.settings-modal')) return;
+                const target = e.target instanceof Element ? e.target : null;
+                if (target?.closest('textarea, select, [contenteditable="true"]')) return;
+                if (target?.closest('input') && !['typedVocabInput', 'verbInput'].includes(target.id)) return;
+                const nativeControl = target?.closest('button, a[href], summary');
+                if (nativeControl && !nativeControl.disabled && ['Enter', ' '].includes(e.key)) return;
                 if (diagnosisFeedback && e.key === 'Enter' && e.target?.id !== 'diagnosisAnswerInput') {
                     e.preventDefault();
                     advanceDiagnosisFeedback();
                     return;
                 }
-                const feedbackNext = document.querySelector('[data-feedback-next]');
+                const feedbackNext = [...document.querySelectorAll('[data-feedback-next]')]
+                    .find(button => button.getClientRects().length && !button.disabled);
                 if (feedbackNext && e.key === 'Enter' && !e.ctrlKey && !e.metaKey && !e.altKey) {
                     e.preventDefault();
                     feedbackNext.click();
@@ -18599,6 +18634,7 @@ Vil du øve på ${pronoun} likevel?`
                     <div class="accent-hint">💡 Hold inne a/e/i/o/u/n for aksent, eller ?/! for ¿/¡</div>
 
                     <div class="conjugation-feedback" id="verbFeedback"></div>
+                    <p id="verbHint" aria-live="polite" hidden></p>
 
                     <div class="button-group">
                         <button class="btn btn-primary" onclick="checkVerbAnswer()">✓ Sjekk svar</button>
@@ -18658,8 +18694,9 @@ Vil du øve på ${pronoun} likevel?`
             const input = document.getElementById('verbInput');
             const expected = input.dataset.expected;
             const hint = expected.substring(0, Math.ceil(expected.length / 2)) + '...';
-            document.getElementById('verbFeedback').textContent = `Hint: ${hint}`;
-            document.getElementById('verbFeedback').className = 'conjugation-feedback';
+            const hintArea = document.getElementById('verbHint');
+            hintArea.textContent = `Hint: ${hint}`;
+            hintArea.hidden = false;
         }
 
         function showConjugationTable() {
@@ -18690,7 +18727,7 @@ Vil du øve på ${pronoun} likevel?`
                 </div>
             `;
 
-            document.getElementById('verbExerciseArea').innerHTML += tableHTML;
+            document.getElementById('verbExerciseArea').insertAdjacentHTML('beforeend', tableHTML);
         }
 
         function updateVerbProgress() {
@@ -20196,6 +20233,7 @@ Vil du øve på ${pronoun} likevel?`
                     </div>
 
                     <button class="grammar-hint-btn" onclick="showGrammarHint()">💡 Vis hint</button>
+                    <p id="grammarHint" aria-live="polite" hidden></p>
 
                     <div class="grammar-feedback" id="grammarFeedback"></div>
                 </div>
@@ -20236,6 +20274,7 @@ Vil du øve på ${pronoun} likevel?`
             // Disable all buttons
             document.querySelectorAll('.grammar-option').forEach(btn => {
                 btn.classList.add('disabled');
+                btn.disabled = true;
                 if (btn.textContent.trim().toLowerCase() === exercise.answer.toLowerCase()) {
                     btn.classList.add('correct');
                 }
@@ -20272,6 +20311,7 @@ Vil du øve på ${pronoun} likevel?`
             grammarProgress[currentGrammarTopic.id].total++;
             if (isCorrect) grammarProgress[currentGrammarTopic.id].correct++;
             saveGrammarProgress();
+            document.getElementById('grammarNextBtn')?.focus();
 
         }
 
@@ -20283,11 +20323,9 @@ Vil du øve på ${pronoun} likevel?`
 
         function showGrammarHint() {
             const exercise = grammarExercises[grammarCurrentIndex];
-            document.getElementById('grammarFeedback').innerHTML = `
-                <div class="grammar-feedback bg-amber-100 text-amber-800">
-                    💡 ${exercise.hint}
-                </div>
-            `;
+            const hintArea = document.getElementById('grammarHint');
+            hintArea.textContent = `💡 ${exercise.hint || exercise.explanation || getGrammarMistakeExplanation(currentGrammarTopic.id)}`;
+            hintArea.hidden = false;
         }
 
         function updateGrammarProgress() {

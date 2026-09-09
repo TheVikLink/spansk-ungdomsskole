@@ -773,6 +773,8 @@ select:focus-visible,
     border-radius: 16px;
     max-width: 400px;
     width: 90%;
+    max-height: calc(100dvh - 32px);
+    overflow-y: auto;
 }
 
 .settings-modal h2 {
@@ -810,6 +812,8 @@ select:focus-visible,
     background: var(--gray-100);
     border-radius: 10px;
     font-size: 14px;
+    max-width: 100%;
+    min-width: 0;
 }
 
 .user-code {
@@ -819,9 +823,12 @@ select:focus-visible,
 
 .user-name {
     color: var(--gray-700);
+    min-width: 0;
+    overflow-wrap: anywhere;
 }
 
 .logout-btn {
+    flex-shrink: 0;
     min-width: 44px;
     min-height: 44px;
     background: none;
@@ -914,37 +921,41 @@ select:focus-visible,
 
 @media (max-width: 640px) {
     .nav-bar {
-        flex-wrap: nowrap;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
         align-items: center;
-        overflow-x: auto;
         padding: 8px;
         gap: 8px;
-        scrollbar-width: thin;
     }
 
     .nav-brand,
     .nav-links,
     .user-info {
-        flex: 0 0 auto;
+        min-width: 0;
+        width: 100%;
     }
 
     .nav-brand {
         font-size: 14px;
-        white-space: nowrap;
+        justify-content: center;
     }
 
     .nav-links {
-        flex-wrap: nowrap;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
     .nav-link {
         min-height: 44px;
         padding: 10px 12px;
-        white-space: nowrap;
+        min-width: 0;
+        white-space: normal;
+        overflow-wrap: anywhere;
     }
 
     .user-info {
-        padding: 0 4px;
+        justify-content: space-between;
+        padding: 4px 8px;
         background: transparent;
     }
 }

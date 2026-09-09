@@ -21,6 +21,20 @@ Testene ble observert røde før retting: mistede svarvarianter i quizbyggeren, 
 
 Et hull i eldre glosetester ble samtidig rettet: ordlisten må lastes før katalogløkkene kjøres, og hovedtesten krever over 500 faktiske kort. En tom liste kan ikke lenger gi falskt grønt resultat i denne kontrollen.
 
+## F01/F11: hint og tastatur
+
+Hint vises i et eget felt og erstatter ikke svaret, forklaringen eller Neste. Riktig og feil svar etterfulgt av gjentatte hint er testet i verb og grammatikk uten ekstra registrering. Bøyingstabellen legges til uten å opprette eksisterende inputfelt på nytt.
+
+Innspillsdialogen har navn og modalsemantikk, flytter fokus til tekstfeltet, holder Tab inne og lukker med Escape. Enter lager linjeskift i forklaringen; lagring og avbryt gir fokus tilbake. Globale øvingssnarveier ignorerer dialoger, vanlig tekstredigering og aktivert standardatferd på knapper. Enter velger fokusert ordbrikke. Skjulte Neste-knapper overtar ikke snarveien.
+
+De nye reproduksjonene feilet før retting. **49 tester bestod** i `report-practice-navigation`, `student-feedback`, `grammar-explanations`, `grammar-lessons`, `sentence-puzzle-game` og `diagnosis-flow`. Resultat → teori → tilbake er fortsatt dekket.
+
+## F02: mobilmeny
+
+Mobilmenyen har egne rader for merkevare, menyvalg og elevkode/innstillinger. Menyvalgene får to kolonner på små skjermer; lange navn og stor tekst bryter innenfor sin plass. Dialoginnhold kan rulles på korte skjermer.
+
+Reproduksjonen bekreftet at elevnavnet avskar klikk på menyvalg. Etter retting bestod reelle klikk på alle åtte menyvalg, både fremover og bakover fra ulike undersider, ved **360/390/640/768/1024 px** med langt navn og 24 px menytekst. `check:tailwind` bestod. Fysisk mobil og skolens tekstinnstillinger gjenstår til pilot.
+
 ## Menneskelig sluttkontroll
 
 Beads `spansk-ungdomsskole-ee0` samler lærerens faglige kontroll, moderert elevpilot, fysisk mobil/lyd og bruk over flere uker. Dette er ikke gjennomført av automatiske tester. Ingen publisering eller faktisk elevstudie inngår i rettingsmandatet.
