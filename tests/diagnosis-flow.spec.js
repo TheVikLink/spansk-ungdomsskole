@@ -44,6 +44,21 @@ test.describe('diagnosis quiz v1', () => {
     expect(result.stored).toEqual(result.started);
   });
 
+  test('shows Norwegian meaning for typed verb diagnosis prompts', async ({ page }) => {
+    await page.goto(appUrl);
+
+    await page.evaluate(() => {
+      localStorage.clear();
+      const state = startDiagnosis('2026-08-07T10:00:00.000Z');
+      state.questionIds = ['diag.a1.verbs.regular_ar.present.hablar'];
+      saveDiagnosisState(state);
+      renderDiagnosisPanel();
+    });
+
+    await expect(page.locator('#diagnosisPanel')).toContainText('jeg snakker');
+    await expect(page.locator('#diagnosisPanel')).not.toContainText('yo + hablar');
+  });
+
   test('answering a diagnosis question stores the answer and updates one progress cell', async ({ page }) => {
     await page.goto(appUrl);
 
