@@ -142,3 +142,5 @@ Kjørt 9. september 2026 på appbygg **3b7d7d7ef7b25a93**:
 - `git diff --check`: bestått.
 
 De historiske testantallene tidligere i dokumentet beskriver delkontroller, og skal ikke summeres med sluttkjøringen. CI kjører nå samme `test:all` og omfatter de nye rapportregresjonene. Manuelle auditopptak og probe mot offentlig nettsted er eksplisitt separate kommandoer. Det er ikke gjort deploy, fysisk enhetstest, spansklærergodkjenning eller reell elevstudie.
+
+Leveransen er pushet på `fix/brukertest-2026-09-08` og opprettet som [PR #6](https://github.com/TheVikLink/spansk-ungdomsskole/pull/6). Beads-epikken `irj` og de ni tekniske deloppgavene er lukket. `ee0` står åpen for den menneskelige kontrollen. PR-en er ikke slått sammen og appen er ikke publisert av denne leveransen.
