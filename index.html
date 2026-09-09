@@ -6,6 +6,7 @@
     <title>Spansk på 1-2-3 | Læringsapp</title>
     <meta name="theme-color" content="#dc2626">
     <link rel="manifest" href="./manifest.webmanifest">
+    <meta name="app-build" content="9055e528eb8afdca">
     <link href="./dist/tailwind.css" rel="stylesheet">
 </head>
 <body>
@@ -1444,7 +1445,7 @@
         let dictationState = null;
         function dictationDate(date = new Date()) { const d = new Date(date); return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`; }
         function loadDictationData() { try { const data=JSON.parse(localStorage.getItem(DICTATION_KEY)||'{"version":1,"completed":[]}'); return data?.version===1&&Array.isArray(data.completed)?data:{version:1,completed:[]}; } catch { return {version:1,completed:[]}; } }
-        function saveDictationCompletion(storyId) { const data=loadDictationData(); const story=DICTATION_STORIES.find(s=>s.id===storyId); if(!story)return false; if(!data.completed.some(x=>x.storyId===storyId)) data.completed.push({storyId,completedOn:dictationDate()}); localStorage.setItem(DICTATION_KEY,JSON.stringify(data)); return true; }
+        function saveDictationCompletion(storyId) { const data=loadDictationData(); const story=DICTATION_STORIES.find(s=>s.id===storyId); if(!story)return false; if(!data.completed.some(x=>x.storyId===storyId && x.completedOn===dictationDate())) data.completed.push({storyId,completedOn:dictationDate()}); localStorage.setItem(DICTATION_KEY,JSON.stringify(data)); return true; }
         function normalizeDictationAnswer(value) { return String(value||'').normalize('NFC').trim().replace(/\s+/gu,' ').toLocaleLowerCase('es').replace(/^[¿¡,.!?:;«»"']+|[,.!?:;«»"']+$/gu,''); }
         function compareDictationAnswer(answer, expected) {
             const a = normalizeDictationAnswer(answer), e = normalizeDictationAnswer(expected);
@@ -1469,52 +1470,120 @@
         function renderDictationOverview() { const level=document.getElementById('dictationLevelFilter')?.value||'all', region=document.getElementById('dictationRegionFilter')?.value||'all'; const list=document.getElementById('dictationStoryList'); if(!list)return; list.innerHTML=DICTATION_STORIES.filter(s=>s.audioDir&&(level==='all'||s.level===level)&&(region==='all'||s.region===region)).map(s=>`<article class="dictation-story-card"><h3>${escapeHtml(s.title)}</h3><p>${escapeHtml(s.intro)}</p><p class="dictation-meta">${s.level} · ${s.region} · ${escapeHtml(s.place)}</p><button class="btn btn-primary" onclick="startDictation('${s.id}')">Start historien</button></article>`).join(''); }
         function startDictation(storyId) { const story=DICTATION_STORIES.find(s=>s.id===storyId); if(!story)return; dictationState={story,index:0,submitted:false,answer:'',answers:[]}; document.getElementById('dictationOverview').classList.add('hidden'); document.getElementById('dictationExercise').classList.remove('hidden'); renderDictationPreview(); }
         function dictationAudioUrl(story, filename) { const file = (/\.[a-z0-9]+$/iu.test(filename) ? filename : `${filename}.${story.audioExt || 'mp3'}`).normalize('NFC'); const directory = String(story.audioDir || '').normalize('NFC'); return `audio/diktat/${encodeURIComponent(directory).replaceAll('%20',' ')}${directory ? '/' : ''}${encodeURIComponent(file)}`; }
-        function renderDictationPreview() { const {story}=dictationState; const src=story.fullAudio ? dictationAudioUrl(story, story.fullAudio) : `audio/diktat/${story.id}-full.mp3`; document.getElementById('dictationExercise').innerHTML=`<div class="study-header"><button class="btn btn-outline btn-sm" onclick="endDictation()">✕ Tilbake</button></div><h2>${escapeHtml(story.title)}</h2><p>${escapeHtml(story.intro)} Du kan høre hele historien før du starter.</p><audio id="dictationFullStoryAudio" controls preload="metadata" src="${src}" aria-label="Hør hele historien" onerror="showDictationAudioError()"></audio><p id="dictationAudioError" class="hidden" role="alert">Lyden kunne ikke lastes. Sjekk at du er på nett eller prøv igjen senere.</p><button class="btn btn-primary" onclick="beginDictationExercise()">Start øvelsen</button>`; }
-        function beginDictationExercise() { if(!dictationState)return; dictationState.index=0; dictationState.submitted=false; dictationState.answer=''; renderDictationSegment(); focusDictationAnswer(); }
-        function renderDictationSegment() { const {story,index,submitted,answer}=dictationState, [text, audioId]=story.segments[index]; const hints=story.hints.map(h=>`<span>${escapeHtml(h)}</span>`).join(''); const feedback=compareDictationAnswer(answer,text); document.getElementById('dictationExercise').innerHTML=`<div class="study-header"><button class="btn btn-outline btn-sm" onclick="endDictation()">✕ Avslutt</button><span>${index+1} / ${story.segments.length}</span></div><h2>${escapeHtml(story.title)}</h2><p class="dictation-hints">Hint: ${hints}</p><label for="dictationSpeed">Tempo: <span id="dictationSpeedValue">1,0×</span></label><input id="dictationSpeed" type="range" min="0.8" max="1.2" step="0.1" value="1" oninput="setDictationSpeed(this.value)"><audio controls preload="metadata" src="audio/diktat/${audioId}.mp3" aria-label="Spill av segment" onerror="showDictationAudioError()"></audio><p id="dictationAudioError" class="hidden" role="alert">Lyden kunne ikke lastes. Sjekk at du er på nett eller prøv igjen senere.</p><label for="dictationAnswer">Skriv det du hører</label><textarea id="dictationAnswer" rows="3" autocomplete="off" ${submitted?'disabled':''}>${escapeHtml(answer)}</textarea><div id="dictationSolution" class="dictation-solution ${submitted?'':'hidden'}" aria-live="polite"><strong>Fasit:</strong> ${escapeHtml(text)}<p>${submitted ? (feedback==='exact'?'Du hadde akkurat det samme som meg. Supert!':feedback==='near'?'Veldig nærme! Se på fasiten og prøv å legge merke til den lille forskjellen.':'Bra at du prøvde. Hør på delen én gang til og sammenlign med fasiten.') : ''}</p></div>${submitted?'<fieldset><legend>Hvor godt synes du det gikk?</legend><div class="dictation-stars">'+[1,2,3,4,5].map(n=>`<button type="button" id="dictationStar${n}" aria-label="${n} stjerner" onclick="selectDictationStars(${n})">☆</button>`).join('')+'</div></fieldset><button class="btn btn-primary" onclick="nextDictationSegment()">Neste segment</button>':'<button class="btn btn-primary" onclick="submitDictationAnswer()">Sjekk svar</button>'}`; }
-        function setDictationSpeed(value) { const audio=document.querySelector('#dictationExercise audio'); if(audio) audio.playbackRate=Number(value); const label=document.getElementById('dictationSpeedValue'); if(label) label.textContent=String(Number(value).toFixed(1)).replace('.',',')+'×'; }
-        function focusDictationAnswer() { const answer=document.getElementById('dictationAnswer'); if(answer && !answer.disabled) answer.focus(); }
-        function renderDictationSegment() {
-            const { story, index, submitted, answer } = dictationState;
-            const [text, audioId] = story.segments[index];
-            const feedback = compareDictationAnswer(answer, text);
-            const message = getDictationFeedbackMessage(feedback);
-            document.getElementById('dictationExercise').innerHTML = `<div class="study-header"><button class="btn btn-outline btn-sm" onclick="endDictation()">✕ Avslutt</button><span>${index + 1} / ${story.segments.length}</span></div><h2>${escapeHtml(story.title)}</h2><p class="dictation-hints">Hint: ${story.hints.map(escapeHtml).join(' · ')}</p><audio id="dictationSegmentAudio" controls autoplay preload="metadata" src="audio/diktat/${audioId}.mp3" aria-label="Spill av segment" onerror="showDictationAudioError()"></audio><label for="dictationAnswer">Skriv det du hører</label><textarea id="dictationAnswer" rows="3" autocomplete="off" ${submitted ? 'disabled' : ''}>${escapeHtml(answer)}</textarea><div id="dictationSolution" class="dictation-solution ${submitted ? '' : 'hidden'}" aria-live="polite"><strong>Fasit:</strong> ${escapeHtml(text)}<p>${submitted ? message : ''}</p></div>${submitted ? '<button class="btn btn-primary" onclick="nextDictationSegment()">Neste segment</button>' : '<button class="btn btn-primary" onclick="submitDictationAnswer()">Sjekk svar</button>'}`;
-            if (!submitted) setTimeout(focusDictationAnswer, 0);
+        function dictationAudioErrorMarkup() {
+            return '<p id="dictationAudioError" class="hidden" role="alert">Lyden er ikke tilgjengelig. Koble til internett og prøv igjen, eller velg en historie du har lastet ned. <button class="btn btn-outline btn-sm" onclick="retryDictationAudio()">Prøv lyden igjen</button></p>';
         }
-        function showDictationAudioError() { document.getElementById('dictationAudioError')?.classList.remove('hidden'); }
-        function insertDictationAccent(character) { const input=document.getElementById('dictationAnswer'); if(!input)return; const start=input.selectionStart, end=input.selectionEnd; input.setRangeText(character,start,end,'end'); input.focus(); }
-        const renderDictationSegmentWithRecordedAudio = renderDictationSegment;
-        renderDictationSegment = function() {
-            renderDictationSegmentWithRecordedAudio();
-            const input=document.getElementById('dictationAnswer'); if(!input)return;
-            if(!dictationState.submitted) {
-                input.setAttribute('onkeydown', "if(event.key==='Enter'){event.preventDefault();submitDictationAnswer();}");
-                input.insertAdjacentHTML('afterend','<div class="dictation-accent-buttons" aria-label="Aksentknapper">'+['á','é','í','ó','ú','ü','ñ','¿','¡'].map(c=>`<button type="button" aria-label="Sett inn ${c}" onclick="insertDictationAccent('${c}')">${c}</button>`).join('')+'</div>');
-            } else {
-                const next=document.querySelector('#dictationSolution + button');
-                next?.setAttribute('onkeydown', "if(event.key==='Enter'){event.preventDefault();nextDictationSegment();}");
-                document.getElementById('dictationExercise').setAttribute('onkeydown', "if(event.key==='Enter' && event.target.tagName!=='TEXTAREA'){event.preventDefault();nextDictationSegment();}");
-            }
-        };
-        function selectDictationStars(value) { document.querySelectorAll('.dictation-stars button').forEach((button,index)=>button.textContent=index<value?'★':'☆'); }
-        function submitDictationAnswer() { if(!dictationState)return; dictationState.answer=document.getElementById('dictationAnswer')?.value||''; dictationState.submitted=true; renderDictationSegment(); }
-        function nextDictationSegment() { if(!dictationState)return; if(dictationState.index<dictationState.story.segments.length-1){dictationState.index++;dictationState.submitted=false;renderDictationSegment();}else{saveDictationCompletion(dictationState.story.id); document.getElementById('dictationExercise').innerHTML=`<div class="completion-screen"><h2>Historien er ferdig!</h2><p>${escapeHtml(dictationState.story.theme)} · ${escapeHtml(dictationState.story.place)}</p><p>${dictationState.story.segments.map(s=>escapeHtml(s[0])).join(' ')}</p><button class="btn btn-primary" onclick="endDictation()">Tilbake til historiene</button></div>`; } }
-        function endDictation() { dictationState=null; document.getElementById('dictationExercise').classList.add('hidden'); document.getElementById('dictationOverview').classList.remove('hidden'); renderDictationOverview(); }
-        const renderDictationSegmentBase = renderDictationSegment;
-        renderDictationSegment = function() {
-            if (!dictationState?.story.audioDir) return renderDictationSegmentBase();
+
+        function renderDictationPreview() {
+            const { story } = dictationState;
+            dictationState.audioReady = false;
+            document.getElementById('dictationExercise').innerHTML = `
+                <div class="study-header"><button class="btn btn-outline btn-sm" onclick="endDictation()">✕ Tilbake</button></div>
+                <h2>${escapeHtml(story.title)}</h2><p>${escapeHtml(story.intro)} Du kan høre hele historien før du starter.</p>
+                <audio id="dictationFullStoryAudio" controls preload="metadata" src="${dictationAudioUrl(story, story.fullAudio)}" aria-label="Hør hele historien" onloadedmetadata="dictationAudioReady()" onerror="showDictationAudioError()"></audio>
+                ${dictationAudioErrorMarkup()}
+                <p id="dictationAudioStatus" role="status">Laster lyd …</p>
+                <button id="dictationStartBtn" class="btn btn-primary" disabled onclick="beginDictationExercise()">Start øvelsen</button>
+                ${location.protocol.startsWith('http') ? '<button id="dictationDownloadBtn" class="btn btn-outline" onclick="downloadDictationAudio()">Last ned lyd til bruk uten nett</button><p id="dictationDownloadStatus" role="status">Appen og lyden lagres hver for seg. Last ned denne historien før du kobler fra nettet.</p>' : ''}`;
+            updateDictationDownloadStatus();
+        }
+
+        function dictationAudioReady() {
+            if (!dictationState) return;
+            if (dictationState.offlineUnavailable) { showDictationAudioError(); return; }
+            dictationState.audioReady = true;
+            document.getElementById('dictationAudioError')?.classList.add('hidden');
+            const status = document.getElementById('dictationAudioStatus');
+            if (status) status.textContent = 'Lyden er klar. Bruk avspillingsknappen for å lytte.';
+            document.getElementById('dictationStartBtn')?.removeAttribute('disabled');
+            document.getElementById('dictationCheckBtn')?.removeAttribute('disabled');
+        }
+
+        function showDictationAudioError() {
+            if (!dictationState) return;
+            dictationState.audioReady = false;
+            document.getElementById('dictationAudioError')?.classList.remove('hidden');
+            const status = document.getElementById('dictationAudioStatus');
+            if (status) status.textContent = 'Lyden mangler.';
+            document.getElementById('dictationStartBtn')?.setAttribute('disabled', '');
+            document.getElementById('dictationCheckBtn')?.setAttribute('disabled', '');
+        }
+
+        function retryDictationAudio() {
+            if (dictationState && navigator.onLine) dictationState.offlineUnavailable = false;
+            document.querySelector('#dictationExercise audio')?.load();
+        }
+
+        function beginDictationExercise() {
+            if (!dictationState?.audioReady) return;
+            dictationState.index = 0;
+            dictationState.submitted = false;
+            dictationState.answer = '';
+            renderDictationSegment();
+        }
+
+        function renderDictationSegment() {
+            if (!dictationState || dictationState.completed) return;
             const { story, index, submitted, answer } = dictationState;
             const [text, filename] = story.segments[index];
-            const src = dictationAudioUrl(story, filename);
-            const feedback = compareDictationAnswer(answer, text);
-            const message = getDictationFeedbackMessage(feedback);
-            document.getElementById('dictationExercise').innerHTML = `<div class="study-header"><button class="btn btn-outline btn-sm" onclick="endDictation()">✕ Avslutt</button><span>${index + 1} / ${story.segments.length}</span></div><h2>${escapeHtml(story.title)}</h2><p class="dictation-hints">Hint: ${story.hints.map(escapeHtml).join(' · ')}</p><audio id="dictationSegmentAudio" controls autoplay preload="metadata" src="${src}" aria-label="Spill av segment" onerror="showDictationAudioError()"></audio><label for="dictationAnswer">Skriv det du hører</label><textarea id="dictationAnswer" rows="3" autocomplete="off" ${submitted ? 'disabled' : ''}>${escapeHtml(answer)}</textarea><div id="dictationSolution" class="dictation-solution ${submitted ? '' : 'hidden'}" aria-live="polite"><strong>Fasit:</strong> ${escapeHtml(text)}<p>${submitted ? message : ''}</p></div>${submitted ? '<button class="btn btn-primary" onclick="nextDictationSegment()">Neste segment</button>' : '<button class="btn btn-primary" onclick="submitDictationAnswer()">Sjekk svar</button>'}`;
-            if (!submitted) setTimeout(focusDictationAnswer, 0);
-        };
-        function nextDictationSegment() {
-            if (!dictationState) return;
+            const hints = dictationHintsForSegment(story, text);
+            dictationState.audioReady = false;
+            document.getElementById('dictationExercise').innerHTML = `
+                <div class="study-header"><button class="btn btn-outline btn-sm" onclick="endDictation()">✕ Avslutt</button><span>${index + 1} / ${story.segments.length}</span></div>
+                <h2>${escapeHtml(story.title)}</h2><p class="dictation-hints">${hints.length ? 'Hint: ' + hints.map(escapeHtml).join(' · ') : ''}</p>
+                <audio id="dictationSegmentAudio" controls autoplay preload="metadata" src="${dictationAudioUrl(story, filename)}" aria-label="Spill av segment" onloadedmetadata="dictationAudioReady()" onerror="showDictationAudioError()"></audio>
+                ${dictationAudioErrorMarkup()}<p id="dictationAudioStatus" role="status">Laster lyd …</p>
+                <label for="dictationSpeed">Tempo</label><input id="dictationSpeed" type="range" min="0.8" max="1.2" step="0.1" value="1" oninput="setDictationSpeed(this.value)"><span id="dictationSpeedValue">1,0×</span>
+                <label for="dictationAnswer">Skriv det du hører</label><textarea id="dictationAnswer" rows="3" autocomplete="off">${escapeHtml(answer)}</textarea>
+                <div class="dictation-accent-buttons" aria-label="Aksentknapper">${['á','é','í','ó','ú','ü','ñ','¿','¡'].map(c => `<button type="button" aria-label="Sett inn ${c}" onclick="insertDictationAccent('${c}')">${c}</button>`).join('')}</div>
+                <p class="dictation-accent-help">Du kan bruke aksentknappene eller holde inne en vokal eller n på tastaturet.</p>
+                <div id="dictationSolution" class="dictation-solution hidden" aria-live="polite"></div>
+                <div id="dictationControls"><button id="dictationCheckBtn" class="btn btn-primary" disabled onclick="submitDictationAnswer()">Sjekk svar</button></div>`;
+            const input = document.getElementById('dictationAnswer');
+            input.addEventListener('keydown', event => {
+                if (event.key === 'Enter' && !event.shiftKey && !event.isComposing) {
+                    event.preventDefault(); event.stopPropagation(); submitDictationAnswer();
+                }
+            });
+            input.focus();
+            if (submitted) renderDictationFeedback();
+        }
+
+        function setDictationSpeed(value) {
+            const audio = document.querySelector('#dictationExercise audio');
+            if (audio) audio.playbackRate = Number(value);
+            const label = document.getElementById('dictationSpeedValue');
+            if (label) label.textContent = Number(value).toFixed(1).replace('.', ',') + '×';
+        }
+
+        function insertDictationAccent(character) {
+            const input = document.getElementById('dictationAnswer');
+            if (!input || input.disabled) return;
+            input.setRangeText(character, input.selectionStart, input.selectionEnd, 'end');
+            input.focus();
+        }
+
+        function renderDictationFeedback() {
+            const { story, index, answer } = dictationState;
+            const text = story.segments[index][0];
+            const solution = document.getElementById('dictationSolution');
+            solution.innerHTML = `<strong>Fasit:</strong> ${escapeHtml(text)}<p>${getDictationFeedbackMessage(compareDictationAnswer(answer, text))}</p>`;
+            solution.classList.remove('hidden');
+            document.getElementById('dictationAnswer').disabled = true;
+            document.getElementById('dictationControls').innerHTML = '<button id="dictationNextBtn" class="btn btn-primary" onclick="nextDictationSegment()">Neste segment</button>';
+            document.getElementById('dictationNextBtn').focus();
+        }
+
+        function submitDictationAnswer() {
+            if (!dictationState?.audioReady || dictationState.submitted || dictationState.completed) return;
+            dictationState.answer = document.getElementById('dictationAnswer')?.value || '';
             dictationState.answers[dictationState.index] = dictationState.answer;
+            dictationState.submitted = true;
+            renderDictationFeedback();
+        }
+
+        function nextDictationSegment() {
+            if (!dictationState?.submitted || dictationState.completed) return;
             if (dictationState.index < dictationState.story.segments.length - 1) {
                 dictationState.index++;
                 dictationState.submitted = false;
@@ -1522,32 +1591,63 @@
                 renderDictationSegment();
                 return;
             }
-            saveDictationCompletion(dictationState.story.id);
+            dictationState.completed = true;
+            const attempted = dictationState.answers.filter(answer => answer.trim()).length;
+            const correct = dictationState.answers.filter((answer, index) => compareDictationAnswer(answer, dictationState.story.segments[index][0]) === 'exact').length;
+            if (attempted === dictationState.story.segments.length) saveDictationCompletion(dictationState.story.id);
             const ownText = dictationState.answers.map(answer => escapeHtml(answer || '')).join('<br>');
             const translation = (DICTATION_TRANSLATIONS[dictationState.story.id] || []).map(escapeHtml).join('<br>');
             const solution = dictationState.story.segments.map(segment => escapeHtml(segment[0])).join('<br>');
-            document.getElementById('dictationExercise').innerHTML = `<div class="completion-screen mx-auto max-w-5xl px-4 py-8 sm:px-8"><p class="mb-2 text-sm font-bold uppercase tracking-widest text-indigo-600">Diktat fullført</p><h2 class="mb-2 text-3xl font-black tracking-tight text-slate-900 sm:text-4xl">Historien er ferdig!</h2><p class="mb-8 text-base font-semibold text-slate-500">${escapeHtml(dictationState.story.theme)} · ${escapeHtml(dictationState.story.place)}</p><h3 class="mb-3 text-lg font-extrabold text-slate-900">Det du skrev</h3><p class="completion-answer mb-8 rounded-2xl border border-amber-200 bg-amber-50 px-5 py-4 leading-7 text-slate-700">${ownText}</p><div class="completion-reading grid gap-5 md:grid-cols-2"><section class="rounded-2xl border border-indigo-100 border-t-4 border-t-indigo-500 bg-white p-5 shadow-sm"><h3 class="mb-3 text-lg font-extrabold text-slate-900">Spansk fasit</h3><p class="leading-7 text-slate-700">${solution}</p></section><section class="rounded-2xl border border-amber-100 border-t-4 border-t-amber-500 bg-white p-5 shadow-sm"><h3 class="mb-3 text-lg font-extrabold text-slate-900">Norsk oversettelse</h3><p class="leading-7 text-slate-700">${translation}</p></section></div><button class="btn btn-primary mt-6" onclick="endDictation()">Tilbake til historiene</button></div>`;
+            document.getElementById('dictationExercise').innerHTML = `<div class="completion-screen mx-auto max-w-5xl px-4 py-8 sm:px-8"><p class="mb-2 text-sm font-bold uppercase tracking-widest text-indigo-600">${attempted === dictationState.story.segments.length ? 'Alle deler forsøkt' : 'Historien er gjennomgått'}</p><h2 class="mb-2 text-3xl font-black tracking-tight text-slate-900 sm:text-4xl">Historien er ferdig!</h2><p class="mb-8 text-base font-semibold text-slate-500">${escapeHtml(dictationState.story.theme)} · ${escapeHtml(dictationState.story.place)}</p><p>${attempted} av ${dictationState.story.segments.length} deler besvart. ${correct} svar stemte med fasiten. ${attempted === 0 ? 'Ingen diktat er registrert som fullført.' : 'Sammenlign teksten din med fasiten.'}</p><h3 class="mb-3 text-lg font-extrabold text-slate-900">Det du skrev</h3><p class="completion-answer mb-8 rounded-2xl border border-amber-200 bg-amber-50 px-5 py-4 leading-7 text-slate-700">${ownText}</p><div class="completion-reading grid gap-5 md:grid-cols-2"><section class="rounded-2xl border border-indigo-100 border-t-4 border-t-indigo-500 bg-white p-5 shadow-sm"><h3 class="mb-3 text-lg font-extrabold text-slate-900">Spansk fasit</h3><p class="leading-7 text-slate-700">${solution}</p></section><section class="rounded-2xl border border-amber-100 border-t-4 border-t-amber-500 bg-white p-5 shadow-sm"><h3 class="mb-3 text-lg font-extrabold text-slate-900">Norsk oversettelse</h3><p class="leading-7 text-slate-700">${translation}</p></section></div><button class="btn btn-primary mt-6" onclick="endDictation()">Tilbake til historiene</button></div>`;
         }
-        const renderDictationSegmentFinal = renderDictationSegment;
-        document.addEventListener('keydown', event => {
-            if (event.key !== 'Enter' || !dictationState) return;
-            if (event.target?.id === 'dictationAnswer' && !dictationState.submitted) { event.preventDefault(); event.stopPropagation(); submitDictationAnswer(); }
-            else if (dictationState.submitted && !document.getElementById('dictationExercise')?.classList.contains('hidden')) { event.preventDefault(); event.stopPropagation(); nextDictationSegment(); }
-        }, true);
-        renderDictationSegment = function() {
-            renderDictationSegmentFinal();
-            const currentText = dictationState?.story?.segments?.[dictationState.index]?.[0] || '';
-            const visibleHints = dictationHintsForSegment(dictationState.story, currentText);
-            const hintElement = document.querySelector('.dictation-hints');
-            if (hintElement) hintElement.innerHTML = visibleHints.length ? `Hint: ${visibleHints.map(escapeHtml).join(' · ')}` : '';
-            const input = document.getElementById('dictationAnswer');
-            if (!input) return;
-            if (dictationState.submitted) { document.getElementById('dictationExercise').addEventListener('keydown', event => { if (event.key === 'Enter') { event.preventDefault(); nextDictationSegment(); } }, { once: true }); return; }
-            input.setAttribute('onkeydown', "if(event.key==='Enter'){event.preventDefault();submitDictationAnswer();}");
-            input.onkeydown = event => { if (event.key === 'Enter') { event.preventDefault(); submitDictationAnswer(); } };
-            input.addEventListener('keydown', event => { if (event.key === 'Enter') { event.preventDefault(); submitDictationAnswer(); } });
-            input.insertAdjacentHTML('afterend', '<div class="dictation-accent-buttons" aria-label="Aksentknapper">' + ['á','é','í','ó','ú','ü','ñ','¿','¡'].map(c => `<button type="button" aria-label="Sett inn ${c}" onclick="insertDictationAccent('${c}')">${c}</button>`).join('') + '</div><p class="dictation-accent-help">Tips: Hold fingeren eller museknappen inne på en vokal eller <strong>n</strong> for å velge aksent.</p>');
-        };
+
+        function endDictation() {
+            document.querySelector('#dictationExercise audio')?.pause();
+            dictationState = null;
+            document.getElementById('dictationExercise').innerHTML = '';
+            document.getElementById('dictationExercise').classList.add('hidden');
+            document.getElementById('dictationOverview').classList.remove('hidden');
+            renderDictationOverview();
+        }
+
+        const DICTATION_AUDIO_CACHE = 'spansk123-audio-v1';
+        function getDictationAudioUrls(story) {
+            return [story.fullAudio, ...story.segments.map(segment => segment[1])].map(filename => new URL(dictationAudioUrl(story, filename), location.href).href);
+        }
+        async function updateDictationDownloadStatus() {
+            const story = dictationState?.story;
+            if (!story || !('caches' in window) || !location.protocol.startsWith('http')) return;
+            const cache = await caches.open(DICTATION_AUDIO_CACHE);
+            const saved = await Promise.all(getDictationAudioUrls(story).map(url => cache.match(url)));
+            if (dictationState?.story !== story) return;
+            dictationState.offlineUnavailable = !navigator.onLine && !saved.every(Boolean);
+            if (dictationState.offlineUnavailable) showDictationAudioError();
+            const status = document.getElementById('dictationDownloadStatus');
+            if (status && saved.every(Boolean)) status.textContent = 'Hele historien er lastet ned og kan brukes uten nett i denne nettleseren.';
+        }
+        async function downloadDictationAudio() {
+            const story = dictationState?.story;
+            const button = document.getElementById('dictationDownloadBtn');
+            const status = document.getElementById('dictationDownloadStatus');
+            if (!story || !button || !status) return;
+            button.disabled = true;
+            status.textContent = 'Laster ned hele historien og alle delene …';
+            try {
+                const cache = await caches.open(DICTATION_AUDIO_CACHE);
+                for (const url of getDictationAudioUrls(story)) {
+                    if (await cache.match(url)) continue;
+                    const response = await fetch(url, { cache: 'reload' });
+                    if (!response.ok || response.status !== 200 || !response.headers.get('content-type')?.startsWith('audio/')) throw new Error('missing audio');
+                    await cache.put(url, response);
+                }
+                if (dictationState?.story === story) {
+                    await updateDictationDownloadStatus();
+                    retryDictationAudio();
+                }
+            } catch {
+                if (dictationState?.story === story) status.textContent = 'Nedlastingen ble ikke ferdig. Koble til nett og prøv igjen. Historien er ikke klar til bruk uten nett.';
+            } finally { if (button.isConnected) button.disabled = false; }
+        }
 
         const learningCatalog = {
             skills: [
@@ -13204,7 +13304,7 @@
             const valid = value.completed.filter(entry => entry && DICTATION_STORIES.some(s => s.id === entry.storyId) && /^\d{4}-\d{2}-\d{2}$/.test(entry.completedOn));
             if (valid.length !== value.completed.length) return false;
             const merged = loadDictationData();
-            valid.forEach(entry => { const existing = merged.completed.find(item => item.storyId === entry.storyId); if (!existing || entry.completedOn > existing.completedOn) merged.completed.push({ storyId: entry.storyId, completedOn: entry.completedOn }); });
+            valid.forEach(entry => { if (!merged.completed.some(item => item.storyId === entry.storyId && item.completedOn === entry.completedOn)) merged.completed.push({ storyId: entry.storyId, completedOn: entry.completedOn }); });
             localStorage.setItem(DICTATION_KEY, JSON.stringify(merged));
             return true;
         }
@@ -13676,7 +13776,8 @@
                     <button type="button" class="btn btn-secondary" onclick="startRecommendedPractice()">Start anbefalt øving</button>
                 </section>` : ''}
                 <p class="home-streak" id="homeQuizStreak">${streakText}</p>
-                <p class="home-offline-hint" id="homeOfflineHint">Fungerer også uten internett etter at appen er lastet inn.</p>
+                <p class="home-offline-hint" id="homeOfflineHint">Gloser og grammatikk fungerer uten nett når appen er lagret i nettleseren. Diktatlyd må lastes ned separat i Lytteøvelser. ${location.protocol === 'file:' ? 'Denne lokale filen bruker lyd fra den tilhørende lydmappen.' : ''}</p>
+                <p id="appVersionLabel">Versjon ${escapeHtml(document.querySelector('meta[name="app-build"]').content)} <button class="btn btn-outline btn-sm" onclick="checkForAppUpdate()">Se etter oppdateringer</button></p>
                 ${badges.length ? `<section class="home-badges" aria-labelledby="homeBadgesTitle"><h2 id="homeBadgesTitle">🏅 Merker du har fått</h2><div class="badge-list">${badges.map(badge => `<span class="mastery-badge">${escapeHtml(badge.label)}</span>`).join('')}</div></section>` : ''}
             `;
         }
@@ -13736,6 +13837,7 @@
                 abandonActiveSession();
             }
             if (page !== 'grammarLesson') grammarAssignmentId = null;
+            if (dictationState) endDictation();
             // Hide all pages
             document.getElementById('homePage').classList.add('hidden');
             document.getElementById('vocabPage').classList.add('hidden');
@@ -21875,10 +21977,36 @@ Vil du øve på ${pronoun} likevel?`
 
 
         // Initialize app
+        let appRegistration = null;
+        function showAppUpdate(build) {
+            if (build === document.querySelector('meta[name="app-build"]').content || document.getElementById('appUpdateNotice')) return;
+            document.body.insertAdjacentHTML('afterbegin', '<div id="appUpdateNotice" class="grammar-feedback" role="status">En oppdatert versjon er klar. Avslutt økten før du laster den inn. Fremgangen beholdes. <button class="btn btn-primary btn-sm" onclick="applyAppUpdate()">Last inn oppdateringen</button></div>');
+        }
+        function applyAppUpdate() {
+            const visibleGame = ['sentencePuzzleGame', 'lingoLinksGame', 'verbInvadersGame', 'prepoInvadersGame'].some(id => document.getElementById(id)?.getClientRects().length);
+            const visibleDiagnosis = document.getElementById('diagnosisPanel')?.getClientRects().length && loadDiagnosisState().status === 'in_progress';
+            if (activeSessionType || visibleGame || (dictationState && !dictationState.completed) || visibleDiagnosis || document.querySelector('.settings-modal')) {
+                showToast('Avslutt økten eller lukk dialogen først. Svaret ditt beholdes på skjermen.', 'info');
+                return;
+            }
+            location.reload();
+        }
+        async function checkForAppUpdate() {
+            if (!appRegistration) { showToast('Oppdatering krever at appen er åpnet fra nettadressen.', 'info'); return; }
+            try { await appRegistration.update(); navigator.serviceWorker.controller?.postMessage({ type: 'GET_APP_BUILD' }); showToast('Sjekket etter oppdateringer.', 'info'); }
+            catch { showToast('Koble til internett for å se etter oppdateringer.', 'info'); }
+        }
         (function() {
-            if ('serviceWorker' in navigator) {
+            if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
+                navigator.serviceWorker.addEventListener('message', event => {
+                    if (event.data?.type === 'APP_BUILD') showAppUpdate(event.data.build);
+                });
+                navigator.serviceWorker.addEventListener('controllerchange', () => navigator.serviceWorker.controller?.postMessage({ type: 'GET_APP_BUILD' }));
                 window.addEventListener('load', () => {
-                    navigator.serviceWorker.register('./sw.js').catch(error => {
+                    navigator.serviceWorker.register('./sw.js', { updateViaCache: 'none' }).then(registration => {
+                        appRegistration = registration;
+                        navigator.serviceWorker.controller?.postMessage({ type: 'GET_APP_BUILD' });
+                    }).catch(error => {
                         console.warn('Service worker registration failed', error);
                     });
                 });

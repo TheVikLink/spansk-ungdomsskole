@@ -57,6 +57,18 @@ Velkomsten sier uttrykkelig at elevkoden ikke gjenoppretter data. Eksportområde
 
 Alle de sju opprinnelige reproduksjonene var røde. Etter retting bestod **58 tester** for opptelling, leksepakker og gloser. Deretter bestod **48 tester** for opptelling, personverntekst, eksport/import av gamle og nye formater, skadet lagring, grammatikkleksjoner, innspill og resultathoder. Nytt innhold i historikken ble også eksportert til en ren nettleserkontekst. Omlasting ble prøvd to ganger uten doble svar, og lokal mandag kl. 00.30 ble registrert på riktig uke.
 
+## F09/F12/F16 og diktattastatur i F11
+
+Diktat har én visnings- og tastaturflyt. Innsending bevarer lydavspilleren, Neste har vanlig knappatferd, og Enter i innspillsdialogen endrer ikke diktatoppgaven. Resultatet skiller besvarte deler fra riktige svar. En tom gjennomgang registreres ikke som fullført. Ny gjennomføring på en annen dag bevares som en ny dato; gjentatt avslutning/import lager ikke duplikater. Bare historie-ID og dato lagres.
+
+Start og Sjekk svar venter på tilgjengelig lyd. Både forhåndslytting og enkeltsegment har synlig feil og Prøv igjen. Eleven kan laste ned hele den valgte historien eksplisitt. Appskall og lyd lagres separat; en lydfeil returnerer ikke HTML. Cachede lydfiler støtter delvise forespørsler fra lydspilleren.
+
+Byggkommandoen lager en innholdsstyrt versjon for app og service worker. Hele appskallet hentes før aktivering, og en åpen app får en oppdateringsknapp uten automatisk omlasting. Knappen bevarer en pågående økt. Aktivering sletter ikke fremgang, nedlastet lyd eller andre programmers cacher. Oppgraderingen er prøvd både fra tidligere v4-cache og fra bygg A til B i samme brukte profil.
+
+Teknisk grunnlag: [MDN om aktivering med skipWaiting](https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerGlobalScope/skipWaiting), [Cache.put](https://developer.mozilla.org/en-US/docs/Web/API/Cache/put) og [delvise HTTP-forespørsler](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Range_requests). Aktivering og omlasting behandles separat, og bare hele lydressurser lagres før de deles opp i avspillingssvar.
+
+De fire diktatreproduksjonene feilet før retting; deretter bestod **16 tester** for innhold og diktat. **23 tester** bestod for diktat, offline, oppdatering og PWA. Testene starter en ekte lokal HTTP-server, og nettbruddet avviser også forbindelser på serversiden: nettleserens offline-emulering alene stanset ikke service workerens nettverk i dette miljøet. Nedlastet historie gjennomføres med alle åtte deler uten servertilgang. Bygg- og Tailwind-kontroll bestod. Fysisk lydvurdering er fortsatt menneskelig pilotarbeid.
+
 ## Menneskelig sluttkontroll
 
 Beads `spansk-ungdomsskole-ee0` samler lærerens faglige kontroll, moderert elevpilot, fysisk mobil/lyd og bruk over flere uker. Dette er ikke gjennomført av automatiske tester. Ingen publisering eller faktisk elevstudie inngår i rettingsmandatet.

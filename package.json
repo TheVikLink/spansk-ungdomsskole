@@ -4,6 +4,8 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "build:app": "npm run build:css && node scripts/build-offline.mjs",
+    "check:offline-build": "node scripts/build-offline.mjs --check",
     "build:css": "npx @tailwindcss/cli -i ./src/styles/tailwind.css -o ./dist/tailwind.css --minify",
     "check:tailwind": "node scripts/check-tailwind-adoption.mjs",
     "check:learning-catalog": "node scripts/check-learning-catalog.mjs",

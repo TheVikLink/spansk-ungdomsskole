@@ -96,7 +96,15 @@ Standardversjonen har ikke en felles klasse som elevene blir meldt inn i. Hvis e
 
 ### 2. Deploy
 
-Last opp `index.html` til GitHub Pages, Netlify, eller skolens server.
+Kjør `npm run build:app` og `npm run check:offline-build` før levering. Publiser `index.html`, `dist/tailwind.css`, `sw.js`, `manifest.webmanifest` og de tilhørende `audio/diktat/`-mappene sammen på GitHub Pages, Netlify eller skolens HTTPS-server. Bare HTML-filen er ikke tilstrekkelig. Bevar relative stier, aksenter og mellomrom i lydfilnavn. Lokal åpning av HTML-filen fungerer med CSS- og lydmappene ved siden av, men installasjon og nettleserens offline-cache krever HTTPS eller localhost.
+
+Byggkommandoen gir HTML og service worker samme innholdsstyrte versjon. Etter oppdatering får en åpen app beskjed om at en ny versjon er klar. Eleven avslutter økten og velger «Last inn oppdateringen»; aktivt svar tømmes ikke automatisk. En eldre v4-installasjon kan trenge én ekstra omlasting etter at den nye service workeren er hentet. Fremgang ligger i lokal lagring og slettes ikke ved oppdatering.
+
+### Lyd uten nett
+
+Appskallet lagres separat fra lyd. Åpne en historie i Lytteøvelser på nett og velg «Last ned lyd til bruk uten nett». Vent på bekreftelsen om at hele historien er lastet ned. Test deretter uten nett på samme enhet. Deler som mangler eller en avbrutt nedlasting gir en tydelig beskjed; Start/Sjekk svar venter på tilgjengelig lyd. Nettleseren kan slette cache ved plassmangel, så sjekk før timen.
+
+Diktat viser hvor mange deler eleven faktisk skrev et svar til og hvor mange som stemte med fasiten. Tom gjennomgang gir ikke fullføringsregistrering. Bare historie-ID og lokal fullføringsdato lagres når alle deler er forsøkt; ny gjennomføring på en annen dag bevares uten doble datoer ved import. Elevteksten og avspilt lyd lagres ikke som elevdata. Fysisk lydkvalitet og uttale må fortsatt prøves med lærer og elever.
 
 ## 📚 Innhold og rettigheter
 

@@ -67,8 +67,8 @@ test('F16: empty and fragment dictation answers get modest, distinct feedback', 
     showMainApp();
     showPage('dictation');
     startDictation(DICTATION_STORIES.find(story => story.audioDir).id);
-    beginDictationExercise();
   });
+  await page.getByRole('button', { name: 'Start øvelsen', exact: true }).click();
   await page.locator('#dictationAnswer').fill('a');
   await page.locator('#dictationExercise').getByRole('button', { name: 'Sjekk svar', exact: true }).click();
   await expect(page.locator('#dictationSolution')).not.toContainText('Veldig nærme');
