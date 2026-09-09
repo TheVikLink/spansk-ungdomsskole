@@ -170,3 +170,19 @@ Opptjening følger eksisterende terskel og variasjonskrav. Dette innfører ikke 
 Verifisert på bygg **674f910c89407fb5**: `npm run build:app`, `npm run test:all` med **337 Chromium-tester** (1,2 minutter), 2 Node-tester og alle innholds-/katalog-/byggkontroller bestod. De 41 fokuserte resultat-, merke- og fremgangstestene bestod også før samlet kjøring. `git diff --check` er grønn, og lokal HTTP-server leverer samme bygg. Skjermbilder av desktop og mobil er kontrollert i `output/brukertest-rettelser/visual-stars-*.png`.
 
 De seks nye merkekontrollene bestod også i WebKit (8,7 sekunder), inkludert åpning med tastatur og import i ren profil. Dette er automatisering på Mac, ikke en fysisk mobiltest.
+
+## Bronse, sølv, gull og diamant
+
+Beads `d66`: Stjernene har nå fire nivåer etter brukerens oppgitte grenser: bronse fra 50 %, sølv fra 75 %, gull fra 90 % og diamant ved 100 %. Farger, nivånavn og diamantfasetter skiller dem visuelt. Korte temanavn beholdes; klikk eller Enter viser svargrunnlaget, og «Om stjernene» åpner skalaen. Nye nivåer vises etter grammatikk, verb og blandet quiz.
+
+Grunnlaget er de siste 20 vurderte svarene i hver ferdighet, med minst ti svar og eksisterende variasjonskrav for verb. Bare helt riktige svar teller riktig. Eldre feil kan dermed erstattes av nyere øving, slik at diamant fortsatt er mulig. Dette er en andel riktige på øvde oppgaver, ikke en statistisk confidence-modell eller validert mestring. Den adaptive øvingsstyrken endres ikke.
+
+Høyst 20 boolske svarutfall lagres i det valgfrie lokale feltet `starResults`; ingen rå svartekst, nye tidsstempler eller identifikatorer legges til. Eksport/import bevarer feltet. Gamle sikkerhetskopier beholder summer og merke-ID-er uten at nyere svarhistorikk gjettes. Nye stjernegrunnlag bygges fra nye svar. Bare høyere nivåer deles ut på nytt, og tidligere belønninger beholdes ved tilbakefall. Datamodellen er beskrevet i README og beslutningsplanen.
+
+Verifisert på bygg **abeb444db7efc350**:
+
+- `npm run build:app` og `npm run test:all`: bestått med **349 Chromium-tester** (57,2 sekunder), 2 Node-tester og alle innholds-, katalog- og byggkontroller.
+- De **12 nye stjernetestene** inngår i totalen og bestod også i WebKit (8,9 sekunder). De dekker grenser, minimumsgrunnlag, vei fra feil til diamant, aksentfeil, verbvariasjon, oppgradering uten dobbeltbelønning, gamle og nye sikkerhetskopier i ren profil samt faktiske grammatikk- og verbsvar.
+- Resultat → teori → tilbake bevarer lagring og belønning. Alle fire nivåer, forklaring og tastatur er kontrollert ved 1440 og 390 px, med skjermbilder i `output/brukertest-rettelser/star-tiers-*.png`.
+
+Oppdateringen leveres på samme PR #6. Den offentlige appen er ikke publisert på nytt.

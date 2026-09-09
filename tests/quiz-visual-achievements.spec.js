@@ -11,7 +11,7 @@ async function showResult(page, { previousBadges = [], answered = 10, strength =
     studentName = 'Test'; showMainApp(); showPage('vocab');
     startBrainmapSkillPractice('a0.articles.definite_singular');
     const progress = normalizeLearningProgress(null);
-    skills.forEach(id => { progress.skillProgress[id] = { strength, attempts: 5, correct: 4 }; });
+    skills.forEach(id => { progress.skillProgress[id] = { strength, attempts: 20, correct: 16, starResults: Array.from({ length: strength >= 4 ? 20 : 5 }, (_, i) => i < 16) }; });
     saveLearningProgress(progress);
     localStorage.setItem(MASTERY_BADGES_KEY, JSON.stringify({ schemaVersion: 1, badges: previousBadges }));
     mixedQuizState.answered = answered; mixedQuizState.correct = Math.min(8, answered);
@@ -26,7 +26,8 @@ for (const width of [1440, 390]) {
     await showResult(page);
     const stars = page.locator('.quiz-skill-star');
     await expect(stars).toHaveCount(4);
-    await expect(stars.locator('summary')).toHaveText(['el / la', 'gustar · entall', 'los / las', 'hay / estar']);
+    await expect(stars.locator('.quiz-star-topic')).toHaveText(['el / la', 'gustar · entall', 'los / las', 'hay / estar']);
+    await expect(stars.locator('.quiz-star-tier-label')).toHaveText(Array(4).fill('Sølv · 80 %'));
     await expect(page.locator('.quiz-badge-awards')).not.toContainText('Gode svar på øvde oppgaver:');
     await expect(stars.first().locator('svg')).toBeVisible();
     const streak = page.locator('#mixedQuizStreakSummary');
@@ -46,7 +47,7 @@ for (const width of [1440, 390]) {
     expect(await page.evaluate(() => JSON.stringify(localStorage))).toBe(before);
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
     const badgeHeight = await page.locator('.quiz-badge-awards').evaluate(el => el.getBoundingClientRect().height);
-    expect(badgeHeight).toBeLessThan(width < 500 ? 290 : 160);
+    expect(badgeHeight).toBeLessThan(width < 500 ? 330 : 220);
     await page.screenshot({ path: `output/brukertest-rettelser/visual-stars-${width}.png`, fullPage: true });
   });
 }
@@ -54,7 +55,7 @@ for (const width of [1440, 390]) {
 test('existing award IDs remain compatible and are not awarded twice', async ({ page, browser }) => {
   await showResult(page);
   const exported = await page.evaluate(() => buildProgressExportData());
-  expect(exported.masteryBadges.badges).toEqual(expect.arrayContaining(skills.map(id => `mastery:${id}`)));
+  expect(exported.masteryBadges.badges).toEqual(expect.arrayContaining(skills.map(id => `star:silver:${id}`)));
   const context = await browser.newContext();
   const clean = await context.newPage(); await clean.goto(appUrl);
   const result = await clean.evaluate(data => {
