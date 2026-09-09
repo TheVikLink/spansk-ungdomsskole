@@ -10,7 +10,7 @@ test.describe('privacy wording and local backup reminder', () => {
 
     await expect(page.locator('#studentNameInput')).toHaveAttribute('placeholder', /Fornavn eller elevkode/);
     await expect(page.locator('.login-hint').first()).toContainText('lagres bare i nettleseren');
-    await expect(page.locator('.login-hint').first()).toContainText('lekselevering');
+    await expect(page.locator('.login-hint').first()).toContainText('lokale oppsummeringen');
     await expect(page.locator('#welcomeForm')).toContainText('nettleserdata slettes');
     await expect(page.locator('#welcomeForm')).toContainText('Importer fremgang fra fil');
   });

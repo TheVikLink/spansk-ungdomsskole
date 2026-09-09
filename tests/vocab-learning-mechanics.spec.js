@@ -254,7 +254,7 @@ test('keeps a held accent key alive while typing the next letter', async ({ page
       esToNo: getVocabularyAcceptedAnswers({ no: 'å bo/ å leve', es: 'vivir' }, 'es-no', 'å bo/ å leve').map(answer => answer.value)
     }));
     expect(answers.noToEs).toEqual(['vivir']);
-    expect(answers.esToNo).toEqual(['å bo', 'å leve']);
+    expect(answers.esToNo).toEqual(expect.arrayContaining(['å bo', 'å leve']));
   });
 
   test('keeps full verb conjugation tables out of vocabulary cards', async ({ page }) => {

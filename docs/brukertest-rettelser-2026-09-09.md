@@ -45,6 +45,18 @@ Diktat skiller mellom tomt svar, ufullstendig svar, tegnsettingsforskjell og øv
 
 Reproduksjonene ble observert røde før retting. **37 tester bestod** i `report-content-feedback`, `dictation`, `grammar-explanations`, `grammar-lessons` og `report-answer-fairness`. Innholdskontrollen bestod 16 mekaniske kontroller og leksjonskontrollen sju leksjoner. Diktatens fullføringsregistrering og lydtilgjengelighet behandles sammen med F06–F09/F12/F16.
 
+## F06/F07/F08/F17/F18: opptelling, pakker og lokal gjenoppretting
+
+Verb, grammatikk, gloser og blandet quiz lagrer antallet besvarte oppgaver før Neste. Øktreferansen gjør at gjentatt avslutning oppdaterer samme post. Delvise resultater viser besvart av planlagt; null svar gir ingen registrert økt eller mestringspåstand. Gloseinnsending registrerer svaret før navigasjon, og Angre tilbakefører kort, læringsdata og historikk. Den gamle Angre-koden gjenopprettet kortreferanser uten kortdata; reproduksjonen avdekket og rettet dette.
+
+Ved omlasting merkes den lagrede deløkten avbrutt, og et synlig varsel forklarer at svarene er bevart og en ny økt må startes. Ingen oppgaver eller råsvar legges til historikken. Resultat → teori → tilbake registrerer fortsatt ikke noe ekstra.
+
+Pakketilknytning gis bare ved start fra pakkens knapper. Pakkens tidsmål inkluderer ikke annen eller eldre øving. Alle tildelte grammatikktemaer kan åpnes, også via teori. Nye pakker har egen ID; samme eldre fil får stabil ID ved ny import. Tid er medgått tid uten oppavrunding til ett minutt per klikk, og merkes som et anslag som kan inkludere pauser. Kalenderen bruker lokal dato. Datamodell, tidsavgrensning og 30-dagers historikk er dokumentert i README.
+
+Velkomsten sier uttrykkelig at elevkoden ikke gjenoppretter data. Eksportområdet opplyser om nivåtestsvar i fremgangsfilen og separat eksport av innspill. Dialogen sier at ingen mottar innspillet automatisk og at poengsummen ikke endres.
+
+Alle de sju opprinnelige reproduksjonene var røde. Etter retting bestod **58 tester** for opptelling, leksepakker og gloser. Deretter bestod **48 tester** for opptelling, personverntekst, eksport/import av gamle og nye formater, skadet lagring, grammatikkleksjoner, innspill og resultathoder. Nytt innhold i historikken ble også eksportert til en ren nettleserkontekst. Omlasting ble prøvd to ganger uten doble svar, og lokal mandag kl. 00.30 ble registrert på riktig uke.
+
 ## Menneskelig sluttkontroll
 
 Beads `spansk-ungdomsskole-ee0` samler lærerens faglige kontroll, moderert elevpilot, fysisk mobil/lyd og bruk over flere uker. Dette er ikke gjennomført av automatiske tester. Ingen publisering eller faktisk elevstudie inngår i rettingsmandatet.

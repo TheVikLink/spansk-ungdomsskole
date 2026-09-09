@@ -53,6 +53,16 @@ En gratis, interaktiv læringsapp for spansk på ungdomsskolenivå (A0-A1 CEFR).
 - Elever blir ikke lagt inn i en felles klasse, og standardversjonen har ingen sentral lærerinnboks.
 - Personvernoppsettet er laget for en lokal pilot. Feide, skolekontoer og eventuell sentral datalagring krever en egen data- og personvernmodell.
 
+### Lokal fremgang, avbrudd og sikkerhetskopi
+
+Elevkoden er en lokal etikett, ikke en konto. Samme kode i en annen nettleser gir ikke tilgang til tidligere arbeid. Last ned fremgang fra Lekse-fanen før enhetsbytte eller sletting, finn JSON-filen og importer den i den nye nettleseren. Filen inneholder kode/kallenavn, fremgang, øvingshistorikk, aktiv leksepakke og de lagrede svarene fra nivåtesten. Del den bare med noen du stoler på.
+
+Besvarte gloser, verb, grammatikk og quizoppgaver lagres fortløpende. Ved omlasting avsluttes en uferdig økt som avbrutt; appen viser hvor mange svar som er bevart. Oppgaver som ikke er besvart, telles ikke. En ny økt starter med en ny oppgaverekke. «Angre» i gloser tilbakefører både kortfremgang og øktens opptelling.
+
+Historikken bruker fortsatt `spansk123_practiceHistory` og fremgangseksport `spansk123_export_v1`. Nye poster har valgfrie lokale økt- og pakkereferanser (`sessionId`, `assignmentId`) og status (`inProgress`, `interrupted`), i tillegg til eksisterende dato, aktivitet, antall, riktige svar og tid. Referansene hindrer dobbeltelling og skiller leksepakker; de identifiserer ikke elever og sendes ikke ut. Ingen nye fritekstsvar eller lydopptak legges til historikken. Økten dateres på første besvarte oppgave etter lokal kalender. Historikken beholder de siste 30 dagene ved ny registrering; den samlede læringsfremgangen beholdes. Eksport/import og «Slett all data» omfatter disse feltene.
+
+Pakkens tidsmål teller bare økter startet med pakkens egne knapper, fra importdatoen. Eldre historikk uten pakketilknytning beholdes som generell øving. Tid er medgått økttid og kan inkludere pauser; den dokumenterer ikke konsentrasjon. Null svar gir ingen øvingstid. Hver nylaget leksepakke har egen ID; ny import av samme fil beholder tilknytningen.
+
 ### 📢 Tilbakemeldinger på oppgaver
 
 Elever kan melde inn når de mener et svar er feilvurdert ved å klikke «Jeg mener svaret mitt er riktig» etter feil svar. Innspillet lagres **bare lokalt** på enheten.
@@ -62,6 +72,8 @@ Elever kan melde inn når de mener et svar er feilvurdert ved å klikke «Jeg me
 - **Send JSON-filen til utvikler** for gjennomgang og oppdatering av ordlisten.
 - Ingen data sendes automatisk til noen server.
 - Advarsel i dialogen: «Skriv ikke navn på andre elever.»
+- Innspill endrer ikke poengsummen automatisk. Eleven må vise innspillet til læreren.
+- Innspill følger **ikke** med i vanlig fremgangseksport. Eksporter dem separat før nettleserdata slettes, og gjennomgå elevsvar/forklaringer før deling.
 
 ## 🎒 Skolestartpilot
 

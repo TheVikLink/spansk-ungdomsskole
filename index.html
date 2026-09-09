@@ -21,7 +21,7 @@
             <button class="login-btn login-btn-primary" onclick="startApp()">🚀 Start</button>
 
             <p class="login-hint">
-                💡 Bruk fornavn eller lærerens elevkode. Dette lagres bare i nettleseren og brukes i lekselevering.
+                💡 Bruk et kallenavn eller lærerens elevkode. Dette lagres bare i nettleseren og står i den lokale oppsummeringen. Koden er ikke en konto.
             </p>
 
             <div class="login-divider">har du brukt appen før?</div>
@@ -31,7 +31,7 @@
                 Støtter både ny og gammel versjon av appen
             </p>
             <p class="login-hint mt-2">
-                Hvis nettleserdata slettes, skriv inn elevkoden på nytt eller importer tidligere fremgang for å fortsette uten ny diagnose.
+                Hvis nettleserdata slettes, kan fremgangen bare hentes tilbake fra en sikkerhetskopi. Elevkoden gjenoppretter ikke data. Velg «Importer fremgang fra fil» på denne eller en ny enhet.
             </p>
         </div>
     </div>
@@ -539,8 +539,9 @@
             <div class="settings-section mt-6">
                 <h3>💾 Lagre/Hent fremgang</h3>
                 <p class="mb-4 text-gray-500">
-                    Last ned fremgangen din som fil, eller importer fra en tidligere lagring.
+                    Last ned fremgangen din som fil, eller importer fra en tidligere lagring. Filen inneholder elevkode/kallenavn, øvingshistorikk og svarene fra nivåtesten. Del den bare med noen du stoler på.
                 </p>
+                <p class="homework-hint" id="feedbackBackupNotice">Tilbakemeldinger på oppgaver følger ikke med i fremgangsfilen. Eksporter dem separat fra Innstillinger → Tilbakemeldinger før du sletter nettleserdata.</p>
                 <p class="homework-hint" id="backupStatus"></p>
                 <div class="button-group">
                     <button class="btn btn-secondary" onclick="exportAllProgress()">📥 Last ned fremgang</button>
@@ -1417,6 +1418,8 @@
 
         let studentName = '';
         let practiceHistory = [];
+        const practiceSessions = {};
+        let grammarAssignmentId = null;
         let activeAssignment = null;
         let learningProgressWriteBlocked = false;
         let quizStatsWriteBlocked = false;
@@ -10841,8 +10844,8 @@
                 <div class="settings-modal-content">
                     <h2>⚙️ Innstillinger</h2>
                     <label class="mb-2 block text-gray-700">Fornavn eller elevkode:</label>
-                    <input type="text" id="settingsNameInput" value="${studentName}" placeholder="Fornavn eller elevkode">
-                    <p class="login-hint mt-2 text-xs">Lagres lokalt i nettleseren og brukes når du leverer ukeslekse.</p>
+                    <input type="text" id="settingsNameInput" value="${escapeHtml(studentName)}" placeholder="Fornavn eller elevkode">
+                    <p class="login-hint mt-2 text-xs">Lagres lokalt og står i oppsummeringer og fremgangsfiler. Koden er ikke en konto og gjenoppretter ikke slettede data. Bruk samme nettleser, eller importer sikkerhetskopien på en ny enhet.</p>
                     <div class="button-group">
                         <button class="btn btn-primary" onclick="saveSettings()">Lagre</button>
                         <button class="btn btn-secondary" onclick="closeSettings()">Avbryt</button>
@@ -10981,7 +10984,7 @@
                     </div>
                     <label for="feedbackExplanation" class="mb-2 block text-gray-700">Forklar hvorfor (valgfritt, men hjelper oss):</label>
                     <textarea id="feedbackExplanation" class="add-word-input" rows="3" placeholder="F.eks: «Broren min er også riktig for el hermano»"></textarea>
-                    <p class="login-hint mt-2 text-xs">Forklaringen lagres bare på denne enheten. Lærer kan eksportere og sende til utvikler. Skriv ikke navn på andre elever.</p>
+                    <p class="login-hint mt-2 text-xs">Innspillet lagres bare på denne enheten. Ingen mottar det automatisk, og poengsummen endres ikke. Vis det til læreren, som kan eksportere innspill separat fra Innstillinger → Tilbakemeldinger. Skriv ikke navn på andre elever.</p>
                     <label class="mt-3 flex items-center gap-2 text-sm">
                         <input type="checkbox" id="feedbackSignWithCode"> Signér med elevkode (anonym som standard)
                     </label>
@@ -11037,7 +11040,7 @@
             modal.innerHTML = `
                 <div class="settings-modal-content">
                     <h2>📢 Tilbakemeldinger</h2>
-                    <p class="login-hint text-xs mb-4">Elever kan melde inn når de mener et svar er feilvurdert. Lagres lokalt. Lærer kan eksportere som JSON og sende til utvikler.</p>
+                    <p class="login-hint text-xs mb-4">Innspill lagres bare her. Ingen mottar dem automatisk, og de endrer ikke poengsummen. Denne eksporten inneholder oppgaven, svaret og forklaringen eleven skrev, samt elevkode hvis eleven valgte å signere. Innspill følger ikke med i vanlig fremgangseksport. Gjennomgå filen før du deler den.</p>
                     <div class="button-group mb-4">
                         <button class="btn btn-primary" onclick="exportFeedback()">📥 Eksporter til JSON</button>
                         <button class="btn btn-outline text-red-500" onclick="clearAllFeedback()">🗑️ Slett alle</button>
@@ -11955,7 +11958,7 @@
             panel.innerHTML = `
                 <div class="page-header">
                     <h2>Finn nivået mitt</h2>
-                    <p>Svar på 12 korte spørsmål. Du kan bruke fornavn, kallenavn eller elevkode. Alt lagres bare på denne enheten.</p>
+                    <p>Svar på 12 korte spørsmål. Du kan bruke kallenavn eller elevkode. Svarene lagres bare på denne enheten og følger med hvis du eksporterer fremgangen.</p>
                 </div>
                 <button class="btn btn-primary btn-large" onclick="startDiagnosisFromUi()">Start diagnose</button>
             `;
@@ -12337,6 +12340,15 @@
 
         function loadPracticeHistory() {
             practiceHistory = readStoredJson('spansk123_practiceHistory', []);
+            if (!Array.isArray(practiceHistory)) practiceHistory = [];
+            const interrupted = practiceHistory.filter(entry => entry.inProgress && !Object.values(practiceSessions).some(session => session.sessionId === entry.sessionId));
+            if (interrupted.length) {
+                interrupted.forEach(entry => { entry.inProgress = false; entry.interrupted = true; });
+                savePracticeHistory();
+                const count = interrupted.reduce((sum, entry) => sum + entry.words, 0);
+                document.getElementById('interruptedPracticeNotice')?.remove();
+                document.getElementById('mainApp').insertAdjacentHTML('afterbegin', `<p id="interruptedPracticeNotice" role="status" class="grammar-feedback">Forrige økt ble avbrutt. ${count} svar er lagret i fremgangen og historikken. Start en ny økt for å fortsette å øve. <button class="btn btn-sm btn-outline" onclick="this.parentElement.remove()">Lukk</button></p>`);
+            }
         }
 
         function savePracticeHistory() {
@@ -12365,7 +12377,7 @@
             if (!assignmentTitle) throw new Error('Leksepakken mangler tittel');
 
             return {
-                id: data.id || `assignment-${Date.now()}`,
+                id: data.id || legacyAssignmentId(data),
                 schemaVersion: 'assignment-v1',
                 assignmentTitle,
                 teacherDisplayName: String(data.teacherDisplayName || '').trim(),
@@ -12389,6 +12401,16 @@
             };
         }
 
+        function legacyAssignmentId(data) {
+            // Stable for re-import of the same old package, including after a backup.
+            const canonical = value => Array.isArray(value) ? value.map(canonical) : value && typeof value === 'object'
+                ? Object.fromEntries(Object.keys(value).sort().filter(key => key !== 'importedAt').map(key => [key, canonical(value[key])])) : value;
+            const text = JSON.stringify(canonical(data));
+            let hash = 2166136261;
+            for (const character of text) hash = Math.imul(hash ^ character.codePointAt(0), 16777619);
+            return `assignment-legacy-${(hash >>> 0).toString(16)}`;
+        }
+
         function buildTeacherAssignmentPackage(input) {
             const title = String(input.assignmentTitle || '').trim();
             if (!title) throw new Error('Leksepakken mangler tittel');
@@ -12404,6 +12426,7 @@
 
             return {
                 schemaVersion: 'assignment-v1',
+                id: `assignment-${crypto.randomUUID()}`,
                 assignmentTitle: title,
                 teacherDisplayName: String(input.teacherDisplayName || '').trim(),
                 schoolDisplayName: String(input.schoolDisplayName || '').trim(),
@@ -12419,6 +12442,7 @@
 
         function importAssignmentPackage(data) {
             const assignment = normalizeAssignmentPackage(data);
+            if (assignment.id === activeAssignment?.id) assignment.importedAt = activeAssignment.importedAt || assignment.importedAt;
             const summary = analyzeTeacherWordImport(assignment.vocabulary);
             const result = applyTeacherWordImport(summary, { assignmentId: assignment.id });
 
@@ -12639,42 +12663,71 @@
         }
 
         function renderAssignmentSessionGoal(activity, label) {
-            if (!activeAssignment?.minuteTargets) return '';
+            const assignmentId = activity === 'grammar' ? grammarAssignmentId : practiceSessions[activity]?.assignmentId;
+            if (!activeAssignment?.minuteTargets || assignmentId !== activeAssignment.id) return '';
             const target = Number(activeAssignment.minuteTargets[activity]) || 0;
             if (target <= 0) return '';
             return `<p class="assignment-session-goal">Leksemål: øv ${label} i minst ${target} min.</p>`;
         }
 
         function getElapsedPracticeMinutes(startTime) {
-            if (!startTime) return 1;
-            return Math.max(1, Math.round((new Date() - startTime) / 60000));
+            if (!startTime) return 0;
+            return Math.max(0, (new Date() - new Date(startTime)) / 60000);
         }
 
-        function recordPracticeSession(wordsReviewed, correctAnswers, activity = 'practice', minutes = 1) {
-            const today = new Date().toISOString().split('T')[0];
-            const safeMinutes = Math.max(1, Math.round(Number(minutes) || 1));
+        function beginPracticeSession(activity, assignmentId = null) {
+            practiceSessions[activity] = { sessionId: crypto.randomUUID(), assignmentId, finalized: false };
+        }
 
-            // Find or create today's entry
-            let todayEntry = practiceHistory.find(e => e.date === today && (e.activity || 'practice') === activity);
+        function checkpointPracticeSession(activity, words, correct, startedAt, finish = false, interrupted = false) {
+            if (!practiceSessions[activity]) beginPracticeSession(activity);
+            const session = practiceSessions[activity];
+            if (session.finalized) return false;
+            recordPracticeSession(words, correct, activity, getElapsedPracticeMinutes(startedAt), { ...session, inProgress: !finish, interrupted });
+            if (finish) session.finalized = true;
+            return true;
+        }
 
-            if (todayEntry) {
-                todayEntry.words += wordsReviewed;
-                todayEntry.correct += correctAnswers;
-                todayEntry.sessions++;
-                todayEntry.minutes = (todayEntry.minutes || 0) + safeMinutes;
-            } else {
-                practiceHistory.push({
-                    date: today,
-                    words: wordsReviewed,
-                    correct: correctAnswers,
-                    sessions: 1,
-                    activity,
-                    minutes: safeMinutes
-                });
+        function recordPracticeSession(wordsReviewed, correctAnswers, activity = 'practice', minutes = 0, session = null) {
+            const today = getLocalDateString();
+            const safeMinutes = Math.max(0, Number(minutes) || 0);
+
+            if (session) {
+                const existing = practiceHistory.find(entry => entry.sessionId === session.sessionId);
+                if (wordsReviewed > 0) {
+                    const entry = { date: existing?.date || today, words: wordsReviewed, correct: correctAnswers, sessions: 1, activity, minutes: safeMinutes,
+                        sessionId: session.sessionId, assignmentId: session.assignmentId, inProgress: session.inProgress, interrupted: session.interrupted };
+                    if (existing) Object.assign(existing, entry);
+                    else practiceHistory.push(entry);
+                } else {
+                    practiceHistory = practiceHistory.filter(entry => entry.sessionId !== session.sessionId);
+                }
+            } else if (wordsReviewed > 0) {
+
+                // Find or create today's entry
+                let todayEntry = practiceHistory.find(e => !e.sessionId && e.date === today && (e.activity || 'practice') === activity);
+
+                if (todayEntry) {
+                    todayEntry.words += wordsReviewed;
+                    todayEntry.correct += correctAnswers;
+                    todayEntry.sessions++;
+                    todayEntry.minutes = (todayEntry.minutes || 0) + safeMinutes;
+                } else {
+                    practiceHistory.push({
+                        date: today,
+                        words: wordsReviewed,
+                        correct: correctAnswers,
+                        sessions: 1,
+                        activity,
+                        minutes: safeMinutes
+                    });
+                }
             }
 
             // Keep only last 30 days
-            practiceHistory = practiceHistory.slice(-30);
+            const cutoff = new Date();
+            cutoff.setDate(cutoff.getDate() - 29);
+            practiceHistory = practiceHistory.filter(entry => entry.date >= getLocalDateString(cutoff));
             savePracticeHistory();
         }
 
@@ -12692,9 +12745,9 @@
             for (let i = 0; i < 7; i++) {
                 const date = new Date(monday);
                 date.setDate(monday.getDate() + i);
-                const dateStr = date.toISOString().split('T')[0];
+                const dateStr = getLocalDateString(date);
                 const practiced = practiceHistory.some(e => e.date === dateStr) || loadDictationData().completed.some(e => e.completedOn === dateStr);
-                const isToday = dateStr === today.toISOString().split('T')[0];
+                const isToday = dateStr === getLocalDateString(today);
                 days.push({
                     name: dayNames[i],
                     date: date.getDate(),
@@ -12827,7 +12880,7 @@
                 <div class="assignment-action-row">
                     ${hasVocab ? '<button class="btn btn-sm btn-primary" onclick="startActiveAssignmentVocabulary()">Start gloser</button>' : ''}
                     ${hasVerbs ? '<button class="btn btn-sm btn-secondary" onclick="startActiveAssignmentVerbs()">Start verb</button>' : ''}
-                    ${hasGrammar ? '<button class="btn btn-sm btn-secondary" onclick="startActiveAssignmentGrammar()">Start grammatikk</button>' : ''}
+                    ${hasGrammar ? activeAssignment.grammarTopics.filter(id => grammarTopics[id]).map(id => `<button class="btn btn-sm btn-secondary" onclick="startActiveAssignmentGrammar('${id}')">Start grammatikk${activeAssignment.grammarTopics.length > 1 ? ': ' + escapeHtml(grammarTopics[id].name) : ''}</button>`).join('') : ''}
                 </div>
             `;
         }
@@ -12845,7 +12898,7 @@
             showPage('vocab');
             populateCategories();
             updateStats();
-            startVocabSession('mixed', assignmentCards);
+            startVocabSession('mixed', assignmentCards, { assignmentId: activeAssignment.id });
         }
 
         function startActiveAssignmentVerbs() {
@@ -12854,13 +12907,14 @@
             selectedVerbFocuses = new Set(activeAssignment.verbFocuses);
             rebuildSelectedVerbsFromFocuses();
             showPage('verbs');
-            startVerbSession();
+            startVerbSession({ assignmentId: activeAssignment.id });
         }
 
-        function startActiveAssignmentGrammar() {
+        function startActiveAssignmentGrammar(topicId = activeAssignment?.grammarTopics?.[0]) {
             if (!activeAssignment || !activeAssignment.grammarTopics?.length) return;
+            if (!activeAssignment.grammarTopics.includes(topicId) || !grammarTopics[topicId]) return;
             showPage('grammar');
-            startGrammarTopic(activeAssignment.grammarTopics[0]);
+            startGrammarTopic(topicId, { assignmentId: activeAssignment.id });
         }
 
         function getAssignmentMinuteProgress() {
@@ -12868,6 +12922,9 @@
             const progress = { vocabulary: 0, verbs: 0, grammar: 0 };
 
             practiceHistory.forEach(entry => {
+                if (!activeAssignment?.id || entry.assignmentId !== activeAssignment.id) return;
+                const importedDate = activeAssignment.importedAt ? getLocalDateString(new Date(activeAssignment.importedAt)) : null;
+                if ((importedDate && entry.date < importedDate) || entry.date > getLocalDateString()) return;
                 const activity = entry.activity;
                 if (activity && Object.prototype.hasOwnProperty.call(progress, activity)) {
                     progress[activity] += Number(entry.minutes) || 0;
@@ -12890,8 +12947,9 @@
             return `
                 <div class="assignment-time-goals">
                     <h5>Tidsmål</h5>
+                    <p>Registrert tid i økter startet fra denne pakken. Pauser kan inngå; tiden er ikke et mål på konsentrasjon. Eldre øving uten pakketilknytning teller ikke her.</p>
                     ${rows.map(([key, label]) => {
-                        const used = Math.min(progress[key], targets[key]);
+                        const used = Math.min(Math.floor(progress[key]), targets[key]);
                         const percent = Math.round((used / targets[key]) * 100);
                         return `
                             <div class="assignment-time-row">
@@ -12924,7 +12982,7 @@
 
                 return `
                     <div class="practice-entry">
-                        <span class="practice-entry-date">${dateStr}</span>
+                        <span class="practice-entry-date">${dateStr}${entry.interrupted ? ' · Avbrutt økt' : entry.inProgress ? ' · Pågående økt' : ''}</span>
                         <div class="practice-entry-stats">
                             <span>📝 ${entry.words} oppgaver</span>
                             <span>✅ ${accuracy}%</span>
@@ -13640,6 +13698,10 @@
 
         function abandonActiveSession() {
             if (!activeSessionType) return false;
+            const activity = activeSessionType === 'mixedQuiz' ? 'mixed-quiz' : activeSessionType;
+            const saved = practiceHistory.find(entry => entry.sessionId === practiceSessions[activity]?.sessionId);
+            if (saved) { saved.inProgress = false; saved.interrupted = true; savePracticeHistory(); }
+            if (practiceSessions[activity]) practiceSessions[activity].finalized = true;
             if (activeSessionType === 'mixedQuiz') {
                 mixedQuizState = null;
             } else if (activeSessionType === 'vocabulary') {
@@ -13673,6 +13735,7 @@
                 if (!confirm('Du holder på med en økt. Avslutt og bytt fane?')) return false;
                 abandonActiveSession();
             }
+            if (page !== 'grammarLesson') grammarAssignmentId = null;
             // Hide all pages
             document.getElementById('homePage').classList.add('hidden');
             document.getElementById('vocabPage').classList.add('hidden');
@@ -16762,6 +16825,7 @@
         let sessionCards = [];
         let currentIndex = 0;
         let currentCard = null;
+        let currentCardRated = false;
         let showingAnswer = false;
         let sessionStartTime = null;
         let sessionStats = { reviewed: 0, correct: 0, newLearned: 0 };
@@ -16801,9 +16865,11 @@
                 card.correct = last.cardCorrect;
             }
 
-            sessionCards = last.sessionCards;
+            sessionCards = last.sessionCards.map(item => ({ ...item, card: cards.find(card => card.id === item.card.id) })).filter(item => item.card);
             currentIndex = last.currentIndex;
             sessionStats = last.sessionStats;
+            if (last.learningProgress) saveLearningProgress(last.learningProgress);
+            checkpointPracticeSession('vocabulary', sessionStats.reviewed, sessionStats.correct, sessionStartTime);
 
             saveData();
 
@@ -16937,7 +17003,7 @@
 
         function submitMixedQuizSelectAnswer() {
             const select = document.getElementById('mixedQuizSelect');
-            if (!select?.value) return;
+            if (!select?.value || select.disabled || currentCardRated) return;
             submitMixedQuizAnswer(select.value);
         }
 
@@ -16974,6 +17040,7 @@
             }
             mixedQuizState = { quiz, index: 0, answered: 0, correct: 0, startedAt: new Date(), results: [] };
             activeSessionType = 'mixedQuiz';
+            beginPracticeSession('mixed-quiz');
             document.getElementById('vocabSettings').classList.add('hidden');
             document.getElementById('vocabStudy').classList.add('hidden');
             document.getElementById('mixedQuizStudy').classList.remove('hidden');
@@ -17006,6 +17073,7 @@
             });
             mixedQuizState.answered++;
             if (result.correct) mixedQuizState.correct++;
+            checkpointPracticeSession('mixed-quiz', mixedQuizState.answered, mixedQuizState.correct, mixedQuizState.startedAt);
             const feedback = document.getElementById('mixedQuizFeedback');
             if (feedback) {
                 const feedbackClass = result.resultKind === 'correct' ? 'correct' : result.resultKind === 'accent_or_case_variant' ? 'near-miss' : 'incorrect';
@@ -17039,10 +17107,10 @@
         function finishMixedQuiz() {
             if (!mixedQuizState || mixedQuizState.finalResult) return;
             const total = mixedQuizState.quiz.items.length;
-            const accuracy = total ? Math.round((mixedQuizState.correct / total) * 100) : 0;
+            const accuracy = mixedQuizState.answered ? Math.round((mixedQuizState.correct / mixedQuizState.answered) * 100) : 0;
+            checkpointPracticeSession('mixed-quiz', mixedQuizState.answered, mixedQuizState.correct, mixedQuizState.startedAt, true);
             let quizStats = loadQuizStats();
             if (mixedQuizState.answered === total && total > 0) {
-                recordPracticeSession(total, mixedQuizState.correct, 'mixed-quiz', getElapsedPracticeMinutes(mixedQuizState.startedAt));
                 quizStats = completeQuizForToday();
                 addTodayAskedQuestionIds((mixedQuizState.results || []).map(r => r.questionId).filter(Boolean));
             }
@@ -17064,8 +17132,8 @@
                 container.innerHTML = `
                     <div class="session-complete mixed-quiz-results">
                         <div class="emoji">${accuracy >= 80 ? '🎉' : accuracy >= 50 ? '👍' : '💪'}</div>
-                        <h2>Quiz ferdig</h2>
-                        <p>${mixedQuizState.correct} av ${total} riktige (${accuracy}%).</p>
+                        <h2>${mixedQuizState.answered === total ? 'Quiz ferdig' : 'Quiz avsluttet'}</h2>
+                        <p>${mixedQuizState.answered} av ${total} oppgaver besvart. ${mixedQuizState.answered ? `${mixedQuizState.correct} riktige (${accuracy}%).` : 'Ingen svar ennå.'}</p>
                         <p id="mixedQuizStreakSummary">${formatQuizStreakSummary(quizStats)}</p>
                         <p class="mixed-quiz-continuation">Ta gjerne flere blandede quizer for å øve på ordforråd, grammatikk og verb i samme økt.</p>
                         ${newlyMastered.length ? `<div class="quiz-badge-awards"><strong>🏅 Nye merker</strong><p>${newlyMastered.map(badge => escapeHtml(badge.label)).join(' · ')}</p></div>` : ''}
@@ -17107,10 +17175,7 @@
 
 
         function endMixedQuizEarly() {
-            if (!mixedQuizState || confirm('Er du sikker på at du vil avslutte quizen?')) {
-                abandonActiveSession();
-                showPage('vocab', { skipGuard: true });
-            }
+            if (mixedQuizState && confirm('Er du sikker på at du vil avslutte quizen?')) finishMixedQuiz();
         }
 
         function loadData() {
@@ -17703,7 +17768,7 @@ Vil du øve på ${pronoun} likevel?`
             if (!needsCategories) startVocabSession(mode);
         }
 
-        function startVocabSession(mode = 'mixed', cardPool = null) {
+        function startVocabSession(mode = 'mixed', cardPool = null, options = {}) {
             const newLimit = getLimitValue('newCardsLimit', 10);
             const reviewLimit = getLimitValue('reviewCardsLimit', 50);
             sessionTimeLimitMinutes = getLimitValue('sessionTimeLimit', 0);
@@ -17748,6 +17813,7 @@ Vil du øve på ${pronoun} likevel?`
             vocabUndoStack = [];
             currentIndex = 0;
             sessionStartTime = new Date();
+            beginPracticeSession('vocabulary', options.assignmentId);
             sessionStats = { reviewed: 0, correct: 0, newLearned: 0 };
 
             document.getElementById('vocabSettings').classList.add('hidden');
@@ -17785,6 +17851,7 @@ Vil du øve på ${pronoun} likevel?`
             vocabUndoStack = [];
             currentIndex = 0;
             sessionStartTime = new Date();
+            beginPracticeSession('vocabulary');
             sessionStats = { reviewed: 0, correct: 0, newLearned: 0 };
 
             document.getElementById('vocabSettings').classList.add('hidden');
@@ -17812,6 +17879,7 @@ Vil du øve på ${pronoun} likevel?`
 
             const item = sessionCards[currentIndex];
             currentCard = item;
+            currentCardRated = false;
             showingAnswer = false;
 
             const card = item.card;
@@ -17941,11 +18009,13 @@ Vil du øve på ${pronoun} likevel?`
         function submitTypedVocabAnswer() {
             if (!currentCard || (currentCard.responseMode || (currentCard.typed ? 'typed' : 'flip')) !== 'typed') return;
             const input = document.getElementById('typedVocabInput');
+            if (!input || input.disabled || currentCardRated) return;
             const feedback = document.getElementById('typedVocabFeedback');
             const expected = getExpectedAnswerText(currentCard);
             const evaluation = isTypedVocabAnswerCorrect(input.value, expected, getVocabularyAcceptedAnswers(currentCard.card, currentCard.direction, expected).map(item => item.value));
 
             input.disabled = true;
+            rateCard(evaluation.resultKind === 'correct' ? 2 : 0, false);
 
             if (evaluation.resultKind === 'correct') {
                 feedback.innerHTML = '<div class="grammar-feedback correct">✓ Riktig!</div>';
@@ -17969,16 +18039,19 @@ Vil du øve på ${pronoun} likevel?`
         function submitVocabSelectAnswer() {
             if (!currentCard || (currentCard.responseMode || 'select') !== 'select') return;
             const select = document.getElementById('vocabSelect');
-            if (!select?.value) return;
+            if (!select?.value || select.disabled || currentCardRated) return;
             const feedback = document.getElementById('vocabSelectFeedback');
             const expected = getExpectedAnswerText(currentCard);
             const isCorrect = isTypedVocabAnswerCorrect(select.value, expected, getVocabularyAcceptedAnswers(currentCard.card, currentCard.direction, expected).map(item => item.value)).correct;
             select.disabled = true;
+            rateCard(isCorrect ? 2 : 0, false);
             feedback.innerHTML = isCorrect ? '<div class="grammar-feedback correct">✓ Riktig!</div>' : `<div class="grammar-feedback incorrect">✗ Riktig svar: <strong>${escapeHtml(expected)}</strong></div>`;
             document.getElementById('buttonArea').innerHTML = `<div class="button-group"><button data-feedback-next class="btn btn-primary" onclick="rateCard(${isCorrect ? 2 : 0})">Neste kort</button></div>`;
         }
 
-        function rateCard(quality) {
+        function rateCard(quality, advance = true) {
+            if (!currentCard || practiceSessions.vocabulary?.finalized) return;
+            if (currentCardRated) { if (advance) advanceVocabCard(); return; }
             // Snapshot for undo (before we mutate anything)
             try {
                 const snapItem = currentCard;
@@ -17986,6 +18059,7 @@ Vil du øve på ${pronoun} likevel?`
                 vocabUndoStack.push({
                     currentIndex: currentIndex,
                     sessionStats: { ...sessionStats },
+                    learningProgress: loadLearningProgress(),
                     sessionCards: sessionCards.map(it => ({ card: { id: it.card.id }, direction: it.direction, typed: it.typed, responseMode: it.responseMode })),
                     cardId: snapCard?.id,
                     cardNoEs: snapCard ? { ...snapCard.noEs } : null,
@@ -18029,7 +18103,12 @@ Vil du øve på ${pronoun} likevel?`
             if (quality >= 2) sessionStats.correct++;
 
             if (quality === 0) sessionCards.push(item);
+            currentCardRated = true;
+            checkpointPracticeSession('vocabulary', sessionStats.reviewed, sessionStats.correct, sessionStartTime);
+            if (advance) advanceVocabCard();
+        }
 
+        function advanceVocabCard() {
             currentIndex++;
             if (isVocabTimeLimitReached()) endVocabSession();
             else showVocabCard();
@@ -18049,6 +18128,7 @@ Vil du øve på ${pronoun} likevel?`
         }
 
         function endVocabSession() {
+            if (!checkpointPracticeSession('vocabulary', sessionStats.reviewed, sessionStats.correct, sessionStartTime, true)) return;
             activeSessionType = null;
             vocabUndoStack = [];
             updateUndoButtonState();
@@ -18056,21 +18136,17 @@ Vil du øve på ${pronoun} likevel?`
             const duration = Math.round((new Date() - sessionStartTime) / 60000);
             const accuracy = sessionStats.reviewed > 0 ? Math.round((sessionStats.correct / sessionStats.reviewed) * 100) : 0;
 
-            // Record practice for homework tracking
-            if (sessionStats.reviewed > 0) {
-                recordPracticeSession(sessionStats.reviewed, sessionStats.correct, 'vocabulary', getElapsedPracticeMinutes(sessionStartTime));
-            }
 
             document.getElementById('flashcardArea').innerHTML = `
                 <div class="session-complete">
                     <div class="emoji">🎉</div>
-                    <h2>Økt fullført!</h2>
+                    <h2>Økten er avsluttet</h2>
                     <div class="session-stats-grid">
                         <div class="session-stat"><div class="session-stat-value">${sessionStats.reviewed}</div><div class="session-stat-label">Kort repetert</div></div>
                         <div class="session-stat"><div class="session-stat-value">${accuracy}%</div><div class="session-stat-label">Nøyaktighet</div></div>
                         <div class="session-stat"><div class="session-stat-value">${duration}</div><div class="session-stat-label">Minutter</div></div>
                     </div>
-                    ${!isCustomStudySession && sessionStats.newLearned > 0 ? `<p class="font-semibold text-emerald-600">✨ Du lærte ${sessionStats.newLearned} nye kort!</p>` : ''}
+                    ${!isCustomStudySession && sessionStats.newLearned > 0 ? `<p class="font-semibold text-emerald-600">Du svarte riktig på ${sessionStats.newLearned} nye kort. Repeter dem senere.</p>` : ''}
                     ${isCustomStudySession ? `<p class="font-semibold text-gray-600">📝 Denne økten endret ikke repetisjonsplanen.</p>` : ''}
                 </div>
             `;
@@ -18214,6 +18290,7 @@ Vil du øve på ${pronoun} likevel?`
             const quiz = { status: 'ready', items: matching, fallbackUsed: false };
             mixedQuizState = { quiz, index: 0, answered: 0, correct: 0, startedAt: new Date(), results: [] };
             activeSessionType = 'mixedQuiz';
+            beginPracticeSession('mixed-quiz');
             document.getElementById('vocabSettings').classList.add('hidden');
             document.getElementById('vocabStudy').classList.add('hidden');
             document.getElementById('mixedQuizStudy').classList.remove('hidden');
@@ -18575,7 +18652,7 @@ Vil du øve på ${pronoun} likevel?`
             document.getElementById('tense' + capitalizeFirst(tense)).classList.add('active');
         }
 
-        function startVerbSession() {
+        function startVerbSession(options = {}) {
             if (selectedVerbs.size === 0) {
                 alert('Velg minst ett verb!');
                 return;
@@ -18599,7 +18676,8 @@ Vil du øve på ${pronoun} likevel?`
             // Shuffle and limit
             verbSessionExercises = shuffleArray(verbSessionExercises).slice(0, 20);
             verbCurrentIndex = 0;
-            verbStats = { correct: 0, total: verbSessionExercises.length };
+            verbStats = { correct: 0, answered: 0, total: verbSessionExercises.length };
+            beginPracticeSession('verbs', options.assignmentId);
             verbSessionStartTime = new Date();
             activeSessionType = 'verbs';
 
@@ -18678,6 +18756,7 @@ Vil du øve på ${pronoun} likevel?`
             const feedback = document.getElementById('verbFeedback');
 
             verbAnswerPending = true;
+            verbStats.answered = (verbStats.answered || 0) + 1;
 
             if (evaluation.resultKind === 'correct') {
                 feedback.innerHTML = '✓ Riktig!<div class="button-group"><button data-feedback-next class="btn btn-primary btn-sm mt-4" onclick="advanceVerbExercise()">Neste</button></div>';
@@ -18701,6 +18780,7 @@ Vil du øve på ${pronoun} likevel?`
                 // replaced before its buttons are attached.
                 showConjugationTable();
             }
+            checkpointPracticeSession('verbs', verbStats.answered, verbStats.correct, verbSessionStartTime);
         }
 
         function advanceVerbExercise() {
@@ -18762,30 +18842,25 @@ Vil du øve på ${pronoun} likevel?`
         }
 
         function endVerbSession() {
+            const answered = verbStats.answered ?? Math.min(verbCurrentIndex + (verbAnswerPending ? 1 : 0), verbStats.total);
+            if (!checkpointPracticeSession('verbs', answered, verbStats.correct, verbSessionStartTime, true)) return;
             activeSessionType = null;
-            const accuracy = verbStats.total > 0 ? Math.round((verbStats.correct / verbStats.total) * 100) : 0;
-            document.getElementById('verbProgressFill').style.width = '100%';
-            document.getElementById('verbSessionStats').textContent = `${verbStats.correct} / ${verbStats.total} riktig`;
-            document.getElementById('verbCounter').textContent = `${verbStats.total} / ${verbStats.total}`;
-
-            // Record practice for homework tracking: verb conjugation counts as homework practice.
-            if (verbStats.total > 0) {
-                recordPracticeSession(verbStats.total, verbStats.correct, 'verbs', getElapsedPracticeMinutes(verbSessionStartTime));
-            }
+            const accuracy = answered > 0 ? Math.round((verbStats.correct / answered) * 100) : 0;
+            document.getElementById('verbProgressFill').style.width = `${verbStats.total ? answered / verbStats.total * 100 : 0}%`;
+            document.getElementById('verbSessionStats').textContent = `${verbStats.correct} / ${answered} riktig`;
+            document.getElementById('verbCounter').textContent = `${answered} / ${verbStats.total}`;
 
             document.getElementById('verbExerciseArea').innerHTML = `
                 <div class="session-complete">
                     <div class="emoji">${accuracy >= 80 ? '🎉' : accuracy >= 50 ? '👍' : '💪'}</div>
-                    <h2>Øving fullført!</h2>
+                    <h2>${answered === verbStats.total ? 'Øving fullført!' : 'Økten er avsluttet'}</h2><p>${answered} av ${verbStats.total} oppgaver besvart.</p>
                     <div class="session-stats-grid">
                         <div class="session-stat"><div class="session-stat-value">${verbStats.correct}</div><div class="session-stat-label">Riktige svar</div></div>
-                        <div class="session-stat"><div class="session-stat-value">${verbStats.total}</div><div class="session-stat-label">Totalt</div></div>
-                        <div class="session-stat"><div class="session-stat-value">${accuracy}%</div><div class="session-stat-label">Nøyaktighet</div></div>
+                        <div class="session-stat"><div class="session-stat-value">${answered}</div><div class="session-stat-label">Besvart</div></div>
+                        <div class="session-stat"><div class="session-stat-value">${answered ? accuracy + '%' : '–'}</div><div class="session-stat-label">Nøyaktighet</div></div>
                     </div>
                     <p class="mt-5 text-gray-500">
-                        ${accuracy >= 80 ? 'Fantastisk! Du mestrer verbbøyingene!' :
-                          accuracy >= 50 ? 'Bra jobbet! Fortsett å øve!' :
-                          'Ikke gi opp! Øvelse gjør mester!'}
+                        ${answered === 0 ? 'Ingen svar ennå. Start en ny økt når du er klar.' : accuracy >= 80 ? 'Du svarte riktig på de fleste av disse oppgavene. Repeter senere for å huske formene.' : 'Se på verbformene du var usikker på, og prøv en ny økt.'}
                     </p>
                 </div>
             `;
@@ -19978,7 +20053,8 @@ Vil du øve på ${pronoun} likevel?`
             }).join('');
         }
 
-        function startGrammarTopic(topicId) {
+        function startGrammarTopic(topicId, options = {}) {
+            grammarAssignmentId = options.assignmentId || null;
             loadGrammarProgress();
             grammarSession = null;
             grammarLessonView = null;
@@ -20005,6 +20081,7 @@ Vil du øve på ${pronoun} likevel?`
         }
 
         function openGrammarTopicTheory(topicId) {
+            grammarAssignmentId = null;
             loadGrammarProgress();
             grammarSession = null;
             grammarLessonView = null;
@@ -20212,6 +20289,7 @@ Vil du øve på ${pronoun} likevel?`
                 result: null
             };
             activeSessionType = 'grammar';
+            beginPracticeSession('grammar', options.assignmentId || grammarAssignmentId);
 
             // Reset recent errors for this topic
             if (!grammarProgress[currentGrammarTopic.id]) {
@@ -20338,6 +20416,7 @@ Vil du øve på ${pronoun} likevel?`
             if (isCorrect) grammarProgress[currentGrammarTopic.id].correct++;
             saveGrammarProgress();
             document.getElementById('grammarNextBtn')?.focus();
+            checkpointPracticeSession('grammar', grammarSession.answers.length, grammarStats.correct, grammarSessionStartTime);
 
         }
 
@@ -20386,19 +20465,17 @@ Vil du øve på ${pronoun} likevel?`
             const displayCorrect = resultSnapshot.correctCount;
             const displayErrors = resultSnapshot.errorCount;
             const needsMorePractice = displayTotal > 0 && (accuracy < 70 || displayErrors >= 3);
-            document.getElementById('grammarProgressFill').style.width = '100%';
+            document.getElementById('grammarProgressFill').style.width = `${resultSnapshot.plannedCount ? displayTotal / resultSnapshot.plannedCount * 100 : 0}%`;
             document.getElementById('grammarSessionStats').textContent = `${displayCorrect} / ${displayTotal} riktig`;
             document.getElementById('grammarCounter').textContent = `${displayTotal} / ${resultSnapshot.plannedCount}`;
 
             // Record practice for homework tracking: grammar exercises count as homework practice.
-            if (displayTotal > 0) {
-                recordPracticeSession(displayTotal, displayCorrect, 'grammar', getElapsedPracticeMinutes(grammarSessionStartTime));
-            }
+            checkpointPracticeSession('grammar', displayTotal, displayCorrect, grammarSessionStartTime, true);
 
             document.getElementById('grammarExerciseArea').innerHTML = `
                 <div class="session-complete">
                     <div class="emoji">${accuracy >= 80 ? '🎉' : accuracy >= 60 ? '👍' : '💪'}</div>
-                    <h2>${currentGrammarTopic.name} fullført!</h2>
+                    <h2>${escapeHtml(currentGrammarTopic.name)}: ${displayTotal === resultSnapshot.plannedCount ? 'øving fullført' : 'økt avsluttet'}</h2><p>${displayTotal} av ${resultSnapshot.plannedCount} oppgaver besvart.</p>
                     <div class="session-stats-grid">
                         <div class="session-stat">
                             <div class="session-stat-value">${displayCorrect}</div>
@@ -20409,7 +20486,7 @@ Vil du øve på ${pronoun} likevel?`
                             <div class="session-stat-label">Totalt</div>
                         </div>
                         <div class="session-stat">
-                            <div class="session-stat-value">${accuracy}%</div>
+                            <div class="session-stat-value">${displayTotal ? accuracy + '%' : '–'}</div>
                             <div class="session-stat-label">Nøyaktighet</div>
                         </div>
                     </div>
@@ -20419,7 +20496,7 @@ Vil du øve på ${pronoun} likevel?`
                         </p>
                     ` : `
                         <p class="mb-5 text-emerald-500">
-                            ⭐ Flott jobbet! Du mestrer dette temaet!
+                            ${displayTotal ? 'Du svarte riktig på de fleste av disse oppgavene. Repeter senere for å huske regelen.' : 'Ingen svar ennå. Start en ny økt når du er klar.'}
                         </p>
                     `}
                     ${renderGrammarResultTheoryAction(resultSnapshot.answers, resultSnapshot.topicId)}

@@ -358,8 +358,8 @@ test.describe('teacher assignment packages', () => {
         minuteTargets: { vocabulary: 10, verbs: 5, grammar: 5 }
       };
       practiceHistory = [
-        { date: new Date().toISOString().split('T')[0], words: 20, correct: 15, sessions: 1, activity: 'vocabulary', minutes: 6 },
-        { date: new Date().toISOString().split('T')[0], words: 8, correct: 6, sessions: 1, activity: 'verbs', minutes: 5 }
+        { date: getLocalDateString(), assignmentId: 'assignment-test', words: 20, correct: 15, sessions: 1, activity: 'vocabulary', minutes: 6 },
+        { date: getLocalDateString(), assignmentId: 'assignment-test', words: 8, correct: 6, sessions: 1, activity: 'verbs', minutes: 5 }
       ];
       showPage('homework');
     });
