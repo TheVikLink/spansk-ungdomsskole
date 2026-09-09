@@ -160,3 +160,13 @@ Verifisert på bygg **e0027af0933febde**:
 - `git diff --check`: bestått. Den lokale HTTP-serveren leverer samme bygg.
 
 De 47 WebKit-testene ovenfor gjelder den foregående leveransen; denne lille oppfølgingen er verifisert i Chromium. Den publiserte appen er fortsatt uendret.
+
+## Visuelle stjerner etter ny tilbakemelding
+
+Beads `7vx`: Den lange gule boksen med gjentatte merketekster er erstattet av små grå stjerner med korte temanavn. Fire stjerner ligger på én rad ved 1440 px og to rader ved 390 px. Klikk eller Tab/Enter åpner hele læringsmålet og en kort forklaring. Et eget grønt merke med gåfigur viser dager på rad; det kan åpnes for å se hva som teller som en quizdag.
+
+Opptjening følger eksisterende terskel og variasjonskrav. Dette innfører ikke en confidence-prosent eller nye lagringsfelt. Merke-ID-er, historikk og eksport/import bevares. Visningen av en aktiv dagrekke krever at siste quizdag var i dag eller i går, slik at en gammel rekke ikke fremstilles som aktiv etter et avbrudd.
+
+Verifisert på bygg **674f910c89407fb5**: `npm run build:app`, `npm run test:all` med **337 Chromium-tester** (1,2 minutter), 2 Node-tester og alle innholds-/katalog-/byggkontroller bestod. De 41 fokuserte resultat-, merke- og fremgangstestene bestod også før samlet kjøring. `git diff --check` er grønn, og lokal HTTP-server leverer samme bygg. Skjermbilder av desktop og mobil er kontrollert i `output/brukertest-rettelser/visual-stars-*.png`.
+
+De seks nye merkekontrollene bestod også i WebKit (8,7 sekunder), inkludert åpning med tastatur og import i ren profil. Dette er automatisering på Mac, ikke en fysisk mobiltest.

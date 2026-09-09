@@ -6,7 +6,7 @@
     <title>Spansk på 1-2-3 | Læringsapp</title>
     <meta name="theme-color" content="#dc2626">
     <link rel="manifest" href="./manifest.webmanifest">
-    <meta name="app-build" content="e0027af0933febde">
+    <meta name="app-build" content="674f910c89407fb5">
     <link href="./dist/tailwind.css" rel="stylesheet">
 </head>
 <body>
@@ -11752,7 +11752,7 @@
                 return [{
                     id: `mastery:${skill.id}`,
                     skillId: skill.id,
-                    label: `Gode svar på øvde oppgaver: ${skill.label}`
+                    label: skill.label
                 }];
             });
         }
@@ -11769,6 +11769,47 @@
             const allIds = [...new Set([...previous, ...eligible.map(badge => badge.id)])];
             localStorage.setItem(MASTERY_BADGES_KEY, JSON.stringify({ schemaVersion: 1, badges: allIds }));
             return { badges: eligible, newlyEarned };
+        }
+
+        function getQuizStarLabel(badge) {
+            const labels = {
+                'a0.identity.me_llamo': 'me llamo', 'a0.identity.soy_de': 'soy de',
+                'a0.articles.indefinite_singular': 'un / una', 'a0.articles.indefinite_plural': 'unos / unas',
+                'a0.articles.definite_singular': 'el / la', 'a0.articles.definite_plural': 'los / las',
+                'a0.identity.age': 'tener años', 'a0.existential.hay': 'hay', 'a0.possession.tener': 'tener',
+                'a0.greetings.como_estas': '¿Cómo estás?', 'a0.work.trabajar': 'Yrker', 'a0.location.vivo_en': 'vivo en',
+                'a0.professions.zero_article': 'Yrker uten artikkel', 'a0.questions.que_es_eso': '¿Qué es eso?',
+                'a1.gustar.basic': 'gustar · entall', 'a1.gustar.activities': 'gustar · aktiviteter',
+                'a1.ser_estar.identity_or_location': 'ser / estar', 'a1.hay_estar.contrast': 'hay / estar',
+                'a1.ser.identity': 'ser · identitet', 'a1.estar.location': 'estar · sted',
+                'a1.verbs.regular_ar.present': '-ar-verb', 'a1.verbs.regular_er.present': '-er-verb',
+                'a1.verbs.regular_ir.present': '-ir-verb', 'a1.verbs.modal.present': 'Modalverb',
+                'a1.verbs.reflexive.present': 'Refleksive verb', 'a1.verbs.near_future': 'ir a · framtid',
+                'a1.adjectives.gender_number': 'Adjektiv · samsvar', 'a1.adjectives.regular_o': 'Adjektiv på -o',
+                'a1.adjectives.common_gender': 'Adjektiv på -e', 'a1.adjectives.demonstratives': 'Pekende ord',
+                'a1.adjectives.possessives': 'Eiendomsord', 'a1.prepositions.basic': 'Preposisjoner'
+            };
+            const verb = badge.skillId?.match(/^a1\.verbs\.(ser|estar|ir|tener|hacer)\.present$/)?.[1];
+            return labels[badge.skillId] || (verb ? `${verb} · presens` : badge.label.replace(/^(Bruke|Bøye|Skille mellom) /, ''));
+        }
+
+        function renderQuizStarAwards(badges = []) {
+            if (!badges.length) return '';
+            const star = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8-6.2-3.3L5.8 21 7 14.2 2 9.3l6.9-1Z"/></svg>';
+            return `<section class="quiz-badge-awards" aria-label="Nye stjerner"><h3>Nye stjerner</h3><div class="quiz-star-grid">${badges.map(badge => `<details class="quiz-skill-star"><summary aria-label="Stjerne: ${escapeHtml(badge.label)}. Vis forklaring">${star}<span>${escapeHtml(getQuizStarLabel(badge))}</span></summary><p><strong>${escapeHtml(badge.label)}</strong><br>Du har opptjent en stjerne gjennom flere gode svar i dette temaet. Repeter senere for å huske det.</p></details>`).join('')}</div></section>`;
+        }
+
+        function getActiveQuizStreak(stats, now = new Date()) {
+            const lastDate = stats.completedDates?.at(-1);
+            const yesterday = new Date(now); yesterday.setDate(yesterday.getDate() - 1);
+            return lastDate === getLocalDateString(now) || lastDate === getLocalDateString(yesterday) ? stats.currentStreak : 0;
+        }
+
+        function renderQuizStreakBadge(stats = loadQuizStats(), now = new Date()) {
+            const days = getActiveQuizStreak(stats, now);
+            const todayCount = stats.dailyQuizCounts[getLocalDateString(now)] || 0;
+            const walker = '<svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><circle cx="19" cy="6" r="3" fill="currentColor"/><path d="m12 27 4-8-2-7 5-2 3 6 5 1M14 12l-5 5-4-1m11 3 6 8" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+            return `<details id="mixedQuizStreakSummary" class="quiz-streak ${days ? 'quiz-streak-active' : ''}"><summary><span class="quiz-streak-icon">${walker}</span><strong>${days} dag${days === 1 ? '' : 'er'} på rad</strong><span class="quiz-today-count">${todayCount} quiz i dag</span></summary><p>Minst én fullført quiz hver dag holder rekken i gang. Flere quizer samme dag teller fortsatt som én dag.</p></details>`;
         }
 
         function startDiagnosis(nowIso = new Date().toISOString()) {
@@ -17309,9 +17350,9 @@
                         <h2>${mixedQuizState.answered === total ? 'Quiz ferdig' : 'Quiz avsluttet'}</h2>
                         <p>${mixedQuizState.answered} av ${total} oppgaver besvart. ${mixedQuizState.answered ? `${mixedQuizState.correct} riktige (${accuracy}%).` : 'Ingen svar ennå.'}</p>
                         <p data-practice-result-message>${getPracticeResultMessage(mixedQuizState.correct, mixedQuizState.answered, total)}</p>
-                        <p id="mixedQuizStreakSummary">${formatQuizStreakSummary(quizStats)}</p>
+                        ${renderQuizStreakBadge(quizStats)}
                         <p class="mixed-quiz-continuation">Velg ett mål nedenfor. Forklar regelen etter et feil svar, eller prøv nye former hvis oppgavene gikk lett.</p>
-                        ${newlyMastered.length ? `<div class="quiz-badge-awards"><strong>🏅 Nye merker</strong><p>${newlyMastered.map(badge => escapeHtml(badge.label)).join(' · ')}</p></div>` : ''}
+                        ${renderQuizStarAwards(newlyMastered)}
                         ${renderFocusedNextStep(results)}
                         <div class="mixed-quiz-result-actions-top" aria-label="Neste steg">
                             <button type="button" class="btn btn-primary" onclick="startMixedQuizFromUi()">▶️ Ta en ny quiz</button>
@@ -17345,7 +17386,8 @@
 
         function formatQuizStreakSummary(quizStats = loadQuizStats()) {
             const todayCount = quizStats.dailyQuizCounts[getLocalDateString()] || 0;
-            return `🔥 ${quizStats.currentStreak} dag${quizStats.currentStreak === 1 ? '' : 'er'} på rad · ${todayCount} quiz i dag. Dette viser aktivitet, ikke mestring av et helt tema.`;
+            const days = getActiveQuizStreak(quizStats);
+            return `${days} dag${days === 1 ? '' : 'er'} på rad · ${todayCount} quiz i dag`;
         }
 
 
