@@ -1088,7 +1088,7 @@
                     "practice": { "topicId": "articles", "label": "Øv på el, la, los og las", "options": ["El", "La", "Los", "Las"] },
                     "transferExercises": [
                         { "id": "a0.articles.definite.transfer.bicicletas", "skillId": "a0.articles.definite_plural", "sentence": "___ bicicletas son nuevas", "no": "Syklene er nye.", "answer": "Las", "options": ["El", "La", "Los", "Las"], "hint": "bicicletas er feminin flertall" },
-                        { "id": "a0.articles.definite.transfer.ventanas", "skillId": "a0.articles.definite_plural", "sentence": "___ ventanas están abiertas", "no": "Vinduene står åpne.", "answer": "Las", "options": ["El", "La", "Los", "Las"], "hint": "ventanas ender på -a og er feminin flertall" },
+                        { "id": "a0.articles.definite.transfer.ventanas", "skillId": "a0.articles.definite_plural", "sentence": "___ ventanas están abiertas", "no": "Vinduene er ved siden av døra.", "answer": "Las", "options": ["El", "La", "Los", "Las"], "hint": "ventanas ender på -a og er feminin flertall" },
                         { "id": "a0.articles.definite.transfer.flores", "skillId": "a0.articles.definite_plural", "sentence": "___ flores son bonitas", "no": "Blomstene er fine.", "answer": "Las", "options": ["El", "La", "Los", "Las"], "hint": "flores er hunkjønn flertall" },
                         { "id": "a0.articles.definite.transfer.problema", "skillId": "a0.articles.definite_singular", "sentence": "___ problema es difícil", "no": "Problemet er vanskelig.", "answer": "El", "options": ["El", "La", "Los", "Las"], "hint": "problema ender på -ma, men er hankjønn" },
                         { "id": "a0.articles.definite.transfer.perros", "skillId": "a0.articles.definite_plural", "sentence": "___ perros son grandes", "no": "Hundene er store.", "answer": "Los", "options": ["El", "La", "Los", "Las"], "hint": "perros ender på -o og er maskulin flertall" }
@@ -1337,7 +1337,7 @@
                     "explanation": "Hay betyr at noe finnes eller finnes et sted. Estar bruker vi når vi allerede snakker om en bestemt person eller ting og forteller hvor den er.",
                     "theorySections": [
                         { "title": "Hay introduserer noe", "text": "Bruk hay når du forteller at én eller flere ting finnes. Etter hay kan du bruke en ubestemt form eller et tall.", "examples": ["Hay un libro en la mesa.", "Hay dos ventanas en el aula."] },
-                        { "title": "Estar lokaliserer noe bestemt", "text": "Når du snakker om boka, vinduene eller apoteket som allerede er kjent, bruker du está eller están for å si hvor de er.", "examples": ["El libro está en la mesa.", "Las ventanas están abiertas."] },
+                        { "title": "Estar lokaliserer noe bestemt", "text": "Når du snakker om boka, vinduene eller apoteket som allerede er kjent, bruker du está eller están for å si hvor de er.", "examples": ["El libro está en la mesa.", "Las ventanas están al lado de la puerta."] },
                         { "title": "Et nyttig par", "text": "Se forskjellen i to setninger med samme sted: først sier du at noe finnes, og deretter forteller du hvor den bestemte tingen er.", "examples": ["Hay una silla aquí.", "La silla está junto a la mesa."] }
                     ],
                     "forms": [
@@ -1349,7 +1349,7 @@
                         { "es": "Hay un libro en la mesa.", "no": "Det er en bok på bordet." },
                         { "es": "El libro está en la mesa.", "no": "Boka er på bordet." },
                         { "es": "Hay dos ventanas en el aula.", "no": "Det er to vinduer i klasserommet." },
-                        { "es": "Las ventanas están abiertas.", "no": "Vinduene står åpne." }
+                        { "es": "Las ventanas están al lado de la puerta.", "no": "Vinduene er ved siden av døra." }
                     ],
                     "tip": "Tenk «finnes det?» når du velger hay, og «hvor er den/det?» når du velger está eller están.",
                     "shortHint": "Hay introduserer; está/están plasserer.",
@@ -1443,7 +1443,25 @@
         function loadDictationData() { try { const data=JSON.parse(localStorage.getItem(DICTATION_KEY)||'{"version":1,"completed":[]}'); return data?.version===1&&Array.isArray(data.completed)?data:{version:1,completed:[]}; } catch { return {version:1,completed:[]}; } }
         function saveDictationCompletion(storyId) { const data=loadDictationData(); const story=DICTATION_STORIES.find(s=>s.id===storyId); if(!story)return false; if(!data.completed.some(x=>x.storyId===storyId)) data.completed.push({storyId,completedOn:dictationDate()}); localStorage.setItem(DICTATION_KEY,JSON.stringify(data)); return true; }
         function normalizeDictationAnswer(value) { return String(value||'').normalize('NFC').trim().replace(/\s+/gu,' ').toLocaleLowerCase('es').replace(/^[¿¡,.!?:;«»"']+|[,.!?:;«»"']+$/gu,''); }
-        function compareDictationAnswer(answer, expected) { const a=normalizeDictationAnswer(answer), e=normalizeDictationAnswer(expected); if(a===e)return 'exact'; const withoutPunctuation = value => value.replace(/[¿¡,.!?:;«»"']/gu, ''); if(a && withoutPunctuation(a)===withoutPunctuation(e))return 'punctuation'; if(a && (e.includes(a)||a.includes(e)))return 'near'; return 'different'; }
+        function compareDictationAnswer(answer, expected) {
+            const a = normalizeDictationAnswer(answer), e = normalizeDictationAnswer(expected);
+            if (!a) return 'empty';
+            if (a === e) return 'exact';
+            const withoutPunctuation = value => value.replace(/[¿¡,.!?:;«»"']/gu, '');
+            if (withoutPunctuation(a) === withoutPunctuation(e)) return 'punctuation';
+            const wordCount = value => (value.match(/[\p{L}\p{N}]+/gu) || []).length;
+            if (wordCount(a) < wordCount(e)) return 'incomplete';
+            return 'different';
+        }
+        function getDictationFeedbackMessage(result) {
+            return {
+                exact: 'Ordene stemmer med fasiten. Bra jobbet!',
+                punctuation: 'Ordene stemmer. Sjekk tegnsettingen.',
+                empty: 'Du har ikke skrevet et svar. Lytt igjen og sammenlign med fasiten.',
+                incomplete: 'Svaret er ufullstendig. Lytt etter ordene som mangler, og sammenlign med fasiten.',
+                different: 'Svaret er forskjellig fra fasiten. Lytt igjen og sammenlign ord for ord.'
+            }[result] || 'Lytt igjen og sammenlign med fasiten.';
+        }
         function dictationHintsForSegment(story, text) { return (story.hints || []).filter(hint => { const spanish = String(hint).split(' = ')[0].trim(); const normalizedText = normalizeDictationAnswer(text); const term = normalizeDictationAnswer(spanish); const withoutArticle = term.replace(/^(el|la|los|las|un|una)\s+/u, ''); return term && (normalizedText.includes(term) || (withoutArticle && normalizedText.includes(withoutArticle))); }); }
         function renderDictationOverview() { const level=document.getElementById('dictationLevelFilter')?.value||'all', region=document.getElementById('dictationRegionFilter')?.value||'all'; const list=document.getElementById('dictationStoryList'); if(!list)return; list.innerHTML=DICTATION_STORIES.filter(s=>s.audioDir&&(level==='all'||s.level===level)&&(region==='all'||s.region===region)).map(s=>`<article class="dictation-story-card"><h3>${escapeHtml(s.title)}</h3><p>${escapeHtml(s.intro)}</p><p class="dictation-meta">${s.level} · ${s.region} · ${escapeHtml(s.place)}</p><button class="btn btn-primary" onclick="startDictation('${s.id}')">Start historien</button></article>`).join(''); }
         function startDictation(storyId) { const story=DICTATION_STORIES.find(s=>s.id===storyId); if(!story)return; dictationState={story,index:0,submitted:false,answer:'',answers:[]}; document.getElementById('dictationOverview').classList.add('hidden'); document.getElementById('dictationExercise').classList.remove('hidden'); renderDictationPreview(); }
@@ -1457,7 +1475,7 @@
             const { story, index, submitted, answer } = dictationState;
             const [text, audioId] = story.segments[index];
             const feedback = compareDictationAnswer(answer, text);
-            const message = feedback === 'exact' ? 'Du hadde akkurat det samme som meg. Supert!' : feedback === 'punctuation' ? 'Nesten perfekt! Du glemte bare et komma eller et punktum.' : feedback === 'near' ? 'Veldig nærme! Se på fasiten og prøv å legge merke til den lille forskjellen.' : 'Bra at du prøvde. Hør på delen én gang til og sammenlign med fasiten.';
+            const message = getDictationFeedbackMessage(feedback);
             document.getElementById('dictationExercise').innerHTML = `<div class="study-header"><button class="btn btn-outline btn-sm" onclick="endDictation()">✕ Avslutt</button><span>${index + 1} / ${story.segments.length}</span></div><h2>${escapeHtml(story.title)}</h2><p class="dictation-hints">Hint: ${story.hints.map(escapeHtml).join(' · ')}</p><audio id="dictationSegmentAudio" controls autoplay preload="metadata" src="audio/diktat/${audioId}.mp3" aria-label="Spill av segment" onerror="showDictationAudioError()"></audio><label for="dictationAnswer">Skriv det du hører</label><textarea id="dictationAnswer" rows="3" autocomplete="off" ${submitted ? 'disabled' : ''}>${escapeHtml(answer)}</textarea><div id="dictationSolution" class="dictation-solution ${submitted ? '' : 'hidden'}" aria-live="polite"><strong>Fasit:</strong> ${escapeHtml(text)}<p>${submitted ? message : ''}</p></div>${submitted ? '<button class="btn btn-primary" onclick="nextDictationSegment()">Neste segment</button>' : '<button class="btn btn-primary" onclick="submitDictationAnswer()">Sjekk svar</button>'}`;
             if (!submitted) setTimeout(focusDictationAnswer, 0);
         }
@@ -1487,7 +1505,7 @@
             const [text, filename] = story.segments[index];
             const src = dictationAudioUrl(story, filename);
             const feedback = compareDictationAnswer(answer, text);
-            const message = feedback === 'exact' ? 'Du hadde akkurat det samme som meg. Supert!' : feedback === 'punctuation' ? 'Nesten perfekt! Du glemte bare et komma eller et punktum.' : feedback === 'near' ? 'Veldig nærme! Se på fasiten og prøv å legge merke til den lille forskjellen.' : 'Bra at du prøvde. Hør på delen én gang til og sammenlign med fasiten.';
+            const message = getDictationFeedbackMessage(feedback);
             document.getElementById('dictationExercise').innerHTML = `<div class="study-header"><button class="btn btn-outline btn-sm" onclick="endDictation()">✕ Avslutt</button><span>${index + 1} / ${story.segments.length}</span></div><h2>${escapeHtml(story.title)}</h2><p class="dictation-hints">Hint: ${story.hints.map(escapeHtml).join(' · ')}</p><audio id="dictationSegmentAudio" controls autoplay preload="metadata" src="${src}" aria-label="Spill av segment" onerror="showDictationAudioError()"></audio><label for="dictationAnswer">Skriv det du hører</label><textarea id="dictationAnswer" rows="3" autocomplete="off" ${submitted ? 'disabled' : ''}>${escapeHtml(answer)}</textarea><div id="dictationSolution" class="dictation-solution ${submitted ? '' : 'hidden'}" aria-live="polite"><strong>Fasit:</strong> ${escapeHtml(text)}<p>${submitted ? message : ''}</p></div>${submitted ? '<button class="btn btn-primary" onclick="nextDictationSegment()">Neste segment</button>' : '<button class="btn btn-primary" onclick="submitDictationAnswer()">Sjekk svar</button>'}`;
             if (!submitted) setTimeout(focusDictationAnswer, 0);
         };
@@ -12090,7 +12108,7 @@
                     targetId: skillId,
                     prompt: String(exercise.sentence || '').replace('___', '______'),
                     promptNo: exercise.no || null,
-                    instructionNb: 'Velg riktig svar.',
+                    instructionNb: exercise.instructionNb || 'Velg riktig svar.',
                     responseMode: 'choice',
                     sourceResponseMode: 'choice',
                     acceptedAnswers: [{ answerId: `${questionId}.answer`, value: exercise.answer }],
@@ -16899,6 +16917,7 @@
             container.innerHTML = `
                 <div class="mixed-quiz-question" data-response-mode="${item.responseMode}" data-accepted-answer="${escapeHtml(getDiagnosisAnswerValue(item.acceptedAnswers[0]))}">
                     <div class="mixed-quiz-type">${mixedQuizTypeLabel(item)}</div>
+                    ${item.instructionNb ? `<p class="mixed-quiz-instruction">${escapeHtml(item.instructionNb)}</p>` : ''}
                     <div class="mixed-quiz-prompt">${escapeHtml(item.prompt)}${item.answerConstraint?.type === 'startsWith' ? ` <span class="answer-constraint">(begynner på «${escapeHtml(item.answerConstraint.value)}»)</span>` : ''}</div>
                     ${item.promptNo ? `<div class="mixed-quiz-context"><span class="mixed-quiz-context-label">Norsk kontekst</span>${escapeHtml(item.promptNo)}</div>` : ''}
                     ${item.direction === 'es-no' ? '<button type="button" class="speech-audio-button btn btn-secondary btn-sm" data-speak-spanish>🔊 Spill av</button>' : ''}
@@ -19287,16 +19306,10 @@ Vil du øve på ${pronoun} likevel?`
                 }
             };
             inputElement.addEventListener('keypress', suppressNativeAccentPicker, true);
-            inputElement.addEventListener('beforeinput', (e) => {
-                if (e.inputType === 'insertText' && /^[aeiounAEIOUN]$/u.test(e.data || '')) {
-                    e.preventDefault();
-                    e.stopImmediatePropagation();
-                }
-            }, true);
             inputElement.addEventListener('keydown', (e) => {
                 const key = e.key;
 
-                if (!accentMap[key]) return;
+                if (!accentMap[key] || e.isComposing || e.ctrlKey || e.metaKey || e.altKey) return;
 
                 // Take over the key event so macOS does not open its native
                 // accent picker. A quick press still inserts the plain key;
@@ -19379,7 +19392,17 @@ Vil du øve på ${pronoun} likevel?`
                 description: 'De viktigste første setningene på spansk',
                 theory: {
                     title: 'A0 grunnmur',
-                    content: '<p>Øv på korte setninger du trenger for å presentere deg selv og beskrive enkle ting.</p>'
+                    content: `<p>Du skal velge ord i korte setninger om deg selv og ting rundt deg. Les betydningen på norsk før du svarer.</p>
+                        <ul>
+                            <li><strong>Alder og det du har:</strong> Tengo betyr «jeg har». Tengo quince años = Jeg er femten år. Tengo un hermano = Jeg har en bror.</li>
+                            <li><strong>Hvordan du har det:</strong> Estoy bien = Jeg har det bra. Spørsmålet er ¿Cómo estás?</li>
+                            <li><strong>Hvor du bor:</strong> Vivo en Bergen = Jeg bor i Bergen.</li>
+                            <li><strong>Arbeid:</strong> Trabajo en una tienda = Jeg jobber i en butikk. Med yo slutter trabajar på -o: trabajo.</li>
+                            <li><strong>Yrke:</strong> Mi padre es médico = Faren min er lege. Profesora betyr kvinnelig lærer. En enkel yrkesbeskrivelse etter ser har vanligvis ikke artikkel.</li>
+                            <li><strong>Noe finnes:</strong> Hay una mesa = Det finnes et bord. Hay brukes både om én ting og flere ting.</li>
+                            <li><strong>Spør om en ting:</strong> ¿Qué es eso? = Hva er det? Qué betyr «hva».</li>
+                        </ul>
+                        <p><strong>Prøv selv:</strong> Hvordan sier du «Jeg bor i Trondheim»? Tenk ut setningen før du starter øvelsene.</p>`
                 },
                 exercises: [
                     { skillId: 'a0.identity.age', sentence: 'Tengo ___ años', answer: 'catorce', options: ['catorce', 'soy', 'vivo', 'hay'], hint: 'På spansk sier du «jeg har fjorten år».', no: 'Jeg er fjorten år.' },
@@ -19388,7 +19411,7 @@ Vil du øve på ${pronoun} likevel?`
                     { skillId: 'a0.greetings.como_estas', sentence: '—¿Cómo estás? —___ bien, gracias', answer: 'Estoy', options: ['Estoy', 'Tengo', 'Hay', 'Vivo'], hint: 'Svar på hvordan du har det med estoy.', no: '—Hvordan har du det? —Jeg har det bra, takk.' },
                     { skillId: 'a0.work.trabajar', sentence: 'Yo ___ en una escuela', answer: 'trabajo', options: ['trabajo', 'trabajas', 'trabajar', 'hay'], hint: 'Med yo får regelrette -ar-verb endelsen -o.', no: 'Jeg jobber på en skole.' },
                     { skillId: 'a0.location.vivo_en', sentence: '___ en Oslo', answer: 'Vivo', options: ['Vivo', 'Soy', 'Tengo', 'Hay'], hint: 'Vivo en betyr «jeg bor i».', no: 'Jeg bor i Oslo.' },
-                    { skillId: 'a0.professions.zero_article', sentence: 'Mi madre es ___ profesora', answer: 'profesora', options: ['profesora', 'una profesora', 'la profesora', 'hay'], hint: 'Etter ser bruker du vanligvis ikke un/una foran yrker.', no: 'Moren min er lærer.' },
+                    { skillId: 'a0.professions.zero_article', instructionNb: 'Velg den enkle yrkesbeskrivelsen uten artikkel.', sentence: 'Mi madre es ___', answer: 'profesora', options: ['profesora', 'una profesora', 'la profesora', 'hay'], hint: 'I en enkel yrkesbeskrivelse sier vi es profesora, uten artikkel. Med una eller la får beskrivelsen en annen vekt eller viser til en bestemt person.', no: 'Moren min er lærer.' },
                     { skillId: 'a0.questions.que_es_eso', sentence: '¿___ es eso?', answer: 'Qué', options: ['Qué', 'Quién', 'Dónde', 'Cuándo'], hint: 'Qué betyr «hva».', no: 'Hva er det?' }
                 ]
             },
@@ -19563,16 +19586,16 @@ Vil du øve på ${pronoun} likevel?`
                 description: 'Si at noe finnes eller hvor noe er',
                 theory: { title: 'Hay eller estar?', content: '<p>Hay forteller at noe finnes. Estar forteller hvor en bestemt person eller ting er.</p>' },
                 exercises: [
-                    { skillId: 'a1.hay_estar.contrast', sentence: '___ un libro en la mesa', answer: 'Hay', options: ['Hay', 'Está', 'Están', 'Es'], no: 'Det er en bok på bordet.' },
-                    { skillId: 'a1.hay_estar.contrast', sentence: 'El libro ___ en la mesa', answer: 'está', options: ['hay', 'está', 'están', 'es'], no: 'Boka er på bordet.' },
-                    { skillId: 'a1.hay_estar.contrast', sentence: '___ dos ventanas en el aula', answer: 'Hay', options: ['Hay', 'Está', 'Están', 'Es'], no: 'Det er to vinduer i klasserommet.' },
-                    { skillId: 'a1.hay_estar.contrast', sentence: 'Las ventanas ___ abiertas', answer: 'están', options: ['hay', 'está', 'están', 'es'], no: 'Vinduene står åpne.' },
-                    { skillId: 'a1.hay_estar.contrast', sentence: '¿___ una farmacia cerca?', answer: 'Hay', options: ['Hay', 'Está', 'Están', 'Es'], no: 'Finnes det et apotek i nærheten?' },
-                    { skillId: 'a1.hay_estar.contrast', sentence: 'La farmacia ___ al lado del banco', answer: 'está', options: ['hay', 'está', 'están', 'es'], no: 'Apoteket er ved siden av banken.' },
-                    { skillId: 'a1.hay_estar.contrast', sentence: 'En mi mochila ___ tres libros', answer: 'hay', options: ['hay', 'está', 'están', 'es'], no: 'I sekken min er det tre bøker.' },
-                    { skillId: 'a1.hay_estar.contrast', sentence: 'Los libros ___ en mi mochila', answer: 'están', options: ['hay', 'está', 'están', 'es'], no: 'Bøkene er i sekken min.' },
-                    { skillId: 'a1.hay_estar.contrast', sentence: '___ una silla aquí', answer: 'Hay', options: ['Hay', 'Está', 'Están', 'Es'], no: 'Det er en stol her.' },
-                    { skillId: 'a1.hay_estar.contrast', sentence: 'La silla ___ junto a la mesa', answer: 'está', options: ['hay', 'está', 'están', 'es'], no: 'Stolen er ved siden av bordet.' }
+                    { skillId: 'a1.hay_estar.contrast', sentence: '___ un libro en la mesa', answer: 'Hay', options: ['Hay', 'Está', 'Están', 'Es'], hint: 'un libro introduserer ei bok. Bruk hay for å si at boka finnes der.', no: 'Det er en bok på bordet.' },
+                    { skillId: 'a1.hay_estar.contrast', sentence: 'El libro ___ en la mesa', answer: 'está', options: ['hay', 'está', 'están', 'es'], hint: 'El libro er ei bestemt bok. Bruk está for å si hvor den er.', no: 'Boka er på bordet.' },
+                    { skillId: 'a1.hay_estar.contrast', sentence: '___ dos ventanas en el aula', answer: 'Hay', options: ['Hay', 'Está', 'Están', 'Es'], hint: 'dos ventanas forteller hvor mange vinduer som finnes. Bruk hay også når det finnes flere ting.', no: 'Det er to vinduer i klasserommet.' },
+                    { skillId: 'a1.hay_estar.contrast', sentence: 'Las ventanas ___ al lado de la puerta', answer: 'están', options: ['hay', 'está', 'están', 'es'], hint: 'Las ventanas er bestemte vinduer i flertall. Bruk están for å si hvor de er.', no: 'Vinduene er ved siden av døra.' },
+                    { skillId: 'a1.hay_estar.contrast', sentence: '¿___ una farmacia cerca?', answer: 'Hay', options: ['Hay', 'Está', 'Están', 'Es'], hint: 'una farmacia spør etter et apotek som finnes i nærheten. Bruk hay.', no: 'Finnes det et apotek i nærheten?' },
+                    { skillId: 'a1.hay_estar.contrast', sentence: 'La farmacia ___ al lado del banco', answer: 'está', options: ['hay', 'está', 'están', 'es'], hint: 'La farmacia er et bestemt apotek i entall. Bruk está for å si hvor det er.', no: 'Apoteket er ved siden av banken.' },
+                    { skillId: 'a1.hay_estar.contrast', sentence: 'En mi mochila ___ tres libros', answer: 'hay', options: ['hay', 'está', 'están', 'es'], hint: 'tres libros introduserer tre bøker. Bruk hay for å si hva som finnes i sekken.', no: 'I sekken min er det tre bøker.' },
+                    { skillId: 'a1.hay_estar.contrast', sentence: 'Los libros ___ en mi mochila', answer: 'están', options: ['hay', 'está', 'están', 'es'], hint: 'Los libros viser til bestemte bøker i flertall. Bruk están om plasseringen.', no: 'Bøkene er i sekken min.' },
+                    { skillId: 'a1.hay_estar.contrast', sentence: '___ una silla aquí', answer: 'Hay', options: ['Hay', 'Está', 'Están', 'Es'], hint: 'una silla introduserer en stol som finnes her. Bruk hay.', no: 'Det er en stol her.' },
+                    { skillId: 'a1.hay_estar.contrast', sentence: 'La silla ___ junto a la mesa', answer: 'está', options: ['hay', 'está', 'están', 'es'], hint: 'La silla er en bestemt stol i entall. Bruk está om plasseringen.', no: 'Stolen er ved siden av bordet.' }
                 ]
             },
 
@@ -19812,7 +19835,7 @@ Vil du øve på ${pronoun} likevel?`
                 'Festen er på lørdag.', 'I dag er jeg veldig glad.', 'Boka er på bordet.', 'Vennene mine er på skolen.'
             ],
             hayEstar: [
-                'Det er en bok på bordet.', 'Boka er på bordet.', 'Det er to vinduer i klasserommet.', 'Vinduene står åpne.',
+                'Det er en bok på bordet.', 'Boka er på bordet.', 'Det er to vinduer i klasserommet.', 'Vinduene er ved siden av døra.',
                 'Finnes det et apotek i nærheten?', 'Apoteket er ved siden av banken.', 'I sekken min er det tre bøker.', 'Bøkene er i sekken min.',
                 'Det er en stol her.', 'Stolen er ved siden av bordet.'
             ],
@@ -20097,6 +20120,8 @@ Vil du øve på ${pronoun} likevel?`
 
         function getGrammarMistakeExplanation(topicId) {
             const explanations = {
+                a0Foundation: 'Hvorfor? Velg uttrykket som passer betydningen: tengo for alder og det du har, vivo en for bosted, trabajo for arbeid og hay for noe som finnes.',
+                hayEstar: 'Hvorfor? Hay introduserer noe som finnes. Está og están forteller hvor en bestemt ting eller flere bestemte ting er.',
                 articles: 'Hvorfor? Velg artikkel etter substantivets kjønn og tall: el/un for maskulin entall, la/una for feminin entall, los/las for flertall.',
                 adjectives: 'Hvorfor? Adjektivet må passe med substantivet i kjønn og tall: alto, alta, altos, altas.',
                 serEstar: 'Hvorfor? Bruk ser for identitet, yrke og varige beskrivelser. Bruk estar for sted, følelser og midlertidige tilstander.',
@@ -20221,6 +20246,7 @@ Vil du øve på ${pronoun} likevel?`
             document.getElementById('grammarExerciseArea').innerHTML = `
                 <div class="grammar-exercise">
                     ${renderAssignmentSessionGoal('grammar', 'grammatikk')}
+                    ${exercise.instructionNb ? `<p class="grammar-instruction">${escapeHtml(exercise.instructionNb)}</p>` : ''}
                     ${exercise.no ? `<div class="grammar-norwegian-context"><span class="grammar-context-label">Betydning</span>${escapeHtml(exercise.no)}</div>` : ''}
                     <div class="grammar-sentence">${sentenceHTML}</div>
 
@@ -20298,7 +20324,7 @@ Vil du øve på ${pronoun} likevel?`
                 document.getElementById('grammarFeedback').innerHTML = `
                     <div class="grammar-feedback incorrect">
                         ✗ Feil! Riktig svar er: <strong>${exercise.answer}</strong>
-                        <div class="explanation">${exercise.hint}</div>
+                        <div class="explanation">${escapeHtml(exercise.hint || exercise.explanation || getGrammarMistakeExplanation(currentGrammarTopic.id))}</div>
                         <div class="explanation"><strong>Hvorfor?</strong> ${getGrammarMistakeExplanation(currentGrammarTopic.id).replace(/^Hvorfor\?\s*/, '')}</div>
                         <button type="button" class="btn btn-sm btn-outline mt-2" onclick="showFeedbackDialog({itemRef:'grammar:${currentGrammarTopic.id}:${grammarCurrentIndex}',source:'grammatikk',prompt:'${escapeHtml(exercise.sentence).replace(/'/g, "\\'")}',studentAnswer:'${escapeHtml(answer).replace(/'/g, "\\'")}',expectedAnswer:'${escapeHtml(exercise.answer).replace(/'/g, "\\'")}'})">🤔 Jeg mener svaret mitt er riktig</button>
                         <button data-feedback-next class="btn btn-primary btn-sm mt-4" onclick="advanceGrammarExercise()" id="grammarNextBtn" aria-keyshortcuts="Enter">Neste</button>

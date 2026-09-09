@@ -35,6 +35,16 @@ Mobilmenyen har egne rader for merkevare, menyvalg og elevkode/innstillinger. Me
 
 Reproduksjonen bekreftet at elevnavnet avskar klikk på menyvalg. Etter retting bestod reelle klikk på alle åtte menyvalg, både fremover og bakover fra ulike undersider, ved **360/390/640/768/1024 px** med langt navn og 24 px menytekst. `check:tailwind` bestod. Fysisk mobil og skolens tekstinnstillinger gjenstår til pilot.
 
+## F05/F10 og svarforklaring i F16
+
+Yrkesoppgaven gir nå «Mi madre es profesora» og ber uttrykkelig om den enkle yrkesbeskrivelsen uten artikkel. Denne instruksjonen følger også oppgaven inn i blandet quiz. A0-teorien forklarer uttrykkene oppgavene krever. Alle ti hay/estar-oppgavene har konkrete hint, og feilforklaringen har en trygg reserve hvis innhold mangler. Vindu-eksempelet handler nå om plassering ved døra.
+
+[Instituto Cervantes, grammatikkoversikt A1–A2](https://cvc.cervantes.es/ensenanza/biblioteca_ele/plan_curricular/niveles/02_gramatica_inventario_a1-a2.htm) støtter yrkesbeskrivelser uten artikkel, hay ved presentasjon av noe som finnes, og estar for plassering. Dette er kildestøttede rettelser, ikke godkjenning av hele oppgavebanken fra spansklærer.
+
+Diktat skiller mellom tomt svar, ufullstendig svar, tegnsettingsforskjell og øvrig forskjell. Delstrengtreff gir ikke lenger ros. En faktisk innsending av «a» avdekket dessuten at aksenthåndteringen blokkerte tekstinnsetting uten fysisk tastetrykk; denne blokkeringen er fjernet.
+
+Reproduksjonene ble observert røde før retting. **37 tester bestod** i `report-content-feedback`, `dictation`, `grammar-explanations`, `grammar-lessons` og `report-answer-fairness`. Innholdskontrollen bestod 16 mekaniske kontroller og leksjonskontrollen sju leksjoner. Diktatens fullføringsregistrering og lydtilgjengelighet behandles sammen med F06–F09/F12/F16.
+
 ## Menneskelig sluttkontroll
 
 Beads `spansk-ungdomsskole-ee0` samler lærerens faglige kontroll, moderert elevpilot, fysisk mobil/lyd og bruk over flere uker. Dette er ikke gjennomført av automatiske tester. Ingen publisering eller faktisk elevstudie inngår i rettingsmandatet.

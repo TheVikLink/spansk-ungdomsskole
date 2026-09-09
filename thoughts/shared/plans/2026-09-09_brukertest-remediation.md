@@ -106,6 +106,20 @@ De eksplisitte tilleggstestene dekker sentrale rapportområder som dagens `test:
 
 ## Sluttleveranse
 
+### Beslutning om lokal aktivitet og avbrudd (F06/F07/F18)
+
+Minste sammenhengende løsning er å bevare besvart arbeid og avslutte en avbrutt deløkt ærlig ved omlasting. Det trengs ikke lagring av nye råsvar eller hele oppgaveskjermer. Den endelige implementeringen skal verifiseres mot følgende modell før den godkjennes:
+
+- En økt får en tilfeldig lokal `sessionId`, aktivitet og eventuell eksplisitt `assignmentId` ved oppstart. Dette er lokale referanser, ikke elevidentifikatorer. Pakke-ID kopieres ved start fra en handling i den aktuelle pakken; en ny import må ikke endre tilhørigheten til en pågående økt.
+- Nye øktposter i `spansk123_practiceHistory` kan ha valgfrie felt for disse referansene og om økten er pågående/avbrutt. `date`, `words`, `correct`, `sessions`, `activity` og `minutes` beholdes. Samme lokale økt oppdaterer samme post med kumulative faktisk besvarte tall; den legges ikke til igjen ved Neste, resultat, teori, avbrudd eller omlasting.
+- Ingen post opprettes før et faktisk svar/egenrapportert gloseforsøk. Tid er forløpt økttid, ikke et bevis på aktiv konsentrasjon; et raskt svar skal ikke automatisk telle ett minutt. Ingen fritekst, navn eller lyd legges til aktivitetspostene.
+- Eldre poster uten tilhørighet beholdes og kan vises i generell historikk, men tilskrives ikke nye pakker. Generelle uketall og pakketall må merkes og beregnes separat. Datoer følger enhetens lokale kalender.
+- Ved ny innlasting merkes lagrede pågående poster avbrutt, og eleven får en konkret melding om bevart svarantall og at neste øving starter på nytt. Denne overgangsregelen oppdaterer ikke læringsprogresjon på nytt.
+- Historikken begrenses etter dato (30 dager), ikke etter antall poster. Full fremgangseksport inkluderer de nye valgfrie feltene i eksisterende eksportformat; gammel og ny fil prøves i ren profil. Lokal sletting skal fjerne også de nye feltene gjennom eksisterende lagringsnøkkel.
+- Moteksempler som må testes: dobbelt avslutt; svar uten Neste; bakover/teori; ny pakke midt i/etter økt; import av eldre historikk; samme pakke importert igjen; uke-/midnattsskifte; grammatikkresultat tilbake etter lagret post; avslutning uten svar. Importerte historikkposter må aldri brukes til å gjette manglende råsvar eller tilhørighet.
+
+Faglig kildesjekk og fysisk pilot er fortsatt separat fra denne tekniske, lokale modellen. Ingen backend, automatisk overføring eller nye elevopplysninger innføres.
+
 Lever en kontrollert kodeendring med testbevis per funn, oppdatert Beads, og en kort lærerveiledning med avtalt øvingsrute. Bevar rapporten fra 8. september som historisk utgangspunkt. En ny verifikasjonsrapport kan samle resultater og gjenværende kontroller, men skal ikke være en ny løpende oppgaveliste.
 
 De positive regresjonskravene er: lokal bruk uten konto, eksport/import til ren profil og eldre filer, korrekt aksent/ñ-policy, aktiv elevinnsats og resultat → teori → tilbake uten endret fremgang eller dobbeltregistrering.

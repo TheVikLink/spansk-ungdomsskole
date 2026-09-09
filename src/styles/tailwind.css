@@ -287,7 +287,6 @@ select:focus-visible,
 /* Homework Page */
 .homework-nav {
     background: linear-gradient(135deg, #f59e0b 0%, #eab308 100%);
-    color: white !important;
     border-radius: 8px;
 }
 
