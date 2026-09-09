@@ -45,7 +45,7 @@ test.describe('next practice recommendation', () => {
     });
 
     await expect(page.locator('#homeNextPractice')).toContainText('Neste anbefalte øving');
-    await expect(page.locator('#homeNextPractice')).toContainText('Jeg heter Ana');
+    await expect(page.locator('#homeNextPractice')).toContainText('Si hva du heter med me llamo');
     await expect(page.getByRole('button', { name: 'Start anbefalt øving' })).toBeVisible();
   });
 });

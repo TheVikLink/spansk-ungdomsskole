@@ -1,74 +1,40 @@
-# Skolestartpilot: Spansk på 1-2-3
+# Lærerveiledning: første 20 minutter
 
-## Kort lærerpitch
+Appen gir aktiv spanskøving uten konto. Den tekniske rettingen etter [brukertesten](docs/brukertest-2026-09-08.md) dokumenteres i [rettelsesrapporten](docs/brukertest-rettelser-2026-09-09.md). Ingen ekte elevpilot eller full faglig godkjenning er gjennomført. Begynn med lærerens gjennomgang av de valgte oppgavene, deretter en kort demonstrasjon eller liten, moderert prøve. Selvstendig bruk med en hel klasse kommer først etter denne vurderingen.
 
-Spansk på 1-2-3 er et lavterskel supplement for norske ungdomsskoleelever som trenger korte, aktive økter i spansk. Elevene kan øve på gloser, verb, grammatikk og blandede quizer uten konto eller innlogging. Fremgang lagres lokalt i nettleseren, og læreren kan bruke egne gloser gjennom en lokal JSON-import.
+## Ett mål og en avtalt start
 
-Appen er laget for å gjøre det enkelt å få fem–ti minutter med faktisk gjenkalling inn i undervisningen eller som frivillig mellomarbeid. Den erstatter ikke læreren eller læreboka; den gir elevene flere korte anledninger til å hente fram ord og former selv.
+**Mål:** Eleven velger bestemt artikkel i entall og flertall: el, la, los og las.
 
-## Forslag til pilot
+Åpne «For læreren: første 20 minutter» på velkomstsiden eller Start. «Start felles artikkeløving» åpner leksjonen om bestemte artikler uten at eleven må ta en nivåtest. Læreren kontrollerer eksemplene og øvingsoppgavene før timen. En eventuell elevkode er bare en lokal etikett, ikke en konto eller nøkkel til gammel fremgang.
 
-- Varighet: 2–4 uker
-- Målgruppe: én eller to klasser på ungdomsskolen
-- Start med 10 minutter i timen to ganger i uka
-- La elevene bruke samme nettleser/enhet når det er mulig
-- Be elevene eksportere fremgang før de bytter enhet eller sletter nettleserdata
-- Samle lærer- og elevtilbakemeldinger ukentlig, særlig på svar som oppleves som feil selv om de er språklig riktige
+1. **0–3 minutter:** Vis målet og startknappen. Bruk samme nettleser og enhet som sist. Vis at fremgangen blir på enheten og at læreren ikke mottar noe automatisk.
+2. **3–6 minutter:** Les regelen sammen. Modellér «el libro → los libros» og «la casa → las casas». La eleven forklare hva som endrer seg før svaret vises.
+3. **6–16 minutter:** Start øvingen fra leksjonen. Eleven velger artikkel, leser responsen og bruker «Vis hint» ved behov. Ved flere feil: gå til forklaringen, sammenlign ett eksempel og prøv en ny oppgave. Læreren kan avgrense til el/la først.
+4. **16–20 minutter:** Avslutt økten. Åpne «Lekse» → «Vis dagens oppsummering». Den viser registrerte svar også på første dag, uten automatisk utskrift eller innsending. Spør muntlig: «Hvilken regel husker du?» og «Hva trenger du hjelp til?» Ta sikkerhetskopi ved enhetsbytte.
 
-## Tre ferdige aktiviteter
+**Tidlig ferdig:** Lukk svaralternativene ved å gå tilbake til teorien. Skriv to nye eksempler på papir, ett i entall og ett i flertall, og forklar artikkelvalget til læreren. Dette er en lærerledet etteroppgave; appen vurderer den ikke automatisk. Verbøving og spill har egne avgrensede øvingsvalg, men er ikke nødvendige i denne første timen.
 
-### 1. Dagens blandede quiz – 10 minutter
+**Stopp og reserve:** Ved urimelig fasit eller fastlåst øving viser eleven problemet til læreren. Bruk de to kontrollerte modelloppgavene muntlig eller på papir. Eleven kan lagre et anonymt innspill lokalt; det endrer ikke resultatet og sendes ikke til noen. Unngå navn og andre personopplysninger i fritekst.
 
-Elevene tar dagens blandede quiz individuelt. Den kombinerer ordforråd, grammatikk og verb, og har både skrivefelt, nedtrekk og flervalg. Etterpå åpner elevene minst ett feil svar og forklarer for en læringspartner hvorfor svaret ble feil eller nesten riktig.
+## Hva oppsummeringen kan si
 
-Lærerens observasjonspunkt: Får elevene tilstrekkelig kontekst til å vite hvilket svar som forventes? Noter eventuelle riktige synonymer som mangler.
+Artikkeløkten er mal for videre øving: et avgrenset mål, aktivt svar, konkret tilbakemelding, valgfri hjelp, en tydelig neste handling og en presis oppsummering. Grammatikktemaene deler allerede oppgave- og resultatvisning. Grammatikk, verb og blandet quiz bruker samme regel for resultatteksten: «alle» krever at hvert besvarte svar er riktig, og en deløkt omtaler bare de oppgavene eleven faktisk besvarte. Gloser omtaler registrerte kortforsøk, som også kan være egenvurderte. Spill og diktat tilpasser flyten til ordgjenkalling og lytting.
 
-### 2. Adaptiv gloselæring – 5–10 minutter
+Oppsummeringen teller besvarte oppgaver og lokal aktivitet. Minutter er målt tid mellom handlinger, ikke kontrollert konsentrasjon eller bevis på leksearbeid. Egenvurderte gloser er egenvurdering. Et godt quizresultat viser prestasjon på disse oppgavene, ikke sikker mestring av hele temaet. Bruk muntlige spørsmål og elevens egne eksempler for å forstå læringsbehovet.
 
-Elevene velger en adaptiv gloseøkt. Systemet blander nye ord og repetisjon, og bruker smart repetisjon til å prioritere hva eleven bør møte igjen. Eleven svarer begge veier, norsk → spansk og spansk → norsk, og vurderer eller gjennomfører oppgavene i appens eksisterende flyt.
+En lærer kan gå rundt og se dagens oppsummering på enheten. Det finnes ingen automatisk klasseoversikt eller innlevering. Et ukemål sperrer ikke første dags visning. En ny leksepakke får egen aktivitetsavgrensning og arver ikke gamle minutter.
 
-Lærerens observasjonspunkt: Opplever eleven at vanskelige ord kommer tilbake, mens ord som sitter får lengre mellomrom? Kontroller også at eleven forstår forskjellen på nye ord og repetisjon.
+## Lokal lagring, sikkerhetskopi og lyd
 
-### 3. Egen verb- eller grammatikkøkt – 10 minutter
+Fremgang lagres i nettleseren. Eksporter sikkerhetskopien manuelt før nettleserdata slettes eller enheten byttes, og importer filen i den nye nettleseren. Samme kode alene gjenoppretter ingenting. Sikkerhetskopien inneholder blant annet kode/navn og nivåtestsvar. Elevinnspill har separat eksport fra Innstillinger → Tilbakemeldinger. Ingen filer sendes automatisk.
 
-Elevene velger enten Verb eller Grammatikk i appen. I Verb øver de på bøying i tilgjengelige verbtider med appens svar- og feedbackflyt. I Grammatikk arbeider de med korte, tematiske oppgaver og får forklaring ved behov.
+Første timen over trenger ikke lyd. Hvis diktat skal brukes senere, prøv avspilling på skolens faktiske enheter og last ned den valgte historien med appens knapp før frakobling. Uten nedlastet lyd kreves nett. Talehjelperens stemme og uttale må prøvelyttes på enheten. Ved appoppdatering: avslutt aktiv øving, last inn den nye versjonen og kontroller versjonsmerket. Publisering inngår ikke i denne rettelsesleveransen.
 
-Lærerens observasjonspunkt: Skill mellom manglende kunnskap, manglende aksent og et svar som faktisk burde vært godkjent som synonym eller bøyd form. Ikke legg til parøvelser eller andre arbeidsformer som ikke finnes i appen.
+## Neste steg med mennesker
 
-## Personvern i piloten
+Etter lærerens faglige gjennomgang: gjennomfør en moderert prøve med to lærere og seks elever med ulike forkunnskaper. Bruk fysiske mobiltelefoner og minst én tastaturbruker. Noter anonymt stoppunkt og behov for lærerhjelp; ingen opptak er nødvendig.
 
-- Ingen elevkonto eller Feide i pilotversjonen.
-- Fremgang lagres lokalt i elevens nettleser.
-- Eksport og import av fremgang skjer manuelt som JSON-fil.
-- Standardoppsettet sender ikke elevdata til skyen.
-- Tilbakemeldinger lagres lokalt og er anonyme som standard. Læreren eksporterer dem manuelt ved behov.
-- Ikke be elevene skrive navn på andre elever eller andre personopplysninger i fritekstfelt.
-- En eventuell framtidig Feide-, skolekonto- eller skyløsning krever en separat personvern- og datamodell før utvikling.
+Prøven skal undersøke at alle kommer til avtalt oppgave, ingen blir fastlåst, valgte riktige svar godkjennes, og hver elev kan forklare ett forbedringspunkt. Sterke elever skal finne en konkret neste utfordring. Be eleven selv prøve eksport/import. Følg deretter samme avgrensede opplegg over to–tre uker med ny pakke og en kontrollert appoppdatering før bredere klassebruk vurderes.
 
-## Ukentlige tilbakemeldingsspørsmål
-
-Be elevene svare kort, muntlig eller på papir:
-
-1. Hvilken oppgave hjalp deg mest med å huske spansk?
-2. Fikk du noen gang feil på et svar du mener var riktig? Hva skrev du?
-3. Var det tydelig hva oppgaven ba deg om før du svarte?
-4. Var aksenter og `ñ` mulige å skrive på enheten du brukte?
-5. Hva bør bli enklere eller mindre forstyrrende?
-
-Læreren bør i tillegg notere hvilke oppgaver som skapte diskusjon, og om diskusjonen skyldtes språk, instruksjon eller teknisk friksjon.
-
-## Pilotens suksesskriterier
-
-Piloten er lovende hvis:
-
-- elevene klarer å starte en økt uten hjelp etter første introduksjon
-- korte økter faktisk blir gjennomført minst to ganger i uka
-- elevene opplever at riktige synonymer og rimelige bøyningsformer blir godkjent
-- læreren får konkrete, lokalt lagrede tilbakemeldinger uten å samle inn unødvendige personopplysninger
-- eksport/import fungerer når elever bytter enhet
-
-Dette er ikke en effektstudie. Pilotens mål er å finne friksjon, språklige hull og klasseromsrutiner som bør forbedres før bredere bruk.
-
-## Prisposisjon etter gratis pilot
-
-En tidlig skolelisens kan vurderes til omtrent **3 000–4 000 kroner per skole per år**, forutsatt at pilottilbakemeldingene viser tydelig nytte. Prisen bør først knyttes til enkel lokal bruk, innholdsimport og oppdateringer. Innlogging, Feide, sentral lagring og læreradministrasjon skal ikke prises eller loves før egen personvernmodell og produktplan er godkjent.
+Spør læreren: «Hva måtte du gjøre som nettsiden skulle ha gjort?», «Når ville du avbrutt med en full klasse?» og «Ville du brukt samme opplegg neste uke?» Dette er en brukbarhetsprøve, ikke en effektstudie, karaktergrunnlag eller validert CEFR-plassering.

@@ -42,7 +42,8 @@ test.describe('daily quiz start page', () => {
     });
 
     await expect(page.locator('#diagnosisPanel')).toContainText('Finn nivået mitt');
-    await expect(page.getByRole('button', { name: 'Start nivåtest først' })).toBeDisabled();
+    await expect(page.locator('#homeStartMixedQuizBtn')).toHaveText('Start nivåtest');
+    await expect(page.locator('#homeStartMixedQuizBtn')).toBeEnabled();
   });
 
   test('manual destinations remain available from Start', async ({ page }) => {

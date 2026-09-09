@@ -183,7 +183,7 @@ test.describe('teacher assignment packages', () => {
     await page.goto(appUrl);
 
     await page.fill('#studentNameInput', '9A-14');
-    await page.click('button:has-text("Start")');
+    await page.locator('.login-btn-primary').click();
     await page.click('#navHomework');
 
     const assignmentJson = JSON.stringify({
@@ -358,8 +358,8 @@ test.describe('teacher assignment packages', () => {
         minuteTargets: { vocabulary: 10, verbs: 5, grammar: 5 }
       };
       practiceHistory = [
-        { date: new Date().toISOString().split('T')[0], words: 20, correct: 15, sessions: 1, activity: 'vocabulary', minutes: 6 },
-        { date: new Date().toISOString().split('T')[0], words: 8, correct: 6, sessions: 1, activity: 'verbs', minutes: 5 }
+        { date: getLocalDateString(), assignmentId: 'assignment-test', words: 20, correct: 15, sessions: 1, activity: 'vocabulary', minutes: 6 },
+        { date: getLocalDateString(), assignmentId: 'assignment-test', words: 8, correct: 6, sessions: 1, activity: 'verbs', minutes: 5 }
       ];
       showPage('homework');
     });
@@ -373,11 +373,11 @@ test.describe('teacher assignment packages', () => {
   test('teacher can create and download an assignment package from the homework page', async ({ page }) => {
     await page.goto(appUrl);
     await page.fill('#studentNameInput', 'Lærer');
-    await page.click('button:has-text("Start")');
+    await page.locator('.login-btn-primary').click();
     await page.click('#navHomework');
 
     await expect(page.getByRole('heading', { name: 'Lag leksepakke' })).toBeVisible();
-    await expect(page.getByText('For lærer')).toBeVisible();
+    await expect(page.getByText('For lærer', { exact: true })).toBeVisible();
     await expect(page.locator('[data-builder-vocab-category]')).not.toHaveCount(0);
     await page.locator('#assignmentBuilder > summary').click();
     await expect(page.locator('#builderAssignmentTitle')).toBeVisible();
@@ -414,7 +414,7 @@ test.describe('teacher assignment packages', () => {
   test('teacher builder requires content for selected minute targets', async ({ page }) => {
     await page.goto(appUrl);
     await page.fill('#studentNameInput', 'Lærer');
-    await page.click('button:has-text("Start")');
+    await page.locator('.login-btn-primary').click();
     await page.click('#navHomework');
 
     await expect(page.getByRole('heading', { name: 'Lag leksepakke' })).toBeVisible();
@@ -468,13 +468,13 @@ test.describe('teacher assignment packages', () => {
   test('homework page does not assume fixed Spanish weekdays and surfaces teacher builder', async ({ page }) => {
     await page.goto(appUrl);
     await page.fill('#studentNameInput', 'Lærer');
-    await page.click('button:has-text("Start")');
+    await page.locator('.login-btn-primary').click();
     await page.click('#navHomework');
 
     await expect(page.locator('#homeworkPage')).not.toContainText('mandag/tirsdag');
     await expect(page.locator('#homeworkPage')).not.toContainText('Mandag og tirsdag');
     await expect(page.getByRole('heading', { name: 'Lag leksepakke' })).toBeVisible();
-    await expect(page.getByText('For lærer')).toBeVisible();
+    await expect(page.getByText('For lærer', { exact: true })).toBeVisible();
     await page.locator('#assignmentBuilder > summary').click();
     await expect(page.locator('#builderAssignmentTitle')).toBeVisible();
 

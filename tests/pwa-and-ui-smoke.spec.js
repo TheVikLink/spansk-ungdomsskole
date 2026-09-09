@@ -1,8 +1,12 @@
 import { test, expect } from '@playwright/test';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
+import { startStaticAppServer } from './helpers/static-app-server.js';
 
 const appUrl = pathToFileURL(path.resolve('index.html')).toString();
+let server;
+test.beforeAll(async () => { server = await startStaticAppServer(); });
+test.afterAll(async () => server.close());
 
 test.describe('PWA and UI smoke checks', () => {
   test('removes the chatbot from navigation and app markup', async ({ page }) => {
@@ -23,19 +27,15 @@ test.describe('PWA and UI smoke checks', () => {
   });
 
   test('keeps the app shell available offline after the first load', async ({ page, context }) => {
-    try {
-      await page.goto('http://127.0.0.1:5178/index.html');
-    } catch (error) {
-      test.skip(true, 'Requires a local HTTP server on port 5178 for service-worker verification');
-      return;
-    }
+    await page.goto(server.url);
     await page.evaluate(() => navigator.serviceWorker.ready);
+    await expect.poll(() => page.evaluate(() => Boolean(navigator.serviceWorker.controller))).toBe(true);
     await page.evaluate(() => {
       localStorage.clear();
       studentName = 'Elev offline';
       showMainApp();
     });
-    await expect(page.locator('#homeOfflineHint')).toContainText('Fungerer også uten internett');
+    await expect(page.locator('#homeOfflineHint')).toContainText('Diktatlyd må lastes ned separat');
 
     await context.setOffline(true);
     await page.reload();

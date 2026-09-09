@@ -5,8 +5,26 @@ import { pathToFileURL } from 'node:url';
 const appUrl = pathToFileURL(path.resolve('index.html')).toString();
 
 test.describe('answer-acceptance fuzz and accent regression', () => {
+  test('ignores letter case while preserving accent and ñ distinctions', async ({ page }) => {
+    await page.goto(appUrl);
+    await page.evaluate(() => loadData());
+
+    const result = await page.evaluate(() => ({
+      uppercase: isTypedVocabAnswerCorrect('MADRID', 'madrid', ['madrid']),
+      mixedCase: isTypedVocabAnswerCorrect('El Hermano', 'el hermano', ['el hermano']),
+      accentDifference: isTypedVocabAnswerCorrect('CAMION', 'camión', ['camión']),
+      enyeDifference: isTypedVocabAnswerCorrect('ANO', 'año', ['año'])
+    }));
+
+    expect(result.uppercase).toMatchObject({ correct: true, resultKind: 'correct' });
+    expect(result.mixedCase).toMatchObject({ correct: true, resultKind: 'correct' });
+    expect(result.accentDifference).toMatchObject({ correct: false, resultKind: 'accent_or_case_variant' });
+    expect(result.enyeDifference).toMatchObject({ correct: false, resultKind: 'wrong' });
+  });
+
   test('accepts every glossary pair as the canonical answer in both directions', async ({ page }) => {
     await page.goto(appUrl);
+    await page.evaluate(() => loadData());
 
     const results = await page.evaluate(() => {
       const failures = [];
@@ -30,11 +48,13 @@ test.describe('answer-acceptance fuzz and accent regression', () => {
       return { totalCards: cards.length, failures };
     });
 
+    if (results.totalCards !== undefined) expect(results.totalCards).toBeGreaterThan(500);
     expect(results.failures).toEqual([]);
   });
 
   test('classifies accent-stripped Spanish answers as near-miss, not wrong', async ({ page }) => {
     await page.goto(appUrl);
+    await page.evaluate(() => loadData());
 
     const results = await page.evaluate(() => {
       const failures = [];
@@ -82,11 +102,13 @@ test.describe('answer-acceptance fuzz and accent regression', () => {
       return { failures };
     });
 
+    if (results.totalCards !== undefined) expect(results.totalCards).toBeGreaterThan(500);
     expect(results.failures).toEqual([]);
   });
 
   test('accepts Norwegian definite forms for every el/la noun', async ({ page }) => {
     await page.goto(appUrl);
+    await page.evaluate(() => loadData());
 
     const results = await page.evaluate(() => {
       const failures = [];
@@ -113,11 +135,13 @@ test.describe('answer-acceptance fuzz and accent regression', () => {
       return { failures };
     });
 
+    if (results.totalCards !== undefined) expect(results.totalCards).toBeGreaterThan(500);
     expect(results.failures).toEqual([]);
   });
 
   test('diagnosis accepted answers are all classified as correct', async ({ page }) => {
     await page.goto(appUrl);
+    await page.evaluate(() => loadData());
 
     const results = await page.evaluate(() => {
       const failures = [];
@@ -137,11 +161,13 @@ test.describe('answer-acceptance fuzz and accent regression', () => {
       return { failures };
     });
 
+    if (results.totalCards !== undefined) expect(results.totalCards).toBeGreaterThan(500);
     expect(results.failures).toEqual([]);
   });
 
   test('diagnosis accent variants are classified as near-miss, not wrong', async ({ page }) => {
     await page.goto(appUrl);
+    await page.evaluate(() => loadData());
 
     const results = await page.evaluate(() => {
       const failures = [];
@@ -169,11 +195,13 @@ test.describe('answer-acceptance fuzz and accent regression', () => {
       return { failures };
     });
 
+    if (results.totalCards !== undefined) expect(results.totalCards).toBeGreaterThan(500);
     expect(results.failures).toEqual([]);
   });
 
   test('diagnosis ñ-stripped answers are classified as wrong', async ({ page }) => {
     await page.goto(appUrl);
+    await page.evaluate(() => loadData());
 
     const results = await page.evaluate(() => {
       const failures = [];
@@ -198,11 +226,13 @@ test.describe('answer-acceptance fuzz and accent regression', () => {
       return { failures };
     });
 
+    if (results.totalCards !== undefined) expect(results.totalCards).toBeGreaterThan(500);
     expect(results.failures).toEqual([]);
   });
 
   test('verb conjugation answers are all classified as correct', async ({ page }) => {
     await page.goto(appUrl);
+    await page.evaluate(() => loadData());
 
     const results = await page.evaluate(() => {
       const failures = [];
@@ -218,11 +248,13 @@ test.describe('answer-acceptance fuzz and accent regression', () => {
       return { failures };
     });
 
+    if (results.totalCards !== undefined) expect(results.totalCards).toBeGreaterThan(500);
     expect(results.failures).toEqual([]);
   });
 
   test('verb conjugation accent variants are classified as near-miss', async ({ page }) => {
     await page.goto(appUrl);
+    await page.evaluate(() => loadData());
 
     const results = await page.evaluate(() => {
       const failures = [];
@@ -248,11 +280,13 @@ test.describe('answer-acceptance fuzz and accent regression', () => {
       return { failures };
     });
 
+    if (results.totalCards !== undefined) expect(results.totalCards).toBeGreaterThan(500);
     expect(results.failures).toEqual([]);
   });
 
   test('every grammar exercise correct answer is in the options', async ({ page }) => {
     await page.goto(appUrl);
+    await page.evaluate(() => loadData());
 
     const results = await page.evaluate(() => {
       const failures = [];
@@ -274,6 +308,7 @@ test.describe('answer-acceptance fuzz and accent regression', () => {
       return { failures };
     });
 
+    if (results.totalCards !== undefined) expect(results.totalCards).toBeGreaterThan(500);
     expect(results.failures).toEqual([]);
   });
 });

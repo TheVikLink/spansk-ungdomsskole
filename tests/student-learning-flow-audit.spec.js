@@ -125,11 +125,11 @@ test.describe('student learning flow audit', () => {
       };
     });
 
-    expect(result.before.text).toContain('Du har ikke øvd i dag ennå.');
+    expect(result.before.text).toContain('Ingen registrert øving i dag ennå.');
     expect(result.before.button).toContain('Start dagens quiz');
     expect(result.after.title).toContain('Ta en ny quiz');
     expect(result.after.button).toContain('Ta en ny quiz');
-    expect(result.after.text).toContain('1/5 mot dagens merke');
+    expect(result.after.text).toContain('1 quiz i dag');
   });
 
   test('starts new-word practice when the new-word mode is selected', async ({ page }) => {

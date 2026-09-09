@@ -44,6 +44,22 @@ test.describe('diagnosis quiz v1', () => {
     expect(result.stored).toEqual(result.started);
   });
 
+  test('shows Norwegian meaning for typed verb diagnosis prompts', async ({ page }) => {
+    await page.goto(appUrl);
+
+    await page.evaluate(() => {
+      localStorage.clear();
+      const state = startDiagnosis('2026-08-07T10:00:00.000Z');
+      state.questionIds = ['diag.a1.verbs.regular_ar.present.hablar'];
+      saveDiagnosisState(state);
+      renderDiagnosisPanel();
+    });
+
+    await expect(page.locator('#diagnosisPanel')).toContainText('jeg snakker');
+    await expect(page.locator('#diagnosisPanel')).toContainText('yo + hablar');
+    await expect(page.locator('#diagnosisPanel')).toContainText('presens');
+  });
+
   test('answering a diagnosis question stores the answer and updates one progress cell', async ({ page }) => {
     await page.goto(appUrl);
 
@@ -160,7 +176,7 @@ test.describe('diagnosis quiz v1', () => {
     await page.click('button:has-text("Start")');
 
     await expect(page.getByRole('heading', { name: 'Finn nivået mitt' })).toBeVisible();
-    await page.getByRole('button', { name: 'Start diagnose' }).click();
+    await page.locator('#homeStartMixedQuizBtn').click();
 
     for (let i = 0; i < 12; i++) {
       const responseMode = await page.locator('#diagnosisPanel').getAttribute('data-response-mode');
@@ -187,7 +203,7 @@ test.describe('diagnosis quiz v1', () => {
 
     await page.fill('#studentNameInput', 'Elevkode 8A-13');
     await page.getByRole('button', { name: 'Start' }).click();
-    await page.getByRole('button', { name: 'Start diagnose' }).click();
+    await page.locator('#homeStartMixedQuizBtn').click();
 
     for (let i = 0; i < 12; i++) {
       const responseMode = await page.locator('#diagnosisPanel').getAttribute('data-response-mode');

@@ -10,7 +10,7 @@ test.describe('privacy wording and local backup reminder', () => {
 
     await expect(page.locator('#studentNameInput')).toHaveAttribute('placeholder', /Fornavn eller elevkode/);
     await expect(page.locator('.login-hint').first()).toContainText('lagres bare i nettleseren');
-    await expect(page.locator('.login-hint').first()).toContainText('lekselevering');
+    await expect(page.locator('.login-hint').first()).toContainText('lokale oppsummeringen');
     await expect(page.locator('#welcomeForm')).toContainText('nettleserdata slettes');
     await expect(page.locator('#welcomeForm')).toContainText('Importer fremgang fra fil');
   });
@@ -63,10 +63,10 @@ test.describe('privacy wording and local backup reminder', () => {
       };
     });
 
-    expect(styles.disabled).toBe(true);
+    expect(styles.disabled).toBe(false);
     expect(styles.buttonOpacity).toBe('1');
-    expect(styles.buttonColor).not.toBe('rgb(255, 255, 255)');
-    expect(styles.hintText).toContain('Øv litt flere dager');
+    expect(styles.buttonColor).not.toBe(styles.buttonBackground);
+    expect(styles.hintText).toContain('Ingen data er sendt');
     expect(styles.hintColor).not.toBe('rgb(255, 255, 255)');
     expect(styles.summaryColor).not.toBe('rgb(255, 255, 255)');
   });
