@@ -144,3 +144,19 @@ Kjørt 9. september 2026 på appbygg **3b7d7d7ef7b25a93**:
 De historiske testantallene tidligere i dokumentet beskriver delkontroller, og skal ikke summeres med sluttkjøringen. CI kjører nå samme `test:all` og omfatter de nye rapportregresjonene. Manuelle auditopptak og probe mot offentlig nettsted er eksplisitt separate kommandoer. Det er ikke gjort deploy, fysisk enhetstest, spansklærergodkjenning eller reell elevstudie.
 
 Leveransen er pushet på `fix/brukertest-2026-09-08` og opprettet som [PR #6](https://github.com/TheVikLink/spansk-ungdomsskole/pull/6). Beads-epikken `irj` og de ni tekniske deloppgavene er lukket. `ee0` står åpen for den menneskelige kontrollen. PR-en er ikke slått sammen og appen er ikke publisert av denne leveransen.
+
+## Oppfølging etter lærerens egen utprøving
+
+Brukeren gjennomførte artikkeløkten med 14 av 14 riktige og meldte at teksten likevel sa «de fleste». Øvingsflyten ble vurdert positivt og ønskes brukt som mal. Dette er én brukers tilbakemelding, ikke den planlagte elevpiloten.
+
+Beads `hch`: grammatikk, verb og blandet quiz deler nå en liten funksjon for presis resultattekst. Full pott gir «Du svarte riktig på alle oppgavene». Delvis riktige svar oppgir antallet; tidlig avslutning omtaler bare besvarte oppgaver. Null svar gir en nøytral melding. Gloser bruker samme funksjon, men omtaler registrerte kortforsøk fordi egenvurdering og nye forsøk kan inngå. Sammenligningen bruker antall, slik at 199/200 ikke omtales som «alle» selv om prosentvisningen avrundes til 100 %.
+
+Alle grammatikktemaene deler allerede artikkeløktens oppgave- og resultatvisning. Malen er beskrevet i `PILOT.md`. Hint/Neste, teorikoblinger, øktregistrering og lagringsformat er bevart. Ingen nye spanskleksjoner eller større pedagogisk omlegging inngår i denne oppfølgingen.
+
+Verifisert på bygg **e0027af0933febde**:
+
+- `session-result-feedback.spec.js`: **23 bestod**, inkludert 14 faktiske artikkelsvar ved 1440 og 390 px, hint etter svar, resultat → teori → tilbake uten endring i eksportdata, ny øving, samtlige grammatikktemaer og resultatgrensene i fire øvingsfamilier. Desktop- og mobilskjermbilder er kontrollert.
+- `npm run build:app` og `npm run test:all`: **bestått**, med **331 Chromium-tester** (3,9 minutter), 2 Node-tester og alle innholds-, katalog- og byggkontroller. De 23 nye testene inngår i de 331.
+- `git diff --check`: bestått. Den lokale HTTP-serveren leverer samme bygg.
+
+De 47 WebKit-testene ovenfor gjelder den foregående leveransen; denne lille oppfølgingen er verifisert i Chromium. Den publiserte appen er fortsatt uendret.

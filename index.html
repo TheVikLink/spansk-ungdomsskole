@@ -6,7 +6,7 @@
     <title>Spansk på 1-2-3 | Læringsapp</title>
     <meta name="theme-color" content="#dc2626">
     <link rel="manifest" href="./manifest.webmanifest">
-    <meta name="app-build" content="3b7d7d7ef7b25a93">
+    <meta name="app-build" content="e0027af0933febde">
     <link href="./dist/tailwind.css" rel="stylesheet">
 </head>
 <body>
@@ -17264,6 +17264,20 @@
             renderMixedQuizQuestion();
         }
 
+        function getPracticeResultMessage(correct, answered, planned = answered, kind = 'tasks') {
+            if (answered === 0) return `${kind === 'cards' ? 'Ingen kortforsøk' : 'Ingen svar'} ennå. Start en ny økt når du er klar.`;
+            // Compare counts, not a rounded percentage: 199/200 must never become "alle".
+            if (kind === 'cards') {
+                if (correct === answered) return answered === 1 ? 'Kortforsøket er registrert som riktig.' : `Alle ${answered} kortforsøk er registrert som riktige.`;
+                return `${correct} av ${answered} kortforsøk er registrert som riktige.`;
+            }
+            if (correct === answered) {
+                if (answered < planned) return answered === 1 ? 'Du svarte riktig på oppgaven du besvarte.' : `Du svarte riktig på alle de ${answered} oppgavene du besvarte.`;
+                return answered === 1 ? 'Du svarte riktig på oppgaven.' : 'Du svarte riktig på alle oppgavene.';
+            }
+            return answered === 1 ? 'Se gjennom svaret og prøv igjen.' : `Du svarte riktig på ${correct} av ${answered} oppgaver.`;
+        }
+
         function finishMixedQuiz() {
             if (!mixedQuizState || mixedQuizState.finalResult) return;
             const total = mixedQuizState.quiz.items.length;
@@ -17291,9 +17305,10 @@
                 const newlyMastered = mixedQuizState.finalResult.newlyMastered;
                 container.innerHTML = `
                     <div class="session-complete mixed-quiz-results">
-                        <div class="emoji">${accuracy >= 80 ? '🎉' : accuracy >= 50 ? '👍' : '💪'}</div>
+                        <div class="emoji">${mixedQuizState.answered === 0 ? '📝' : accuracy >= 80 ? '🎉' : accuracy >= 50 ? '👍' : '💪'}</div>
                         <h2>${mixedQuizState.answered === total ? 'Quiz ferdig' : 'Quiz avsluttet'}</h2>
                         <p>${mixedQuizState.answered} av ${total} oppgaver besvart. ${mixedQuizState.answered ? `${mixedQuizState.correct} riktige (${accuracy}%).` : 'Ingen svar ennå.'}</p>
+                        <p data-practice-result-message>${getPracticeResultMessage(mixedQuizState.correct, mixedQuizState.answered, total)}</p>
                         <p id="mixedQuizStreakSummary">${formatQuizStreakSummary(quizStats)}</p>
                         <p class="mixed-quiz-continuation">Velg ett mål nedenfor. Forklar regelen etter et feil svar, eller prøv nye former hvis oppgavene gikk lett.</p>
                         ${newlyMastered.length ? `<div class="quiz-badge-awards"><strong>🏅 Nye merker</strong><p>${newlyMastered.map(badge => escapeHtml(badge.label)).join(' · ')}</p></div>` : ''}
@@ -18299,13 +18314,14 @@ Vil du øve på ${pronoun} likevel?`
 
             document.getElementById('flashcardArea').innerHTML = `
                 <div class="session-complete">
-                    <div class="emoji">🎉</div>
+                    <div class="emoji">${sessionStats.reviewed === 0 ? '📝' : accuracy >= 80 ? '🎉' : accuracy >= 50 ? '👍' : '💪'}</div>
                     <h2>Økten er avsluttet</h2>
                     <div class="session-stats-grid">
                         <div class="session-stat"><div class="session-stat-value">${sessionStats.reviewed}</div><div class="session-stat-label">Kort repetert</div></div>
-                        <div class="session-stat"><div class="session-stat-value">${accuracy}%</div><div class="session-stat-label">Nøyaktighet</div></div>
+                        <div class="session-stat"><div class="session-stat-value">${sessionStats.reviewed ? accuracy + '%' : '–'}</div><div class="session-stat-label">Nøyaktighet</div></div>
                         <div class="session-stat"><div class="session-stat-value">${duration}</div><div class="session-stat-label">Minutter</div></div>
                     </div>
+                    <p data-practice-result-message class="mt-5 text-gray-600">${getPracticeResultMessage(sessionStats.correct, sessionStats.reviewed, sessionCards.length, 'cards')} ${sessionStats.reviewed ? 'Repeter kortene senere for å huske ordene.' : ''}</p>
                     ${!isCustomStudySession && sessionStats.newLearned > 0 ? `<p class="font-semibold text-emerald-600">Du svarte riktig på ${sessionStats.newLearned} nye kort. Repeter dem senere.</p>` : ''}
                     ${isCustomStudySession ? `<p class="font-semibold text-gray-600">📝 Denne økten endret ikke repetisjonsplanen.</p>` : ''}
                 </div>
@@ -19083,15 +19099,16 @@ Vil du øve på ${pronoun} likevel?`
 
             document.getElementById('verbExerciseArea').innerHTML = `
                 <div class="session-complete">
-                    <div class="emoji">${accuracy >= 80 ? '🎉' : accuracy >= 50 ? '👍' : '💪'}</div>
+                    <div class="emoji">${answered === 0 ? '📝' : accuracy >= 80 ? '🎉' : accuracy >= 50 ? '👍' : '💪'}</div>
                     <h2>${answered === verbStats.total ? 'Øving fullført!' : 'Økten er avsluttet'}</h2><p>${answered} av ${verbStats.total} oppgaver besvart.</p>
                     <div class="session-stats-grid">
                         <div class="session-stat"><div class="session-stat-value">${verbStats.correct}</div><div class="session-stat-label">Riktige svar</div></div>
                         <div class="session-stat"><div class="session-stat-value">${answered}</div><div class="session-stat-label">Besvart</div></div>
                         <div class="session-stat"><div class="session-stat-value">${answered ? accuracy + '%' : '–'}</div><div class="session-stat-label">Nøyaktighet</div></div>
                     </div>
-                    <p class="mt-5 text-gray-500">
-                        ${answered === 0 ? 'Ingen svar ennå. Start en ny økt når du er klar.' : accuracy >= 80 ? 'Du svarte riktig på de fleste av disse oppgavene. Repeter senere for å huske formene.' : 'Se på verbformene du var usikker på, og prøv en ny økt.'}
+                    <p data-practice-result-message class="mt-5 text-gray-600">
+                        ${getPracticeResultMessage(verbStats.correct, answered, verbStats.total)}
+                        ${answered === 0 ? '' : accuracy >= 80 ? 'Repeter senere for å huske formene.' : 'Se på verbformene du var usikker på, og prøv en ny økt.'}
                     </p>
                 </div>
             `;
@@ -20705,31 +20722,26 @@ Vil du øve på ${pronoun} likevel?`
 
             document.getElementById('grammarExerciseArea').innerHTML = `
                 <div class="session-complete">
-                    <div class="emoji">${accuracy >= 80 ? '🎉' : accuracy >= 60 ? '👍' : '💪'}</div>
+                    <div class="emoji">${displayTotal === 0 ? '📝' : accuracy >= 80 ? '🎉' : accuracy >= 60 ? '👍' : '💪'}</div>
                     <h2>${escapeHtml(currentGrammarTopic.name)}: ${displayTotal === resultSnapshot.plannedCount ? 'øving fullført' : 'økt avsluttet'}</h2><p>${displayTotal} av ${resultSnapshot.plannedCount} oppgaver besvart.</p>
                     <div class="session-stats-grid">
                         <div class="session-stat">
                             <div class="session-stat-value">${displayCorrect}</div>
-                            <div class="session-stat-label">Riktige</div>
+                            <div class="session-stat-label">Riktige svar</div>
                         </div>
                         <div class="session-stat">
                             <div class="session-stat-value">${displayTotal}</div>
-                            <div class="session-stat-label">Totalt</div>
+                            <div class="session-stat-label">Besvart</div>
                         </div>
                         <div class="session-stat">
                             <div class="session-stat-value">${displayTotal ? accuracy + '%' : '–'}</div>
                             <div class="session-stat-label">Nøyaktighet</div>
                         </div>
                     </div>
-                    ${needsMorePractice ? `
-                        <p class="mb-5 text-amber-500">
-                            💡 Tips: Se gjennom teorien og prøv igjen!
-                        </p>
-                    ` : `
-                        <p class="mb-5 text-emerald-500">
-                            ${displayTotal ? 'Du svarte riktig på de fleste av disse oppgavene. Repeter senere for å huske regelen.' : 'Ingen svar ennå. Start en ny økt når du er klar.'}
-                        </p>
-                    `}
+                    <p data-practice-result-message class="mb-5 ${!displayTotal ? 'text-gray-600' : needsMorePractice ? 'text-amber-600' : 'text-emerald-600'}">
+                        ${getPracticeResultMessage(displayCorrect, displayTotal, resultSnapshot.plannedCount)}
+                        ${!displayTotal ? '' : needsMorePractice ? '💡 Tips: Se gjennom teorien og prøv igjen!' : 'Repeter senere for å huske regelen.'}
+                    </p>
                     ${renderGrammarResultTheoryAction(resultSnapshot.answers, resultSnapshot.topicId)}
                 </div>
                 <div class="button-group">
