@@ -2339,6 +2339,78 @@ select {
     color: #b45309;
 }
 
+.badge-retry {
+    background: #fee2e2;
+    color: #b91c1c;
+}
+
+.verb-scaffolding-container {
+    margin-top: 12px;
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+.verb-scaffolding-badge {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--primary-dark);
+    background: var(--primary-soft);
+    padding: 4px 10px;
+    border-radius: 12px;
+    margin-bottom: 6px;
+}
+
+.verb-options-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    margin-top: 6px;
+}
+
+.verb-choice-btn {
+    min-height: 38px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.grammar-scaffolding-badge {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--primary-dark);
+    background: var(--primary-soft);
+    padding: 3px 8px;
+    border-radius: 12px;
+}
+
+.grammar-scaffolding-note {
+    font-size: 13px;
+    color: var(--primary-dark);
+    margin-top: 8px;
+    font-style: italic;
+}
+
+.mixed-quiz-mode-pill {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 10px;
+    background: #e0e7ff;
+    color: #4338ca;
+    margin-left: 8px;
+    vertical-align: middle;
+}
+
+.mixed-quiz-scaffolding-note {
+    font-size: 13px;
+    color: var(--primary-dark);
+    margin-top: 6px;
+    font-style: italic;
+}
+
 .direction-badge {
     position: absolute;
     top: 16px;

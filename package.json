@@ -51,6 +51,7 @@
     "test:pwa-ui": "playwright test tests/pwa-and-ui-smoke.spec.js --browser chromium",
     "test:chapter-text-import": "playwright test tests/chapter-text-import.spec.js --browser chromium",
     "test:verb-focus": "playwright test tests/verb-focus.spec.js --browser chromium",
+    "test:adaptive-scaffolding": "playwright test tests/adaptive-scaffolding.spec.js --browser chromium",
     "test:sentence-puzzle": "playwright test tests/sentence-puzzle-game.spec.js --browser chromium",
     "audit:student-video": "playwright test tests/model-student-video-audit.spec.js --workers=1 --browser chromium && node scripts/postprocess-student-audit.mjs output/student-agent-audit/latest",
     "test:all": "npm run check:content && npm run check:content-accuracy && npm run check:grammar-lessons && npm run check:diagnosis-catalog && npm run test:diagnosis-catalog && npm run check:learning-catalog && npm run check:tailwind && npm run check:offline-build && npm run test:browser",

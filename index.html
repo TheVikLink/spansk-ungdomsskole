@@ -6,7 +6,7 @@
     <title>Spansk på 1-2-3 | Læringsapp</title>
     <meta name="theme-color" content="#dc2626">
     <link rel="manifest" href="./manifest.webmanifest">
-    <meta name="app-build" content="f2589a7dbf60643e">
+    <meta name="app-build" content="30b460b9f895b569">
     <link href="./dist/tailwind.css" rel="stylesheet">
 </head>
 <body>
@@ -12510,6 +12510,75 @@
             };
         }
 
+        const ADAPTIVE_SCAFFOLDING_POLICY = {
+            vocabulary: {
+                name: 'Vokabular og gloser',
+                levels: {
+                    newOrWeak: { maxStrength: 1, mode: 'flip', label: 'Nytt ord / repetisjon (kort)' },
+                    developing: { minStrength: 2, maxStrength: 3, mode: 'select', label: 'Gjenkjenning (nedtrekk / alternativer)' },
+                    mastered: { minStrength: 4, mode: 'typed', label: 'Produksjon (skriv svaret)' }
+                },
+                postErrorSupport: { mode: 'select', badge: '💡 Støtte etter feil' }
+            },
+            grammar: {
+                name: 'Grammatikk',
+                levels: {
+                    newOrWeak: { maxStrength: 1, mode: 'choice', label: 'Flervalg med kontekst og forklaring' },
+                    developing: { minStrength: 2, maxStrength: 3, mode: 'select', label: 'Nedtrekk / setningsvalg' },
+                    mastered: { minStrength: 4, mode: 'choice', label: 'Flervalg (mestring)' }
+                },
+                postErrorSupport: { mode: 'choice', badge: '💡 Støtte etter feil', showExplanation: true }
+            },
+            verbs: {
+                name: 'Verbbøying',
+                levels: {
+                    newOrWeak: { maxStrength: 1, mode: 'choice', label: 'Valgknapper og stammehjelp' },
+                    developing: { minStrength: 2, maxStrength: 3, mode: 'typed_hint', label: 'Skriving med stammehint' },
+                    mastered: { minStrength: 4, mode: 'typed_challenge', label: 'Fri skriving / utfordring' }
+                },
+                postErrorSupport: { mode: 'choice', badge: '💡 Støtte etter feil', showTable: true }
+            },
+            mixedQuiz: {
+                name: 'Blandet adaptiv quiz',
+                targetDistribution: { typed: 5, select: 3, choice: 2 },
+                scaffoldingAllocation: {
+                    choice: 'Laveste mestring, flest tilbakefall eller nylig feil',
+                    select: 'Middels mestring (styrke 2–3)',
+                    typed: 'Høyest mestring / skrivemål'
+                }
+            }
+        };
+
+        function getScaffoldedResponseMode(family, cell = {}, options = {}) {
+            const strength = Number(cell.strength) || 0;
+            const lapses = Number(cell.lapses) || 0;
+            const attempts = Number(cell.attempts) || 0;
+
+            if (options.scaffoldedAfterError) {
+                return family === 'vocabulary' ? 'select' : 'choice';
+            }
+
+            if (family === 'vocabulary') {
+                if (strength >= 4 && lapses === 0) return 'typed';
+                if (strength >= 2) return 'select';
+                return 'flip';
+            }
+
+            if (family === 'grammar') {
+                if (strength >= 4 && lapses === 0 && attempts >= 2) return 'typed';
+                if (strength >= 2 && lapses === 0) return 'select';
+                return 'choice';
+            }
+
+            if (family === 'verbs') {
+                if (strength >= 4 && lapses === 0) return 'typed_challenge';
+                if (strength >= 2) return 'typed_hint';
+                return 'choice';
+            }
+
+            return 'choice';
+        }
+
         function backupUnsupportedLearningProgress(rawValue) {
             const safeTimestamp = new Date().toISOString().replace(/[:.]/g, '-');
             const backupKey = `spansk123_learningProgress_unsupported_${safeTimestamp}`;
@@ -13700,7 +13769,15 @@
 
             // Keep recognition items in the middle: two choice items, with the
             // remaining recognition items using the lower-friction select mode.
+            // Items with lower strength, higher lapses, or recent/weak status receive
+            // 'choice' (maximum support); items with higher mastery receive 'select'.
             const recognitionItems = selected.filter(item => item.sourceResponseMode === 'choice');
+            recognitionItems.sort((a, b) => {
+                const aNeed = (Number(a.strength) || 0) - (Number(a.lapses) || 0) * 2 - (a.recent ? 2 : 0);
+                const bNeed = (Number(b.strength) || 0) - (Number(b.lapses) || 0) * 2 - (b.recent ? 2 : 0);
+                if (aNeed !== bNeed) return aNeed - bNeed;
+                return compareMixedQuizCandidates(a, b, nowDate, seed);
+            });
             recognitionItems.forEach((item, index) => {
                 item.responseMode = index < 2 ? 'choice' : 'select';
             });
@@ -18367,6 +18444,16 @@
             return true;
         }
 
+        function getMixedQuizModeLabel(item) {
+            if (item.scaffoldedAfterError) return '💡 Støtte etter feil';
+            if (item.responseMode === 'choice') return '💡 Flervalg';
+            if (item.responseMode === 'select') return '📝 Nedtrekk';
+            if (item.responseMode === 'typed') {
+                return item.answerConstraint?.type === 'startsWith' ? '✍️ Skriv inn (med hint)' : '✍️ Skriv inn';
+            }
+            return 'Oppgave';
+        }
+
         function renderMixedQuizQuestion() {
             const container = document.getElementById('mixedQuizQuestion');
             const item = mixedQuizState?.quiz.items[mixedQuizState.index];
@@ -18382,9 +18469,10 @@
                     : `<input id="mixedQuizAnswerInput" class="conjugation-input" autocomplete="off" placeholder="Skriv svaret" onkeydown="if(event.key === 'Enter') { event.preventDefault(); event.stopPropagation(); submitMixedQuizTypedAnswer(); }"><div class="button-group"><button type="button" class="btn btn-primary" onclick="submitMixedQuizTypedAnswer()">Sjekk svar</button></div>`;
             container.innerHTML = `
                 <div class="mixed-quiz-question" data-response-mode="${item.responseMode}" data-accepted-answer="${escapeHtml(getDiagnosisAnswerValue(item.acceptedAnswers[0]))}">
-                    <div class="mixed-quiz-type">${mixedQuizTypeLabel(item)}</div>
+                    <div class="mixed-quiz-type">${mixedQuizTypeLabel(item)} <span class="mixed-quiz-mode-pill ${item.scaffoldedAfterError ? 'badge-retry' : ''}">${getMixedQuizModeLabel(item)}</span></div>
                     ${item.instructionNb ? `<p class="mixed-quiz-instruction">${escapeHtml(item.instructionNb)}</p>` : ''}
-                    <div class="mixed-quiz-prompt">${escapeHtml(item.prompt)}${item.answerConstraint?.type === 'startsWith' ? ` <span class="answer-constraint">(begynner på «${escapeHtml(item.answerConstraint.value)}»)</span>` : ''}</div>
+                    <div class="mixed-quiz-prompt">${escapeHtml(item.prompt)}</div>
+                    ${item.answerConstraint?.type === 'startsWith' ? `<div class="answer-constraint">(begynner på «${escapeHtml(item.answerConstraint.value)}»)</div>` : ''}
                     ${shouldShowMixedQuizContext(item) ? `<div class="mixed-quiz-context"><span class="mixed-quiz-context-label">Norsk kontekst</span>${escapeHtml(item.promptNo)}</div>` : ''}
                     ${item.direction === 'es-no' ? '<button type="button" class="speech-audio-button btn btn-secondary btn-sm" data-speak-spanish>🔊 Spill av</button>' : ''}
                     ${responseControls}
@@ -18487,6 +18575,7 @@
                             : `✗ Feil — riktig svar: <strong>${escapeHtml(formatMixedQuizCorrectAnswers(item))}</strong>`;
                 feedback.insertAdjacentHTML('beforeend', `<div class="button-group"><button type="button" data-feedback-next class="btn btn-primary btn-sm mt-4" onclick="advanceMixedQuizQuestion()">${mixedQuizState.answered >= mixedQuizState.quiz.items.length ? 'Se resultat' : 'Neste'}</button></div>`);
                 if (result.resultKind !== 'correct') {
+                    feedback.insertAdjacentHTML('beforeend', `<div class="mixed-quiz-scaffolding-note">💡 Støtten tilpasses automatisk neste gang du møter dette målet.</div>`);
                     feedback.insertAdjacentHTML('beforeend', renderStudentFeedbackButton({itemRef:`quiz:${item.questionId}`,source:'quiz',prompt:item.prompt,studentAnswer:String(answer || ''),expectedAnswer:formatMixedQuizCorrectAnswers(item)}));
                 }
             }
@@ -19016,12 +19105,17 @@
         }
 
         // Response mode is session-only. Keep the persisted SR shape unchanged.
-        function getVocabularyResponseMode(srData = {}) {
+        function getVocabularyResponseMode(srData = {}, options = {}) {
+            if (options?.scaffoldedAfterError) return 'select';
             const storedStrength = Number(srData.strength);
+            const lapses = Number(srData.lapses) || 0;
             const derivedStrength = Number.isFinite(storedStrength) && storedStrength > 0
                 ? storedStrength
                 : Math.min(5, Math.max(0, Number(srData.repetitions) || 0) + (Number(srData.interval) >= 7 ? 1 : 0));
-            const strength = Math.max(0, Math.min(5, derivedStrength));
+            let strength = Math.max(0, Math.min(5, derivedStrength));
+            if (lapses > 0 && strength >= 4) {
+                strength = 3;
+            }
             if (strength >= 4) return 'typed';
             if (strength >= 2) return 'select';
             return 'flip';
@@ -19303,7 +19397,7 @@ Vil du øve på ${pronoun} likevel?`
             const srData = direction === 'no-es' ? card.noEs : card.esNo;
             const isNew = srData.repetitions === 0;
             const front = getVocabPromptText(item);
-            const responseMode = item.responseMode || (item.typed ? 'typed' : getVocabularyResponseMode(srData));
+            const responseMode = item.responseMode || (item.typed ? 'typed' : getVocabularyResponseMode(srData, item));
 
             updateVocabProgress();
 
@@ -19312,7 +19406,7 @@ Vil du øve på ${pronoun} likevel?`
             if (responseMode === 'typed') {
                 document.getElementById('flashcardArea').innerHTML = `
                     <div class="flashcard">
-                        <span class="card-type-badge badge-review">Skriv svaret</span>
+                        <span class="card-type-badge ${item.scaffoldedAfterError ? 'badge-retry' : 'badge-review'}">${item.scaffoldedAfterError ? '💡 Støtte etter feil' : 'Skriv svaret'}</span>
                         <span class="direction-badge">
                             ${direction === 'no-es' ? '🇳🇴 → 🇪🇸' : '🇪🇸 → 🇳🇴'}
                         </span>
@@ -19341,7 +19435,7 @@ Vil du øve på ${pronoun} likevel?`
                 const options = getVocabularySelectOptions(item, cards);
                 document.getElementById('flashcardArea').innerHTML = `
                     <div class="flashcard">
-                        <span class="card-type-badge badge-review">Velg svaret</span>
+                        <span class="card-type-badge ${item.scaffoldedAfterError ? 'badge-retry' : 'badge-review'}">${item.scaffoldedAfterError ? '💡 Støtte etter feil' : 'Velg svaret'}</span>
                         <span class="direction-badge">${direction === 'no-es' ? '🇳🇴 → 🇪🇸' : '🇪🇸 → 🇳🇴'}</span>
                         <div class="card-word">${front}</div>
                         <div class="mt-4">
@@ -19363,8 +19457,8 @@ Vil du øve på ${pronoun} likevel?`
 
             document.getElementById('flashcardArea').innerHTML = `
                 <div class="flashcard" role="button" tabindex="0" aria-label="${escapeHtml(front)} - trykk for å se svar" onclick="flipCard()" onkeydown="if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); flipCard(); }">
-                    <span class="card-type-badge ${isCustomStudySession ? 'badge-review' : (isNew ? 'badge-new' : 'badge-review')}">
-                        ${cardTypeLabel}
+                    <span class="card-type-badge ${item.scaffoldedAfterError ? 'badge-retry' : (isCustomStudySession ? 'badge-review' : (isNew ? 'badge-new' : 'badge-review'))}">
+                        ${item.scaffoldedAfterError ? '💡 Støtte etter feil' : cardTypeLabel}
                     </span>
                     <span class="direction-badge">
                         ${direction === 'no-es' ? '🇳🇴 → 🇪🇸' : '🇪🇸 → 🇳🇴'}
@@ -19434,7 +19528,9 @@ Vil du øve på ${pronoun} likevel?`
             rateCard(evaluation.resultKind === 'correct' ? 2 : 0, false);
 
             if (evaluation.resultKind === 'correct') {
-                feedback.innerHTML = '<div class="grammar-feedback correct">✓ Riktig!</div>';
+                feedback.innerHTML = currentCard.scaffoldedAfterError
+                    ? '<div class="grammar-feedback correct">✓ Riktig med støtte!</div>'
+                    : '<div class="grammar-feedback correct">✓ Riktig!</div>';
                 document.getElementById('buttonArea').innerHTML = '<div class="button-group"><button data-feedback-next class="btn btn-primary" onclick="rateCard(2)">Neste kort</button></div>';
                 return;
             }
@@ -19461,7 +19557,9 @@ Vil du øve på ${pronoun} likevel?`
             const isCorrect = isTypedVocabAnswerCorrect(select.value, expected, getVocabularyAcceptedAnswers(currentCard.card, currentCard.direction, expected).map(item => item.value)).correct;
             select.disabled = true;
             rateCard(isCorrect ? 2 : 0, false);
-            feedback.innerHTML = isCorrect ? '<div class="grammar-feedback correct">✓ Riktig!</div>' : `<div class="grammar-feedback incorrect">✗ Riktig svar: <strong>${escapeHtml(expected)}</strong></div>`;
+            feedback.innerHTML = isCorrect
+                ? (currentCard.scaffoldedAfterError ? '<div class="grammar-feedback correct">✓ Riktig med støtte!</div>' : '<div class="grammar-feedback correct">✓ Riktig!</div>')
+                : `<div class="grammar-feedback incorrect">✗ Riktig svar: <strong>${escapeHtml(expected)}</strong></div>`;
             document.getElementById('buttonArea').innerHTML = `<div class="button-group"><button data-feedback-next class="btn btn-primary" onclick="rateCard(${isCorrect ? 2 : 0})">Neste kort</button></div>`;
         }
 
@@ -19518,7 +19616,14 @@ Vil du øve på ${pronoun} likevel?`
             sessionStats.reviewed++;
             if (quality >= 2) sessionStats.correct++;
 
-            if (quality === 0) sessionCards.push(item);
+            if (quality === 0) {
+                const retryItem = {
+                    ...item,
+                    scaffoldedAfterError: true,
+                    responseMode: item.responseMode === 'typed' ? 'select' : (item.responseMode || 'flip')
+                };
+                sessionCards.push(retryItem);
+            }
             currentCardRated = true;
             checkpointPracticeSession('vocabulary', sessionStats.reviewed, sessionStats.correct, sessionStartTime);
             if (advance) advanceVocabCard();
@@ -20169,6 +20274,44 @@ Vil du øve på ${pronoun} likevel?`
             showVerbExercise();
         }
 
+        function getVerbPracticeOptions(exercise, expectedAnswer) {
+            const verb = exercise.verb;
+            let pool = [];
+            if (exercise.tense === 'presente' && Array.isArray(verb.presente)) {
+                pool = verb.presente.map((form, i) => verbPracticeChallenge ? `${getPracticePronoun(i)} ${form}` : form);
+            } else if (exercise.tense === 'futuro') {
+                const irForms = verbDatabase.ir?.presente || [];
+                pool = irForms.map((ir, i) => {
+                    const form = `${ir} a ${verb.infinitive}`;
+                    return verbPracticeChallenge ? `${getPracticePronoun(i)} ${form}` : form;
+                });
+            } else if (exercise.tense === 'perfecto') {
+                pool = haberPresente.map((h, i) => {
+                    const form = `${h} ${verb.participio}`;
+                    return verbPracticeChallenge ? `${getPracticePronoun(i)} ${form}` : form;
+                });
+            }
+            const unique = [...new Set([expectedAnswer, ...pool].filter(Boolean))];
+            const distractors = unique.filter(f => f.toLowerCase() !== expectedAnswer.toLowerCase()).slice(0, 3);
+            return shuffleArray([expectedAnswer, ...distractors]);
+        }
+
+        function selectVerbOption(optionText) {
+            const input = document.getElementById('verbInput');
+            if (!input || input.disabled || verbAnswerPending) return;
+            input.value = optionText;
+            document.querySelectorAll('.verb-choice-btn').forEach(btn => {
+                if (btn.textContent.trim() === optionText.trim()) {
+                    btn.classList.add('btn-primary');
+                    btn.classList.remove('btn-outline');
+                } else {
+                    btn.classList.remove('btn-primary');
+                    btn.classList.add('btn-outline');
+                }
+            });
+            input.focus();
+        }
+
         function showVerbExercise() {
             if (verbCurrentIndex >= verbStats.total) {
                 endVerbSession();
@@ -20197,6 +20340,14 @@ Vil du øve på ${pronoun} likevel?`
 
             if (verbPracticeChallenge) expectedAnswer = `${getPracticePronoun(pronounIndex)} ${expectedAnswer}`;
 
+            const skillId = getVerbPracticeSkillId(exercise);
+            const cell = skillId ? (loadLearningProgress().skillProgress?.[skillId] || {}) : {};
+            const strength = Number(cell.strength) || 0;
+            const lapses = Number(cell.lapses) || 0;
+            const attempts = Number(cell.attempts) || 0;
+            const needsSupport = exercise.scaffoldedAfterError || exercise.hadError || (attempts > 0 && (lapses > 0 || strength < 2)) || (attempts === 0 && !verbPracticeChallenge);
+            const verbOptions = needsSupport ? getVerbPracticeOptions(exercise, expectedAnswer) : [];
+
             document.getElementById('verbExerciseArea').innerHTML = `
                 <div class="conjugation-exercise">
                     ${renderAssignmentSessionGoal('verbs', 'verb')}
@@ -20214,6 +20365,18 @@ Vil du øve på ${pronoun} likevel?`
                                placeholder="Skriv svaret..." autocomplete="off" autofocus>
                     </div>
                     <div class="accent-hint">💡 Hold inne a/e/i/o/u/n for aksent, eller ?/! for ¿/¡</div>
+                    ${needsSupport && verbOptions.length > 0 ? `
+                        <div class="verb-scaffolding-container">
+                            <span class="verb-scaffolding-badge">💡 Støtte: Velg eller skriv</span>
+                            <div class="verb-options-row">
+                                ${verbOptions.map(opt => `<button type="button" class="btn btn-sm btn-outline verb-choice-btn" onclick="selectVerbOption('${escapeHtml(opt)}')">${escapeHtml(opt)}</button>`).join('')}
+                            </div>
+                        </div>
+                    ` : (!needsSupport && strength >= 2 && strength < 4) ? `
+                        <div class="verb-scaffolding-container">
+                            <span class="verb-scaffolding-badge">💡 Stamme: ${escapeHtml(verb.infinitive.slice(0, -2))}… (person: ${pronouns[pronounIndex]})</span>
+                        </div>
+                    ` : ''}
 
                     <div class="conjugation-feedback" id="verbFeedback"></div>
                     <p id="verbHint" aria-live="polite" hidden></p>
@@ -21820,11 +21983,21 @@ Vil du øve på ${pronoun} likevel?`
             // Shuffle options
             const shuffledOptions = shuffleArray([...exercise.options]);
 
+            const cell = exercise.skillId ? (loadLearningProgress().skillProgress?.[exercise.skillId] || {}) : {};
+            const strength = Number(cell.strength) || 0;
+            const lapses = Number(cell.lapses) || 0;
+            const badgeLabel = (exercise.scaffoldedAfterError || lapses > 0 || strength < 2)
+                ? '💡 Støtte: Flervalg'
+                : (strength >= 4)
+                    ? '⭐ Mestring: Flervalg'
+                    : '📝 Flervalg';
+
             document.getElementById('grammarExerciseArea').innerHTML = `
                 <div class="grammar-exercise">
                     ${renderAssignmentSessionGoal('grammar', 'grammatikk')}
                     ${exercise.instructionNb ? `<p class="grammar-instruction">${escapeHtml(exercise.instructionNb)}</p>` : ''}
                     ${exercise.no ? `<div class="grammar-norwegian-context"><span class="grammar-context-label">Betydning</span>${escapeHtml(exercise.no)}</div>` : ''}
+                    <div class="mb-2"><span class="grammar-scaffolding-badge">${badgeLabel}</span></div>
                     <div class="grammar-sentence">${sentenceHTML}</div>
 
                     <div class="grammar-options">
@@ -21903,6 +22076,7 @@ Vil du øve på ${pronoun} likevel?`
                         ✗ Feil! Riktig svar er: <strong>${exercise.answer}</strong>
                         <div class="explanation">${escapeHtml(exercise.hint || exercise.explanation || getGrammarMistakeExplanation(currentGrammarTopic.id))}</div>
                         <div class="explanation"><strong>Hvorfor?</strong> ${getGrammarMistakeExplanation(currentGrammarTopic.id).replace(/^Hvorfor\?\s*/, '')}</div>
+                        <div class="grammar-scaffolding-note">💡 Neste gang du møter dette målet får du forsterket støtte.</div>
                         ${renderStudentFeedbackButton({itemRef:`grammar:${currentGrammarTopic.id}:${grammarCurrentIndex}`,source:'grammatikk',prompt:exercise.sentence,studentAnswer:answer,expectedAnswer:exercise.answer})}
                         <button data-feedback-next class="btn btn-primary btn-sm mt-4" onclick="advanceGrammarExercise()" id="grammarNextBtn" aria-keyshortcuts="Enter">Neste</button>
                     </div>
