@@ -70,19 +70,33 @@ test.describe('grammar lesson catalog and relevance', () => {
       const lessonText = document.getElementById('grammarLessonContent').textContent;
       const lessonVisible = !document.getElementById('grammarLessonPage').classList.contains('hidden');
       startGrammarLessonPractice('a1.adjectives.regular_o');
+      const dogEx = grammarExercises.find(e => e.sentence?.includes('perro'));
+      const houseEx = grammarExercises.find(e => e.sentence?.includes('casa'));
       return {
         lessonVisible,
         hasGoal: lessonText.includes('alto') && lessonText.includes('alta'),
-        options: [...new Set(grammarExercises.filter(exercise => !String(exercise.id || '').includes('.transfer.')).flatMap(exercise => exercise.options))].sort(),
-        hasOnlyFocusedSkill: grammarExercises.every(exercise => exercise.skillId === 'a1.adjectives.regular_o')
+        hasOnlyFocusedSkill: grammarExercises.every(exercise => exercise.skillId === 'a1.adjectives.regular_o'),
+        hasInvalidAnswer: grammarExercises.some(exercise => !exercise.options.some(option => String(option).toLocaleLowerCase() === String(exercise.answer).toLocaleLowerCase())),
+        dogExercise: dogEx ? { sentence: dogEx.sentence, answer: dogEx.answer, options: [...dogEx.options].sort() } : null,
+        houseExercise: houseEx ? { sentence: houseEx.sentence, answer: houseEx.answer, options: [...houseEx.options].sort() } : null
       };
     });
 
     expect(result).toEqual({
       lessonVisible: true,
       hasGoal: true,
-      options: ['Alta', 'Altas', 'Alto', 'Altos'],
-      hasOnlyFocusedSkill: true
+      hasOnlyFocusedSkill: true,
+      hasInvalidAnswer: false,
+      dogExercise: {
+        sentence: 'El perro es ___',
+        answer: 'pequeño',
+        options: ['pequeña', 'pequeñas', 'pequeño', 'pequeños']
+      },
+      houseExercise: {
+        sentence: 'La casa es muy ___',
+        answer: 'bonita',
+        options: ['bonita', 'bonitas', 'bonito', 'bonitos']
+      }
     });
   });
 
@@ -95,13 +109,15 @@ test.describe('grammar lesson catalog and relevance', () => {
       return {
         sourceSkills: [...new Set(grammarExercises.filter(exercise => !String(exercise.id || '').includes('.transfer.')).map(exercise => exercise.skillId))],
         transferCount: grammarExercises.filter(exercise => exercise.isTransfer).length,
-        options: [...new Set(grammarExercises.flatMap(exercise => exercise.options))].sort()
+        hasInvalidAnswer: grammarExercises.some(exercise => !exercise.options.some(option => String(option).toLocaleLowerCase() === String(exercise.answer).toLocaleLowerCase())),
+        allHaveOptions: grammarExercises.every(exercise => Array.isArray(exercise.options) && exercise.options.length >= 2)
       };
     });
     expect(result).toEqual({
       sourceSkills: ['a1.adjectives.common_gender'],
       transferCount: 5,
-      options: ['Grande', 'Grandes', 'Inteligente', 'Inteligentes', 'Interesante', 'Interesantes']
+      hasInvalidAnswer: false,
+      allHaveOptions: true
     });
   });
 
@@ -248,5 +264,27 @@ test.describe('grammar lesson catalog and relevance', () => {
     });
 
     expect(result).toEqual({ unchanged: true, sessions: 1 });
+  });
+
+  test('adjective regular_o practice displays matching options and accepts correct answer', async ({ page }) => {
+    await page.goto(appUrl);
+    await page.evaluate(() => {
+      localStorage.clear();
+      document.getElementById('mainApp')?.classList.remove('hidden');
+      showPage('grammar');
+      startGrammarLessonPractice('a1.adjectives.regular_o');
+    });
+
+    const currentEx = await page.evaluate(() => grammarExercises[grammarCurrentIndex]);
+    expect(currentEx.options).toContain(currentEx.answer);
+
+    const btn = page.locator('#grammarExerciseArea button.grammar-option', { hasText: new RegExp(`^\\s*${currentEx.answer}\\s*$`, 'i') });
+    await expect(btn).toBeVisible();
+    await btn.click();
+
+    const isAnswerCorrect = await page.evaluate(() => {
+      return grammarSession.answers[0]?.correct === true;
+    });
+    expect(isAnswerCorrect).toBe(true);
   });
 });

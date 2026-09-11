@@ -4,11 +4,10 @@ import { extractAllItems } from './lib/extract-all-items.mjs';
 
 const reportPath = process.argv[2] || 'output/curriculum-audit-report.json';
 const apply = process.argv.includes('--apply');
+const replace = process.argv.includes('--replace');
 const htmlPath = 'index.html';
 const html = readFileSync(htmlPath, 'utf8');
 const items = extractAllItems(html);
-const report = JSON.parse(readFileSync(reportPath, 'utf8'));
-const generated = buildApprovedAlternatives(items.glossary, report.candidates);
 const canonical = JSON.parse(readFileSync('data/vocabulary-canonical.json', 'utf8'));
 const manualAlternatives = {};
 for (const entry of canonical.entries) {
@@ -21,10 +20,12 @@ for (const entry of canonical.entries) {
     }));
   }
 }
-const merged = mergeApprovedAlternatives(
-  mergeApprovedAlternatives(items.vocabularyAnswerAlternatives, generated),
-  manualAlternatives
-);
+const merged = replace
+  ? manualAlternatives
+  : mergeApprovedAlternatives(
+      mergeApprovedAlternatives(items.vocabularyAnswerAlternatives, buildApprovedAlternatives(items.glossary, JSON.parse(readFileSync(reportPath, 'utf8')).candidates)),
+      manualAlternatives
+    );
 const source = `const vocabularyAnswerAlternatives = ${JSON.stringify(merged, null, 4)};`;
 const glossarySource = `const glossary = ${JSON.stringify(canonical.entries.map(entry => [entry.norsk, entry.spansk, entry.kategori]), null, 4)};`;
 const glossaryStart = html.indexOf('const glossary = [');
@@ -64,7 +65,7 @@ if (apply) {
     else if (withGlossary[i] === '}') { adjustedDepth--; if (adjustedDepth === 0) { adjustedEnd = i; break; } }
   }
   writeFileSync(htmlPath, `${withGlossary.slice(0, adjustedStart)}${source}${withGlossary.slice(adjustedEnd + 2)}`);
-  console.log(`Applied ${canonical.entries.length} canonical entries and ${Object.keys(generated).length} generated answer groups to ${htmlPath}`);
+  console.log(`Applied ${canonical.entries.length} canonical entries and ${Object.keys(merged).length} answer groups${replace ? ' (replace mode)' : ' incl. generated'} to ${htmlPath}`);
 } else {
-  console.log(`Dry run: ${Object.keys(generated).length} generated answer groups; rerun with --apply to update ${htmlPath}`);
+  console.log(`Dry run: ${Object.keys(merged).length} answer groups${replace ? ' (replace mode)' : ' incl. generated'}; rerun with --apply to update ${htmlPath}`);
 }

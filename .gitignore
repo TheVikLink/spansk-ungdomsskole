@@ -1,3 +1,18 @@
 node_modules/
 output/
 test-results/
+
+# System and editor metadata
+.DS_Store
+*.DS_Store
+*.asd
+
+# Build and test artifacts
+.playwright-cli/
+playwright-report/
+blob-report/
+
+# Large binary / media files not intended for repository
+*.dmg
+*.mp4
+*.mov

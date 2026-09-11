@@ -1,0 +1,724 @@
+{
+  "schemaVersion": 2,
+  "description": "Originale sammenhengende historier for fremtidig norsk-til-spansk skrivemodus. Historiene er delt i korte skriveenheter.",
+  "license": "Originalt innhold laget for Spansk ungdomsskole.",
+  "stories": [
+    {
+      "id": "write-a0-001",
+      "title": "Cocos røde ball",
+      "level": "A0",
+      "theme": "Byliv",
+      "sentences": [
+        {
+          "norsk": "Ana bor i Madrid.",
+          "spansk": "Ana vive en Madrid.",
+          "godkjenteSvar": [
+            "Ana vive en Madrid."
+          ]
+        },
+        {
+          "norsk": "En morgen går hun til parken.",
+          "spansk": "Una mañana va al parque.",
+          "godkjenteSvar": [
+            "Una mañana va al parque."
+          ]
+        },
+        {
+          "norsk": "Hunden Coco løper foran henne.",
+          "spansk": "El perro Coco corre delante de ella.",
+          "godkjenteSvar": [
+            "El perro Coco corre delante de ella."
+          ]
+        },
+        {
+          "norsk": "Hunden Coco løper foran henne med den røde ballen.",
+          "spansk": "El perro Coco corre delante de ella con la pelota roja.",
+          "godkjenteSvar": [
+            "El perro Coco corre delante de ella con la pelota roja."
+          ]
+        },
+        {
+          "norsk": "Ved et stort tre slipper Coco ballen.",
+          "spansk": "Junto a un árbol grande, Coco suelta la pelota.",
+          "godkjenteSvar": [
+            "Junto a un árbol grande, Coco suelta la pelota."
+          ]
+        },
+        {
+          "norsk": "Ballen ruller under en benk.",
+          "spansk": "La pelota rueda debajo de un banco.",
+          "godkjenteSvar": [
+            "La pelota rueda debajo de un banco."
+          ]
+        },
+        {
+          "norsk": "Ballen ligger bak treet.",
+          "spansk": "La pelota está detrás del árbol.",
+          "godkjenteSvar": [
+            "La pelota está detrás del árbol."
+          ]
+        },
+        {
+          "norsk": "Coco finner ballen, og Ana ler.",
+          "spansk": "Coco encuentra la pelota y Ana se ríe.",
+          "godkjenteSvar": [
+            "Coco encuentra la pelota y Ana se ríe."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "write-a0-002",
+      "title": "Den nye matboksen",
+      "level": "A0",
+      "theme": "Skole",
+      "sentences": [
+        {
+          "norsk": "Leo har en ny matboks.",
+          "spansk": "Leo tiene una fiambrera nueva.",
+          "godkjenteSvar": [
+            "Leo tiene una fiambrera nueva."
+          ]
+        },
+        {
+          "norsk": "Han tar den med på skolen.",
+          "spansk": "La lleva al colegio.",
+          "godkjenteSvar": [
+            "La lleva al colegio."
+          ]
+        },
+        {
+          "norsk": "I matboksen ligger det et eple.",
+          "spansk": "En la fiambrera hay una manzana.",
+          "godkjenteSvar": [
+            "En la fiambrera hay una manzana."
+          ]
+        },
+        {
+          "norsk": "Det ligger også en sandwich.",
+          "spansk": "También hay un sándwich.",
+          "godkjenteSvar": [
+            "También hay un sándwich."
+          ]
+        },
+        {
+          "norsk": "I friminuttet åpner Leo boksen.",
+          "spansk": "En el recreo Leo abre la fiambrera.",
+          "godkjenteSvar": [
+            "En el recreo Leo abre la fiambrera.",
+            "En el recreo Leo abre la caja."
+          ]
+        },
+        {
+          "norsk": "En liten hund står ved gjerdet.",
+          "spansk": "Un perro pequeño está junto a la valla.",
+          "godkjenteSvar": [
+            "Un perro pequeño está junto a la valla."
+          ]
+        },
+        {
+          "norsk": "Hunden har eplet i munnen.",
+          "spansk": "El perro tiene la manzana en la boca.",
+          "godkjenteSvar": [
+            "El perro tiene la manzana en la boca."
+          ]
+        },
+        {
+          "norsk": "Leo forstår hva som har skjedd.",
+          "spansk": "Leo entiende lo que ha pasado.",
+          "godkjenteSvar": [
+            "Leo entiende lo que ha pasado."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "write-a0-003",
+      "title": "En bursdagshilsen",
+      "level": "A0",
+      "theme": "Familie",
+      "sentences": [
+        {
+          "norsk": "Sara har bursdag i dag.",
+          "spansk": "Sara cumple años hoy.",
+          "godkjenteSvar": [
+            "Sara cumple años hoy."
+          ]
+        },
+        {
+          "norsk": "Broren hennes lager et kort.",
+          "spansk": "Su hermano hace una tarjeta.",
+          "godkjenteSvar": [
+            "Su hermano hace una tarjeta."
+          ]
+        },
+        {
+          "norsk": "Han tegner en stor sol.",
+          "spansk": "Dibuja un sol grande.",
+          "godkjenteSvar": [
+            "Dibuja un sol grande."
+          ]
+        },
+        {
+          "norsk": "Han skriver «gratulerer».",
+          "spansk": "Escribe «felicidades».",
+          "godkjenteSvar": [
+            "Escribe «felicidades».",
+            "Escribe \"felicidades\"."
+          ]
+        },
+        {
+          "norsk": "Sara får kortet etter frokost.",
+          "spansk": "Sara recibe la tarjeta después del desayuno.",
+          "godkjenteSvar": [
+            "Sara recibe la tarjeta después del desayuno."
+          ]
+        },
+        {
+          "norsk": "Hun blir veldig glad og henger kortet på veggen.",
+          "spansk": "Se pone muy contenta y cuelga la tarjeta en la pared.",
+          "godkjenteSvar": [
+            "Se pone muy contenta y cuelga la tarjeta en la pared."
+          ]
+        },
+        {
+          "norsk": "Kortet får en plass ved sengen hennes.",
+          "spansk": "La tarjeta tiene un lugar junto a su cama.",
+          "godkjenteSvar": [
+            "La tarjeta tiene un lugar junto a su cama."
+          ]
+        },
+        {
+          "norsk": "Om kvelden leser Sara hilsenen en gang til.",
+          "spansk": "Por la noche Sara lee el mensaje otra vez.",
+          "godkjenteSvar": [
+            "Por la noche Sara lee el mensaje otra vez."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "write-a0-004",
+      "title": "Den glemte paraplyen",
+      "level": "A0",
+      "theme": "Vær",
+      "sentences": [
+        {
+          "norsk": "Det regner etter skolen.",
+          "spansk": "Llueve después del colegio.",
+          "godkjenteSvar": [
+            "Llueve después del colegio."
+          ]
+        },
+        {
+          "norsk": "Marta har ingen paraply.",
+          "spansk": "Marta no tiene paraguas.",
+          "godkjenteSvar": [
+            "Marta no tiene paraguas."
+          ]
+        },
+        {
+          "norsk": "Hun løper til bussholdeplassen.",
+          "spansk": "Corre hasta la parada de autobús.",
+          "godkjenteSvar": [
+            "Corre hasta la parada de autobús."
+          ]
+        },
+        {
+          "norsk": "En gutt står under et tak.",
+          "spansk": "Un chico está debajo de un techo.",
+          "godkjenteSvar": [
+            "Un chico está debajo de un techo."
+          ]
+        },
+        {
+          "norsk": "Han heter Pablo.",
+          "spansk": "Se llama Pablo.",
+          "godkjenteSvar": [
+            "Se llama Pablo."
+          ]
+        },
+        {
+          "norsk": "Pablo holder en paraply.",
+          "spansk": "Pablo tiene un paraguas.",
+          "godkjenteSvar": [
+            "Pablo tiene un paraguas."
+          ]
+        },
+        {
+          "norsk": "Marta spør om hun kan dele den.",
+          "spansk": "Marta pregunta si puede compartirlo.",
+          "godkjenteSvar": [
+            "Marta pregunta si puede compartirlo."
+          ]
+        },
+        {
+          "norsk": "Pablo sier ja.",
+          "spansk": "Pablo dice que sí.",
+          "godkjenteSvar": [
+            "Pablo dice que sí."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "write-a0-005",
+      "title": "Katten på kjøkkenet",
+      "level": "A0",
+      "theme": "Hverdag",
+      "sentences": [
+        {
+          "norsk": "Nora lager frokost.",
+          "spansk": "Nora prepara el desayuno.",
+          "godkjenteSvar": [
+            "Nora prepara el desayuno."
+          ]
+        },
+        {
+          "norsk": "Katten hennes er på kjøkkenet.",
+          "spansk": "Su gato está en la cocina.",
+          "godkjenteSvar": [
+            "Su gato está en la cocina."
+          ]
+        },
+        {
+          "norsk": "Katten ser på brødet.",
+          "spansk": "El gato mira el pan.",
+          "godkjenteSvar": [
+            "El gato mira el pan."
+          ]
+        },
+        {
+          "norsk": "Nora sier nei.",
+          "spansk": "Nora dice que no.",
+          "godkjenteSvar": [
+            "Nora dice que no."
+          ]
+        },
+        {
+          "norsk": "Så hører hun en lyd bak kjøleskapet.",
+          "spansk": "Entonces oye un ruido detrás de la nevera.",
+          "godkjenteSvar": [
+            "Entonces oye un ruido detrás de la nevera."
+          ]
+        },
+        {
+          "norsk": "En mus har tatt en brødsmule.",
+          "spansk": "Un ratón ha cogido una miga de pan.",
+          "godkjenteSvar": [
+            "Un ratón ha cogido una miga de pan."
+          ]
+        },
+        {
+          "norsk": "Katten løper etter musen.",
+          "spansk": "El gato corre detrás del ratón.",
+          "godkjenteSvar": [
+            "El gato corre detrás del ratón."
+          ]
+        },
+        {
+          "norsk": "Nora gir katten mat i skålen sin.",
+          "spansk": "Nora le da comida al gato en su cuenco.",
+          "godkjenteSvar": [
+            "Nora le da comida al gato en su cuenco."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "write-a1-001",
+      "title": "Kartet i sekken",
+      "level": "A1",
+      "theme": "Byliv",
+      "sentences": [
+        {
+          "norsk": "Nora skal møte kusinen sin i sentrum.",
+          "spansk": "Nora va a encontrarse con su prima en el centro.",
+          "godkjenteSvar": [
+            "Nora va a encontrarse con su prima en el centro."
+          ]
+        },
+        {
+          "norsk": "Hun legger et kart i sekken.",
+          "spansk": "Mete un mapa en la mochila.",
+          "godkjenteSvar": [
+            "Mete un mapa en la mochila.",
+            "Pone un mapa en la mochila."
+          ]
+        },
+        {
+          "norsk": "Men kartet blir borte på bussen.",
+          "spansk": "Pero pierde el mapa en el autobús.",
+          "godkjenteSvar": [
+            "Pero pierde el mapa en el autobús."
+          ]
+        },
+        {
+          "norsk": "Nora går av ved et stort torg.",
+          "spansk": "Nora baja en una plaza grande.",
+          "godkjenteSvar": [
+            "Nora baja en una plaza grande."
+          ]
+        },
+        {
+          "norsk": "Hun spør en kvinne om veien.",
+          "spansk": "Pregunta a una mujer por el camino.",
+          "godkjenteSvar": [
+            "Pregunta a una mujer por el camino."
+          ]
+        },
+        {
+          "norsk": "Kvinnen peker mot en kafé.",
+          "spansk": "La mujer señala una cafetería.",
+          "godkjenteSvar": [
+            "La mujer señala una cafetería."
+          ]
+        },
+        {
+          "norsk": "Hun peker mot en kafé.",
+          "spansk": "Señala una cafetería.",
+          "godkjenteSvar": [
+            "Señala una cafetería."
+          ]
+        },
+        {
+          "norsk": "Kusinen venter der med varm sjokolade.",
+          "spansk": "Su prima espera allí con chocolate caliente.",
+          "godkjenteSvar": [
+            "Su prima espera allí con chocolate caliente."
+          ]
+        },
+        {
+          "norsk": "Nora finner kartet i sekken.",
+          "spansk": "Nora encuentra el mapa en la mochila.",
+          "godkjenteSvar": [
+            "Nora encuentra el mapa en la mochila."
+          ]
+        },
+        {
+          "norsk": "De ler av den lille turen.",
+          "spansk": "Se ríen del pequeño viaje.",
+          "godkjenteSvar": [
+            "Se ríen del pequeño viaje."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "write-a1-002",
+      "title": "En lørdag i Oaxaca",
+      "level": "A1",
+      "theme": "Marked og kultur",
+      "sentences": [
+        {
+          "norsk": "Luis skal kjøpe en gave til bestemoren sin.",
+          "spansk": "Luis va a comprar un regalo para su abuela.",
+          "godkjenteSvar": [
+            "Luis va a comprar un regalo para su abuela."
+          ]
+        },
+        {
+          "norsk": "Han går til markedet i Oaxaca.",
+          "spansk": "Va al mercado de Oaxaca.",
+          "godkjenteSvar": [
+            "Va al mercado de Oaxaca."
+          ]
+        },
+        {
+          "norsk": "Der finner han mange fargerike ting.",
+          "spansk": "Allí encuentra muchas cosas de colores.",
+          "godkjenteSvar": [
+            "Allí encuentra muchas cosas de colores."
+          ]
+        },
+        {
+          "norsk": "Han liker en liten blå kopp.",
+          "spansk": "Le gusta una taza azul pequeña.",
+          "godkjenteSvar": [
+            "Le gusta una taza azul pequeña."
+          ]
+        },
+        {
+          "norsk": "Men koppen er for dyr.",
+          "spansk": "Pero la taza es demasiado cara.",
+          "godkjenteSvar": [
+            "Pero la taza es demasiado cara."
+          ]
+        },
+        {
+          "norsk": "En selger viser ham en annen kopp.",
+          "spansk": "Una vendedora le enseña otra taza.",
+          "godkjenteSvar": [
+            "Una vendedora le enseña otra taza."
+          ]
+        },
+        {
+          "norsk": "Denne koppen har en gul sol.",
+          "spansk": "Esta taza tiene un sol amarillo.",
+          "godkjenteSvar": [
+            "Esta taza tiene un sol amarillo."
+          ]
+        },
+        {
+          "norsk": "Luis kjøper koppen.",
+          "spansk": "Luis compra la taza.",
+          "godkjenteSvar": [
+            "Luis compra la taza."
+          ]
+        },
+        {
+          "norsk": "Bestemoren blir veldig glad.",
+          "spansk": "Su abuela se pone muy contenta.",
+          "godkjenteSvar": [
+            "Su abuela se pone muy contenta."
+          ]
+        },
+        {
+          "norsk": "Hun bruker koppen hver morgen.",
+          "spansk": "Usa la taza cada mañana.",
+          "godkjenteSvar": [
+            "Usa la taza cada mañana.",
+            "Utiliza la taza cada mañana.",
+            "Usa la taza todas las mañanas."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "write-a1-003",
+      "title": "Den nye eleven",
+      "level": "A1",
+      "theme": "Skole og vennskap",
+      "sentences": [
+        {
+          "norsk": "Sofía begynner på en ny skole.",
+          "spansk": "Sofía empieza en un colegio nuevo.",
+          "godkjenteSvar": [
+            "Sofía empieza en un colegio nuevo."
+          ]
+        },
+        {
+          "norsk": "Hun kjenner ingen i klassen.",
+          "spansk": "No conoce a nadie en la clase.",
+          "godkjenteSvar": [
+            "No conoce a nadie en la clase."
+          ]
+        },
+        {
+          "norsk": "I friminuttet sitter hun alene.",
+          "spansk": "En el recreo está sentada sola.",
+          "godkjenteSvar": [
+            "En el recreo está sentada sola."
+          ]
+        },
+        {
+          "norsk": "En jente mister en rød penn.",
+          "spansk": "Una chica pierde un bolígrafo rojo.",
+          "godkjenteSvar": [
+            "Una chica pierde un bolígrafo rojo."
+          ]
+        },
+        {
+          "norsk": "Sofía finner pennen under en stol.",
+          "spansk": "Sofía encuentra el bolígrafo debajo de una silla.",
+          "godkjenteSvar": [
+            "Sofía encuentra el bolígrafo debajo de una silla."
+          ]
+        },
+        {
+          "norsk": "Jenta heter Carmen.",
+          "spansk": "La chica se llama Carmen.",
+          "godkjenteSvar": [
+            "La chica se llama Carmen."
+          ]
+        },
+        {
+          "norsk": "Carmen inviterer henne til å sitte sammen med seg.",
+          "spansk": "Carmen la invita a sentarse con ella.",
+          "godkjenteSvar": [
+            "Carmen la invita a sentarse con ella."
+          ]
+        },
+        {
+          "norsk": "De snakker om musikk.",
+          "spansk": "Hablan de música.",
+          "godkjenteSvar": [
+            "Hablan de música.",
+            "Hablan sobre música."
+          ]
+        },
+        {
+          "norsk": "Etter timen viser Carmen Sofía skolebiblioteket.",
+          "spansk": "Después de la clase, Carmen le enseña la biblioteca del colegio.",
+          "godkjenteSvar": [
+            "Después de la clase, Carmen le enseña la biblioteca del colegio."
+          ]
+        },
+        {
+          "norsk": "Sofía går hjem med en ny venn.",
+          "spansk": "Sofía vuelve a casa con una nueva amiga.",
+          "godkjenteSvar": [
+            "Sofía vuelve a casa con una nueva amiga."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "write-a1-004",
+      "title": "Middagen som mangler noe",
+      "level": "A1",
+      "theme": "Mat og familie",
+      "sentences": [
+        {
+          "norsk": "På fredag lager familien middag sammen.",
+          "spansk": "El viernes la familia prepara la cena junta.",
+          "godkjenteSvar": [
+            "El viernes la familia prepara la cena junta."
+          ]
+        },
+        {
+          "norsk": "Faren skjærer grønnsakene.",
+          "spansk": "El padre corta las verduras.",
+          "godkjenteSvar": [
+            "El padre corta las verduras."
+          ]
+        },
+        {
+          "norsk": "Moren koker pasta.",
+          "spansk": "La madre cocina pasta.",
+          "godkjenteSvar": [
+            "La madre cocina pasta."
+          ]
+        },
+        {
+          "norsk": "Broren dekker bordet.",
+          "spansk": "El hermano pone la mesa.",
+          "godkjenteSvar": [
+            "El hermano pone la mesa."
+          ]
+        },
+        {
+          "norsk": "Plutselig oppdager de at de mangler salt.",
+          "spansk": "De repente descubren que no tienen sal.",
+          "godkjenteSvar": [
+            "De repente descubren que no tienen sal."
+          ]
+        },
+        {
+          "norsk": "Søsteren løper til butikken.",
+          "spansk": "La hermana corre a la tienda.",
+          "godkjenteSvar": [
+            "La hermana corre a la tienda."
+          ]
+        },
+        {
+          "norsk": "Hun kommer tilbake med salt og brød.",
+          "spansk": "Vuelve con sal y pan.",
+          "godkjenteSvar": [
+            "Vuelve con sal y pan."
+          ]
+        },
+        {
+          "norsk": "Alle hjelper til på kjøkkenet.",
+          "spansk": "Todos ayudan en la cocina.",
+          "godkjenteSvar": [
+            "Todos ayudan en la cocina."
+          ]
+        },
+        {
+          "norsk": "Maten lukter godt.",
+          "spansk": "La comida huele bien.",
+          "godkjenteSvar": [
+            "La comida huele bien."
+          ]
+        },
+        {
+          "norsk": "Etterpå spiser de sammen.",
+          "spansk": "Después comen juntos.",
+          "godkjenteSvar": [
+            "Después comen juntos."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "write-a1-005",
+      "title": "Jakten på den blå sekken",
+      "level": "A1",
+      "theme": "Fritid og familie",
+      "sentences": [
+        {
+          "norsk": "Marta skal på stranden med broren sin.",
+          "spansk": "Marta va a la playa con su hermano.",
+          "godkjenteSvar": [
+            "Marta va a la playa con su hermano."
+          ]
+        },
+        {
+          "norsk": "Hun pakker håndklær og vann i en blå sekk.",
+          "spansk": "Mete toallas y agua en una mochila azul.",
+          "godkjenteSvar": [
+            "Mete toallas y agua en una mochila azul."
+          ]
+        },
+        {
+          "norsk": "På bussen oppdager hun at sekken er borte.",
+          "spansk": "En el autobús descubre que la mochila no está.",
+          "godkjenteSvar": [
+            "En el autobús descubre que la mochila no está."
+          ]
+        },
+        {
+          "norsk": "Marta blir veldig bekymret.",
+          "spansk": "Marta se preocupa mucho.",
+          "godkjenteSvar": [
+            "Marta se preocupa mucho."
+          ]
+        },
+        {
+          "norsk": "Broren hennes ringer hjem.",
+          "spansk": "Su hermano llama a casa.",
+          "godkjenteSvar": [
+            "Su hermano llama a casa."
+          ]
+        },
+        {
+          "norsk": "Moren finner sekken ved døren.",
+          "spansk": "La madre encuentra la mochila junto a la puerta.",
+          "godkjenteSvar": [
+            "La madre encuentra la mochila junto a la puerta."
+          ]
+        },
+        {
+          "norsk": "Hun tar den med til bussholdeplassen.",
+          "spansk": "La lleva a la parada de autobús.",
+          "godkjenteSvar": [
+            "La lleva a la parada de autobús."
+          ]
+        },
+        {
+          "norsk": "Marta får sekken.",
+          "spansk": "Marta recibe la mochila.",
+          "godkjenteSvar": [
+            "Marta recibe la mochila."
+          ]
+        },
+        {
+          "norsk": "Så kjører bussen.",
+          "spansk": "Después sale el autobús.",
+          "godkjenteSvar": [
+            "Después sale el autobús."
+          ]
+        },
+        {
+          "norsk": "Marta ler fordi dagen ender godt.",
+          "spansk": "Marta se ríe porque el día termina bien.",
+          "godkjenteSvar": [
+            "Marta se ríe porque el día termina bien."
+          ]
+        }
+      ]
+    }
+  ],
+  "reviewNote": "Revidert etter innholdsreview: tydeligere handling, enklere nivå og bredere, kontrollerte svarvarianter."
+}

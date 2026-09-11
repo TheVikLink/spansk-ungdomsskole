@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "description": "Canonical vocabulary source. Edit entries and regenerate index.html.",
+  "description": "Canonical vocabulary source. Lærergodkjent 2026-09-09 (fra vocabulary-canonical-review.json). Edit entries and regenerate index.html via npm run audit:apply --apply.",
   "entries": [
     {
       "id": "vocab-0001",
@@ -542,7 +542,7 @@
           "100",
           "ett hundre",
           "eitt hundre",
-          "én hundre"
+          "hundre"
         ],
         "no-es": [
           "cien"
@@ -559,7 +559,7 @@
           "110",
           "ett hundre og ti",
           "eitt hundre og ti",
-          "én hundre og ti"
+          "hundre og ti"
         ],
         "no-es": [
           "ciento diez"
@@ -576,7 +576,7 @@
           "123",
           "ett hundre og tjuetre",
           "eitt hundre og tjuetre",
-          "én hundre og tjuetre"
+          "hundre og tjuetre"
         ],
         "no-es": [
           "ciento veintitrés"
@@ -591,7 +591,6 @@
       "svar": {
         "es-no": [
           "200",
-          "ett hundre",
           "to hundre"
         ],
         "no-es": [
@@ -607,7 +606,6 @@
       "svar": {
         "es-no": [
           "245",
-          "ett hundre og førtifem",
           "to hundre og førtifem"
         ],
         "no-es": [
@@ -623,7 +621,6 @@
       "svar": {
         "es-no": [
           "300",
-          "ett hundre",
           "tre hundre"
         ],
         "no-es": [
@@ -639,7 +636,6 @@
       "svar": {
         "es-no": [
           "400",
-          "ett hundre",
           "fire hundre"
         ],
         "no-es": [
@@ -655,7 +651,6 @@
       "svar": {
         "es-no": [
           "500",
-          "ett hundre",
           "fem hundre"
         ],
         "no-es": [
@@ -671,7 +666,6 @@
       "svar": {
         "es-no": [
           "600",
-          "ett hundre",
           "seks hundre"
         ],
         "no-es": [
@@ -687,7 +681,6 @@
       "svar": {
         "es-no": [
           "700",
-          "ett hundre",
           "syv hundre"
         ],
         "no-es": [
@@ -703,7 +696,6 @@
       "svar": {
         "es-no": [
           "800",
-          "ett hundre",
           "åtte hundre"
         ],
         "no-es": [
@@ -719,7 +711,6 @@
       "svar": {
         "es-no": [
           "900",
-          "ett hundre",
           "ni hundre"
         ],
         "no-es": [
@@ -736,7 +727,8 @@
         "es-no": [
           "1000",
           "ett tusen",
-          "eitt tusen"
+          "eitt tusen",
+          "tusen"
         ],
         "no-es": [
           "mil"
@@ -751,7 +743,6 @@
       "svar": {
         "es-no": [
           "870",
-          "ett hundre og sytti",
           "åtte hundre og sytti"
         ],
         "no-es": [
@@ -767,7 +758,6 @@
       "svar": {
         "es-no": [
           "1200",
-          "ett tusen ett hundre",
           "eitt tusen to hundre",
           "ett tusen to hundre"
         ],
@@ -784,7 +774,6 @@
       "svar": {
         "es-no": [
           "1589",
-          "ett tusen ett hundre og åttini",
           "eitt tusen fem hundre og åttini",
           "ett tusen fem hundre og åttini"
         ],
@@ -846,9 +835,9 @@
       "svar": {
         "es-no": [
           "1945",
-          "ett tusen ett hundre og førtifem",
           "eitt tusen ni hundre og førtifem",
-          "ett tusen ni hundre og førtifem"
+          "ett tusen ni hundre og førtifem",
+          "nitten førtifem"
         ],
         "no-es": [
           "mil novecientos cuarenta y cinco"
@@ -863,9 +852,9 @@
       "svar": {
         "es-no": [
           "1996",
-          "ett tusen ett hundre og nittiseks",
           "eitt tusen ni hundre og nittiseks",
-          "ett tusen ni hundre og nittiseks"
+          "ett tusen ni hundre og nittiseks",
+          "nitten nittiseks"
         ],
         "no-es": [
           "mil novecientos noventa y seis"
@@ -880,7 +869,8 @@
       "svar": {
         "es-no": [
           "2011",
-          "to tusen elleve"
+          "to tusen og elleve",
+          "tjue elleve"
         ],
         "no-es": [
           "dos mil once"
@@ -895,7 +885,8 @@
       "svar": {
         "es-no": [
           "2019",
-          "to tusen nitten"
+          "to tusen og nitten",
+          "tjue nitten"
         ],
         "no-es": [
           "dos mil diecinueve"
@@ -938,8 +929,7 @@
       "svar": {
         "es-no": [
           "Bursdagen min er 7. juli",
-          "Bursdagen min er den sjuende juli",
-          "Bursdagen min er sjuende juli"
+          "Bursdagen min er den sjuende juli"
         ],
         "no-es": [
           "Mi cumpleaños es el siete de julio",
@@ -1044,8 +1034,7 @@
           "god kveld"
         ],
         "no-es": [
-          "buenas noches",
-          "buenas tardes"
+          "buenas noches"
         ]
       }
     },
@@ -1057,11 +1046,12 @@
       "svar": {
         "es-no": [
           "ha det",
-          "farvel"
+          "farvel",
+          "hade"
         ],
         "no-es": [
           "adiós",
-          "hasta luego"
+          "ciao"
         ]
       }
     },
@@ -1511,7 +1501,8 @@
           "vår"
         ],
         "no-es": [
-          "la primavera"
+          "la primavera",
+          "primavera"
         ]
       }
     },
@@ -1580,6 +1571,8 @@
       "kategori": "vær",
       "svar": {
         "es-no": [
+          "det er klart",
+          "det er skyfritt",
           "det er klart / skyfritt"
         ],
         "no-es": [
@@ -1603,12 +1596,14 @@
     },
     {
       "id": "vocab-0108",
-      "norsk": "det er fem varmegrader",
+      "norsk": "det er fem grader",
       "spansk": "hace cinco grados sobre cero",
       "kategori": "vær",
       "svar": {
         "es-no": [
-          "det er fem varmegrader"
+          "det er fem grader",
+          "det er fem varmegrader",
+          "det er fem grader over null"
         ],
         "no-es": [
           "hace cinco grados sobre cero"
@@ -1622,7 +1617,8 @@
       "kategori": "vær",
       "svar": {
         "es-no": [
-          "det er fem kuldegrader"
+          "det er fem kuldegrader",
+          "det er fem minusgrader"
         ],
         "no-es": [
           "hace cinco grados bajo cero"
@@ -1731,7 +1727,7 @@
     },
     {
       "id": "vocab-0117",
-      "norsk": "jula",
+      "norsk": "jul",
       "spansk": "La Navidad",
       "kategori": "høytider",
       "svar": {
@@ -1797,7 +1793,8 @@
       "svar": {
         "es-no": [
           "påskeuken",
-          "påskeuke"
+          "påskeuke",
+          "påske"
         ],
         "no-es": [
           "La Semana Santa"
@@ -1836,22 +1833,27 @@
     },
     {
       "id": "vocab-0124",
-      "norsk": "de hellige tre kongers aften",
-      "spansk": "El Día de los Reyes",
+      "norsk": "helligtrekongersdag",
+      "spansk": "el Día de Reyes",
       "kategori": "høytider",
       "svar": {
         "es-no": [
-          "de hellige tre kongers aften"
+          "helligtrekongersdag",
+          "de hellige tre kongers dag",
+          "trettendedag jul"
         ],
         "no-es": [
-          "El Día de los Reyes"
+          "el Día de Reyes",
+          "Día de Reyes",
+          "el Día de los Reyes Magos",
+          "Día de los Reyes Magos"
         ]
       }
     },
     {
       "id": "vocab-0125",
       "norsk": "allehelgensdagen",
-      "spansk": "El Día de los Muertos",
+      "spansk": "el Día de Todos los Santos",
       "kategori": "høytider",
       "svar": {
         "es-no": [
@@ -1859,7 +1861,8 @@
           "allehelgensdag"
         ],
         "no-es": [
-          "El Día de los Muertos"
+          "el Día de Todos los Santos",
+          "Día de Todos los Santos"
         ]
       }
     },
@@ -1961,7 +1964,8 @@
           "høy"
         ],
         "no-es": [
-          "alto"
+          "alto",
+          "alta"
         ]
       }
     },
@@ -1975,7 +1979,8 @@
           "lav"
         ],
         "no-es": [
-          "bajo"
+          "bajo",
+          "baja"
         ]
       }
     },
@@ -1989,7 +1994,8 @@
           "mørkhåret"
         ],
         "no-es": [
-          "moreno"
+          "moreno",
+          "morena"
         ]
       }
     },
@@ -2000,10 +2006,12 @@
       "kategori": "utseende",
       "svar": {
         "es-no": [
-          "blond"
+          "blond",
+          "lyshåret"
         ],
         "no-es": [
-          "rubio"
+          "rubio",
+          "rubia"
         ]
       }
     },
@@ -2017,7 +2025,8 @@
           "rødhåret"
         ],
         "no-es": [
-          "pelirrojo"
+          "pelirrojo",
+          "pelirroja"
         ]
       }
     },
@@ -2031,7 +2040,8 @@
           "skallet"
         ],
         "no-es": [
-          "calvo"
+          "calvo",
+          "calva"
         ]
       }
     },
@@ -2042,12 +2052,13 @@
       "kategori": "utseende",
       "svar": {
         "es-no": [
-          "pen/kjekk",
           "kjekk",
-          "pen"
+          "pen",
+          "pen/kjekk"
         ],
         "no-es": [
-          "guapo"
+          "guapo",
+          "guapa"
         ]
       }
     },
@@ -2061,7 +2072,8 @@
           "vakker"
         ],
         "no-es": [
-          "hermoso"
+          "hermoso",
+          "hermosa"
         ]
       }
     },
@@ -2075,7 +2087,8 @@
           "blå øyne"
         ],
         "no-es": [
-          "los ojos azules"
+          "los ojos azules",
+          "ojos azules"
         ]
       }
     },
@@ -2089,7 +2102,8 @@
           "brune øyne"
         ],
         "no-es": [
-          "los ojos marrones"
+          "los ojos marrones",
+          "ojos marrones"
         ]
       }
     },
@@ -2103,7 +2117,8 @@
           "grønne øyne"
         ],
         "no-es": [
-          "los ojos verdes"
+          "los ojos verdes",
+          "ojos verdes"
         ]
       }
     },
@@ -2117,7 +2132,8 @@
           "mørkt hår"
         ],
         "no-es": [
-          "el pelo moreno"
+          "el pelo moreno",
+          "pelo moreno"
         ]
       }
     },
@@ -2131,7 +2147,8 @@
           "blondt hår"
         ],
         "no-es": [
-          "el pelo rubio"
+          "el pelo rubio",
+          "pelo rubio"
         ]
       }
     },
@@ -2145,7 +2162,8 @@
           "rødt hår"
         ],
         "no-es": [
-          "el pelo pelirrojo"
+          "el pelo pelirrojo",
+          "pelo pelirrojo"
         ]
       }
     },
@@ -2159,7 +2177,8 @@
           "kort hår"
         ],
         "no-es": [
-          "el pelo corto"
+          "el pelo corto",
+          "pelo corto"
         ]
       }
     },
@@ -2173,7 +2192,8 @@
           "langt hår"
         ],
         "no-es": [
-          "el pelo largo"
+          "el pelo largo",
+          "pelo largo"
         ]
       }
     },
@@ -2187,7 +2207,8 @@
           "rett hår"
         ],
         "no-es": [
-          "el pelo liso"
+          "el pelo liso",
+          "pelo liso"
         ]
       }
     },
@@ -2201,7 +2222,8 @@
           "krøllete hår"
         ],
         "no-es": [
-          "el pelo rizado"
+          "el pelo rizado",
+          "pelo rizado"
         ]
       }
     },
@@ -2215,7 +2237,8 @@
           "hestehale"
         ],
         "no-es": [
-          "la cola de caballo"
+          "la cola de caballo",
+          "cola de caballo"
         ]
       }
     },
@@ -2229,7 +2252,8 @@
           "pannelugg"
         ],
         "no-es": [
-          "el flequillo"
+          "el flequillo",
+          "flequillo"
         ]
       }
     },
@@ -2243,7 +2267,8 @@
           "fletter"
         ],
         "no-es": [
-          "las trenzas"
+          "las trenzas",
+          "trenzas"
         ]
       }
     },
@@ -2257,7 +2282,8 @@
           "briller"
         ],
         "no-es": [
-          "las gafas"
+          "las gafas",
+          "gafas"
         ]
       }
     },
@@ -2286,7 +2312,8 @@
           "bart"
         ],
         "no-es": [
-          "el bigote"
+          "el bigote",
+          "bigote"
         ]
       }
     },
@@ -2300,7 +2327,8 @@
           "fregner"
         ],
         "no-es": [
-          "las pecas"
+          "las pecas",
+          "pecas"
         ]
       }
     },
@@ -2314,7 +2342,8 @@
           "smilehull"
         ],
         "no-es": [
-          "los hoyuelos"
+          "los hoyuelos",
+          "hoyuelos"
         ]
       }
     },
@@ -2328,7 +2357,8 @@
           "arr"
         ],
         "no-es": [
-          "la cicatriz"
+          "la cicatriz",
+          "cicatriz"
         ]
       }
     },
@@ -2342,21 +2372,25 @@
           "kjedelig"
         ],
         "no-es": [
-          "aburrido"
+          "aburrido",
+          "aburrida"
         ]
       }
     },
     {
       "id": "vocab-0160",
-      "norsk": "omtenksom",
+      "norsk": "kjærlig / omsorgsfull",
       "spansk": "cariñoso",
       "kategori": "personlighet",
       "svar": {
         "es-no": [
-          "omtenksom"
+          "kjærlig / omsorgsfull",
+          "kjærlig",
+          "omsorgsfull"
         ],
         "no-es": [
-          "cariñoso"
+          "cariñoso",
+          "cariñosa"
         ]
       }
     },
@@ -2370,7 +2404,8 @@
           "morsom"
         ],
         "no-es": [
-          "gracioso"
+          "gracioso",
+          "graciosa"
         ]
       }
     },
@@ -2384,7 +2419,8 @@
           "pratsom"
         ],
         "no-es": [
-          "hablador"
+          "hablador",
+          "habladora"
         ]
       }
     },
@@ -2426,7 +2462,8 @@
           "ryddig"
         ],
         "no-es": [
-          "ordenado"
+          "ordenado",
+          "ordenada"
         ]
       }
     },
@@ -2471,7 +2508,8 @@
           "snill"
         ],
         "no-es": [
-          "simpático"
+          "simpático",
+          "simpática"
         ]
       }
     },
@@ -2499,7 +2537,8 @@
           "sta"
         ],
         "no-es": [
-          "terco"
+          "terco",
+          "terca"
         ]
       }
     },
@@ -2513,7 +2552,8 @@
           "sjenert"
         ],
         "no-es": [
-          "tímido"
+          "tímido",
+          "tímida"
         ]
       }
     },
@@ -2528,7 +2568,8 @@
           "lat"
         ],
         "no-es": [
-          "vago"
+          "vago",
+          "vaga"
         ]
       }
     },
@@ -2574,7 +2615,8 @@
           "fetter"
         ],
         "no-es": [
-          "el primo"
+          "el primo",
+          "primo"
         ]
       }
     },
@@ -2588,7 +2630,8 @@
           "kusine"
         ],
         "no-es": [
-          "la prima"
+          "la prima",
+          "prima"
         ]
       }
     },
@@ -2713,7 +2756,8 @@
           "stefar"
         ],
         "no-es": [
-          "el padrastro"
+          "el padrastro",
+          "padrastro"
         ]
       }
     },
@@ -2727,7 +2771,8 @@
           "stemor"
         ],
         "no-es": [
-          "la madrastra"
+          "la madrastra",
+          "madrastra"
         ]
       }
     },
@@ -2741,7 +2786,8 @@
           "stebror"
         ],
         "no-es": [
-          "el hermanastro"
+          "el hermanastro",
+          "hermanastro"
         ]
       }
     },
@@ -2755,7 +2801,8 @@
           "stesøster"
         ],
         "no-es": [
-          "la hermanastra"
+          "la hermanastra",
+          "hermanastra"
         ]
       }
     },
@@ -2769,7 +2816,8 @@
           "halvbror"
         ],
         "no-es": [
-          "el medio hermano"
+          "el medio hermano",
+          "medio hermano"
         ]
       }
     },
@@ -2783,7 +2831,8 @@
           "halvsøster"
         ],
         "no-es": [
-          "la media hermana"
+          "la media hermana",
+          "media hermana"
         ]
       }
     },
@@ -2797,7 +2846,8 @@
           "storebror"
         ],
         "no-es": [
-          "el hermano mayor"
+          "el hermano mayor",
+          "hermano mayor"
         ]
       }
     },
@@ -2811,18 +2861,21 @@
           "lillesøster"
         ],
         "no-es": [
-          "la hermana menor"
+          "la hermana menor",
+          "hermana menor"
         ]
       }
     },
     {
       "id": "vocab-0192",
-      "norsk": "Familien min består av fem personer",
+      "norsk": "Vi er fem personer i familien min",
       "spansk": "En mi familia somos cinco",
       "kategori": "familie-setninger",
       "svar": {
         "es-no": [
-          "Familien min består av fem personer"
+          "Vi er fem personer i familien min",
+          "Vi er fem personer i familien",
+          "I familien min er vi fem personer"
         ],
         "no-es": [
           "En mi familia somos cinco"
@@ -2901,15 +2954,15 @@
     },
     {
       "id": "vocab-0198",
-      "norsk": "Broren min heter..",
-      "spansk": "Mi hermano se llama..",
+      "norsk": "Broren min heter",
+      "spansk": "Mi hermano se llama",
       "kategori": "familie-setninger",
       "svar": {
         "es-no": [
-          "Broren min heter.."
+          "Broren min heter"
         ],
         "no-es": [
-          "Mi hermano se llama.."
+          "Mi hermano se llama"
         ]
       }
     },
@@ -2983,7 +3036,8 @@
           "støvler"
         ],
         "no-es": [
-          "las botas"
+          "las botas",
+          "botas"
         ]
       }
     },
@@ -3012,7 +3066,8 @@
           "bikini"
         ],
         "no-es": [
-          "el biquini"
+          "el biquini",
+          "biquini"
         ]
       }
     },
@@ -3056,7 +3111,8 @@
           "lue"
         ],
         "no-es": [
-          "el gorro"
+          "el gorro",
+          "gorro"
         ]
       }
     },
@@ -3070,7 +3126,8 @@
           "caps"
         ],
         "no-es": [
-          "la gorra"
+          "la gorra",
+          "gorra"
         ]
       }
     },
@@ -3100,7 +3157,8 @@
           "sokker"
         ],
         "no-es": [
-          "los calcetines"
+          "los calcetines",
+          "calcetines"
         ]
       }
     },
@@ -3115,7 +3173,8 @@
           "genser"
         ],
         "no-es": [
-          "el jersey"
+          "el jersey",
+          "jersey"
         ]
       }
     },
@@ -3129,7 +3188,8 @@
           "tøfler"
         ],
         "no-es": [
-          "las zapatillas"
+          "las zapatillas",
+          "zapatillas"
         ]
       }
     },
@@ -3143,7 +3203,8 @@
           "sko"
         ],
         "no-es": [
-          "los zapatos"
+          "los zapatos",
+          "zapatos"
         ]
       }
     },
@@ -3157,7 +3218,8 @@
           "høyhælte sko"
         ],
         "no-es": [
-          "los zapatos de tacón"
+          "los zapatos de tacón",
+          "zapatos de tacón"
         ]
       }
     },
@@ -3171,7 +3233,8 @@
           "sandaler"
         ],
         "no-es": [
-          "las sandalias"
+          "las sandalias",
+          "sandalias"
         ]
       }
     },
@@ -3185,7 +3248,8 @@
           "treningssko"
         ],
         "no-es": [
-          "las zapatillas deportivas"
+          "las zapatillas deportivas",
+          "zapatillas deportivas"
         ]
       }
     },
@@ -3214,7 +3278,8 @@
           "kjole"
         ],
         "no-es": [
-          "el vestido"
+          "el vestido",
+          "vestido"
         ]
       }
     },
@@ -3244,7 +3309,8 @@
           "håndveske"
         ],
         "no-es": [
-          "el bolso"
+          "el bolso",
+          "bolso"
         ]
       }
     },
@@ -3258,7 +3324,8 @@
           "solbriller"
         ],
         "no-es": [
-          "las gafas de sol"
+          "las gafas de sol",
+          "gafas de sol"
         ]
       }
     },
@@ -3272,7 +3339,8 @@
           "skjerf"
         ],
         "no-es": [
-          "la bufanda"
+          "la bufanda",
+          "bufanda"
         ]
       }
     },
@@ -3286,7 +3354,8 @@
           "sjal"
         ],
         "no-es": [
-          "el chal"
+          "el chal",
+          "chal"
         ]
       }
     },
@@ -3316,7 +3385,8 @@
           "lommetørklet"
         ],
         "no-es": [
-          "el pañuelo"
+          "el pañuelo",
+          "pañuelo"
         ]
       }
     },
@@ -3375,7 +3445,8 @@
           "armbånd"
         ],
         "no-es": [
-          "la pulsera"
+          "la pulsera",
+          "pulsera"
         ]
       }
     },
@@ -3396,16 +3467,17 @@
     },
     {
       "id": "vocab-0232",
-      "norsk": "smykke",
+      "norsk": "kjede",
       "spansk": "la cadena",
       "kategori": "klær",
       "svar": {
         "es-no": [
-          "smykke",
-          "smykket"
+          "kjede",
+          "kjedet"
         ],
         "no-es": [
-          "la cadena"
+          "la cadena",
+          "cadena"
         ]
       }
     },
@@ -3419,7 +3491,8 @@
           "øreringer"
         ],
         "no-es": [
-          "los pendientes"
+          "los pendientes",
+          "pendientes"
         ]
       }
     },
@@ -3433,7 +3506,10 @@
           "advokat"
         ],
         "no-es": [
-          "el abogado"
+          "el abogado",
+          "abogado",
+          "la abogada",
+          "abogada"
         ]
       }
     },
@@ -3448,7 +3524,9 @@
         ],
         "no-es": [
           "el bombero",
-          "bombero"
+          "bombero",
+          "la bombera",
+          "bombera"
         ]
       }
     },
@@ -3462,7 +3540,10 @@
           "snekker"
         ],
         "no-es": [
-          "el carpintero"
+          "el carpintero",
+          "carpintero",
+          "la carpintera",
+          "carpintera"
         ]
       }
     },
@@ -3477,7 +3558,9 @@
         ],
         "no-es": [
           "el cocinero",
-          "cocinero"
+          "cocinero",
+          "la cocinera",
+          "cocinera"
         ]
       }
     },
@@ -3491,7 +3574,9 @@
           "tannlege"
         ],
         "no-es": [
-          "el dentista"
+          "el dentista",
+          "dentista",
+          "la dentista"
         ]
       }
     },
@@ -3505,7 +3590,9 @@
           "elektriker"
         ],
         "no-es": [
-          "el electricista"
+          "el electricista",
+          "electricista",
+          "la electricista"
         ]
       }
     },
@@ -3521,7 +3608,8 @@
         "no-es": [
           "el enfermero",
           "enfermero",
-          "la enfermera"
+          "la enfermera",
+          "enfermera"
         ]
       }
     },
@@ -3536,7 +3624,9 @@
         ],
         "no-es": [
           "el granjero",
-          "granjero"
+          "granjero",
+          "la granjera",
+          "granjera"
         ]
       }
     },
@@ -3551,7 +3641,9 @@
         ],
         "no-es": [
           "el médico",
-          "médico"
+          "médico",
+          "la médica",
+          "médica"
         ]
       }
     },
@@ -3565,7 +3657,10 @@
           "frisør"
         ],
         "no-es": [
-          "el peluquero"
+          "el peluquero",
+          "peluquero",
+          "la peluquera",
+          "peluquera"
         ]
       }
     },
@@ -3580,22 +3675,24 @@
         ],
         "no-es": [
           "el periodista",
-          "periodista"
+          "periodista",
+          "la periodista"
         ]
       }
     },
     {
       "id": "vocab-0245",
-      "norsk": "politi",
+      "norsk": "politibetjent",
       "spansk": "el policía",
       "kategori": "yrker",
       "svar": {
         "es-no": [
-          "politi",
-          "politiet"
+          "politibetjent"
         ],
         "no-es": [
-          "el policía"
+          "el policía",
+          "policía",
+          "la policía"
         ]
       }
     },
@@ -3610,7 +3707,10 @@
           "lærer"
         ],
         "no-es": [
-          "el profesor"
+          "el profesor",
+          "profesor",
+          "la profesora",
+          "profesora"
         ]
       }
     },
@@ -3621,10 +3721,16 @@
       "kategori": "yrker",
       "svar": {
         "es-no": [
-          "dyrlege"
+          "dyrlege",
+          "dyrlegen",
+          "veterinær",
+          "veterinæren"
         ],
         "no-es": [
-          "el veterinario"
+          "el veterinario",
+          "veterinario",
+          "la veterinaria",
+          "veterinaria"
         ]
       }
     },
@@ -3710,7 +3816,8 @@
           "amerikansk fotball"
         ],
         "no-es": [
-          "el fútbol americano"
+          "el fútbol americano",
+          "fútbol americano"
         ]
       }
     },
@@ -3725,7 +3832,8 @@
           "håndballen"
         ],
         "no-es": [
-          "el balonmano"
+          "el balonmano",
+          "balonmano"
         ]
       }
     },
@@ -3740,7 +3848,8 @@
           "volleyballen"
         ],
         "no-es": [
-          "el voleibol"
+          "el voleibol",
+          "voleibol"
         ]
       }
     },
@@ -3754,7 +3863,8 @@
           "badminton"
         ],
         "no-es": [
-          "bádminton"
+          "bádminton",
+          "el bádminton"
         ]
       }
     },
@@ -3769,7 +3879,8 @@
           "innebandyen"
         ],
         "no-es": [
-          "el floorball"
+          "el floorball",
+          "floorball"
         ]
       }
     },
@@ -3800,7 +3911,8 @@
           "bordtennisen"
         ],
         "no-es": [
-          "el tenis de mesa"
+          "el tenis de mesa",
+          "tenis de mesa"
         ]
       }
     },
@@ -3815,7 +3927,8 @@
           "ishockeyen"
         ],
         "no-es": [
-          "el hockey sobre hielo"
+          "el hockey sobre hielo",
+          "hockey sobre hielo"
         ]
       }
     },
@@ -3829,7 +3942,8 @@
           "dataspill"
         ],
         "no-es": [
-          "videojuegos"
+          "videojuegos",
+          "los videojuegos"
         ]
       }
     },
@@ -3843,7 +3957,8 @@
           "langrenn"
         ],
         "no-es": [
-          "esquí de fondo"
+          "esquí de fondo",
+          "el esquí de fondo"
         ]
       }
     },
@@ -3857,7 +3972,8 @@
           "alpint"
         ],
         "no-es": [
-          "esquí alpino"
+          "esquí alpino",
+          "el esquí alpino"
         ]
       }
     },
@@ -3887,7 +4003,9 @@
           "å sykle"
         ],
         "no-es": [
-          "montar en bici"
+          "montar en bici",
+          "montar en bicicleta",
+          "andar en bici"
         ]
       }
     },
@@ -3915,7 +4033,8 @@
           "å se på TV"
         ],
         "no-es": [
-          "ver la tele"
+          "ver la tele",
+          "ver la televisión"
         ]
       }
     },
@@ -3957,7 +4076,8 @@
           "å trene på treningssenteret"
         ],
         "no-es": [
-          "entrenar en el gimnasio"
+          "entrenar en el gimnasio",
+          "ir al gimnasio"
         ]
       }
     },
@@ -3992,43 +4112,47 @@
     {
       "id": "vocab-0273",
       "norsk": "å dra ut med venner",
-      "spansk": "salir con mis amigos",
+      "spansk": "salir con amigos",
       "kategori": "hobbyer",
       "svar": {
         "es-no": [
           "å dra ut med venner"
         ],
         "no-es": [
-          "salir con mis amigos"
+          "salir con amigos"
         ]
       }
     },
     {
       "id": "vocab-0274",
       "norsk": "å danse på fritiden",
-      "spansk": "bailar en mi tiempo libre",
+      "spansk": "bailar en el tiempo libre",
       "kategori": "hobbyer",
       "svar": {
         "es-no": [
           "å danse på fritiden"
         ],
         "no-es": [
-          "bailar en mi tiempo libre"
+          "bailar en el tiempo libre"
         ]
       }
     },
     {
       "id": "vocab-0275",
       "norsk": "å gå tur",
-      "spansk": "hacer senderismo",
+      "spansk": "dar un paseo",
       "kategori": "hobbyer",
       "svar": {
         "es-no": [
           "å gå tur"
         ],
         "no-es": [
+          "dar un paseo",
+          "dar una vuelta",
           "hacer senderismo",
-          "hacer caminatas"
+          "hacer caminatas",
+          "ir de paseo",
+          "pasear"
         ]
       }
     },
@@ -4098,7 +4222,8 @@
           "Når skal du spise?"
         ],
         "no-es": [
-          "¿A qué hora vas a comer?"
+          "¿A qué hora vas a comer?",
+          "¿Cuándo vas a comer?"
         ]
       }
     },
@@ -4393,7 +4518,8 @@
           "hver uke"
         ],
         "no-es": [
-          "cada semana"
+          "cada semana",
+          "todas las semanas"
         ]
       }
     },
@@ -4407,7 +4533,9 @@
           "ofte"
         ],
         "no-es": [
-          "a menudo"
+          "a menudo",
+          "frecuentemente",
+          "con frecuencia"
         ]
       }
     },
@@ -4421,7 +4549,8 @@
           "sjelden"
         ],
         "no-es": [
-          "raramente"
+          "raramente",
+          "en raras ocasiones"
         ]
       }
     },
@@ -4518,7 +4647,8 @@
         "es-no": [
           "etter / etterpå",
           "etter",
-          "etterpå"
+          "etterpå",
+          "senere"
         ],
         "no-es": [
           "después"
@@ -4582,7 +4712,8 @@
           "hånd"
         ],
         "no-es": [
-          "la mano"
+          "la mano",
+          "mano"
         ]
       }
     },
@@ -4613,7 +4744,10 @@
         "no-es": [
           "el alumno",
           "alumno",
-          "el estudiante"
+          "el estudiante",
+          "estudiante",
+          "la alumna",
+          "alumna"
         ]
       }
     },
@@ -4624,10 +4758,14 @@
       "kategori": "skole",
       "svar": {
         "es-no": [
-          "spansklærer"
+          "spansklærer",
+          "spansklæreren"
         ],
         "no-es": [
-          "el profesor de español"
+          "el profesor de español",
+          "profesor de español",
+          "la profesora de español",
+          "profesora de español"
         ]
       }
     },
@@ -4642,7 +4780,8 @@
           "skoleklasse"
         ],
         "no-es": [
-          "la clase"
+          "la clase",
+          "clase"
         ]
       }
     },
@@ -4657,7 +4796,8 @@
           "skoletime"
         ],
         "no-es": [
-          "la clase"
+          "la clase",
+          "clase"
         ]
       }
     },
@@ -4671,7 +4811,8 @@
           "tavle"
         ],
         "no-es": [
-          "la pizarra"
+          "la pizarra",
+          "pizarra"
         ]
       }
     },
@@ -4700,7 +4841,8 @@
           "papirkurv"
         ],
         "no-es": [
-          "la papelera"
+          "la papelera",
+          "papelera"
         ]
       }
     },
@@ -4729,7 +4871,8 @@
           "PC"
         ],
         "no-es": [
-          "el ordenador"
+          "el ordenador",
+          "ordenador"
         ]
       }
     },
@@ -4760,7 +4903,8 @@
           "pult"
         ],
         "no-es": [
-          "el pupitre"
+          "el pupitre",
+          "pupitre"
         ]
       }
     },
@@ -4789,7 +4933,8 @@
           "sekk"
         ],
         "no-es": [
-          "la mochila"
+          "la mochila",
+          "mochila"
         ]
       }
     },
@@ -4803,7 +4948,8 @@
           "pennal"
         ],
         "no-es": [
-          "el estuche"
+          "el estuche",
+          "estuche"
         ]
       }
     },
@@ -4847,7 +4993,8 @@
           "viskelær"
         ],
         "no-es": [
-          "la goma"
+          "la goma",
+          "goma"
         ]
       }
     },
@@ -4861,7 +5008,8 @@
           "blyantspisser"
         ],
         "no-es": [
-          "el sacapuntas"
+          "el sacapuntas",
+          "sacapuntas"
         ]
       }
     },
@@ -4891,7 +5039,8 @@
           "videregående skole"
         ],
         "no-es": [
-          "el bachillerato"
+          "el bachillerato",
+          "bachillerato"
         ]
       }
     },
@@ -4906,7 +5055,8 @@
           "engelsken"
         ],
         "no-es": [
-          "el inglés"
+          "el inglés",
+          "inglés"
         ]
       }
     },
@@ -4920,7 +5070,8 @@
           "matte"
         ],
         "no-es": [
-          "las matemáticas"
+          "las matemáticas",
+          "matemáticas"
         ]
       }
     },
@@ -4951,7 +5102,8 @@
           "samfunnsfag"
         ],
         "no-es": [
-          "las ciencias sociales"
+          "las ciencias sociales",
+          "ciencias sociales"
         ]
       }
     },
@@ -4965,7 +5117,8 @@
           "naturfag"
         ],
         "no-es": [
-          "las ciencias naturales"
+          "las ciencias naturales",
+          "ciencias naturales"
         ]
       }
     },
@@ -4981,7 +5134,8 @@
           "kroppsøvingen"
         ],
         "no-es": [
-          "la educación física"
+          "la educación física",
+          "educación física"
         ]
       }
     },
@@ -4995,7 +5149,8 @@
           "kunst og håndverk"
         ],
         "no-es": [
-          "las artes manuales"
+          "las artes manuales",
+          "artes manuales"
         ]
       }
     },
@@ -5013,7 +5168,8 @@
           "religionen"
         ],
         "no-es": [
-          "la religión"
+          "la religión",
+          "religión"
         ]
       }
     },
@@ -5035,16 +5191,17 @@
     },
     {
       "id": "vocab-0345",
-      "norsk": "rom (annet ord, C)",
+      "norsk": "rom (ord på c)",
       "spansk": "el cuarto",
       "kategori": "hjem",
       "svar": {
         "es-no": [
-          "rom (annet ord, C)",
+          "rom (ord på c)",
           "rom"
         ],
         "no-es": [
-          "el cuarto"
+          "el cuarto",
+          "cuarto"
         ]
       }
     },
@@ -5058,7 +5215,8 @@
           "bad"
         ],
         "no-es": [
-          "el baño"
+          "el baño",
+          "baño"
         ]
       }
     },
@@ -5072,7 +5230,8 @@
           "spisestue"
         ],
         "no-es": [
-          "el comedor"
+          "el comedor",
+          "comedor"
         ]
       }
     },
@@ -5103,8 +5262,7 @@
         ],
         "no-es": [
           "el ático",
-          "ático",
-          "loft"
+          "ático"
         ]
       }
     },
@@ -5148,7 +5306,8 @@
           "arbeidsrom"
         ],
         "no-es": [
-          "el cuarto de trabajo"
+          "el cuarto de trabajo",
+          "cuarto de trabajo"
         ]
       }
     },
@@ -5163,7 +5322,8 @@
           "stue"
         ],
         "no-es": [
-          "el cuarto de estar"
+          "el cuarto de estar",
+          "cuarto de estar"
         ]
       }
     },
@@ -5289,7 +5449,10 @@
         "no-es": [
           "el televisor",
           "televisor",
-          "tv"
+          "tv",
+          "el tv",
+          "televisión",
+          "la televisión"
         ]
       }
     },
@@ -5319,22 +5482,24 @@
           "plakat"
         ],
         "no-es": [
-          "el póster"
+          "el póster",
+          "póster"
         ]
       }
     },
     {
       "id": "vocab-0364",
-      "norsk": "kjøleskap (n)",
+      "norsk": "kjøleskap (ord på n)",
       "spansk": "la nevera",
       "kategori": "møbler",
       "svar": {
         "es-no": [
-          "kjøleskap (n)",
+          "kjøleskap (ord på n)",
           "kjøleskap"
         ],
         "no-es": [
-          "la nevera"
+          "la nevera",
+          "nevera"
         ]
       }
     },
@@ -5364,7 +5529,8 @@
           "bokhylle"
         ],
         "no-es": [
-          "la estantería"
+          "la estantería",
+          "estantería"
         ]
       }
     },
@@ -5424,7 +5590,8 @@
           "oppvaskmaskin"
         ],
         "no-es": [
-          "el lavavajillas"
+          "el lavavajillas",
+          "lavavajillas"
         ]
       }
     },
@@ -5460,17 +5627,19 @@
     },
     {
       "id": "vocab-0373",
-      "norsk": "bilde / maleri (c)",
+      "norsk": "bilde / maleri ( ord på c)",
       "spansk": "el cuadro",
       "kategori": "møbler",
       "svar": {
         "es-no": [
-          "bilde / maleri (c)",
+          "bilde / maleri ( ord på c)",
           "bilde",
-          "maleri"
+          "maleri",
+          "bilde / maleri"
         ],
         "no-es": [
-          "el cuadro"
+          "el cuadro",
+          "cuadro"
         ]
       }
     },
@@ -5568,9 +5737,9 @@
       "kategori": "gustar",
       "svar": {
         "es-no": [
-          "han/hun liker",
           "han liker",
-          "hun liker"
+          "hun liker",
+          "han/hun liker"
         ],
         "no-es": [
           "le gusta"
@@ -5607,12 +5776,15 @@
     },
     {
       "id": "vocab-0383",
-      "norsk": "jeg elsker (me ....)",
+      "norsk": "jeg elsker / jeg liker svært godt",
       "spansk": "me encanta",
       "kategori": "gustar",
       "svar": {
         "es-no": [
-          "jeg elsker (me ....)"
+          "jeg elsker / jeg liker svært godt",
+          "jeg elsker",
+          "jeg liker svært godt",
+          "jeg liker veldig godt"
         ],
         "no-es": [
           "me encanta"
@@ -5631,7 +5803,9 @@
           "det plager meg"
         ],
         "no-es": [
-          "me molesta"
+          "me molesta",
+          "me fastidia",
+          "me irrita"
         ]
       }
     },
@@ -5782,7 +5956,8 @@
       "kategori": "rutiner",
       "svar": {
         "es-no": [
-          "jeg går ut av huset"
+          "jeg går ut av huset",
+          "jeg forlater huset"
         ],
         "no-es": [
           "salgo de la casa"
@@ -5911,208 +6086,15 @@
           "jeg går til skolen"
         ],
         "no-es": [
-          "voy a pie a la escuela"
+          "voy a pie a la escuela",
+          "camino a la escuela",
+          "voy andando a la escuela",
+          "voy caminando a la escuela"
         ]
       }
     },
     {
       "id": "vocab-0405",
-      "norsk": "bøying av verbet SER, som betyr å være",
-      "spansk": "soy, eres, es, somos, sois, son",
-      "kategori": "verbbøying",
-      "svar": {
-        "es-no": [
-          "bøying av verbet SER, som betyr å være"
-        ],
-        "no-es": [
-          "soy, eres, es, somos, sois, son"
-        ]
-      }
-    },
-    {
-      "id": "vocab-0406",
-      "norsk": "bøying av verbet tener, som betyr å ha",
-      "spansk": "tengo, tienes, tiene, tenemos, tenéis, tienen",
-      "kategori": "verbbøying",
-      "svar": {
-        "es-no": [
-          "bøying av verbet tener, som betyr å ha"
-        ],
-        "no-es": [
-          "tengo, tienes, tiene, tenemos, tenéis, tienen"
-        ]
-      }
-    },
-    {
-      "id": "vocab-0407",
-      "norsk": "bøying av verbet ir",
-      "spansk": "voy, vas, va, vamos, vais, van",
-      "kategori": "verbbøying",
-      "svar": {
-        "es-no": [
-          "bøying av verbet ir"
-        ],
-        "no-es": [
-          "voy, vas, va, vamos, vais, van"
-        ]
-      }
-    },
-    {
-      "id": "vocab-0408",
-      "norsk": "bøying av verbet estar, som betyr å være/å befinne seg",
-      "spansk": "estoy, estás, está, estamos, estáis, están",
-      "kategori": "verbbøying",
-      "svar": {
-        "es-no": [
-          "bøying av verbet estar, som betyr å være/å befinne seg"
-        ],
-        "no-es": [
-          "estoy, estás, está, estamos, estáis, están"
-        ]
-      }
-    },
-    {
-      "id": "vocab-0409",
-      "norsk": "bøying av verbet hablar, som betyr å snakke",
-      "spansk": "hablo, hablas, habla, hablamos, habláis, hablan",
-      "kategori": "verbbøying",
-      "svar": {
-        "es-no": [
-          "bøying av verbet hablar, som betyr å snakke"
-        ],
-        "no-es": [
-          "hablo, hablas, habla, hablamos, habláis, hablan"
-        ]
-      }
-    },
-    {
-      "id": "vocab-0410",
-      "norsk": "bøying av verbet comer, som betyr å spise",
-      "spansk": "como, comes, come, comemos, coméis, comen",
-      "kategori": "verbbøying",
-      "svar": {
-        "es-no": [
-          "bøying av verbet comer, som betyr å spise"
-        ],
-        "no-es": [
-          "como, comes, come, comemos, coméis, comen"
-        ]
-      }
-    },
-    {
-      "id": "vocab-0411",
-      "norsk": "bøying av verbet vivir, som betyr å bo",
-      "spansk": "vivo, vives, vive, vivimos, vivís, viven",
-      "kategori": "verbbøying",
-      "svar": {
-        "es-no": [
-          "bøying av verbet vivir, som betyr å bo"
-        ],
-        "no-es": [
-          "vivo, vives, vive, vivimos, vivís, viven"
-        ]
-      }
-    },
-    {
-      "id": "vocab-0412",
-      "norsk": "bøying av verbet poder, som betyr å kunne",
-      "spansk": "puedo, puedes, puede, podemos, podéis, pueden",
-      "kategori": "verbbøying",
-      "svar": {
-        "es-no": [
-          "bøying av verbet poder, som betyr å kunne"
-        ],
-        "no-es": [
-          "puedo, puedes, puede, podemos, podéis, pueden"
-        ]
-      }
-    },
-    {
-      "id": "vocab-0413",
-      "norsk": "bøying av verbet decir, som betyr å si",
-      "spansk": "digo, dices, dice, decimos, decís, dicen",
-      "kategori": "verbbøying",
-      "svar": {
-        "es-no": [
-          "bøying av verbet decir, som betyr å si"
-        ],
-        "no-es": [
-          "digo, dices, dice, decimos, decís, dicen"
-        ]
-      }
-    },
-    {
-      "id": "vocab-0414",
-      "norsk": "bøying av verbet hacer, som betyr å gjøre",
-      "spansk": "hago, haces, hace, hacemos, hacéis, hacen",
-      "kategori": "verbbøying",
-      "svar": {
-        "es-no": [
-          "bøying av verbet hacer, som betyr å gjøre"
-        ],
-        "no-es": [
-          "hago, haces, hace, hacemos, hacéis, hacen"
-        ]
-      }
-    },
-    {
-      "id": "vocab-0415",
-      "norsk": "bøying av verbet querer, som betyr å ville",
-      "spansk": "quiero, quieres, quiere, queremos, queréis, quieren",
-      "kategori": "verbbøying",
-      "svar": {
-        "es-no": [
-          "bøying av verbet querer, som betyr å ville"
-        ],
-        "no-es": [
-          "quiero, quieres, quiere, queremos, queréis, quieren"
-        ]
-      }
-    },
-    {
-      "id": "vocab-0416",
-      "norsk": "bøying av verbet saber, som betyr å vite",
-      "spansk": "sé, sabes, sabe, sabemos, sabéis, saben",
-      "kategori": "verbbøying",
-      "svar": {
-        "es-no": [
-          "bøying av verbet saber, som betyr å vite"
-        ],
-        "no-es": [
-          "sé, sabes, sabe, sabemos, sabéis, saben"
-        ]
-      }
-    },
-    {
-      "id": "vocab-0417",
-      "norsk": "bøying av verbet salir, som betyr å gå ut",
-      "spansk": "salgo, sales, sale, salimos, salís, salen",
-      "kategori": "verbbøying",
-      "svar": {
-        "es-no": [
-          "bøying av verbet salir, som betyr å gå ut"
-        ],
-        "no-es": [
-          "salgo, sales, sale, salimos, salís, salen"
-        ]
-      }
-    },
-    {
-      "id": "vocab-0418",
-      "norsk": "bøying av verbet venir, som betyr å komme",
-      "spansk": "vengo, vienes, viene, venimos, venís, vienen",
-      "kategori": "verbbøying",
-      "svar": {
-        "es-no": [
-          "bøying av verbet venir, som betyr å komme"
-        ],
-        "no-es": [
-          "vengo, vienes, viene, venimos, venís, vienen"
-        ]
-      }
-    },
-    {
-      "id": "vocab-0419",
       "norsk": "jeg skal gjøre noe",
       "spansk": "voy a hacer algo",
       "kategori": "fremtid",
@@ -6126,7 +6108,7 @@
       }
     },
     {
-      "id": "vocab-0420",
+      "id": "vocab-0406",
       "norsk": "hva skal du gjøre i dag?",
       "spansk": "¿Qué vas a hacer hoy?",
       "kategori": "fremtid",
@@ -6140,7 +6122,7 @@
       }
     },
     {
-      "id": "vocab-0421",
+      "id": "vocab-0407",
       "norsk": "hva skal du gjøre i morgen?",
       "spansk": "¿Qué vas a hacer mañana?",
       "kategori": "fremtid",
@@ -6154,7 +6136,7 @@
       }
     },
     {
-      "id": "vocab-0422",
+      "id": "vocab-0408",
       "norsk": "I dag skal jeg være med venner",
       "spansk": "Hoy voy a estar con mis amigos",
       "kategori": "fremtid",
@@ -6163,26 +6145,27 @@
           "I dag skal jeg være med venner"
         ],
         "no-es": [
-          "Hoy voy a estar con mis amigos"
+          "Hoy voy a estar con mis amigos",
+          "Hoy voy a estar con mis amigas"
         ]
       }
     },
     {
-      "id": "vocab-0423",
+      "id": "vocab-0409",
       "norsk": "I morgen skal jeg besøke bestemora mi",
-      "spansk": "Mañana voy a visitar mi abuela",
+      "spansk": "Mañana voy a visitar a mi abuela",
       "kategori": "fremtid",
       "svar": {
         "es-no": [
           "I morgen skal jeg besøke bestemora mi"
         ],
         "no-es": [
-          "Mañana voy a visitar mi abuela"
+          "Mañana voy a visitar a mi abuela"
         ]
       }
     },
     {
-      "id": "vocab-0424",
+      "id": "vocab-0410",
       "norsk": "Hva skal du gjøre til neste år?",
       "spansk": "¿Qué vas a hacer el año que viene?",
       "kategori": "fremtid",
@@ -6196,7 +6179,7 @@
       }
     },
     {
-      "id": "vocab-0425",
+      "id": "vocab-0411",
       "norsk": "Neste år skal jeg begynne på videregående",
       "spansk": "El año que viene voy a empezar el bachillerato",
       "kategori": "fremtid",
@@ -6213,13 +6196,14 @@
       }
     },
     {
-      "id": "vocab-0426",
+      "id": "vocab-0412",
       "norsk": "å snakke",
       "spansk": "hablar",
       "kategori": "verb",
       "svar": {
         "es-no": [
-          "å snakke"
+          "å snakke",
+          "snakke"
         ],
         "no-es": [
           "hablar"
@@ -6227,13 +6211,14 @@
       }
     },
     {
-      "id": "vocab-0427",
+      "id": "vocab-0413",
       "norsk": "å jobbe",
       "spansk": "trabajar",
       "kategori": "verb",
       "svar": {
         "es-no": [
-          "å jobbe"
+          "å jobbe",
+          "jobbe"
         ],
         "no-es": [
           "trabajar"
@@ -6241,13 +6226,14 @@
       }
     },
     {
-      "id": "vocab-0428",
+      "id": "vocab-0414",
       "norsk": "å trene",
       "spansk": "entrenar",
       "kategori": "verb",
       "svar": {
         "es-no": [
-          "å trene"
+          "å trene",
+          "trene"
         ],
         "no-es": [
           "entrenar"
@@ -6255,13 +6241,14 @@
       }
     },
     {
-      "id": "vocab-0429",
+      "id": "vocab-0415",
       "norsk": "å danse",
       "spansk": "bailar",
       "kategori": "verb",
       "svar": {
         "es-no": [
-          "å danse"
+          "å danse",
+          "danse"
         ],
         "no-es": [
           "bailar"
@@ -6269,7 +6256,7 @@
       }
     },
     {
-      "id": "vocab-0430",
+      "id": "vocab-0416",
       "norsk": "å kjøpe",
       "spansk": "comprar",
       "kategori": "verb",
@@ -6284,13 +6271,14 @@
       }
     },
     {
-      "id": "vocab-0431",
+      "id": "vocab-0417",
       "norsk": "å spise",
       "spansk": "comer",
       "kategori": "verb",
       "svar": {
         "es-no": [
-          "å spise"
+          "å spise",
+          "spise"
         ],
         "no-es": [
           "comer"
@@ -6298,7 +6286,7 @@
       }
     },
     {
-      "id": "vocab-0432",
+      "id": "vocab-0418",
       "norsk": "å drikke",
       "spansk": "beber",
       "kategori": "verb",
@@ -6313,13 +6301,14 @@
       }
     },
     {
-      "id": "vocab-0433",
+      "id": "vocab-0419",
       "norsk": "å lese",
       "spansk": "leer",
       "kategori": "verb",
       "svar": {
         "es-no": [
-          "å lese"
+          "å lese",
+          "lese"
         ],
         "no-es": [
           "leer"
@@ -6327,13 +6316,14 @@
       }
     },
     {
-      "id": "vocab-0434",
+      "id": "vocab-0420",
       "norsk": "å studere",
       "spansk": "estudiar",
       "kategori": "verb",
       "svar": {
         "es-no": [
-          "å studere"
+          "å studere",
+          "studere"
         ],
         "no-es": [
           "estudiar"
@@ -6341,15 +6331,18 @@
       }
     },
     {
-      "id": "vocab-0435",
+      "id": "vocab-0421",
       "norsk": "å bo/ å leve",
       "spansk": "vivir",
       "kategori": "verb",
       "svar": {
         "es-no": [
-          "å bo/ å leve",
           "å bo",
-          "å leve"
+          "å leve",
+          "å bo/ å leve",
+          "bo",
+          "leve",
+          "bo/ leve"
         ],
         "no-es": [
           "vivir"
@@ -6357,13 +6350,14 @@
       }
     },
     {
-      "id": "vocab-0436",
+      "id": "vocab-0422",
       "norsk": "å skrive",
       "spansk": "escribir",
       "kategori": "verb",
       "svar": {
         "es-no": [
-          "å skrive"
+          "å skrive",
+          "skrive"
         ],
         "no-es": [
           "escribir"
@@ -6371,13 +6365,14 @@
       }
     },
     {
-      "id": "vocab-0437",
+      "id": "vocab-0423",
       "norsk": "å høre",
       "spansk": "escuchar",
       "kategori": "verb",
       "svar": {
         "es-no": [
-          "å høre"
+          "å høre",
+          "høre"
         ],
         "no-es": [
           "escuchar"
@@ -6385,13 +6380,14 @@
       }
     },
     {
-      "id": "vocab-0438",
+      "id": "vocab-0424",
       "norsk": "å se",
       "spansk": "ver",
       "kategori": "verb",
       "svar": {
         "es-no": [
-          "å se"
+          "å se",
+          "se"
         ],
         "no-es": [
           "ver"
@@ -6399,13 +6395,14 @@
       }
     },
     {
-      "id": "vocab-0439",
+      "id": "vocab-0425",
       "norsk": "å lære",
       "spansk": "aprender",
       "kategori": "verb",
       "svar": {
         "es-no": [
-          "å lære"
+          "å lære",
+          "lære"
         ],
         "no-es": [
           "aprender"
@@ -6413,13 +6410,14 @@
       }
     },
     {
-      "id": "vocab-0440",
+      "id": "vocab-0426",
       "norsk": "å vinne",
       "spansk": "ganar",
       "kategori": "verb",
       "svar": {
         "es-no": [
-          "å vinne"
+          "å vinne",
+          "vinne"
         ],
         "no-es": [
           "ganar"
@@ -6427,13 +6425,14 @@
       }
     },
     {
-      "id": "vocab-0441",
+      "id": "vocab-0427",
       "norsk": "å glemme",
       "spansk": "olvidar",
       "kategori": "verb",
       "svar": {
         "es-no": [
-          "å glemme"
+          "å glemme",
+          "glemme"
         ],
         "no-es": [
           "olvidar"
@@ -6441,13 +6440,14 @@
       }
     },
     {
-      "id": "vocab-0442",
+      "id": "vocab-0428",
       "norsk": "å hjelpe",
       "spansk": "ayudar",
       "kategori": "verb",
       "svar": {
         "es-no": [
-          "å hjelpe"
+          "å hjelpe",
+          "hjelpe"
         ],
         "no-es": [
           "ayudar"
@@ -6455,13 +6455,14 @@
       }
     },
     {
-      "id": "vocab-0443",
+      "id": "vocab-0429",
       "norsk": "å synge",
       "spansk": "cantar",
       "kategori": "verb",
       "svar": {
         "es-no": [
-          "å synge"
+          "å synge",
+          "synge"
         ],
         "no-es": [
           "cantar"
@@ -6469,13 +6470,14 @@
       }
     },
     {
-      "id": "vocab-0444",
+      "id": "vocab-0430",
       "norsk": "å vente",
       "spansk": "esperar",
       "kategori": "verb",
       "svar": {
         "es-no": [
-          "å vente"
+          "å vente",
+          "vente"
         ],
         "no-es": [
           "esperar"
@@ -6483,13 +6485,14 @@
       }
     },
     {
-      "id": "vocab-0445",
+      "id": "vocab-0431",
       "norsk": "å spørre",
       "spansk": "preguntar",
       "kategori": "verb",
       "svar": {
         "es-no": [
-          "å spørre"
+          "å spørre",
+          "spørre"
         ],
         "no-es": [
           "preguntar"
@@ -6497,13 +6500,14 @@
       }
     },
     {
-      "id": "vocab-0446",
+      "id": "vocab-0432",
       "norsk": "å betale",
       "spansk": "pagar",
       "kategori": "verb",
       "svar": {
         "es-no": [
-          "å betale"
+          "å betale",
+          "betale"
         ],
         "no-es": [
           "pagar"
@@ -6511,13 +6515,14 @@
       }
     },
     {
-      "id": "vocab-0447",
+      "id": "vocab-0433",
       "norsk": "å reise",
       "spansk": "viajar",
       "kategori": "verb",
       "svar": {
         "es-no": [
-          "å reise"
+          "å reise",
+          "reise"
         ],
         "no-es": [
           "viajar"
@@ -6525,7 +6530,7 @@
       }
     },
     {
-      "id": "vocab-0448",
+      "id": "vocab-0434",
       "norsk": "og",
       "spansk": "y",
       "kategori": "bindeord",
@@ -6539,7 +6544,7 @@
       }
     },
     {
-      "id": "vocab-0449",
+      "id": "vocab-0435",
       "norsk": "eller",
       "spansk": "o",
       "kategori": "bindeord",
@@ -6553,7 +6558,7 @@
       }
     },
     {
-      "id": "vocab-0450",
+      "id": "vocab-0436",
       "norsk": "men",
       "spansk": "pero",
       "kategori": "bindeord",
@@ -6567,7 +6572,7 @@
       }
     },
     {
-      "id": "vocab-0451",
+      "id": "vocab-0437",
       "norsk": "også",
       "spansk": "también",
       "kategori": "bindeord",
@@ -6581,7 +6586,7 @@
       }
     },
     {
-      "id": "vocab-0452",
+      "id": "vocab-0438",
       "norsk": "alltid",
       "spansk": "siempre",
       "kategori": "bindeord",
@@ -6595,7 +6600,7 @@
       }
     },
     {
-      "id": "vocab-0453",
+      "id": "vocab-0439",
       "norsk": "aldri",
       "spansk": "nunca",
       "kategori": "bindeord",
@@ -6609,7 +6614,7 @@
       }
     },
     {
-      "id": "vocab-0454",
+      "id": "vocab-0440",
       "norsk": "noen ganger",
       "spansk": "a veces",
       "kategori": "bindeord",
@@ -6623,7 +6628,7 @@
       }
     },
     {
-      "id": "vocab-0455",
+      "id": "vocab-0441",
       "norsk": "vanligvis",
       "spansk": "normalmente",
       "kategori": "bindeord",
@@ -6637,7 +6642,7 @@
       }
     },
     {
-      "id": "vocab-0456",
+      "id": "vocab-0442",
       "norsk": "fordi",
       "spansk": "porque",
       "kategori": "bindeord",
@@ -6651,7 +6656,7 @@
       }
     },
     {
-      "id": "vocab-0457",
+      "id": "vocab-0443",
       "norsk": "derfor",
       "spansk": "por eso",
       "kategori": "bindeord",
@@ -6665,7 +6670,7 @@
       }
     },
     {
-      "id": "vocab-0458",
+      "id": "vocab-0444",
       "norsk": "kanskje",
       "spansk": "quizás",
       "kategori": "bindeord",
@@ -6679,16 +6684,17 @@
       }
     },
     {
-      "id": "vocab-0459",
+      "id": "vocab-0445",
       "norsk": "dermed / deretter / så",
       "spansk": "entonces",
       "kategori": "bindeord",
       "svar": {
         "es-no": [
-          "dermed / deretter / så",
           "deretter",
           "dermed",
-          "så"
+          "så",
+          "dermed / deretter / så",
+          "da"
         ],
         "no-es": [
           "entonces"
@@ -6696,15 +6702,15 @@
       }
     },
     {
-      "id": "vocab-0460",
+      "id": "vocab-0446",
       "norsk": "i tillegg / dessuten",
       "spansk": "además",
       "kategori": "bindeord",
       "svar": {
         "es-no": [
-          "i tillegg / dessuten",
           "dessuten",
-          "i tillegg"
+          "i tillegg",
+          "i tillegg / dessuten"
         ],
         "no-es": [
           "además"
@@ -6712,7 +6718,7 @@
       }
     },
     {
-      "id": "vocab-0461",
+      "id": "vocab-0447",
       "norsk": "selv om",
       "spansk": "aunque",
       "kategori": "bindeord",
@@ -6726,13 +6732,14 @@
       }
     },
     {
-      "id": "vocab-0462",
+      "id": "vocab-0448",
       "norsk": "allikevel",
       "spansk": "sin embargo",
       "kategori": "bindeord",
       "svar": {
         "es-no": [
-          "allikevel"
+          "allikevel",
+          "likevel"
         ],
         "no-es": [
           "sin embargo"
@@ -6740,7 +6747,7 @@
       }
     },
     {
-      "id": "vocab-0463",
+      "id": "vocab-0449",
       "norsk": "på den ene siden",
       "spansk": "por un lado",
       "kategori": "bindeord",
@@ -6754,7 +6761,7 @@
       }
     },
     {
-      "id": "vocab-0464",
+      "id": "vocab-0450",
       "norsk": "på den andre siden",
       "spansk": "por otro lado",
       "kategori": "bindeord",
@@ -6768,7 +6775,7 @@
       }
     },
     {
-      "id": "vocab-0465",
+      "id": "vocab-0451",
       "norsk": "først og fremst",
       "spansk": "sobre todo",
       "kategori": "bindeord",
@@ -6782,7 +6789,7 @@
       }
     },
     {
-      "id": "vocab-0466",
+      "id": "vocab-0452",
       "norsk": "samtidig",
       "spansk": "al mismo tiempo",
       "kategori": "bindeord",
@@ -6796,7 +6803,7 @@
       }
     },
     {
-      "id": "vocab-0467",
+      "id": "vocab-0453",
       "norsk": "selvfølgelig",
       "spansk": "claro",
       "kategori": "bindeord",
@@ -6810,7 +6817,7 @@
       }
     },
     {
-      "id": "vocab-0468",
+      "id": "vocab-0454",
       "norsk": "jeg skal snakke om",
       "spansk": "voy a hablar sobre",
       "kategori": "bindeord",
@@ -6819,12 +6826,13 @@
           "jeg skal snakke om"
         ],
         "no-es": [
-          "voy a hablar sobre"
+          "voy a hablar sobre",
+          "voy a hablar de"
         ]
       }
     },
     {
-      "id": "vocab-0469",
+      "id": "vocab-0455",
       "norsk": "takk for oppmerksomheten",
       "spansk": "gracias por su atención",
       "kategori": "bindeord",
@@ -6838,13 +6846,14 @@
       }
     },
     {
-      "id": "vocab-0470",
+      "id": "vocab-0456",
       "norsk": "å gjøre innkjøp",
       "spansk": "hacer las compras",
       "kategori": "husarbeid",
       "svar": {
         "es-no": [
-          "å gjøre innkjøp"
+          "å gjøre innkjøp",
+          "gjøre innkjøp"
         ],
         "no-es": [
           "hacer las compras"
@@ -6852,13 +6861,14 @@
       }
     },
     {
-      "id": "vocab-0471",
+      "id": "vocab-0457",
       "norsk": "å vaske opp",
       "spansk": "lavar los platos",
       "kategori": "husarbeid",
       "svar": {
         "es-no": [
-          "å vaske opp"
+          "å vaske opp",
+          "vaske opp"
         ],
         "no-es": [
           "lavar los platos"
@@ -6866,13 +6876,14 @@
       }
     },
     {
-      "id": "vocab-0472",
+      "id": "vocab-0458",
       "norsk": "å vaske badet",
       "spansk": "limpiar el cuarto de baño",
       "kategori": "husarbeid",
       "svar": {
         "es-no": [
-          "å vaske badet"
+          "å vaske badet",
+          "vaske badet"
         ],
         "no-es": [
           "limpiar el cuarto de baño"
@@ -6880,13 +6891,14 @@
       }
     },
     {
-      "id": "vocab-0473",
+      "id": "vocab-0459",
       "norsk": "å vaske klær",
       "spansk": "lavar la ropa",
       "kategori": "husarbeid",
       "svar": {
         "es-no": [
-          "å vaske klær"
+          "å vaske klær",
+          "vaske klær"
         ],
         "no-es": [
           "lavar la ropa"
@@ -6894,13 +6906,14 @@
       }
     },
     {
-      "id": "vocab-0474",
+      "id": "vocab-0460",
       "norsk": "å støvsuge",
       "spansk": "pasar la aspiradora",
       "kategori": "husarbeid",
       "svar": {
         "es-no": [
-          "å støvsuge"
+          "å støvsuge",
+          "støvsuge"
         ],
         "no-es": [
           "pasar la aspiradora"
@@ -6908,13 +6921,14 @@
       }
     },
     {
-      "id": "vocab-0475",
+      "id": "vocab-0461",
       "norsk": "å rydde rommet",
       "spansk": "arreglar la habitación",
       "kategori": "husarbeid",
       "svar": {
         "es-no": [
-          "å rydde rommet"
+          "å rydde rommet",
+          "rydde rommet"
         ],
         "no-es": [
           "arreglar la habitación"
@@ -6922,7 +6936,7 @@
       }
     },
     {
-      "id": "vocab-0476",
+      "id": "vocab-0462",
       "norsk": "én gang i uken",
       "spansk": "una vez a la semana",
       "kategori": "tidsuttrykk",
@@ -6936,7 +6950,7 @@
       }
     },
     {
-      "id": "vocab-0477",
+      "id": "vocab-0463",
       "norsk": "hver dag",
       "spansk": "cada día",
       "kategori": "tidsuttrykk",
@@ -6951,13 +6965,14 @@
       }
     },
     {
-      "id": "vocab-0478",
+      "id": "vocab-0464",
       "norsk": "frukt",
       "spansk": "la fruta",
-      "kategori": "kapittel 7: gloser",
+      "kategori": "Mat og drikke",
       "svar": {
         "es-no": [
-          "frukt"
+          "frukt",
+          "frukten"
         ],
         "no-es": [
           "la fruta",
@@ -6966,13 +6981,14 @@
       }
     },
     {
-      "id": "vocab-0479",
+      "id": "vocab-0465",
       "norsk": "pære",
       "spansk": "la pera",
-      "kategori": "kapittel 7: gloser",
+      "kategori": "Mat og drikke",
       "svar": {
         "es-no": [
-          "pære"
+          "pære",
+          "pæren"
         ],
         "no-es": [
           "la pera"
@@ -6980,13 +6996,14 @@
       }
     },
     {
-      "id": "vocab-0480",
+      "id": "vocab-0466",
       "norsk": "appelsin",
       "spansk": "la naranja",
-      "kategori": "kapittel 7: gloser",
+      "kategori": "Mat og drikke",
       "svar": {
         "es-no": [
-          "appelsin"
+          "appelsin",
+          "appelsinen"
         ],
         "no-es": [
           "la naranja",
@@ -6995,13 +7012,14 @@
       }
     },
     {
-      "id": "vocab-0481",
+      "id": "vocab-0467",
       "norsk": "banan",
       "spansk": "el plátano",
-      "kategori": "kapittel 7: gloser",
+      "kategori": "Mat og drikke",
       "svar": {
         "es-no": [
-          "banan"
+          "banan",
+          "bananen"
         ],
         "no-es": [
           "el plátano",
@@ -7010,10 +7028,10 @@
       }
     },
     {
-      "id": "vocab-0482",
+      "id": "vocab-0468",
       "norsk": "eple",
       "spansk": "la manzana",
-      "kategori": "kapittel 7: gloser",
+      "kategori": "Mat og drikke",
       "svar": {
         "es-no": [
           "eple",
@@ -7026,13 +7044,14 @@
       }
     },
     {
-      "id": "vocab-0483",
+      "id": "vocab-0469",
       "norsk": "fersken",
       "spansk": "el melocotón",
-      "kategori": "kapittel 7: gloser",
+      "kategori": "Mat og drikke",
       "svar": {
         "es-no": [
-          "fersken"
+          "fersken",
+          "ferskenen"
         ],
         "no-es": [
           "el melocotón"
@@ -7040,13 +7059,14 @@
       }
     },
     {
-      "id": "vocab-0484",
+      "id": "vocab-0470",
       "norsk": "drue",
       "spansk": "la uva",
-      "kategori": "kapittel 7: gloser",
+      "kategori": "Mat og drikke",
       "svar": {
         "es-no": [
-          "drue"
+          "drue",
+          "druen"
         ],
         "no-es": [
           "la uva"
@@ -7054,13 +7074,14 @@
       }
     },
     {
-      "id": "vocab-0485",
+      "id": "vocab-0471",
       "norsk": "melon",
       "spansk": "el melón",
-      "kategori": "kapittel 7: gloser",
+      "kategori": "Mat og drikke",
       "svar": {
         "es-no": [
-          "melon"
+          "melon",
+          "melonen"
         ],
         "no-es": [
           "el melón",
@@ -7069,13 +7090,14 @@
       }
     },
     {
-      "id": "vocab-0486",
+      "id": "vocab-0472",
       "norsk": "vannmelon",
       "spansk": "la sandía",
-      "kategori": "kapittel 7: gloser",
+      "kategori": "Mat og drikke",
       "svar": {
         "es-no": [
-          "vannmelon"
+          "vannmelon",
+          "vannmelonen"
         ],
         "no-es": [
           "la sandía"
@@ -7083,13 +7105,14 @@
       }
     },
     {
-      "id": "vocab-0487",
+      "id": "vocab-0473",
       "norsk": "sitron",
       "spansk": "el limón",
-      "kategori": "kapittel 7: gloser",
+      "kategori": "Mat og drikke",
       "svar": {
         "es-no": [
-          "sitron"
+          "sitron",
+          "sitronen"
         ],
         "no-es": [
           "el limón",
@@ -7098,13 +7121,14 @@
       }
     },
     {
-      "id": "vocab-0488",
+      "id": "vocab-0474",
       "norsk": "grønnsak",
       "spansk": "la verdura",
-      "kategori": "kapittel 7: gloser",
+      "kategori": "Mat og drikke",
       "svar": {
         "es-no": [
-          "grønnsak"
+          "grønnsak",
+          "grønnsaken"
         ],
         "no-es": [
           "la verdura",
@@ -7113,13 +7137,14 @@
       }
     },
     {
-      "id": "vocab-0489",
+      "id": "vocab-0475",
       "norsk": "tomat",
       "spansk": "el tomate",
-      "kategori": "kapittel 7: gloser",
+      "kategori": "Mat og drikke",
       "svar": {
         "es-no": [
-          "tomat"
+          "tomat",
+          "tomaten"
         ],
         "no-es": [
           "el tomate",
@@ -7128,13 +7153,14 @@
       }
     },
     {
-      "id": "vocab-0490",
+      "id": "vocab-0476",
       "norsk": "agurk",
       "spansk": "el pepino",
-      "kategori": "kapittel 7: gloser",
+      "kategori": "Mat og drikke",
       "svar": {
         "es-no": [
-          "agurk"
+          "agurk",
+          "agurken"
         ],
         "no-es": [
           "el pepino",
@@ -7143,13 +7169,14 @@
       }
     },
     {
-      "id": "vocab-0491",
+      "id": "vocab-0477",
       "norsk": "løk",
       "spansk": "la cebolla",
-      "kategori": "kapittel 7: gloser",
+      "kategori": "Mat og drikke",
       "svar": {
         "es-no": [
-          "løk"
+          "løk",
+          "løken"
         ],
         "no-es": [
           "la cebolla",
@@ -7158,13 +7185,14 @@
       }
     },
     {
-      "id": "vocab-0492",
+      "id": "vocab-0478",
       "norsk": "hvitløk",
       "spansk": "el ajo",
-      "kategori": "kapittel 7: gloser",
+      "kategori": "Mat og drikke",
       "svar": {
         "es-no": [
-          "hvitløk"
+          "hvitløk",
+          "hvitløken"
         ],
         "no-es": [
           "el ajo",
@@ -7173,13 +7201,14 @@
       }
     },
     {
-      "id": "vocab-0493",
+      "id": "vocab-0479",
       "norsk": "salat",
       "spansk": "la lechuga",
-      "kategori": "kapittel 7: gloser",
+      "kategori": "Mat og drikke",
       "svar": {
         "es-no": [
-          "salat"
+          "salat",
+          "salaten"
         ],
         "no-es": [
           "la lechuga"
@@ -7187,13 +7216,14 @@
       }
     },
     {
-      "id": "vocab-0494",
+      "id": "vocab-0480",
       "norsk": "paprika",
       "spansk": "el pimiento",
-      "kategori": "kapittel 7: gloser",
+      "kategori": "Mat og drikke",
       "svar": {
         "es-no": [
-          "paprika"
+          "paprika",
+          "paprikaen"
         ],
         "no-es": [
           "el pimiento"
@@ -7201,13 +7231,14 @@
       }
     },
     {
-      "id": "vocab-0495",
+      "id": "vocab-0481",
       "norsk": "gulrot",
       "spansk": "la zanahoria",
-      "kategori": "kapittel 7: gloser",
+      "kategori": "Mat og drikke",
       "svar": {
         "es-no": [
-          "gulrot"
+          "gulrot",
+          "gulroten"
         ],
         "no-es": [
           "la zanahoria",
@@ -7216,13 +7247,14 @@
       }
     },
     {
-      "id": "vocab-0496",
+      "id": "vocab-0482",
       "norsk": "potet",
       "spansk": "la patata",
-      "kategori": "kapittel 7: gloser",
+      "kategori": "Mat og drikke",
       "svar": {
         "es-no": [
-          "potet"
+          "potet",
+          "poteten"
         ],
         "no-es": [
           "la patata",
@@ -7231,13 +7263,14 @@
       }
     },
     {
-      "id": "vocab-0497",
+      "id": "vocab-0483",
       "norsk": "matvare",
       "spansk": "el alimento",
-      "kategori": "kapittel 7: gloser",
+      "kategori": "Mat og drikke",
       "svar": {
         "es-no": [
-          "matvare"
+          "matvare",
+          "matvaren"
         ],
         "no-es": [
           "el alimento"
@@ -7245,13 +7278,14 @@
       }
     },
     {
-      "id": "vocab-0498",
+      "id": "vocab-0484",
       "norsk": "kjeks",
       "spansk": "la galleta",
-      "kategori": "kapittel 7: gloser",
+      "kategori": "Mat og drikke",
       "svar": {
         "es-no": [
-          "kjeks"
+          "kjeks",
+          "kjeksen"
         ],
         "no-es": [
           "la galleta",
@@ -7260,10 +7294,10 @@
       }
     },
     {
-      "id": "vocab-0499",
+      "id": "vocab-0485",
       "norsk": "brød",
       "spansk": "el pan",
-      "kategori": "kapittel 7: gloser",
+      "kategori": "Mat og drikke",
       "svar": {
         "es-no": [
           "brød",
@@ -7276,13 +7310,14 @@
       }
     },
     {
-      "id": "vocab-0500",
+      "id": "vocab-0486",
       "norsk": "marmelade",
       "spansk": "la mermelada",
-      "kategori": "kapittel 7: gloser",
+      "kategori": "Mat og drikke",
       "svar": {
         "es-no": [
-          "marmelade"
+          "marmelade",
+          "marmeladen"
         ],
         "no-es": [
           "la mermelada",
@@ -7291,12 +7326,16 @@
       }
     },
     {
-      "id": "vocab-0501",
+      "id": "vocab-0487",
       "norsk": "korn, frokostblanding",
       "spansk": "los cereales",
-      "kategori": "kapittel 7: gloser",
+      "kategori": "Mat og drikke",
       "svar": {
         "es-no": [
+          "korn",
+          "kornet",
+          "frokostblanding",
+          "frokostblandingen",
           "korn, frokostblanding"
         ],
         "no-es": [
@@ -7305,13 +7344,14 @@
       }
     },
     {
-      "id": "vocab-0502",
+      "id": "vocab-0488",
       "norsk": "pølse",
       "spansk": "la salchicha",
-      "kategori": "kapittel 7: gloser",
+      "kategori": "Mat og drikke",
       "svar": {
         "es-no": [
-          "pølse"
+          "pølse",
+          "pølsen"
         ],
         "no-es": [
           "la salchicha",
@@ -7320,13 +7360,14 @@
       }
     },
     {
-      "id": "vocab-0503",
+      "id": "vocab-0489",
       "norsk": "skinke",
       "spansk": "el jamón",
-      "kategori": "kapittel 7: gloser",
+      "kategori": "Mat og drikke",
       "svar": {
         "es-no": [
-          "skinke"
+          "skinke",
+          "skinken"
         ],
         "no-es": [
           "el jamón",
@@ -7335,10 +7376,10 @@
       }
     },
     {
-      "id": "vocab-0504",
+      "id": "vocab-0490",
       "norsk": "kjøtt",
       "spansk": "la carne",
-      "kategori": "kapittel 7: gloser",
+      "kategori": "Mat og drikke",
       "svar": {
         "es-no": [
           "kjøtt",
@@ -7351,13 +7392,14 @@
       }
     },
     {
-      "id": "vocab-0505",
+      "id": "vocab-0491",
       "norsk": "kylling",
       "spansk": "el pollo",
-      "kategori": "kapittel 7: gloser",
+      "kategori": "Mat og drikke",
       "svar": {
         "es-no": [
-          "kylling"
+          "kylling",
+          "kyllingen"
         ],
         "no-es": [
           "el pollo"
@@ -7365,13 +7407,14 @@
       }
     },
     {
-      "id": "vocab-0506",
+      "id": "vocab-0492",
       "norsk": "pasta",
       "spansk": "la pasta",
-      "kategori": "kapittel 7: gloser",
+      "kategori": "Mat og drikke",
       "svar": {
         "es-no": [
-          "pasta"
+          "pasta",
+          "pastaen"
         ],
         "no-es": [
           "la pasta"
@@ -7379,13 +7422,14 @@
       }
     },
     {
-      "id": "vocab-0507",
+      "id": "vocab-0493",
       "norsk": "ris",
       "spansk": "el arroz",
-      "kategori": "kapittel 7: gloser",
+      "kategori": "Mat og drikke",
       "svar": {
         "es-no": [
-          "ris"
+          "ris",
+          "risen"
         ],
         "no-es": [
           "el arroz",
@@ -7394,10 +7438,10 @@
       }
     },
     {
-      "id": "vocab-0508",
+      "id": "vocab-0494",
       "norsk": "egg",
       "spansk": "el huevo",
-      "kategori": "kapittel 7: gloser",
+      "kategori": "Mat og drikke",
       "svar": {
         "es-no": [
           "egg",
@@ -7410,10 +7454,10 @@
       }
     },
     {
-      "id": "vocab-0509",
+      "id": "vocab-0495",
       "norsk": "fisk",
       "spansk": "el pescado",
-      "kategori": "kapittel 7: gloser",
+      "kategori": "Mat og drikke",
       "svar": {
         "es-no": [
           "fisk"
@@ -7425,10 +7469,10 @@
       }
     },
     {
-      "id": "vocab-0510",
+      "id": "vocab-0496",
       "norsk": "sukker",
       "spansk": "el azúcar",
-      "kategori": "kapittel 7: gloser",
+      "kategori": "Mat og drikke",
       "svar": {
         "es-no": [
           "sukker",
@@ -7441,10 +7485,10 @@
       }
     },
     {
-      "id": "vocab-0511",
+      "id": "vocab-0497",
       "norsk": "salt",
       "spansk": "la sal",
-      "kategori": "kapittel 7: gloser",
+      "kategori": "Mat og drikke",
       "svar": {
         "es-no": [
           "salt",
@@ -7457,13 +7501,14 @@
       }
     },
     {
-      "id": "vocab-0512",
+      "id": "vocab-0498",
       "norsk": "bakverk",
       "spansk": "el pastel",
-      "kategori": "kapittel 7: gloser",
+      "kategori": "Mat og drikke",
       "svar": {
         "es-no": [
-          "bakverk"
+          "bakverk",
+          "bakverket"
         ],
         "no-es": [
           "el pastel",
@@ -7472,13 +7517,14 @@
       }
     },
     {
-      "id": "vocab-0513",
+      "id": "vocab-0499",
       "norsk": "smør",
       "spansk": "la mantequilla",
-      "kategori": "kapittel 7: gloser",
+      "kategori": "Mat og drikke",
       "svar": {
         "es-no": [
-          "smør"
+          "smør",
+          "smøret"
         ],
         "no-es": [
           "la mantequilla",
@@ -7487,13 +7533,14 @@
       }
     },
     {
-      "id": "vocab-0514",
+      "id": "vocab-0500",
       "norsk": "ost",
       "spansk": "el queso",
-      "kategori": "kapittel 7: gloser",
+      "kategori": "Mat og drikke",
       "svar": {
         "es-no": [
-          "ost"
+          "ost",
+          "osten"
         ],
         "no-es": [
           "el queso",
@@ -7502,24 +7549,26 @@
       }
     },
     {
-      "id": "vocab-0515",
+      "id": "vocab-0501",
       "norsk": "yoghurt",
       "spansk": "el yogur",
-      "kategori": "kapittel 7: gloser",
+      "kategori": "Mat og drikke",
       "svar": {
         "es-no": [
-          "yoghurt"
+          "yoghurt",
+          "yoghurten"
         ],
         "no-es": [
-          "el yogur"
+          "el yogur",
+          "yogur"
         ]
       }
     },
     {
-      "id": "vocab-0516",
+      "id": "vocab-0502",
       "norsk": "melk",
       "spansk": "la leche",
-      "kategori": "kapittel 7: gloser",
+      "kategori": "Mat og drikke",
       "svar": {
         "es-no": [
           "melk",
@@ -7533,68 +7582,62 @@
       }
     },
     {
-      "id": "vocab-0517",
+      "id": "vocab-0503",
       "norsk": "leskedrikk",
       "spansk": "el refresco",
-      "kategori": "kapittel 7: gloser",
+      "kategori": "Mat og drikke",
       "svar": {
         "es-no": [
-          "leskedrikk"
+          "leskedrikk",
+          "leskedrikken"
         ],
         "no-es": [
-          "el refresco"
+          "el refresco",
+          "refresco"
         ]
       }
     },
     {
-      "id": "vocab-0518",
+      "id": "vocab-0504",
       "norsk": "juice",
       "spansk": "el zumo",
-      "kategori": "kapittel 7: gloser",
+      "kategori": "Mat og drikke",
       "svar": {
         "es-no": [
-          "juice"
-        ],
-        "no-es": [
-          "el zumo",
-          "el jugo"
-        ]
-      }
-    },
-    {
-      "id": "vocab-0519",
-      "norsk": "juice",
-      "spansk": "el jugo",
-      "kategori": "kapittel 7: gloser",
-      "svar": {
-        "es-no": [
-          "juice"
+          "juice",
+          "juicen"
         ],
         "no-es": [
           "el jugo",
-          "el zumo"
+          "jugo",
+          "el zumo",
+          "zumo"
         ]
       }
     },
     {
-      "id": "vocab-0520",
-      "norsk": "sjokoladedrikk",
-      "spansk": "el Cola Cao",
-      "kategori": "kapittel 7: gloser",
+      "id": "vocab-0505",
+      "norsk": "juice",
+      "spansk": "el jugo",
+      "kategori": "Mat og drikke",
       "svar": {
         "es-no": [
-          "sjokoladedrikk"
+          "juice",
+          "juicen"
         ],
         "no-es": [
-          "el Cola Cao"
+          "el jugo",
+          "jugo",
+          "el zumo",
+          "zumo"
         ]
       }
     },
     {
-      "id": "vocab-0521",
+      "id": "vocab-0506",
       "norsk": "vann",
       "spansk": "el agua",
-      "kategori": "kapittel 7: gloser",
+      "kategori": "Mat og drikke",
       "svar": {
         "es-no": [
           "vann",
@@ -7607,13 +7650,14 @@
       }
     },
     {
-      "id": "vocab-0522",
+      "id": "vocab-0507",
       "norsk": "behøve",
       "spansk": "necesitar",
-      "kategori": "kapittel 7: gloser",
+      "kategori": "Mat og drikke",
       "svar": {
         "es-no": [
-          "behøve"
+          "behøve",
+          "å behøve"
         ],
         "no-es": [
           "necesitar"
@@ -7621,15 +7665,16 @@
       }
     },
     {
-      "id": "vocab-0523",
+      "id": "vocab-0508",
       "norsk": "etterpå",
       "spansk": "después",
-      "kategori": "kapittel 7: gloser",
+      "kategori": "Mat og drikke",
       "svar": {
         "es-no": [
           "etterpå",
           "etter",
-          "etter / etterpå"
+          "etter / etterpå",
+          "senere"
         ],
         "no-es": [
           "después"
@@ -7637,12 +7682,14 @@
       }
     },
     {
-      "id": "vocab-0524",
+      "id": "vocab-0509",
       "norsk": "forberede, tilberede",
       "spansk": "preparar",
-      "kategori": "kapittel 7: gloser",
+      "kategori": "Mat og drikke",
       "svar": {
         "es-no": [
+          "forberede",
+          "tilberede",
           "forberede, tilberede"
         ],
         "no-es": [
@@ -7651,13 +7698,14 @@
       }
     },
     {
-      "id": "vocab-0525",
+      "id": "vocab-0510",
       "norsk": "supermarked",
       "spansk": "el supermercado",
-      "kategori": "kapittel 7: gloser",
+      "kategori": "Mat og drikke",
       "svar": {
         "es-no": [
-          "supermarked"
+          "supermarked",
+          "supermarkedet"
         ],
         "no-es": [
           "el supermercado",
@@ -7666,10 +7714,10 @@
       }
     },
     {
-      "id": "vocab-0526",
+      "id": "vocab-0511",
       "norsk": "kjøpe",
       "spansk": "comprar",
-      "kategori": "kapittel 7: gloser",
+      "kategori": "Mat og drikke",
       "svar": {
         "es-no": [
           "kjøpe",
@@ -7681,10 +7729,10 @@
       }
     },
     {
-      "id": "vocab-0527",
+      "id": "vocab-0512",
       "norsk": "det som",
       "spansk": "lo que",
-      "kategori": "kapittel 7: gloser",
+      "kategori": "Mat og drikke",
       "svar": {
         "es-no": [
           "det som"
@@ -7695,24 +7743,25 @@
       }
     },
     {
-      "id": "vocab-0528",
+      "id": "vocab-0513",
       "norsk": "har nettopp kommet tilbake",
       "spansk": "acaba de regresar",
-      "kategori": "kapittel 7: gloser",
+      "kategori": "tid",
       "svar": {
         "es-no": [
           "har nettopp kommet tilbake"
         ],
         "no-es": [
-          "acaba de regresar"
+          "acaba de regresar",
+          "acaba de volver"
         ]
       }
     },
     {
-      "id": "vocab-0529",
+      "id": "vocab-0514",
       "norsk": "å nettopp ha gjort noe",
       "spansk": "acabar de",
-      "kategori": "kapittel 7: gloser",
+      "kategori": "Mat og drikke",
       "svar": {
         "es-no": [
           "å nettopp ha gjort noe"
@@ -7723,24 +7772,26 @@
       }
     },
     {
-      "id": "vocab-0530",
+      "id": "vocab-0515",
       "norsk": "olivenolje",
       "spansk": "el aceite de oliva",
-      "kategori": "kapittel 7: gloser",
+      "kategori": "Mat og drikke",
       "svar": {
         "es-no": [
-          "olivenolje"
+          "olivenolje",
+          "olivenoljen"
         ],
         "no-es": [
-          "el aceite de oliva"
+          "el aceite de oliva",
+          "aceite de oliva"
         ]
       }
     },
     {
-      "id": "vocab-0531",
+      "id": "vocab-0516",
       "norsk": "naturligvis",
       "spansk": "por supuesto",
-      "kategori": "kapittel 7: gloser",
+      "kategori": "Mat og drikke",
       "svar": {
         "es-no": [
           "naturligvis",
@@ -7752,12 +7803,15 @@
       }
     },
     {
-      "id": "vocab-0532",
-      "norsk": "lengst inn/bak",
+      "id": "vocab-0517",
+      "norsk": "lengst inn / bak",
       "spansk": "al fondo",
-      "kategori": "kapittel 7: gloser",
+      "kategori": "Mat og drikke",
       "svar": {
         "es-no": [
+          "lengst inn / bak",
+          "lengst inn",
+          "lengst bak",
           "lengst inn/bak"
         ],
         "no-es": [
@@ -7766,41 +7820,46 @@
       }
     },
     {
-      "id": "vocab-0533",
+      "id": "vocab-0518",
       "norsk": "pommes frites",
       "spansk": "las patatas fritas",
-      "kategori": "kapittel 7: gloser",
+      "kategori": "Mat og drikke",
       "svar": {
         "es-no": [
-          "pommes frites"
+          "pommes frites",
+          "pommes friten"
         ],
         "no-es": [
-          "las patatas fritas"
+          "las patatas fritas",
+          "patatas fritas"
         ]
       }
     },
     {
-      "id": "vocab-0534",
+      "id": "vocab-0519",
       "norsk": "oliven",
       "spansk": "la aceituna",
-      "kategori": "kapittel 7: gloser",
+      "kategori": "Mat og drikke",
       "svar": {
         "es-no": [
-          "oliven"
+          "oliven",
+          "olivenen"
         ],
         "no-es": [
-          "la aceituna"
+          "la aceituna",
+          "aceituna"
         ]
       }
     },
     {
-      "id": "vocab-0535",
+      "id": "vocab-0520",
       "norsk": "småspise",
       "spansk": "picar",
-      "kategori": "kapittel 7: gloser",
+      "kategori": "Mat og drikke",
       "svar": {
         "es-no": [
-          "småspise"
+          "småspise",
+          "å småspise"
         ],
         "no-es": [
           "picar"
@@ -7808,10 +7867,10 @@
       }
     },
     {
-      "id": "vocab-0536",
+      "id": "vocab-0521",
       "norsk": "drikke",
       "spansk": "beber",
-      "kategori": "kapittel 7: gloser",
+      "kategori": "Mat og drikke",
       "svar": {
         "es-no": [
           "drikke",
@@ -7823,18 +7882,58 @@
       }
     },
     {
-      "id": "vocab-0537",
+      "id": "vocab-0522",
       "norsk": "kassadame",
       "spansk": "la cajera",
-      "kategori": "kapittel 7: gloser",
+      "kategori": "Mat og drikke",
       "svar": {
         "es-no": [
-          "kassadame"
+          "kassadame",
+          "kassadamen"
         ],
         "no-es": [
-          "la cajera"
+          "la cajera",
+          "cajera"
         ]
       }
     }
-  ]
+  ],
+  "reviewMetadata": {
+    "generatedFrom": "output/curriculum-audit-report.json",
+    "inputHash": "914d6a009e1f9b6ab8d173f95f1a6ab12bfd89117cac67f7cab4021bd415a9fc",
+    "candidateCount": 125,
+    "addedAutoApprovedCandidateCount": 0,
+    "excludedCandidateCount": 26,
+    "note": "Gå gjennom svar-feltene manuelt. Ikke bytt ut data/vocabulary-canonical.json før gjennomgangen er ferdig.",
+    "verbInfinitiveWithoutAaAdded": 22,
+    "verbInfinitiveRule": "Norwegian verb answers with and without the infinitive marker «å» are included for review.",
+    "foodAndDrinkCategoryUpdated": 60,
+    "reindexedAfterManualDeletions": true,
+    "entryCountAfterReindex": 522,
+    "infinitiveExpressionVariantsAdded": 6,
+    "lastManualVocabularyReview": {
+      "updatedIds": [
+        "vocab-0409",
+        "vocab-0239",
+        "vocab-0302",
+        "vocab-0125",
+        "vocab-0349",
+        "vocab-0383",
+        "vocab-0124",
+        "vocab-0160",
+        "vocab-0232",
+        "vocab-0245",
+        "vocab-0162",
+        "vocab-0316",
+        "vocab-0408",
+        "vocab-0265",
+        "vocab-0267",
+        "vocab-0270",
+        "vocab-0454",
+        "vocab-0513",
+        "vocab-0445"
+      ],
+      "exactDuplicatesRemoved": true
+    }
+  }
 }

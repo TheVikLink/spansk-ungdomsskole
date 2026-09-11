@@ -14,11 +14,11 @@ const items = extractAllItems(html);
 // - Keep grammar exercises precise - don't add synonyms that would make exercises ambiguous
 // - Only include keys that exist in the glossary (not verbDatabase-only entries)
 const curatedNoToEs = {
-  // Greetings - "hasta luego" is A1 standard
-  'ha det': ['adiós', 'hasta luego'],
+  // Greetings - teacher-approved fasit (vocabulary-canonical-review.json 2026-09-09)
+  'ha det': ['adiós'],
 
-  // Evening greeting - both valid depending on time of day
-  'god kveld': ['buenas noches', 'buenas tardes'],
+  // Evening greeting - teacher-approved fasit
+  'god kveld': ['buenas noches'],
 
   // Juice - both valid in different Spanish-speaking regions
   'juice': ['el zumo', 'el jugo'],

@@ -384,9 +384,9 @@ test('keeps a held accent key alive while typing the next letter', async ({ page
         { no: 'lat (v)', es: 'vago', clean: 'lat' },
         { no: 'begravelse (f)', es: 'el Funeral', clean: 'begravelse' },
         { no: 'begravelse (ord på e)', es: 'entierro', clean: 'begravelse' },
-        { no: 'rom (annet ord, C)', es: 'el cuarto', clean: 'rom' },
+        { no: 'rom (ord på c)', es: 'el cuarto', clean: 'rom' },
         { no: 'stue (c)', es: 'el cuarto de estar', clean: 'stue' },
-        { no: 'kjøleskap (n)', es: 'la nevera', clean: 'kjøleskap' },
+        { no: 'kjøleskap (ord på n)', es: 'la nevera', clean: 'kjøleskap' },
         { no: 'genser (j)', es: 'el jersey', clean: 'genser' },
         { no: 'lærer (p)', es: 'el profesor', clean: 'lærer' }
       ];
@@ -416,7 +416,7 @@ test('keeps a held accent key alive while typing the next letter', async ({ page
     expect(result.evaluation.correct).toBe(true);
   });
 
-  test('accepts buenas tardes as an equivalent for god kveld', async ({ page }) => {
+  test('keeps god kveld to the teacher-approved answer and rejects buenas tardes', async ({ page }) => {
     await page.goto(appUrl);
 
     const result = await page.evaluate(() => ({
@@ -424,8 +424,8 @@ test('keeps a held accent key alive while typing the next letter', async ({ page
       evaluation: isTypedVocabAnswerCorrect('buenas tardes', 'buenas noches', getVocabularyAcceptedAnswers({ no: 'god kveld', es: 'buenas noches' }, 'no-es', 'buenas noches').map(a => a.value))
     }));
 
-    expect(result.accepted).toContain('buenas tardes');
-    expect(result.evaluation.correct).toBe(true);
+    expect(result.accepted).toEqual(['buenas noches']);
+    expect(result.evaluation.correct).toBe(false);
   });
 
   test('accepts la novia for kjæreste and kjæresten for el novio', async ({ page }) => {
@@ -457,7 +457,7 @@ test('keeps a held accent key alive while typing the next letter', async ({ page
         { no: 'lege', es: 'el médico', expected: 'legen' },
         { no: 'pære', es: 'la pera', expected: 'pæren' },
         { no: 'teppe', es: 'la alfombra', expected: 'teppet' },
-        { no: 'smykke', es: 'la cadena', expected: 'smykket' }
+        { no: 'kjede', es: 'la cadena', expected: 'kjedet' }
       ];
       return cases.map(c => ({
         label: c.no,
