@@ -157,7 +157,7 @@ test.describe('grammar lesson catalog and relevance', () => {
         doesNotBoldNorwegianEn: !lessonHtml.includes('<strong lang="es">en</strong>')
       };
     });
-    expect(result).toEqual({ catalogButtons: 7, hasEstarBold: true, doesNotBoldNorwegianEn: true });
+    expect(result).toEqual({ catalogButtons: 8, hasEstarBold: true, doesNotBoldNorwegianEn: true });
   });
 
   test('returns published lessons for answered skills and puts mistakes first', async ({ page }) => {

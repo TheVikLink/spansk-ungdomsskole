@@ -6,7 +6,7 @@
     <title>Spansk på 1-2-3 | Læringsapp</title>
     <meta name="theme-color" content="#dc2626">
     <link rel="manifest" href="./manifest.webmanifest">
-    <meta name="app-build" content="30b460b9f895b569">
+    <meta name="app-build" content="e6b19f6cc764eced">
     <link href="./dist/tailwind.css" rel="stylesheet">
 </head>
 <body>
@@ -856,6 +856,10 @@
                                 <strong>Spørsmål</strong>
                                 <span>Hvordan lager vi et spørsmål?</span>
                             </button>
+                            <button type="button" class="sentence-puzzle-option" data-sp-level="patterns" aria-pressed="false" onclick="selectSentencePuzzleLevel('patterns')">
+                                <strong>Uttrykksmønstre</strong>
+                                <span>tengo, quiero, me gusta, voy a</span>
+                            </button>
                         </div>
                     </div>
 
@@ -1381,6 +1385,49 @@
                     ],
                     "recommendedNext": "a1.estar.location",
                     "relatedLessonIds": ["a1.estar.location"]
+                },
+                {
+                    "id": "a1.patterns.productive",
+                    "level": "A1",
+                    "category": "Setninger og uttrykk",
+                    "title": "Produktive mønstre: bygg setninger",
+                    "status": "published",
+                    "reviewedBy": null,
+                    "reviewedAt": null,
+                    "learningGoal": "Jeg kan hente fram en fast verbfrase og sette den sammen med naturlige avslutninger.",
+                    "explanation": "I stedet for å pugge hele setninger utenat, kan du lære noen faste verbfraser som du kan kombinere med mange ulike ord. Fire av de viktigste er tengo, quiero, me gusta og voy a.",
+                    "theorySections": [
+                        { "title": "Tengo: tilstand, alder og eie", "text": "Bruk tengo når du forteller om alder (tengo quince años), tilstander (tengo hambre, tengo frío) eller ting du har (tengo un perro). Husk at hvis du må gjøre noe, sier du tengo que + infinitiv.", "examples": ["Tengo hambre. → Jeg er sulten.", "Tengo quince años. → Jeg er femten år.", "Tengo que estudiar. → Jeg må øve."] },
+                        { "title": "Quiero: ønsker og vilje", "text": "Quiero betyr «jeg vil ha» foran et substantiv (quiero agua), og «jeg vil» foran et verb i infinitiv (quiero comer, quiero descansar).", "examples": ["Quiero agua. → Jeg vil ha vann.", "Quiero comer. → Jeg vil spise.", "Quiero hablar español. → Jeg vil snakke spansk."] },
+                        { "title": "Me gusta: ting og aktiviteter du liker", "text": "Me gusta betyr «jeg liker». Foran et verb i infinitiv betyr det at du liker å gjøre noe (me gusta bailar). Foran et substantiv i entall bruker du bestemt artikkel (me gusta la música).", "examples": ["Me gusta bailar. → Jeg liker å danse.", "Me gusta la música. → Jeg liker musikk.", "Me gusta leer. → Jeg liker å lese."] },
+                        { "title": "Voy a: nær framtid", "text": "Når du skal fortelle hva du skal gjøre snart, bruker du voy a + infinitiv. Det tilsvarer «jeg skal» på norsk.", "examples": ["Voy a dormir. → Jeg skal sove.", "Voy a estudiar. → Jeg skal studere.", "Voy a ver una película. → Jeg skal se en film."] }
+                    ],
+                    "forms": [
+                        { "article": "tengo", "gender": "tilstand / alder / eie", "number": "hambre, 15 años, un perro" },
+                        { "article": "quiero", "gender": "ønsker (+ inf / subst)", "number": "comer, descansar, agua" },
+                        { "article": "me gusta", "gender": "liker (+ inf / entall)", "number": "bailar, leer, la música" },
+                        { "article": "voy a", "gender": "framtid (+ inf)", "number": "dormir, estudiar, jugar" }
+                    ],
+                    "examples": [
+                        { "es": "Tengo hambre.", "no": "Jeg er sulten." },
+                        { "es": "Quiero descansar.", "no": "Jeg vil hvile." },
+                        { "es": "Me gusta la música.", "no": "Jeg liker musikk." },
+                        { "es": "Voy a dormir.", "no": "Jeg skal sove." }
+                    ],
+                    "tip": "Tenk på hva du vil uttrykke: tilstand/alder (tengo), ønske (quiero), preferanse (me gusta) eller planer (voy a).",
+                    "shortHint": "tengo = tilstand/alder; quiero = ønske; me gusta = like; voy a = skal.",
+                    "skillIds": ["a0.patterns.tengo", "a1.patterns.quiero", "a1.patterns.me_gusta", "a1.patterns.voy_a"],
+                    "practice": { "topicId": "patterns", "label": "Øv på uttrykksmønstre" },
+                    "transferExercises": [
+                        { "id": "a1.patterns.productive.transfer.tengo_hambre", "skillId": "a0.patterns.tengo", "sentence": "___ hambre", "no": "Jeg er sulten.", "answer": "Tengo", "options": ["Tengo", "Soy", "Estoy", "Hago"], "hint": "På spansk bruker vi tengo for sult." },
+                        { "id": "a1.patterns.productive.transfer.quiero_descansar", "skillId": "a1.patterns.quiero", "sentence": "___ descansar", "no": "Jeg vil hvile.", "answer": "Quiero", "options": ["Quiero", "Voy a", "Me gusta", "Tengo"], "hint": "Quiero uttrykker hva du vil." },
+                        { "id": "a1.patterns.productive.transfer.gusta_bailar", "skillId": "a1.patterns.me_gusta", "sentence": "___ bailar", "no": "Jeg liker å danse.", "answer": "Me gusta", "options": ["Me gusta", "Quiero", "Voy a", "Tengo"], "hint": "Me gusta betyr «jeg liker»." },
+                        { "id": "a1.patterns.productive.transfer.voy_dormir", "skillId": "a1.patterns.voy_a", "sentence": "___ dormir", "no": "Jeg skal sove.", "answer": "Voy a", "options": ["Voy a", "Quiero", "Me gusta", "Tengo"], "hint": "Voy a uttrykker hva du skal gjøre." },
+                        { "id": "a1.patterns.productive.transfer.tengo_que", "skillId": "a0.patterns.tengo", "sentence": "___ que estudiar", "no": "Jeg må øve.", "answer": "Tengo", "options": ["Tengo", "Soy", "Estoy", "Hago"], "hint": "Tengo que betyr «jeg må»." },
+                        { "id": "a1.patterns.productive.transfer.quiero_agua", "skillId": "a1.patterns.quiero", "sentence": "Quiero ___", "no": "Jeg vil ha vann.", "answer": "agua", "options": ["agua", "hambre", "quince años", "frío"], "hint": "Quiero + substantiv betyr «jeg vil ha»." }
+                    ],
+                    "recommendedNext": "a1.ser.identity",
+                    "relatedLessonIds": ["a1.ser.identity", "a1.estar.location"]
                 }
             ]
         }
@@ -1678,6 +1725,10 @@
                 { id: 'a0.identity.age', level: 'A0', group: 'Setninger og uttrykk', label: 'Si hvor gammel du er med tener años', contentStatus: 'ready', sourceNote: 'a0-foundation' },
                 { id: 'a0.existential.hay', level: 'A0', group: 'Setninger og uttrykk', label: 'Bruke hay for å si at noe finnes', contentStatus: 'ready', sourceNote: 'a0-foundation' },
                 { id: 'a0.possession.tener', level: 'A0', group: 'Setninger og uttrykk', label: 'Si at du har noe med tener', contentStatus: 'ready', sourceNote: 'a0-foundation' },
+                { id: 'a0.patterns.tengo', level: 'A0', group: 'Setninger og uttrykk', label: 'Bruke uttrykk med tengo', contentStatus: 'ready', sourceNote: 'grammar-topic' },
+                { id: 'a1.patterns.quiero', level: 'A1', group: 'Setninger og uttrykk', label: 'Uttrykke ønsker med quiero', contentStatus: 'ready', sourceNote: 'grammar-topic' },
+                { id: 'a1.patterns.me_gusta', level: 'A1', group: 'Setninger og uttrykk', label: 'Uttrykke hva du liker med me gusta', contentStatus: 'ready', sourceNote: 'grammar-topic' },
+                { id: 'a1.patterns.voy_a', level: 'A1', group: 'Setninger og uttrykk', label: 'Fortelle hva du skal gjøre med voy a', contentStatus: 'ready', sourceNote: 'grammar-topic' },
                 { id: 'a0.greetings.como_estas', level: 'A0', group: 'Setninger og uttrykk', label: 'Spørre og svare på hvordan det går', contentStatus: 'ready', sourceNote: 'a0-foundation' },
                 { id: 'a0.work.trabajar', level: 'A0', group: 'Setninger og uttrykk', label: 'Fortelle hva du jobber med', contentStatus: 'ready', sourceNote: 'a0-foundation' },
                 { id: 'a0.location.vivo_en', level: 'A0', group: 'Preposisjoner og bindeord', label: 'Si hvor du bor med vivo en', contentStatus: 'ready', sourceNote: 'a0-foundation' },
@@ -12668,7 +12719,7 @@
                 if (strength < 4) return 2;
                 return 3;
             };
-            return [...exercises].sort((a, b) => {
+            const sorted = [...exercises].sort((a, b) => {
                 const rankDifference = rank(a) - rank(b);
                 if (rankDifference) return rankDifference;
                 const aCell = progress?.skillProgress?.[a.skillId] || {};
@@ -12678,7 +12729,34 @@
                 const lapseDifference = (Number(bCell.lapses) || 0) - (Number(aCell.lapses) || 0);
                 if (lapseDifference) return lapseDifference;
                 return String(a.id || a.sentence || '').localeCompare(String(b.id || b.sentence || ''));
-            }).slice(0, Math.max(0, Number(limit) || 0));
+            });
+
+            const max = Math.max(0, Number(limit) || 0);
+            const selected = [];
+            const seenKeys = new Set();
+            const getKey = ex => (ex.no ? String(ex.no).trim().toLowerCase() : String(ex.sentence || '').trim().toLowerCase());
+
+            // Pass 1: Select exercises with unique context key (avoid duplicate sentences/meanings in same session)
+            for (const ex of sorted) {
+                if (selected.length >= max) break;
+                const key = getKey(ex);
+                if (!seenKeys.has(key)) {
+                    seenKeys.add(key);
+                    selected.push(ex);
+                }
+            }
+
+            // Pass 2: If limit not reached, fill up with remaining exercises
+            if (selected.length < max) {
+                for (const ex of sorted) {
+                    if (selected.length >= max) break;
+                    if (!selected.includes(ex)) {
+                        selected.push(ex);
+                    }
+                }
+            }
+
+            return selected;
         }
 
         function getGrammarTopicSkillId(topicId) {
@@ -12998,6 +13076,10 @@
         }
 
         function getQuizStarLabel(badge) {
+            if (typeof badge === 'string') {
+                const legacyLabels = { tengo: 'tengo', quiero: 'quiero', 'me gusta': 'me gusta', 'voy a': 'voy a' };
+                return legacyLabels[badge] || badge;
+            }
             const labels = {
                 'a0.identity.me_llamo': 'me llamo', 'a0.identity.soy_de': 'soy de',
                 'a0.articles.indefinite_singular': 'un / una', 'a0.articles.indefinite_plural': 'unos / unas',
@@ -13013,7 +13095,9 @@
                 'a1.verbs.reflexive.present': 'Refleksive verb', 'a1.verbs.near_future': 'ir a · framtid',
                 'a1.adjectives.gender_number': 'Adjektiv · samsvar', 'a1.adjectives.regular_o': 'Adjektiv på -o',
                 'a1.adjectives.common_gender': 'Adjektiv på -e', 'a1.adjectives.demonstratives': 'Pekende ord',
-                'a1.adjectives.possessives': 'Eiendomsord', 'a1.prepositions.basic': 'Preposisjoner'
+                'a1.adjectives.possessives': 'Eiendomsord', 'a1.prepositions.basic': 'Preposisjoner',
+                'a0.patterns.tengo': 'tengo', 'a1.patterns.quiero': 'quiero',
+                'a1.patterns.me_gusta': 'me gusta', 'a1.patterns.voy_a': 'voy a'
             };
             const verb = badge.skillId?.match(/^a1\.verbs\.(ser|estar|ir|tener|hacer)\.present$/)?.[1];
             return labels[badge.skillId] || (verb ? `${verb} · presens` : badge.label.replace(/^(Bruke|Bøye|Skille mellom) /, ''));
@@ -19762,6 +19846,10 @@ Vil du øve på ${pronoun} likevel?`
                 'a1.adjectives.common_gender': { kind: 'grammar', topicId: 'adjectives', label: 'Øv på adjektiv på -e' },
                 'a1.adjectives.demonstratives': { kind: 'grammar', topicId: 'demonstratives', label: 'Øv på pekende adjektiv' },
                 'a1.adjectives.possessives': { kind: 'grammar', topicId: 'possessives', label: 'Øv på eiendomsord' },
+                'a0.patterns.tengo': { kind: 'grammar', topicId: 'patterns', label: 'Øv på uttrykk med tengo' },
+                'a1.patterns.quiero': { kind: 'grammar', topicId: 'patterns', label: 'Øv på uttrykk med quiero' },
+                'a1.patterns.me_gusta': { kind: 'grammar', topicId: 'patterns', label: 'Øv på uttrykk med me gusta' },
+                'a1.patterns.voy_a': { kind: 'grammar', topicId: 'patterns', label: 'Øv på uttrykk med voy a' },
                 'a1.prepositions.basic': { kind: 'planned', label: 'Preposisjonsøving kommer snart' }
             };
             learningCatalog.skills.forEach(skill => {
@@ -21540,7 +21628,79 @@ Vil du øve på ${pronoun} likevel?`
                     { sentence: "Me gusta ___ casa", answer: "tu", options: ["mi", "tu", "su", "tus"], hint: "casa er entall - din" },
                     { sentence: "___ hijos son muy inteligentes", answer: "Nuestros", options: ["Nuestro", "Nuestra", "Nuestros", "Nuestras"], hint: "hijos er maskulin flertall - våre" },
                     { sentence: "¿Dónde están ___ llaves?", answer: "mis", options: ["mi", "mis", "tu", "tus"], hint: "llaves er flertall - mine" },
-                    { sentence: "___ profesora es muy buena", answer: "Nuestra", options: ["Nuestro", "Nuestra", "Nuestros", "Nuestras"], hint: "profesora er feminin - vår" },
+                    { sentence: "___ profesora es muy buena", answer: "Nuestra", options: ["Nuestro", "Nuestra", "Nuestros", "Nuestras"], hint: "profesora er feminin - vår" }
+                ]
+            },
+
+            patterns: {
+                id: 'patterns',
+                name: 'Uttrykksmønstre',
+                icon: '💬',
+                description: 'Bygg setninger med tengo, quiero, me gusta og voy a',
+                theory: {
+                    title: 'Faste mønstre: Små rammer som gir mange setninger',
+                    content: `
+                        <p>I stedet for å lære lange setninger utenat, lærer du noen faste verbfraser som du kan sette sammen med mange ulike ord.</p>
+
+                        <div class="rule">
+                            <strong>1. TENGO (jeg har / tilstand / alder):</strong><br>
+                            Bruk tengo om alder, ting du eier, og faste tilstander der vi på norsk sier «jeg er»:<br>
+                            • <em>Tengo hambre</em> (jeg er sulten)<br>
+                            • <em>Tengo sed</em> (jeg er tørst)<br>
+                            • <em>Tengo frío</em> (jeg fryser)<br>
+                            • <em>Tengo quince años</em> (jeg er 15 år)<br>
+                            • <em>Tengo que estudiar</em> (jeg må øve)
+                        </div>
+
+                        <div class="rule">
+                            <strong>2. QUIERO (jeg vil / ønsker):</strong><br>
+                            • Med infinitiv (hva du vil gjøre): <em>Quiero comer</em> (jeg vil spise)<br>
+                            • Med substantiv (hva du vil ha): <em>Quiero agua</em> (jeg vil ha vann)
+                        </div>
+
+                        <div class="rule">
+                            <strong>3. ME GUSTA (jeg liker):</strong><br>
+                            • Med infinitiv: <em>Me gusta bailar</em> (jeg liker å danse)<br>
+                            • Med entallssubstantiv: <em>Me gusta la música</em> (jeg liker musikk)
+                        </div>
+
+                        <div class="rule">
+                            <strong>4. VOY A (nær framtid – jeg skal):</strong><br>
+                            Bruk voy a + infinitiv når du forteller hva du skal gjøre:<br>
+                            • <em>Voy a dormir</em> (jeg skal sove)<br>
+                            • <em>Voy a estudiar</em> (jeg skal studere)<br>
+                            • <em>Voy a ver una película</em> (jeg skal se en film)
+                        </div>
+                    `
+                },
+                exercises: [
+                    { skillId: 'a0.patterns.tengo', sentence: '___ hambre', answer: 'Tengo', options: ['Tengo', 'Soy', 'Estoy', 'Hago'], hint: 'På spansk uttrykker vi sult med tengo hambre.', no: 'Jeg er sulten.' },
+                    { skillId: 'a0.patterns.tengo', sentence: '___ sed', answer: 'Tengo', options: ['Tengo', 'Soy', 'Estoy', 'Hay'], hint: 'På spansk sier vi tengo sed når vi er tørste.', no: 'Jeg er tørst.' },
+                    { skillId: 'a0.patterns.tengo', sentence: '___ frío', answer: 'Tengo', options: ['Tengo', 'Soy', 'Estoy', 'Hago'], hint: 'Når du fryser, sier du tengo frío.', no: 'Jeg fryser.' },
+                    { skillId: 'a0.patterns.tengo', sentence: '___ quince años', answer: 'Tengo', options: ['Tengo', 'Soy', 'Estoy', 'Hago'], hint: 'Alder uttrykkes med tener på spansk.', no: 'Jeg er femten år.' },
+                    { skillId: 'a0.patterns.tengo', sentence: '___ un perro negro', answer: 'Tengo', options: ['Tengo', 'Soy', 'Estoy', 'Vivo'], hint: 'Tener betyr å ha eller eie.', no: 'Jeg har en svart hund.' },
+                    { skillId: 'a0.patterns.tengo', sentence: '___ que estudiar', answer: 'Tengo', options: ['Tengo', 'Soy', 'Estoy', 'Voy'], hint: 'Tengo que betyr «jeg må».', no: 'Jeg må øve til prøven.' },
+
+                    { skillId: 'a1.patterns.quiero', sentence: '___ comer una manzana', answer: 'Quiero', options: ['Quiero', 'Voy a', 'Me gusta', 'Tengo'], hint: 'Quiero + infinitiv uttrykker et ønske om å gjøre noe.', no: 'Jeg vil spise et eple.' },
+                    { skillId: 'a1.patterns.quiero', sentence: 'Quiero ___', answer: 'agua', options: ['agua', 'hambre', 'quince años', 'frío'], hint: 'Quiero + substantiv betyr «jeg vil ha».', no: 'Jeg vil ha vann.' },
+                    { skillId: 'a1.patterns.quiero', sentence: '___ descansar un poco', answer: 'Quiero', options: ['Quiero', 'Voy a', 'Me gusta', 'Tengo'], hint: 'Quiero betyr «jeg vil».', no: 'Jeg vil hvile litt.' },
+                    { skillId: 'a1.patterns.quiero', sentence: '___ hablar español', answer: 'Quiero', options: ['Quiero', 'Voy a', 'Me gusta', 'Tengo que'], hint: 'Quiero hablar betyr «jeg vil snakke».', no: 'Jeg vil snakke spansk.' },
+                    { skillId: 'a1.patterns.quiero', sentence: 'Quiero ___ a casa', answer: 'ir', options: ['ir', 'hambre', 'música', 'tengo'], hint: 'Ir a casa betyr å dra hjem.', no: 'Jeg vil dra hjem.' },
+                    { skillId: 'a1.patterns.quiero', sentence: 'Quiero ___ más', answer: 'aprender', options: ['aprender', 'agua', 'quince', 'sed'], hint: 'Aprender betyr å lære.', no: 'Jeg vil lære mer.' },
+
+                    { skillId: 'a1.patterns.me_gusta', sentence: '___ bailar', answer: 'Me gusta', options: ['Me gusta', 'Quiero', 'Voy a', 'Tengo'], hint: 'Me gusta + infinitiv betyr «jeg liker å».', no: 'Jeg liker å danse.' },
+                    { skillId: 'a1.patterns.me_gusta', sentence: 'Me gusta la ___', answer: 'música', options: ['música', 'hambre', 'comer', 'dormir'], hint: 'Substantiv etter gustar har bestemt artikkel.', no: 'Jeg liker musikk.' },
+                    { skillId: 'a1.patterns.me_gusta', sentence: '___ leer libros', answer: 'Me gusta', options: ['Me gusta', 'Quiero', 'Voy a', 'Tengo'], hint: 'Me gusta leer betyr «jeg liker å lese».', no: 'Jeg liker å lese bøker.' },
+                    { skillId: 'a1.patterns.me_gusta', sentence: 'Me gusta ___ pizza', answer: 'comer', options: ['comer', 'hambre', 'sed', 'años'], hint: 'Bruk infinitiv når du liker å gjøre en handling.', no: 'Jeg liker å spise pizza.' },
+                    { skillId: 'a1.patterns.me_gusta', sentence: '___ viajar en verano', answer: 'Me gusta', options: ['Me gusta', 'Quiero', 'Voy a', 'Tengo'], hint: 'Viajar betyr å reise.', no: 'Jeg liker å reise om sommeren.' },
+                    { skillId: 'a1.patterns.me_gusta', sentence: '___ nadar en el mar', answer: 'Me gusta', options: ['Me gusta', 'Quiero', 'Voy a', 'Tengo'], hint: 'Nadar betyr å svømme.', no: 'Jeg liker å svømme i havet.' },
+
+                    { skillId: 'a1.patterns.voy_a', sentence: '___ dormir ahora', answer: 'Voy a', options: ['Voy a', 'Quiero', 'Me gusta', 'Tengo'], hint: 'Voy a + infinitiv uttrykker nær framtid (jeg skal).', no: 'Jeg skal sove nå.' },
+                    { skillId: 'a1.patterns.voy_a', sentence: 'Voy a ___', answer: 'estudiar', options: ['estudiar', 'hambre', 'quince años', 'frío'], hint: 'Etter voy a bruker du infinitiv.', no: 'Jeg skal gjøre lekser.' },
+                    { skillId: 'a1.patterns.voy_a', sentence: '___ jugar al fútbol', answer: 'Voy a', options: ['Voy a', 'Quiero', 'Me gusta', 'Tengo'], hint: 'Voy a jugar betyr «jeg skal spille».', no: 'Jeg skal spille fotball i ettermiddag.' },
+                    { skillId: 'a1.patterns.voy_a', sentence: 'Voy a ___ una película', answer: 'ver', options: ['ver', 'hambre', 'música', 'tengo'], hint: 'Ver una película betyr å se en film.', no: 'Jeg skal se en film i kveld.' },
+                    { skillId: 'a1.patterns.voy_a', sentence: '___ hablar con Ana', answer: 'Voy a', options: ['Voy a', 'Quiero', 'Me gusta', 'Tengo que'], hint: 'Voy a + infinitiv betyr at du skal gjøre noe.', no: 'Jeg skal snakke med Ana.' },
+                    { skillId: 'a1.patterns.voy_a', sentence: 'Voy a ___ con amigos', answer: 'salir', options: ['salir', 'hambre', 'sed', 'años'], hint: 'Salir betyr å gå ut.', no: 'Jeg skal gå ut med venner.' }
                 ]
             }
         };
@@ -21783,6 +21943,11 @@ Vil du øve på ${pronoun} likevel?`
                     prompt: 'Eiendomsord følger tingen som eies, ikke alltid personen som eier.',
                     parts: ['mi libro', 'min bok', 'mis libros', 'mine bøker', 'tu casa', 'ditt hus'],
                     micro: 'Se om tingen som eies er én eller flere.'
+                },
+                patterns: {
+                    prompt: 'Bruk en fast verbfrase og koble den med naturlige avslutninger.',
+                    parts: ['tengo', 'hambre / 15 år', 'quiero', 'comer / vann', 'me gusta', 'musikk / lese', 'voy a', 'sove / studere'],
+                    micro: 'Velg tengo for tilstand/alder, quiero for ønsker, me gusta for preferanser og voy a for framtid.'
                 }
             };
             return scaffolds[topic.id] || {
@@ -21859,7 +22024,8 @@ Vil du øve på ${pronoun} likevel?`
                 gustar: 'Hvorfor? Med gustar styrer tingen du liker verbet: gusta for én ting eller infinitiv, gustan for flere ting.',
                 reflexive: 'Hvorfor? Refleksive verb trenger pronomen som viser hvem handlingen gjelder: me, te, se, nos, se.',
                 demonstratives: 'Hvorfor? Este/esta brukes om noe nært, ese/esa om noe lenger unna. Formen må passe med kjønn og tall.',
-                possessives: 'Hvorfor? Eiendomsord bøyes etter det som eies: mi libro, mis libros, nuestro padre, nuestra madre.'
+                possessives: 'Hvorfor? Eiendomsord bøyes etter det som eies: mi libro, mis libros, nuestro padre, nuestra madre.',
+                patterns: 'Hvorfor? Velg verbfrasen som passer til meningen: tengo for tilstand og alder (tengo hambre/frío), quiero for ønsker (+ infinitiv/substantiv), me gusta for det du liker (+ infinitiv/substantiv), og voy a for planer i nær framtid (+ infinitiv).'
             };
 
             return explanations[topicId] || 'Hvorfor? Se på mønsteret i setningen og velg formen som passer med personen, kjønn eller tall.';
@@ -22220,6 +22386,22 @@ Vil du øve på ${pronoun} likevel?`
                 { no: 'Hvor bor du?', words: ['¿Dónde', 'vives?'] },
                 { no: 'Hvor mange søsken har du?', words: ['¿Cuántos', 'hermanos', 'tienes?'] },
                 { no: 'Liker du musikk?', words: ['¿Te', 'gusta', 'la', 'música?'] }
+            ],
+            patterns: [
+                { no: 'Jeg er femten år.', words: ['Tengo', 'quince', 'años.'] },
+                { no: 'Jeg må øve.', words: ['Tengo', 'que', 'estudiar.'] },
+                { no: 'Jeg har en svart hund.', words: ['Tengo', 'un', 'perro', 'negro.'] },
+                { no: 'Jeg er veldig sulten.', words: ['Tengo', 'mucha', 'hambre.'] },
+                { no: 'Jeg vil hvile litt.', words: ['Quiero', 'descansar', 'un', 'poco.'] },
+                { no: 'Jeg vil lære mer spansk.', words: ['Quiero', 'aprender', 'más', 'español.'] },
+                { no: 'Jeg vil ha et rødt eple.', words: ['Quiero', 'una', 'manzana', 'roja.'] },
+                { no: 'Jeg vil dra hjem.', words: ['Quiero', 'ir', 'a', 'casa.'] },
+                { no: 'Jeg liker musikk.', words: ['Me', 'gusta', 'la', 'música.'] },
+                { no: 'Jeg liker å danse salsa.', words: ['Me', 'gusta', 'bailar', 'salsa.'] },
+                { no: 'Jeg liker å lese bøker.', words: ['Me', 'gusta', 'leer', 'libros.'] },
+                { no: 'Jeg skal sove nå.', words: ['Voy', 'a', 'dormir', 'ahora.'] },
+                { no: 'Jeg skal spise pizza.', words: ['Voy', 'a', 'comer', 'pizza.'] },
+                { no: 'Jeg skal snakke med Ana.', words: ['Voy', 'a', 'hablar', 'con', 'Ana.'] }
             ]
         };
 
