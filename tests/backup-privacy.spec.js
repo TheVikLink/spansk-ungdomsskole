@@ -143,6 +143,7 @@ test.describe('privacy wording and local backup reminder', () => {
       localStorage.setItem('spansk123_corrupt_spansk123Data_v4_2026-05-17T12-00-00-000Z', '{ skadet }');
       localStorage.setItem('spansk123_oldImportDone', 'true');
       localStorage.setItem('spansk123_dailyAskedIds', JSON.stringify({ date: '2026-09-10', ids: ['q1'] }));
+      localStorage.setItem('spanskSRData', JSON.stringify([{ es: 'hola', no: 'hei', reviews: 1 }]));
       localStorage.setItem('unrelated_key', 'behold meg');
 
       clearAllLocalAppData();
