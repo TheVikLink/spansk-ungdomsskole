@@ -1,5 +1,5 @@
 // Generated build identifier; run npm run build:app after changing app assets.
-const APP_BUILD = '4830ee6af0e99367';
+const APP_BUILD = '6f867db1455644f8';
 const CACHE_NAME = `spansk123-shell-${APP_BUILD}`;
 const AUDIO_CACHE = 'spansk123-audio-v1';
 const APP_SHELL = ['./', './index.html', './dist/tailwind.css', './manifest.webmanifest'];

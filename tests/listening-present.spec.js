@@ -37,7 +37,7 @@ for (const width of [390, 1280]) {
     await page.evaluate(async () => {
       const cache = await caches.open(DICTATION_AUDIO_CACHE);
       for (const filename of ['Hola soy Inés y vivo.wav', 'Hola me llamo Diego .wav']) {
-        const url = new URL(`audio/lyttehistorier/${encodeURIComponent(filename)}`, location.href).href;
+        const url = new URL(`audio/lyttehistorier/${encodeURIComponent(filename.normalize('NFC'))}`, location.href).href;
         await cache.put(url, await fetch(url));
       }
     });
@@ -55,7 +55,7 @@ for (const width of [390, 1280]) {
     for (const [title, filename] of [['En uventet ettermiddag i Valparaíso', 'Hola soy Inés.mp3'], ['Diego hjelper på stranden', 'Diego de Cartagena.mp3']]) {
       const card = page.locator('.listening-story-card').filter({ has: page.getByRole('heading', { name: title, exact: true }) });
       await card.getByRole('button', { name: 'Start lyttehistorien' }).click();
-      await expect(page.locator('#listeningStoryAudio')).toHaveJSProperty('src', new URL(`audio/lyttehistorier/${encodeURIComponent(filename)}`, server.url).href);
+      await expect(page.locator('#listeningStoryAudio')).toHaveJSProperty('src', new URL(`audio/lyttehistorier/${encodeURIComponent(filename.normalize('NFC'))}`, server.url).href);
       await expect(page.locator('#listeningDownloadStatus')).toContainText('Hele historien er lastet ned');
       await page.locator('#listeningStoryAudio').evaluate(audio => audio.play());
       await expect.poll(() => page.locator('#listeningStoryAudio').evaluate(audio => audio.currentTime)).toBeGreaterThan(0);

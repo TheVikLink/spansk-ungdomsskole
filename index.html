@@ -6,7 +6,7 @@
     <title>Spansk på 1-2-3 | Læringsapp</title>
     <meta name="theme-color" content="#dc2626">
     <link rel="manifest" href="./manifest.webmanifest">
-    <meta name="app-build" content="4830ee6af0e99367">
+    <meta name="app-build" content="6f867db1455644f8">
     <link href="./dist/tailwind.css" rel="stylesheet">
 </head>
 <body>
@@ -2485,7 +2485,7 @@
         function dictationAudioUrl(story, filename) { const file = (/\.[a-z0-9]+$/iu.test(filename) ? filename : `${filename}.${story.audioExt || 'mp3'}`).normalize('NFC'); const directory = String(story.audioDir || '').normalize('NFC'); return `audio/diktat/${encodeURIComponent(directory).replaceAll('%20',' ')}${directory ? '/' : ''}${encodeURIComponent(file)}`; }
         // HTTP audio needs anonymous CORS for network and service-worker byte ranges
         // to share a media buffer. Keep file:// playback outside the CORS fetch path.
-        function listeningAudioUrl(story) { return story.fullAudio ? `audio/lyttehistorier/${encodeURIComponent(story.fullAudio).replaceAll('%20',' ')}` : null; }
+        function listeningAudioUrl(story) { return story.fullAudio ? `audio/lyttehistorier/${encodeURIComponent(story.fullAudio.normalize('NFC')).replaceAll('%20',' ')}` : null; }
         function renderListeningOverview() {
             const list = document.getElementById('listeningStoryList');
             if (!list) return;
