@@ -169,34 +169,57 @@ test.describe('diagnosis quiz v1', () => {
     expect(result.a1).toMatchObject({ resultBand: 'A1', productiveAnchorCount: 3 });
   });
 
-  test('new pupil can complete the diagnosis quiz from the app UI', async ({ page }) => {
-    await page.goto(appUrl);
-    await page.evaluate(() => localStorage.clear());
-    await page.reload();
+  for (const width of [390, 1440]) {
+    test(`completed diagnosis leads to quiz and vocabulary review without a result panel at ${width}px`, async ({ page }, testInfo) => {
+      await page.setViewportSize({ width, height: 900 });
+      await page.goto(appUrl);
+      await page.evaluate(() => localStorage.clear());
+      await page.reload();
 
-    await page.fill('#studentNameInput', 'Elevkode 8A-12');
-    await page.click('button:has-text("Start")');
+      await page.fill('#studentNameInput', 'Elevkode 8A-12');
+      await page.click('button:has-text("Start")');
 
-    await expect(page.getByRole('heading', { name: 'Finn nivået mitt' })).toBeVisible();
-    await page.locator('#homeStartMixedQuizBtn').click();
+      await expect(page.getByRole('heading', { name: 'Finn nivået mitt' })).toBeVisible();
+      await page.locator('#homeStartMixedQuizBtn').click();
 
-    for (let i = 0; i < 12; i++) {
-      const responseMode = await page.locator('#diagnosisPanel').getAttribute('data-response-mode');
-      if (responseMode === 'typed') {
-        const accepted = await page.locator('#diagnosisPanel').getAttribute('data-accepted-answer');
-        await page.fill('#diagnosisAnswerInput', accepted);
-        await page.getByRole('button', { name: 'Svar' }).click();
-      } else {
-        const accepted = await page.locator('#diagnosisPanel').getAttribute('data-accepted-answer');
-        await page.locator('#diagnosisPanel').getByRole('button', { name: accepted, exact: true }).click();
+      for (let i = 0; i < 12; i++) {
+        const responseMode = await page.locator('#diagnosisPanel').getAttribute('data-response-mode');
+        if (responseMode === 'typed') {
+          const accepted = await page.locator('#diagnosisPanel').getAttribute('data-accepted-answer');
+          await page.fill('#diagnosisAnswerInput', accepted);
+          await page.getByRole('button', { name: 'Svar' }).click();
+        } else {
+          const accepted = await page.locator('#diagnosisPanel').getAttribute('data-accepted-answer');
+          await page.locator('#diagnosisPanel').getByRole('button', { name: accepted, exact: true }).click();
+        }
+        if (i === 11) {
+          await expect(page.locator('[data-diagnosis-feedback]')).toBeVisible();
+          await expect(page.locator('#homePage')).toBeHidden();
+        }
+        await page.locator('#diagnosisPanel button').filter({ hasText: i === 11 ? 'Gå til Start' : 'Neste' }).click();
       }
-      await page.locator('#diagnosisPanel button').filter({ hasText: i === 11 ? 'Se resultat' : 'Neste' }).click();
-    }
 
-    await expect(page.getByRole('heading', { name: 'Resultat' })).toBeVisible();
-    await expect(page.locator('#diagnosisResultBand')).toContainText('A1');
-    await expect(page.locator('#diagnosisPanel')).toContainText('Fremgangen er lagret bare på denne enheten.');
-  });
+      await expect(page.locator('#homeStartMixedQuizBtn')).toBeFocused();
+      const savedDiagnosis = await page.evaluate(() => loadDiagnosisState());
+      expect(savedDiagnosis).toMatchObject({ status: 'complete', resultBand: 'A1' });
+      expect(savedDiagnosis.answers).toHaveLength(12);
+      for (const visit of ['completed', 'reload', 'return']) {
+        if (visit === 'reload') await page.reload();
+        if (visit === 'return') {
+          await page.locator('#navVocab').click();
+          await page.locator('#navHome').click();
+        }
+        await expect(page.locator('#diagnosisPanel')).toBeHidden();
+        await expect(page.getByRole('heading', { name: 'Resultat', exact: true })).toHaveCount(0);
+        await expect(page.locator('#homePrimaryContent').getByRole('heading')).toHaveText(['Dagens quiz', 'Repeter gloser']);
+        await expect(page.getByRole('button', { name: 'Start dagens quiz', exact: true })).toBeInViewport();
+        await expect(page.getByRole('button', { name: 'Start repetisjon', exact: true })).toBeInViewport();
+        expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+        expect(await page.evaluate(() => loadDiagnosisState())).toEqual(savedDiagnosis);
+      }
+      await page.screenshot({ path: testInfo.outputPath(`home-after-diagnosis-${width}.png`), fullPage: true });
+    });
+  }
 
   test('refreshes the home CTA immediately after diagnosis completion', async ({ page }) => {
     await page.goto(appUrl);
@@ -216,11 +239,13 @@ test.describe('diagnosis quiz v1', () => {
       } else {
         await page.locator('#diagnosisPanel').getByRole('button', { name: accepted, exact: true }).click();
       }
-      await page.locator('#diagnosisPanel button').filter({ hasText: i === 11 ? 'Se resultat' : 'Neste' }).click();
+      await page.locator('#diagnosisPanel button').filter({ hasText: i === 11 ? 'Gå til Start' : 'Neste' }).click();
     }
 
-    await expect(page.getByRole('heading', { name: 'Resultat' })).toBeVisible();
+    await expect(page.locator('#diagnosisPanel')).toBeHidden();
     await expect(page.getByRole('button', { name: 'Start dagens quiz' })).toBeEnabled();
+    await page.getByRole('button', { name: 'Start dagens quiz', exact: true }).click();
+    await expect(page.locator('#mixedQuizStudy')).toBeVisible();
   });
 
   test('submits typed diagnosis answers with Enter', async ({ page }) => {

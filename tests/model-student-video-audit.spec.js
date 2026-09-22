@@ -55,7 +55,7 @@ test('simulated student completes diagnosis and two mixed quizzes with evidence 
     }
     await expect(page.locator('[data-diagnosis-feedback]')).toBeVisible();
       await checkpoint(`diagnosis-feedback-${index + 1}`, 'Svar registrert; eleven må selv trykke videre.');
-      await page.getByRole('button', { name: /Neste|Se resultat/ }).click();
+      await page.getByRole('button', { name: /Neste|Gå til Start/ }).click();
       return;
     }
 
