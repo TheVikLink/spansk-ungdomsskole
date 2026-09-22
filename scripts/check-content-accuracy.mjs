@@ -1,5 +1,6 @@
 import { readFileSync } from 'node:fs';
 import { extractAllItems } from './lib/extract-all-items.mjs';
+import { findMissingEnye } from './lib/check-missing-enye.mjs';
 
 const html = readFileSync('index.html', 'utf8');
 const items = extractAllItems(html);
@@ -245,26 +246,11 @@ for (const puzzle of items.sentencePuzzles) {
 }
 
 // --- Check 12: accent-form-present ---
-// Flag Spanish answers that contain `n` where the canonical form should contain
-// `ñ`. This is a targeted check against a known list, not a full spell check.
-const ninWords = ['año', 'mañana', 'niño', 'niña', 'niños', 'niñas', 'pequeño', 'pequeña',
-  'español', 'española', 'españoles', 'españolas', 'sueño', 'daño', 'otoño', 'garabato',
-  'piña', 'caña', 'montaña', 'tamaño', 'engaño', 'enseñanza', 'añadir'];
-const ninSet = new Set(ninWords);
-for (const card of items.glossary) {
-  const esLower = card.es.toLowerCase();
-  // Check if the Spanish contains a word that should have ñ but has n
-  const words = esLower.split(/\s+/);
-  for (const word of words) {
-    const cleanWord = word.replace(/[.,!?;:¿¡]/g, '');
-    // If the word with n exists in our ñ-set as a misspelling
-    const ninVersion = cleanWord.replace(/ñ/g, 'n');
-    if (ninSet.has(cleanWord) && !cleanWord.includes('ñ')) {
-      // This word is in the ñ-set but doesn't contain ñ - flag it
-      fail('accent-form-present',
-        `Glossary "${card.no}" -> "${card.es}" contains "${cleanWord}" which should contain ñ`);
-    }
-  }
+// Detect only known n-for-ñ mistakes supported by the Norwegian meaning.
+// Deliberately leave unknown/ambiguous vocabulary to expert review.
+for (const mistake of findMissingEnye(items.glossary)) {
+  fail('accent-form-present',
+    `Glossary "${mistake.no}" -> "${mistake.es}" contains "${mistake.actual}"; expected "${mistake.expected}" in this meaning context`);
 }
 
 // --- Check 13: grammar-exercise-has-norwegian-context ---
@@ -366,9 +352,7 @@ if (referenceCorpus) {
   corpusChecksSkipped = [
     'synonym-coverage-no-to-es (requires reference corpus: run npm run build:corpus)',
     'synonym-coverage-es-to-no (requires reference corpus: run npm run build:corpus)',
-    'corpus-orphan (requires reference corpus)',
-    'translation-idiomaticity (requires expert review)',
-    'distractor-validity-in-context (requires semantic analysis)'
+    'corpus-orphan (requires reference corpus)'
   ];
 }
 
@@ -389,13 +373,8 @@ const mechanicalChecks = [
   'grammar-exercise-has-norwegian-context'
 ];
 
-const corpusDependentChecks = [
-  'synonym-coverage-no-to-es',
-  'synonym-coverage-es-to-no',
-  'corpus-orphan',
-  'translation-idiomaticity (requires expert review)',
-  'distractor-validity-in-context (requires semantic analysis)'
-];
+console.log('Expert review not performed: translation idiomaticity, distractor validity in context.');
+console.log('Scope: targeted Norwegian-context n-for-ñ checks; corpus checks measure consistency, not independent semantic correctness.');
 
 if (failures.length > 0) {
   console.error('Content accuracy check FAILED:\n');
@@ -409,7 +388,7 @@ if (failures.length > 0) {
 }
 
 const totalChecks = mechanicalChecks.length + corpusChecksRan;
-console.log(`Content accuracy check passed (${totalChecks} checks: ${mechanicalChecks.length} mechanical + ${corpusChecksRan} corpus-based, ${items.glossary.length} glossary items, ${items.grammar.length} grammar exercises, ${items.verbs.length} verbs, ${items.sentencePuzzles.length} puzzles).`);
+console.log(`Content accuracy check passed (${totalChecks} checks: ${mechanicalChecks.length} mechanical + ${corpusChecksRan} corpus-consistency, ${items.glossary.length} glossary items, ${items.grammar.length} grammar exercises, ${items.verbs.length} verbs, ${items.sentencePuzzles.length} puzzles).`);
 if (corpusChecksSkipped.length > 0) {
   console.log(`Corpus-dependent checks skipped: ${corpusChecksSkipped.join(', ')}`);
 }

@@ -1,6 +1,16 @@
 # Pilot readiness audit
 
-## Status: klar for begrenset pilot med kjente oppfølgingspunkter
+## Gjeldende status — 18. september 2026
+
+Lokal teknisk releaseport er bestått på bygg `9028eaf8e4ba8273`: 446 nettlesertester med både én og to workere, 25 Node-tester og alle innholds-/byggkontroller. Offline-lydfeilen funnet under sluttkontrollen er rettet og gjentatt verifisert. Se [gjeldende releaseverifikasjon](docs/release-verification-2026-09-18.md) for eksakte kjøringer, feil underveis og avgrensning.
+
+Dette er ikke en generell godkjenning for selvstendig helklassebruk. Lærerkontroll av innhold/opptak på fysisk skoleutstyr (`4or0`) og moderert elevpilot (`ee0`) gjenstår. Bruk [PILOT.md](PILOT.md) for neste menneskelige kontroll. Ingen publisering eller verifikasjon av dagens offentlige bygg inngår.
+
+## Historisk audit — før 18. september 2026
+
+Resten av dokumentet er bevart fra den tidligere, udaterte auditversjonen. Dens testtall, skippede offline-test og konklusjon er historisk evidens, ikke gjeldende releasegrunnlag.
+
+### Tidligere konklusjon: klar for begrenset pilot med kjente oppfølgingspunkter
 
 Denne sjekken gjelder den lokale, no-login pilotflyten. Den er ikke en effektstudie og erstatter ikke observasjon med ekte elever og lærer.
 

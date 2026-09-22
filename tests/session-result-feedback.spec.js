@@ -4,6 +4,17 @@ import path from 'node:path';
 
 const appUrl = pathToFileURL(path.resolve('index.html')).toString();
 const areas = { grammar: '#grammarExerciseArea', verbs: '#verbExerciseArea', vocabulary: '#flashcardArea', quiz: '#mixedQuizQuestion' };
+async function submitGrammarAnswer(page, answer) {
+  const choice = page.locator('.grammar-option').filter({ hasText: answer }).getByText(answer, { exact: true });
+  if (await choice.count()) return choice.click();
+  const select = page.locator('#grammarSelect');
+  if (await select.count()) {
+    await select.selectOption({ label: answer });
+    return page.locator('#grammarSubmitBtn').click();
+  }
+  await page.locator('#grammarAnswerInput').fill(answer);
+  return page.locator('#grammarSubmitBtn').click();
+}
 const cases = [
   { name: 'all correct', correct: 14, answered: 14, planned: 14, message: 'Du svarte riktig på alle oppgavene.', cards: 'Alle 14 kortforsøk er registrert som riktige.' },
   { name: 'one mistake', correct: 13, answered: 14, planned: 14, message: 'Du svarte riktig på 13 av 14 oppgaver.', cards: '13 av 14 kortforsøk er registrert som riktige.' },
@@ -53,16 +64,18 @@ for (const mode of Object.keys(areas)) {
 }
 
 for (const width of [1440, 390]) {
-  test(`article template: 14 real answers, theory return and next practice at ${width}px`, async ({ page }) => {
+  test(`article template: 14 real answers, theory return and next practice at ${width}px`, async ({ page }, testInfo) => {
     await page.setViewportSize({ width, height: 1000 });
     await page.goto(appUrl);
-    await page.locator('#welcomeTeacherGuide summary').click();
-    await page.getByRole('button', { name: 'Start felles artikkeløving', exact: true }).click();
+    await page.locator('#studentNameInput').fill('Test');
+    await page.locator('.login-btn-primary').click();
+    await page.locator('#navGrammar').click();
+    await page.locator('.grammar-topic-card[onclick="startGrammarTopic(\'articles\')"] .grammar-topic-theory-link').click();
     await page.locator('#grammarLessonContent .grammar-lesson-actions button').click();
     expect(await page.evaluate(() => grammarExercises.length)).toBe(14);
     for (let i = 0; i < 14; i++) {
       const answer = await page.evaluate(() => grammarExercises[grammarCurrentIndex].answer);
-      await page.locator('.grammar-option').getByText(answer, { exact: true }).click();
+      await submitGrammarAnswer(page, answer);
       await page.locator('#grammarExerciseArea').getByRole('button', { name: /Vis hint/ }).click();
       await page.locator('#grammarFeedback [data-feedback-next]').click();
     }
@@ -74,7 +87,7 @@ for (const width of [1440, 390]) {
     await page.getByRole('button', { name: /Tilbake til resultatet/ }).click();
     await expect(result).toContainText('Du svarte riktig på alle oppgavene.');
     expect(await page.evaluate(() => { const { exportDate, ...data } = buildProgressExportData(); return data; })).toEqual(before);
-    await page.screenshot({ path: `output/brukertest-rettelser/result-all-correct-${width}.png`, fullPage: true });
+    await page.screenshot({ path: testInfo.outputPath(`result-all-correct-${width}.png`), fullPage: true });
     await result.getByRole('button', { name: /Øv mer/ }).click();
     await expect(page.locator('#grammarCounter')).toContainText('1 /');
     expect(await page.evaluate(() => practiceHistory.reduce((n, entry) => n + entry.words, 0))).toBe(14);

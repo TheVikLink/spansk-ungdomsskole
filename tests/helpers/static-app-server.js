@@ -5,7 +5,7 @@ import path from 'node:path';
 export async function startStaticAppServer({ transform = (file, bytes) => bytes } = {}) {
   let offline = false;
   const root = path.resolve('.');
-  const types = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.wav': 'audio/wav', '.m4a': 'audio/mp4', '.webmanifest': 'application/manifest+json', '.png': 'image/png' };
+  const types = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.wav': 'audio/wav', '.mp3': 'audio/mpeg', '.m4a': 'audio/mp4', '.webmanifest': 'application/manifest+json', '.png': 'image/png' };
   const server = http.createServer(async (req, res) => {
     if (offline) { req.socket.destroy(); return; }
     try {

@@ -6,7 +6,7 @@
     <title>Spansk på 1-2-3 | Læringsapp</title>
     <meta name="theme-color" content="#dc2626">
     <link rel="manifest" href="./manifest.webmanifest">
-    <meta name="app-build" content="512b07a258938fe1">
+    <meta name="app-build" content="4830ee6af0e99367">
     <link href="./dist/tailwind.css" rel="stylesheet">
 </head>
 <body>
@@ -18,6 +18,7 @@
         <p class="login-subtitle">Øv på spansk - din fremgang lagres på denne enheten</p>
 
         <div id="welcomeForm">
+            <label for="studentNameInput" class="sr-only">Fornavn eller elevkode</label>
             <input type="text" id="studentNameInput" class="login-input" placeholder="Fornavn eller elevkode (f.eks. Maria eller 9A-14)" maxlength="50">
             <button class="login-btn login-btn-primary" onclick="startApp()">🚀 Start</button>
 
@@ -35,7 +36,6 @@
                 Hvis nettleserdata slettes, kan fremgangen bare hentes tilbake fra en sikkerhetskopi. Elevkoden gjenoppretter ikke data. Velg «Importer fremgang fra fil» på denne eller en ny enhet.
             </p>
         </div>
-        <div id="welcomeTeacherGuide"></div>
     </div>
 
     <div class="container hidden" id="mainApp">
@@ -554,8 +554,12 @@
         </div>
 
         <div id="dictationPage" class="panel hidden">
+            <div id="listeningOverview">
+                <div class="page-header"><h2>🎧 Lyttehistorier</h2><p>Lytt til en litt lengre historie før du svarer på spørsmålene.</p></div>
+                <div id="listeningStoryList" class="dictation-story-list"></div>
+            </div>
             <div id="dictationOverview">
-                <div class="page-header"><h2>🎧 Lytteøvelser</h2><p>Lytt til korte historier fra den spanskspråklige verdenen og skriv det du hører.</p></div>
+                <div class="page-header"><h2>✍️ Diktat</h2><p>Lytt til korte setninger og skriv det du hører.</p></div>
                 <div class="dictation-filters">
                     <label>Nivå <select id="dictationLevelFilter" onchange="renderDictationOverview()"><option value="all">Alle nivåer</option><option>A0</option><option>A1</option><option>A1+</option></select></label>
                     <label>Område <select id="dictationRegionFilter" onchange="renderDictationOverview()"><option value="all">Alle områder</option><option>Spania</option><option>Mexico</option><option>Mellom-Amerika</option><option>Sør-Amerika</option></select></label>
@@ -563,6 +567,7 @@
                 <div id="dictationStoryList" class="dictation-story-list"></div>
             </div>
             <div id="dictationExercise" class="hidden"></div>
+            <div id="listeningExercise" class="hidden"></div>
         </div>
 
         <!-- ==================== -->
@@ -670,7 +675,7 @@
                     <div class="vi-invader-zone" id="viInvaderZone">
                         <div class="vi-invader-sprite">👾</div>
                         <div class="vi-prompt-box">
-                            <div class="vi-prompt-norwegian" id="viPromptText">—</div>
+                            <div class="vi-prompt-norwegian" id="viPromptText" aria-live="polite" aria-atomic="true">—</div>
                             <div class="vi-prompt-verb" id="viPromptVerb">—</div>
                         </div>
                     </div>
@@ -684,18 +689,18 @@
 
                     <!-- Answer zone -->
                     <div class="vi-answer-zone" id="viAnswerZone">
-                        <div class="vi-answer-card" onclick="viSelectAnswer(0)" id="viCard0">
+                        <button type="button" class="vi-answer-card" onclick="viSelectAnswer(0)" id="viCard0">
                             <div class="vi-key-hint">[ 1 ]</div>
                             <div class="vi-answer-text" id="viAns0">—</div>
-                        </div>
-                        <div class="vi-answer-card" onclick="viSelectAnswer(1)" id="viCard1">
+                        </button>
+                        <button type="button" class="vi-answer-card" onclick="viSelectAnswer(1)" id="viCard1">
                             <div class="vi-key-hint">[ 2 ]</div>
                             <div class="vi-answer-text" id="viAns1">—</div>
-                        </div>
-                        <div class="vi-answer-card" onclick="viSelectAnswer(2)" id="viCard2">
+                        </button>
+                        <button type="button" class="vi-answer-card" onclick="viSelectAnswer(2)" id="viCard2">
                             <div class="vi-key-hint">[ 3 ]</div>
                             <div class="vi-answer-text" id="viAns2">—</div>
-                        </div>
+                        </button>
                     </div>
 
                     <!-- Combo display -->
@@ -783,7 +788,7 @@
                     <div class="vi-invader-zone" id="piInvaderZone">
                         <div class="vi-invader-sprite">🛸</div>
                         <div class="vi-prompt-box">
-                            <div class="vi-prompt-norwegian" id="piPromptText">—</div>
+                            <div class="vi-prompt-norwegian" id="piPromptText" aria-live="polite" aria-atomic="true">—</div>
                             <div class="vi-prompt-verb" id="piPromptHint">—</div>
                         </div>
                     </div>
@@ -797,18 +802,18 @@
 
                     <!-- Answer zone -->
                     <div class="vi-answer-zone" id="piAnswerZone">
-                        <div class="vi-answer-card" onclick="piSelectAnswer(0)" id="piCard0">
+                        <button type="button" class="vi-answer-card" onclick="piSelectAnswer(0)" id="piCard0">
                             <div class="vi-key-hint">[ 1 ]</div>
                             <div class="vi-answer-text" id="piAns0">—</div>
-                        </div>
-                        <div class="vi-answer-card" onclick="piSelectAnswer(1)" id="piCard1">
+                        </button>
+                        <button type="button" class="vi-answer-card" onclick="piSelectAnswer(1)" id="piCard1">
                             <div class="vi-key-hint">[ 2 ]</div>
                             <div class="vi-answer-text" id="piAns1">—</div>
-                        </div>
-                        <div class="vi-answer-card" onclick="piSelectAnswer(2)" id="piCard2">
+                        </button>
+                        <button type="button" class="vi-answer-card" onclick="piSelectAnswer(2)" id="piCard2">
                             <div class="vi-key-hint">[ 3 ]</div>
                             <div class="vi-answer-text" id="piAns2">—</div>
-                        </div>
+                        </button>
                     </div>
 
                     <!-- Combo display -->
@@ -1039,21 +1044,768 @@
     </div>
 
     <script type="application/json" id="diagnosis-catalog-data">
-        [
-            {"id":"diag.vocab.greeting.hola.es_no","contentVersion":1,"instructionNb":"Skriv betydningen på norsk.","prompt":"hola","targetType":"word","targetId":"core.hola","direction":"esToNo","responseMode":"typed","acceptedAnswers":[{"answerId":"hei","value":"hei","canonicalMeaningId":"greeting_hola_no"},{"answerId":"hallo","value":"hallo","canonicalMeaningId":"greeting_hola_no"}],"primaryConstruct":"concrete_vocabulary","secondaryConstructs":["recognition_to_production"],"informativeBands":["A0","A0+"],"productiveAnchor":false,"maxEvidence":1,"normalization":{"unicode":"NFC","trimOuterWhitespace":true,"collapseInternalWhitespace":true,"ignoreTerminalPunctuation":true,"caseSensitive":false,"diacriticSensitive":false},"variantRules":[],"nearMissRules":[],"ambiguityReview":{"passed":true,"reviewedBy":["content-review-2026-08-11"],"reviewedAt":"2026-08-11","notes":"Direkte, entydig høyfrekvent hilsen.","checkedForAlternativeCorrectAnswers":true,"checkedForRegionalVariation":true},"sourceNote":"written-original"},
-            {"id":"diag.vocab.greeting.takk.no_es","contentVersion":1,"instructionNb":"Skriv ordet på spansk.","prompt":"takk","targetType":"word","targetId":"core.gracias","direction":"noToEs","responseMode":"typed","acceptedAnswers":[{"answerId":"gracias","value":"gracias","canonicalMeaningId":"thanks_gracias_es"}],"primaryConstruct":"concrete_vocabulary","secondaryConstructs":["production"],"informativeBands":["A0","A0+"],"productiveAnchor":false,"maxEvidence":1,"normalization":{"unicode":"NFC","trimOuterWhitespace":true,"collapseInternalWhitespace":true,"ignoreTerminalPunctuation":true,"caseSensitive":false,"diacriticSensitive":false},"variantRules":[],"nearMissRules":[],"ambiguityReview":{"passed":true,"reviewedBy":["content-review-2026-08-11"],"reviewedAt":"2026-08-11","notes":"Direkte, entydig høyfrekvent høflighetsord.","checkedForAlternativeCorrectAnswers":true,"checkedForRegionalVariation":true},"sourceNote":"written-original"},
-            {"id":"diag.vocab.family.madre.es_no","contentVersion":2,"instructionNb":"Skriv betydningen på norsk.","prompt":"la madre","targetType":"word","targetId":"core.madre","direction":"esToNo","responseMode":"typed","acceptedAnswers":[{"answerId":"mor","value":"mor","canonicalMeaningId":"mother_madre_no"},{"answerId":"moren","value":"moren","canonicalMeaningId":"mother_madre_no"},{"answerId":"mamma","value":"mamma","canonicalMeaningId":"mother_madre_no"},{"answerId":"mora","value":"mora","canonicalMeaningId":"mother_madre_no"}],"primaryConstruct":"concrete_vocabulary","secondaryConstructs":["article_recognition"],"informativeBands":["A0","A0+"],"productiveAnchor":false,"maxEvidence":1,"normalization":{"unicode":"NFC","trimOuterWhitespace":true,"collapseInternalWhitespace":true,"ignoreTerminalPunctuation":true,"caseSensitive":false,"diacriticSensitive":false},"variantRules":[],"nearMissRules":[],"ambiguityReview":{"passed":true,"reviewedBy":["Codex (kildesjekk; ikke lærergodkjenning)"],"reviewedAt":"2026-09-09","notes":"Eksplisitt tillegg av mora. Kildestøtte: https://sprakradet.no/spraksporsmal-og-svar/far-min-mor-mi-fader-var-og-sa-videre/. Samlet lærergjennomgang gjenstår i spansk-ungdomsskole-ee0.","checkedForAlternativeCorrectAnswers":true,"checkedForRegionalVariation":true},"sourceNote":"written-original"},
-            {"id":"diag.vocab.number.fem.no_es","contentVersion":1,"instructionNb":"Skriv tallet på spansk.","prompt":"fem","targetType":"word","targetId":"core.cinco","direction":"noToEs","responseMode":"typed","acceptedAnswers":[{"answerId":"cinco","value":"cinco","canonicalMeaningId":"five_cinco_es"}],"primaryConstruct":"concrete_vocabulary","secondaryConstructs":["production"],"informativeBands":["A0","A0+"],"productiveAnchor":false,"maxEvidence":1,"normalization":{"unicode":"NFC","trimOuterWhitespace":true,"collapseInternalWhitespace":true,"ignoreTerminalPunctuation":true,"caseSensitive":false,"diacriticSensitive":false},"variantRules":[],"nearMissRules":[],"ambiguityReview":{"passed":true,"reviewedBy":["content-review-2026-08-11"],"reviewedAt":"2026-08-11","notes":"Direkte og entydig talloppgave.","checkedForAlternativeCorrectAnswers":true,"checkedForRegionalVariation":true},"sourceNote":"written-original"},
-            {"id":"diag.a0.identity.me_llamo.typed","contentVersion":2,"instructionNb":"Skriv på spansk.","prompt":"Jeg heter Ana","targetType":"skill","targetId":"a0.identity.me_llamo","direction":null,"responseMode":"typed","acceptedAnswers":[{"answerId":"me_llamo_ana","value":"me llamo ana","canonicalMeaningId":"say_name_me_llamo"},{"answerId":"yo_me_llamo_ana","value":"yo me llamo ana","canonicalMeaningId":"say_name_me_llamo"}],"primaryConstruct":"formulaic_identity","secondaryConstructs":["productive_control"],"informativeBands":["A0+","A1-start"],"productiveAnchor":true,"maxEvidence":1,"normalization":{"unicode":"NFC","trimOuterWhitespace":true,"collapseInternalWhitespace":true,"ignoreTerminalPunctuation":true,"caseSensitive":false,"diacriticSensitive":false},"variantRules":[],"nearMissRules":[{"ruleId":"me_llama_ana","values":["me llama ana"],"evidenceWeight":0.5,"errorTag":"wrong_person"}],"ambiguityReview":{"passed":true,"reviewedBy":["Codex (kildesjekk; ikke lærergodkjenning)"],"reviewedAt":"2026-09-09","notes":"Eksplisitt tillegg av yo me llamo ana. Kildestøtte: https://cvc.cervantes.es/ensenanza/biblioteca_ele/asele/pdf/15/15_0887.pdf. Samlet lærergjennomgang gjenstår i spansk-ungdomsskole-ee0.","checkedForAlternativeCorrectAnswers":true,"checkedForRegionalVariation":true},"sourceNote":"written-original"},
-            {"id":"diag.a0.identity.soy_de.choice","contentVersion":1,"instructionNb":"Velg den spanske setningen som betyr «Jeg er fra Norge».","prompt":"Jeg er fra Norge","targetType":"skill","targetId":"a0.identity.soy_de","direction":null,"responseMode":"choice","acceptedAnswers":[{"answerId":"soy_de_noruega","value":"Soy de Noruega","canonicalMeaningId":"origin_soy_de"}],"options":[{"optionId":"soy_de_noruega","label":"Soy de Noruega"},{"optionId":"estoy_de_noruega","label":"Estoy de Noruega"},{"optionId":"me_llamo_noruega","label":"Me llamo Noruega"}],"primaryConstruct":"identity_origin","secondaryConstructs":["recognition"],"informativeBands":["A0+","A1-start"],"productiveAnchor":false,"maxEvidence":1,"normalization":{"unicode":"NFC","trimOuterWhitespace":true,"collapseInternalWhitespace":true,"ignoreTerminalPunctuation":true,"caseSensitive":false,"diacriticSensitive":false},"variantRules":[],"nearMissRules":[],"ambiguityReview":{"passed":true,"reviewedBy":["content-review-2026-08-11"],"reviewedAt":"2026-08-11","notes":"Norsk betydning og register er eksplisitt.","checkedForAlternativeCorrectAnswers":true,"checkedForRegionalVariation":true},"sourceNote":"written-original"},
-            {"id":"diag.a0.articles.indefinite_singular.choice","contentVersion":1,"instructionNb":"Velg den spanske formuleringen som betyr «et hus».","prompt":"et hus","targetType":"skill","targetId":"a0.articles.indefinite_singular","direction":null,"responseMode":"choice","acceptedAnswers":[{"answerId":"una_casa","value":"una casa","canonicalMeaningId":"indefinite_feminine_singular"}],"options":[{"optionId":"una_casa","label":"una casa"},{"optionId":"la_casa","label":"la casa"},{"optionId":"un_casa","label":"un casa"},{"optionId":"el_casa","label":"el casa"}],"primaryConstruct":"indefinite_article_gender","secondaryConstructs":["recognition"],"informativeBands":["A0+","A1-start"],"productiveAnchor":false,"maxEvidence":1,"normalization":{"unicode":"NFC","trimOuterWhitespace":true,"collapseInternalWhitespace":true,"ignoreTerminalPunctuation":true,"caseSensitive":false,"diacriticSensitive":false},"variantRules":[],"nearMissRules":[{"ruleId":"la_casa","values":["la casa"],"evidenceWeight":0.5,"errorTag":"wrong_article_type"}],"ambiguityReview":{"passed":true,"reviewedBy":["content-review-2026-08-11"],"reviewedAt":"2026-08-11","notes":"Betydningen «et hus» gjør bestemt/ubestemt valg entydig.","checkedForAlternativeCorrectAnswers":true,"checkedForRegionalVariation":true},"sourceNote":"written-original"},
-            {"id":"diag.a0.articles.definite_singular.choice","contentVersion":1,"instructionNb":"Velg den spanske formuleringen som betyr «boka».","prompt":"boka","targetType":"skill","targetId":"a0.articles.definite_singular","direction":null,"responseMode":"choice","acceptedAnswers":[{"answerId":"el_libro","value":"el libro","canonicalMeaningId":"definite_masculine_singular"}],"options":[{"optionId":"el_libro","label":"el libro"},{"optionId":"un_libro","label":"un libro"},{"optionId":"la_libro","label":"la libro"},{"optionId":"una_libro","label":"una libro"}],"primaryConstruct":"definite_article_gender","secondaryConstructs":["recognition"],"informativeBands":["A0+","A1-start"],"productiveAnchor":false,"maxEvidence":1,"normalization":{"unicode":"NFC","trimOuterWhitespace":true,"collapseInternalWhitespace":true,"ignoreTerminalPunctuation":true,"caseSensitive":false,"diacriticSensitive":false},"variantRules":[],"nearMissRules":[{"ruleId":"un_libro","values":["un libro"],"evidenceWeight":0.5,"errorTag":"wrong_article_type"}],"ambiguityReview":{"passed":true,"reviewedBy":["content-review-2026-08-11"],"reviewedAt":"2026-08-11","notes":"Norsk bestemthet og spansk maskulin entall er eksplisitt.","checkedForAlternativeCorrectAnswers":true,"checkedForRegionalVariation":true},"sourceNote":"written-original"},
-            {"id":"diag.a1.verbs.regular_ar.present.hablar","contentVersion":1,"instructionNb":"Skriv riktig presensform av hablar.","prompt":"yo + hablar","targetType":"skill","targetId":"a1.verbs.regular_ar.present","direction":null,"responseMode":"typed","acceptedAnswers":[{"answerId":"hablo","value":"hablo","canonicalMeaningId":"regular_ar_present_yo"}],"primaryConstruct":"regular_ar_present","secondaryConstructs":["productive_control"],"informativeBands":["A1-start","A1"],"productiveAnchor":true,"maxEvidence":1,"normalization":{"unicode":"NFC","trimOuterWhitespace":true,"collapseInternalWhitespace":true,"ignoreTerminalPunctuation":true,"caseSensitive":false,"diacriticSensitive":false},"variantRules":[],"nearMissRules":[{"ruleId":"hablar_infinitive","values":["hablar"],"evidenceWeight":0.5,"errorTag":"infinitive_for_finite"}],"ambiguityReview":{"passed":true,"reviewedBy":["content-review-2026-08-11"],"reviewedAt":"2026-08-11","notes":"Person og verb er eksplisitt oppgitt.","checkedForAlternativeCorrectAnswers":true,"checkedForRegionalVariation":true},"sourceNote":"written-original"},
-            {"id":"diag.a1.verbs.regular_er.present.comer","contentVersion":1,"instructionNb":"Skriv riktig presensform av comer.","prompt":"tú + comer","targetType":"skill","targetId":"a1.verbs.regular_er.present","direction":null,"responseMode":"typed","acceptedAnswers":[{"answerId":"comes","value":"comes","canonicalMeaningId":"regular_er_present_tu"}],"primaryConstruct":"regular_er_present","secondaryConstructs":["productive_control"],"informativeBands":["A1-start","A1"],"productiveAnchor":true,"maxEvidence":1,"normalization":{"unicode":"NFC","trimOuterWhitespace":true,"collapseInternalWhitespace":true,"ignoreTerminalPunctuation":true,"caseSensitive":false,"diacriticSensitive":false},"variantRules":[],"nearMissRules":[{"ruleId":"comer_infinitive","values":["comer"],"evidenceWeight":0.5,"errorTag":"infinitive_for_finite"}],"ambiguityReview":{"passed":true,"reviewedBy":["content-review-2026-08-11"],"reviewedAt":"2026-08-11","notes":"Person og verb er eksplisitt oppgitt.","checkedForAlternativeCorrectAnswers":true,"checkedForRegionalVariation":true},"sourceNote":"written-original"},
-            {"id":"diag.a1.gustar.basic.choice","contentVersion":1,"instructionNb":"Velg riktig form av gustar.","prompt":"Me ___ los libros de aventuras.","targetType":"skill","targetId":"a1.gustar.basic","direction":null,"responseMode":"choice","acceptedAnswers":[{"answerId":"gustan","value":"gustan","canonicalMeaningId":"gustar_plural_subject"}],"options":[{"optionId":"gusta","label":"gusta"},{"optionId":"gustan","label":"gustan"},{"optionId":"gusto","label":"gusto"},{"optionId":"gustas","label":"gustas"}],"primaryConstruct":"gustar_plural_agreement","secondaryConstructs":["recognition"],"informativeBands":["A1-start","A1"],"productiveAnchor":false,"maxEvidence":1,"normalization":{"unicode":"NFC","trimOuterWhitespace":true,"collapseInternalWhitespace":true,"ignoreTerminalPunctuation":true,"caseSensitive":false,"diacriticSensitive":false},"variantRules":[],"nearMissRules":[{"ruleId":"gusta","values":["gusta"],"evidenceWeight":0.5,"errorTag":"wrong_number"}],"ambiguityReview":{"passed":true,"reviewedBy":["content-review-2026-08-11"],"reviewedAt":"2026-08-11","notes":"Los libros gjør grammatisk subjekt og tall tydelig.","checkedForAlternativeCorrectAnswers":true,"checkedForRegionalVariation":true},"sourceNote":"written-original"},
-            {"id":"diag.a1.ser_estar.identity_or_location.choice","contentVersion":1,"instructionNb":"Velg riktig verbform for plassering.","prompt":"Madrid ___ en España","targetType":"skill","targetId":"a1.ser_estar.identity_or_location","direction":null,"responseMode":"choice","acceptedAnswers":[{"answerId":"esta","value":"está","canonicalMeaningId":"estar_location"}],"options":[{"optionId":"es","label":"es"},{"optionId":"esta","label":"está"},{"optionId":"soy","label":"soy"},{"optionId":"hay","label":"hay"}],"primaryConstruct":"estar_location","secondaryConstructs":["recognition"],"informativeBands":["A1-start","A1"],"productiveAnchor":false,"maxEvidence":1,"normalization":{"unicode":"NFC","trimOuterWhitespace":true,"collapseInternalWhitespace":true,"ignoreTerminalPunctuation":true,"caseSensitive":false,"diacriticSensitive":true},"variantRules":[{"ruleId":"esta_without_accent","values":["esta"],"classification":"accent_or_case_variant","evidenceWeight":0.9,"reasonCode":"missing_diacritic"}],"nearMissRules":[{"ruleId":"es","values":["es"],"evidenceWeight":0.5,"errorTag":"ser_estar_confusion"}],"ambiguityReview":{"passed":true,"reviewedBy":["content-review-2026-08-11"],"reviewedAt":"2026-08-11","notes":"Lokasjon er eksplisitt; itemet tester ikke permanent/midlertidig-regelen.","checkedForAlternativeCorrectAnswers":true,"checkedForRegionalVariation":true},"sourceNote":"written-original"}
-        ]
-    </script>
+[
+  {
+    "id": "diag.vocab.greeting.hola.es_no",
+    "contentVersion": 2,
+    "instructionNb": "Skriv betydningen på norsk.",
+    "prompt": "hola",
+    "targetType": "word",
+    "targetId": "core.hola",
+    "direction": "esToNo",
+    "responseMode": "typed",
+    "acceptedAnswers": [
+      {
+        "answerId": "primary",
+        "value": "hei",
+        "canonicalMeaningId": "canonical:vocab-0064"
+      },
+      {
+        "answerId": "canonical-1",
+        "value": "hallo",
+        "canonicalMeaningId": "canonical:vocab-0064"
+      }
+    ],
+    "primaryConstruct": "concrete_vocabulary",
+    "secondaryConstructs": [
+      "recognition_to_production"
+    ],
+    "informativeBands": [
+      "A0",
+      "A0+"
+    ],
+    "productiveAnchor": false,
+    "maxEvidence": 1,
+    "normalization": {
+      "unicode": "NFC",
+      "trimOuterWhitespace": true,
+      "collapseInternalWhitespace": true,
+      "ignoreTerminalPunctuation": true,
+      "caseSensitive": false,
+      "diacriticSensitive": false
+    },
+    "variantRules": [],
+    "nearMissRules": [],
+    "ambiguityReview": {
+      "passed": true,
+      "reviewedBy": [
+        "content-review-2026-08-11"
+      ],
+      "reviewedAt": "2026-08-11",
+      "notes": "Direkte, entydig høyfrekvent hilsen.",
+      "checkedForAlternativeCorrectAnswers": true,
+      "checkedForRegionalVariation": true
+    },
+    "sourceNote": "written-original",
+    "vocabularyId": "vocab-0064"
+  },
+  {
+    "id": "diag.vocab.greeting.takk.no_es",
+    "contentVersion": 2,
+    "instructionNb": "Skriv ordet på spansk.",
+    "prompt": "takk",
+    "targetType": "word",
+    "targetId": "core.gracias",
+    "direction": "noToEs",
+    "responseMode": "typed",
+    "acceptedAnswers": [
+      {
+        "answerId": "primary",
+        "value": "gracias",
+        "canonicalMeaningId": "canonical:vocab-0065"
+      }
+    ],
+    "primaryConstruct": "concrete_vocabulary",
+    "secondaryConstructs": [
+      "production"
+    ],
+    "informativeBands": [
+      "A0",
+      "A0+"
+    ],
+    "productiveAnchor": false,
+    "maxEvidence": 1,
+    "normalization": {
+      "unicode": "NFC",
+      "trimOuterWhitespace": true,
+      "collapseInternalWhitespace": true,
+      "ignoreTerminalPunctuation": true,
+      "caseSensitive": false,
+      "diacriticSensitive": false
+    },
+    "variantRules": [],
+    "nearMissRules": [],
+    "ambiguityReview": {
+      "passed": true,
+      "reviewedBy": [
+        "content-review-2026-08-11"
+      ],
+      "reviewedAt": "2026-08-11",
+      "notes": "Direkte, entydig høyfrekvent høflighetsord.",
+      "checkedForAlternativeCorrectAnswers": true,
+      "checkedForRegionalVariation": true
+    },
+    "sourceNote": "written-original",
+    "vocabularyId": "vocab-0065"
+  },
+  {
+    "id": "diag.vocab.family.madre.es_no",
+    "contentVersion": 3,
+    "instructionNb": "Skriv betydningen på norsk.",
+    "prompt": "la madre",
+    "targetType": "word",
+    "targetId": "core.madre",
+    "direction": "esToNo",
+    "responseMode": "typed",
+    "acceptedAnswers": [
+      {
+        "answerId": "primary",
+        "value": "mor",
+        "canonicalMeaningId": "canonical:vocab-0179"
+      },
+      {
+        "answerId": "canonical-1",
+        "value": "mamma",
+        "canonicalMeaningId": "canonical:vocab-0179"
+      },
+      {
+        "answerId": "canonical-2",
+        "value": "moren",
+        "canonicalMeaningId": "canonical:vocab-0179"
+      }
+    ],
+    "primaryConstruct": "concrete_vocabulary",
+    "secondaryConstructs": [
+      "article_recognition"
+    ],
+    "informativeBands": [
+      "A0",
+      "A0+"
+    ],
+    "productiveAnchor": false,
+    "maxEvidence": 1,
+    "normalization": {
+      "unicode": "NFC",
+      "trimOuterWhitespace": true,
+      "collapseInternalWhitespace": true,
+      "ignoreTerminalPunctuation": true,
+      "caseSensitive": false,
+      "diacriticSensitive": false
+    },
+    "variantRules": [],
+    "nearMissRules": [],
+    "ambiguityReview": {
+      "passed": true,
+      "reviewedBy": [
+        "Codex (kildesjekk; ikke lærergodkjenning)"
+      ],
+      "reviewedAt": "2026-09-09",
+      "notes": "Eksplisitt tillegg av mora. Kildestøtte: https://sprakradet.no/spraksporsmal-og-svar/far-min-mor-mi-fader-var-og-sa-videre/. Samlet lærergjennomgang gjenstår i spansk-ungdomsskole-ee0.",
+      "checkedForAlternativeCorrectAnswers": true,
+      "checkedForRegionalVariation": true
+    },
+    "sourceNote": "written-original",
+    "vocabularyId": "vocab-0179"
+  },
+  {
+    "id": "diag.vocab.number.fem.no_es",
+    "contentVersion": 2,
+    "instructionNb": "Skriv tallet på spansk.",
+    "prompt": "fem",
+    "targetType": "word",
+    "targetId": "core.cinco",
+    "direction": "noToEs",
+    "responseMode": "typed",
+    "acceptedAnswers": [
+      {
+        "answerId": "primary",
+        "value": "cinco",
+        "canonicalMeaningId": "canonical:vocab-0005"
+      }
+    ],
+    "primaryConstruct": "concrete_vocabulary",
+    "secondaryConstructs": [
+      "production"
+    ],
+    "informativeBands": [
+      "A0",
+      "A0+"
+    ],
+    "productiveAnchor": false,
+    "maxEvidence": 1,
+    "normalization": {
+      "unicode": "NFC",
+      "trimOuterWhitespace": true,
+      "collapseInternalWhitespace": true,
+      "ignoreTerminalPunctuation": true,
+      "caseSensitive": false,
+      "diacriticSensitive": false
+    },
+    "variantRules": [],
+    "nearMissRules": [],
+    "ambiguityReview": {
+      "passed": true,
+      "reviewedBy": [
+        "content-review-2026-08-11"
+      ],
+      "reviewedAt": "2026-08-11",
+      "notes": "Direkte og entydig talloppgave.",
+      "checkedForAlternativeCorrectAnswers": true,
+      "checkedForRegionalVariation": true
+    },
+    "sourceNote": "written-original",
+    "vocabularyId": "vocab-0005"
+  },
+  {
+    "id": "diag.a0.identity.me_llamo.typed",
+    "contentVersion": 2,
+    "instructionNb": "Skriv på spansk.",
+    "prompt": "Jeg heter Ana",
+    "targetType": "skill",
+    "targetId": "a0.identity.me_llamo",
+    "direction": null,
+    "responseMode": "typed",
+    "acceptedAnswers": [
+      {
+        "answerId": "me_llamo_ana",
+        "value": "me llamo ana",
+        "canonicalMeaningId": "say_name_me_llamo"
+      },
+      {
+        "answerId": "yo_me_llamo_ana",
+        "value": "yo me llamo ana",
+        "canonicalMeaningId": "say_name_me_llamo"
+      }
+    ],
+    "primaryConstruct": "formulaic_identity",
+    "secondaryConstructs": [
+      "productive_control"
+    ],
+    "informativeBands": [
+      "A0+",
+      "A1-start"
+    ],
+    "productiveAnchor": true,
+    "maxEvidence": 1,
+    "normalization": {
+      "unicode": "NFC",
+      "trimOuterWhitespace": true,
+      "collapseInternalWhitespace": true,
+      "ignoreTerminalPunctuation": true,
+      "caseSensitive": false,
+      "diacriticSensitive": false
+    },
+    "variantRules": [],
+    "nearMissRules": [
+      {
+        "ruleId": "me_llama_ana",
+        "values": [
+          "me llama ana"
+        ],
+        "evidenceWeight": 0.5,
+        "errorTag": "wrong_person"
+      }
+    ],
+    "ambiguityReview": {
+      "passed": true,
+      "reviewedBy": [
+        "Codex (kildesjekk; ikke lærergodkjenning)"
+      ],
+      "reviewedAt": "2026-09-09",
+      "notes": "Eksplisitt tillegg av yo me llamo ana. Kildestøtte: https://cvc.cervantes.es/ensenanza/biblioteca_ele/asele/pdf/15/15_0887.pdf. Samlet lærergjennomgang gjenstår i spansk-ungdomsskole-ee0.",
+      "checkedForAlternativeCorrectAnswers": true,
+      "checkedForRegionalVariation": true
+    },
+    "sourceNote": "written-original"
+  },
+  {
+    "id": "diag.a0.identity.soy_de.choice",
+    "contentVersion": 1,
+    "instructionNb": "Velg den spanske setningen som betyr «Jeg er fra Norge».",
+    "prompt": "Jeg er fra Norge",
+    "targetType": "skill",
+    "targetId": "a0.identity.soy_de",
+    "direction": null,
+    "responseMode": "choice",
+    "acceptedAnswers": [
+      {
+        "answerId": "soy_de_noruega",
+        "value": "Soy de Noruega",
+        "canonicalMeaningId": "origin_soy_de"
+      }
+    ],
+    "options": [
+      {
+        "optionId": "soy_de_noruega",
+        "label": "Soy de Noruega"
+      },
+      {
+        "optionId": "estoy_de_noruega",
+        "label": "Estoy de Noruega"
+      },
+      {
+        "optionId": "me_llamo_noruega",
+        "label": "Me llamo Noruega"
+      }
+    ],
+    "primaryConstruct": "identity_origin",
+    "secondaryConstructs": [
+      "recognition"
+    ],
+    "informativeBands": [
+      "A0+",
+      "A1-start"
+    ],
+    "productiveAnchor": false,
+    "maxEvidence": 1,
+    "normalization": {
+      "unicode": "NFC",
+      "trimOuterWhitespace": true,
+      "collapseInternalWhitespace": true,
+      "ignoreTerminalPunctuation": true,
+      "caseSensitive": false,
+      "diacriticSensitive": false
+    },
+    "variantRules": [],
+    "nearMissRules": [],
+    "ambiguityReview": {
+      "passed": true,
+      "reviewedBy": [
+        "content-review-2026-08-11"
+      ],
+      "reviewedAt": "2026-08-11",
+      "notes": "Norsk betydning og register er eksplisitt.",
+      "checkedForAlternativeCorrectAnswers": true,
+      "checkedForRegionalVariation": true
+    },
+    "sourceNote": "written-original"
+  },
+  {
+    "id": "diag.a0.articles.indefinite_singular.choice",
+    "contentVersion": 1,
+    "instructionNb": "Velg den spanske formuleringen som betyr «et hus».",
+    "prompt": "et hus",
+    "targetType": "skill",
+    "targetId": "a0.articles.indefinite_singular",
+    "direction": null,
+    "responseMode": "choice",
+    "acceptedAnswers": [
+      {
+        "answerId": "una_casa",
+        "value": "una casa",
+        "canonicalMeaningId": "indefinite_feminine_singular"
+      }
+    ],
+    "options": [
+      {
+        "optionId": "una_casa",
+        "label": "una casa"
+      },
+      {
+        "optionId": "la_casa",
+        "label": "la casa"
+      },
+      {
+        "optionId": "un_casa",
+        "label": "un casa"
+      },
+      {
+        "optionId": "el_casa",
+        "label": "el casa"
+      }
+    ],
+    "primaryConstruct": "indefinite_article_gender",
+    "secondaryConstructs": [
+      "recognition"
+    ],
+    "informativeBands": [
+      "A0+",
+      "A1-start"
+    ],
+    "productiveAnchor": false,
+    "maxEvidence": 1,
+    "normalization": {
+      "unicode": "NFC",
+      "trimOuterWhitespace": true,
+      "collapseInternalWhitespace": true,
+      "ignoreTerminalPunctuation": true,
+      "caseSensitive": false,
+      "diacriticSensitive": false
+    },
+    "variantRules": [],
+    "nearMissRules": [
+      {
+        "ruleId": "la_casa",
+        "values": [
+          "la casa"
+        ],
+        "evidenceWeight": 0.5,
+        "errorTag": "wrong_article_type"
+      }
+    ],
+    "ambiguityReview": {
+      "passed": true,
+      "reviewedBy": [
+        "content-review-2026-08-11"
+      ],
+      "reviewedAt": "2026-08-11",
+      "notes": "Betydningen «et hus» gjør bestemt/ubestemt valg entydig.",
+      "checkedForAlternativeCorrectAnswers": true,
+      "checkedForRegionalVariation": true
+    },
+    "sourceNote": "written-original"
+  },
+  {
+    "id": "diag.a0.articles.definite_singular.choice",
+    "contentVersion": 1,
+    "instructionNb": "Velg den spanske formuleringen som betyr «boka».",
+    "prompt": "boka",
+    "targetType": "skill",
+    "targetId": "a0.articles.definite_singular",
+    "direction": null,
+    "responseMode": "choice",
+    "acceptedAnswers": [
+      {
+        "answerId": "el_libro",
+        "value": "el libro",
+        "canonicalMeaningId": "definite_masculine_singular"
+      }
+    ],
+    "options": [
+      {
+        "optionId": "el_libro",
+        "label": "el libro"
+      },
+      {
+        "optionId": "un_libro",
+        "label": "un libro"
+      },
+      {
+        "optionId": "la_libro",
+        "label": "la libro"
+      },
+      {
+        "optionId": "una_libro",
+        "label": "una libro"
+      }
+    ],
+    "primaryConstruct": "definite_article_gender",
+    "secondaryConstructs": [
+      "recognition"
+    ],
+    "informativeBands": [
+      "A0+",
+      "A1-start"
+    ],
+    "productiveAnchor": false,
+    "maxEvidence": 1,
+    "normalization": {
+      "unicode": "NFC",
+      "trimOuterWhitespace": true,
+      "collapseInternalWhitespace": true,
+      "ignoreTerminalPunctuation": true,
+      "caseSensitive": false,
+      "diacriticSensitive": false
+    },
+    "variantRules": [],
+    "nearMissRules": [
+      {
+        "ruleId": "un_libro",
+        "values": [
+          "un libro"
+        ],
+        "evidenceWeight": 0.5,
+        "errorTag": "wrong_article_type"
+      }
+    ],
+    "ambiguityReview": {
+      "passed": true,
+      "reviewedBy": [
+        "content-review-2026-08-11"
+      ],
+      "reviewedAt": "2026-08-11",
+      "notes": "Norsk bestemthet og spansk maskulin entall er eksplisitt.",
+      "checkedForAlternativeCorrectAnswers": true,
+      "checkedForRegionalVariation": true
+    },
+    "sourceNote": "written-original"
+  },
+  {
+    "id": "diag.a1.verbs.regular_ar.present.hablar",
+    "contentVersion": 1,
+    "instructionNb": "Skriv riktig presensform av hablar.",
+    "prompt": "yo + hablar",
+    "targetType": "skill",
+    "targetId": "a1.verbs.regular_ar.present",
+    "direction": null,
+    "responseMode": "typed",
+    "acceptedAnswers": [
+      {
+        "answerId": "hablo",
+        "value": "hablo",
+        "canonicalMeaningId": "regular_ar_present_yo"
+      }
+    ],
+    "primaryConstruct": "regular_ar_present",
+    "secondaryConstructs": [
+      "productive_control"
+    ],
+    "informativeBands": [
+      "A1-start",
+      "A1"
+    ],
+    "productiveAnchor": true,
+    "maxEvidence": 1,
+    "normalization": {
+      "unicode": "NFC",
+      "trimOuterWhitespace": true,
+      "collapseInternalWhitespace": true,
+      "ignoreTerminalPunctuation": true,
+      "caseSensitive": false,
+      "diacriticSensitive": false
+    },
+    "variantRules": [],
+    "nearMissRules": [
+      {
+        "ruleId": "hablar_infinitive",
+        "values": [
+          "hablar"
+        ],
+        "evidenceWeight": 0.5,
+        "errorTag": "infinitive_for_finite"
+      }
+    ],
+    "ambiguityReview": {
+      "passed": true,
+      "reviewedBy": [
+        "content-review-2026-08-11"
+      ],
+      "reviewedAt": "2026-08-11",
+      "notes": "Person og verb er eksplisitt oppgitt.",
+      "checkedForAlternativeCorrectAnswers": true,
+      "checkedForRegionalVariation": true
+    },
+    "sourceNote": "written-original"
+  },
+  {
+    "id": "diag.a1.verbs.regular_er.present.comer",
+    "contentVersion": 1,
+    "instructionNb": "Skriv riktig presensform av comer.",
+    "prompt": "tú + comer",
+    "targetType": "skill",
+    "targetId": "a1.verbs.regular_er.present",
+    "direction": null,
+    "responseMode": "typed",
+    "acceptedAnswers": [
+      {
+        "answerId": "comes",
+        "value": "comes",
+        "canonicalMeaningId": "regular_er_present_tu"
+      }
+    ],
+    "primaryConstruct": "regular_er_present",
+    "secondaryConstructs": [
+      "productive_control"
+    ],
+    "informativeBands": [
+      "A1-start",
+      "A1"
+    ],
+    "productiveAnchor": true,
+    "maxEvidence": 1,
+    "normalization": {
+      "unicode": "NFC",
+      "trimOuterWhitespace": true,
+      "collapseInternalWhitespace": true,
+      "ignoreTerminalPunctuation": true,
+      "caseSensitive": false,
+      "diacriticSensitive": false
+    },
+    "variantRules": [],
+    "nearMissRules": [
+      {
+        "ruleId": "comer_infinitive",
+        "values": [
+          "comer"
+        ],
+        "evidenceWeight": 0.5,
+        "errorTag": "infinitive_for_finite"
+      }
+    ],
+    "ambiguityReview": {
+      "passed": true,
+      "reviewedBy": [
+        "content-review-2026-08-11"
+      ],
+      "reviewedAt": "2026-08-11",
+      "notes": "Person og verb er eksplisitt oppgitt.",
+      "checkedForAlternativeCorrectAnswers": true,
+      "checkedForRegionalVariation": true
+    },
+    "sourceNote": "written-original"
+  },
+  {
+    "id": "diag.a1.gustar.basic.choice",
+    "contentVersion": 1,
+    "instructionNb": "Velg riktig form av gustar.",
+    "prompt": "Me ___ los libros de aventuras.",
+    "targetType": "skill",
+    "targetId": "a1.gustar.basic",
+    "direction": null,
+    "responseMode": "choice",
+    "acceptedAnswers": [
+      {
+        "answerId": "gustan",
+        "value": "gustan",
+        "canonicalMeaningId": "gustar_plural_subject"
+      }
+    ],
+    "options": [
+      {
+        "optionId": "gusta",
+        "label": "gusta"
+      },
+      {
+        "optionId": "gustan",
+        "label": "gustan"
+      },
+      {
+        "optionId": "gusto",
+        "label": "gusto"
+      },
+      {
+        "optionId": "gustas",
+        "label": "gustas"
+      }
+    ],
+    "primaryConstruct": "gustar_plural_agreement",
+    "secondaryConstructs": [
+      "recognition"
+    ],
+    "informativeBands": [
+      "A1-start",
+      "A1"
+    ],
+    "productiveAnchor": false,
+    "maxEvidence": 1,
+    "normalization": {
+      "unicode": "NFC",
+      "trimOuterWhitespace": true,
+      "collapseInternalWhitespace": true,
+      "ignoreTerminalPunctuation": true,
+      "caseSensitive": false,
+      "diacriticSensitive": false
+    },
+    "variantRules": [],
+    "nearMissRules": [
+      {
+        "ruleId": "gusta",
+        "values": [
+          "gusta"
+        ],
+        "evidenceWeight": 0.5,
+        "errorTag": "wrong_number"
+      }
+    ],
+    "ambiguityReview": {
+      "passed": true,
+      "reviewedBy": [
+        "content-review-2026-08-11"
+      ],
+      "reviewedAt": "2026-08-11",
+      "notes": "Los libros gjør grammatisk subjekt og tall tydelig.",
+      "checkedForAlternativeCorrectAnswers": true,
+      "checkedForRegionalVariation": true
+    },
+    "sourceNote": "written-original"
+  },
+  {
+    "id": "diag.a1.ser_estar.identity_or_location.choice",
+    "contentVersion": 1,
+    "instructionNb": "Velg riktig verbform for plassering.",
+    "prompt": "Madrid ___ en España",
+    "targetType": "skill",
+    "targetId": "a1.ser_estar.identity_or_location",
+    "direction": null,
+    "responseMode": "choice",
+    "acceptedAnswers": [
+      {
+        "answerId": "esta",
+        "value": "está",
+        "canonicalMeaningId": "estar_location"
+      }
+    ],
+    "options": [
+      {
+        "optionId": "es",
+        "label": "es"
+      },
+      {
+        "optionId": "esta",
+        "label": "está"
+      },
+      {
+        "optionId": "soy",
+        "label": "soy"
+      },
+      {
+        "optionId": "hay",
+        "label": "hay"
+      }
+    ],
+    "primaryConstruct": "estar_location",
+    "secondaryConstructs": [
+      "recognition"
+    ],
+    "informativeBands": [
+      "A1-start",
+      "A1"
+    ],
+    "productiveAnchor": false,
+    "maxEvidence": 1,
+    "normalization": {
+      "unicode": "NFC",
+      "trimOuterWhitespace": true,
+      "collapseInternalWhitespace": true,
+      "ignoreTerminalPunctuation": true,
+      "caseSensitive": false,
+      "diacriticSensitive": true
+    },
+    "variantRules": [
+      {
+        "ruleId": "esta_without_accent",
+        "values": [
+          "esta"
+        ],
+        "classification": "accent_or_case_variant",
+        "evidenceWeight": 0.9,
+        "reasonCode": "missing_diacritic"
+      }
+    ],
+    "nearMissRules": [
+      {
+        "ruleId": "es",
+        "values": [
+          "es"
+        ],
+        "evidenceWeight": 0.5,
+        "errorTag": "ser_estar_confusion"
+      }
+    ],
+    "ambiguityReview": {
+      "passed": true,
+      "reviewedBy": [
+        "content-review-2026-08-11"
+      ],
+      "reviewedAt": "2026-08-11",
+      "notes": "Lokasjon er eksplisitt; itemet tester ikke permanent/midlertidig-regelen.",
+      "checkedForAlternativeCorrectAnswers": true,
+      "checkedForRegionalVariation": true
+    },
+    "sourceNote": "written-original"
+  }
+]
+</script>
 
     <script type="application/json" id="grammar-lessons-data">
         {
@@ -1494,8 +2246,8 @@
             { id:'madrid-plaza', title:'En morgen i Madrid', level:'A0', region:'Spania', place:'Madrid', theme:'Byliv', intro:'Ana går til torget en solrik morgen.', hints:['la plaza = torget'], audioDir:'Ana vive en Madrid', audioExt:'wav', fullAudio:'Ana vive en Madrid full.m4a', segments:[['Ana vive en Madrid.','Ana vive en Madrid 1'],['Por la mañana, sale de casa.','Ana vive en Madrid 2'],['Camina hasta la plaza.','Ana vive en Madrid 3'],['Hay muchas personas.','Ana vive en Madrid 4'],['Ana compra pan.','Ana vive en Madrid 5'],['Después, ve un perro pequeño.','Ana vive en Madrid 6'],['El perro tiene una pelota roja.','Ana vive en Madrid 7'],['Ana vuelve a casa contenta.','Ana vive en Madrid 8']] },
             { id:'oaxaca-mercado', title:'Markedet i Oaxaca', level:'A0', region:'Mexico', place:'Oaxaca', theme:'Mat og marked', intro:'Luis besøker et fargerikt marked.', hints:['el mercado = marked'], audioDir:'Luis está en Oaxaca', audioExt:'wav', fullAudio:'Luis está en Oaxaca .wav', segments:[['Luis está en Oaxaca.','Luis está en Oaxaca 1'],['Visita un mercado grande.','Luis está en Oaxaca 2'],['Hay frutas de muchos colores.','Luis está en Oaxaca 3'],['Luis compra dos mangos.','Luis está en Oaxaca 4'],['La vendedora sonríe.','Luis está en Oaxaca 5'],['También compra una botella de agua.','Luis está en Oaxaca 6'],['El mercado tiene música.','Luis está en Oaxaca 7'],['Luis vuelve feliz a casa.','Luis está en Oaxaca 8']] },
             { id:'antigua-volcan', title:'Utsikten i Antigua', level:'A1', region:'Mellom-Amerika', place:'Antigua Guatemala', theme:'Natur og utsikt', intro:'Sofía ser en vulkan fra byen.', hints:['el volcán = vulkan'], audioDir:'Sofía vive en antigua Guatemala', audioExt:'wav', fullAudio:'Sofía vive en antigua Guatemala.wav', segments:[['Sofía vive en Antigua Guatemala.','Sofía vive en antigua Guatemala 1.wav'],['Por la tarde, camina con su hermano.','Sofía vive en anrtigua Guatemala 2.wav'],['Las calles son bonitas.','Sofía vive en anrtigua Guatemala 3.wav'],['Desde la plaza, ven un volcán.','Sofía vive en anrtigua Guatemala 4.wav'],['El volcán está detrás de las casas.','Sofía vive en anrtigua Guatemala 5.wav'],['El cielo es azul y claro.','Sofía vive en anrtigua Guatemala 6.wav'],['Sofía hace una foto.','Sofía vive en anrtigua Guatemala 7.wav'],['Después, toma un chocolate caliente.','Sofía vive en anrtigua Guatemala 8.wav']] },
-            { id:'buenosaires-biblioteca', title:'Biblioteket i Buenos Aires', level:'A1', region:'Sør-Amerika', place:'Buenos Aires', theme:'Bøker og fritid', intro:'Tomás finner en spennende bok.', hints:['la biblioteca = bibliotek'], segments:[['Tomás vive en Buenos Aires.','ba-1'],['Le gusta leer en la biblioteca.','ba-2'],['Un sábado, busca un libro nuevo.','ba-3'],['El libro habla de animales.','ba-4'],['Tomás se sienta cerca de la ventana.','ba-5'],['Lee durante una hora.','ba-6'],['Después, escribe una nota.','ba-7'],['Vuelve a casa en autobús.','ba-8']] },
-            { id:'barcelona-bici', title:'En sykkeltur i Barcelona', level:'A1+', region:'Spania', place:'Barcelona', theme:'By og transport', intro:'Nora sykler langs havet.', hints:['la bicicleta = sykkel'], segments:[['Nora pasa una semana en Barcelona.','bcn-1'],['Cada mañana, monta en bicicleta.','bcn-2'],['Pedalea cerca del mar.','bcn-3'],['El aire es fresco y limpio.','bcn-4'],['Un día, encuentra un parque tranquilo.','bcn-5'],['Se sienta bajo un árbol.','bcn-6'],['Escucha a los pájaros.','bcn-7'],['Por la tarde, vuelve al hotel.','bcn-8']] }
+            { id:'buenosaires-biblioteca', title:'Biblioteket i Buenos Aires', level:'A1', region:'Sør-Amerika', place:'Buenos Aires', theme:'Bøker og fritid', intro:'Tomás finner en spennende bok.', hints:['la biblioteca = bibliotek'], audioDir:'Tomás vive en Buenos Aires', audioExt:'wav', fullAudio:'Tomás vive en Buenos Aires .wav', segments:[['Tomás vive en Buenos Aires.','Tomás vive en Buenos Aires 1.wav'],['Le gusta leer en la biblioteca.','Tomás vive en Buenos Aires 2.wav'],['Un sábado, busca un libro nuevo.','Tomás vive en Buenos Aires 3.wav'],['El libro habla de animales.','Tomás vive en Buenos Aires 4.wav'],['Tomás se sienta cerca de la ventana.','Tomás vive en Buenos Aires 5.wav'],['Lee durante una hora.','Tomás vive en Buenos Aires 6.wav'],['Después, escribe una nota.','Tomás vive en Buenos Aires 7.wav'],['Vuelve a casa en autobús.','Tomás vive en Buenos Aires 8.wav']] },
+            { id:'barcelona-bici', title:'En sykkeltur i Barcelona', level:'A1+', region:'Spania', place:'Barcelona', theme:'By og transport', intro:'Nora sykler langs havet.', hints:['la bicicleta = sykkel'], audioDir:'Nora pasa una semana', audioExt:'wav', fullAudio:'Nora pasa una semana.wav', segments:[['Nora pasa una semana en Barcelona.','Nora pasa una semana 1.wav'],['Cada mañana, monta en bicicleta.','Nora pasa una semana 2.wav'],['Pedalea cerca del mar.','Nora pasa una semana 3.wav'],['El aire es fresco y limpio.','Nora pasa una semana 4.wav'],['Un día, encuentra un parque tranquilo.','Nora pasa una semana 5.wav'],['Se sienta bajo un árbol.','Nora pasa una semana 6.wav'],['Escucha a los pájaros.','Nora pasa una semana 7.wav'],['Por la tarde, vuelve al hotel.','Nora pasa una semana 8.wav']] }
         ];
         const DICTATION_TRANSLATIONS = {
             'madrid-plaza':['Ana bor i Madrid.','Om morgenen går hun hjemmefra.','Hun går til torget.','Det er mange mennesker der.','Ana kjøper brød.','Etterpå ser hun en liten hund.','Hunden har en rød ball.','Ana går fornøyd hjem.'],
@@ -1504,7 +2256,206 @@
             'buenosaires-biblioteca':['Tomás bor i Buenos Aires.','Han liker å lese på biblioteket.','En lørdag leter han etter en ny bok.','Boken handler om dyr.','Tomás setter seg nær vinduet.','Han leser i en time.','Etterpå skriver han en lapp.','Han tar bussen hjem.'],
             'barcelona-bici':['Nora er en uke i Barcelona.','Hver morgen sykler hun.','Hun sykler nær havet.','Luften er frisk og ren.','En dag finner hun en rolig park.','Hun setter seg under et tre.','Hun lytter til fuglene.','Om ettermiddagen sykler hun tilbake til hotellet.']
         };
+        const LISTENING_STORIES = [{
+            id:'leo-sevilla', title:'En lørdag i Sevilla', level:'A1', region:'Spania', place:'Sevilla', theme:'Hverdagsliv og fritid', durationSeconds:68.14,
+            intro:'Leo forteller om en hel lørdag i Sevilla.', audioDir:'lyttehistorier', audioExt:'wav', fullAudio:'Leo-Sevilla.wav',
+            transcript:'Hola, soy Leo y vivo en Sevilla. Hoy es sábado y hace buen tiempo. Por la mañana, desayuno pan, fruta y yogur con mi madre. Después, preparo mi mochila y voy en bicicleta al parque. En el parque hay muchos árboles, flores y un pequeño lago. Veo a mi amiga Marta cerca de una fuente. Ella tiene una pelota amarilla. Jugamos al fútbol durante un rato y hablamos de la escuela. Luego, nos sentamos en un banco y bebemos agua. Antes de volver a casa, compramos un helado de chocolate y caminamos despacio por la plaza. Al mediodía, mi padre prepara arroz y ensalada para toda la familia. Comemos juntos en la cocina y contamos cosas divertidas. Por la tarde, leo un cómic, escucho música y ordeno mi habitación. También riego las plantas del balcón y preparo la ropa para el lunes. Estoy cansado, pero contento. Me gusta mucho el sábado.',
+            translation:'Hei, jeg heter Leo og bor i Sevilla. I dag er det lørdag og fint vær. Om morgenen spiser jeg brød, frukt og yoghurt med moren min. Etterpå pakker jeg sekken og sykler til parken. I parken er det mange trær, blomster og en liten innsjø. Jeg ser venninnen min Marta ved en fontene. Hun har en gul ball. Vi spiller fotball en stund og snakker om skolen. Så setter vi oss på en benk og drikker vann. Før vi går hjem, kjøper vi en sjokoladeis og går sakte gjennom torget. Ved lunsjtider lager faren min ris og salat til hele familien. Vi spiser sammen på kjøkkenet og forteller morsomme ting. Om ettermiddagen leser jeg en tegneserie, hører på musikk og rydder rommet mitt. Jeg vanner også plantene på balkongen og legger frem klær til mandag. Jeg er trøtt, men glad. Jeg liker lørdagen veldig godt.',
+            questions:[
+                {id:'leo-main', prompt:'Hva gjør Leo denne lørdagen?', options:[
+                    {id:'day',text:'Han sykler til parken, møter Marta, spiller fotball og kjøper is.'},
+                    {id:'market',text:'Han går til markedet, kjøper frukt og leser en bok.'},
+                    {id:'beach',text:'Han tar bussen til stranden og svømmer med faren sin.'},
+                    {id:'home',text:'Han blir hjemme, ser på film og lager middag alene.'}
+                ], correctOptionId:'day', explanation:'Leo sykler til parken, møter Marta, spiller fotball og kjøper is før han drar hjem.'},
+                {id:'leo-detail', prompt:'Hva har Marta med seg til parken?', options:[
+                    {id:'yellow-ball',text:'En gul ball.'},{id:'red-ball',text:'En rød ball.'},{id:'yellow-bag',text:'En gul veske.'},{id:'blue-bike',text:'En blå sykkel.'}
+                ], correctOptionId:'yellow-ball', explanation:'Marta har en gul ball.'},
+                {id:'leo-before-home', prompt:'Hva gjør Leo og Marta før de går hjem?', options:[
+                    {id:'ice',text:'De kjøper en sjokoladeis.'},{id:'lunch',text:'De spiser ris og salat.'},{id:'comic',text:'De leser en tegneserie på benken.'},{id:'bus',text:'De tar bussen til skolen.'}
+                ], correctOptionId:'ice', explanation:'Før Leo kommer hjem, kjøper han og Marta en sjokoladeis.'}
+            ]
+        }, {
+            id:'carmen-madrid-a0', title:'Carmen finner veien', level:'A0', region:'Spania', place:'Madrid', theme:'By og skole', durationSeconds:35.6,
+            intro:'Carmen spør om veien til et museum i Madrid.', fullAudio:'Hola soy Carmen .wav',
+            transcript:'Hola, soy Carmen. Estoy en Madrid con mi clase. Después de comer, queremos ir al museo. Mi amiga Julia tiene un mapa, pero no encuentra la calle. Preguntamos a un señor: «¿Dónde está el museo?». Él señala una calle pequeña y dice: «Está cerca del parque». Caminamos cinco minutos y vemos la entrada. El museo es grande y tiene una puerta azul. La profesora dice que tenemos veinte minutos para mirar una exposición de fotos. Estoy un poco cansada, pero muy contenta.',
+            translation:'Hei, jeg heter Carmen. Jeg er i Madrid med klassen min. Etter at vi har spist, vil vi gå til museet. Venninnen min Julia har et kart, men finner ikke gaten. Vi spør en mann: «Hvor er museet?». Han peker på en liten gate og sier: «Det er nær parken». Vi går i fem minutter og ser inngangen. Museet er stort og har en blå dør. Læreren sier at vi har tjue minutter til å se på en fotoutstilling. Jeg er litt trøtt, men veldig glad.',
+            questions:[
+                {id:'carmen-with',prompt:'Hvem er Carmen sammen med?',options:[{id:'class',text:'Klassen sin.'},{id:'family',text:'Familien sin.'},{id:'football-team',text:'Et fotballag.'},{id:'neighbors',text:'Naboene sine.'}],correctOptionId:'class',explanation:'Carmen er i Madrid con mi clase, med klassen sin.'},
+                {id:'carmen-help',prompt:'Hvem hjelper Carmen og Julia?',options:[{id:'man',text:'En mann på gaten.'},{id:'teacher',text:'Læreren.'},{id:'museum-guide',text:'En guide på museet.'},{id:'bus-driver',text:'En bussjåfør.'}],correctOptionId:'man',explanation:'De spør en mann om veien til museet.'},
+                {id:'carmen-exhibition',prompt:'Hva skal klassen se på museet?',options:[{id:'photos',text:'En fotoutstilling.'},{id:'animals',text:'En utstilling om dyr.'},{id:'football',text:'En fotballkamp.'},{id:'food',text:'En matutstilling.'}],correctOptionId:'photos',explanation:'Læreren gir dem tid til å se una exposición de fotos.'}
+            ]
+        }, {
+            id:'mateo-puebla-a0', title:'Mateo og den gule bussen', level:'A0', region:'Mexico', place:'Puebla', theme:'By og transport', durationSeconds:38.85,
+            intro:'Mateo forteller om en tur til sentrum i Puebla.', fullAudio:'Me llamo Mateo y viv.wav',
+            transcript:'Me llamo Mateo y vivo en Puebla. Esta mañana voy al centro con mi primo Nico. Queremos comprar un regalo para nuestra abuela. En la parada hay mucha gente y un autobús amarillo llega muy rápido. Nico mira el número y dice: «No es nuestro autobús». Esperamos unos minutos más. Mientras esperamos, una señora vende zumo de naranja. Compramos un vaso para compartir. Por fin llega el autobús número doce. Nos sentamos junto a la ventana y vemos una plaza con flores. Nico recuerda que el regalo tiene que ser pequeño porque volvemos a casa a pie.',
+            translation:'Jeg heter Mateo og bor i Puebla. I morges skal jeg til sentrum med fetteren min Nico. Vi vil kjøpe en gave til bestemoren vår. På holdeplassen er det mange mennesker, og en gul buss kommer veldig fort. Nico ser på nummeret og sier: «Det er ikke vår buss». Vi venter noen minutter til. Mens vi venter, selger en dame appelsinjuice. Vi kjøper ett glass som vi deler. Endelig kommer buss nummer tolv. Vi setter oss ved vinduet og ser et torg med blomster. Nico husker at gaven må være liten fordi vi går hjem.',
+            questions:[
+                {id:'mateo-goal',prompt:'Hva vil Mateo og Nico kjøpe?',options:[{id:'gift',text:'En gave til bestemoren.'},{id:'tickets',text:'To bussbilletter.'},{id:'lunch',text:'Lunsj til klassen.'},{id:'flowers',text:'Blomster til læreren.'}],correctOptionId:'gift',explanation:'De vil kjøpe un regalo para nuestra abuela.'},
+                {id:'mateo-waits',prompt:'Hva kjøper de mens de venter?',options:[{id:'juice',text:'Et glass appelsinjuice.'},{id:'icecream',text:'En is.'},{id:'map',text:'Et kart.'},{id:'book',text:'En bok.'}],correctOptionId:'juice',explanation:'En dame selger zumo de naranja, og de deler et glass.'},
+                {id:'mateo-bus',prompt:'Hvilken buss tar de?',options:[{id:'twelve',text:'Buss nummer tolv.'},{id:'yellow',text:'Den første gule bussen.'},{id:'five',text:'Buss nummer fem.'},{id:'none',text:'De tar ingen buss.'}],correctOptionId:'twelve',explanation:'Etter å ha ventet kommer autobús número doce.'}
+            ]
+        }, {
+            id:'ines-valparaiso-a1', title:'En uventet ettermiddag i Valparaíso', level:'A1', region:'Sør-Amerika', place:'Valparaíso', theme:'Byliv og kunst', durationSeconds:30.9,
+            intro:'Inés møter en gatekunstner på vei hjem i Valparaíso.', fullAudio:'Hola soy Inés.mp3',
+            transcript:"Hola, soy Inés y vivo en Valparaíso, en Chile. En mi ciudad hay casas de muchos colores. Hoy estoy en la biblioteca. Leo un libro sobre animales. Después, quiero ir al puerto, pero el ascensor está cerrado. Por eso voy a pie. En una calle veo a un artista. Pinta un gato azul con una bicicleta en una pared. Una chica mira el dibujo y habla conmigo. Se llama Ana. A las cinco bebemos agua en una pequeña cafetería. Después vuelvo a casa en autobús. Estoy contenta porque tengo una nueva amiga.",
+            translation:"Hei, jeg heter Inés og bor i Valparaíso i Chile. I byen min er det hus i mange farger. I dag er jeg på biblioteket. Jeg leser en bok om dyr. Etterpå vil jeg gå til havnen, men heisen er stengt. Derfor går jeg til fots. I en gate ser jeg en kunstner. Han maler en blå katt med en sykkel på en vegg. En jente ser på tegningen og snakker med meg. Hun heter Ana. Klokken fem drikker vi vann på en liten kafé. Etterpå tar jeg bussen hjem. Jeg er glad fordi jeg har en ny venninne.",
+            questions:[
+                {
+                    "id": "ines-change",
+                    "prompt": "Hvorfor går Inés til fots til havnen?",
+                    "options": [
+                        {
+                            "id": "lift-closed",
+                            "text": "Heisen er stengt."
+                        },
+                        {
+                            "id": "no-bus",
+                            "text": "Det går ingen buss."
+                        },
+                        {
+                            "id": "no-money",
+                            "text": "Hun har ikke penger til buss."
+                        },
+                        {
+                            "id": "with-sister",
+                            "text": "Hun vil gå sammen med søsteren sin."
+                        }
+                    ],
+                    "correctOptionId": "lift-closed",
+                    "explanation": "Heisen er stengt: «el ascensor está cerrado». Derfor går Inés til fots."
+                },
+                {
+                    "id": "ines-mural",
+                    "prompt": "Hva maler kunstneren?",
+                    "options": [
+                        {
+                            "id": "blue-cat",
+                            "text": "En blå katt med en sykkel."
+                        },
+                        {
+                            "id": "yellow-bus",
+                            "text": "En gul buss."
+                        },
+                        {
+                            "id": "volcano",
+                            "text": "En vulkan."
+                        },
+                        {
+                            "id": "football-team",
+                            "text": "Et fotballag."
+                        }
+                    ],
+                    "correctOptionId": "blue-cat",
+                    "explanation": "Kunstneren maler en blå katt med en sykkel: «un gato azul con una bicicleta»."
+                },
+                {
+                    "id": "ines-ending",
+                    "prompt": "Hvorfor er Inés glad til slutt?",
+                    "options": [
+                        {
+                            "id": "happy",
+                            "text": "Hun har en ny venninne."
+                        },
+                        {
+                            "id": "gift",
+                            "text": "Hun får en ny sykkel."
+                        },
+                        {
+                            "id": "book",
+                            "text": "Hun kjøper en bok om dyr."
+                        },
+                        {
+                            "id": "lift",
+                            "text": "Heisen er åpen igjen."
+                        }
+                    ],
+                    "correctOptionId": "happy",
+                    "explanation": "Inés er glad fordi hun har en ny venninne: «tengo una nueva amiga»."
+                }
+            ]
+        }, {
+            id:'diego-cartagena-a1', title:'Diego hjelper på stranden', level:'A1', region:'Sør-Amerika', place:'Cartagena', theme:'Strand og miljø', durationSeconds:32.124,
+            intro:'Diego forteller om en søndag i Cartagena.', fullAudio:'Diego de Cartagena.mp3',
+            transcript:"Hola, me llamo Diego y vivo en Cartagena, en Colombia. Hoy es domingo y voy a la playa con mi hermana. Nuestra escuela organiza una limpieza de la playa. Mi hermana lleva dos bolsas y unos guantes. En la playa hay muchas personas. Nosotros recogemos botellas de plástico. Otros chicos recogen papel. Un profesor dice: «El plástico es peligroso para las tortugas. No es comida». Trabajamos una hora. Después, la playa está limpia. La escuela nos da fruta y agua. Al final, vuelvo a casa con mi hermana. Estoy cansado, pero contento. Me gusta ayudar a los animales.",
+            translation:"Hei, jeg heter Diego og bor i Cartagena i Colombia. I dag er det søndag, og jeg går til stranden med søsteren min. Skolen vår arrangerer strandrydding. Søsteren min har med to poser og hansker. På stranden er det mange mennesker. Vi plukker opp plastflasker. Andre ungdommer plukker opp papir. En lærer sier: «Plast er farlig for skilpadder. Det er ikke mat». Vi arbeider i en time. Etterpå er stranden ren. Skolen gir oss frukt og vann. Til slutt går jeg hjem med søsteren min. Jeg er trøtt, men glad. Jeg liker å hjelpe dyrene.",
+            questions:[
+                {
+                    "id": "diego-why",
+                    "prompt": "Hvorfor drar Diego til stranden?",
+                    "options": [
+                        {
+                            "id": "cleanup",
+                            "text": "Skolen arrangerer strandrydding."
+                        },
+                        {
+                            "id": "swimming",
+                            "text": "Han skal bade med venner."
+                        },
+                        {
+                            "id": "football",
+                            "text": "Han skal spille fotball."
+                        },
+                        {
+                            "id": "fishing",
+                            "text": "Han skal fiske med familien."
+                        }
+                    ],
+                    "correctOptionId": "cleanup",
+                    "explanation": "Skolen arrangerer strandrydding: «Nuestra escuela organiza una limpieza de la playa»."
+                },
+                {
+                    "id": "diego-turtles",
+                    "prompt": "Hva sier læreren om plast?",
+                    "options": [
+                        {
+                            "id": "plastic",
+                            "text": "Det er farlig for skilpadder."
+                        },
+                        {
+                            "id": "food",
+                            "text": "Det er mat for skilpadder."
+                        },
+                        {
+                            "id": "sand",
+                            "text": "Det blir til sand."
+                        },
+                        {
+                            "id": "clean",
+                            "text": "Det gjør stranden ren."
+                        }
+                    ],
+                    "correctOptionId": "plastic",
+                    "explanation": "Læreren sier at plast er farlig for skilpadder: «El plástico es peligroso para las tortugas»."
+                },
+                {
+                    "id": "diego-feeling",
+                    "prompt": "Hvordan føler Diego seg hjemme?",
+                    "options": [
+                        {
+                            "id": "proud",
+                            "text": "Trøtt, men glad."
+                        },
+                        {
+                            "id": "angry",
+                            "text": "Sint og skuffet."
+                        },
+                        {
+                            "id": "cold",
+                            "text": "Kald og våt."
+                        },
+                        {
+                            "id": "hungry",
+                            "text": "Sulten og redd."
+                        }
+                    ],
+                    "correctOptionId": "proud",
+                    "explanation": "Diego er trøtt, men glad: «Estoy cansado, pero contento»."
+                }
+            ]
+        }];
         let dictationState = null;
+        let listeningState = null;
         function dictationDate(date = new Date()) { const d = new Date(date); return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`; }
         function loadDictationData() { try { const data=JSON.parse(localStorage.getItem(DICTATION_KEY)||'{"version":1,"completed":[]}'); return data?.version===1&&Array.isArray(data.completed)?data:{version:1,completed:[]}; } catch { return {version:1,completed:[]}; } }
         function saveDictationCompletion(storyId) { const data=loadDictationData(); const story=DICTATION_STORIES.find(s=>s.id===storyId); if(!story)return false; if(!data.completed.some(x=>x.storyId===storyId && x.completedOn===dictationDate())) data.completed.push({storyId,completedOn:dictationDate()}); localStorage.setItem(DICTATION_KEY,JSON.stringify(data)); return true; }
@@ -1529,9 +2480,123 @@
             }[result] || 'Lytt igjen og sammenlign med fasiten.';
         }
         function dictationHintsForSegment(story, text) { return (story.hints || []).filter(hint => { const spanish = String(hint).split(' = ')[0].trim(); const normalizedText = normalizeDictationAnswer(text); const term = normalizeDictationAnswer(spanish); const withoutArticle = term.replace(/^(el|la|los|las|un|una)\s+/u, ''); return term && (normalizedText.includes(term) || (withoutArticle && normalizedText.includes(withoutArticle))); }); }
-        function renderDictationOverview() { const level=document.getElementById('dictationLevelFilter')?.value||'all', region=document.getElementById('dictationRegionFilter')?.value||'all'; const list=document.getElementById('dictationStoryList'); if(!list)return; list.innerHTML=DICTATION_STORIES.filter(s=>s.audioDir&&(level==='all'||s.level===level)&&(region==='all'||s.region===region)).map(s=>`<article class="dictation-story-card"><h3>${escapeHtml(s.title)}</h3><p>${escapeHtml(s.intro)}</p><p class="dictation-meta">${s.level} · ${s.region} · ${escapeHtml(s.place)}</p><button class="btn btn-primary" onclick="startDictation('${s.id}')">Start historien</button></article>`).join(''); }
-        function startDictation(storyId) { const story=DICTATION_STORIES.find(s=>s.id===storyId); if(!story)return; dictationState={story,index:0,submitted:false,answer:'',answers:[]}; document.getElementById('dictationOverview').classList.add('hidden'); document.getElementById('dictationExercise').classList.remove('hidden'); renderDictationPreview(); }
+        function renderDictationOverview() { const level=document.getElementById('dictationLevelFilter')?.value||'all', region=document.getElementById('dictationRegionFilter')?.value||'all'; const list=document.getElementById('dictationStoryList'); if(!list)return; list.innerHTML=DICTATION_STORIES.filter(s=>s.audioDir&&(level==='all'||s.level===level)&&(region==='all'||s.region===region)).map(s=>`<article class="dictation-story-card"><h3>${escapeHtml(s.title)}</h3><p>${escapeHtml(s.intro)}</p><p class="dictation-meta">${s.level} · ${s.region} · ${escapeHtml(s.place)}</p><button class="btn btn-primary" onclick="startDictation('${s.id}')">Start diktat</button></article>`).join(''); renderListeningOverview(); }
+        function startDictation(storyId) { const story=DICTATION_STORIES.find(s=>s.id===storyId); if(!story || activeSessionType)return; document.getElementById('listeningOverview').classList.add('hidden'); activeSessionType='dictation'; dictationState={story,index:0,submitted:false,answer:'',answers:[]}; document.getElementById('dictationOverview').classList.add('hidden'); document.getElementById('dictationExercise').classList.remove('hidden'); renderDictationPreview(); }
         function dictationAudioUrl(story, filename) { const file = (/\.[a-z0-9]+$/iu.test(filename) ? filename : `${filename}.${story.audioExt || 'mp3'}`).normalize('NFC'); const directory = String(story.audioDir || '').normalize('NFC'); return `audio/diktat/${encodeURIComponent(directory).replaceAll('%20',' ')}${directory ? '/' : ''}${encodeURIComponent(file)}`; }
+        // HTTP audio needs anonymous CORS for network and service-worker byte ranges
+        // to share a media buffer. Keep file:// playback outside the CORS fetch path.
+        function listeningAudioUrl(story) { return story.fullAudio ? `audio/lyttehistorier/${encodeURIComponent(story.fullAudio).replaceAll('%20',' ')}` : null; }
+        function renderListeningOverview() {
+            const list = document.getElementById('listeningStoryList');
+            if (!list) return;
+            list.innerHTML = LISTENING_STORIES.map(story => {
+                const seconds = Number(story.durationSeconds) || 0;
+                const duration = seconds < 60 ? `ca. ${Math.round(seconds)} sekunder` : `ca. ${Math.round(seconds / 60)} minutt`;
+                return `<article class="dictation-story-card listening-story-card"><h3>${escapeHtml(story.title)}</h3><p>${escapeHtml(story.intro)}</p><p class="dictation-meta">${story.level} · ${story.region} · ${escapeHtml(story.place)}${story.fullAudio ? ' · ' + duration : ''}</p>${story.fullAudio
+                    ? `<button class="btn btn-primary" onclick="startListeningStory('${story.id}')">Start lyttehistorien</button>`
+                    : '<p>Historien får ny lyd. Velg en annen historie så lenge.</p><button class="btn btn-primary" disabled>Venter på ny lyd</button>'}</article>`;
+            }).join('');
+        }
+        function startListeningStory(storyId) { const story=LISTENING_STORIES.find(item=>item.id===storyId); if(!story?.fullAudio || activeSessionType)return; activeSessionType='listening'; listeningState={story,questionIndex:0,selectedOptionId:'',submitted:false,answers:[],hasPlayed:false,audioReady:false}; document.getElementById('listeningOverview').classList.add('hidden'); document.getElementById('dictationOverview').classList.add('hidden'); document.getElementById('listeningExercise').classList.remove('hidden'); renderListeningStoryPreview(); }
+        function renderListeningStoryPreview() {
+            const {story} = listeningState;
+            const canDownload = location.protocol.startsWith('http') && window.isSecureContext && 'caches' in window && 'serviceWorker' in navigator;
+            document.getElementById('listeningExercise').innerHTML = `<div class="study-header"><button class="btn btn-outline btn-sm" onclick="endListeningStory()">✕ Tilbake</button></div>
+                <h2>Lytteforståelse: ${escapeHtml(story.title)}</h2>
+                <p>Lytt til hele historien uten å se teksten. Start deretter spørsmålene. Du kan spille historien flere ganger før du svarer.</p>
+                <audio id="listeningStoryAudio" controls preload="metadata" ${location.protocol.startsWith('http') ? 'crossorigin="anonymous"' : ''} src="${listeningAudioUrl(story)}" aria-label="Hør hele historien" onloadedmetadata="listeningStoryAudioReady()" onplaying="markListeningStoryPlayed()" onerror="showListeningStoryAudioError()"></audio>
+                <p id="listeningStoryAudioStatus" role="status">Laster lyd …</p>
+                <p id="listeningStoryAudioError" class="hidden" role="alert">Lyden er ikke tilgjengelig. Koble til nett og prøv igjen, eller velg en historie du har lastet ned. <button class="btn btn-outline btn-sm" onclick="retryListeningStoryAudio()">Prøv lyden igjen</button></p>
+                <button id="listeningStoryStartBtn" class="btn btn-primary" disabled onclick="beginListeningStoryQuestions()">Start spørsmål</button>
+                ${canDownload ? '<button id="listeningDownloadBtn" class="btn btn-outline" onclick="downloadListeningStoryAudio()">Last ned lyd til bruk uten nett</button><p id="listeningDownloadStatus" role="status">Last ned hele historien før du kobler fra nettet.</p>' : '<p>For å laste ned lyd i nettleseren må du åpne appen via HTTPS eller localhost. Åpner du HTML-filen direkte, må lydmappen følge med.</p>'}`;
+            updateListeningDownloadStatus();
+        }
+        function listeningStoryAudioReady() {
+            if (!listeningState) return;
+            listeningState.audioReady = true;
+            document.getElementById('listeningStoryAudioError')?.classList.add('hidden');
+            document.getElementById('listeningStoryAudioStatus').textContent = listeningState.hasPlayed
+                ? 'Avspillingen er startet. Lytt ferdig før du starter spørsmålene.'
+                : 'Lyden er klar. Trykk spill av før du starter spørsmålene.';
+            document.getElementById('listeningStoryStartBtn').disabled = !listeningState.hasPlayed;
+        }
+        function markListeningStoryPlayed() {
+            if (!listeningState?.audioReady) return;
+            listeningState.hasPlayed = true;
+            document.getElementById('listeningStoryStartBtn')?.removeAttribute('disabled');
+            document.getElementById('listeningStoryAudioStatus').textContent = 'Avspillingen er startet. Lytt ferdig før du starter spørsmålene.';
+        }
+        function showListeningStoryAudioError() {
+            if (!listeningState) return;
+            listeningState.audioReady = false;
+            listeningState.hasPlayed = false;
+            document.getElementById('listeningStoryAudioError')?.classList.remove('hidden');
+            document.getElementById('listeningStoryAudioStatus').textContent = 'Lyden er ikke tilgjengelig.';
+            document.getElementById('listeningStoryStartBtn')?.setAttribute('disabled', '');
+        }
+        function retryListeningStoryAudio() {
+            if (!listeningState) return;
+            listeningState.audioReady = false;
+            listeningState.hasPlayed = false;
+            document.getElementById('listeningStoryStartBtn')?.setAttribute('disabled', '');
+            document.getElementById('listeningStoryAudioError')?.classList.add('hidden');
+            document.getElementById('listeningStoryAudioStatus').textContent = 'Laster lyd …';
+            document.getElementById('listeningStoryAudio')?.load();
+        }
+        function beginListeningStoryQuestions() {
+            if (!listeningState?.audioReady || !listeningState.hasPlayed) return;
+            document.getElementById('listeningStoryAudio')?.pause();
+            renderListeningStoryQuestion();
+        }
+        async function updateListeningDownloadStatus() {
+            const state = listeningState;
+            const status = document.getElementById('listeningDownloadStatus');
+            if (!state || !status) return;
+            try {
+                const cache = await caches.open(DICTATION_AUDIO_CACHE);
+                const saved = await cache.match(new URL(listeningAudioUrl(state.story), location.href).href);
+                if (listeningState === state && status.isConnected && saved?.status === 200) {
+                    status.textContent = 'Hele historien er lastet ned og kan brukes uten nett i denne nettleseren.';
+                }
+            } catch {
+                if (listeningState === state && status.isConnected) status.textContent = 'Nettleseren kan ikke lagre lyd til bruk uten nett. Du kan fortsatt lytte med nett.';
+            }
+        }
+        async function downloadListeningStoryAudio() {
+            const state = listeningState;
+            const button = document.getElementById('listeningDownloadBtn');
+            const status = document.getElementById('listeningDownloadStatus');
+            if (!state || !button || !status || button.disabled) return;
+            button.disabled = true;
+            status.textContent = 'Laster ned hele historien …';
+            try {
+                if (!navigator.serviceWorker.controller) {
+                    status.textContent = 'Appen er ikke klar til bruk uten nett ennå. Last siden på nytt med nett og prøv igjen.';
+                    return;
+                }
+                const cache = await caches.open(DICTATION_AUDIO_CACHE);
+                const url = new URL(listeningAudioUrl(state.story), location.href).href;
+                if (!(await cache.match(url))) {
+                    const response = await fetch(url, { cache: 'reload' });
+                    if (response.status !== 200 || !response.headers.get('content-type')?.startsWith('audio/')) throw new Error('missing audio');
+                    await cache.put(url, response);
+                }
+                if (listeningState === state && status.isConnected) {
+                    await updateListeningDownloadStatus();
+                    if (!state.audioReady) retryListeningStoryAudio();
+                }
+            } catch {
+                if (listeningState === state && status.isConnected) status.textContent = 'Nedlastingen ble ikke ferdig. Koble til nett og prøv igjen. Historien er ikke klar til bruk uten nett.';
+            } finally {
+                if (button.isConnected) button.disabled = false;
+            }
+        }
+        function selectListeningStoryOption(id){ if(!listeningState||listeningState.submitted)return; listeningState.selectedOptionId=id; document.getElementById('listeningStoryCheckBtn')?.removeAttribute('disabled'); }
+        function renderListeningStoryQuestion(){ const state=listeningState, question=state.story.questions[state.questionIndex]; state.submitted=false; document.getElementById('listeningExercise').innerHTML=`<div class="study-header"><button class="btn btn-outline btn-sm" onclick="endListeningStory()">✕ Avslutt</button><span>Spørsmål ${state.questionIndex+1} / ${state.story.questions.length}</span></div><h2>${escapeHtml(state.story.title)}</h2><fieldset class="listening-question"><legend>${escapeHtml(question.prompt)}</legend>${shuffleArray(question.options).map(option=>`<label class="listening-option"><input type="radio" name="listeningStoryAnswer" value="${escapeHtml(option.id)}" onchange="selectListeningStoryOption(this.value)"><span>${escapeHtml(option.text)}</span></label>`).join('')}</fieldset><div id="listeningStoryFeedback" class="dictation-solution hidden" aria-live="polite"></div><button id="listeningStoryCheckBtn" class="btn btn-primary" disabled onclick="submitListeningStoryAnswer()">Sjekk svaret</button>`; }
+        function submitListeningStoryAnswer(){ const state=listeningState, question=state?.story?.questions[state.questionIndex]; if(!question||!state.selectedOptionId||state.submitted)return; state.submitted=true; state.answers[state.questionIndex]=state.selectedOptionId; const correct=state.selectedOptionId===question.correctOptionId, answer=question.options.find(option=>option.id===question.correctOptionId); const feedback=document.getElementById('listeningStoryFeedback'); feedback.innerHTML=`<strong>${correct?'Riktig':'Ikke helt'}</strong><p>Riktig svar: ${escapeHtml(answer.text)}</p><p>${escapeHtml(question.explanation)}</p>`; feedback.classList.remove('hidden'); document.querySelectorAll('input[name="listeningStoryAnswer"]').forEach(input=>input.disabled=true); const button=document.getElementById('listeningStoryCheckBtn'); button.textContent=state.questionIndex===state.story.questions.length-1?'Se resultatet':'Neste spørsmål'; button.onclick=nextListeningStoryQuestion; button.removeAttribute('disabled'); }
+        function nextListeningStoryQuestion(){ if(!listeningState?.submitted)return; if(listeningState.questionIndex<listeningState.story.questions.length-1){ listeningState.questionIndex++; listeningState.selectedOptionId=''; renderListeningStoryQuestion(); } else renderListeningStoryCompletion(); }
+        function renderListeningStoryCompletion(){ const state=listeningState, correct=state.answers.filter((answer,index)=>answer===state.story.questions[index].correctOptionId).length; document.getElementById('listeningExercise').innerHTML=`<div class="completion-screen mx-auto max-w-5xl px-4 py-8 sm:px-8"><div class="study-header"><button class="btn btn-outline btn-sm" onclick="endListeningStory()">✕ Tilbake</button></div><h2>Lytteforståelsen er ferdig!</h2><p id="listeningStoryResult" aria-live="polite">Du fikk ${correct} av ${state.story.questions.length} riktige.</p><details id="listeningStoryTextSupport"><summary>Vis tekststøtte og oversettelse</summary><div class="completion-reading"><section><h3>Spansk tekst</h3><p>${escapeHtml(state.story.transcript)}</p></section><section><h3>Norsk oversettelse</h3><p>${escapeHtml(state.story.translation)}</p></section></div></details></div>`; }
+        function endListeningStory(){ document.querySelector('#listeningExercise audio')?.pause(); listeningState=null; if(activeSessionType==='listening') activeSessionType=null; document.getElementById('listeningExercise').innerHTML=''; document.getElementById('listeningExercise').classList.add('hidden'); document.getElementById('listeningOverview').classList.remove('hidden'); document.getElementById('dictationOverview').classList.remove('hidden'); renderListeningOverview(); }
         function dictationAudioErrorMarkup() {
             return '<p id="dictationAudioError" class="hidden" role="alert">Lyden er ikke tilgjengelig. Koble til internett og prøv igjen, eller velg en historie du har lastet ned. <button class="btn btn-outline btn-sm" onclick="retryDictationAudio()">Prøv lyden igjen</button></p>';
         }
@@ -1542,7 +2607,7 @@
             document.getElementById('dictationExercise').innerHTML = `
                 <div class="study-header"><button class="btn btn-outline btn-sm" onclick="endDictation()">✕ Tilbake</button></div>
                 <h2>${escapeHtml(story.title)}</h2><p>${escapeHtml(story.intro)} Du kan høre hele historien før du starter.</p>
-                <audio id="dictationFullStoryAudio" controls preload="metadata" src="${dictationAudioUrl(story, story.fullAudio)}" aria-label="Hør hele historien" onloadedmetadata="dictationAudioReady()" onerror="showDictationAudioError()"></audio>
+                <audio id="dictationFullStoryAudio" controls preload="metadata" ${location.protocol.startsWith('http') ? 'crossorigin="anonymous"' : ''} src="${dictationAudioUrl(story, story.fullAudio)}" aria-label="Hør hele historien" onloadedmetadata="dictationAudioReady()" onerror="showDictationAudioError()"></audio>
                 ${dictationAudioErrorMarkup()}
                 <p id="dictationAudioStatus" role="status">Laster lyd …</p>
                 <button id="dictationStartBtn" class="btn btn-primary" disabled onclick="beginDictationExercise()">Start øvelsen</button>
@@ -1593,7 +2658,7 @@
             document.getElementById('dictationExercise').innerHTML = `
                 <div class="study-header"><button class="btn btn-outline btn-sm" onclick="endDictation()">✕ Avslutt</button><span>${index + 1} / ${story.segments.length}</span></div>
                 <h2>${escapeHtml(story.title)}</h2><p class="dictation-hints">${hints.length ? 'Hint: ' + hints.map(escapeHtml).join(' · ') : ''}</p>
-                <audio id="dictationSegmentAudio" controls autoplay preload="metadata" src="${dictationAudioUrl(story, filename)}" aria-label="Spill av segment" onloadedmetadata="dictationAudioReady()" onerror="showDictationAudioError()"></audio>
+                <audio id="dictationSegmentAudio" controls autoplay preload="metadata" ${location.protocol.startsWith('http') ? 'crossorigin="anonymous"' : ''} src="${dictationAudioUrl(story, filename)}" aria-label="Spill av segment" onloadedmetadata="dictationAudioReady()" onerror="showDictationAudioError()"></audio>
                 ${dictationAudioErrorMarkup()}<p id="dictationAudioStatus" role="status">Laster lyd …</p>
                 <label for="dictationSpeed">Tempo</label><input id="dictationSpeed" type="range" min="0.8" max="1.2" step="0.1" value="1" oninput="setDictationSpeed(this.value)"><span id="dictationSpeedValue">1,0×</span>
                 <label for="dictationAnswer">Skriv det du hører</label><textarea id="dictationAnswer" rows="3" autocomplete="off">${escapeHtml(answer)}</textarea>
@@ -1666,9 +2731,12 @@
         function endDictation() {
             document.querySelector('#dictationExercise audio')?.pause();
             dictationState = null;
+            if (activeSessionType === 'dictation') activeSessionType = null;
             document.getElementById('dictationExercise').innerHTML = '';
             document.getElementById('dictationExercise').classList.add('hidden');
+            document.getElementById('listeningExercise')?.classList.add('hidden');
             document.getElementById('dictationOverview').classList.remove('hidden');
+            document.getElementById('listeningOverview')?.classList.remove('hidden');
             renderDictationOverview();
         }
 
@@ -1741,12 +2809,12 @@
                 { id: 'a1.verbs.ir.present', level: 'A1', group: 'Verb, tid og bøying', label: 'Bøye ir i presens', contentStatus: 'ready', sourceNote: 'verb-database' },
                 { id: 'a1.verbs.tener.present', level: 'A1', group: 'Verb, tid og bøying', label: 'Bøye tener i presens', contentStatus: 'ready', sourceNote: 'verb-database' },
                 { id: 'a1.verbs.hacer.present', level: 'A1', group: 'Verb, tid og bøying', label: 'Bøye hacer i presens', contentStatus: 'ready', sourceNote: 'verb-database' },
-                { id: 'a1.verbs.modal.present', level: 'A1', group: 'Verb, tid og bøying', label: 'Bruke poder, querer og deber med infinitiv', contentStatus: 'ready', sourceNote: 'verb-database' },
+                { id: 'a1.verbs.modal.present', level: 'A1', group: 'Verb, tid og bøying', label: 'Bruke poder, querer og deber med infinitiv', contentStatus: 'planned', sourceNote: 'verb-database' },
                 { id: 'a1.verbs.reflexive.present', level: 'A1', group: 'Verb, tid og bøying', label: 'Bøye refleksive verb i presens', contentStatus: 'ready', sourceNote: 'grammar-topic' },
                 { id: 'a1.verbs.near_future', level: 'A1', group: 'Verb, tid og bøying', label: 'Fortelle om nær framtid med ir a', contentStatus: 'planned', sourceNote: 'curriculum-derived' },
                 { id: 'a1.adjectives.gender_number', level: 'A1', group: 'Adjektiv og adverb', label: 'Bøye adjektiv etter kjønn og tall', contentStatus: 'ready', sourceNote: 'grammar-topic' },
                 { id: 'a1.adjectives.regular_o', level: 'A1', group: 'Adjektiv og adverb', label: 'Bøye regelrette adjektiv på -o', contentStatus: 'ready', sourceNote: 'grammar-topic' },
-                { id: 'a1.adjectives.common_gender', level: 'A1', group: 'Adjektiv og adverb', label: 'Bøye adjektiv på -e', contentStatus: 'planned', sourceNote: 'grammar-topic' },
+                { id: 'a1.adjectives.common_gender', level: 'A1', group: 'Adjektiv og adverb', label: 'Bøye adjektiv på -e', contentStatus: 'ready', sourceNote: 'grammar-topic' },
                 { id: 'a1.ser.identity', level: 'A1', group: 'Setninger og uttrykk', label: 'Bruke ser for identitet, yrke og opprinnelse', contentStatus: 'ready', sourceNote: 'grammar-topic' },
                 { id: 'a1.estar.location', level: 'A1', group: 'Setninger og uttrykk', label: 'Bruke estar for hvor noen eller noe er', contentStatus: 'ready', sourceNote: 'grammar-topic' },
                 { id: 'a1.hay_estar.contrast', level: 'A1', group: 'Setninger og uttrykk', label: 'Skille mellom hay og estar', contentStatus: 'ready', sourceNote: 'grammar-topic' },
@@ -1756,7 +2824,7 @@
                 { id: 'a1.time.dates', level: 'A1', group: 'Tall, klokkeslett og dato', label: 'Si datoer og ukedager', contentStatus: 'planned', sourceNote: 'curriculum-derived' },
                 { id: 'a1.negation.no', level: 'A1', group: 'Negasjon', label: 'Lage negative setninger med no', contentStatus: 'planned', sourceNote: 'curriculum-derived' },
                 { id: 'a1.questions.interrogatives', level: 'A1', group: 'Spørsmål og spørreord', label: 'Bruke grunnleggende spørreord', contentStatus: 'planned', sourceNote: 'curriculum-derived' },
-                { id: 'a1.prepositions.basic', level: 'A1', group: 'Preposisjoner og bindeord', label: 'Bruke grunnleggende preposisjoner', contentStatus: 'ready', sourceNote: 'preposition-database' },
+                { id: 'a1.prepositions.basic', level: 'A1', group: 'Preposisjoner og bindeord', label: 'Bruke grunnleggende preposisjoner', contentStatus: 'planned', sourceNote: 'preposition-database' },
                 { id: 'a1.pronouns.subject', level: 'A1', group: 'Pronomen', label: 'Velge riktig subjektpronomen', contentStatus: 'planned', sourceNote: 'curriculum-derived' },
                 { id: 'a1.nouns.gender_number', level: 'A1', group: 'Artikler og substantiv', label: 'Finne kjønn og tall på substantiv', contentStatus: 'planned', sourceNote: 'curriculum-derived' },
                 { id: 'a1.nouns.plural_z', level: 'A1', group: 'Artikler og substantiv', label: 'Lage flertall av ord på -z', contentStatus: 'planned', sourceNote: 'curriculum-derived' },
@@ -1779,11 +2847,43 @@
                 { id: 'a1.pronouns.el_el', level: 'A1', group: 'Pronomen', label: 'Skille mellom él og el', contentStatus: 'planned', sourceNote: 'curriculum-derived' }
             ],
             words: [
-                { id: 'core.hola', level: 'A0', area: 'Hilsener', no: 'hei', es: 'hola', sourceNote: 'written-original' },
-                { id: 'core.gracias', level: 'A0', area: 'Hilsener', no: 'takk', es: 'gracias', sourceNote: 'written-original' },
-                { id: 'core.madre', level: 'A0', area: 'Familie', no: 'mor', es: 'la madre', sourceNote: 'written-original' },
-                { id: 'core.cinco', level: 'A0', area: 'Tall', no: 'fem', es: 'cinco', sourceNote: 'written-original' }
-            ]
+    {
+        "id": "core.hola",
+        "level": "A0",
+        "area": "Hilsener",
+        "no": "hei",
+        "es": "hola",
+        "sourceNote": "written-original",
+        "vocabularyId": "vocab-0064"
+    },
+    {
+        "id": "core.gracias",
+        "level": "A0",
+        "area": "Hilsener",
+        "no": "takk",
+        "es": "gracias",
+        "sourceNote": "written-original",
+        "vocabularyId": "vocab-0065"
+    },
+    {
+        "id": "core.madre",
+        "level": "A0",
+        "area": "Familie",
+        "no": "mor",
+        "es": "la madre",
+        "sourceNote": "written-original",
+        "vocabularyId": "vocab-0179"
+    },
+    {
+        "id": "core.cinco",
+        "level": "A0",
+        "area": "Tall",
+        "no": "fem",
+        "es": "cinco",
+        "sourceNote": "written-original",
+        "vocabularyId": "vocab-0005"
+    }
+]
         };
         learningCatalog.skills.forEach(skill => {
             skill.contentStatus = skill.contentStatus || 'ready';
@@ -7410,10 +8510,25 @@
         {
             "answerId": "primary",
             "value": "hver dag",
+            "canonicalMeaningId": "canonical:vocab-0292"
+        },
+        {
+            "answerId": "primary",
+            "value": "hver dag",
             "canonicalMeaningId": "canonical:vocab-0463"
         }
     ],
     "hver dag|no-es": [
+        {
+            "answerId": "primary",
+            "value": "todos los días",
+            "canonicalMeaningId": "canonical:vocab-0292"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "cada día",
+            "canonicalMeaningId": "canonical:vocab-0292"
+        },
         {
             "answerId": "primary",
             "value": "cada día",
@@ -11599,6 +12714,16 @@
         {
             "answerId": "primary",
             "value": "juice",
+            "canonicalMeaningId": "canonical:vocab-0504"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "juicen",
+            "canonicalMeaningId": "canonical:vocab-0504"
+        },
+        {
+            "answerId": "primary",
+            "value": "juice",
             "canonicalMeaningId": "canonical:vocab-0505"
         },
         {
@@ -11608,6 +12733,26 @@
         }
     ],
     "juice|no-es": [
+        {
+            "answerId": "primary",
+            "value": "el jugo",
+            "canonicalMeaningId": "canonical:vocab-0504"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "jugo",
+            "canonicalMeaningId": "canonical:vocab-0504"
+        },
+        {
+            "answerId": "canonical-2",
+            "value": "el zumo",
+            "canonicalMeaningId": "canonical:vocab-0504"
+        },
+        {
+            "answerId": "canonical-3",
+            "value": "zumo",
+            "canonicalMeaningId": "canonical:vocab-0504"
+        },
         {
             "answerId": "primary",
             "value": "el jugo",
@@ -11892,11 +13037,6 @@
             "answerId": "primary",
             "value": "pommes frites",
             "canonicalMeaningId": "canonical:vocab-0518"
-        },
-        {
-            "answerId": "canonical-1",
-            "value": "pommes friten",
-            "canonicalMeaningId": "canonical:vocab-0518"
         }
     ],
     "pommes frites|no-es": [
@@ -12000,105 +13140,316 @@
 };
 
         const norwegianNounDefiniteForms = {
-            'jul': ['jula', 'julen'],
-            'nyttårsaften': ['nyttårsaftenen'],
-            'julaften': ['julaftenen'],
-            'sankthansaften': ['sankthansaftenen'],
-            'påskeuken': ['påskeuke', 'påskeuken'],
-            'hode': ['hodet'],
-            'øye': ['øyet'],
-            'belte': ['beltet'],
-            'skjørt': ['skjørtet'],
-            'hår': ['håret'],
-            'kjøkken': ['kjøkkenet'],
-            'vindu': ['vinduet'],
-            'hus': ['huset'],
-            'møbel': ['møbelet'],
-            'bord': ['bordet'],
-            'skap': ['skapet'],
-            'kjøleskap': ['kjøleskapet'],
-            'skrivebord': ['skrivebordet'],
-            'bilde': ['bildet'],
-            'speil': ['speilet'],
-            'eple': ['eplet'],
-            'egg': ['egget'],
-            'brød': ['brødet'],
-            'kjøtt': ['kjøttet'],
-            'sukker': ['sukkeret'],
-            'salt': ['saltet'],
-            'melk': ['melka', 'melken'],
-            'vann': ['vannet'],
-            'golf': ['golfen'],
-            'håndball': ['håndballen'],
-            'volleyball': ['volleyballen'],
-            'innebandy': ['innebandyen'],
-            'tennis': ['tennisen'],
-            'bordtennis': ['bordtennisen'],
-            'ishockey': ['ishockeyen'],
-            'rom': ['rommet'],
-            'videregående': ['videregående skole'],
-            'engelsk': ['engelsken'],
-            'historie': ['historia', 'historien'],
-            'kroppsøving': ['kroppsøvinga', 'kroppsøvingen'],
-            'religion / KRLE': ['religionen', 'KRLE-en'],
-            'gang': ['gangen'],
-            'teppe': ['teppet'],
-            'kjede': ['kjedet'],
-            'lommetørkle': ['lommetørklet'],
-            'Valentinsdagen': ['Valentinsdag'],
-            'nasjonaldagen': ['nasjonaldag'],
-            'allehelgensdagen': ['allehelgensdag'],
-            'ungdomsskolen': ['ungdomsskole']
-        };
+    "jul": [
+        "jula"
+    ],
+    "nyttårsaften": [
+        "nyttårsaftenen"
+    ],
+    "julaften": [
+        "julaftenen"
+    ],
+    "sankthansaften": [
+        "sankthansaftenen"
+    ],
+    "påskeuken": [
+        "påskeuke",
+        "påske"
+    ],
+    "Valentinsdagen": [
+        "Valentinsdag"
+    ],
+    "nasjonaldagen": [
+        "nasjonaldag"
+    ],
+    "helligtrekongersdag": [
+        "de hellige tre kongers dag",
+        "trettendedag jul"
+    ],
+    "allehelgensdagen": [
+        "allehelgensdag"
+    ],
+    "bror": [
+        "broren"
+    ],
+    "søster": [
+        "søsteren"
+    ],
+    "mor": [
+        "mamma",
+        "moren"
+    ],
+    "far": [
+        "faren"
+    ],
+    "bestemor": [
+        "bestemoren"
+    ],
+    "bestefar": [
+        "bestefaren"
+    ],
+    "kjæreste": [
+        "kjæresten"
+    ],
+    "belte": [
+        "beltet"
+    ],
+    "skjørt": [
+        "skjørtet"
+    ],
+    "lommetørkle": [
+        "lommetørklet"
+    ],
+    "kjede": [
+        "kjedet"
+    ],
+    "dyrlege": [
+        "dyrlegen",
+        "veterinær",
+        "veterinæren"
+    ],
+    "golf": [
+        "golfen"
+    ],
+    "håndball": [
+        "håndballen"
+    ],
+    "volleyball": [
+        "volleyballen"
+    ],
+    "innebandy": [
+        "innebandyen"
+    ],
+    "tennis": [
+        "tennisen"
+    ],
+    "bordtennis": [
+        "bordtennisen"
+    ],
+    "ishockey": [
+        "ishockeyen"
+    ],
+    "hode": [
+        "hodet"
+    ],
+    "øye": [
+        "øyet"
+    ],
+    "spansklærer": [
+        "spansklæreren"
+    ],
+    "skoletime": [
+        "skoleklasse"
+    ],
+    "skoleklasse": [
+        "skoletime"
+    ],
+    "ungdomsskolen": [
+        "ungdomsskole"
+    ],
+    "videregående": [
+        "videregående skole"
+    ],
+    "engelsk": [
+        "engelsken"
+    ],
+    "historie": [
+        "historia",
+        "historien"
+    ],
+    "kroppsøving": [
+        "kroppsøvinga",
+        "kroppsøvingen"
+    ],
+    "rom": [
+        "rommet"
+    ],
+    "gang": [
+        "gangen"
+    ],
+    "kjøkken": [
+        "kjøkkenet"
+    ],
+    "vindu": [
+        "vinduet"
+    ],
+    "hus": [
+        "huset"
+    ],
+    "møbel": [
+        "møbelet"
+    ],
+    "bord": [
+        "bordet"
+    ],
+    "skap": [
+        "skapet"
+    ],
+    "skrivebord": [
+        "skrivebordet"
+    ],
+    "teppe": [
+        "teppet"
+    ],
+    "speil": [
+        "speilet"
+    ],
+    "frukt": [
+        "frukten"
+    ],
+    "pære": [
+        "pæren"
+    ],
+    "appelsin": [
+        "appelsinen"
+    ],
+    "banan": [
+        "bananen"
+    ],
+    "eple": [
+        "eplet"
+    ],
+    "fersken": [
+        "ferskenen"
+    ],
+    "drue": [
+        "druen"
+    ],
+    "melon": [
+        "melonen"
+    ],
+    "vannmelon": [
+        "vannmelonen"
+    ],
+    "sitron": [
+        "sitronen"
+    ],
+    "grønnsak": [
+        "grønnsaken"
+    ],
+    "tomat": [
+        "tomaten"
+    ],
+    "agurk": [
+        "agurken"
+    ],
+    "løk": [
+        "løken"
+    ],
+    "hvitløk": [
+        "hvitløken"
+    ],
+    "salat": [
+        "salaten"
+    ],
+    "paprika": [
+        "paprikaen"
+    ],
+    "gulrot": [
+        "gulroten"
+    ],
+    "potet": [
+        "poteten"
+    ],
+    "matvare": [
+        "matvaren"
+    ],
+    "kjeks": [
+        "kjeksen"
+    ],
+    "brød": [
+        "brødet"
+    ],
+    "marmelade": [
+        "marmeladen"
+    ],
+    "pølse": [
+        "pølsen"
+    ],
+    "skinke": [
+        "skinken"
+    ],
+    "kjøtt": [
+        "kjøttet"
+    ],
+    "kylling": [
+        "kyllingen"
+    ],
+    "pasta": [
+        "pastaen"
+    ],
+    "ris": [
+        "risen"
+    ],
+    "egg": [
+        "egget"
+    ],
+    "sukker": [
+        "sukkeret"
+    ],
+    "salt": [
+        "saltet"
+    ],
+    "bakverk": [
+        "bakverket"
+    ],
+    "smør": [
+        "smøret"
+    ],
+    "ost": [
+        "osten"
+    ],
+    "yoghurt": [
+        "yoghurten"
+    ],
+    "melk": [
+        "melka",
+        "melken"
+    ],
+    "leskedrikk": [
+        "leskedrikken"
+    ],
+    "juice": [
+        "juicen"
+    ],
+    "vann": [
+        "vannet"
+    ],
+    "supermarked": [
+        "supermarkedet"
+    ],
+    "olivenolje": [
+        "olivenoljen"
+    ],
+    "oliven": [
+        "olivenen"
+    ],
+    "kassadame": [
+        "kassadamen"
+    ]
+};
 
         function getNorwegianNounDefiniteForms(card) {
             if (!card || !/^(el|la)\s/i.test(card.es) || !/^[^,()\s]+$/u.test(card.no)) return [];
-            if (norwegianNounDefiniteForms[card.no]) return norwegianNounDefiniteForms[card.no];
-            const definite = card.no.endsWith('e') ? `${card.no}n` : `${card.no}en`;
-            return definite === card.no ? [] : [definite];
+            return norwegianNounDefiniteForms[card.no] || [];
+        }
+
+        function getVocabularyCanonicalId(card) {
+            if (!card || card.isCustom || card.assignmentId) return null;
+            const normalize = value => String(value || '').normalize('NFC').trim().toLocaleLowerCase('nb-NO');
+            const index = glossary.findIndex(([no, es]) => normalize(no) === normalize(card.no || card.norsk) && normalize(es) === normalize(card.es || card.spansk));
+            return index < 0 ? null : vocabularyCanonicalIds[index];
         }
 
         function getVocabularyAcceptedAnswers(card, direction, primaryAnswer) {
-            const alternatives = vocabularyAnswerAlternatives[`${card.no}|${direction}`];
-            const occupationVariants = direction === 'no-es' ? getOccupationGenderVariants(card, primaryAnswer) : [];
-            const nounForms = direction === 'es-no' ? getNorwegianNounDefiniteForms(card) : [];
-            const weekday = /^(lunes|martes|miércoles|jueves|viernes|sábado|domingo)$/iu.test(String(primaryAnswer).trim());
-            const optionalArticle = direction === 'no-es' && weekday
-                ? [{ answerId: 'definite-weekday', value: `el ${String(primaryAnswer).trim()}`, canonicalMeaningId: `${card.no}:${direction}` }]
-                : [];
-            const base = alternatives?.length
-                ? alternatives
-                : [{ answerId: 'primary', value: primaryAnswer, canonicalMeaningId: `${card.no}:${direction}` }];
-            const extras = [
-                ...occupationVariants,
-                ...nounForms.map((value, index) => ({ answerId: `noun-form-${index + 1}`, value, canonicalMeaningId: `${card.no}:${direction}` })),
-                ...optionalArticle
-            ];
-            return [...base, ...extras.filter(extra => !base.some(answer => answer.value === extra.value))];
-        }
-
-        function getOccupationGenderVariants(card, primaryAnswer) {
-            if (!card || card.category !== 'yrker' || !/^(el|la)\s+/i.test(String(card.es))) return [];
-            const match = String(card.es).match(/^(el|la)\s+(.+)$/i);
-            if (!match) return [];
-            const [, article, noun] = match;
-            const invariant = /(?:ista|ía|atleta)$/i.test(noun);
-            const feminineNoun = invariant ? noun : noun
-                .replace(/médico$/i, 'médica')
-                .replace(/or$/i, 'ora')
-                .replace(/o$/i, 'a');
-            const masculineNoun = invariant ? noun : noun
-                .replace(/médica$/i, 'médico')
-                .replace(/ora$/i, 'or')
-                .replace(/a$/i, 'o');
-            const feminine = `la ${feminineNoun}`;
-            const masculine = `el ${masculineNoun}`;
-            const values = [primaryAnswer, article.toLowerCase() === 'el' ? feminine : masculine];
-            return [...new Set(values)].map((value, index) => ({
-                answerId: `occupation-gender-${index + 1}`,
-                value,
-                canonicalMeaningId: `${card.no}:occupation`
-            }));
+            const canonicalId = getVocabularyCanonicalId(card);
+            if (canonicalId) {
+                const index = vocabularyCanonicalIds.indexOf(canonicalId);
+                const key = `${glossary[index][0]}|${direction}`;
+                return (vocabularyAnswerAlternatives[key] || []).filter(answer => answer.canonicalMeaningId === `canonical:${canonicalId}`);
+            }
+            // Egne og lærerimporterte ord har sin egen fasit, også ved like norskord.
+            return [{ answerId: 'primary', value: primaryAnswer, canonicalMeaningId: `${card.no}:${direction}` }];
         }
 
         // ============================================
@@ -12132,38 +13483,13 @@
             showPage('home');
         }
 
-        function renderTeacherGuide() {
-            return `<details class="first-lesson-guide my-5 rounded-lg border border-gray-200 bg-white p-4 text-left text-gray-800">
-                <summary class="cursor-pointer font-bold">For læreren: første 20 minutter</summary>
-                <p>Et supplement til undervisningen. Start med en lærerstyrt demonstrasjon og liten, moderert utprøving. Faglig lærerkontroll og elevpilot gjenstår før selvstendig helklassebruk.</p>
-                <p><strong>Mål:</strong> Velge el, la, los og las foran et substantiv.</p>
-                <ol><li>0–3 min: Forklar målet og at fremgangen bare lagres på enheten. Bruk kallenavn eller elevkode.</li>
-                <li>3–6 min: Åpne artikkelforklaringen nedenfor. Vis ett eksempel på kjønn og tall.</li>
-                <li>6–16 min: La elevene velge og begrunne svar. Ved usikkerhet: les hintet og prøv neste oppgave. Elever som er ferdige, lager en ny setning muntlig.</li>
-                <li>16–20 min: Avslutt økten og åpne dagens oppsummering i Lekse. Be eleven nevne én regel og én ting de trenger hjelp til. Vis hvordan fremgang lastes ned.</li></ol>
-                <button class="btn btn-primary mt-3" onclick="startFirstLesson()">Start felles artikkeløving</button>
-                <p>Ingen lærerinnboks eller automatisk innsending. Innspill må vises til læreren på elevens enhet.</p>
-                <a href="./PILOT.md">Les opplegget og spørsmålene til pilotgjennomgangen</a>
-            </details>`;
-        }
-
-        function startFirstLesson() {
-            if (!document.getElementById('welcomeScreen').classList.contains('hidden')) {
-                studentName = document.getElementById('studentNameInput').value.trim() || 'Utprøving';
-                localStorage.setItem('spansk123_studentName', studentName);
-                showMainApp();
-            }
-            if (showPage('grammar') === false) return;
-            openGrammarTopicTheory('articles');
-        }
-
         function showSettings() {
             const modal = document.createElement('div');
             modal.className = 'settings-modal';
             modal.innerHTML = `
                 <div class="settings-modal-content">
-                    <h2>⚙️ Innstillinger</h2>
-                    <label class="mb-2 block text-gray-700">Fornavn eller elevkode:</label>
+                    <h2 id="settingsDialogTitle">⚙️ Innstillinger</h2>
+                    <label for="settingsNameInput" class="mb-2 block text-gray-700">Fornavn eller elevkode:</label>
                     <input type="text" id="settingsNameInput" value="${escapeHtml(studentName).replaceAll('"', '&quot;')}" placeholder="Fornavn eller elevkode">
                     <p class="login-hint mt-2 text-xs">Lagres lokalt og står i oppsummeringer og fremgangsfiler. Koden er ikke en konto og gjenoppretter ikke slettede data. Bruk samme nettleser, eller importer sikkerhetskopien på en ny enhet.</p>
                     <div class="button-group">
@@ -12176,6 +13502,35 @@
                 </div>
             `;
             document.body.appendChild(modal);
+            setupSettingsModalAccessibility(modal, 'settingsDialogTitle', '#settingsNameInput');
+        }
+
+        function setupSettingsModalAccessibility(modal, titleId, initialSelector) {
+            modal.setAttribute('role', 'dialog');
+            modal.setAttribute('aria-modal', 'true');
+            modal.setAttribute('aria-labelledby', titleId);
+            modal.returnFocus = document.activeElement;
+            modal.addEventListener('keydown', event => {
+                event.stopPropagation();
+                if (event.key === 'Escape') {
+                    event.preventDefault();
+                    closeSettings();
+                    return;
+                }
+                if (event.key !== 'Tab') return;
+                const controls = [...modal.querySelectorAll('textarea, input, select, button, a[href], [tabindex="0"]')]
+                    .filter(control => !control.disabled && control.getClientRects().length);
+                const first = controls[0];
+                const last = controls[controls.length - 1];
+                if (event.shiftKey && document.activeElement === first) {
+                    event.preventDefault();
+                    last?.focus();
+                } else if (!event.shiftKey && document.activeElement === last) {
+                    event.preventDefault();
+                    first?.focus();
+                }
+            });
+            modal.querySelector(initialSelector)?.focus();
         }
 
         function saveSettings() {
@@ -12297,10 +13652,6 @@
         function showFeedbackDialog(feedbackContext) {
             const modal = document.createElement('div');
             modal.className = 'settings-modal';
-            modal.setAttribute('role', 'dialog');
-            modal.setAttribute('aria-modal', 'true');
-            modal.setAttribute('aria-labelledby', 'feedbackDialogTitle');
-            modal.returnFocus = document.activeElement;
             modal.innerHTML = `
                 <div class="settings-modal-content">
                     <h2 id="feedbackDialogTitle">🤔 Jeg mener svaret mitt er riktig</h2>
@@ -12322,26 +13673,7 @@
                 </div>
             `;
             document.body.appendChild(modal);
-            modal.addEventListener('keydown', event => {
-                event.stopPropagation();
-                if (event.key === 'Escape') {
-                    event.preventDefault();
-                    closeSettings();
-                } else if (event.key === 'Tab') {
-                    const controls = [...modal.querySelectorAll('textarea, input, button, a[href], [tabindex="0"]')]
-                        .filter(control => !control.disabled && control.getClientRects().length);
-                    const first = controls[0];
-                    const last = controls[controls.length - 1];
-                    if (event.shiftKey && document.activeElement === first) {
-                        event.preventDefault();
-                        last?.focus();
-                    } else if (!event.shiftKey && document.activeElement === last) {
-                        event.preventDefault();
-                        first?.focus();
-                    }
-                }
-            });
-            modal.querySelector('textarea').focus();
+            setupSettingsModalAccessibility(modal, 'feedbackDialogTitle', '#feedbackExplanation');
         }
 
         function submitFeedbackDialog(contextJson) {
@@ -12366,7 +13698,7 @@
             modal.className = 'settings-modal';
             modal.innerHTML = `
                 <div class="settings-modal-content">
-                    <h2>📢 Tilbakemeldinger</h2>
+                    <h2 id="feedbackViewDialogTitle">📢 Tilbakemeldinger</h2>
                     <p class="login-hint text-xs mb-4">Innspill lagres bare her. Ingen mottar dem automatisk, og de endrer ikke poengsummen. Denne eksporten inneholder oppgaven, svaret og forklaringen eleven skrev, samt elevkode hvis eleven valgte å signere. Innspill følger ikke med i vanlig fremgangseksport. Gjennomgå filen før du deler den.</p>
                     <div class="button-group mb-4">
                         <button class="btn btn-primary" onclick="exportFeedback()">📥 Eksporter til JSON</button>
@@ -12374,11 +13706,12 @@
                     </div>
                     <div id="feedbackListContainer"></div>
                     <div class="button-group mt-4">
-                        <button class="btn btn-secondary" onclick="closeSettings()">Lukk</button>
+                        <button id="feedbackViewClose" class="btn btn-secondary" onclick="closeSettings()">Lukk</button>
                     </div>
                 </div>
             `;
             document.body.appendChild(modal);
+            setupSettingsModalAccessibility(modal, 'feedbackViewDialogTitle', '#feedbackViewClose');
             renderFeedbackList();
         }
 
@@ -12430,52 +13763,6 @@
                 backupCorruptStorageValue(key, rawValue);
                 return fallback;
             }
-        }
-
-        // Browser/OS speech is optional. Keep it behind one guarded helper so a missing
-        // voice never interrupts a learning session or creates a network dependency.
-        function isSpeechAvailable() {
-            return typeof window !== 'undefined'
-                && typeof window.speechSynthesis?.speak === 'function'
-                && typeof window.SpeechSynthesisUtterance === 'function';
-        }
-
-        function getSpanishSpeechVoice() {
-            if (!isSpeechAvailable() || typeof window.speechSynthesis.getVoices !== 'function') return null;
-            const voices = window.speechSynthesis.getVoices() || [];
-            return voices.find(voice => String(voice.lang || '').toLowerCase() === 'es-es')
-                || voices.find(voice => String(voice.lang || '').toLowerCase().startsWith('es'))
-                || null;
-        }
-
-        function speakSpanish(text) {
-            const value = String(text || '').trim();
-            if (!value || !isSpeechAvailable()) return false;
-
-            try {
-                const synthesis = window.speechSynthesis;
-                synthesis.cancel();
-                const utterance = new window.SpeechSynthesisUtterance(value);
-                utterance.lang = 'es-ES';
-                const voice = getSpanishSpeechVoice();
-                if (voice) utterance.voice = voice;
-                synthesis.speak(utterance);
-                return true;
-            } catch (error) {
-                console.warn('Spanish speech is unavailable in this browser.', error);
-                return false;
-            }
-        }
-
-        function attachSpanishAudioControl(root, text) {
-            const control = root?.querySelector('[data-speak-spanish]');
-            if (!control) return;
-            const available = isSpeechAvailable();
-            control.disabled = !available;
-            control.textContent = available ? '🔊 Spill av' : '🔇 Lyd ikke tilgjengelig';
-            control.setAttribute('aria-label', available ? 'Spill av spansk lyd' : 'Lyd er ikke tilgjengelig');
-            control.title = available ? 'Spill av spansk lyd' : 'Lyd er ikke tilgjengelig i denne nettleseren';
-            control.addEventListener('click', () => speakSpanish(text));
         }
 
         function normalizeLearningProgress(data, nowIso = new Date().toISOString()) {
@@ -13409,6 +14696,7 @@
             }
 
             if (state.status === 'in_progress') {
+                activeSessionType = 'diagnosis';
                 document.getElementById('homePage')?.classList.add('hidden');
                 const totalCount = state.questionIds.length || 12;
                 const answeredCount = state.answers.length;
@@ -13922,9 +15210,45 @@
             return { ...evaluation, progress };
         }
 
+        function isValidPracticeHistoryDate(value) {
+            if (typeof value !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(value)) return false;
+            const [year, month, day] = value.split('-').map(Number);
+            const date = new Date(Date.UTC(year, month - 1, day));
+            return date.getUTCFullYear() === year && date.getUTCMonth() === month - 1 && date.getUTCDate() === day;
+        }
+
+        function normalizePracticeHistoryEntry(entry) {
+            if (!entry || typeof entry !== 'object' || !isValidPracticeHistoryDate(entry.date)) return null;
+            if (!Number.isSafeInteger(entry.words) || entry.words <= 0) return null;
+            if (!Number.isSafeInteger(entry.correct) || entry.correct < 0) return null;
+
+            const sessions = entry.sessions === undefined ? 1 : entry.sessions;
+            if (!Number.isSafeInteger(sessions) || sessions <= 0) return null;
+
+            const normalized = {
+                date: entry.date,
+                words: entry.words,
+                correct: Math.min(entry.correct, entry.words),
+                sessions
+            };
+            if (typeof entry.activity === 'string' && /^[a-z][a-z-]{0,31}$/i.test(entry.activity)) normalized.activity = entry.activity;
+            if (typeof entry.minutes === 'number' && Number.isFinite(entry.minutes) && entry.minutes >= 0) normalized.minutes = entry.minutes;
+            if (typeof entry.sessionId === 'string' && /^[a-z0-9._:-]{1,160}$/i.test(entry.sessionId)) normalized.sessionId = entry.sessionId;
+            if (entry.assignmentId === null || (typeof entry.assignmentId === 'string' && /^[a-z0-9._:-]{1,160}$/i.test(entry.assignmentId))) normalized.assignmentId = entry.assignmentId;
+            if (typeof entry.inProgress === 'boolean') normalized.inProgress = entry.inProgress;
+            if (typeof entry.interrupted === 'boolean') normalized.interrupted = entry.interrupted;
+            return normalized;
+        }
+
+        function normalizePracticeHistory(entries) {
+            if (!Array.isArray(entries)) return [];
+            return entries.map(normalizePracticeHistoryEntry).filter(Boolean);
+        }
+
         function loadPracticeHistory() {
-            practiceHistory = readStoredJson('spansk123_practiceHistory', []);
-            if (!Array.isArray(practiceHistory)) practiceHistory = [];
+            const storedHistory = readStoredJson('spansk123_practiceHistory', []);
+            practiceHistory = normalizePracticeHistory(storedHistory);
+            if (Array.isArray(storedHistory) && JSON.stringify(storedHistory) !== JSON.stringify(practiceHistory)) savePracticeHistory();
             const interrupted = practiceHistory.filter(entry => entry.inProgress && !Object.values(practiceSessions).some(session => session.sessionId === entry.sessionId));
             if (interrupted.length) {
                 interrupted.forEach(entry => { entry.inProgress = false; entry.interrupted = true; });
@@ -14560,11 +15884,11 @@
 
                 return `
                     <div class="practice-entry">
-                        <span class="practice-entry-date">${dateStr}${entry.interrupted ? ' · Avbrutt økt' : entry.inProgress ? ' · Pågående økt' : ''}</span>
+                        <span class="practice-entry-date">${escapeHtml(dateStr)}${entry.interrupted ? ' · Avbrutt økt' : entry.inProgress ? ' · Pågående økt' : ''}</span>
                         <div class="practice-entry-stats">
-                            <span>📝 ${entry.words} oppgaver</span>
-                            <span>✅ ${accuracy}%</span>
-                            <span>🔄 ${entry.sessions} økt${entry.sessions > 1 ? 'er' : ''}</span>
+                            <span>📝 ${escapeHtml(String(entry.words))} oppgaver</span>
+                            <span>✅ ${escapeHtml(String(accuracy))}%</span>
+                            <span>🔄 ${escapeHtml(String(entry.sessions))} økt${entry.sessions > 1 ? 'er' : ''}</span>
                         </div>
                     </div>
                 `;
@@ -14637,9 +15961,9 @@
                     return `
                         <tr>
                             <td>${escapeHtml(new Date(entry.date).toLocaleDateString('no-NO'))}</td>
-                            <td>${entry.sessions}</td>
-                            <td>${entry.words}</td>
-                            <td>${accuracy}%</td>
+                            <td>${escapeHtml(String(entry.sessions))}</td>
+                            <td>${escapeHtml(String(entry.words))}</td>
+                            <td>${escapeHtml(String(accuracy))}%</td>
                         </tr>
                     `;
                 }).join('')
@@ -14753,30 +16077,6 @@
             };
         }
 
-        function buildDiagnosisPilotExportData(diagnosis = loadDiagnosisState()) {
-            const routing = calculateDiagnosisRouting(diagnosis.answers || [], diagnosis.answers?.length || 0);
-            return {
-                version: 'spansk123_diagnosis_pilot_v1',
-                exportId: crypto.randomUUID(),
-                analysisOnly: true,
-                responseCount: (diagnosis.answers || []).length,
-                resultBand: diagnosis.resultBand || routing.resultBand,
-                confidence: diagnosis.confidence || routing.confidence,
-                responses: (diagnosis.answers || []).map((answer, index) => ({
-                    sequence: index + 1,
-                    questionId: answer.questionId,
-                    contentVersion: answer.contentVersion || null,
-                    targetType: answer.targetType || null,
-                    targetId: answer.targetId || null,
-                    responseClass: answer.responseClass || answer.resultKind || 'legacy_unknown',
-                    evidence: ({ correct: 1, accent_or_case_variant: 0.9, near_miss: 0.5, wrong: 0, skipped: 0 }[answer.responseClass || answer.resultKind] || 0),
-                    selectedOptionId: answer.selectedOptionId || null,
-                    productiveAnchor: Boolean(answer.productiveAnchor),
-                    responseTimeBucket: null
-                }))
-            };
-        }
-
         function importDictationData(value) {
             if (!value || value.version !== 1 || !Array.isArray(value.completed)) return false;
             const valid = value.completed.filter(entry => entry && DICTATION_STORIES.some(s => s.id === entry.storyId) && /^\d{4}-\d{2}-\d{2}$/.test(entry.completedOn));
@@ -14807,8 +16107,8 @@
                 if (data.grammarData) {
                     localStorage.setItem('spansk123Grammar_v1', JSON.stringify(data.grammarData));
                 }
-                if (data.practiceHistory) {
-                    practiceHistory = data.practiceHistory;
+                if (Array.isArray(data.practiceHistory)) {
+                    practiceHistory = normalizePracticeHistory(data.practiceHistory);
                     savePracticeHistory();
                 }
                 if (data.activeAssignment) {
@@ -15209,13 +16509,14 @@
         // NAVIGATION
         // ============================================
 
-        function getCurrentNextPracticeRecommendation() {
-            const diagnosis = loadDiagnosisState();
-            if (diagnosis.status !== 'complete') return null;
-            return getNextPracticeRecommendation(
-                buildMixedQuizCandidates({ cards, skillsCatalog: learningCatalog, learningProgress: loadLearningProgress(), diagnosis }),
-                new Date().toISOString()
-            );
+        function getVocabularyReviewWordCount(cardList = cards) {
+            return new Set(getDueCards(cardList).map(item => item.card.id)).size;
+        }
+
+        function startVocabularyReviewFromHome() {
+            if (!getVocabularyReviewWordCount()) { renderHomePage(); return; }
+            if (showPage('vocab') === false) return;
+            startVocabSession('review', null, { reviewLimit: 50 });
         }
 
         function getTodayActivityText() {
@@ -15225,16 +16526,6 @@
             const activities = [...new Set(entries.map(entry => labels[entry.activity] || 'øving'))];
             const words = entries.reduce((sum, entry) => sum + entry.words, 0);
             return [words ? `I dag: ${words} besvarte oppgaver i ${activities.join(', ')}.` : '', dictations ? `${dictations} diktathistorie(r) forsøkt.` : ''].filter(Boolean).join(' ');
-        }
-
-        function startRecommendedPractice() {
-            const recommendation = getCurrentNextPracticeRecommendation();
-            if (!recommendation || recommendation.kind === 'mixedQuiz') return startDailyQuizFromHome();
-            if (recommendation.kind === 'vocabulary') {
-                const card = cards.find(item => String(item.id ?? `${item.no || item.norsk}:${item.es || item.spansk}`) === String(recommendation.targetId));
-                return card ? selectCategoryAndStudy(card.category) : startDailyQuizFromHome();
-            }
-            return startBrainmapSkillPractice(recommendation.targetId);
         }
 
         function renderHomePage() {
@@ -15247,7 +16538,7 @@
             const activityText = getTodayActivityText();
             const streakText = activityText || (dailyQuizComplete ? formatQuizStreakSummary(quizStats) : 'Ingen registrert øving i dag ennå.');
             const badges = getMasteryBadges(loadLearningProgress());
-            const recommendation = diagnosisComplete ? getCurrentNextPracticeRecommendation() : null;
+            const reviewWordCount = getVocabularyReviewWordCount();
             content.innerHTML = `
                 <section class="home-primary-action" aria-labelledby="homeQuizTitle">
                     <div class="home-primary-copy">
@@ -15257,13 +16548,17 @@
                     </div>
                     <button type="button" class="btn btn-primary btn-large" id="homeStartMixedQuizBtn" onclick="startDailyQuizFromHome()">${dailyQuizComplete ? 'Ta en ny quiz' : diagnosisComplete ? 'Start dagens quiz' : 'Start nivåtest'}</button>
                 </section>
-                ${recommendation ? `<section class="home-next-practice" id="homeNextPractice" aria-labelledby="homeNextPracticeTitle">
-                    <div><span class="home-eyebrow">Anbefalt nå</span><h2 id="homeNextPracticeTitle">Neste anbefalte øving</h2><p><strong>${escapeHtml(recommendation.label)}</strong><br>${escapeHtml(recommendation.reason)}</p></div>
-                    <button type="button" class="btn btn-secondary" onclick="startRecommendedPractice()">Start anbefalt øving</button>
-                </section>` : ''}
+                <section class="home-next-practice" id="homeVocabularyReview" aria-labelledby="homeVocabularyReviewTitle">
+                    <div>
+                        <span class="home-eyebrow">Gloser</span>
+                        <h2 id="homeVocabularyReviewTitle">Repeter gloser</h2>
+                        <p><strong id="homeVocabularyReviewCount">${reviewWordCount} ord ${reviewWordCount === 1 ? 'klart' : 'klare'} for repetisjon</strong></p>
+                        <p>${reviewWordCount ? 'Økten starter med opptil 50 oppgaver.' : 'Øv på nye ord under Gloser, så kommer de tilbake her.'}</p>
+                    </div>
+                    <button type="button" class="btn btn-secondary" aria-describedby="homeVocabularyReviewCount" onclick="startVocabularyReviewFromHome()" ${reviewWordCount ? '' : 'disabled'}>Start repetisjon</button>
+                </section>
                 <p class="home-streak" id="homeQuizStreak">${streakText}</p>
                 <p class="home-offline-hint" id="homeOfflineHint">Gloser og grammatikk fungerer uten nett når appen er lagret i nettleseren. Diktatlyd må lastes ned separat i Lytteøvelser. ${location.protocol === 'file:' ? 'Denne lokale filen bruker lyd fra den tilhørende lydmappen.' : ''}</p>
-                ${renderTeacherGuide()}
                 <p id="appVersionLabel">Versjon ${escapeHtml(document.querySelector('meta[name="app-build"]').content)} <button class="btn btn-outline btn-sm" onclick="checkForAppUpdate()">Se etter oppdateringer</button></p>
                 ${badges.length ? `<section class="home-badges" aria-labelledby="homeBadgesTitle"><h2 id="homeBadgesTitle">🏅 Merker du har fått</h2><div class="badge-list">${badges.map(badge => `<span class="mastery-badge">${escapeHtml(badge.label)}</span>`).join('')}</div></section>` : ''}
             `;
@@ -15281,7 +16576,9 @@
                 vocabulary: 'vocab',
                 verbs: 'verbs',
                 grammar: 'grammar',
-                diagnosis: 'home'
+                diagnosis: 'home',
+                dictation: 'dictation',
+                listening: 'dictation'
             }[activeSessionType] || null;
         }
 
@@ -15335,6 +16632,10 @@
                 document.getElementById('homePage')?.classList.remove('hidden');
                 renderDiagnosisPanel();
                 renderHomePage();
+            } else if (activeSessionType === 'dictation') {
+                endDictation();
+            } else if (activeSessionType === 'listening') {
+                endListeningStory();
             }
             activeSessionType = null;
             return true;
@@ -15430,6 +16731,8 @@
                 document.getElementById('navDictation').setAttribute('aria-current', 'page');
                 document.getElementById('dictationOverview').classList.remove('hidden');
                 document.getElementById('dictationExercise').classList.add('hidden');
+                document.getElementById('listeningOverview').classList.remove('hidden');
+                document.getElementById('listeningExercise').classList.add('hidden');
                 renderDictationOverview();
             } else if (page === 'games') {
                 document.getElementById('gamesPage').classList.remove('hidden');
@@ -15440,6 +16743,531 @@
         }
         // VOCABULARY DATABASE
         // ============================================
+
+        const vocabularyCanonicalIds = [
+    "vocab-0001",
+    "vocab-0002",
+    "vocab-0003",
+    "vocab-0004",
+    "vocab-0005",
+    "vocab-0006",
+    "vocab-0007",
+    "vocab-0008",
+    "vocab-0009",
+    "vocab-0010",
+    "vocab-0011",
+    "vocab-0012",
+    "vocab-0013",
+    "vocab-0014",
+    "vocab-0015",
+    "vocab-0016",
+    "vocab-0017",
+    "vocab-0018",
+    "vocab-0019",
+    "vocab-0020",
+    "vocab-0021",
+    "vocab-0022",
+    "vocab-0023",
+    "vocab-0024",
+    "vocab-0025",
+    "vocab-0026",
+    "vocab-0027",
+    "vocab-0028",
+    "vocab-0029",
+    "vocab-0030",
+    "vocab-0031",
+    "vocab-0032",
+    "vocab-0033",
+    "vocab-0034",
+    "vocab-0035",
+    "vocab-0036",
+    "vocab-0037",
+    "vocab-0038",
+    "vocab-0039",
+    "vocab-0040",
+    "vocab-0041",
+    "vocab-0042",
+    "vocab-0043",
+    "vocab-0044",
+    "vocab-0045",
+    "vocab-0046",
+    "vocab-0047",
+    "vocab-0048",
+    "vocab-0049",
+    "vocab-0050",
+    "vocab-0051",
+    "vocab-0052",
+    "vocab-0053",
+    "vocab-0054",
+    "vocab-0055",
+    "vocab-0056",
+    "vocab-0057",
+    "vocab-0058",
+    "vocab-0059",
+    "vocab-0060",
+    "vocab-0061",
+    "vocab-0062",
+    "vocab-0063",
+    "vocab-0064",
+    "vocab-0065",
+    "vocab-0066",
+    "vocab-0067",
+    "vocab-0068",
+    "vocab-0069",
+    "vocab-0070",
+    "vocab-0071",
+    "vocab-0072",
+    "vocab-0073",
+    "vocab-0074",
+    "vocab-0075",
+    "vocab-0076",
+    "vocab-0077",
+    "vocab-0078",
+    "vocab-0079",
+    "vocab-0080",
+    "vocab-0081",
+    "vocab-0082",
+    "vocab-0083",
+    "vocab-0084",
+    "vocab-0085",
+    "vocab-0086",
+    "vocab-0087",
+    "vocab-0088",
+    "vocab-0089",
+    "vocab-0090",
+    "vocab-0091",
+    "vocab-0092",
+    "vocab-0093",
+    "vocab-0094",
+    "vocab-0095",
+    "vocab-0096",
+    "vocab-0097",
+    "vocab-0098",
+    "vocab-0099",
+    "vocab-0100",
+    "vocab-0101",
+    "vocab-0102",
+    "vocab-0103",
+    "vocab-0104",
+    "vocab-0105",
+    "vocab-0106",
+    "vocab-0107",
+    "vocab-0108",
+    "vocab-0109",
+    "vocab-0110",
+    "vocab-0111",
+    "vocab-0112",
+    "vocab-0113",
+    "vocab-0114",
+    "vocab-0115",
+    "vocab-0116",
+    "vocab-0117",
+    "vocab-0118",
+    "vocab-0119",
+    "vocab-0120",
+    "vocab-0121",
+    "vocab-0122",
+    "vocab-0123",
+    "vocab-0124",
+    "vocab-0125",
+    "vocab-0126",
+    "vocab-0127",
+    "vocab-0128",
+    "vocab-0129",
+    "vocab-0130",
+    "vocab-0131",
+    "vocab-0132",
+    "vocab-0133",
+    "vocab-0134",
+    "vocab-0135",
+    "vocab-0136",
+    "vocab-0137",
+    "vocab-0138",
+    "vocab-0139",
+    "vocab-0140",
+    "vocab-0141",
+    "vocab-0142",
+    "vocab-0143",
+    "vocab-0144",
+    "vocab-0145",
+    "vocab-0146",
+    "vocab-0147",
+    "vocab-0148",
+    "vocab-0149",
+    "vocab-0150",
+    "vocab-0151",
+    "vocab-0152",
+    "vocab-0153",
+    "vocab-0154",
+    "vocab-0155",
+    "vocab-0156",
+    "vocab-0157",
+    "vocab-0158",
+    "vocab-0159",
+    "vocab-0160",
+    "vocab-0161",
+    "vocab-0162",
+    "vocab-0163",
+    "vocab-0164",
+    "vocab-0165",
+    "vocab-0166",
+    "vocab-0167",
+    "vocab-0168",
+    "vocab-0169",
+    "vocab-0170",
+    "vocab-0171",
+    "vocab-0172",
+    "vocab-0173",
+    "vocab-0174",
+    "vocab-0175",
+    "vocab-0176",
+    "vocab-0177",
+    "vocab-0178",
+    "vocab-0179",
+    "vocab-0180",
+    "vocab-0181",
+    "vocab-0182",
+    "vocab-0183",
+    "vocab-0184",
+    "vocab-0185",
+    "vocab-0186",
+    "vocab-0187",
+    "vocab-0188",
+    "vocab-0189",
+    "vocab-0190",
+    "vocab-0191",
+    "vocab-0192",
+    "vocab-0193",
+    "vocab-0194",
+    "vocab-0195",
+    "vocab-0196",
+    "vocab-0197",
+    "vocab-0198",
+    "vocab-0199",
+    "vocab-0200",
+    "vocab-0201",
+    "vocab-0202",
+    "vocab-0203",
+    "vocab-0204",
+    "vocab-0205",
+    "vocab-0206",
+    "vocab-0207",
+    "vocab-0208",
+    "vocab-0209",
+    "vocab-0210",
+    "vocab-0211",
+    "vocab-0212",
+    "vocab-0213",
+    "vocab-0214",
+    "vocab-0215",
+    "vocab-0216",
+    "vocab-0217",
+    "vocab-0218",
+    "vocab-0219",
+    "vocab-0220",
+    "vocab-0221",
+    "vocab-0222",
+    "vocab-0223",
+    "vocab-0224",
+    "vocab-0225",
+    "vocab-0226",
+    "vocab-0227",
+    "vocab-0228",
+    "vocab-0229",
+    "vocab-0230",
+    "vocab-0231",
+    "vocab-0232",
+    "vocab-0233",
+    "vocab-0234",
+    "vocab-0235",
+    "vocab-0236",
+    "vocab-0237",
+    "vocab-0238",
+    "vocab-0239",
+    "vocab-0240",
+    "vocab-0241",
+    "vocab-0242",
+    "vocab-0243",
+    "vocab-0244",
+    "vocab-0245",
+    "vocab-0246",
+    "vocab-0247",
+    "vocab-0248",
+    "vocab-0249",
+    "vocab-0250",
+    "vocab-0251",
+    "vocab-0252",
+    "vocab-0253",
+    "vocab-0254",
+    "vocab-0255",
+    "vocab-0256",
+    "vocab-0257",
+    "vocab-0258",
+    "vocab-0259",
+    "vocab-0260",
+    "vocab-0261",
+    "vocab-0262",
+    "vocab-0263",
+    "vocab-0264",
+    "vocab-0265",
+    "vocab-0266",
+    "vocab-0267",
+    "vocab-0268",
+    "vocab-0269",
+    "vocab-0270",
+    "vocab-0271",
+    "vocab-0272",
+    "vocab-0273",
+    "vocab-0274",
+    "vocab-0275",
+    "vocab-0276",
+    "vocab-0277",
+    "vocab-0278",
+    "vocab-0279",
+    "vocab-0280",
+    "vocab-0281",
+    "vocab-0282",
+    "vocab-0283",
+    "vocab-0284",
+    "vocab-0285",
+    "vocab-0286",
+    "vocab-0287",
+    "vocab-0288",
+    "vocab-0289",
+    "vocab-0290",
+    "vocab-0291",
+    "vocab-0292",
+    "vocab-0293",
+    "vocab-0294",
+    "vocab-0295",
+    "vocab-0296",
+    "vocab-0297",
+    "vocab-0298",
+    "vocab-0299",
+    "vocab-0300",
+    "vocab-0301",
+    "vocab-0302",
+    "vocab-0303",
+    "vocab-0304",
+    "vocab-0305",
+    "vocab-0306",
+    "vocab-0307",
+    "vocab-0308",
+    "vocab-0309",
+    "vocab-0310",
+    "vocab-0311",
+    "vocab-0312",
+    "vocab-0313",
+    "vocab-0314",
+    "vocab-0315",
+    "vocab-0316",
+    "vocab-0317",
+    "vocab-0318",
+    "vocab-0319",
+    "vocab-0320",
+    "vocab-0321",
+    "vocab-0322",
+    "vocab-0323",
+    "vocab-0324",
+    "vocab-0325",
+    "vocab-0326",
+    "vocab-0327",
+    "vocab-0328",
+    "vocab-0329",
+    "vocab-0330",
+    "vocab-0331",
+    "vocab-0332",
+    "vocab-0333",
+    "vocab-0334",
+    "vocab-0335",
+    "vocab-0336",
+    "vocab-0337",
+    "vocab-0338",
+    "vocab-0339",
+    "vocab-0340",
+    "vocab-0341",
+    "vocab-0342",
+    "vocab-0343",
+    "vocab-0344",
+    "vocab-0345",
+    "vocab-0346",
+    "vocab-0347",
+    "vocab-0348",
+    "vocab-0349",
+    "vocab-0350",
+    "vocab-0351",
+    "vocab-0352",
+    "vocab-0353",
+    "vocab-0354",
+    "vocab-0355",
+    "vocab-0356",
+    "vocab-0357",
+    "vocab-0358",
+    "vocab-0359",
+    "vocab-0360",
+    "vocab-0361",
+    "vocab-0362",
+    "vocab-0363",
+    "vocab-0364",
+    "vocab-0365",
+    "vocab-0366",
+    "vocab-0367",
+    "vocab-0368",
+    "vocab-0369",
+    "vocab-0370",
+    "vocab-0371",
+    "vocab-0372",
+    "vocab-0373",
+    "vocab-0374",
+    "vocab-0375",
+    "vocab-0376",
+    "vocab-0377",
+    "vocab-0378",
+    "vocab-0379",
+    "vocab-0380",
+    "vocab-0381",
+    "vocab-0382",
+    "vocab-0383",
+    "vocab-0384",
+    "vocab-0385",
+    "vocab-0386",
+    "vocab-0387",
+    "vocab-0388",
+    "vocab-0389",
+    "vocab-0390",
+    "vocab-0391",
+    "vocab-0392",
+    "vocab-0393",
+    "vocab-0394",
+    "vocab-0395",
+    "vocab-0396",
+    "vocab-0397",
+    "vocab-0398",
+    "vocab-0399",
+    "vocab-0400",
+    "vocab-0401",
+    "vocab-0402",
+    "vocab-0403",
+    "vocab-0404",
+    "vocab-0405",
+    "vocab-0406",
+    "vocab-0407",
+    "vocab-0408",
+    "vocab-0409",
+    "vocab-0410",
+    "vocab-0411",
+    "vocab-0412",
+    "vocab-0413",
+    "vocab-0414",
+    "vocab-0415",
+    "vocab-0416",
+    "vocab-0417",
+    "vocab-0418",
+    "vocab-0419",
+    "vocab-0420",
+    "vocab-0421",
+    "vocab-0422",
+    "vocab-0423",
+    "vocab-0424",
+    "vocab-0425",
+    "vocab-0426",
+    "vocab-0427",
+    "vocab-0428",
+    "vocab-0429",
+    "vocab-0430",
+    "vocab-0431",
+    "vocab-0432",
+    "vocab-0433",
+    "vocab-0434",
+    "vocab-0435",
+    "vocab-0436",
+    "vocab-0437",
+    "vocab-0438",
+    "vocab-0439",
+    "vocab-0440",
+    "vocab-0441",
+    "vocab-0442",
+    "vocab-0443",
+    "vocab-0444",
+    "vocab-0445",
+    "vocab-0446",
+    "vocab-0447",
+    "vocab-0448",
+    "vocab-0449",
+    "vocab-0450",
+    "vocab-0451",
+    "vocab-0452",
+    "vocab-0453",
+    "vocab-0454",
+    "vocab-0455",
+    "vocab-0456",
+    "vocab-0457",
+    "vocab-0458",
+    "vocab-0459",
+    "vocab-0460",
+    "vocab-0461",
+    "vocab-0462",
+    "vocab-0463",
+    "vocab-0464",
+    "vocab-0465",
+    "vocab-0466",
+    "vocab-0467",
+    "vocab-0468",
+    "vocab-0469",
+    "vocab-0470",
+    "vocab-0471",
+    "vocab-0472",
+    "vocab-0473",
+    "vocab-0474",
+    "vocab-0475",
+    "vocab-0476",
+    "vocab-0477",
+    "vocab-0478",
+    "vocab-0479",
+    "vocab-0480",
+    "vocab-0481",
+    "vocab-0482",
+    "vocab-0483",
+    "vocab-0484",
+    "vocab-0485",
+    "vocab-0486",
+    "vocab-0487",
+    "vocab-0488",
+    "vocab-0489",
+    "vocab-0490",
+    "vocab-0491",
+    "vocab-0492",
+    "vocab-0493",
+    "vocab-0494",
+    "vocab-0495",
+    "vocab-0496",
+    "vocab-0497",
+    "vocab-0498",
+    "vocab-0499",
+    "vocab-0500",
+    "vocab-0501",
+    "vocab-0502",
+    "vocab-0503",
+    "vocab-0504",
+    "vocab-0505",
+    "vocab-0506",
+    "vocab-0507",
+    "vocab-0508",
+    "vocab-0509",
+    "vocab-0510",
+    "vocab-0511",
+    "vocab-0512",
+    "vocab-0513",
+    "vocab-0514",
+    "vocab-0515",
+    "vocab-0516",
+    "vocab-0517",
+    "vocab-0518",
+    "vocab-0519",
+    "vocab-0520",
+    "vocab-0521",
+    "vocab-0522"
+];
 
         const glossary = [
     [
@@ -18159,7 +19987,7 @@
             // IRREGULAR VERBS
             ser: {
                 infinitive: "ser",
-                translation: "å være (permanent)",
+                translation: "å være (identitet, beskrivelse og når noe skjer)",
                 type: "uregelmessig",
                 presente: ["soy", "eres", "es", "somos", "sois", "son"],
                 participio: "sido"
@@ -18366,6 +20194,7 @@
         // ============================================
 
         let cards = [];
+        let archivedVocabularyCards = [];
         let selectedCategories = new Set();
         let sessionCards = [];
         let currentIndex = 0;
@@ -18559,14 +20388,13 @@
                     <div class="mixed-quiz-prompt">${escapeHtml(item.prompt)}</div>
                     ${item.answerConstraint?.type === 'startsWith' ? `<div class="answer-constraint">(begynner på «${escapeHtml(item.answerConstraint.value)}»)</div>` : ''}
                     ${shouldShowMixedQuizContext(item) ? `<div class="mixed-quiz-context"><span class="mixed-quiz-context-label">Norsk kontekst</span>${escapeHtml(item.promptNo)}</div>` : ''}
-                    ${item.direction === 'es-no' ? '<button type="button" class="speech-audio-button btn btn-secondary btn-sm" data-speak-spanish>🔊 Spill av</button>' : ''}
+                    ${item.direction === 'es-no' ? '<p class="text-sm text-slate-500" role="status">Lydopptak er ikke tilgjengelig for denne oppgaven.</p>' : ''}
                     ${responseControls}
                     <div class="mixed-quiz-feedback" id="mixedQuizFeedback" aria-live="polite"></div>
                 </div>
             `;
             const mixedQuizInput = container.querySelector('#mixedQuizAnswerInput');
             if (mixedQuizInput) setupAccentInput(mixedQuizInput);
-            if (item.direction === 'es-no') attachSpanishAudioControl(container, item.prompt);
             container.querySelectorAll('[data-mixed-answer]').forEach(button => {
                 button.addEventListener('click', () => submitMixedQuizAnswer(button.dataset.mixedAnswer));
             });
@@ -18770,6 +20598,7 @@
 
         function loadData() {
             const saved = readStoredJson('spansk123Data_v4', null);
+            archivedVocabularyCards = [];
             if (saved) {
                 cards = saved.map((card, index) => normalizeCard(card, index)).filter(isVocabularyCardEligible);
                 mergeNewVocabulary();
@@ -18777,13 +20606,14 @@
             } else {
                 cards = glossary.map((item, index) => ({
                     id: index,
+                    canonicalId: vocabularyCanonicalIds[index],
                     no: item[0],
                     es: item[1],
                     norsk: item[0],
                     spansk: item[1],
                     category: normalizeLegacyCategory(item[2], item[0]),
-                    noEs: { easeFactor: SM2.defaultEaseFactor, interval: 0, repetitions: 0, nextReview: null },
-                    esNo: { easeFactor: SM2.defaultEaseFactor, interval: 0, repetitions: 0, nextReview: null },
+                    noEs: { easeFactor: SM2.defaultEaseFactor, interval: 0, repetitions: 0, nextReview: null, lapses: 0 },
+                    esNo: { easeFactor: SM2.defaultEaseFactor, interval: 0, repetitions: 0, nextReview: null, lapses: 0 },
                     lastReview: null,
                     reviews: 0,
                     correct: 0
@@ -18795,13 +20625,83 @@
         function mergeNewVocabulary() {
             // Robust migrering: oppdater eksisterende kort etter ordpar, ikke bare id.
             // Dette gjør at nye kategorier kommer inn selv om eleven allerede har lagret fremgang i localStorage.
+            const vocabularyReplacementHistory = [
+                { legacyNo: 'smykke', legacyEs: 'la cadena', no: 'kjede', es: 'la cadena' },
+                { legacyNo: 'I morgen skal jeg besøke bestemora mi', legacyEs: 'Mañana voy a visitar mi abuela', no: 'I morgen skal jeg besøke bestemora mi', es: 'Mañana voy a visitar a mi abuela' }
+            ];
+            const pairKey = (no, es) => `${String(no || '').trim().toLocaleLowerCase('nb-NO')}|||${String(es || '').trim().toLocaleLowerCase('nb-NO')}`;
+            const replacementsByLegacyPair = new Map(vocabularyReplacementHistory.map(replacement => [pairKey(replacement.legacyNo, replacement.legacyEs), replacement]));
+            const activeIds = new Set(vocabularyCanonicalIds);
+            // Eldre utgaver lagret ikke canonicalId. Dette paret er bekreftet fjernet.
+            const retiredLegacyPairs = new Set([pairKey('sjokoladedrikk', 'el Cola Cao')]);
+            const activeCards = [];
+            for (const card of [...cards, ...archivedVocabularyCards]) {
+                const isOwnWord = card.isCustom || card.assignmentId;
+                const index = isOwnWord ? -1 : vocabularyCanonicalIds.indexOf(card.canonicalId);
+                if (index >= 0) {
+                    [card.no, card.es, card.category] = glossary[index];
+                    card.norsk = card.no;
+                    card.spansk = card.es;
+                }
+                const retired = !isOwnWord && (
+                    (card.canonicalId && !activeIds.has(card.canonicalId)) ||
+                    (retiredLegacyPairs.has(pairKey(card.no || card.norsk, card.es || card.spansk)) && !getVocabularyCanonicalId(card))
+                );
+                if (!retired) activeCards.push(card);
+            }
+            archivedVocabularyCards = [...cards, ...archivedVocabularyCards].filter(card => !activeCards.includes(card));
+            cards = activeCards;
+
+            const reconciledByPair = new Map();
+            let changed = false;
+            const keepStrongerProgress = (target, source, direction) => {
+                if ((Number(source[direction]?.repetitions) || 0) > (Number(target[direction]?.repetitions) || 0)) {
+                    target[direction] = { ...target[direction], ...source[direction] };
+                }
+            };
+            cards.forEach(card => {
+                const replacement = !card.isCustom && !card.assignmentId && replacementsByLegacyPair.get(pairKey(card.no || card.norsk, card.es || card.spansk));
+                if (replacement) {
+                    card.no = replacement.no;
+                    card.norsk = replacement.no;
+                    card.es = replacement.es;
+                    card.spansk = replacement.es;
+                    changed = true;
+                }
+                const key = card.isCustom || card.assignmentId ? `custom:${card.id}` : pairKey(card.no || card.norsk, card.es || card.spansk);
+                const canonicalCard = reconciledByPair.get(key);
+                if (!canonicalCard) {
+                    reconciledByPair.set(key, card);
+                    return;
+                }
+                keepStrongerProgress(canonicalCard, card, 'noEs');
+                keepStrongerProgress(canonicalCard, card, 'esNo');
+                if ((Number(card.reviews) || 0) > (Number(canonicalCard.reviews) || 0)) {
+                    canonicalCard.reviews = card.reviews;
+                    canonicalCard.correct = card.correct;
+                }
+                changed = true;
+            });
+            cards = [...reconciledByPair.values()];
             const existingByPair = new Map();
             cards.forEach((card, idx) => {
+                if (card.isCustom || card.assignmentId) return;
                 const key = `${(card.no || card.norsk || '').toLowerCase()}|||${(card.es || card.spansk || '').toLowerCase()}`;
                 existingByPair.set(key, { card, idx });
             });
-
-            let changed = false;
+            // Eldre lagringer kan ha hull i ID-rekken. Nye kort må derfor få en
+            // ubrukt ID, ikke bare cards.length, slik at vurderinger treffer riktig kort.
+            const usedIds = new Set([...cards, ...archivedVocabularyCards]
+                .map(card => Number(card.id))
+                .filter(id => Number.isSafeInteger(id) && id >= 0));
+            let nextCardId = usedIds.size ? Math.max(...usedIds) + 1 : 0;
+            const allocateCardId = () => {
+                while (usedIds.has(nextCardId)) nextCardId++;
+                const id = nextCardId;
+                usedIds.add(id);
+                nextCardId++;
+                return id;
+            };
 
             glossary.forEach((item, index) => {
                 const [no, es, rawCategory] = item;
@@ -18813,6 +20713,7 @@
                 if (existing) {
                     // Behold elevens fremgang, men oppdater kategori/tekst fra den nye ordlisten.
                     const card = existing.card;
+                    if (card.canonicalId !== vocabularyCanonicalIds[index]) { card.canonicalId = vocabularyCanonicalIds[index]; changed = true; }
                     if (card.category !== category || card.no !== no || card.es !== es || card.norsk !== no || card.spansk !== es) {
                         card.no = no;
                         card.es = es;
@@ -18823,14 +20724,15 @@
                     }
                 } else {
                     const newCard = {
-                        id: cards.length,
+                        id: allocateCardId(),
+                        canonicalId: vocabularyCanonicalIds[index],
                         no,
                         es,
                         norsk: no,
                         spansk: es,
                         category,
-                        noEs: { easeFactor: SM2.defaultEaseFactor, interval: 0, repetitions: 0, nextReview: null },
-                        esNo: { easeFactor: SM2.defaultEaseFactor, interval: 0, repetitions: 0, nextReview: null },
+                        noEs: { easeFactor: SM2.defaultEaseFactor, interval: 0, repetitions: 0, nextReview: null, lapses: 0 },
+                        esNo: { easeFactor: SM2.defaultEaseFactor, interval: 0, repetitions: 0, nextReview: null, lapses: 0 },
                         lastReview: null,
                         reviews: 0,
                         correct: 0
@@ -18845,7 +20747,8 @@
         }
 
         function saveData() {
-            localStorage.setItem('spansk123Data_v4', JSON.stringify(cards));
+            // Utgåtte standardkort beholdes i samme lokale format og følger sikkerhetskopien.
+            localStorage.setItem('spansk123Data_v4', JSON.stringify([...cards, ...archivedVocabularyCards]));
         }
 
         function setupKeyboardShortcuts() {
@@ -19365,7 +21268,7 @@ Vil du øve på ${pronoun} likevel?`
 
         function startVocabSession(mode = 'mixed', cardPool = null, options = {}) {
             const newLimit = getLimitValue('newCardsLimit', 10);
-            const reviewLimit = getLimitValue('reviewCardsLimit', 50);
+            const reviewLimit = options.reviewLimit ?? getLimitValue('reviewCardsLimit', 50);
             sessionTimeLimitMinutes = getLimitValue('sessionTimeLimit', 0);
             currentVocabMode = mode;
             isCustomStudySession = false;
@@ -19553,9 +21456,8 @@ Vil du øve på ${pronoun} likevel?`
                     <div class="card-hint">Trykk for å se svar (mellomrom)</div>
                     <span class="card-category">${getCategoryEmoji(card.category)} ${capitalizeFirst(card.category)}</span>
                 </div>
-                ${direction === 'es-no' ? '<button type="button" class="speech-audio-button btn btn-secondary btn-sm" data-speak-spanish>🔊 Spill av</button>' : ''}
+                ${direction === 'es-no' ? '<p class="text-sm text-slate-500" role="status">Lydopptak er ikke tilgjengelig for denne oppgaven.</p>' : ''}
             `;
-            if (direction === 'es-no') attachSpanishAudioControl(document.getElementById('flashcardArea'), front);
             document.getElementById('buttonArea').innerHTML = '';
             updateUndoButtonState();
         }
@@ -19589,9 +21491,8 @@ Vil du øve på ${pronoun} likevel?`
                     ${synonymHint ? `<div class="card-synonym-hint text-sm text-gray-400 mt-2">${escapeHtml(synonymHint)}</div>` : ''}
                     <span class="card-category">${getCategoryEmoji(card.category)} ${capitalizeFirst(card.category)}</span>
                 </div>
-                ${direction === 'no-es' ? '<button type="button" class="speech-audio-button btn btn-secondary btn-sm" data-speak-spanish>🔊 Spill av</button>' : ''}
+                ${direction === 'no-es' ? '<p class="text-sm text-slate-500" role="status">Lydopptak er ikke tilgjengelig for denne oppgaven.</p>' : ''}
             `;
-            if (direction === 'no-es') attachSpanishAudioControl(document.getElementById('flashcardArea'), back);
             document.getElementById('buttonArea').innerHTML = `
                 <div class="rating-buttons">
                     <button class="rating-btn rating-again" onclick="rateCard(0)">😓 <span class="rating-label">Igjen</span><span class="interval">${intervals[0]}</span><span class="key">(1)</span></button>
@@ -19842,22 +21743,39 @@ Vil du øve på ${pronoun} likevel?`
                 'a1.verbs.hacer.present': { kind: 'verbs', focus: 'irregular', label: 'Øv på hacer' },
                 'a1.verbs.modal.present': { kind: 'verbs', focus: 'irregular', label: 'Øv på modalverb' },
                 'a1.verbs.reflexive.present': { kind: 'grammar', topicId: 'reflexive', label: 'Øv på refleksive verb' },
-                'a1.adjectives.gender_number': { kind: 'grammar', topicId: 'adjectives', label: 'Øv på adjektivsamsvar' },
+                'a1.adjectives.gender_number': { kind: 'grammar', topicId: 'adjectives', practiceSkillIds: ['a1.adjectives.regular_o', 'a1.adjectives.common_gender'], label: 'Øv på adjektivsamsvar' },
                 'a1.adjectives.regular_o': { kind: 'grammar', topicId: 'adjectives', label: 'Øv på adjektiv på -o' },
                 'a1.adjectives.common_gender': { kind: 'grammar', topicId: 'adjectives', label: 'Øv på adjektiv på -e' },
                 'a1.adjectives.demonstratives': { kind: 'grammar', topicId: 'demonstratives', label: 'Øv på pekende adjektiv' },
                 'a1.adjectives.possessives': { kind: 'grammar', topicId: 'possessives', label: 'Øv på eiendomsord' },
-                'a0.patterns.tengo': { kind: 'grammar', topicId: 'patterns', label: 'Øv på uttrykk med tengo' },
-                'a1.patterns.quiero': { kind: 'grammar', topicId: 'patterns', label: 'Øv på uttrykk med quiero' },
-                'a1.patterns.me_gusta': { kind: 'grammar', topicId: 'patterns', label: 'Øv på uttrykk med me gusta' },
-                'a1.patterns.voy_a': { kind: 'grammar', topicId: 'patterns', label: 'Øv på uttrykk med voy a' },
+                'a0.patterns.tengo': { kind: 'grammar', topicId: 'patterns', practiceSkillId: 'a0.patterns.tengo', label: 'Øv på uttrykk med tengo' },
+                'a1.patterns.quiero': { kind: 'grammar', topicId: 'patterns', practiceSkillId: 'a1.patterns.quiero', label: 'Øv på uttrykk med quiero' },
+                'a1.patterns.me_gusta': { kind: 'grammar', topicId: 'patterns', practiceSkillId: 'a1.patterns.me_gusta', label: 'Øv på uttrykk med me gusta' },
+                'a1.patterns.voy_a': { kind: 'grammar', topicId: 'patterns', practiceSkillId: 'a1.patterns.voy_a', label: 'Øv på uttrykk med voy a' },
                 'a1.prepositions.basic': { kind: 'planned', label: 'Preposisjonsøving kommer snart' }
             };
             learningCatalog.skills.forEach(skill => {
-                if (!descriptors[skill.id]) descriptors[skill.id] = {
-                    kind: 'planned',
-                    label: 'Innhold kommer snart'
-                };
+                if (skill.contentStatus === 'planned') {
+                    descriptors[skill.id] = { kind: 'planned', label: 'Innhold kommer snart' };
+                    return;
+                }
+                // Derive missing routes from actual, skill-tagged exercises.
+                const topic = Object.values(grammarTopics).find(topic => topic.exercises.some(
+                    exercise => getGrammarExerciseSkillId(topic.id, exercise) === skill.id
+                ));
+                if (!descriptors[skill.id] && topic) {
+                    descriptors[skill.id] = { kind: 'grammar', topicId: topic.id, label: `Øv: ${skill.label}` };
+                }
+                if (descriptors[skill.id]?.kind === 'grammar' && !descriptors[skill.id].practiceSkillIds) {
+                    descriptors[skill.id].practiceSkillId = skill.id;
+                }
+                if (!descriptors[skill.id]) {
+                    const lesson = grammarLessonCatalog.lessons.find(lesson => lesson.status === 'published'
+                        && lesson.transferExercises?.some(exercise => exercise.skillId === skill.id));
+                    descriptors[skill.id] = lesson
+                        ? { kind: 'lesson', lessonId: lesson.id, label: `Les og øv: ${lesson.title}` }
+                        : { kind: 'planned', label: 'Innhold kommer snart' };
+                }
             });
             return descriptors;
         }
@@ -19868,8 +21786,9 @@ Vil du øve på ${pronoun} likevel?`
             if (!skill || !descriptor) return;
             const container = document.getElementById('brainmapSkillDetail');
             if (!container) return;
+            container.returnFocus = document.activeElement;
             container.innerHTML = `
-                <div class="brainmap-detail-card" role="dialog" aria-labelledby="brainmapSkillDetailTitle">
+                <div class="brainmap-detail-card" role="dialog" aria-modal="true" aria-labelledby="brainmapSkillDetailTitle" tabindex="-1">
                     <button type="button" class="btn btn-sm btn-outline brainmap-detail-close" onclick="closeBrainmapSkillDetail()">Lukk</button>
                     <h3 id="brainmapSkillDetailTitle">${escapeHtml(skill.label)}</h3>
                     <p>Her får du en kort forklaring før du øver aktivt.</p>
@@ -19879,11 +21798,36 @@ Vil du øve på ${pronoun} likevel?`
                 </div>
             `;
             container.classList.remove('hidden');
-            container.querySelector('button.btn-primary')?.focus();
+            container.onkeydown = event => {
+                event.stopPropagation();
+                const dialog = container.querySelector('[role="dialog"]');
+                if (!dialog) return;
+                if (event.key === 'Escape') {
+                    event.preventDefault();
+                    closeBrainmapSkillDetail();
+                    return;
+                }
+                if (event.key !== 'Tab') return;
+                const controls = [...dialog.querySelectorAll('button, a[href], [tabindex="0"]')]
+                    .filter(control => !control.disabled && control.getClientRects().length);
+                const first = controls[0];
+                const last = controls[controls.length - 1];
+                if (event.shiftKey && document.activeElement === first) {
+                    event.preventDefault();
+                    last?.focus();
+                } else if (!event.shiftKey && document.activeElement === last) {
+                    event.preventDefault();
+                    first?.focus();
+                }
+            };
+            container.querySelector('.brainmap-detail-close')?.focus();
         }
 
         function closeBrainmapSkillDetail() {
-            document.getElementById('brainmapSkillDetail')?.classList.add('hidden');
+            const container = document.getElementById('brainmapSkillDetail');
+            if (!container) return;
+            container.classList.add('hidden');
+            if (container.returnFocus?.isConnected) container.returnFocus.focus();
         }
 
         function startBrainmapSkillPractice(skillId) {
@@ -19892,6 +21836,12 @@ Vil du øve på ${pronoun} likevel?`
                 .filter(candidate => candidate.targetId === skillId)
                 .slice(0, 3);
             if (!matching.length) {
+                if (getBrainmapSkillActionDescriptors()[skillId]?.kind === 'lesson') {
+                    closeBrainmapSkillDetail();
+                    abandonActiveSession();
+                    activateBrainmapSkill(skillId);
+                    return;
+                }
                 showBrainmapSkillDetail(skillId);
                 return;
             }
@@ -19914,9 +21864,14 @@ Vil du øve på ${pronoun} likevel?`
             if (!descriptor) return;
             if (descriptor.kind === 'planned') return showBrainmapSkillDetail(skillId);
             if (descriptor.kind === 'skillDetail') return showBrainmapSkillDetail(skillId);
+            if (descriptor.kind === 'lesson') {
+                showPage('grammar');
+                openGrammarLesson(descriptor.lessonId, null, 'catalog');
+                return;
+            }
             if (descriptor.kind === 'grammar') {
                 showPage('grammar');
-                startGrammarTopic(descriptor.topicId);
+                startGrammarTopic(descriptor.topicId, { filterSkillIds: descriptor.practiceSkillIds || (descriptor.practiceSkillId ? [descriptor.practiceSkillId] : null) });
                 return;
             }
             if (descriptor.kind === 'verbs') {
@@ -20669,6 +22624,15 @@ Vil du øve på ${pronoun} likevel?`
             }
         }
 
+        function getNextAvailableCardId(cardList = cards) {
+            const usedIds = new Set([...cardList, ...archivedVocabularyCards]
+                .map(card => Number(card?.id))
+                .filter(id => Number.isSafeInteger(id) && id >= 0));
+            let nextId = usedIds.size ? Math.max(...usedIds) + 1 : 0;
+            while (usedIds.has(nextId)) nextId++;
+            return nextId;
+        }
+
         function addCustomWord() {
             const norskInput = document.getElementById('addWordNorsk');
             const spanskInput = document.getElementById('addWordSpansk');
@@ -20706,7 +22670,7 @@ Vil du øve på ${pronoun} likevel?`
 
             // Create new card
             const newCard = {
-                id: cards.length,
+                id: getNextAvailableCardId(),
                 no: norsk,
                 es: spansk,
                 norsk: norsk,
@@ -20910,7 +22874,7 @@ Vil du øve på ${pronoun} likevel?`
             const category = normalizeCategorySlug(word.category);
 
             return {
-                id: cards.length,
+                id: getNextAvailableCardId(),
                 no: word.norsk,
                 es: word.spansk,
                 norsk: word.norsk,
@@ -20930,11 +22894,11 @@ Vil du øve på ${pronoun} likevel?`
             modal.className = 'settings-modal';
             modal.innerHTML = `
                 <div class="settings-modal-content">
-                    <h2>🖼️ Importer kapittelord</h2>
+                    <h2 id="chapterImportDialogTitle">🖼️ Importer kapittelord</h2>
                     <p class="login-hint mt-2 text-xs">Lim inn tekst fra bilde/OCR. Bildet lastes ikke opp og originalbildet lagres ikke i appen.</p>
-                    <label class="mb-2 mt-4 block text-gray-700">Kategori:</label>
+                    <label for="chapterImportCategory" class="mb-2 mt-4 block text-gray-700">Kategori:</label>
                     <input type="text" id="chapterImportCategory" value="Kapittel 9" placeholder="Kapittel 9">
-                    <label class="mb-2 mt-4 block text-gray-700">Tekst fra ordliste:</label>
+                    <label for="chapterImportText" class="mb-2 mt-4 block text-gray-700">Tekst fra ordliste:</label>
                     <textarea id="chapterImportText" class="add-word-input" rows="8" placeholder="å forstå    entender / comprender&#10;å begynne   empezar"></textarea>
                     <div class="button-group">
                         <button class="btn btn-primary" onclick="previewChapterTextImport()">Forhåndsvis</button>
@@ -20944,6 +22908,7 @@ Vil du øve på ${pronoun} likevel?`
                 </div>
             `;
             document.body.appendChild(modal);
+            setupSettingsModalAccessibility(modal, 'chapterImportDialogTitle', '#chapterImportCategory');
         }
 
         function getChapterImportRowsFromPreview() {
@@ -21356,7 +23321,7 @@ Vil du øve på ${pronoun} likevel?`
                                 <li>Identitet: Soy María (Jeg er María)</li>
                                 <li>Yrke: Soy profesor (Jeg er lærer)</li>
                                 <li>Nasjonalitet: Soy noruego (Jeg er norsk)</li>
-                                <li>Permanente egenskaper: Soy alto (Jeg er høy)</li>
+                                <li>Beskrivelser: Soy alto (Jeg er høy)</li>
                                 <li>Tid: Son las tres (Klokken er tre)</li>
                             </ul>
                         </div>
@@ -21365,15 +23330,15 @@ Vil du øve på ${pronoun} likevel?`
                             <strong>ESTAR brukes til:</strong>
                             <ul>
                                 <li>Lokasjon: Estoy en casa (Jeg er hjemme)</li>
-                                <li>Midlertidige tilstander: Estoy cansado (Jeg er sliten)</li>
+                                <li>Tilstand nå: Estoy cansado (Jeg er sliten)</li>
                                 <li>Følelser: Estoy feliz (Jeg er glad)</li>
                                 <li>Tilstand av ting: La puerta está abierta (Døren er åpen)</li>
                             </ul>
                         </div>
 
                         <div class="example">
-                            María <span class="correct">es</span> alta (permanent egenskap)<br>
-                            María <span class="correct">está</span> cansada (midlertidig tilstand)
+                            María <span class="correct">es</span> alta (beskrivelse)<br>
+                            María <span class="correct">está</span> cansada (tilstand nå)
                         </div>
                     `
                 },
@@ -21381,17 +23346,17 @@ Vil du øve på ${pronoun} likevel?`
                     { skillId: 'a1.ser.identity', sentence: "Yo ___ de Noruega", answer: "soy", options: ["soy", "estoy", "es", "está"], hint: "Nasjonalitet/opprinnelse = SER" },
                     { skillId: 'a1.estar.location', sentence: "Mi madre ___ en la cocina", answer: "está", options: ["es", "está", "son", "están"], hint: "Lokasjon = ESTAR" },
                     { skillId: 'a1.ser.identity', sentence: "Nosotros ___ estudiantes", answer: "somos", options: ["somos", "estamos", "son", "están"], hint: "Identitet = SER" },
-                    { sentence: "Hoy yo ___ muy cansado", answer: "estoy", options: ["soy", "estoy", "es", "está"], hint: "Midlertidig tilstand = ESTAR" },
+                    { sentence: "Hoy yo ___ muy cansado", answer: "estoy", options: ["soy", "estoy", "es", "está"], hint: "Tilstand nå = ESTAR" },
                     { skillId: 'a1.ser.identity', sentence: "Mi padre ___ profesor", answer: "es", options: ["es", "está", "soy", "estoy"], hint: "Yrke = SER" },
                     { skillId: 'a1.estar.location', sentence: "¿Dónde ___ el baño?", answer: "está", options: ["es", "está", "son", "están"], hint: "Lokasjon = ESTAR" },
-                    { skillId: 'a1.ser.identity', sentence: "Ellos ___ muy simpáticos", answer: "son", options: ["son", "están", "es", "está"], hint: "Permanent egenskap = SER" },
+                    { skillId: 'a1.ser.identity', sentence: "Ellos ___ muy simpáticos", answer: "son", options: ["son", "están", "es", "está"], hint: "Beskrivelse = SER" },
                     { sentence: "La ventana ___ abierta", answer: "está", options: ["es", "está", "son", "están"], hint: "Tilstand = ESTAR" },
                     { sentence: "Hoy ___ lunes", answer: "es", options: ["es", "está", "soy", "estoy"], hint: "Dag/tid = SER" },
                     { sentence: "¿Cómo ___ tú?", answer: "estás", options: ["eres", "estás", "es", "está"], hint: "Hvordan har du det (tilstand) = ESTAR" },
                     { skillId: 'a1.ser.identity', sentence: "Mi hermano ___ alto y moreno", answer: "es", options: ["es", "está", "soy", "estoy"], hint: "Fysisk beskrivelse = SER" },
                     { skillId: 'a1.estar.location', sentence: "Los niños ___ en el parque", answer: "están", options: ["son", "están", "es", "está"], hint: "Lokasjon = ESTAR" },
                     { sentence: "La fiesta ___ el sábado", answer: "es", options: ["es", "está", "son", "están"], hint: "Når noe skjer = SER" },
-                    { sentence: "Yo ___ muy feliz hoy", answer: "estoy", options: ["soy", "estoy", "es", "está"], hint: "Følelse (midlertidig) = ESTAR" },
+                    { sentence: "Yo ___ muy feliz hoy", answer: "estoy", options: ["soy", "estoy", "es", "está"], hint: "Følelse nå = ESTAR" },
                     { skillId: 'a1.estar.location', sentence: "El libro ___ en la mesa", answer: "está", options: ["es", "está", "son", "están"], hint: "Lokasjon = ESTAR" },
                     { skillId: 'a1.estar.location', sentence: "Mis amigos ___ en la escuela", answer: "están", options: ["son", "están", "es", "está"], hint: "Lokasjon = ESTAR" },
                 ]
@@ -21697,7 +23662,7 @@ Vil du øve på ${pronoun} likevel?`
                     { skillId: 'a1.patterns.me_gusta', sentence: '___ nadar en el mar', answer: 'Me gusta', options: ['Me gusta', 'Quiero', 'Voy a', 'Tengo'], hint: 'Nadar betyr å svømme.', no: 'Jeg liker å svømme i havet.' },
 
                     { skillId: 'a1.patterns.voy_a', sentence: '___ dormir ahora', answer: 'Voy a', options: ['Voy a', 'Quiero', 'Me gusta', 'Tengo'], hint: 'Voy a + infinitiv uttrykker nær framtid (jeg skal).', no: 'Jeg skal sove nå.' },
-                    { skillId: 'a1.patterns.voy_a', sentence: 'Voy a ___', answer: 'estudiar', options: ['estudiar', 'hambre', 'quince años', 'frío'], hint: 'Etter voy a bruker du infinitiv.', no: 'Jeg skal gjøre lekser.' },
+                    { skillId: 'a1.patterns.voy_a', sentence: 'Voy a ___', answer: 'estudiar', options: ['estudiar', 'hambre', 'quince años', 'frío'], hint: 'Etter voy a bruker du infinitiv.', no: 'Jeg skal studere.' },
                     { skillId: 'a1.patterns.voy_a', sentence: '___ jugar al fútbol', answer: 'Voy a', options: ['Voy a', 'Quiero', 'Me gusta', 'Tengo'], hint: 'Voy a jugar betyr «jeg skal spille».', no: 'Jeg skal spille fotball i ettermiddag.' },
                     { skillId: 'a1.patterns.voy_a', sentence: 'Voy a ___ una película', answer: 'ver', options: ['ver', 'hambre', 'música', 'tengo'], hint: 'Ver una película betyr å se en film.', no: 'Jeg skal se en film i kveld.' },
                     { skillId: 'a1.patterns.voy_a', sentence: '___ hablar con Ana', answer: 'Voy a', options: ['Voy a', 'Quiero', 'Me gusta', 'Tengo que'], hint: 'Voy a + infinitiv betyr at du skal gjøre noe.', no: 'Jeg skal snakke med Ana.' },
@@ -21771,6 +23736,7 @@ Vil du øve på ${pronoun} likevel?`
         let grammarSessionStartTime = null;
         let grammarLessonView = null;
         let grammarSession = null;
+        let pendingGrammarFilterSkillIds = null;
 
         function getGrammarLesson(lessonId) {
             return grammarLessonCatalog.lessons.find(lesson => lesson.id === lessonId && lesson.status === 'published') || null;
@@ -21874,13 +23840,14 @@ Vil du øve på ${pronoun} likevel?`
             grammarSession = null;
             grammarLessonView = null;
             currentGrammarTopic = grammarTopics[topicId];
+            pendingGrammarFilterSkillIds = options.filterSkillIds ? [...options.filterSkillIds] : null;
 
             // Check if should show theory
             const progress = grammarProgress[topicId] || { correct: 0, total: 0, recentErrors: 0 };
             const firstVisitLesson = !hasSeenTheory[topicId]
                 ? grammarLessonCatalog.lessons.find(lesson => lesson.status === 'published' && lesson.practice?.topicId === topicId)
                 : null;
-            if (firstVisitLesson) {
+            if (firstVisitLesson && !pendingGrammarFilterSkillIds) {
                 hasSeenTheory[topicId] = true;
                 saveGrammarProgress();
                 openGrammarLesson(firstVisitLesson.id, null, 'topic');
@@ -22021,7 +23988,7 @@ Vil du øve på ${pronoun} likevel?`
                 hayEstar: 'Hvorfor? Hay introduserer noe som finnes. Está og están forteller hvor en bestemt ting eller flere bestemte ting er.',
                 articles: 'Hvorfor? Velg artikkel etter substantivets kjønn og tall: el/un for maskulin entall, la/una for feminin entall, los/las for flertall.',
                 adjectives: 'Hvorfor? Adjektivet må passe med substantivet i kjønn og tall: alto, alta, altos, altas.',
-                serEstar: 'Hvorfor? Bruk ser for identitet, yrke og varige beskrivelser. Bruk estar for sted, følelser og midlertidige tilstander.',
+                serEstar: 'Hvorfor? Bruk ser for identitet, yrke, beskrivelser og når noe skjer. Bruk estar for sted, følelser og tilstander.',
                 gustar: 'Hvorfor? Med gustar styrer tingen du liker verbet: gusta for én ting eller infinitiv, gustan for flere ting.',
                 reflexive: 'Hvorfor? Refleksive verb trenger pronomen som viser hvem handlingen gjelder: me, te, se, nos, se.',
                 demonstratives: 'Hvorfor? Este/esta brukes om noe nært, ese/esa om noe lenger unna. Formen må passe med kjønn og tall.',
@@ -22068,8 +24035,9 @@ Vil du øve på ${pronoun} likevel?`
             if (options.lessonId && !lesson) return false;
             if (lesson?.practice?.topicId) currentGrammarTopic = grammarTopics[lesson.practice.topicId];
             const filterSkillIds = options.filterSkillIds === undefined
-                ? (lesson ? [...lesson.skillIds] : null)
+                ? (lesson ? [...lesson.skillIds] : pendingGrammarFilterSkillIds)
                 : (options.filterSkillIds === null ? null : [...options.filterSkillIds]);
+            pendingGrammarFilterSkillIds = null;
             showingTheory = false;
             grammarLessonView = null;
             document.getElementById('grammarLessonPage').classList.add('hidden');
@@ -22151,13 +24119,17 @@ Vil du øve på ${pronoun} likevel?`
             const shuffledOptions = shuffleArray([...exercise.options]);
 
             const cell = exercise.skillId ? (loadLearningProgress().skillProgress?.[exercise.skillId] || {}) : {};
-            const strength = Number(cell.strength) || 0;
-            const lapses = Number(cell.lapses) || 0;
-            const badgeLabel = (exercise.scaffoldedAfterError || lapses > 0 || strength < 2)
+            const responseMode = getScaffoldedResponseMode('grammar', cell, exercise);
+            const badgeLabel = responseMode === 'choice'
                 ? '💡 Støtte: Flervalg'
-                : (strength >= 4)
-                    ? '⭐ Mestring: Flervalg'
-                    : '📝 Flervalg';
+                : responseMode === 'select'
+                    ? '📝 På vei: Velg fra liste'
+                    : '⭐ Mestring: Skriv svaret';
+            const responseControls = responseMode === 'choice'
+                ? `<div class="grammar-options">${shuffledOptions.map(opt => `<button class="grammar-option" onclick="selectGrammarAnswer('${opt}', this)">${opt}</button>`).join('')}</div>`
+                : responseMode === 'select'
+                    ? `<label class="grammar-select-label" for="grammarSelect">Velg svar</label><select id="grammarSelect" class="grammar-select"><option value="">Velg et svar …</option>${shuffledOptions.map(opt => `<option value="${escapeHtml(opt)}">${escapeHtml(opt)}</option>`).join('')}</select><button class="btn btn-primary" id="grammarSubmitBtn" onclick="submitGrammarSelectAnswer()">Sjekk svar</button>`
+                    : `<label class="grammar-input-label" for="grammarAnswerInput">Skriv svaret</label><input id="grammarAnswerInput" class="conjugation-input" autocomplete="off" onkeydown="if(event.key === 'Enter') { event.preventDefault(); submitGrammarTypedAnswer(); }"><button class="btn btn-primary" id="grammarSubmitBtn" onclick="submitGrammarTypedAnswer()">Sjekk svar</button>`;
 
             document.getElementById('grammarExerciseArea').innerHTML = `
                 <div class="grammar-exercise">
@@ -22167,13 +24139,7 @@ Vil du øve på ${pronoun} likevel?`
                     <div class="mb-2"><span class="grammar-scaffolding-badge">${badgeLabel}</span></div>
                     <div class="grammar-sentence">${sentenceHTML}</div>
 
-                    <div class="grammar-options">
-                        ${shuffledOptions.map(opt => `
-                            <button class="grammar-option" onclick="selectGrammarAnswer('${opt}', this)">
-                                ${opt}
-                            </button>
-                        `).join('')}
-                    </div>
+                    ${responseControls}
 
                     <button class="grammar-hint-btn" onclick="showGrammarHint()">💡 Vis hint</button>
                     <p id="grammarHint" aria-live="polite" hidden></p>
@@ -22214,7 +24180,7 @@ Vil du øve på ${pronoun} likevel?`
                 saveLearningProgress(progress);
             }
 
-            // Disable all buttons
+            // Disable the active response control and reveal the correct choice when available.
             document.querySelectorAll('.grammar-option').forEach(btn => {
                 btn.classList.add('disabled');
                 btn.disabled = true;
@@ -22222,9 +24188,12 @@ Vil du øve på ${pronoun} likevel?`
                     btn.classList.add('correct');
                 }
             });
+            document.getElementById('grammarSelect')?.setAttribute('disabled', '');
+            document.getElementById('grammarAnswerInput')?.setAttribute('disabled', '');
+            document.getElementById('grammarSubmitBtn')?.setAttribute('disabled', '');
 
             if (isCorrect) {
-                buttonElement.classList.add('correct');
+                buttonElement?.classList.add('correct');
                 grammarStats.correct++;
 
                 document.getElementById('grammarFeedback').innerHTML = `
@@ -22234,7 +24203,7 @@ Vil du øve på ${pronoun} likevel?`
                     </div>
                 `;
             } else {
-                buttonElement.classList.add('incorrect');
+                buttonElement?.classList.add('incorrect');
                 grammarStats.errors++;
                 grammarProgress[currentGrammarTopic.id].recentErrors++;
 
@@ -22258,6 +24227,18 @@ Vil du øve på ${pronoun} likevel?`
             document.getElementById('grammarNextBtn')?.focus();
             checkpointPracticeSession('grammar', grammarSession.answers.length, grammarStats.correct, grammarSessionStartTime);
 
+        }
+
+        function submitGrammarSelectAnswer() {
+            const select = document.getElementById('grammarSelect');
+            if (!select?.value) return;
+            selectGrammarAnswer(select.value, null);
+        }
+
+        function submitGrammarTypedAnswer() {
+            const input = document.getElementById('grammarAnswerInput');
+            if (!input) return;
+            selectGrammarAnswer(input.value.trim(), null);
         }
 
         function advanceGrammarExercise() {
@@ -22856,6 +24837,7 @@ Vil du øve på ${pronoun} likevel?`
         let viHasInitializedRecommendedVerbs = false;
         const viRecommendedVerbKeys = ['hablar', 'trabajar', 'estudiar', 'bailar', 'comprar', 'comer', 'beber', 'vivir'];
         const VI_VISIBLE_START_Y = 86;
+        const prefersReducedMotion = () => window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
 
         // Falling animation state
         let viFallAnimId = null;
@@ -23032,7 +25014,7 @@ Vil du øve på ${pronoun} likevel?`
             const irregularNorwegian = {
                 'si': 'sier',
                 'være': 'er',
-                'være (permanent)': 'er',
+                'være (identitet, beskrivelse og når noe skjer)': 'er',
                 'være/befinne seg': 'er',
                 'ha': 'har',
                 'kunne': 'kan',
@@ -23079,7 +25061,7 @@ Vil du øve på ${pronoun} likevel?`
 
             // Handle compound translations
             const cleanups = {
-                'være (permanent)': 'være',
+                'være (identitet, beskrivelse og når noe skjer)': 'være',
                 'være/befinne seg': 'være',
                 'gå/dra': 'dra',
                 'gå ut': 'gå ut'
@@ -23096,7 +25078,7 @@ Vil du øve på ${pronoun} likevel?`
             const irregularPerfectum = {
                 'si': 'sagt',
                 'være': 'vært',
-                'være (permanent)': 'vært',
+                'være (identitet, beskrivelse og når noe skjer)': 'vært',
                 'være/befinne seg': 'vært',
                 'ha': 'hatt',
                 'kunne': 'kunnet',
@@ -23188,7 +25170,7 @@ Vil du øve på ${pronoun} likevel?`
             document.getElementById('viPlayerShip').style.left = 'calc(50% - 18px)';
 
             viPickQuestion();
-            setTimeout(() => viStartFalling(), 500);
+            if (!prefersReducedMotion()) setTimeout(() => viStartFalling(), 500);
         }
 
         function viPickQuestion() {
@@ -23208,6 +25190,7 @@ Vil du øve på ${pronoun} likevel?`
 
             for (let i = 0; i < 3; i++) {
                 document.getElementById(`viAns${i}`).textContent = options[i];
+                document.getElementById(`viCard${i}`).setAttribute('aria-label', `Svar ${i + 1}: ${options[i]}`);
                 document.getElementById(`viCard${i}`).className = 'vi-answer-card';
             }
         }
@@ -23221,6 +25204,7 @@ Vil du øve på ${pronoun} likevel?`
         }
 
         function viStartFalling() {
+            if (prefersReducedMotion()) return;
             viFallDuration = viGetFallDuration(viLevel);
             viEndY = viGetEndY();
             viStartY = VI_VISIBLE_START_Y;
@@ -23571,7 +25555,7 @@ Vil du øve på ${pronoun} likevel?`
             document.getElementById('piPlayerShip').style.left = 'calc(50% - 18px)';
 
             piPickQuestion();
-            setTimeout(() => piStartFalling(), 500);
+            if (!prefersReducedMotion()) setTimeout(() => piStartFalling(), 500);
         }
 
 
@@ -23617,12 +25601,14 @@ Vil du øve på ${pronoun} likevel?`
 
             for (let i = 0; i < 3; i++) {
                 document.getElementById(`piAns${i}`).textContent = options[i];
+                document.getElementById(`piCard${i}`).setAttribute('aria-label', `Svar ${i + 1}: ${options[i]}`);
                 document.getElementById(`piCard${i}`).className = 'vi-answer-card';
             }
         }
 
 
         function piStartFalling() {
+            if (prefersReducedMotion()) return;
             piFallDuration = piGetFallDuration(piLevel);
             piEndY = piGetEndY();
             piStartY = PI_VISIBLE_START_Y;
@@ -23803,8 +25789,6 @@ Vil du øve på ${pronoun} likevel?`
             return String(str).replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
         }
 
-
-        document.getElementById('welcomeTeacherGuide').innerHTML = renderTeacherGuide();
 
         // Initialize app
         let appRegistration = null;

@@ -5,6 +5,8 @@ import { pathToFileURL } from 'node:url';
 const appUrl = pathToFileURL(path.resolve('index.html')).toString();
 
 test.describe('local quiz streaks', () => {
+  test.use({ timezoneId: 'Europe/Oslo' });
+
   test('normalizes empty stats and records the first quiz day once', async ({ page }) => {
     await page.goto(appUrl);
 
@@ -88,6 +90,9 @@ test.describe('local quiz streaks', () => {
   });
 
   test('records a completed mixed quiz and shows the streak result', async ({ page }) => {
+    // 22:30 UTC is 00:30 the following day in Oslo during summer time.
+    // This guards the local-day contract against accidental UTC assertions.
+    await page.clock.install({ time: new Date('2026-08-10T22:30:00.000Z') });
     await page.goto(appUrl);
 
     const result = await page.evaluate(() => {
@@ -106,7 +111,7 @@ test.describe('local quiz streaks', () => {
       };
     });
 
-    expect(result.stats.dailyQuizCounts).toEqual({ [new Date().toISOString().slice(0, 10)]: 1 });
+    expect(result.stats.dailyQuizCounts).toEqual({ '2026-08-11': 1 });
     expect(result.stats.currentStreak).toBe(1);
     expect(result.summary).toContain('1 dag på rad');
   });

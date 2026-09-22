@@ -29,7 +29,7 @@ test.describe('next practice recommendation', () => {
     expect(result.empty).toMatchObject({ kind: 'mixedQuiz', action: 'Start dagens quiz' });
   });
 
-  test('shows a concrete next-practice action on the home page', async ({ page }) => {
+  test('home offers vocabulary review even when a grammar skill is due', async ({ page }) => {
     await page.goto(appUrl);
     await page.evaluate(() => {
       localStorage.clear();
@@ -44,8 +44,9 @@ test.describe('next practice recommendation', () => {
       showPage('home');
     });
 
-    await expect(page.locator('#homeNextPractice')).toContainText('Neste anbefalte øving');
-    await expect(page.locator('#homeNextPractice')).toContainText('Si hva du heter med me llamo');
-    await expect(page.getByRole('button', { name: 'Start anbefalt øving' })).toBeVisible();
+    await expect(page.locator('#homeVocabularyReview')).toContainText('Repeter gloser');
+    await expect(page.locator('#homeVocabularyReviewCount')).toHaveText('0 ord klare for repetisjon');
+    await expect(page.getByRole('button', { name: 'Start repetisjon', exact: true })).toBeDisabled();
+    await expect(page.getByRole('button', { name: 'Start anbefalt øving' })).toHaveCount(0);
   });
 });

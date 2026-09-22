@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "description": "Canonical vocabulary source. Lærergodkjent 2026-09-09 (fra vocabulary-canonical-review.json). Edit entries and regenerate index.html via npm run audit:apply --apply.",
+  "description": "Generated from data/vocabulary-canonical-review.json. Do not edit; run npm run build:app.",
   "entries": [
     {
       "id": "vocab-0001",
@@ -7826,8 +7826,7 @@
       "kategori": "Mat og drikke",
       "svar": {
         "es-no": [
-          "pommes frites",
-          "pommes friten"
+          "pommes frites"
         ],
         "no-es": [
           "las patatas fritas",
@@ -7897,43 +7896,5 @@
         ]
       }
     }
-  ],
-  "reviewMetadata": {
-    "generatedFrom": "output/curriculum-audit-report.json",
-    "inputHash": "914d6a009e1f9b6ab8d173f95f1a6ab12bfd89117cac67f7cab4021bd415a9fc",
-    "candidateCount": 125,
-    "addedAutoApprovedCandidateCount": 0,
-    "excludedCandidateCount": 26,
-    "note": "Gå gjennom svar-feltene manuelt. Ikke bytt ut data/vocabulary-canonical.json før gjennomgangen er ferdig.",
-    "verbInfinitiveWithoutAaAdded": 22,
-    "verbInfinitiveRule": "Norwegian verb answers with and without the infinitive marker «å» are included for review.",
-    "foodAndDrinkCategoryUpdated": 60,
-    "reindexedAfterManualDeletions": true,
-    "entryCountAfterReindex": 522,
-    "infinitiveExpressionVariantsAdded": 6,
-    "lastManualVocabularyReview": {
-      "updatedIds": [
-        "vocab-0409",
-        "vocab-0239",
-        "vocab-0302",
-        "vocab-0125",
-        "vocab-0349",
-        "vocab-0383",
-        "vocab-0124",
-        "vocab-0160",
-        "vocab-0232",
-        "vocab-0245",
-        "vocab-0162",
-        "vocab-0316",
-        "vocab-0408",
-        "vocab-0265",
-        "vocab-0267",
-        "vocab-0270",
-        "vocab-0454",
-        "vocab-0513",
-        "vocab-0445"
-      ],
-      "exactDuplicatesRemoved": true
-    }
-  }
+  ]
 }

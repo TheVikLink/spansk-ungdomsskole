@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "description": "Lærergodkjent arbetskopi, aktivert 2026-09-09: innholdet er synkronisert til data/vocabulary-canonical.json og påført index.html via audit:apply --apply --replace. Rediger her og synkroniser på nytt ved neste endring.",
+  "description": "Autoritativ, lærergjennomgått kilde for standardgloser og godkjente svar i hele appen. Rediger denne filen og kjør npm run build:app. vocabulary-canonical.json og ordlistene i index.html genereres automatisk; de skal ikke redigeres separat.",
   "entries": [
     {
       "id": "vocab-0001",
@@ -7826,8 +7826,7 @@
       "kategori": "Mat og drikke",
       "svar": {
         "es-no": [
-          "pommes frites",
-          "pommes friten"
+          "pommes frites"
         ],
         "no-es": [
           "las patatas fritas",

@@ -149,6 +149,19 @@ test.describe('productive expression patterns (spansk-ungdomsskole-63l)', () => 
     expect(result.invalidTengoInfinitive).toBe(false);
   });
 
+  test('keeps the Norwegian meaning of Voy a estudiar aligned with estudiar', async ({ page }) => {
+    await page.goto(appUrl);
+
+    const exercise = await page.evaluate(() => grammarTopics.patterns.exercises.find(item =>
+      item.sentence === 'Voy a ___' && item.answer === 'estudiar'
+    ));
+
+    expect(exercise).toMatchObject({
+      hint: 'Etter voy a bruker du infinitiv.',
+      no: 'Jeg skal studere.'
+    });
+  });
+
   test('scaffold and mistake explanations support patterns topic', async ({ page }) => {
     await page.goto(appUrl);
 
@@ -183,10 +196,10 @@ test.describe('productive expression patterns (spansk-ungdomsskole-63l)', () => 
       return { tengoDesc, quieroDesc, meGustaDesc, voyADesc };
     });
 
-    expect(result.tengoDesc).toEqual({ kind: 'grammar', topicId: 'patterns', label: 'Øv på uttrykk med tengo' });
-    expect(result.quieroDesc).toEqual({ kind: 'grammar', topicId: 'patterns', label: 'Øv på uttrykk med quiero' });
-    expect(result.meGustaDesc).toEqual({ kind: 'grammar', topicId: 'patterns', label: 'Øv på uttrykk med me gusta' });
-    expect(result.voyADesc).toEqual({ kind: 'grammar', topicId: 'patterns', label: 'Øv på uttrykk med voy a' });
+    expect(result.tengoDesc).toEqual({ kind: 'grammar', topicId: 'patterns', practiceSkillId: 'a0.patterns.tengo', label: 'Øv på uttrykk med tengo' });
+    expect(result.quieroDesc).toEqual({ kind: 'grammar', topicId: 'patterns', practiceSkillId: 'a1.patterns.quiero', label: 'Øv på uttrykk med quiero' });
+    expect(result.meGustaDesc).toEqual({ kind: 'grammar', topicId: 'patterns', practiceSkillId: 'a1.patterns.me_gusta', label: 'Øv på uttrykk med me gusta' });
+    expect(result.voyADesc).toEqual({ kind: 'grammar', topicId: 'patterns', practiceSkillId: 'a1.patterns.voy_a', label: 'Øv på uttrykk med voy a' });
   });
 
   test('sentence puzzle includes patterns level and can be solved', async ({ page }) => {

@@ -22,6 +22,25 @@ test.describe('answer-acceptance fuzz and accent regression', () => {
     expect(result.enyeDifference).toMatchObject({ correct: false, resultKind: 'wrong' });
   });
 
+  test('accepts pommes frites but rejects the invalid pommes friten variant', async ({ page }) => {
+    await page.goto(appUrl);
+    await page.evaluate(() => loadData());
+
+    const result = await page.evaluate(() => {
+      const card = cards.find(candidate => candidate.no === 'pommes frites' && candidate.es === 'las patatas fritas');
+      const accepted = getVocabularyAcceptedAnswers(card, 'es-no', card.no).map(answer => answer.value);
+      return {
+        accepted,
+        correct: isTypedVocabAnswerCorrect('pommes frites', card.no, accepted),
+        invalid: isTypedVocabAnswerCorrect('pommes friten', card.no, accepted)
+      };
+    });
+
+    expect(result.accepted).toContain('pommes frites');
+    expect(result.correct).toMatchObject({ correct: true, resultKind: 'correct' });
+    expect(result.invalid).toMatchObject({ correct: false, resultKind: 'wrong' });
+  });
+
   test('accepts every glossary pair as the canonical answer in both directions', async ({ page }) => {
     await page.goto(appUrl);
     await page.evaluate(() => loadData());

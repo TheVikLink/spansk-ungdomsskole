@@ -14,12 +14,12 @@ for (const width of [390, 1440]) {
   });
 }
 
-test('F13: teacher finds one bounded lesson before entering a pupil code', async ({ page }) => {
+test('F13: the bounded article lesson remains available through grammar navigation', async ({ page }) => {
   await page.goto(appUrl);
-  await page.getByText('For læreren: første 20 minutter', { exact: true }).click();
-  await expect(page.locator('#welcomeTeacherGuide')).toContainText('el, la, los og las');
-  await expect(page.locator('#welcomeTeacherGuide')).toContainText('dagens oppsummering');
-  await page.getByRole('button', { name: 'Start felles artikkeløving', exact: true }).click();
+  await page.locator('#studentNameInput').fill('Test');
+  await page.locator('.login-btn-primary').click();
+  await page.locator('#navGrammar').click();
+  await page.locator('.grammar-topic-card[onclick="startGrammarTopic(\'articles\')"] .grammar-topic-theory-link').click();
   await expect(page.locator('#grammarLessonPage')).toBeVisible();
   await page.locator('.grammar-lesson-actions button').click();
   const skillIds = await page.evaluate(() => grammarExercises.map(exercise => exercise.skillId));

@@ -82,3 +82,22 @@ test('F09: audio failure is visible in preview and segment and disables dependen
     await expect(page.getByRole('button', { name: 'Sjekk svar', exact: true })).toBeDisabled();
   } finally { await server.close(); }
 });
+
+test('lytteforståelse sperres ved lydfeil og kan prøves igjen', async ({ page }) => {
+  let failAudio = true;
+  const server = await startStaticAppServer({ transform: (filename, bytes) => {
+    if (failAudio && filename.startsWith('audio/lyttehistorier/')) throw new Error('audio unavailable');
+    return bytes;
+  }});
+  try {
+    await page.goto(server.url);
+    await page.evaluate(() => { studentName = 'Test'; showMainApp(); showPage('dictation'); startListeningStory('carmen-madrid-a0'); });
+    await expect(page.locator('#listeningStoryAudioError')).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Start spørsmål', exact: true })).toBeDisabled();
+    failAudio = false;
+    await page.getByRole('button', { name: 'Prøv lyden igjen', exact: true }).click();
+    await expect(page.locator('#listeningStoryAudioError')).toBeHidden();
+    await page.locator('#listeningStoryAudio').evaluate(audio => audio.play());
+    await expect(page.getByRole('button', { name: 'Start spørsmål', exact: true })).toBeEnabled();
+  } finally { await server.close(); }
+});

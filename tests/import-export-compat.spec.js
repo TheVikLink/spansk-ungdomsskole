@@ -322,4 +322,130 @@ test.describe('progress import/export compatibility', () => {
     });
     expect(result.storedCards).toEqual([{ id: 7, no: 'bevart', es: 'preserved' }]);
   });
+
+  test('migrates sparse vocabulary IDs without redirecting an appended card rating', async ({ page }) => {
+    await page.goto(appUrl);
+
+    const imported = await page.evaluate(() => {
+      localStorage.clear();
+      practiceHistory = [];
+      return importProgressData({
+        version: 'spansk123_export_v1',
+        studentName: 'Migreringstest',
+        vocabData: [{
+          id: 1,
+          no: 'egen testglose',
+          es: 'palabra propia',
+          category: 'egne gloser',
+          noEs: { repetitions: 4, interval: 7, easeFactor: 2.5, nextReview: null },
+          esNo: { repetitions: 3, interval: 4, easeFactor: 2.5, nextReview: null },
+          reviews: 7,
+          correct: 6
+        }]
+      });
+    });
+
+    expect(imported.imported).toBe(true);
+    await page.reload();
+
+    const result = await page.evaluate(() => {
+      const preserved = cards.find(card => card.no === 'egen testglose' && card.es === 'palabra propia');
+      const appended = cards.find(card => card.no === '1' && card.es === 'uno');
+      const before = {
+        preservedReviews: preserved?.reviews,
+        appendedReviews: appended?.reviews
+      };
+
+      currentCard = { card: appended, direction: 'no-es', responseMode: 'flip' };
+      sessionCards = [currentCard];
+      currentIndex = 0;
+      currentCardRated = false;
+      sessionStats = { reviewed: 0, correct: 0, newLearned: 0 };
+      sessionStartTime = new Date();
+      isCustomStudySession = false;
+      practiceSessions.vocabulary = { sessionId: 'sparse-id-migration', finalized: false };
+      rateCard(2, false);
+
+      const exported = buildProgressExportData();
+      const exportedPreserved = exported.vocabData.find(card => card.no === 'egen testglose' && card.es === 'palabra propia');
+      const exportedAppended = exported.vocabData.find(card => card.no === '1' && card.es === 'uno');
+      return {
+        idsAreUnique: new Set(cards.map(card => card.id)).size === cards.length,
+        preserved: { id: preserved?.id, reviews: preserved?.reviews, correct: preserved?.correct },
+        appended: { id: appended?.id, reviews: appended?.reviews, correct: appended?.correct },
+        before,
+        exported: {
+          preserved: { id: exportedPreserved?.id, reviews: exportedPreserved?.reviews, correct: exportedPreserved?.correct },
+          appended: { id: exportedAppended?.id, reviews: exportedAppended?.reviews, correct: exportedAppended?.correct }
+        }
+      };
+    });
+
+    expect(result).toEqual({
+      idsAreUnique: true,
+      preserved: { id: 1, reviews: 7, correct: 6 },
+      appended: { id: expect.any(Number), reviews: 1, correct: 1 },
+      before: { preservedReviews: 7, appendedReviews: 0 },
+      exported: {
+        preserved: { id: 1, reviews: 7, correct: 6 },
+        appended: { id: expect.any(Number), reviews: 1, correct: 1 }
+      }
+    });
+    expect(result.appended.id).not.toBe(1);
+    expect(result.exported.appended.id).toBe(result.appended.id);
+  });
+
+  test('rejects executable values in imported practice history before rendering it', async ({ page }) => {
+    await page.goto(appUrl);
+
+    await page.evaluate(() => {
+      localStorage.clear();
+      window.__importHistoryXss = false;
+      importProgressData({
+        version: 'spansk123_export_v1',
+        practiceHistory: [{
+          date: '2026-09-14',
+          words: '<img src="missing.png" onerror="window.__importHistoryXss=true">',
+          correct: 0,
+          sessions: 1,
+          activity: 'grammar'
+        }]
+      });
+      showMainApp();
+      showPage('homework');
+    });
+
+    await page.waitForTimeout(250);
+    const rendered = await page.evaluate(() => ({
+      executed: window.__importHistoryXss,
+      images: document.querySelectorAll('#practiceHistory img').length,
+      stored: JSON.parse(localStorage.getItem('spansk123_practiceHistory') || '[]')
+    }));
+
+    expect(rendered).toEqual({ executed: false, images: 0, stored: [] });
+  });
+
+  test('reconciles corrected canonical vocabulary while preserving legacy progress idempotently', async ({ page }) => {
+    await page.goto(appUrl);
+    const result = await page.evaluate(() => {
+      localStorage.clear();
+      cards = [
+        { id: 7, no: 'smykke', es: 'la cadena', norsk: 'smykke', spansk: 'la cadena', category: 'klær', noEs: { repetitions: 4 }, esNo: { repetitions: 3 }, reviews: 7, correct: 6 },
+        { id: 8, no: 'I morgen skal jeg besøke bestemora mi', es: 'Mañana voy a visitar mi abuela', norsk: 'I morgen skal jeg besøke bestemora mi', spansk: 'Mañana voy a visitar mi abuela', category: 'fremtid', noEs: { repetitions: 2 }, esNo: { repetitions: 5 }, reviews: 5, correct: 4 },
+        { id: 900, no: 'egen glose', es: 'palabra propia', norsk: 'egen glose', spansk: 'palabra propia', category: 'egne', noEs: { repetitions: 1 }, esNo: { repetitions: 0 }, reviews: 1, correct: 1 }
+      ];
+      mergeNewVocabulary();
+      const first = cards.map(card => ({ no: card.no, es: card.es, id: card.id, noEs: card.noEs.repetitions, esNo: card.esNo.repetitions, reviews: card.reviews, correct: card.correct }));
+      mergeNewVocabulary();
+      const second = cards.map(card => ({ no: card.no, es: card.es, id: card.id, noEs: card.noEs.repetitions, esNo: card.esNo.repetitions, reviews: card.reviews, correct: card.correct }));
+      return { first, second };
+    });
+
+    expect(result.first).toEqual(result.second);
+    expect(result.first.filter(card => card.es === 'la cadena').map(card => card.no)).toEqual(['kjede']);
+    expect(result.first.filter(card => card.no === 'I morgen skal jeg besøke bestemora mi').map(card => card.es)).toEqual(['Mañana voy a visitar a mi abuela']);
+    expect(result.first.find(card => card.no === 'kjede')).toMatchObject({ id: 7, noEs: 4, esNo: 3, reviews: 7, correct: 6 });
+    expect(result.first.find(card => card.es === 'Mañana voy a visitar a mi abuela')).toMatchObject({ id: 8, noEs: 2, esNo: 5, reviews: 5, correct: 4 });
+    expect(result.first).toEqual(expect.arrayContaining([expect.objectContaining({ id: 900, no: 'egen glose', es: 'palabra propia' })]));
+  });
 });

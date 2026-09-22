@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build:app": "npm run build:css && node scripts/build-offline.mjs",
+    "build:app": "npm run sync:vocabulary && npm run build:css && node scripts/build-offline.mjs",
     "check:offline-build": "node scripts/build-offline.mjs --check",
     "build:css": "npx @tailwindcss/cli -i ./src/styles/tailwind.css -o ./dist/tailwind.css --minify",
     "check:tailwind": "node scripts/check-tailwind-adoption.mjs",
@@ -18,6 +18,7 @@
     "audit:approved": "node scripts/generate-approved-alternatives.mjs",
     "audit:apply": "node scripts/apply-approved-alternatives.mjs",
     "generate:vocabulary-canonical": "node scripts/generate-vocabulary-canonical.mjs",
+    "generate:listening-audio": "node scripts/generate-listening-audio.mjs",
     "test:curriculum-audit": "node --test tests/curriculum-audit.test.mjs",
     "test:cygnet-sqlite": "node --test tests/cygnet-sqlite.test.mjs",
     "audit:cygnet-snapshot": "node scripts/audit-sources/build-cygnet-snapshot.mjs",
@@ -55,8 +56,10 @@
     "test:sentence-puzzle": "playwright test tests/sentence-puzzle-game.spec.js --browser chromium",
     "test:productive-patterns": "playwright test tests/productive-patterns.spec.js --browser chromium",
     "audit:student-video": "playwright test tests/model-student-video-audit.spec.js --workers=1 --browser chromium && node scripts/postprocess-student-audit.mjs output/student-agent-audit/latest",
-    "test:all": "npm run check:content && npm run check:content-accuracy && npm run check:grammar-lessons && npm run check:diagnosis-catalog && npm run test:diagnosis-catalog && npm run check:learning-catalog && npm run check:tailwind && npm run check:offline-build && npm run test:browser",
-    "test:browser": "node scripts/test-browser.mjs"
+    "test:all": "npm run check:vocabulary && npm run check:content && npm run check:content-accuracy && npm run check:grammar-lessons && npm run check:diagnosis-catalog && node --test tests/*.test.mjs && npm run check:learning-catalog && npm run check:tailwind && npm run check:offline-build && npm run test:browser",
+    "test:browser": "node scripts/test-browser.mjs",
+    "sync:vocabulary": "node scripts/sync-vocabulary.mjs",
+    "check:vocabulary": "node scripts/sync-vocabulary.mjs --check"
   },
   "devDependencies": {
     "@playwright/test": "^1.60.0",

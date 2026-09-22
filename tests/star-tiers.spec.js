@@ -4,6 +4,17 @@ import path from 'node:path';
 
 const appUrl = pathToFileURL(path.resolve('index.html')).toString();
 const skill = 'a0.articles.definite_singular';
+async function submitGrammarAnswer(page, answer) {
+  const choice = page.locator('.grammar-option').filter({ hasText: answer }).getByText(answer, { exact: true });
+  if (await choice.count()) return choice.click();
+  const select = page.locator('#grammarSelect');
+  if (await select.count()) {
+    await select.selectOption({ label: answer });
+    return page.locator('#grammarSubmitBtn').click();
+  }
+  await page.locator('#grammarAnswerInput').fill(answer);
+  return page.locator('#grammarSubmitBtn').click();
+}
 test.beforeEach(async ({ page }) => { await page.goto(appUrl); await page.evaluate(() => { studentName = 'Test'; showMainApp(); }); });
 
 test('star thresholds have no gaps and never round a near-perfect score to diamond', async ({ page }) => {
@@ -88,7 +99,7 @@ for (const correct of [true, false]) test(`grammar awards reflect the actual las
     showPage('grammar'); currentGrammarTopic = grammarTopics.articles; startGrammarExercises({ filterSkillIds: [skill] });
   }, skill);
   const answer = await page.evaluate(correct => { const e = grammarExercises[0]; return correct ? e.answer : e.options.find(value => value !== e.answer); }, correct);
-  await page.locator('.grammar-option').getByText(answer, { exact: true }).click();
+  await submitGrammarAnswer(page, answer);
   await page.evaluate(() => { endGrammarSession(); endGrammarSession(); });
   const star = page.locator('#grammarExerciseArea .quiz-skill-star');
   await expect(star).toHaveCount(1);
@@ -112,7 +123,7 @@ test('an actual verb answer earns the next star and repeated finish keeps the sa
   expect(await page.evaluate(() => loadMasteryBadges())).toEqual(['star:diamond:a1.verbs.regular_ar.present']);
 });
 
-for (const width of [1440, 390]) test(`all four star materials and their scale are readable at ${width}px`, async ({ page }) => {
+for (const width of [1440, 390]) test(`all four star materials and their scale are readable at ${width}px`, async ({ page }, testInfo) => {
   await page.setViewportSize({ width, height: 1000 });
   await page.evaluate(() => {
     showPage('vocab'); startBrainmapSkillPractice('a0.articles.definite_singular');
@@ -139,7 +150,7 @@ for (const width of [1440, 390]) test(`all four star materials and their scale a
   await expect(scale).toContainText('minst 10 svar');
   await scale.locator('summary').click();
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
-  await page.locator('.quiz-badge-awards').screenshot({ path: `output/brukertest-rettelser/star-tiers-${width}.png` });
+  await page.locator('.quiz-badge-awards').screenshot({ path: testInfo.outputPath(`star-tiers-${width}.png`) });
 });
 
 test('old progress and old award IDs import without inventing recent outcomes', async ({ page, browser }) => {

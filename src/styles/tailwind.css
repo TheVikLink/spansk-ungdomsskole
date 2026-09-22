@@ -1286,6 +1286,69 @@ select:focus-visible,
     font-weight: 700;
 }
 
+.dictation-listening-btn {
+    margin-top: 10px;
+}
+
+.listening-question {
+    max-width: 680px;
+    margin: 20px 0;
+    padding: 0;
+    border: 0;
+}
+
+.listening-question legend {
+    margin-bottom: 12px;
+    color: var(--gray-900);
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.listening-option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 48px;
+    margin: 8px 0;
+    padding: 10px 14px;
+    color: var(--gray-800);
+    background: #fff;
+    border: 2px solid var(--gray-200);
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.listening-option:has(input:checked) {
+    border-color: var(--primary);
+    background: #eef2ff;
+}
+
+.listening-option:has(input:focus-visible) {
+    outline: 3px solid rgba(99, 102, 241, 0.28);
+    outline-offset: 2px;
+}
+
+.listening-option input {
+    width: 20px;
+    height: 20px;
+    flex: 0 0 auto;
+    accent-color: var(--primary);
+}
+
+#listeningTextSupport {
+    max-width: 900px;
+    margin-top: 20px;
+    color: var(--gray-800);
+}
+
+#listeningTextSupport summary {
+    min-height: 44px;
+    padding: 12px 0;
+    color: var(--primary-dark);
+    font-weight: 800;
+    cursor: pointer;
+}
+
 #dictationExercise > h2,
 #dictationExercise > p,
 #dictationExercise > label,
@@ -4388,6 +4451,19 @@ select {
     box-shadow: 0 8px 30px rgba(8, 247, 254, 0.2);
 }
 
+.vi-answer-card:focus-visible {
+    outline: 3px solid #fef08a;
+    outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .vi-answer-card,
+    .vi-answer-card:hover {
+        transition: none;
+        transform: none;
+    }
+}
+
 .vi-key-hint {
     font-size: 10px;
     color: #555;
@@ -4569,5 +4645,12 @@ select {
         padding: 6px 10px;
         font-size: 10px;
     }
+}
+
+/* Keep keyboard focus visible even when component styles reset outlines. */
+.btn:focus-visible,
+:where(button, [role="button"], a[href], input, select, textarea):focus-visible {
+    outline: 3px solid #1d4ed8;
+    outline-offset: 3px;
 }
 }

@@ -202,4 +202,38 @@ test.describe('teacher glossary import validation', () => {
       { no: 'broren', es: 'la hermana' }
     ]));
   });
+
+  test('allocates unique IDs above sparse legacy cards for every teacher-imported word', async ({ page }) => {
+    await page.goto(appUrl);
+
+    const result = await page.evaluate(() => {
+      localStorage.clear();
+      cards = [
+        { id: 0, no: 'null', es: 'cero', norsk: 'null', spansk: 'cero', category: 'tall', noEs: {}, esNo: {} },
+        { id: 2, no: 'to', es: 'dos', norsk: 'to', spansk: 'dos', category: 'tall', noEs: {}, esNo: {} }
+      ];
+
+      const summary = analyzeTeacherWordImport({
+        category: 'test',
+        words: [['tre', 'tres'], ['fire', 'cuatro']]
+      });
+      applyTeacherWordImport(summary);
+      const imported = cards.filter(card => card.category === 'test');
+      const firstProgress = updateVocabularyLearningProgress(imported[0], 'no-es', 'correct');
+
+      return {
+        ids: cards.map(card => card.id),
+        importedIds: imported.map(card => card.id),
+        firstProgress: firstProgress.wordProgress[String(imported[0].id)]?.noToEs?.attempts ?? 0,
+        secondProgress: firstProgress.wordProgress[String(imported[1].id)]?.noToEs?.attempts ?? 0
+      };
+    });
+
+    expect(result).toEqual({
+      ids: [0, 2, 3, 4],
+      importedIds: [3, 4],
+      firstProgress: 1,
+      secondProgress: 0
+    });
+  });
 });

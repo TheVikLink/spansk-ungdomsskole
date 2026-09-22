@@ -370,6 +370,45 @@ test.describe('adaptive scaffolding in response modes (spansk-ungdomsskole-6j4)'
     expect(result.note).toContain('forsterket støtte');
   });
 
+  test('grammar renders and submits the contracted adaptive controls', async ({ page }) => {
+    await page.goto(appUrl);
+    const skillId = 'a0.articles.definite_singular';
+    for (const [name, cell, control] of [
+      ['weak', { strength: 1, attempts: 1, lapses: 0 }, 'choice'],
+      ['developing', { strength: 3, attempts: 3, lapses: 0 }, 'select'],
+      ['mastered', { strength: 4, attempts: 4, lapses: 0 }, 'typed']
+    ]) {
+      await page.evaluate(({ skillId, cell }) => {
+        localStorage.clear();
+        studentName = 'Elev adaptive';
+        localStorage.setItem('spansk123_studentName', studentName);
+        showMainApp();
+        const progress = normalizeLearningProgress(null);
+        progress.skillProgress[skillId] = { ...cell, correct: cell.attempts, starResults: Array(cell.attempts).fill(true) };
+        saveLearningProgress(progress);
+        showPage('grammar');
+        currentGrammarTopic = grammarTopics.articles;
+        startGrammarExercises({ filterSkillIds: [skillId] });
+      }, { skillId, cell });
+      const answer = await page.evaluate(() => grammarExercises[grammarCurrentIndex].answer);
+      if (control === 'choice') {
+        await expect(page.locator('.grammar-option')).toHaveCount(4);
+        await page.locator('.grammar-option').getByText(answer, { exact: true }).click();
+      } else if (control === 'select') {
+        await expect(page.locator('#grammarSelect')).toBeVisible();
+        await page.locator('#grammarSelect').selectOption({ label: answer });
+        await page.locator('#grammarSubmitBtn').click();
+      } else {
+        await expect(page.locator('#grammarAnswerInput')).toBeVisible();
+        await page.locator('#grammarAnswerInput').fill(answer);
+        await page.locator('#grammarSubmitBtn').click();
+      }
+      await expect(page.locator('#grammarFeedback')).toContainText('Riktig');
+      expect(await page.evaluate(skill => loadLearningProgress().skillProgress[skill].attempts, skillId)).toBe(cell.attempts + 1);
+      await page.evaluate(() => abandonActiveSession());
+    }
+  });
+
   test('derived vocabulary response mode handles imported progress without strength safely', async ({ page }) => {
     await page.goto(appUrl);
 

@@ -1,5 +1,5 @@
 // Generated build identifier; run npm run build:app after changing app assets.
-const APP_BUILD = '512b07a258938fe1';
+const APP_BUILD = '4830ee6af0e99367';
 const CACHE_NAME = `spansk123-shell-${APP_BUILD}`;
 const AUDIO_CACHE = 'spansk123-audio-v1';
 const APP_SHELL = ['./', './index.html', './dist/tailwind.css', './manifest.webmanifest'];
@@ -24,7 +24,7 @@ self.addEventListener('activate', event => {
       if (/^spansk123-v\d+$/.test(key)) {
         const old = await caches.open(key);
         for (const request of await old.keys()) {
-          if (!request.url.startsWith(absolute('audio/diktat/'))) continue;
+          if (!request.url.startsWith(absolute('audio/diktat/')) && !request.url.startsWith(absolute('audio/lyttehistorier/'))) continue;
           const response = await old.match(request);
           if (response?.status === 200 && response.headers.get('content-type')?.startsWith('audio/')) await audioCache.put(request.url, response);
         }
@@ -66,7 +66,7 @@ async function audioResponse(request) {
 self.addEventListener('fetch', event => {
   const request = event.request;
   if (request.method !== 'GET' || !request.url.startsWith(self.registration.scope)) return;
-  if (request.url.startsWith(absolute('audio/diktat/'))) {
+  if (request.url.startsWith(absolute('audio/diktat/')) || request.url.startsWith(absolute('audio/lyttehistorier/'))) {
     event.respondWith(audioResponse(request));
     return;
   }

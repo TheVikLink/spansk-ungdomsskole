@@ -163,4 +163,46 @@ test.describe('brainmap v1 progress model', () => {
     await page.selectOption('#brainmapCategoryFilter', 'Artikler og substantiv');
     expect(await page.locator('[data-brainmap-skill-action]').count()).toBeGreaterThan(0);
   });
+
+  test('Brainmap pattern actions preserve their selected microskill through theory and practice', async ({ page }) => {
+    await page.goto(appUrl);
+    await page.evaluate(() => {
+      localStorage.clear();
+      studentName = 'Elev mønster';
+      showMainApp();
+      hasSeenTheory.patterns = true;
+      showPage('brainmap');
+    });
+
+    for (const skillId of ['a0.patterns.tengo', 'a1.patterns.quiero', 'a1.patterns.me_gusta', 'a1.patterns.voy_a']) {
+      const action = page.locator(`[onclick="activateBrainmapSkill('${skillId}')"]`);
+      await action.evaluate(button => { button.closest('details').open = true; });
+      await action.click();
+      const session = await page.evaluate(() => ({
+        filter: grammarSession.filterSkillIds,
+        skills: [...new Set(grammarExercises.map(exercise => exercise.skillId))]
+      }));
+      expect(session).toEqual({ filter: [skillId], skills: [skillId] });
+      await page.evaluate(() => { abandonActiveSession(); showPage('brainmap'); });
+    }
+
+    const theoryFilter = await page.evaluate(() => {
+      localStorage.setItem('spansk123Grammar_v1', JSON.stringify({ progress: {}, hasSeenTheory: { patterns: false } }));
+      showPage('grammar');
+      startGrammarTopic('patterns', { filterSkillIds: ['a0.patterns.tengo'] });
+      return document.getElementById('grammarExerciseArea').textContent;
+    });
+    expect(theoryFilter).toContain('Start øvelser');
+    await page.getByRole('button', { name: '▶️ Start øvelser', exact: true }).click();
+    expect(await page.evaluate(() => grammarSession.filterSkillIds)).toEqual(['a0.patterns.tengo']);
+    expect(await page.evaluate(() => [...new Set(grammarExercises.map(exercise => exercise.skillId))])).toEqual(['a0.patterns.tengo']);
+    await page.evaluate(() => abandonActiveSession());
+
+    const directTopic = await page.evaluate(() => {
+      hasSeenTheory.patterns = true;
+      startGrammarTopic('patterns');
+      return [...new Set(grammarExercises.map(exercise => exercise.skillId))];
+    });
+    expect(directTopic.length).toBeGreaterThan(1);
+  });
 });

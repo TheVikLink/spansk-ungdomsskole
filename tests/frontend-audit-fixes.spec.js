@@ -64,6 +64,27 @@ test.describe('frontend audit fixes', () => {
     expect(focusStyle.outlineWidth).not.toBe('0px');
   });
 
+  test('shows a high-contrast focus indicator on navigation and primary action buttons', async ({ page }) => {
+    await page.goto(appUrl);
+    await page.evaluate(() => {
+      localStorage.clear();
+      studentName = 'Elev audit';
+      showMainApp();
+      showPage('home');
+    });
+
+    for (const selector of ['#navHome', '#homeStartMixedQuizBtn']) {
+      const focusStyle = await page.locator(selector).evaluate(button => {
+        button.focus({ focusVisible: true });
+        const styles = getComputedStyle(button);
+        return { outlineStyle: styles.outlineStyle, outlineWidth: styles.outlineWidth, outlineColor: styles.outlineColor };
+      });
+      expect(focusStyle.outlineStyle, selector).not.toBe('none');
+      expect(focusStyle.outlineWidth).not.toBe('0px');
+      expect(focusStyle.outlineColor).not.toBe('rgba(99, 102, 241, 0.35)');
+    }
+  });
+
   test('exposes the vocabulary flashcard as a keyboard-operable button', async ({ page }) => {
     await page.goto(appUrl);
     await page.evaluate(() => {
