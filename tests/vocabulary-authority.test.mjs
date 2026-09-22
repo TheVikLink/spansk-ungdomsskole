@@ -110,6 +110,21 @@ test('the level test and mixed-quiz catalog use reviewed answers for their vocab
   assert.deepEqual(question.acceptedAnswers.map(answer => answer.value), ['mor']);
 });
 
+test('vocabulary answer labels and feedback always show an accepted reviewed answer', () => {
+  const source = renderVocabulary(html, review);
+  const runtime = answerRuntime(source);
+  vm.runInContext(appFunction(source, 'getExpectedAnswerText'), runtime);
+  for (const entry of review.entries) {
+    const card = { no: entry.norsk, es: entry.spansk, category: entry.kategori };
+    for (const direction of ['es-no', 'no-es']) {
+      const displayed = runtime.getExpectedAnswerText({ card, direction });
+      assert.ok(entry.svar[direction].includes(displayed), `${entry.id} ${direction}: ${displayed}`);
+    }
+  }
+  const customCard = { no: 'mitt ord', es: 'mi palabra', isCustom: true };
+  assert.equal(runtime.getExpectedAnswerText({ card: customCard, direction: 'no-es' }), 'mi palabra');
+});
+
 test('removed standard cards leave practice but survive reload and the existing backup payload', () => {
   const runtime = storageRuntime(renderVocabulary(html, review));
   const oldCard = { id: 9998, no: 'sjokoladedrikk', es: 'el Cola Cao', category: 'kapittel 7: gloser', reviews: 7, correct: 6, noEs: { repetitions: 4 }, esNo: { repetitions: 3 } };

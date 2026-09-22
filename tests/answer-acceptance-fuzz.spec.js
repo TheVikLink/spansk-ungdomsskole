@@ -22,7 +22,7 @@ test.describe('answer-acceptance fuzz and accent regression', () => {
     expect(result.enyeDifference).toMatchObject({ correct: false, resultKind: 'wrong' });
   });
 
-  test('accepts pommes frites but rejects the invalid pommes friten variant', async ({ page }) => {
+  test('accepts the teacher-approved pommes frites variants and rejects unrelated answers', async ({ page }) => {
     await page.goto(appUrl);
     await page.evaluate(() => loadData());
 
@@ -32,16 +32,19 @@ test.describe('answer-acceptance fuzz and accent regression', () => {
       return {
         accepted,
         correct: isTypedVocabAnswerCorrect('pommes frites', card.no, accepted),
-        invalid: isTypedVocabAnswerCorrect('pommes friten', card.no, accepted)
+        approvedVariant: isTypedVocabAnswerCorrect('pommes friten', card.no, accepted),
+        unrelated: isTypedVocabAnswerCorrect('ris', card.no, accepted)
       };
     });
 
     expect(result.accepted).toContain('pommes frites');
+    expect(result.accepted).toContain('pommes friten');
     expect(result.correct).toMatchObject({ correct: true, resultKind: 'correct' });
-    expect(result.invalid).toMatchObject({ correct: false, resultKind: 'wrong' });
+    expect(result.approvedVariant).toMatchObject({ correct: true, resultKind: 'correct' });
+    expect(result.unrelated).toMatchObject({ correct: false, resultKind: 'wrong' });
   });
 
-  test('accepts every glossary pair as the canonical answer in both directions', async ({ page }) => {
+  test('accepts the first reviewed answer for every glossary pair in both directions', async ({ page }) => {
     await page.goto(appUrl);
     await page.evaluate(() => loadData());
 
@@ -49,8 +52,9 @@ test.describe('answer-acceptance fuzz and accent regression', () => {
       const failures = [];
       for (const card of cards) {
         for (const direction of ['no-es', 'es-no']) {
-          const primaryAnswer = direction === 'no-es' ? card.es : card.no;
-          const accepted = getVocabularyAcceptedAnswers(card, direction, primaryAnswer).map(a => a.value);
+          const displayAnswer = direction === 'no-es' ? card.es : card.no;
+          const accepted = getVocabularyAcceptedAnswers(card, direction, displayAnswer).map(a => a.value);
+          const primaryAnswer = accepted[0];
           const evaluation = isTypedVocabAnswerCorrect(primaryAnswer, primaryAnswer, accepted);
           if (!evaluation.correct) {
             failures.push({
@@ -78,23 +82,24 @@ test.describe('answer-acceptance fuzz and accent regression', () => {
     const results = await page.evaluate(() => {
       const failures = [];
       for (const card of cards) {
-        const esLower = card.es.toLowerCase();
-        if (!/[áéíóúüñ]/i.test(card.es)) continue;
+        // Display labels can include teacher notes such as «(fag)».
+        const accepted = getVocabularyAcceptedAnswers(card, 'no-es', card.es).map(a => a.value);
+        const primaryAnswer = accepted[0];
+        if (!/[áéíóúüñ]/i.test(primaryAnswer)) continue;
 
-        const accentStripped = card.es
+        const accentStripped = primaryAnswer
           .replace(/[áéíóúü]/g, ch => ({ á: 'a', é: 'e', í: 'i', ó: 'o', ú: 'u', ü: 'u' }[ch] || ch))
           .replace(/ñ/g, 'n');
 
-        if (accentStripped === card.es) continue;
+        if (accentStripped === primaryAnswer) continue;
 
-        const hasNye = card.es.includes('ñ') || card.es.includes('Ñ');
-        const accentOnly = !hasNye && accentStripped !== card.es;
-        const nyeOnly = hasNye && !/[áéíóúü]/i.test(card.es);
+        const hasNye = /ñ/i.test(primaryAnswer);
+        const accentOnly = !hasNye && accentStripped !== primaryAnswer;
+        const nyeOnly = hasNye && !/[áéíóúü]/i.test(primaryAnswer);
 
-        const accepted = getVocabularyAcceptedAnswers(card, 'no-es', card.es).map(a => a.value);
-        const evaluation = isTypedVocabAnswerCorrect(accentStripped, card.es, accepted);
+        const evaluation = isTypedVocabAnswerCorrect(accentStripped, primaryAnswer, accepted);
 
-        if (accentOnly || (hasNye && !/[áéíóúü]/i.test(card.es))) {
+        if (accentOnly || nyeOnly) {
           // For accent-only words: should be accent_or_case_variant
           if (accentOnly && evaluation.resultKind !== 'accent_or_case_variant') {
             failures.push({
