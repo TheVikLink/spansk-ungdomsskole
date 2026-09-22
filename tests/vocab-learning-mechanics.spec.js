@@ -1,8 +1,10 @@
 import { test, expect } from '@playwright/test';
+import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 
 const appUrl = pathToFileURL(path.resolve('index.html')).toString();
+const reviewedVocabulary = JSON.parse(readFileSync('data/vocabulary-canonical-review.json', 'utf8')).entries;
 
 test.describe('vocabulary learning mechanics', () => {
   test('adds first-letter hints for cards that share the same prompt side', async ({ page }) => {
@@ -125,7 +127,7 @@ test.describe('vocabulary learning mechanics', () => {
     expect(result.broren).toEqual({ resultKind: 'correct', correct: true });
   });
 
-  test('covers every simple el/la noun with an explicit Norwegian definite form', async ({ page }) => {
+  test('uses exactly the reviewed Norwegian answers for every simple el/la noun', async ({ page }) => {
     await page.goto(appUrl);
 
     const result = await page.evaluate(() => {
@@ -139,10 +141,11 @@ test.describe('vocabulary learning mechanics', () => {
       }));
     });
 
-    expect(result).not.toHaveLength(0);
-    for (const card of result) {
-      expect(card.answers, `${card.es} (${card.no}) mangler bestemt norsk variant`).toContainEqual(expect.not.stringMatching(new RegExp(`^${card.no}$`, 'i')));
-    }
+    const expected = reviewedVocabulary
+      .filter(entry => /^(el|la)\s/i.test(entry.spansk) && /^[^,()\s]+$/u.test(entry.norsk))
+      .map(entry => ({ no: entry.norsk, es: entry.spansk, answers: entry.svar['es-no'] }));
+    expect(expected).not.toHaveLength(0);
+    expect(result).toEqual(expected);
   });
 
   test('accepts gangen for el pasillo', async ({ page }) => {
@@ -171,13 +174,15 @@ test.describe('vocabulary learning mechanics', () => {
   expect(answers.school).toEqual(expect.arrayContaining(['la E.S.O.', 'la escuela secundaria']));
 });
 
-test('accepts natural Spanish alternatives for å gå tur', async ({ page }) => {
+test('accepts the reviewed Spanish alternatives for the canonical å gå tur card', async ({ page }) => {
   await page.goto(appUrl);
-  const answers = await page.evaluate(() => getVocabularyAcceptedAnswers(
-    { no: 'å gå tur', es: 'hacer senderismo' },
+  const entry = reviewedVocabulary.find(item => item.norsk === 'å gå tur');
+  const answers = await page.evaluate(entry => getVocabularyAcceptedAnswers(
+    { no: entry.norsk, es: entry.spansk },
     'no-es',
-    'hacer senderismo'
-  ).map(answer => answer.value));
+    entry.spansk
+  ).map(answer => answer.value), entry);
+  expect(answers).toEqual(entry.svar['no-es']);
   expect(answers).toEqual(expect.arrayContaining(['hacer senderismo', 'hacer caminatas']));
 });
 
@@ -189,20 +194,40 @@ test('shows a number-writing hint for every Spanish-to-Norwegian number card', a
   expect(result).toBe('Skriv med tall');
 });
 
-test('accepts Norwegian indefinite and definite singular forms for article nouns', async ({ page }) => {
+test('takes Norwegian definite-form acceptance for article nouns from the review file', async ({ page }) => {
   await page.goto(appUrl);
-  const result = await page.evaluate(() => getVocabularyAcceptedAnswers(
-    { no: 'frisør', es: 'el peluquero', category: 'yrker' }, 'es-no', 'frisør'
-  ).map(answer => answer.value));
-  expect(result).toEqual(expect.arrayContaining(['frisør', 'frisøren']));
+  const entry = reviewedVocabulary.find(item => item.norsk === 'frisør' && item.spansk === 'el peluquero');
+  const result = await page.evaluate(entry => {
+    const answers = getVocabularyAcceptedAnswers(
+      { no: entry.norsk, es: entry.spansk, category: entry.kategori }, 'es-no', entry.norsk
+    ).map(answer => answer.value);
+    return {
+      answers,
+      primary: isTypedVocabAnswerCorrect(entry.norsk, entry.norsk, answers).correct,
+      definite: isTypedVocabAnswerCorrect('frisøren', entry.norsk, answers).correct
+    };
+  }, entry);
+  expect(result.answers).toEqual(entry.svar['es-no']);
+  expect(result.primary).toBe(true);
+  expect(result.definite).toBe(entry.svar['es-no'].includes('frisøren'));
 });
 
-test('accepts the optional Spanish definite article for weekdays', async ({ page }) => {
+test('takes weekday article acceptance from the review file', async ({ page }) => {
   await page.goto(appUrl);
-  const result = await page.evaluate(() => getVocabularyAcceptedAnswers(
-    { no: 'fredag', es: 'viernes', category: 'ukedager' }, 'no-es', 'viernes'
-  ).map(answer => answer.value));
-  expect(result).toEqual(expect.arrayContaining(['viernes', 'el viernes']));
+  const entry = reviewedVocabulary.find(item => item.norsk === 'fredag' && item.spansk === 'viernes');
+  const result = await page.evaluate(entry => {
+    const answers = getVocabularyAcceptedAnswers(
+      { no: entry.norsk, es: entry.spansk, category: entry.kategori }, 'no-es', entry.spansk
+    ).map(answer => answer.value);
+    return {
+      answers,
+      primary: isTypedVocabAnswerCorrect(entry.spansk, entry.spansk, answers).correct,
+      withArticle: isTypedVocabAnswerCorrect('el viernes', entry.spansk, answers).correct
+    };
+  }, entry);
+  expect(result.answers).toEqual(entry.svar['no-es']);
+  expect(result.primary).toBe(true);
+  expect(result.withArticle).toBe(entry.svar['no-es'].includes('el viernes'));
 });
 
 test('excludes conjugation tables from vocabulary cards', async ({ page }) => {
@@ -384,9 +409,9 @@ test('keeps a held accent key alive while typing the next letter', async ({ page
         { no: 'lat (v)', es: 'vago', clean: 'lat' },
         { no: 'begravelse (f)', es: 'el Funeral', clean: 'begravelse' },
         { no: 'begravelse (ord på e)', es: 'entierro', clean: 'begravelse' },
-        { no: 'rom (annet ord, C)', es: 'el cuarto', clean: 'rom' },
+        { no: 'rom (ord på c)', es: 'el cuarto', clean: 'rom' },
         { no: 'stue (c)', es: 'el cuarto de estar', clean: 'stue' },
-        { no: 'kjøleskap (n)', es: 'la nevera', clean: 'kjøleskap' },
+        { no: 'kjøleskap (ord på n)', es: 'la nevera', clean: 'kjøleskap' },
         { no: 'genser (j)', es: 'el jersey', clean: 'genser' },
         { no: 'lærer (p)', es: 'el profesor', clean: 'lærer' }
       ];
@@ -416,7 +441,7 @@ test('keeps a held accent key alive while typing the next letter', async ({ page
     expect(result.evaluation.correct).toBe(true);
   });
 
-  test('accepts buenas tardes as an equivalent for god kveld', async ({ page }) => {
+  test('keeps god kveld to the teacher-approved answer and rejects buenas tardes', async ({ page }) => {
     await page.goto(appUrl);
 
     const result = await page.evaluate(() => ({
@@ -424,8 +449,8 @@ test('keeps a held accent key alive while typing the next letter', async ({ page
       evaluation: isTypedVocabAnswerCorrect('buenas tardes', 'buenas noches', getVocabularyAcceptedAnswers({ no: 'god kveld', es: 'buenas noches' }, 'no-es', 'buenas noches').map(a => a.value))
     }));
 
-    expect(result.accepted).toContain('buenas tardes');
-    expect(result.evaluation.correct).toBe(true);
+    expect(result.accepted).toEqual(['buenas noches']);
+    expect(result.evaluation.correct).toBe(false);
   });
 
   test('accepts la novia for kjæreste and kjæresten for el novio', async ({ page }) => {
@@ -445,29 +470,35 @@ test('keeps a held accent key alive while typing the next letter', async ({ page
     expect(result.kjærestenCorrect.correct).toBe(true);
   });
 
-  test('generates correct definite forms for Norwegian nouns ending in e', async ({ page }) => {
+  test('uses reviewed definite forms for Norwegian nouns ending in e without inventing extras', async ({ page }) => {
     await page.goto(appUrl);
 
-    const result = await page.evaluate(() => {
-      const cases = [
-        { no: 'kusine', es: 'la prima', expected: 'kusinen' },
-        { no: 'tante', es: 'la tía', expected: 'tanten' },
-        { no: 'jakke', es: 'la chaqueta', expected: 'jakken' },
-        { no: 'klokke', es: 'el reloj', expected: 'klokken' },
-        { no: 'lege', es: 'el médico', expected: 'legen' },
-        { no: 'pære', es: 'la pera', expected: 'pæren' },
-        { no: 'teppe', es: 'la alfombra', expected: 'teppet' },
-        { no: 'smykke', es: 'la cadena', expected: 'smykket' }
-      ];
-      return cases.map(c => ({
-        label: c.no,
-        answers: getVocabularyAcceptedAnswers({ no: c.no, es: c.es }, 'es-no', c.no).map(a => a.value),
-        expected: c.expected
-      }));
-    });
+    const cases = [
+      ['kusine', 'la prima', 'kusinen'],
+      ['tante', 'la tía', 'tanten'],
+      ['jakke', 'la chaqueta', 'jakken'],
+      ['klokke', 'el reloj', 'klokken'],
+      ['lege', 'el médico', 'legen'],
+      ['pære', 'la pera', 'pæren'],
+      ['teppe', 'la alfombra', 'teppet'],
+      ['kjede', 'la cadena', 'kjedet']
+    ].map(([no, es, definite]) => ({
+      no, es, definite,
+      reviewedAnswers: reviewedVocabulary.find(entry => entry.norsk === no && entry.spansk === es).svar['es-no']
+    }));
+    const result = await page.evaluate(cases => cases.map(card => {
+      const answers = getVocabularyAcceptedAnswers(card, 'es-no', card.no).map(answer => answer.value);
+      return {
+        no: card.no,
+        answers,
+        definiteCorrect: isTypedVocabAnswerCorrect(card.definite, card.no, answers).correct
+      };
+    }), cases);
 
-    for (const item of result) {
-      expect(item.answers, `${item.label} should include definite form "${item.expected}"`).toContain(item.expected);
+    for (const [index, item] of result.entries()) {
+      const source = cases[index];
+      expect(item.answers, item.no).toEqual(source.reviewedAnswers);
+      expect(item.definiteCorrect, source.definite).toBe(source.reviewedAnswers.includes(source.definite));
     }
   });
 

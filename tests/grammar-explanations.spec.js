@@ -69,6 +69,26 @@ test.describe('grammar mistake explanations', () => {
     expect(explanations.fallback).toContain('Se på mønsteret');
   });
 
+  test('teaches ser and estar by function rather than a permanent-temporary shortcut', async ({ page }) => {
+    await page.goto(appUrl);
+
+    const result = await page.evaluate(() => ({
+      serTranslation: verbDatabase.ser.translation,
+      theory: grammarTopics.serEstar.theory.content,
+      feedback: getGrammarMistakeExplanation('serEstar'),
+      eventExercise: grammarTopics.serEstar.exercises.find(exercise => exercise.sentence === 'La fiesta ___ el sábado'),
+      present: getVerbMeaning(verbDatabase.ser.translation, 'yo'),
+      future: getNorwegianInfinitive(verbDatabase.ser.translation),
+      perfect: getNorwegianPerfectum(verbDatabase.ser.translation)
+    }));
+
+    expect(result.serTranslation).toBe('å være (identitet, beskrivelse og når noe skjer)');
+    expect(result.theory).not.toMatch(/permanent|midlertidig/i);
+    expect(result.feedback).not.toMatch(/varige|midlertidige/i);
+    expect(result.eventExercise).toMatchObject({ answer: 'es', hint: 'Når noe skjer = SER' });
+    expect(result).toMatchObject({ present: 'er', future: 'være', perfect: 'vært' });
+  });
+
   test('shows the explanation when a grammar answer is wrong', async ({ page }) => {
     await page.goto(appUrl);
 

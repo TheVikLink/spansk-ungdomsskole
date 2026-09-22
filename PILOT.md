@@ -2,6 +2,8 @@
 
 Appen gir aktiv spanskøving uten konto. Den tekniske rettingen etter [brukertesten](docs/brukertest-2026-09-08.md) dokumenteres i [rettelsesrapporten](docs/brukertest-rettelser-2026-09-09.md). Ingen ekte elevpilot eller full faglig godkjenning er gjennomført. Begynn med lærerens gjennomgang av de valgte oppgavene, deretter en kort demonstrasjon eller liten, moderert prøve. Selvstendig bruk med en hel klasse kommer først etter denne vurderingen.
 
+Den [lokale releaseverifikasjonen 18. september 2026](docs/release-verification-2026-09-18.md) er bestått, inkludert mobilbredder, gjenoppretting og offline-lyd i Chromium. Den erstatter ikke kontrollen på skolens faktiske utstyr og dokumenterer ikke at rettelsene er publisert.
+
 ## Ett mål og en avtalt start
 
 **Mål:** Eleven velger bestemt artikkel i entall og flertall: el, la, los og las.
@@ -29,7 +31,7 @@ En lærer kan gå rundt og se dagens oppsummering på enheten. Det finnes ingen 
 
 Fremgang lagres i nettleseren. Eksporter sikkerhetskopien manuelt før nettleserdata slettes eller enheten byttes, og importer filen i den nye nettleseren. Samme kode alene gjenoppretter ingenting. Sikkerhetskopien inneholder blant annet kode/navn og nivåtestsvar. Elevinnspill har separat eksport fra Innstillinger → Tilbakemeldinger. Ingen filer sendes automatisk.
 
-Første timen over trenger ikke lyd. Hvis diktat skal brukes senere, prøv avspilling på skolens faktiske enheter og last ned den valgte historien med appens knapp før frakobling. Uten nedlastet lyd kreves nett. Talehjelperens stemme og uttale må prøvelyttes på enheten. Ved appoppdatering: avslutt aktiv øving, last inn den nye versjonen og kontroller versjonsmerket. Publisering inngår ikke i denne rettelsesleveransen.
+Første timen over trenger ikke lyd. Hvis diktat eller lyttehistorier skal brukes senere, prøv avspilling på skolens faktiske enheter og last ned den valgte historien med appens knapp før frakobling. Uten nedlastet lyd kreves nett. Appen bruker bare ferdige opptak levert av produkteieren, aldri tekst-til-tale. Manglende eller uspillbar lyd gir en feilmelding; velg en tilgjengelig historie eller bruk reserveopplegget. Læreren må kontrollere opptakets uttale, tempo og samsvar med manus. Ved appoppdatering: avslutt aktiv øving, last inn den nye versjonen og kontroller versjonsmerket. Publisering inngår ikke i denne rettelsesleveransen.
 
 ## Neste steg med mennesker
 

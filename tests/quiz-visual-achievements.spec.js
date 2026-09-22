@@ -21,7 +21,7 @@ async function showResult(page, { previousBadges = [], answered = 10, strength =
 }
 
 for (const width of [1440, 390]) {
-  test(`four concise stars and a separate walking badge work at ${width}px`, async ({ page }) => {
+  test(`four concise stars and a separate walking badge work at ${width}px`, async ({ page }, testInfo) => {
     await page.setViewportSize({ width, height: 1000 });
     await showResult(page);
     const stars = page.locator('.quiz-skill-star');
@@ -48,7 +48,7 @@ for (const width of [1440, 390]) {
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
     const badgeHeight = await page.locator('.quiz-badge-awards').evaluate(el => el.getBoundingClientRect().height);
     expect(badgeHeight).toBeLessThan(width < 500 ? 330 : 220);
-    await page.screenshot({ path: `output/brukertest-rettelser/visual-stars-${width}.png`, fullPage: true });
+    await page.screenshot({ path: testInfo.outputPath(`visual-stars-${width}.png`), fullPage: true });
   });
 }
 

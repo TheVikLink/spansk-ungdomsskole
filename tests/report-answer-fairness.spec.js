@@ -1,8 +1,11 @@
 import { test, expect } from '@playwright/test';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
+import { readFileSync } from 'node:fs';
 
 const appUrl = pathToFileURL(path.resolve('index.html')).toString();
+const reviewedMotherAnswers = JSON.parse(readFileSync('data/vocabulary-canonical-review.json', 'utf8')).entries
+  .find(entry => entry.id === 'vocab-0179').svar['es-no'];
 
 test('F03: quiz builders retain every approved vocabulary answer in both directions', async ({ page }) => {
   await page.goto(appUrl);
@@ -74,7 +77,7 @@ test('F04: diagnosis shows both the instruction and Spanish gap context', async 
 });
 
 for (const [id, answer] of [
-  ['diag.vocab.family.madre.es_no', 'mora'],
+  ...reviewedMotherAnswers.map(answer => ['diag.vocab.family.madre.es_no', answer]),
   ['diag.a0.identity.me_llamo.typed', 'Yo me llamo Ana']
 ]) {
   test(`F04: diagnosis accepts the documented natural answer ${answer}`, async ({ page }) => {

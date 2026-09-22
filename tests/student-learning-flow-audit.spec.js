@@ -91,6 +91,36 @@ test.describe('student learning flow audit', () => {
     ]);
   });
 
+  test('protects active dictation and listening sessions from navigation loss', async ({ page }) => {
+    await page.goto(appUrl);
+
+    const result = await page.evaluate(() => {
+      document.getElementById('mainApp').classList.remove('hidden');
+      document.getElementById('dictationPage').classList.remove('hidden');
+      const originalConfirm = window.confirm;
+      const outcomes = [];
+      for (const [mode, start] of [['dictation', () => startDictation('madrid-plaza')], ['listening', () => startListeningStory('leo-sevilla')]]) {
+        dictationState = null;
+        listeningState = null;
+        activeSessionType = null;
+        start();
+        window.confirm = () => false;
+        const cancelled = showPage('home');
+        const preserved = mode === 'dictation' ? Boolean(dictationState) : Boolean(listeningState);
+        window.confirm = () => true;
+        const changed = showPage('home');
+        outcomes.push({ mode, cancelled, preserved, changed, cleared: mode === 'dictation' ? dictationState === null : listeningState === null });
+      }
+      window.confirm = originalConfirm;
+      return outcomes;
+    });
+
+    expect(result).toEqual([
+      { mode: 'dictation', cancelled: false, preserved: true, changed: undefined, cleared: true },
+      { mode: 'listening', cancelled: false, preserved: true, changed: undefined, cleared: true }
+    ]);
+  });
+
   test('home distinguishes an unfinished daily quiz from a completed one', async ({ page }) => {
     await page.goto(appUrl);
 

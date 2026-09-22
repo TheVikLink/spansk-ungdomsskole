@@ -38,7 +38,7 @@ test.describe('adaptive mixed quiz v1', () => {
   test('renders Norwegian context alongside Spanish recognition prompts', async ({ page }) => {
     await page.goto(appUrl);
     const result = await page.evaluate(() => {
-      const item = diagnosisQuestionCatalog.find(question => question.responseMode === 'choice');
+      const item = diagnosisQuestionCatalog.find(question => question.responseMode === 'choice' && question.prompt.includes('___'));
       mixedQuizState = { quiz: { items: [{ ...item, responseMode: 'choice' }] }, index: 0, answered: 0, correct: 0, startedAt: new Date(), results: [] };
       document.getElementById('mixedQuizStudy').classList.remove('hidden');
       renderMixedQuizQuestion();
@@ -46,6 +46,19 @@ test.describe('adaptive mixed quiz v1', () => {
     });
 
     expect(result).toContain('Norsk kontekst');
+  });
+
+  test('suppresses redundant Norwegian context when prompt is already Norwegian', async ({ page }) => {
+    await page.goto(appUrl);
+    const result = await page.evaluate(() => {
+      const item = diagnosisQuestionCatalog.find(question => question.id === 'diag.a0.identity.soy_de.choice');
+      mixedQuizState = { quiz: { items: [{ ...item, responseMode: 'choice' }] }, index: 0, answered: 0, correct: 0, startedAt: new Date(), results: [] };
+      document.getElementById('mixedQuizStudy').classList.remove('hidden');
+      renderMixedQuizQuestion();
+      return document.getElementById('mixedQuizQuestion').textContent;
+    });
+
+    expect(result).not.toContain('Norsk kontekst');
   });
 
   test('builds a deterministic ten-question mix with confidence and recent buckets', async ({ page }) => {

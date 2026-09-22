@@ -5,7 +5,7 @@ import { pathToFileURL } from 'node:url';
 const appUrl = pathToFileURL(path.resolve('index.html')).toString();
 
 for (const width of [360, 390, 640, 768, 1024, 1440]) {
-  test(`F02: every menu button is reachable at ${width}px with a long label and large text`, async ({ page }) => {
+  test(`F02: every menu button is reachable at ${width}px with a long label and large text`, async ({ page }, testInfo) => {
     await page.setViewportSize({ width, height: 844 });
     await page.goto(appUrl);
     await page.locator('#studentNameInput').fill('Elevkode-med-et-veldig-langt-kallenavn-9A');
@@ -21,6 +21,6 @@ for (const width of [360, 390, 640, 768, 1024, 1440]) {
     }
     const hasOverflow = await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth + 1);
     expect(hasOverflow).toBe(false);
-    if ([390, 1440].includes(width)) await page.screenshot({ path: `output/brukertest-rettelser/nav-${width}.png`, fullPage: true });
+    if ([390, 1440].includes(width)) await page.screenshot({ path: testInfo.outputPath(`nav-${width}.png`), fullPage: true });
   });
 }

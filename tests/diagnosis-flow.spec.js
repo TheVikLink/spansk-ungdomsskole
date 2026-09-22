@@ -67,6 +67,7 @@ test.describe('diagnosis quiz v1', () => {
       localStorage.clear();
       document.getElementById('mainApp').classList.remove('hidden');
       startDiagnosis('2026-08-07T10:00:00.000Z');
+      const question = diagnosisQuestionCatalog.find(item => item.id === 'diag.vocab.greeting.hola.es_no');
       const state = answerDiagnosisQuestion(
         'diag.vocab.greeting.hola.es_no',
         'hei',
@@ -74,6 +75,7 @@ test.describe('diagnosis quiz v1', () => {
       );
       return {
         state,
+        questionVersion: question.contentVersion,
         progress: JSON.parse(localStorage.getItem('spansk123_learningProgress_v1'))
       };
     });
@@ -88,7 +90,7 @@ test.describe('diagnosis quiz v1', () => {
         resultKind: 'correct',
         responseMode: 'typed',
         answeredAt: '2026-08-07T10:01:00.000Z',
-        contentVersion: 1,
+        contentVersion: result.questionVersion,
         responseClass: 'correct',
         rawResponse: 'hei',
         normalizedResponse: 'hei',
@@ -352,22 +354,115 @@ test.describe('diagnosis quiz v1', () => {
     expect(result.backups).toHaveLength(1);
   });
 
-  test('builds an analysis-only pilot export without student identity or raw answers', async ({ page }) => {
+  test('isolated diagnosis view displays cancel button and hides homePage during testing', async ({ page }) => {
     await page.goto(appUrl);
-
-    const result = await page.evaluate(() => {
+    await page.evaluate(() => {
       localStorage.clear();
-      startDiagnosis('2026-08-07T10:00:00.000Z');
-      answerDiagnosisQuestion('diag.vocab.greeting.hola.es_no', 'hei', '2026-08-07T10:01:00.000Z');
-      studentName = 'Elevkode 9A-14';
-      activeAssignment = { assignmentTitle: 'Skjult lekse' };
-      return buildDiagnosisPilotExportData(loadDiagnosisState());
+      studentName = 'Test Elev';
+      localStorage.setItem('spansk123_studentName', studentName);
+      showMainApp();
     });
 
-    expect(result.version).toBe('spansk123_diagnosis_pilot_v1');
-    expect(result).not.toHaveProperty('studentName');
-    expect(result).not.toHaveProperty('activeAssignment');
-    expect(result.responses[0]).not.toHaveProperty('rawResponse');
-    expect(result.responses[0]).toMatchObject({ questionId: 'diag.vocab.greeting.hola.es_no', responseClass: 'correct' });
+    await expect(page.locator('#homePage')).toBeVisible();
+    await expect(page.locator('#diagnosisPanel')).toBeVisible();
+    await expect(page.locator('#diagnosisCancelBtn')).toBeHidden();
+
+    await page.locator('#homeStartMixedQuizBtn').click();
+
+    await expect(page.locator('#homePage')).toBeHidden();
+    await expect(page.locator('#diagnosisCancelBtn')).toBeVisible();
+    await expect(page.locator('#diagnosisCancelBtn')).toHaveText('✕ Avslutt');
+    await expect(page.locator('#diagnosisPanel .session-progress')).toBeVisible();
+    await expect(page.locator('#diagnosisPanel .card-counter')).toHaveText('1 / 12');
+  });
+
+  test('cancelling diagnosis asks for confirmation; dismissing continues while accepting resets to Start', async ({ page }) => {
+    await page.goto(appUrl);
+    await page.evaluate(() => {
+      localStorage.clear();
+      studentName = 'Test Elev';
+      showMainApp();
+    });
+
+    await page.locator('#homeStartMixedQuizBtn').click();
+    await expect(page.locator('#diagnosisCancelBtn')).toBeVisible();
+
+    page.once('dialog', async dialog => {
+      expect(dialog.message()).toContain('Vil du avbryte nivåtesten?');
+      await dialog.dismiss();
+    });
+    await page.locator('#diagnosisCancelBtn').click();
+
+    await expect(page.locator('#homePage')).toBeHidden();
+    await expect(page.locator('#diagnosisCancelBtn')).toBeVisible();
+    expect(await page.evaluate(() => loadDiagnosisState().status)).toBe('in_progress');
+
+    page.once('dialog', async dialog => {
+      expect(dialog.message()).toContain('Vil du avbryte nivåtesten?');
+      await dialog.accept();
+    });
+    await page.locator('#diagnosisCancelBtn').click();
+
+    await expect(page.locator('#homePage')).toBeVisible();
+    await expect(page.locator('#homeStartMixedQuizBtn')).toBeVisible();
+    await expect(page.locator('#homeStartMixedQuizBtn')).toHaveText('Start nivåtest');
+    await expect(page.locator('#diagnosisCancelBtn')).toBeHidden();
+    expect(await page.evaluate(() => loadDiagnosisState().status)).toBe('not_started');
+  });
+
+  test('diagnosis cancel and progress view is usable on mobile screen (390px)', async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto(appUrl);
+    await page.evaluate(() => {
+      localStorage.clear();
+      studentName = 'Mobil Elev';
+      showMainApp();
+    });
+
+    await page.locator('#homeStartMixedQuizBtn').click();
+    await expect(page.locator('#diagnosisCancelBtn')).toBeVisible();
+    await expect(page.locator('#homePage')).toBeHidden();
+
+    page.once('dialog', async dialog => {
+      await dialog.accept();
+    });
+    await page.locator('#diagnosisCancelBtn').click();
+
+    await expect(page.locator('#homePage')).toBeVisible();
+    await expect(page.locator('#homeStartMixedQuizBtn')).toBeVisible();
+  });
+
+  test('reload restores diagnosis navigation protection only while the diagnosis is in progress', async ({ page }) => {
+    await page.goto(appUrl);
+    await page.evaluate(() => {
+      localStorage.clear();
+      studentName = 'Test Elev';
+      localStorage.setItem('spansk123_studentName', studentName);
+      showMainApp();
+      startDiagnosisFromUi();
+    });
+    await page.reload();
+
+    await expect(page.locator('#mainApp')).toBeVisible();
+    await expect(page.locator('#diagnosisCancelBtn')).toBeVisible();
+    await expect(page.locator('#homePage')).toBeHidden();
+
+    page.once('dialog', dialog => dialog.dismiss());
+    await page.locator('#navVocab').click();
+    await expect(page.locator('#diagnosisCancelBtn')).toBeVisible();
+
+    page.once('dialog', dialog => dialog.accept());
+    await page.locator('#navVocab').click();
+    await expect(page.locator('#vocabPage')).toBeVisible();
+    expect(await page.evaluate(() => loadDiagnosisState().status)).toBe('not_started');
+
+    const inactiveStates = await page.evaluate(() => {
+      renderDiagnosisPanel();
+      const notStarted = activeSessionType;
+      skipDiagnosisAfterProgressImport();
+      renderDiagnosisPanel();
+      return { notStarted, complete: activeSessionType };
+    });
+    expect(inactiveStates).toEqual({ notStarted: null, complete: null });
   });
 });

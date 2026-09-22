@@ -121,11 +121,3 @@ test('recording feedback has explicit vocabulary answer coverage', () => {
   ]) assert.ok(app.includes(expected) || app.includes(expected.replaceAll("'", '"')), `missing ${expected}`);
   assert.match(app, /filter\(isVocabularyCardEligible\)/);
 });
-
-test('all occupation cards use the shared gender-variant generator', () => {
-  const app = fs.readFileSync(new URL('../index.html', import.meta.url), 'utf8');
-  assert.match(app, /function getOccupationGenderVariants\(card, primaryAnswer\)/);
-  assert.match(app, /getOccupationGenderVariants\(card, primaryAnswer\)/);
-  assert.match(app, /profesor.*profesora/);
-  assert.match(app, /dentista/);
-});

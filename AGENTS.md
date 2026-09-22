@@ -11,6 +11,7 @@ Interactive Spanish learning app for Norwegian lower-secondary students. The pro
 - Practice should stay active: students answer, type, choose, speak, or recall. Avoid flows that auto-reveal answers before meaningful effort.
 - Games should reinforce vocabulary, grammar, reading, listening, pronunciation, or retrieval practice; avoid unrelated game mechanics.
 - Reading and dictation features must handle microphone/audio permissions clearly and avoid storing voice or identifiable student data unless explicitly approved.
+- All audio must be pre-generated and supplied by the product owner. Never use browser/OS/cloud text-to-speech, including as a fallback. Missing or unplayable recordings must produce a clear, accessible Norwegian message; do not generate substitute audio.
 
 Forbidden:
 - Silent collection of student identifiers, voice recordings, free-text submissions, or usage analytics.
@@ -33,6 +34,7 @@ Current repo shape:
 - `thoughts/shared/plans/` - plans for multi-step work.
 
 Change routing:
+- Standard vocabulary and accepted answers: edit only `data/vocabulary-canonical-review.json`. `npm run build:app` generates the canonical compatibility copy, inline vocabulary and diagnosis vocabulary answers. Keep stable review IDs; never regenerate the review source from the app or merge audit suggestions directly into runtime answers. `npm run check:vocabulary` must pass before delivery. Custom/teacher vocabulary remains independent.
 - App behavior/UI: read relevant sections in `index.html`; verify by opening the static file or serving the repo locally.
 - Vocabulary/import/export/progress: read the storage, import, export, and migration code in `index.html`; test old and new JSON payloads manually or with a focused script if one exists.
 - Teacher/homework flow: read `README.md` and the homework-related code in `index.html`; verify Google Forms assumptions before changing IDs or submission shape.
@@ -55,6 +57,14 @@ Current default branch is `main`.
 - Larger features should use a feature branch from `main` and a PR back to `main`.
 - Before multi-teacher SaaS work begins, introduce a stronger branch/deployment policy, likely `staging -> main`, and document it here.
 - Do not push, deploy, or publish unless the user asked for that delivery step or the task explicitly includes it.
+
+## Google Drive Document Workflow
+
+- When creating or updating Google Drive documents, prepare a copy-and-paste prompt for the user to run with Gemini 3.8 Flash in Antigravity CLI (`agy`). The user runs that prompt; Codex prepares the content and handoff.
+- Do not create or update Drive documents directly from Codex unless the user explicitly changes this preference. Keep the current approval policy unchanged.
+- Finish the requested content locally first. Include the absolute source path, destination folder, document title, create-versus-update instructions, and verification steps in the prompt.
+- Tell Gemini to preserve unrelated content and sharing settings, verify the saved document and folder, and return the actual document link. Distinguish prepared local content from a confirmed Drive update.
+- Use the newest local source as authoritative; identify older exports that should not be imported. Do not generate an extra Word file solely as an intermediate unless needed or requested.
 
 ## Task Tracking - Beads (`bd`)
 `bd` is the source of truth for task tracking in this repo.
@@ -85,7 +95,8 @@ This repo has package scripts, catalog checks, and Playwright regression tests. 
 ### Content audit infrastructure
 
 - `npm run extract:items` — extracts every curriculum item to `output/audit-items.json` (glossary, diagnosis, grammar, verbs, puzzles, prepositions, answer alternatives, definite forms).
-- `npm run check:content-accuracy` — runs 13 mechanical invariant checks on the extracted catalog (parenthetical annotations, definite-form endings, orphan maps, prompt collisions, verb conjugation completeness, grammar distractor identity, sentence puzzle integrity, accent/ñ presence, Norwegian context coverage). Corpus-dependent checks (synonym coverage, idiom correctness, distractor validity) require expert review and are documented but skipped automatically.
+- `npm run check:content-accuracy` — runs 13 mechanical invariant checks on the extracted catalog, including a targeted Norwegian-context n-for-ñ check (not a general spellchecker). With `scripts/reference-corpus.json`, three additional consistency checks run: synonym coverage in each direction and corpus orphans. This corpus is largely derived from the app and is not independent validation. Translation idiomaticity and distractor validity still require expert review; the command always discloses that these do not run.
+- `tests/content-accuracy.test.mjs` — mutation-tests the real audit command and checks known ñ mistakes, correct Unicode forms, legitimate n-words, and honest audit coverage reporting. Included in `test:all`.
 - `tests/answer-acceptance-fuzz.spec.js` — fuzz-tests every glossary pair, diagnosis answer, and verb conjugation for correct acceptance, accent/ñ classification, and definite-form acceptance.
 - `tests/student-feedback.spec.js` — regression tests for the student feedback channel (storage, export, delete, anonymity, reset).
 

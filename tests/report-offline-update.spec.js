@@ -51,7 +51,7 @@ test('F09: cached shell explains missing audio offline, and missing media never 
   server.setOffline(true);
   await context.setOffline(true); await page.reload();
   await page.locator('#navDictation').click();
-  await page.getByRole('button', { name: 'Start historien' }).first().click();
+  await page.locator('#dictationOverview').getByRole('button', { name: 'Start diktat', exact: true }).first().click();
   await expect(page.locator('#dictationAudioError')).toBeVisible();
   await expect(page.getByRole('button', { name: 'Start øvelsen', exact: true })).toBeDisabled();
   const response = await page.evaluate(async () => {
@@ -70,13 +70,13 @@ test('F09: cached shell explains missing audio offline, and missing media never 
 test('F09: explicit complete-story download supports real audio and ranges after going offline', async ({ page, context }) => {
   await openApp(page);
   await page.locator('#navDictation').click();
-  await page.getByRole('button', { name: 'Start historien' }).first().click();
+  await page.locator('#dictationOverview').getByRole('button', { name: 'Start diktat', exact: true }).first().click();
   await page.getByRole('button', { name: 'Last ned lyd til bruk uten nett' }).click();
   await expect(page.locator('#dictationDownloadStatus')).toContainText('Hele historien er lastet ned');
   server.setOffline(true);
   await context.setOffline(true); await page.reload();
   await page.locator('#navDictation').click();
-  await page.getByRole('button', { name: 'Start historien' }).first().click();
+  await page.locator('#dictationOverview').getByRole('button', { name: 'Start diktat', exact: true }).first().click();
   await page.getByRole('button', { name: 'Start øvelsen', exact: true }).click();
   await expect.poll(() => page.locator('#dictationSegmentAudio').evaluate(audio => audio.readyState)).toBeGreaterThanOrEqual(1);
   const range = await page.evaluate(async () => {

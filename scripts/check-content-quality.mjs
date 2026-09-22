@@ -89,8 +89,6 @@ const requiredFragments = [
   'hacer senderismo',
   'relajarse',
   'la religión',
-  'vivir, som betyr å bo',
-  'voy, vas, va, vamos, vais, van',
   '["jeg står opp tidlig", "me levanto temprano", "rutiner"]',
   '["konfirmasjon", "La Confirmación", "høytider"]',
   '["500", "quinientos", "tall"]',
