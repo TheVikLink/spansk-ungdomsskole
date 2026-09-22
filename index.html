@@ -6,7 +6,7 @@
     <title>Spansk på 1-2-3 | Læringsapp</title>
     <meta name="theme-color" content="#dc2626">
     <link rel="manifest" href="./manifest.webmanifest">
-    <meta name="app-build" content="6f867db1455644f8">
+    <meta name="app-build" content="e28b1b8b7e859476">
     <link href="./dist/tailwind.css" rel="stylesheet">
 </head>
 <body>
@@ -14674,22 +14674,24 @@
                 activeSessionType = null;
                 document.getElementById('homePage')?.classList.remove('hidden');
                 const diagnosisWasSkipped = state.answers.length === 0 && state.resultBand === 'A0';
-                const recommended = state.recommendedSkillIds
-                    .map(skillId => learningCatalog.skills.find(skill => skill.id === skillId)?.label || skillId)
-                    .join(', ') || 'Dagens quiz velger neste steg.';
-                panel.classList.remove('hidden');
                 panel.removeAttribute('data-response-mode');
                 panel.removeAttribute('data-accepted-answer');
+                if (!diagnosisWasSkipped) {
+                    panel.classList.add('hidden');
+                    panel.innerHTML = '';
+                    return;
+                }
+                panel.classList.remove('hidden');
                 panel.innerHTML = `
                     <div class="page-header">
-                        <h2>${diagnosisWasSkipped ? 'Nivåtest hoppet over' : 'Resultat'}</h2>
-                        <p>${diagnosisWasSkipped ? 'Tidligere fremgang er importert. Du starter på A0 og kan ta nivåtesten senere fra denne siden.' : 'Fremgangen er lagret bare på denne enheten.'}</p>
+                        <h2>Nivåtest hoppet over</h2>
+                        <p>Tidligere fremgang er importert. Du starter på A0 og kan ta nivåtesten senere fra denne siden.</p>
                     </div>
                     <div class="homework-summary">
                         <strong id="diagnosisResultBand">${state.resultBand || 'A0'}</strong>
                         <p>Dette er et foreløpig øvingsforslag fra noen få oppgaver, ikke en vurdering av hele spansknivået ditt.</p>
-                        <p>Anbefalt å øve videre på: ${escapeHtml(recommended)}</p>
-                        ${diagnosisWasSkipped ? '<button class="btn btn-secondary mt-3" onclick="startDiagnosisFromUi()">Ta nivåtest nå</button>' : ''}
+                        <p>Anbefalt å øve videre på: Dagens quiz velger neste steg.</p>
+                        <button class="btn btn-secondary mt-3" onclick="startDiagnosisFromUi()">Ta nivåtest nå</button>
                     </div>
                 `;
                 return;
@@ -14731,7 +14733,7 @@
                             <div class="homework-summary diagnosis-feedback ${diagnosisFeedback.correct ? 'correct' : 'incorrect'}" data-diagnosis-feedback>
                                 ${renderDiagnosisPrompt(feedbackQuestion)}
                                 <p class="font-semibold">${diagnosisFeedback.correct ? '✓ Riktig' : `✗ Riktig svar var: ${escapeHtml(diagnosisFeedback.canonicalAnswer)}`}</p>
-                                <button type="button" class="btn btn-primary mt-4" onclick="advanceDiagnosisFeedback()">${isLastQuestion ? 'Se resultat' : 'Neste'}</button>
+                                <button type="button" class="btn btn-primary mt-4" onclick="advanceDiagnosisFeedback()">${isLastQuestion ? 'Gå til Start' : 'Neste'}</button>
                             </div>
                         `;
                         panel.querySelector('button[onclick="advanceDiagnosisFeedback()"]')?.focus();
@@ -14746,6 +14748,7 @@
                     document.getElementById('homePage')?.classList.remove('hidden');
                     renderDiagnosisPanel();
                     renderHomePage();
+                    document.getElementById('homeStartMixedQuizBtn')?.focus();
                     return;
                 }
                 panel.classList.remove('hidden');
@@ -14864,6 +14867,7 @@
                 document.getElementById('homePage')?.classList.remove('hidden');
                 renderDiagnosisPanel();
                 renderHomePage();
+                document.getElementById('homeStartMixedQuizBtn')?.focus();
                 return;
             }
             renderDiagnosisPanel();
@@ -16555,7 +16559,7 @@
                         <p><strong id="homeVocabularyReviewCount">${reviewWordCount} ord ${reviewWordCount === 1 ? 'klart' : 'klare'} for repetisjon</strong></p>
                         <p>${reviewWordCount ? 'Økten starter med opptil 50 oppgaver.' : 'Øv på nye ord under Gloser, så kommer de tilbake her.'}</p>
                     </div>
-                    <button type="button" class="btn btn-secondary" aria-describedby="homeVocabularyReviewCount" onclick="startVocabularyReviewFromHome()" ${reviewWordCount ? '' : 'disabled'}>Start repetisjon</button>
+                    <button type="button" class="btn btn-primary btn-large" aria-describedby="homeVocabularyReviewCount" onclick="startVocabularyReviewFromHome()" ${reviewWordCount ? '' : 'disabled'}>Start repetisjon</button>
                 </section>
                 <p class="home-streak" id="homeQuizStreak">${streakText}</p>
                 <p class="home-offline-hint" id="homeOfflineHint">Gloser og grammatikk fungerer uten nett når appen er lagret i nettleseren. Diktatlyd må lastes ned separat i Lytteøvelser. ${location.protocol === 'file:' ? 'Denne lokale filen bruker lyd fra den tilhørende lydmappen.' : ''}</p>

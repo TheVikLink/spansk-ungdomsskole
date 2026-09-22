@@ -88,7 +88,7 @@ test('QA: full student journey audit', async ({ page }) => {
         }
         await expect(page.locator('[data-diagnosis-feedback]')).toBeVisible();
         if (i === 0) await checkpoint('s2-diagnosis-feedback', 'Tilbakemelding etter svar.');
-        await page.getByRole('button', { name: /Neste|Se resultat/ }).click();
+        await page.getByRole('button', { name: /Neste|Gå til Start/ }).click();
     }
     await checkpoint('s2-diagnosis-result', `Diagnose ferdig. Moduser: ${JSON.stringify(diagnosisModes)}`);
     events.push({ step: 's2-modes', note: JSON.stringify(diagnosisModes) });
