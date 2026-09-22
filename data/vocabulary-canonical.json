@@ -1440,7 +1440,6 @@
       "kategori": "farger",
       "svar": {
         "es-no": [
-          "lilla (v)",
           "lilla"
         ],
         "no-es": [
@@ -1931,7 +1930,6 @@
       "kategori": "høytider",
       "svar": {
         "es-no": [
-          "begravelse (f)",
           "begravelse"
         ],
         "no-es": [
@@ -1946,7 +1944,6 @@
       "kategori": "høytider",
       "svar": {
         "es-no": [
-          "begravelse (ord på e)",
           "begravelse"
         ],
         "no-es": [
@@ -2564,7 +2561,6 @@
       "kategori": "personlighet",
       "svar": {
         "es-no": [
-          "lat (v)",
           "lat"
         ],
         "no-es": [
@@ -3169,7 +3165,6 @@
       "kategori": "klær",
       "svar": {
         "es-no": [
-          "genser (j)",
           "genser"
         ],
         "no-es": [
@@ -4645,7 +4640,6 @@
       "kategori": "tidsuttrykk",
       "svar": {
         "es-no": [
-          "etter / etterpå",
           "etter",
           "etterpå",
           "senere"
@@ -5157,11 +5151,10 @@
     {
       "id": "vocab-0343",
       "norsk": "religion / KRLE",
-      "spansk": "la religión",
+      "spansk": "la religión (fag)",
       "kategori": "fag",
       "svar": {
         "es-no": [
-          "religion / KRLE",
           "KRLE",
           "KRLE-en",
           "religion",
@@ -5196,7 +5189,6 @@
       "kategori": "hjem",
       "svar": {
         "es-no": [
-          "rom (ord på c)",
           "rom"
         ],
         "no-es": [
@@ -5318,7 +5310,6 @@
       "kategori": "hjem",
       "svar": {
         "es-no": [
-          "stue (c)",
           "stue"
         ],
         "no-es": [
@@ -5494,7 +5485,6 @@
       "kategori": "møbler",
       "svar": {
         "es-no": [
-          "kjøleskap (ord på n)",
           "kjøleskap"
         ],
         "no-es": [
@@ -5632,7 +5622,6 @@
       "kategori": "møbler",
       "svar": {
         "es-no": [
-          "bilde / maleri ( ord på c)",
           "bilde",
           "maleri",
           "bilde / maleri"
@@ -5781,7 +5770,6 @@
       "kategori": "gustar",
       "svar": {
         "es-no": [
-          "jeg elsker / jeg liker svært godt",
           "jeg elsker",
           "jeg liker svært godt",
           "jeg liker veldig godt"
@@ -6856,7 +6844,8 @@
           "gjøre innkjøp"
         ],
         "no-es": [
-          "hacer las compras"
+          "hacer las compras",
+          "hacer compras"
         ]
       }
     },
@@ -7673,8 +7662,7 @@
         "es-no": [
           "etterpå",
           "etter",
-          "etter / etterpå",
-          "senere"
+          "etter / etterpå"
         ],
         "no-es": [
           "después"
@@ -7809,7 +7797,6 @@
       "kategori": "Mat og drikke",
       "svar": {
         "es-no": [
-          "lengst inn / bak",
           "lengst inn",
           "lengst bak",
           "lengst inn/bak"
@@ -7826,7 +7813,8 @@
       "kategori": "Mat og drikke",
       "svar": {
         "es-no": [
-          "pommes frites"
+          "pommes frites",
+          "pommes friten"
         ],
         "no-es": [
           "las patatas fritas",
