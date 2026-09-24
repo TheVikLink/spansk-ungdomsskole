@@ -5,6 +5,62 @@ import { pathToFileURL } from 'node:url';
 const appUrl = pathToFileURL(path.resolve('index.html')).toString();
 
 test.describe('verb focus categories', () => {
+  test('recommends a small regular -ar session before any local verb evidence exists', async ({ page }) => {
+    await page.goto(appUrl);
+
+    const recommendation = await page.evaluate(() => getRecommendedVerbPractice({
+      schemaVersion: 1,
+      wordProgress: {},
+      skillProgress: {}
+    }));
+
+    expect(recommendation).toMatchObject({
+      focus: 'ar',
+      tense: 'presente',
+      verbKeys: ['hablar', 'trabajar', 'estudiar'],
+      reason: 'Start med vanlige -ar-verb i presens.'
+    });
+  });
+
+  test('moves to regular -er and -ir verbs only after varied -ar evidence', async ({ page }) => {
+    await page.goto(appUrl);
+
+    const recommendation = await page.evaluate(() => getRecommendedVerbPractice({
+      schemaVersion: 1,
+      wordProgress: {},
+      skillProgress: {
+        'a1.verbs.regular_ar.present': {
+          strength: 4,
+          attempts: 6,
+          correct: 6,
+          verbForms: ['hablar:0', 'hablar:1', 'hablar:2', 'trabajar:3', 'trabajar:4', 'trabajar:5']
+        }
+      }
+    }));
+
+    expect(recommendation).toMatchObject({
+      focus: 'erir',
+      tense: 'presente',
+      verbKeys: ['comer', 'beber', 'vivir']
+    });
+  });
+
+  test('starts the locally recommended verb session and explains the choice', async ({ page }) => {
+    await page.goto(appUrl);
+    await page.evaluate(() => {
+      localStorage.clear();
+      studentName = 'Test';
+      showMainApp();
+      showPage('verbs');
+    });
+
+    await expect(page.locator('#startRecommendedVerbBtn')).toContainText('Start anbefalt økt');
+    await expect(page.locator('#recommendedVerbPracticeReason')).toContainText('Start med vanlige -ar-verb');
+    await page.locator('#startRecommendedVerbBtn').click();
+    await expect(page.locator('#verbExercise')).not.toHaveClass(/hidden/);
+    expect(await page.evaluate(() => [...selectedVerbs].sort())).toEqual(['estudiar', 'hablar', 'trabajar']);
+  });
+
   test('allows multiple stem-changing verb focus groups at the same time', async ({ page }) => {
     await page.goto(appUrl);
 

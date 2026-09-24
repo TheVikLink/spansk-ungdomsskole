@@ -50,10 +50,15 @@
                 <button class="nav-link active" onclick="showPage('vocab')" id="navVocab" aria-current="page">📚 Gloser</button>
                 <button class="nav-link" onclick="showPage('brainmap')" id="navBrainmap">🧠 Brainmap</button>
                 <button class="nav-link" onclick="showPage('verbs')" id="navVerbs">🏃 Verb</button>
-                <button class="nav-link" onclick="showPage('grammar')" id="navGrammar">📖 Grammatikk</button>
-                <button class="nav-link" onclick="showPage('games')" id="navGames">🎮 Spill</button>
-                <button class="nav-link" onclick="showPage('dictation')" id="navDictation">🎧 Lytteøvelser</button>
-                <button class="nav-link homework-nav" onclick="showPage('homework')" id="navHomework">📝 Lekse</button>
+                <details class="nav-more">
+                    <summary>☰ Flere områder <span class="nav-more-hint">Spill og lytteøvelser</span></summary>
+                    <div class="nav-more-links">
+                        <button class="nav-link" onclick="showPage('grammar')" id="navGrammar">📖 Grammatikk</button>
+                        <button class="nav-link" onclick="showPage('games')" id="navGames">🎮 Spill</button>
+                        <button class="nav-link" onclick="showPage('dictation')" id="navDictation">🎧 Lytteøvelser</button>
+                        <button class="nav-link homework-nav" onclick="showPage('homework')" id="navHomework">📝 Lekse</button>
+                    </div>
+                </details>
             </div>
             <div class="user-info" id="userInfo">
                 <span class="user-name" id="userName"></span>
@@ -74,13 +79,13 @@
                     <p>Velg en bestemt økt når du vil fordype deg.</p>
                 </div>
                 <div class="home-manual-grid">
-                    <button type="button" class="home-manual-action" onclick="showPage('vocab')">📚 <span>Gloser</span></button>
-                    <button type="button" class="home-manual-action" onclick="showPage('brainmap')">🧠 <span>Brainmap</span></button>
-                    <button type="button" class="home-manual-action" onclick="showPage('verbs')">🏃 <span>Verb</span></button>
-                    <button type="button" class="home-manual-action" onclick="showPage('grammar')">📖 <span>Grammatikk</span></button>
-                    <button type="button" class="home-manual-action" onclick="showPage('games')">🎮 <span>Spill</span></button>
-                    <button type="button" class="home-manual-action" onclick="showPage('dictation')">🎧 <span>Lytteøvelser</span></button>
-                    <button type="button" class="home-manual-action" onclick="showPage('homework')">📝 <span>Lekse</span></button>
+                    <button type="button" class="home-manual-action" data-home-activity="vocab" onclick="showPage('vocab')">📚 <span>Gloser</span><small>Lær og repeter ord</small></button>
+                    <button type="button" class="home-manual-action" data-home-activity="brainmap" onclick="showPage('brainmap')">🧠 <span>Brainmap</span><small>Se hva du bør øve mer på</small></button>
+                    <button type="button" class="home-manual-action" data-home-activity="verbs" onclick="showPage('verbs')">🏃 <span>Verb</span><small>Øv på verbbøying</small></button>
+                    <button type="button" class="home-manual-action" data-home-activity="grammar" onclick="showPage('grammar')">📖 <span>Grammatikk</span><small>Forstå en regel og øv</small></button>
+                    <button type="button" class="home-manual-action" data-home-activity="games" onclick="showPage('games')">🎮 <span>Spill</span><small>Øv mens du spiller</small></button>
+                    <button type="button" class="home-manual-action" data-home-activity="dictation" onclick="showPage('dictation')">🎧 <span>Lytteøvelser</span><small>Lytt og svar på spørsmål</small></button>
+                    <button type="button" class="home-manual-action" data-home-activity="homework" onclick="showPage('homework')">📝 <span>Lekse</span><small>Se ukens mål og øving</small></button>
                 </div>
             </section>
         </div>
@@ -125,18 +130,21 @@
                             <span class="vocab-mode-icon">🔁</span>
                             <span class="vocab-mode-title">Repetere ord</span>
                             <span class="vocab-mode-text">Øv på alle ord som er klare for repetisjon.</span>
+                            <span class="vocab-mode-recommended">Anbefalt i dag</span>
                             <span class="vocab-mode-meta" id="reviewModeMeta">0 ord klare</span>
                         </button>
                         <button type="button" class="vocab-mode-card mixed" data-vocab-mode="mixed" aria-pressed="true" onclick="selectVocabMode('mixed')">
                             <span class="vocab-mode-icon">🌱</span>
                             <span class="vocab-mode-title">Repetere ord og lære nye ord</span>
                             <span class="vocab-mode-text">Ta repetisjonene først, og legg til nye ord fra valgte kategorier.</span>
+                            <span class="vocab-mode-recommended">Anbefalt i dag</span>
                             <span class="vocab-mode-meta" id="mixedModeMeta">Velg kategori under</span>
                         </button>
                         <button type="button" class="vocab-mode-card new" data-vocab-mode="new" aria-pressed="false" onclick="selectVocabMode('new')">
                             <span class="vocab-mode-icon">✨</span>
                             <span class="vocab-mode-title">Lære nye ord</span>
                             <span class="vocab-mode-text">Start en kort økt med nye ord fra kategoriene du velger.</span>
+                            <span class="vocab-mode-recommended">Anbefalt i dag</span>
                             <span class="vocab-mode-meta" id="newModeMeta">10 nye ord</span>
                         </button>
                     </div>
@@ -312,6 +320,14 @@
                     <h2>🏃 Verbbøying</h2>
                     <p>Øv på å bøye verb i presens, fremtid og presens perfektum</p>
                 </div>
+
+                <section class="recommended-practice" aria-labelledby="recommendedVerbPracticeTitle">
+                    <div>
+                        <h3 id="recommendedVerbPracticeTitle">Anbefalt neste økt</h3>
+                        <p id="recommendedVerbPracticeReason"></p>
+                    </div>
+                    <button type="button" class="btn btn-primary" id="startRecommendedVerbBtn" onclick="startRecommendedVerbSession()">▶️ Start anbefalt økt</button>
+                </section>
 
                 <div class="settings-section">
                     <h3>📝 Velg verbtid</h3>
@@ -16658,6 +16674,7 @@
                 document.getElementById('verbSettings').classList.remove('hidden');
                 document.getElementById('verbExercise').classList.add('hidden');
                 renderVerbSelector();
+                renderRecommendedVerbPractice();
             } else if (page === 'grammar') {
                 document.getElementById('grammarPage').classList.remove('hidden');
                 document.getElementById('navGrammar').classList.add('active');
@@ -20881,6 +20898,10 @@
             setText('reviewModeMeta', `${dueReviewCount} av ${due} klare`);
             setText('mixedModeMeta', `${dueReviewCount} repetisjoner + ${newWordCount} nye ord`);
             setText('newModeMeta', `${newWordCount} nye ord fra ${selectedCategoryCount} kategorier`);
+            const recommendedMode = dueReviewCount > 0 ? 'review' : newWordCount > 0 ? 'mixed' : 'new';
+            document.querySelectorAll('[data-vocab-mode]').forEach(card => {
+                card.classList.toggle('recommended', card.dataset.vocabMode === recommendedMode);
+            });
             renderChapterFocusOptions();
 
             const masteredPercent = total > 0 ? (mastered / total) * 100 : 0;
@@ -22190,6 +22211,59 @@ Vil du øve på ${pronoun} likevel?`
             const verbs = new Set(forms.map(form => form.split(':')[0]));
             const people = new Set(forms.map(form => form.split(':')[1]));
             return forms.length >= (skillId.includes('regular_') ? 6 : 3) && people.size >= 3 && verbs.size >= (skillId.includes('regular_') ? 2 : 1);
+        }
+
+        function getRecommendedVerbPractice(progress = loadLearningProgress()) {
+            // This is an invitation to practise, not a judgement of general language ability.
+            // We only advance after varied, documented present-tense practice.
+            const cellReady = skillId => {
+                const cell = progress?.skillProgress?.[skillId] || {};
+                return Number(cell.strength) >= 4 && Number(cell.attempts) >= 6 && hasVariedVerbEvidence(skillId, cell);
+            };
+            if (!cellReady('a1.verbs.regular_ar.present')) {
+                return {
+                    focus: 'ar',
+                    tense: 'presente',
+                    verbKeys: ['hablar', 'trabajar', 'estudiar'],
+                    reason: 'Start med vanlige -ar-verb i presens.'
+                };
+            }
+            if (!cellReady('a1.verbs.regular_er.present') || !cellReady('a1.verbs.regular_ir.present')) return {
+                focus: 'erir',
+                tense: 'presente',
+                verbKeys: ['comer', 'beber', 'vivir'],
+                reason: 'Du har øvd variert på -ar-verb. Prøv vanlige -er- og -ir-verb.'
+            };
+            const keyIrregular = ['ser', 'estar', 'tener', 'ir'].find(verb => !cellReady(`a1.verbs.${verb}.present`));
+            if (keyIrregular) return {
+                focus: 'custom', tense: 'presente', verbKeys: [keyIrregular],
+                reason: `Prøv det viktige verbet ${keyIrregular} i presens.`
+            };
+            const stem = [
+                ['stem-e-ie', 'a1.verbs.stem_e_ie.present', 'querer', 'Prøv stammeendring e→ie.'],
+                ['stem-o-ue', 'a1.verbs.stem_o_ue.present', 'poder', 'Prøv stammeendring o→ue.'],
+                ['stem-e-i', 'a1.verbs.stem_e_i.present', 'pedir', 'Prøv stammeendring e→i.']
+            ].find(([, skillId]) => !cellReady(skillId));
+            if (stem) return { focus: stem[0], tense: 'presente', verbKeys: [stem[2]], reason: stem[3] };
+            return {
+                focus: 'irregular', tense: 'presente', verbKeys: ['hacer', 'saber', 'salir'],
+                reason: 'Du har et godt grunnlag. Øv videre på flere uregelrette verb.'
+            };
+        }
+
+        function renderRecommendedVerbPractice() {
+            const reason = document.getElementById('recommendedVerbPracticeReason');
+            if (!reason) return;
+            reason.textContent = getRecommendedVerbPractice().reason;
+        }
+
+        function startRecommendedVerbSession() {
+            const recommendation = getRecommendedVerbPractice();
+            activeVerbFocus = recommendation.focus;
+            selectedVerbFocuses = new Set([recommendation.focus]);
+            selectedVerbs = new Set(recommendation.verbKeys);
+            selectedTense = recommendation.tense;
+            startVerbSession({ guidance: recommendation.reason });
         }
 
         function startFocusedVerbPractice(skillId) {
