@@ -1482,7 +1482,8 @@
       "kategori": "vær",
       "svar": {
         "es-no": [
-          "vinter"
+          "vinter",
+          "vinteren"
         ],
         "no-es": [
           "el invierno",
@@ -1497,7 +1498,8 @@
       "kategori": "vær",
       "svar": {
         "es-no": [
-          "vår"
+          "vår",
+          "våren"
         ],
         "no-es": [
           "la primavera",
@@ -1512,7 +1514,8 @@
       "kategori": "vær",
       "svar": {
         "es-no": [
-          "sommer"
+          "sommer",
+          "sommeren"
         ],
         "no-es": [
           "el verano",
@@ -1527,7 +1530,8 @@
       "kategori": "vær",
       "svar": {
         "es-no": [
-          "høst"
+          "høst",
+          "høsten"
         ],
         "no-es": [
           "el otoño",
@@ -1732,7 +1736,8 @@
       "svar": {
         "es-no": [
           "jula",
-          "jul"
+          "jul",
+          "julen"
         ],
         "no-es": [
           "La Navidad"
@@ -1872,7 +1877,8 @@
       "kategori": "høytider",
       "svar": {
         "es-no": [
-          "fødselsdag"
+          "fødselsdag",
+          "fødselsdagen"
         ],
         "no-es": [
           "El Cumpleaños",
@@ -1887,7 +1893,8 @@
       "kategori": "høytider",
       "svar": {
         "es-no": [
-          "konfirmasjon"
+          "konfirmasjon",
+          "konfirmasjonen"
         ],
         "no-es": [
           "La Confirmación"
@@ -1901,7 +1908,8 @@
       "kategori": "høytider",
       "svar": {
         "es-no": [
-          "barnedåp"
+          "barnedåp",
+          "barnedåpen"
         ],
         "no-es": [
           "El Bautizo"
@@ -1915,7 +1923,8 @@
       "kategori": "høytider",
       "svar": {
         "es-no": [
-          "bryllup"
+          "bryllup",
+          "bryllupet"
         ],
         "no-es": [
           "La Boda",
@@ -1930,7 +1939,8 @@
       "kategori": "høytider",
       "svar": {
         "es-no": [
-          "begravelse"
+          "begravelse",
+          "begravelsen"
         ],
         "no-es": [
           "el Funeral"
@@ -2126,7 +2136,8 @@
       "kategori": "utseende",
       "svar": {
         "es-no": [
-          "mørkt hår"
+          "mørkt hår",
+          "det mørke håret"
         ],
         "no-es": [
           "el pelo moreno",
@@ -2141,7 +2152,8 @@
       "kategori": "utseende",
       "svar": {
         "es-no": [
-          "blondt hår"
+          "blondt hår",
+          "det blonde håret"
         ],
         "no-es": [
           "el pelo rubio",
@@ -2156,7 +2168,8 @@
       "kategori": "utseende",
       "svar": {
         "es-no": [
-          "rødt hår"
+          "rødt hår",
+          "det røde håret"
         ],
         "no-es": [
           "el pelo pelirrojo",
@@ -2171,7 +2184,8 @@
       "kategori": "utseende",
       "svar": {
         "es-no": [
-          "kort hår"
+          "kort hår",
+          "det korte håret"
         ],
         "no-es": [
           "el pelo corto",
@@ -2186,7 +2200,8 @@
       "kategori": "utseende",
       "svar": {
         "es-no": [
-          "langt hår"
+          "langt hår",
+          "det lange håret"
         ],
         "no-es": [
           "el pelo largo",
@@ -2201,7 +2216,8 @@
       "kategori": "utseende",
       "svar": {
         "es-no": [
-          "rett hår"
+          "rett hår",
+          "det rette håret"
         ],
         "no-es": [
           "el pelo liso",
@@ -2216,7 +2232,8 @@
       "kategori": "utseende",
       "svar": {
         "es-no": [
-          "krøllete hår"
+          "krøllete hår",
+          "det krøllete håret"
         ],
         "no-es": [
           "el pelo rizado",
@@ -2231,7 +2248,8 @@
       "kategori": "utseende",
       "svar": {
         "es-no": [
-          "hestehale"
+          "hestehale",
+          "hestehalen"
         ],
         "no-es": [
           "la cola de caballo",
@@ -2246,7 +2264,8 @@
       "kategori": "utseende",
       "svar": {
         "es-no": [
-          "pannelugg"
+          "pannelugg",
+          "panneluggen"
         ],
         "no-es": [
           "el flequillo",
@@ -2291,7 +2310,8 @@
       "kategori": "utseende",
       "svar": {
         "es-no": [
-          "skjegg"
+          "skjegg",
+          "skjegget"
         ],
         "no-es": [
           "la barba",
@@ -2306,7 +2326,8 @@
       "kategori": "utseende",
       "svar": {
         "es-no": [
-          "bart"
+          "bart",
+          "barten"
         ],
         "no-es": [
           "el bigote",
@@ -2351,7 +2372,8 @@
       "kategori": "utseende",
       "svar": {
         "es-no": [
-          "arr"
+          "arr",
+          "arret"
         ],
         "no-es": [
           "la cicatriz",
@@ -2608,7 +2630,8 @@
       "kategori": "familie",
       "svar": {
         "es-no": [
-          "fetter"
+          "fetter",
+          "fetteren"
         ],
         "no-es": [
           "el primo",
@@ -2623,7 +2646,8 @@
       "kategori": "familie",
       "svar": {
         "es-no": [
-          "kusine"
+          "kusine",
+          "kusinen"
         ],
         "no-es": [
           "la prima",
@@ -2638,7 +2662,8 @@
       "kategori": "familie",
       "svar": {
         "es-no": [
-          "tante"
+          "tante",
+          "tanten"
         ],
         "no-es": [
           "la tía",
@@ -2653,7 +2678,8 @@
       "kategori": "familie",
       "svar": {
         "es-no": [
-          "onkel"
+          "onkel",
+          "onkelen"
         ],
         "no-es": [
           "el tío",
@@ -2749,7 +2775,8 @@
       "kategori": "familie",
       "svar": {
         "es-no": [
-          "stefar"
+          "stefar",
+          "stefaren"
         ],
         "no-es": [
           "el padrastro",
@@ -2764,7 +2791,8 @@
       "kategori": "familie",
       "svar": {
         "es-no": [
-          "stemor"
+          "stemor",
+          "stemoren"
         ],
         "no-es": [
           "la madrastra",
@@ -2779,7 +2807,8 @@
       "kategori": "familie",
       "svar": {
         "es-no": [
-          "stebror"
+          "stebror",
+          "stebroren"
         ],
         "no-es": [
           "el hermanastro",
@@ -2794,7 +2823,8 @@
       "kategori": "familie",
       "svar": {
         "es-no": [
-          "stesøster"
+          "stesøster",
+          "stesøsteren"
         ],
         "no-es": [
           "la hermanastra",
@@ -2809,7 +2839,8 @@
       "kategori": "familie",
       "svar": {
         "es-no": [
-          "halvbror"
+          "halvbror",
+          "halvbroren"
         ],
         "no-es": [
           "el medio hermano",
@@ -2824,7 +2855,8 @@
       "kategori": "familie",
       "svar": {
         "es-no": [
-          "halvsøster"
+          "halvsøster",
+          "halvsøsteren"
         ],
         "no-es": [
           "la media hermana",
@@ -2839,7 +2871,8 @@
       "kategori": "familie",
       "svar": {
         "es-no": [
-          "storebror"
+          "storebror",
+          "storebroren"
         ],
         "no-es": [
           "el hermano mayor",
@@ -2854,7 +2887,8 @@
       "kategori": "familie",
       "svar": {
         "es-no": [
-          "lillesøster"
+          "lillesøster",
+          "lillesøsteren"
         ],
         "no-es": [
           "la hermana menor",
@@ -3044,7 +3078,8 @@
       "kategori": "klær",
       "svar": {
         "es-no": [
-          "t-skjorte"
+          "t-skjorte",
+          "t-skjorten"
         ],
         "no-es": [
           "la camiseta",
@@ -3059,7 +3094,8 @@
       "kategori": "klær",
       "svar": {
         "es-no": [
-          "bikini"
+          "bikini",
+          "bikinien"
         ],
         "no-es": [
           "el biquini",
@@ -3074,7 +3110,8 @@
       "kategori": "klær",
       "svar": {
         "es-no": [
-          "skjorte"
+          "skjorte",
+          "skjorten"
         ],
         "no-es": [
           "la camisa",
@@ -3104,7 +3141,8 @@
       "kategori": "klær",
       "svar": {
         "es-no": [
-          "lue"
+          "lue",
+          "luen"
         ],
         "no-es": [
           "el gorro",
@@ -3119,7 +3157,8 @@
       "kategori": "klær",
       "svar": {
         "es-no": [
-          "caps"
+          "caps",
+          "capsen"
         ],
         "no-es": [
           "la gorra",
@@ -3165,7 +3204,8 @@
       "kategori": "klær",
       "svar": {
         "es-no": [
-          "genser"
+          "genser",
+          "genseren"
         ],
         "no-es": [
           "el jersey",
@@ -3255,7 +3295,8 @@
       "kategori": "klær",
       "svar": {
         "es-no": [
-          "jakke"
+          "jakke",
+          "jakken"
         ],
         "no-es": [
           "la chaqueta",
@@ -3270,7 +3311,8 @@
       "kategori": "klær",
       "svar": {
         "es-no": [
-          "kjole"
+          "kjole",
+          "kjolen"
         ],
         "no-es": [
           "el vestido",
@@ -3301,7 +3343,8 @@
       "kategori": "klær",
       "svar": {
         "es-no": [
-          "håndveske"
+          "håndveske",
+          "håndvesken"
         ],
         "no-es": [
           "el bolso",
@@ -3331,7 +3374,8 @@
       "kategori": "klær",
       "svar": {
         "es-no": [
-          "skjerf"
+          "skjerf",
+          "skjerfet"
         ],
         "no-es": [
           "la bufanda",
@@ -3346,7 +3390,8 @@
       "kategori": "klær",
       "svar": {
         "es-no": [
-          "sjal"
+          "sjal",
+          "sjalet"
         ],
         "no-es": [
           "el chal",
@@ -3361,7 +3406,8 @@
       "kategori": "klær",
       "svar": {
         "es-no": [
-          "hatt"
+          "hatt",
+          "hatten"
         ],
         "no-es": [
           "el sombrero",
@@ -3392,7 +3438,8 @@
       "kategori": "klær",
       "svar": {
         "es-no": [
-          "slips"
+          "slips",
+          "slipset"
         ],
         "no-es": [
           "la corbata",
@@ -3407,7 +3454,8 @@
       "kategori": "klær",
       "svar": {
         "es-no": [
-          "paraply"
+          "paraply",
+          "paraplyen"
         ],
         "no-es": [
           "el paraguas",
@@ -3422,7 +3470,8 @@
       "kategori": "klær",
       "svar": {
         "es-no": [
-          "ring"
+          "ring",
+          "ringen"
         ],
         "no-es": [
           "el anillo",
@@ -3437,7 +3486,8 @@
       "kategori": "klær",
       "svar": {
         "es-no": [
-          "armbånd"
+          "armbånd",
+          "armbåndet"
         ],
         "no-es": [
           "la pulsera",
@@ -3452,7 +3502,8 @@
       "kategori": "klær",
       "svar": {
         "es-no": [
-          "klokke"
+          "klokke",
+          "klokken"
         ],
         "no-es": [
           "el reloj",
@@ -3498,7 +3549,8 @@
       "kategori": "yrker",
       "svar": {
         "es-no": [
-          "advokat"
+          "advokat",
+          "advokaten"
         ],
         "no-es": [
           "el abogado",
@@ -3515,7 +3567,8 @@
       "kategori": "yrker",
       "svar": {
         "es-no": [
-          "brannmann"
+          "brannmann",
+          "brannmannen"
         ],
         "no-es": [
           "el bombero",
@@ -3532,7 +3585,8 @@
       "kategori": "yrker",
       "svar": {
         "es-no": [
-          "snekker"
+          "snekker",
+          "snekkeren"
         ],
         "no-es": [
           "el carpintero",
@@ -3549,7 +3603,8 @@
       "kategori": "yrker",
       "svar": {
         "es-no": [
-          "kokk"
+          "kokk",
+          "kokken"
         ],
         "no-es": [
           "el cocinero",
@@ -3566,7 +3621,8 @@
       "kategori": "yrker",
       "svar": {
         "es-no": [
-          "tannlege"
+          "tannlege",
+          "tannlegen"
         ],
         "no-es": [
           "el dentista",
@@ -3582,7 +3638,8 @@
       "kategori": "yrker",
       "svar": {
         "es-no": [
-          "elektriker"
+          "elektriker",
+          "elektrikeren"
         ],
         "no-es": [
           "el electricista",
@@ -3598,7 +3655,8 @@
       "kategori": "yrker",
       "svar": {
         "es-no": [
-          "sykepleier"
+          "sykepleier",
+          "sykepleieren"
         ],
         "no-es": [
           "el enfermero",
@@ -3615,7 +3673,8 @@
       "kategori": "yrker",
       "svar": {
         "es-no": [
-          "bonde"
+          "bonde",
+          "bonden"
         ],
         "no-es": [
           "el granjero",
@@ -3632,7 +3691,8 @@
       "kategori": "yrker",
       "svar": {
         "es-no": [
-          "lege"
+          "lege",
+          "legen"
         ],
         "no-es": [
           "el médico",
@@ -3649,7 +3709,8 @@
       "kategori": "yrker",
       "svar": {
         "es-no": [
-          "frisør"
+          "frisør",
+          "frisøren"
         ],
         "no-es": [
           "el peluquero",
@@ -3666,7 +3727,8 @@
       "kategori": "yrker",
       "svar": {
         "es-no": [
-          "journalist"
+          "journalist",
+          "journalisten"
         ],
         "no-es": [
           "el periodista",
@@ -3682,7 +3744,8 @@
       "kategori": "yrker",
       "svar": {
         "es-no": [
-          "politibetjent"
+          "politibetjent",
+          "politibetjenten"
         ],
         "no-es": [
           "el policía",
@@ -3699,7 +3762,8 @@
       "svar": {
         "es-no": [
           "lærer (p)",
-          "lærer"
+          "lærer",
+          "læreren"
         ],
         "no-es": [
           "el profesor",
@@ -3808,7 +3872,8 @@
       "kategori": "hobbyer",
       "svar": {
         "es-no": [
-          "amerikansk fotball"
+          "amerikansk fotball",
+          "den amerikanske fotballen"
         ],
         "no-es": [
           "el fútbol americano",
@@ -4688,7 +4753,8 @@
       "kategori": "kropp",
       "svar": {
         "es-no": [
-          "munn"
+          "munn",
+          "munnen"
         ],
         "no-es": [
           "la boca",
@@ -4703,7 +4769,8 @@
       "kategori": "kropp",
       "svar": {
         "es-no": [
-          "hånd"
+          "hånd",
+          "hånden"
         ],
         "no-es": [
           "la mano",
@@ -4718,7 +4785,8 @@
       "kategori": "kropp",
       "svar": {
         "es-no": [
-          "fot"
+          "fot",
+          "foten"
         ],
         "no-es": [
           "el pie",
@@ -4733,7 +4801,8 @@
       "kategori": "skole",
       "svar": {
         "es-no": [
-          "elev"
+          "elev",
+          "eleven"
         ],
         "no-es": [
           "el alumno",
@@ -4771,7 +4840,9 @@
       "svar": {
         "es-no": [
           "skoletime",
-          "skoleklasse"
+          "skoleklasse",
+          "skoletimen",
+          "skoleklassen"
         ],
         "no-es": [
           "la clase",
@@ -4787,7 +4858,9 @@
       "svar": {
         "es-no": [
           "skoleklasse",
-          "skoletime"
+          "skoletime",
+          "skoleklassen",
+          "skoletimen"
         ],
         "no-es": [
           "la clase",
@@ -4802,7 +4875,8 @@
       "kategori": "skole",
       "svar": {
         "es-no": [
-          "tavle"
+          "tavle",
+          "tavlen"
         ],
         "no-es": [
           "la pizarra",
@@ -4817,7 +4891,8 @@
       "kategori": "skole",
       "svar": {
         "es-no": [
-          "kart"
+          "kart",
+          "kartet"
         ],
         "no-es": [
           "el mapa",
@@ -4832,7 +4907,8 @@
       "kategori": "skole",
       "svar": {
         "es-no": [
-          "papirkurv"
+          "papirkurv",
+          "papirkurven"
         ],
         "no-es": [
           "la papelera",
@@ -4847,7 +4923,8 @@
       "kategori": "skole",
       "svar": {
         "es-no": [
-          "bok"
+          "bok",
+          "boken"
         ],
         "no-es": [
           "el libro",
@@ -4862,7 +4939,8 @@
       "kategori": "skole",
       "svar": {
         "es-no": [
-          "PC"
+          "PC",
+          "PC-en"
         ],
         "no-es": [
           "el ordenador",
@@ -4894,7 +4972,8 @@
       "kategori": "skole",
       "svar": {
         "es-no": [
-          "pult"
+          "pult",
+          "pulten"
         ],
         "no-es": [
           "el pupitre",
@@ -4909,7 +4988,8 @@
       "kategori": "skole",
       "svar": {
         "es-no": [
-          "stol"
+          "stol",
+          "stolen"
         ],
         "no-es": [
           "la silla",
@@ -4924,7 +5004,8 @@
       "kategori": "skole",
       "svar": {
         "es-no": [
-          "sekk"
+          "sekk",
+          "sekken"
         ],
         "no-es": [
           "la mochila",
@@ -4939,7 +5020,8 @@
       "kategori": "skole",
       "svar": {
         "es-no": [
-          "pennal"
+          "pennal",
+          "pennalet"
         ],
         "no-es": [
           "el estuche",
@@ -4954,7 +5036,8 @@
       "kategori": "skole",
       "svar": {
         "es-no": [
-          "blyant"
+          "blyant",
+          "blyanten"
         ],
         "no-es": [
           "el lápiz",
@@ -4969,7 +5052,8 @@
       "kategori": "skole",
       "svar": {
         "es-no": [
-          "penn"
+          "penn",
+          "pennen"
         ],
         "no-es": [
           "el bolígrafo",
@@ -4984,7 +5068,8 @@
       "kategori": "skole",
       "svar": {
         "es-no": [
-          "viskelær"
+          "viskelær",
+          "viskelæret"
         ],
         "no-es": [
           "la goma",
@@ -4999,7 +5084,8 @@
       "kategori": "skole",
       "svar": {
         "es-no": [
-          "blyantspisser"
+          "blyantspisser",
+          "blyantspisseren"
         ],
         "no-es": [
           "el sacapuntas",
@@ -5014,7 +5100,8 @@
       "kategori": "skole",
       "svar": {
         "es-no": [
-          "linjal"
+          "linjal",
+          "linjalen"
         ],
         "no-es": [
           "la regla",
@@ -5030,7 +5117,8 @@
       "svar": {
         "es-no": [
           "videregående",
-          "videregående skole"
+          "videregående skole",
+          "den videregående skolen"
         ],
         "no-es": [
           "el bachillerato",
@@ -5189,7 +5277,8 @@
       "kategori": "hjem",
       "svar": {
         "es-no": [
-          "rom"
+          "rom",
+          "rommet"
         ],
         "no-es": [
           "el cuarto",
@@ -5204,7 +5293,8 @@
       "kategori": "hjem",
       "svar": {
         "es-no": [
-          "bad"
+          "bad",
+          "badet"
         ],
         "no-es": [
           "el baño",
@@ -5219,7 +5309,8 @@
       "kategori": "hjem",
       "svar": {
         "es-no": [
-          "spisestue"
+          "spisestue",
+          "spisestuen"
         ],
         "no-es": [
           "el comedor",
@@ -5250,7 +5341,8 @@
       "kategori": "hjem",
       "svar": {
         "es-no": [
-          "loft"
+          "loft",
+          "loftet"
         ],
         "no-es": [
           "el ático",
@@ -5265,7 +5357,8 @@
       "kategori": "hjem",
       "svar": {
         "es-no": [
-          "dør"
+          "dør",
+          "døren"
         ],
         "no-es": [
           "la puerta",
@@ -5280,7 +5373,8 @@
       "kategori": "hjem",
       "svar": {
         "es-no": [
-          "soverom"
+          "soverom",
+          "soverommet"
         ],
         "no-es": [
           "el dormitorio",
@@ -5295,7 +5389,8 @@
       "kategori": "hjem",
       "svar": {
         "es-no": [
-          "arbeidsrom"
+          "arbeidsrom",
+          "arbeidsrommet"
         ],
         "no-es": [
           "el cuarto de trabajo",
@@ -5310,7 +5405,8 @@
       "kategori": "hjem",
       "svar": {
         "es-no": [
-          "stue"
+          "stue",
+          "stuen"
         ],
         "no-es": [
           "el cuarto de estar",
@@ -5341,7 +5437,8 @@
       "kategori": "hjem",
       "svar": {
         "es-no": [
-          "kjeller"
+          "kjeller",
+          "kjelleren"
         ],
         "no-es": [
           "el sótano",
@@ -5404,7 +5501,8 @@
       "kategori": "møbler",
       "svar": {
         "es-no": [
-          "sofa"
+          "sofa",
+          "sofaen"
         ],
         "no-es": [
           "el sofá",
@@ -5435,7 +5533,8 @@
       "kategori": "møbler",
       "svar": {
         "es-no": [
-          "TV"
+          "TV",
+          "TV-en"
         ],
         "no-es": [
           "el televisor",
@@ -5470,7 +5569,8 @@
       "kategori": "møbler",
       "svar": {
         "es-no": [
-          "plakat"
+          "plakat",
+          "plakaten"
         ],
         "no-es": [
           "el póster",
@@ -5485,7 +5585,8 @@
       "kategori": "møbler",
       "svar": {
         "es-no": [
-          "kjøleskap"
+          "kjøleskap",
+          "kjøleskapet"
         ],
         "no-es": [
           "la nevera",
@@ -5516,7 +5617,8 @@
       "kategori": "møbler",
       "svar": {
         "es-no": [
-          "bokhylle"
+          "bokhylle",
+          "bokhyllen"
         ],
         "no-es": [
           "la estantería",
@@ -5531,7 +5633,8 @@
       "kategori": "møbler",
       "svar": {
         "es-no": [
-          "kommode"
+          "kommode",
+          "kommoden"
         ],
         "no-es": [
           "la cómoda",
@@ -5546,7 +5649,8 @@
       "kategori": "møbler",
       "svar": {
         "es-no": [
-          "lenestol"
+          "lenestol",
+          "lenestolen"
         ],
         "no-es": [
           "el sillón",
@@ -5577,7 +5681,8 @@
       "kategori": "møbler",
       "svar": {
         "es-no": [
-          "oppvaskmaskin"
+          "oppvaskmaskin",
+          "oppvaskmaskinen"
         ],
         "no-es": [
           "el lavavajillas",
@@ -5592,7 +5697,8 @@
       "kategori": "møbler",
       "svar": {
         "es-no": [
-          "seng"
+          "seng",
+          "sengen"
         ],
         "no-es": [
           "la cama",
@@ -5607,7 +5713,8 @@
       "kategori": "møbler",
       "svar": {
         "es-no": [
-          "lampe"
+          "lampe",
+          "lampen"
         ],
         "no-es": [
           "la lámpara",
@@ -5624,7 +5731,9 @@
         "es-no": [
           "bilde",
           "maleri",
-          "bilde / maleri"
+          "bilde / maleri",
+          "bildet",
+          "maleriet"
         ],
         "no-es": [
           "el cuadro",
@@ -5639,7 +5748,8 @@
       "kategori": "møbler",
       "svar": {
         "es-no": [
-          "ovn"
+          "ovn",
+          "ovnen"
         ],
         "no-es": [
           "el horno",
@@ -7449,7 +7559,8 @@
       "kategori": "Mat og drikke",
       "svar": {
         "es-no": [
-          "fisk"
+          "fisk",
+          "fisken"
         ],
         "no-es": [
           "el pescado",

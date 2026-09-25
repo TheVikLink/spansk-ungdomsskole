@@ -75,7 +75,11 @@ test.describe('adaptive scaffolding in response modes (spansk-ungdomsskole-6j4)'
         noEs: { easeFactor: 2.5, interval: 7, repetitions: 4, strength: 4, lapses: 0 },
         esNo: { easeFactor: 2.5, interval: 7, repetitions: 4, strength: 4, lapses: 0 }
       };
-      cards = [testCard];
+      cards = [testCard, ...[
+        { id: 100, no: 'pære', es: 'pera' },
+        { id: 101, no: 'appelsin', es: 'naranja' },
+        { id: 102, no: 'banan', es: 'plátano' }
+      ].map(card => ({ ...testCard, ...card }))];
       sessionCards = [
         { card: testCard, direction: 'no-es', responseMode: 'typed', typed: true }
       ];
@@ -130,7 +134,11 @@ test.describe('adaptive scaffolding in response modes (spansk-ungdomsskole-6j4)'
         noEs: { easeFactor: 2.5, interval: 0, repetitions: 1, strength: 2, lapses: 1 },
         esNo: { easeFactor: 2.5, interval: 0, repetitions: 1, strength: 2, lapses: 0 }
       };
-      cards = [testCard];
+      cards = [testCard, ...[
+        { id: 100, no: 'pære', es: 'pera' },
+        { id: 101, no: 'appelsin', es: 'naranja' },
+        { id: 102, no: 'banan', es: 'plátano' }
+      ].map(card => ({ ...testCard, ...card }))];
       currentCard = {
         card: testCard,
         direction: 'no-es',
@@ -148,7 +156,7 @@ test.describe('adaptive scaffolding in response modes (spansk-ungdomsskole-6j4)'
 
       // Select correct answer
       const select = document.getElementById('vocabSelect');
-      select.selectedIndex = 1;
+      select.value = 'manzana';
       submitVocabSelectAnswer();
 
       return document.getElementById('vocabSelectFeedback')?.textContent.trim();

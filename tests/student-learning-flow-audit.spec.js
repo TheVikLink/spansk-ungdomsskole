@@ -231,8 +231,10 @@ test.describe('student learning flow audit', () => {
     });
     await page.locator('#flashcardArea .flashcard').click();
 
-    await expect(page.locator('.rating-btn').first()).toContainText('Igjen');
-    await expect(page.locator('.rating-btn').first().locator('.interval')).toContainText('Nå');
-    await expect(page.locator('.rating-btn').first().locator('.key')).toContainText('(1)');
+    await expect(page.locator('.rating-again')).toContainText('Igjen');
+    await expect(page.locator('.rating-again .interval')).toHaveText('Nå');
+    await expect(page.locator('.rating-again .key')).toHaveText('(2)');
+    await expect(page.locator('.rating-good')).toContainText('Bra');
+    await expect(page.locator('.rating-good .key')).toHaveText('(1 / mellomrom)');
   });
 });

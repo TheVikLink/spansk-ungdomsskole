@@ -28,7 +28,7 @@ test('the app contains no browser speech synthesis implementation', async ({ pag
   expect(readFileSync('index.html', 'utf8')).not.toMatch(/speechSynthesis|SpeechSynthesisUtterance|speakSpanish/);
 });
 
-test('a Spanish quiz prompt reports missing recording without offering synthesized audio', async ({ page }) => {
+test('a Spanish quiz prompt omits the recording notice and synthesized audio', async ({ page }) => {
   await page.goto(appUrl);
   await page.evaluate(() => {
     studentName = 'Lokal test'; showMainApp(); showPage('vocab');
@@ -39,7 +39,7 @@ test('a Spanish quiz prompt reports missing recording without offering synthesiz
     document.getElementById('mixedQuizStudy').classList.remove('hidden');
     renderMixedQuizQuestion();
   });
-  await expect(page.locator('#mixedQuizQuestion [role="status"]')).toHaveText('Lydopptak er ikke tilgjengelig for denne oppgaven.');
+  await expect(page.locator('#mixedQuizQuestion').getByText('Lydopptak er ikke tilgjengelig for denne oppgaven.', { exact: true })).toHaveCount(0);
   await expect(page.locator('#mixedQuizQuestion [data-speak-spanish]')).toHaveCount(0);
 });
 
@@ -93,7 +93,7 @@ test.describe('recording failures never synthesize replacement audio', () => {
   }
 });
 
-test('a vocabulary card without a recording explains missing audio and never offers TTS', async ({ page }) => {
+test('vocabulary cards omit the recording notice in both directions and never offer TTS', async ({ page }) => {
   await page.goto(appUrl);
   await page.evaluate(() => {
     studentName = 'Lokal test';
@@ -107,12 +107,19 @@ test('a vocabulary card without a recording explains missing audio and never off
   });
   await expect(page.locator('#flashcardArea [role="status"]')).toHaveCount(0);
   await page.evaluate(() => flipCard());
-  await expect(page.locator('#flashcardArea [role="status"]')).toHaveText('Lydopptak er ikke tilgjengelig for denne oppgaven.');
+  await expect(page.locator('#flashcardArea [role="status"]')).toHaveCount(0);
+  await page.evaluate(() => {
+    sessionCards[0].direction = 'es-no';
+    showVocabCard();
+  });
+  await expect(page.locator('#flashcardArea [role="status"]')).toHaveCount(0);
+  await page.evaluate(() => flipCard());
+  await expect(page.locator('#flashcardArea [role="status"]')).toHaveCount(0);
   await expect(page.locator('#flashcardArea [data-speak-spanish]')).toHaveCount(0);
   expect(await page.evaluate(() => window.__speechCalls)).toEqual([]);
   for (const width of [1280, 390]) {
     await page.setViewportSize({ width, height: 844 });
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
-    await page.screenshot({ path: `output/audio-policy/missing-recording-${width}.png`, fullPage: true });
+    await page.screenshot({ path: `output/audio-policy/vocabulary-without-notice-${width}.png`, fullPage: true });
   }
 });

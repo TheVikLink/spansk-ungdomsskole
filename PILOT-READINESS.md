@@ -1,8 +1,14 @@
 # Pilot readiness audit
 
-## Gjeldende status — 18. september 2026
+## Gjeldende status — 23. september 2026
 
-Lokal teknisk releaseport er bestått på bygg `9028eaf8e4ba8273`: 446 nettlesertester med både én og to workere, 25 Node-tester og alle innholds-/byggkontroller. Offline-lydfeilen funnet under sluttkontrollen er rettet og gjentatt verifisert. Se [gjeldende releaseverifikasjon](docs/release-verification-2026-09-18.md) for eksakte kjøringer, feil underveis og avgrensning.
+Dagens kandidat er bygg `7072d6e4a34f6771`. Se [releaseverifikasjonen 23. september](docs/release-verification-2026-09-23.md) for ferske resultater, dokumentrettelser og eventuelle åpne tekniske porter. Historiske testtall nedenfor gjelder andre kjøringer og erstatter ikke kandidatens verifikasjon.
+
+Lærerens godkjenning av valgt innhold og fysisk skoleutstyr samt moderert elevprøve (`ee0`) gjenstår. Lydgodkjenning (`4or0`) kreves før lyd brukes med elever. Første artikkelopplegg i [PILOT.md](PILOT.md) er uten lyd. Offentlig versjon og oppdatering kontrolleres i `s2qg`.
+
+## Historisk status — 18. september 2026
+
+Lokal teknisk releaseport ble bestått på bygg `9028eaf8e4ba8273`: 446 nettlesertester med både én og to workere, 25 Node-tester og alle innholds-/byggkontroller. Offline-lydfeilen funnet under sluttkontrollen ble rettet og gjentatt verifisert. Se [releaseverifikasjonen fra den datoen](docs/release-verification-2026-09-18.md) for eksakte kjøringer, feil underveis og avgrensning.
 
 Dette er ikke en generell godkjenning for selvstendig helklassebruk. Lærerkontroll av innhold/opptak på fysisk skoleutstyr (`4or0`) og moderert elevpilot (`ee0`) gjenstår. Bruk [PILOT.md](PILOT.md) for neste menneskelige kontroll. Ingen publisering eller verifikasjon av dagens offentlige bygg inngår.
 

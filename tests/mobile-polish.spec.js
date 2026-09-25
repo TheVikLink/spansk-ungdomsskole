@@ -118,3 +118,12 @@ test('marks one understandable vocabulary mode as recommended at 390px', async (
   await expect(recommended).toHaveCount(1);
   await expect(recommended).toContainText('Anbefalt i dag');
 });
+
+test('keeps technical build information out of the student home page', async ({ page }) => {
+  await page.goto(appUrl);
+  await page.locator('#studentNameInput').fill('Test');
+  await page.locator('.login-btn-primary').click();
+
+  await expect(page.locator('#appVersionLabel')).toHaveCount(0);
+  await expect(page.getByText(/^Versjon /)).toHaveCount(0);
+});

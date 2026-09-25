@@ -4,7 +4,7 @@ En gratis, interaktiv læringsapp for spansk på ungdomsskolenivå (A0-A1 CEFR).
 
 **[🚀 Prøv appen](https://theviklink.github.io/spansk-ungdomsskole/)**
 
-Status 18. september 2026: den lokale tekniske releaseporten er bestått; faglig lærerkontroll, fysisk skoleutstyr og moderert elevpilot gjenstår. Se [gjeldende verifikasjon og avgrensning](docs/release-verification-2026-09-18.md). Rettelsene er ikke publisert, og den offentlige lenkens nåværende bygg er ikke verifisert i denne leveransen.
+Status 23. september 2026: bygg-, innholds- og Node-kontroller består; nettleserkontrollen er blokkert av oppstartstillatelsen i agentmiljøet. Se [gjeldende verifikasjon og avgrensning](docs/release-verification-2026-09-23.md) for bevis og gjenstående kontroll. Faglig lærerkontroll, fysisk skoleutstyr og moderert elevpilot gjenstår. Arbeidskopiens siste endringer er ikke bekreftet publisert.
 
 ## ✨ Funksjoner
 
@@ -14,6 +14,8 @@ Status 18. september 2026: den lokale tekniske releaseporten er bestått; faglig
 - Lær begge veier: Norsk → Spansk og Spansk → Norsk
 - Kategorisert etter tema (familie, mat, dyr, farger, osv.)
 - Importer gloser fra JSON-fil
+- Mellomrom viser fasiten. Når fasiten er synlig, velger **1 eller mellomrom Bra**, og **2 Igjen**.
+- Hold inne **?** eller **!** for **¿** og **¡**, også når tegnet skrives med Shift. Lange tekstsvar følger markøren slik at slutten er synlig mens du skriver.
 
 ### 🏃 Verbøving
 - 34 spanske verb
@@ -106,7 +108,7 @@ Byggkommandoen gir HTML og service worker samme innholdsstyrte versjon. Etter op
 
 ### Lyd uten nett
 
-All lyd skal være ferdige opptak som produkteieren har laget og levert. Appen bruker aldri tekst-til-tale, verken fra nettleseren, operativsystemet eller en skytjeneste. Manglende eller uspillbar lyd gir en tydelig beskjed, ikke syntetisk erstatningslyd. Gloser og blandet quiz har foreløpig ikke egne opptak og viser derfor «Lydopptak er ikke tilgjengelig for denne oppgaven» ved spansk tekst.
+All lyd skal være ferdige opptak som produkteieren har laget og levert. Appen bruker aldri tekst-til-tale, verken fra nettleseren, operativsystemet eller en skytjeneste. Manglende eller uspillbar lyd i lytte- og diktatøvelser gir en tydelig beskjed, ikke syntetisk erstatningslyd. Gloser og blandet quiz har foreløpig ikke egne opptak og viser verken lydknapper eller en fast melding om manglende lyd.
 
 Appskallet lagres separat fra lyd. Åpne en historie i Lytteøvelser på nett og velg «Last ned lyd til bruk uten nett». Vent på bekreftelsen om at hele historien er lastet ned. Test deretter uten nett på samme enhet. Deler som mangler eller en avbrutt nedlasting gir en tydelig beskjed; Start/Sjekk svar venter på tilgjengelig lyd. Nettleseren kan slette cache ved plassmangel, så sjekk før timen.
 
@@ -116,7 +118,7 @@ Lyttehistorier er en egen innholdstype, adskilt fra diktat, med egne manus og ly
 
 Hver historie har tre lokale flervalgsoppgaver med blandet rekkefølge på svaralternativene. Eleven må starte avspillingen og svare på alle spørsmålene før spansk transkripsjon eller norsk oversettelse kan åpnes. Eleven kan spille historien flere ganger før spørsmålene; appen kontrollerer ikke at hele opptaket er hørt. Svar, resultat og lydbruk ligger bare i minnet og lagres ikke i fremgang, eksport eller historikk. Last ned en tilgjengelig historie på nett før den skal brukes uten nett.
 
-Nivåmerkene er foreløpige, ikke en lærergodkjenning. Før elevpilot må en spansklærer lytte til de tilgjengelige lyttehistoriene og fem diktater på skoleutstyret, sammenligne opptakene med manus og kontrollere uttale, pauser, tempo og spørsmål. Carmen er den korte A0-historien, men også hun og Mateo kan kreve støtte. Inés og Diego bruker nå presens og enklere setninger; de nye MP3-opptakene er teknisk spillbare, men må kontrolleres mot manus og vurderes for klassen. Beregnet tempo på omtrent 179 og 183 ord per minutt gjør dette særlig viktig. Teknisk kontroll av filkobling og avspilling dokumenterer ikke at opptaket følger manuset. Se [gjeldende releaseverifikasjon](docs/release-verification-2026-09-18.md), [historisk lytteaudit](thoughts/shared/plans/2026-09-15_listening-release-audit-report.md) og Beads `spansk-ungdomsskole-4or0` for den åpne lærerkontrollen.
+Nivåmerkene er foreløpige, ikke en lærergodkjenning. Før lyd brukes med elever må en spansklærer lytte til de valgte opptakene på skoleutstyret, sammenligne dem med manus og kontrollere uttale, pauser, tempo og spørsmål. Full lydgodkjenning omfatter alle fem lyttehistorier og fem diktater; den første artikkelpiloten i PILOT.md trenger ikke lyd. Carmen er den korte A0-historien, men også hun og Mateo kan kreve støtte. Inés og Diego bruker nå presens og enklere setninger; de nye MP3-opptakene er teknisk spillbare, men må kontrolleres mot manus og vurderes for klassen. Beregnet tempo på omtrent 179 og 183 ord per minutt gjør dette særlig viktig. Teknisk kontroll av filkobling og avspilling dokumenterer ikke at opptaket følger manuset. Se [gjeldende releaseverifikasjon](docs/release-verification-2026-09-23.md), [historisk lytteaudit](thoughts/shared/plans/2026-09-15_listening-release-audit-report.md) og Beads `spansk-ungdomsskole-4or0` for den åpne lærerkontrollen.
 
 ## 📚 Innhold og rettigheter
 
@@ -169,9 +171,9 @@ Elever kan importere fremgang fra:
 
 | Tast | Funksjon |
 |------|----------|
-| `Mellomrom` / `Enter` | Snu kort (gloser) |
-| `1` | Igjen (feil) |
-| `2` | Bra (riktig) |
+| `Mellomrom` / `Enter` | Vis fasiten på et skjult glosekort |
+| `1` / `Mellomrom` | Bra, når fasiten er synlig |
+| `2` | Igjen, når fasiten er synlig |
 | `Enter` | Sjekk svar (verb) |
 | Hold `a/e/i/o/u/n` | Aksent (á/é/í/ó/ú/ñ) |
 | Hold `?` / `!` | Spansk tegn (¿/¡) |

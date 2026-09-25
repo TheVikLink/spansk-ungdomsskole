@@ -16,6 +16,10 @@ for (const width of [360, 390, 640, 768, 1024, 1440]) {
     expect(ids.length).toBeGreaterThan(5);
     for (const id of [...ids, ...ids.slice().reverse()]) {
       const button = page.locator(`#${id}`);
+      if (!await button.isVisible()) {
+        const more = page.locator('.nav-more');
+        if (!await more.evaluate(details => details.open)) await more.locator('summary').click();
+      }
       await button.click({ timeout: 2500 });
       await expect(button).toHaveAttribute('aria-current', 'page');
     }

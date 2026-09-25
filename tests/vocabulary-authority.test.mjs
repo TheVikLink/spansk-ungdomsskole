@@ -125,6 +125,114 @@ test('vocabulary answer labels and feedback always show an accepted reviewed ans
   assert.equal(runtime.getExpectedAnswerText({ card: customCard, direction: 'no-es' }), 'mi palabra');
 });
 
+test('standard card backs resolve stale labels by ID and preserve the exact reviewed answer', () => {
+  const edited = structuredClone(review);
+  const entry = edited.entries.find(entry => entry.norsk === 'Russland');
+  entry.svar['es-no'] = ['Russland (land)'];
+  const source = renderVocabulary(html, edited);
+  const runtime = answerRuntime(source, edited);
+  for (const name of ['getExpectedAnswerText', 'getDisplayAnswerText']) vm.runInContext(appFunction(source, name), runtime);
+  const card = { canonicalId: entry.id, no: 'Russland på spansk', es: 'Rusia' };
+  assert.equal(runtime.getDisplayAnswerText({ card, direction: 'es-no' }), 'Russland (land)');
+  assert.equal(runtime.getExpectedAnswerText({ card: { ...card, isCustom: true }, direction: 'es-no' }), 'Russland på spansk');
+});
+
+test('confirmed historical country and number cards migrate without losing progress or changing custom words', () => {
+  const runtime = storageRuntime(renderVocabulary(html, review));
+  const legacy = [
+    { no: 'Russland på spansk', es: 'Rusia', canonicalId: 'vocab-0075' },
+    { no: 'Sveits (spansk)', es: 'Suiza', canonicalId: 'vocab-0087' },
+    { no: '500 på spansk', es: 'quinientos', canonicalId: 'vocab-0043' }
+  ];
+  const oldCards = legacy.map(({ canonicalId, ...labels }, index) => ({
+    id: 9000 + index, ...labels, reviews: 9, correct: 7,
+    noEs: { repetitions: 4, interval: 12, nextReview: '2026-10-01' },
+    esNo: { repetitions: 2, interval: 6, nextReview: '2026-09-28' }
+  }));
+  const ownCards = [{ ...oldCards[0], id: 9100, isCustom: true }, { ...oldCards[0], id: 9101, assignmentId: 'teacher-1' }];
+  runtime.loadData();
+  const currentCards = JSON.parse(runtime.localStorage.getItem('spansk123Data_v4'));
+  const backup = JSON.stringify([...oldCards, ...ownCards, ...currentCards]);
+  runtime.localStorage.setItem('spansk123Data_v4', backup);
+  runtime.loadData();
+  for (const [index, entry] of legacy.entries()) {
+    const matches = runtime.cards.filter(card => card.canonicalId === entry.canonicalId && !card.isCustom && !card.assignmentId);
+    assert.equal(matches.length, 1);
+    const [card] = matches;
+    assert.equal(card.id, oldCards[index].id);
+    assert.equal(card.no, review.entries.find(row => row.id === entry.canonicalId).norsk);
+    assert.equal(card.reviews, 9);
+    assert.equal(card.correct, 7);
+    for (const direction of ['noEs', 'esNo']) {
+      for (const key of ['repetitions', 'interval', 'nextReview']) assert.equal(card[direction][key], oldCards[index][direction][key]);
+    }
+  }
+  for (const own of ownCards) assert.equal(runtime.cards.find(card => card.id === own.id).no, own.no);
+  const exported = runtime.localStorage.getItem('spansk123Data_v4');
+  runtime.loadData();
+  assert.equal(runtime.localStorage.getItem('spansk123Data_v4'), exported);
+  const fresh = storageRuntime(renderVocabulary(html, review));
+  fresh.localStorage.setItem('spansk123Data_v4', exported);
+  fresh.loadData();
+  assert.equal(fresh.localStorage.getItem('spansk123Data_v4'), exported);
+  const removed = structuredClone(review);
+  removed.entries = removed.entries.filter(entry => entry.id !== legacy[0].canonicalId);
+  const withoutRussia = storageRuntime(renderVocabulary(html, removed), removed);
+  withoutRussia.localStorage.setItem('spansk123Data_v4', backup);
+  withoutRussia.loadData();
+  assert.equal(withoutRussia.cards.some(card => card.id === oldCards[0].id), false);
+  assert.equal(withoutRussia.archivedVocabularyCards.find(card => card.id === oldCards[0].id).reviews, 9);
+});
+
+function cardRuntime() {
+  const runtime = storageRuntime(renderVocabulary(html, review));
+  for (const name of ['getExpectedAnswerText', 'getDisplayAnswerText', 'getPromptBaseText', 'normalizeTypedAnswer', 'getVocabPromptText', 'mixedQuizSeedScore', 'getVocabularySelectOptions']) {
+    vm.runInContext(appFunction(html, name), runtime);
+  }
+  runtime.loadData();
+  return runtime;
+}
+
+test('ambiguous greeting hints distinguish the answer words and ignore identical answers', () => {
+  const runtime = cardRuntime();
+  const pool = ['god morgen', 'god dag'].map(no => runtime.cards.find(card => card.no === no));
+  assert.equal(runtime.getVocabPromptText({ card: pool[0], direction: 'es-no' }, pool), 'buenos días (m)');
+  assert.equal(runtime.getVocabPromptText({ card: pool[1], direction: 'es-no' }, pool), 'buenos días (d)');
+  assert.equal(runtime.getVocabPromptText({ card: pool[0], direction: 'es-no' }, [pool[0], { ...pool[0], id: 999 }]), 'buenos días');
+});
+
+test('number select options use close reviewed numbers in both directions and vary the correct position', () => {
+  const runtime = cardRuntime();
+  const positions = new Set();
+  for (const no of ['17', '18', '19', '20', '26']) {
+    const card = runtime.cards.find(card => card.no === no && card.category === 'tall');
+    for (const direction of ['no-es', 'es-no']) {
+      const options = runtime.getVocabularySelectOptions({ card, direction });
+      assert.equal(options.length, 4);
+      assert.equal(options.filter(option => option.correct).length, 1);
+      for (const option of options) {
+        const entry = review.entries.find(entry => entry.kategori === 'tall' && entry.svar[direction][0] === option.label);
+        assert.ok(entry, option.label);
+        assert.ok(Math.abs(Number(entry.norsk) - Number(no)) <= 10, `${no}: ${option.label}`);
+        if (no === '26') assert.ok(!['11', '12', '13'].includes(entry.norsk), option.label);
+      }
+      positions.add(options.findIndex(option => option.correct));
+      assert.equal(JSON.stringify(runtime.getVocabularySelectOptions({ card, direction }, [...runtime.cards].reverse())), JSON.stringify(options));
+    }
+  }
+  assert.ok(positions.size > 1);
+});
+
+test('select options exclude accepted alternatives and unrelated categories; sparse pools use recall', () => {
+  const runtime = cardRuntime();
+  const card = runtime.cards.find(card => card.no === 'god morgen');
+  const options = runtime.getVocabularySelectOptions({ card, direction: 'es-no' });
+  assert.equal(options.some(option => !option.correct && option.label === 'god dag'), false);
+  for (const option of options) assert.ok(review.entries.some(entry => entry.kategori === card.category && entry.svar['es-no'][0] === option.label));
+  const sparsePool = [card, { id: 9990, no: 'galakse', es: 'galaxia', category: 'astronomi' }];
+  assert.equal(runtime.getVocabularySelectOptions({ card, direction: 'es-no' }, sparsePool).length, 0);
+});
+
 test('removed standard cards leave practice but survive reload and the existing backup payload', () => {
   const runtime = storageRuntime(renderVocabulary(html, review));
   const oldCard = { id: 9998, no: 'sjokoladedrikk', es: 'el Cola Cao', category: 'kapittel 7: gloser', reviews: 7, correct: 6, noEs: { repetitions: 4 }, esNo: { repetitions: 3 } };

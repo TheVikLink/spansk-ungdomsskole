@@ -7,7 +7,7 @@
     <meta name="theme-color" content="#dc2626">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Crect width='192' height='192' rx='36' fill='%23dc2626'/%3E%3Ctext x='96' y='122' text-anchor='middle' font-size='96'%3E🇪🇸%3C/text%3E%3C/svg%3E">
     <link rel="manifest" href="./manifest.webmanifest">
-    <meta name="app-build" content="82d49ed4ce3e3c34">
+    <meta name="app-build" content="437b2b3a81f8bfcb">
     <link href="./dist/tailwind.css" rel="stylesheet">
 </head>
 <body>
@@ -20,7 +20,7 @@
 
         <div id="welcomeForm">
             <label for="studentNameInput" class="sr-only">Fornavn eller elevkode</label>
-            <input type="text" id="studentNameInput" class="login-input" placeholder="Fornavn eller elevkode (f.eks. Maria eller 9A-14)" maxlength="50">
+            <input type="text" id="studentNameInput" class="login-input" placeholder="Navn eller elevkode" maxlength="50">
             <button class="login-btn login-btn-primary" onclick="startApp()">🚀 Start</button>
 
             <p class="login-hint">
@@ -50,7 +50,7 @@
                 <button class="nav-link active" onclick="showPage('vocab')" id="navVocab" aria-current="page">📚 Gloser</button>
                 <button class="nav-link" onclick="showPage('brainmap')" id="navBrainmap">🧠 Brainmap</button>
                 <button class="nav-link" onclick="showPage('verbs')" id="navVerbs">🏃 Verb</button>
-                <details class="nav-more">
+                <details class="nav-more" open>
                     <summary>☰ Flere områder <span class="nav-more-hint">Spill og lytteøvelser</span></summary>
                     <div class="nav-more-links">
                         <button class="nav-link" onclick="showPage('grammar')" id="navGrammar">📖 Grammatikk</button>
@@ -4750,6 +4750,11 @@
             "answerId": "primary",
             "value": "vinter",
             "canonicalMeaningId": "canonical:vocab-0100"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "vinteren",
+            "canonicalMeaningId": "canonical:vocab-0100"
         }
     ],
     "vinter|no-es": [
@@ -4768,6 +4773,11 @@
         {
             "answerId": "primary",
             "value": "vår",
+            "canonicalMeaningId": "canonical:vocab-0101"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "våren",
             "canonicalMeaningId": "canonical:vocab-0101"
         }
     ],
@@ -4788,6 +4798,11 @@
             "answerId": "primary",
             "value": "sommer",
             "canonicalMeaningId": "canonical:vocab-0102"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "sommeren",
+            "canonicalMeaningId": "canonical:vocab-0102"
         }
     ],
     "sommer|no-es": [
@@ -4806,6 +4821,11 @@
         {
             "answerId": "primary",
             "value": "høst",
+            "canonicalMeaningId": "canonical:vocab-0103"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "høsten",
             "canonicalMeaningId": "canonical:vocab-0103"
         }
     ],
@@ -5048,6 +5068,11 @@
             "answerId": "canonical-1",
             "value": "jul",
             "canonicalMeaningId": "canonical:vocab-0117"
+        },
+        {
+            "answerId": "canonical-2",
+            "value": "julen",
+            "canonicalMeaningId": "canonical:vocab-0117"
         }
     ],
     "jul|no-es": [
@@ -5244,6 +5269,11 @@
             "answerId": "primary",
             "value": "fødselsdag",
             "canonicalMeaningId": "canonical:vocab-0126"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "fødselsdagen",
+            "canonicalMeaningId": "canonical:vocab-0126"
         }
     ],
     "fødselsdag|no-es": [
@@ -5263,6 +5293,11 @@
             "answerId": "primary",
             "value": "konfirmasjon",
             "canonicalMeaningId": "canonical:vocab-0127"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "konfirmasjonen",
+            "canonicalMeaningId": "canonical:vocab-0127"
         }
     ],
     "konfirmasjon|no-es": [
@@ -5277,6 +5312,11 @@
             "answerId": "primary",
             "value": "barnedåp",
             "canonicalMeaningId": "canonical:vocab-0128"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "barnedåpen",
+            "canonicalMeaningId": "canonical:vocab-0128"
         }
     ],
     "barnedåp|no-es": [
@@ -5290,6 +5330,11 @@
         {
             "answerId": "primary",
             "value": "bryllup",
+            "canonicalMeaningId": "canonical:vocab-0129"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "bryllupet",
             "canonicalMeaningId": "canonical:vocab-0129"
         }
     ],
@@ -5309,6 +5354,11 @@
         {
             "answerId": "primary",
             "value": "begravelse",
+            "canonicalMeaningId": "canonical:vocab-0130"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "begravelsen",
             "canonicalMeaningId": "canonical:vocab-0130"
         }
     ],
@@ -5562,6 +5612,11 @@
             "answerId": "primary",
             "value": "mørkt hår",
             "canonicalMeaningId": "canonical:vocab-0143"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "det mørke håret",
+            "canonicalMeaningId": "canonical:vocab-0143"
         }
     ],
     "mørkt hår|no-es": [
@@ -5580,6 +5635,11 @@
         {
             "answerId": "primary",
             "value": "blondt hår",
+            "canonicalMeaningId": "canonical:vocab-0144"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "det blonde håret",
             "canonicalMeaningId": "canonical:vocab-0144"
         }
     ],
@@ -5600,6 +5660,11 @@
             "answerId": "primary",
             "value": "rødt hår",
             "canonicalMeaningId": "canonical:vocab-0145"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "det røde håret",
+            "canonicalMeaningId": "canonical:vocab-0145"
         }
     ],
     "rødt hår|no-es": [
@@ -5618,6 +5683,11 @@
         {
             "answerId": "primary",
             "value": "kort hår",
+            "canonicalMeaningId": "canonical:vocab-0146"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "det korte håret",
             "canonicalMeaningId": "canonical:vocab-0146"
         }
     ],
@@ -5638,6 +5708,11 @@
             "answerId": "primary",
             "value": "langt hår",
             "canonicalMeaningId": "canonical:vocab-0147"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "det lange håret",
+            "canonicalMeaningId": "canonical:vocab-0147"
         }
     ],
     "langt hår|no-es": [
@@ -5656,6 +5731,11 @@
         {
             "answerId": "primary",
             "value": "rett hår",
+            "canonicalMeaningId": "canonical:vocab-0148"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "det rette håret",
             "canonicalMeaningId": "canonical:vocab-0148"
         }
     ],
@@ -5676,6 +5756,11 @@
             "answerId": "primary",
             "value": "krøllete hår",
             "canonicalMeaningId": "canonical:vocab-0149"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "det krøllete håret",
+            "canonicalMeaningId": "canonical:vocab-0149"
         }
     ],
     "krøllete hår|no-es": [
@@ -5695,6 +5780,11 @@
             "answerId": "primary",
             "value": "hestehale",
             "canonicalMeaningId": "canonical:vocab-0150"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "hestehalen",
+            "canonicalMeaningId": "canonical:vocab-0150"
         }
     ],
     "hestehale|no-es": [
@@ -5713,6 +5803,11 @@
         {
             "answerId": "primary",
             "value": "pannelugg",
+            "canonicalMeaningId": "canonical:vocab-0151"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "panneluggen",
             "canonicalMeaningId": "canonical:vocab-0151"
         }
     ],
@@ -5771,6 +5866,11 @@
             "answerId": "primary",
             "value": "skjegg",
             "canonicalMeaningId": "canonical:vocab-0154"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "skjegget",
+            "canonicalMeaningId": "canonical:vocab-0154"
         }
     ],
     "skjegg|no-es": [
@@ -5789,6 +5889,11 @@
         {
             "answerId": "primary",
             "value": "bart",
+            "canonicalMeaningId": "canonical:vocab-0155"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "barten",
             "canonicalMeaningId": "canonical:vocab-0155"
         }
     ],
@@ -5846,6 +5951,11 @@
         {
             "answerId": "primary",
             "value": "arr",
+            "canonicalMeaningId": "canonical:vocab-0158"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "arret",
             "canonicalMeaningId": "canonical:vocab-0158"
         }
     ],
@@ -6180,6 +6290,11 @@
             "answerId": "primary",
             "value": "fetter",
             "canonicalMeaningId": "canonical:vocab-0175"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "fetteren",
+            "canonicalMeaningId": "canonical:vocab-0175"
         }
     ],
     "fetter|no-es": [
@@ -6198,6 +6313,11 @@
         {
             "answerId": "primary",
             "value": "kusine",
+            "canonicalMeaningId": "canonical:vocab-0176"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "kusinen",
             "canonicalMeaningId": "canonical:vocab-0176"
         }
     ],
@@ -6218,6 +6338,11 @@
             "answerId": "primary",
             "value": "tante",
             "canonicalMeaningId": "canonical:vocab-0177"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "tanten",
+            "canonicalMeaningId": "canonical:vocab-0177"
         }
     ],
     "tante|no-es": [
@@ -6236,6 +6361,11 @@
         {
             "answerId": "primary",
             "value": "onkel",
+            "canonicalMeaningId": "canonical:vocab-0178"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "onkelen",
             "canonicalMeaningId": "canonical:vocab-0178"
         }
     ],
@@ -6381,6 +6511,11 @@
             "answerId": "primary",
             "value": "stefar",
             "canonicalMeaningId": "canonical:vocab-0184"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "stefaren",
+            "canonicalMeaningId": "canonical:vocab-0184"
         }
     ],
     "stefar|no-es": [
@@ -6399,6 +6534,11 @@
         {
             "answerId": "primary",
             "value": "stemor",
+            "canonicalMeaningId": "canonical:vocab-0185"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "stemoren",
             "canonicalMeaningId": "canonical:vocab-0185"
         }
     ],
@@ -6419,6 +6559,11 @@
             "answerId": "primary",
             "value": "stebror",
             "canonicalMeaningId": "canonical:vocab-0186"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "stebroren",
+            "canonicalMeaningId": "canonical:vocab-0186"
         }
     ],
     "stebror|no-es": [
@@ -6437,6 +6582,11 @@
         {
             "answerId": "primary",
             "value": "stesøster",
+            "canonicalMeaningId": "canonical:vocab-0187"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "stesøsteren",
             "canonicalMeaningId": "canonical:vocab-0187"
         }
     ],
@@ -6457,6 +6607,11 @@
             "answerId": "primary",
             "value": "halvbror",
             "canonicalMeaningId": "canonical:vocab-0188"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "halvbroren",
+            "canonicalMeaningId": "canonical:vocab-0188"
         }
     ],
     "halvbror|no-es": [
@@ -6475,6 +6630,11 @@
         {
             "answerId": "primary",
             "value": "halvsøster",
+            "canonicalMeaningId": "canonical:vocab-0189"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "halvsøsteren",
             "canonicalMeaningId": "canonical:vocab-0189"
         }
     ],
@@ -6495,6 +6655,11 @@
             "answerId": "primary",
             "value": "storebror",
             "canonicalMeaningId": "canonical:vocab-0190"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "storebroren",
+            "canonicalMeaningId": "canonical:vocab-0190"
         }
     ],
     "storebror|no-es": [
@@ -6513,6 +6678,11 @@
         {
             "answerId": "primary",
             "value": "lillesøster",
+            "canonicalMeaningId": "canonical:vocab-0191"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "lillesøsteren",
             "canonicalMeaningId": "canonical:vocab-0191"
         }
     ],
@@ -6736,6 +6906,11 @@
             "answerId": "primary",
             "value": "t-skjorte",
             "canonicalMeaningId": "canonical:vocab-0204"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "t-skjorten",
+            "canonicalMeaningId": "canonical:vocab-0204"
         }
     ],
     "t-skjorte|no-es": [
@@ -6755,6 +6930,11 @@
             "answerId": "primary",
             "value": "bikini",
             "canonicalMeaningId": "canonical:vocab-0205"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "bikinien",
+            "canonicalMeaningId": "canonical:vocab-0205"
         }
     ],
     "bikini|no-es": [
@@ -6773,6 +6953,11 @@
         {
             "answerId": "primary",
             "value": "skjorte",
+            "canonicalMeaningId": "canonical:vocab-0206"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "skjorten",
             "canonicalMeaningId": "canonical:vocab-0206"
         }
     ],
@@ -6812,6 +6997,11 @@
             "answerId": "primary",
             "value": "lue",
             "canonicalMeaningId": "canonical:vocab-0208"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "luen",
+            "canonicalMeaningId": "canonical:vocab-0208"
         }
     ],
     "lue|no-es": [
@@ -6830,6 +7020,11 @@
         {
             "answerId": "primary",
             "value": "caps",
+            "canonicalMeaningId": "canonical:vocab-0209"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "capsen",
             "canonicalMeaningId": "canonical:vocab-0209"
         }
     ],
@@ -6892,6 +7087,11 @@
         {
             "answerId": "primary",
             "value": "genser",
+            "canonicalMeaningId": "canonical:vocab-0212"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "genseren",
             "canonicalMeaningId": "canonical:vocab-0212"
         }
     ],
@@ -7007,6 +7207,11 @@
             "answerId": "primary",
             "value": "jakke",
             "canonicalMeaningId": "canonical:vocab-0218"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "jakken",
+            "canonicalMeaningId": "canonical:vocab-0218"
         }
     ],
     "jakke|no-es": [
@@ -7025,6 +7230,11 @@
         {
             "answerId": "primary",
             "value": "kjole",
+            "canonicalMeaningId": "canonical:vocab-0219"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "kjolen",
             "canonicalMeaningId": "canonical:vocab-0219"
         }
     ],
@@ -7069,6 +7279,11 @@
             "answerId": "primary",
             "value": "håndveske",
             "canonicalMeaningId": "canonical:vocab-0221"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "håndvesken",
+            "canonicalMeaningId": "canonical:vocab-0221"
         }
     ],
     "håndveske|no-es": [
@@ -7107,6 +7322,11 @@
             "answerId": "primary",
             "value": "skjerf",
             "canonicalMeaningId": "canonical:vocab-0223"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "skjerfet",
+            "canonicalMeaningId": "canonical:vocab-0223"
         }
     ],
     "skjerf|no-es": [
@@ -7126,6 +7346,11 @@
             "answerId": "primary",
             "value": "sjal",
             "canonicalMeaningId": "canonical:vocab-0224"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "sjalet",
+            "canonicalMeaningId": "canonical:vocab-0224"
         }
     ],
     "sjal|no-es": [
@@ -7144,6 +7369,11 @@
         {
             "answerId": "primary",
             "value": "hatt",
+            "canonicalMeaningId": "canonical:vocab-0225"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "hatten",
             "canonicalMeaningId": "canonical:vocab-0225"
         }
     ],
@@ -7188,6 +7418,11 @@
             "answerId": "primary",
             "value": "slips",
             "canonicalMeaningId": "canonical:vocab-0227"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "slipset",
+            "canonicalMeaningId": "canonical:vocab-0227"
         }
     ],
     "slips|no-es": [
@@ -7206,6 +7441,11 @@
         {
             "answerId": "primary",
             "value": "paraply",
+            "canonicalMeaningId": "canonical:vocab-0228"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "paraplyen",
             "canonicalMeaningId": "canonical:vocab-0228"
         }
     ],
@@ -7226,6 +7466,11 @@
             "answerId": "primary",
             "value": "ring",
             "canonicalMeaningId": "canonical:vocab-0229"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "ringen",
+            "canonicalMeaningId": "canonical:vocab-0229"
         }
     ],
     "ring|no-es": [
@@ -7245,6 +7490,11 @@
             "answerId": "primary",
             "value": "armbånd",
             "canonicalMeaningId": "canonical:vocab-0230"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "armbåndet",
+            "canonicalMeaningId": "canonical:vocab-0230"
         }
     ],
     "armbånd|no-es": [
@@ -7263,6 +7513,11 @@
         {
             "answerId": "primary",
             "value": "klokke",
+            "canonicalMeaningId": "canonical:vocab-0231"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "klokken",
             "canonicalMeaningId": "canonical:vocab-0231"
         }
     ],
@@ -7326,6 +7581,11 @@
             "answerId": "primary",
             "value": "advokat",
             "canonicalMeaningId": "canonical:vocab-0234"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "advokaten",
+            "canonicalMeaningId": "canonical:vocab-0234"
         }
     ],
     "advokat|no-es": [
@@ -7354,6 +7614,11 @@
         {
             "answerId": "primary",
             "value": "brannmann",
+            "canonicalMeaningId": "canonical:vocab-0235"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "brannmannen",
             "canonicalMeaningId": "canonical:vocab-0235"
         }
     ],
@@ -7384,6 +7649,11 @@
             "answerId": "primary",
             "value": "snekker",
             "canonicalMeaningId": "canonical:vocab-0236"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "snekkeren",
+            "canonicalMeaningId": "canonical:vocab-0236"
         }
     ],
     "snekker|no-es": [
@@ -7412,6 +7682,11 @@
         {
             "answerId": "primary",
             "value": "kokk",
+            "canonicalMeaningId": "canonical:vocab-0237"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "kokken",
             "canonicalMeaningId": "canonical:vocab-0237"
         }
     ],
@@ -7442,6 +7717,11 @@
             "answerId": "primary",
             "value": "tannlege",
             "canonicalMeaningId": "canonical:vocab-0238"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "tannlegen",
+            "canonicalMeaningId": "canonical:vocab-0238"
         }
     ],
     "tannlege|no-es": [
@@ -7466,6 +7746,11 @@
             "answerId": "primary",
             "value": "elektriker",
             "canonicalMeaningId": "canonical:vocab-0239"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "elektrikeren",
+            "canonicalMeaningId": "canonical:vocab-0239"
         }
     ],
     "elektriker|no-es": [
@@ -7489,6 +7774,11 @@
         {
             "answerId": "primary",
             "value": "sykepleier",
+            "canonicalMeaningId": "canonical:vocab-0240"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "sykepleieren",
             "canonicalMeaningId": "canonical:vocab-0240"
         }
     ],
@@ -7519,6 +7809,11 @@
             "answerId": "primary",
             "value": "bonde",
             "canonicalMeaningId": "canonical:vocab-0241"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "bonden",
+            "canonicalMeaningId": "canonical:vocab-0241"
         }
     ],
     "bonde|no-es": [
@@ -7547,6 +7842,11 @@
         {
             "answerId": "primary",
             "value": "lege",
+            "canonicalMeaningId": "canonical:vocab-0242"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "legen",
             "canonicalMeaningId": "canonical:vocab-0242"
         }
     ],
@@ -7577,6 +7877,11 @@
             "answerId": "primary",
             "value": "frisør",
             "canonicalMeaningId": "canonical:vocab-0243"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "frisøren",
+            "canonicalMeaningId": "canonical:vocab-0243"
         }
     ],
     "frisør|no-es": [
@@ -7606,6 +7911,11 @@
             "answerId": "primary",
             "value": "journalist",
             "canonicalMeaningId": "canonical:vocab-0244"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "journalisten",
+            "canonicalMeaningId": "canonical:vocab-0244"
         }
     ],
     "journalist|no-es": [
@@ -7629,6 +7939,11 @@
         {
             "answerId": "primary",
             "value": "politibetjent",
+            "canonicalMeaningId": "canonical:vocab-0245"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "politibetjenten",
             "canonicalMeaningId": "canonical:vocab-0245"
         }
     ],
@@ -7658,6 +7973,11 @@
         {
             "answerId": "canonical-1",
             "value": "lærer",
+            "canonicalMeaningId": "canonical:vocab-0246"
+        },
+        {
+            "answerId": "canonical-2",
+            "value": "læreren",
             "canonicalMeaningId": "canonical:vocab-0246"
         }
     ],
@@ -7811,6 +8131,11 @@
         {
             "answerId": "primary",
             "value": "amerikansk fotball",
+            "canonicalMeaningId": "canonical:vocab-0253"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "den amerikanske fotballen",
             "canonicalMeaningId": "canonical:vocab-0253"
         }
     ],
@@ -8867,6 +9192,11 @@
             "answerId": "primary",
             "value": "munn",
             "canonicalMeaningId": "canonical:vocab-0313"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "munnen",
+            "canonicalMeaningId": "canonical:vocab-0313"
         }
     ],
     "munn|no-es": [
@@ -8885,6 +9215,11 @@
         {
             "answerId": "primary",
             "value": "hånd",
+            "canonicalMeaningId": "canonical:vocab-0314"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "hånden",
             "canonicalMeaningId": "canonical:vocab-0314"
         }
     ],
@@ -8905,6 +9240,11 @@
             "answerId": "primary",
             "value": "fot",
             "canonicalMeaningId": "canonical:vocab-0315"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "foten",
+            "canonicalMeaningId": "canonical:vocab-0315"
         }
     ],
     "fot|no-es": [
@@ -8923,6 +9263,11 @@
         {
             "answerId": "primary",
             "value": "elev",
+            "canonicalMeaningId": "canonical:vocab-0316"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "eleven",
             "canonicalMeaningId": "canonical:vocab-0316"
         }
     ],
@@ -9002,6 +9347,16 @@
             "answerId": "canonical-1",
             "value": "skoleklasse",
             "canonicalMeaningId": "canonical:vocab-0318"
+        },
+        {
+            "answerId": "canonical-2",
+            "value": "skoletimen",
+            "canonicalMeaningId": "canonical:vocab-0318"
+        },
+        {
+            "answerId": "canonical-3",
+            "value": "skoleklassen",
+            "canonicalMeaningId": "canonical:vocab-0318"
         }
     ],
     "skoletime|no-es": [
@@ -9026,6 +9381,16 @@
             "answerId": "canonical-1",
             "value": "skoletime",
             "canonicalMeaningId": "canonical:vocab-0319"
+        },
+        {
+            "answerId": "canonical-2",
+            "value": "skoleklassen",
+            "canonicalMeaningId": "canonical:vocab-0319"
+        },
+        {
+            "answerId": "canonical-3",
+            "value": "skoletimen",
+            "canonicalMeaningId": "canonical:vocab-0319"
         }
     ],
     "skoleklasse|no-es": [
@@ -9044,6 +9409,11 @@
         {
             "answerId": "primary",
             "value": "tavle",
+            "canonicalMeaningId": "canonical:vocab-0320"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "tavlen",
             "canonicalMeaningId": "canonical:vocab-0320"
         }
     ],
@@ -9064,6 +9434,11 @@
             "answerId": "primary",
             "value": "kart",
             "canonicalMeaningId": "canonical:vocab-0321"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "kartet",
+            "canonicalMeaningId": "canonical:vocab-0321"
         }
     ],
     "kart|no-es": [
@@ -9082,6 +9457,11 @@
         {
             "answerId": "primary",
             "value": "papirkurv",
+            "canonicalMeaningId": "canonical:vocab-0322"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "papirkurven",
             "canonicalMeaningId": "canonical:vocab-0322"
         }
     ],
@@ -9102,6 +9482,11 @@
             "answerId": "primary",
             "value": "bok",
             "canonicalMeaningId": "canonical:vocab-0323"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "boken",
+            "canonicalMeaningId": "canonical:vocab-0323"
         }
     ],
     "bok|no-es": [
@@ -9120,6 +9505,11 @@
         {
             "answerId": "primary",
             "value": "PC",
+            "canonicalMeaningId": "canonical:vocab-0324"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "PC-en",
             "canonicalMeaningId": "canonical:vocab-0324"
         }
     ],
@@ -9169,6 +9559,11 @@
             "answerId": "primary",
             "value": "pult",
             "canonicalMeaningId": "canonical:vocab-0326"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "pulten",
+            "canonicalMeaningId": "canonical:vocab-0326"
         }
     ],
     "pult|no-es": [
@@ -9187,6 +9582,11 @@
         {
             "answerId": "primary",
             "value": "stol",
+            "canonicalMeaningId": "canonical:vocab-0327"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "stolen",
             "canonicalMeaningId": "canonical:vocab-0327"
         }
     ],
@@ -9207,6 +9607,11 @@
             "answerId": "primary",
             "value": "sekk",
             "canonicalMeaningId": "canonical:vocab-0328"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "sekken",
+            "canonicalMeaningId": "canonical:vocab-0328"
         }
     ],
     "sekk|no-es": [
@@ -9225,6 +9630,11 @@
         {
             "answerId": "primary",
             "value": "pennal",
+            "canonicalMeaningId": "canonical:vocab-0329"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "pennalet",
             "canonicalMeaningId": "canonical:vocab-0329"
         }
     ],
@@ -9245,6 +9655,11 @@
             "answerId": "primary",
             "value": "blyant",
             "canonicalMeaningId": "canonical:vocab-0330"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "blyanten",
+            "canonicalMeaningId": "canonical:vocab-0330"
         }
     ],
     "blyant|no-es": [
@@ -9263,6 +9678,11 @@
         {
             "answerId": "primary",
             "value": "penn",
+            "canonicalMeaningId": "canonical:vocab-0331"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "pennen",
             "canonicalMeaningId": "canonical:vocab-0331"
         }
     ],
@@ -9283,6 +9703,11 @@
             "answerId": "primary",
             "value": "viskelær",
             "canonicalMeaningId": "canonical:vocab-0332"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "viskelæret",
+            "canonicalMeaningId": "canonical:vocab-0332"
         }
     ],
     "viskelær|no-es": [
@@ -9302,6 +9727,11 @@
             "answerId": "primary",
             "value": "blyantspisser",
             "canonicalMeaningId": "canonical:vocab-0333"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "blyantspisseren",
+            "canonicalMeaningId": "canonical:vocab-0333"
         }
     ],
     "blyantspisser|no-es": [
@@ -9320,6 +9750,11 @@
         {
             "answerId": "primary",
             "value": "linjal",
+            "canonicalMeaningId": "canonical:vocab-0334"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "linjalen",
             "canonicalMeaningId": "canonical:vocab-0334"
         }
     ],
@@ -9344,6 +9779,11 @@
         {
             "answerId": "canonical-1",
             "value": "videregående skole",
+            "canonicalMeaningId": "canonical:vocab-0335"
+        },
+        {
+            "answerId": "canonical-2",
+            "value": "den videregående skolen",
             "canonicalMeaningId": "canonical:vocab-0335"
         }
     ],
@@ -9580,6 +10020,11 @@
             "answerId": "primary",
             "value": "rom",
             "canonicalMeaningId": "canonical:vocab-0345"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "rommet",
+            "canonicalMeaningId": "canonical:vocab-0345"
         }
     ],
     "rom (ord på c)|no-es": [
@@ -9599,6 +10044,11 @@
             "answerId": "primary",
             "value": "bad",
             "canonicalMeaningId": "canonical:vocab-0346"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "badet",
+            "canonicalMeaningId": "canonical:vocab-0346"
         }
     ],
     "bad|no-es": [
@@ -9617,6 +10067,11 @@
         {
             "answerId": "primary",
             "value": "spisestue",
+            "canonicalMeaningId": "canonical:vocab-0347"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "spisestuen",
             "canonicalMeaningId": "canonical:vocab-0347"
         }
     ],
@@ -9661,6 +10116,11 @@
             "answerId": "primary",
             "value": "loft",
             "canonicalMeaningId": "canonical:vocab-0349"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "loftet",
+            "canonicalMeaningId": "canonical:vocab-0349"
         }
     ],
     "loft|no-es": [
@@ -9679,6 +10139,11 @@
         {
             "answerId": "primary",
             "value": "dør",
+            "canonicalMeaningId": "canonical:vocab-0350"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "døren",
             "canonicalMeaningId": "canonical:vocab-0350"
         }
     ],
@@ -9699,6 +10164,11 @@
             "answerId": "primary",
             "value": "soverom",
             "canonicalMeaningId": "canonical:vocab-0351"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "soverommet",
+            "canonicalMeaningId": "canonical:vocab-0351"
         }
     ],
     "soverom|no-es": [
@@ -9718,6 +10188,11 @@
             "answerId": "primary",
             "value": "arbeidsrom",
             "canonicalMeaningId": "canonical:vocab-0352"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "arbeidsrommet",
+            "canonicalMeaningId": "canonical:vocab-0352"
         }
     ],
     "arbeidsrom|no-es": [
@@ -9736,6 +10211,11 @@
         {
             "answerId": "primary",
             "value": "stue",
+            "canonicalMeaningId": "canonical:vocab-0353"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "stuen",
             "canonicalMeaningId": "canonical:vocab-0353"
         }
     ],
@@ -9779,6 +10259,11 @@
         {
             "answerId": "primary",
             "value": "kjeller",
+            "canonicalMeaningId": "canonical:vocab-0355"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "kjelleren",
             "canonicalMeaningId": "canonical:vocab-0355"
         }
     ],
@@ -9871,6 +10356,11 @@
             "answerId": "primary",
             "value": "sofa",
             "canonicalMeaningId": "canonical:vocab-0359"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "sofaen",
+            "canonicalMeaningId": "canonical:vocab-0359"
         }
     ],
     "sofa|no-es": [
@@ -9913,6 +10403,11 @@
         {
             "answerId": "primary",
             "value": "TV",
+            "canonicalMeaningId": "canonical:vocab-0361"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "TV-en",
             "canonicalMeaningId": "canonical:vocab-0361"
         }
     ],
@@ -9977,6 +10472,11 @@
             "answerId": "primary",
             "value": "plakat",
             "canonicalMeaningId": "canonical:vocab-0363"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "plakaten",
+            "canonicalMeaningId": "canonical:vocab-0363"
         }
     ],
     "plakat|no-es": [
@@ -9995,6 +10495,11 @@
         {
             "answerId": "primary",
             "value": "kjøleskap",
+            "canonicalMeaningId": "canonical:vocab-0364"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "kjøleskapet",
             "canonicalMeaningId": "canonical:vocab-0364"
         }
     ],
@@ -10039,6 +10544,11 @@
             "answerId": "primary",
             "value": "bokhylle",
             "canonicalMeaningId": "canonical:vocab-0366"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "bokhyllen",
+            "canonicalMeaningId": "canonical:vocab-0366"
         }
     ],
     "bokhylle|no-es": [
@@ -10058,6 +10568,11 @@
             "answerId": "primary",
             "value": "kommode",
             "canonicalMeaningId": "canonical:vocab-0367"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "kommoden",
+            "canonicalMeaningId": "canonical:vocab-0367"
         }
     ],
     "kommode|no-es": [
@@ -10076,6 +10591,11 @@
         {
             "answerId": "primary",
             "value": "lenestol",
+            "canonicalMeaningId": "canonical:vocab-0368"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "lenestolen",
             "canonicalMeaningId": "canonical:vocab-0368"
         }
     ],
@@ -10120,6 +10640,11 @@
             "answerId": "primary",
             "value": "oppvaskmaskin",
             "canonicalMeaningId": "canonical:vocab-0370"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "oppvaskmaskinen",
+            "canonicalMeaningId": "canonical:vocab-0370"
         }
     ],
     "oppvaskmaskin|no-es": [
@@ -10139,6 +10664,11 @@
             "answerId": "primary",
             "value": "seng",
             "canonicalMeaningId": "canonical:vocab-0371"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "sengen",
+            "canonicalMeaningId": "canonical:vocab-0371"
         }
     ],
     "seng|no-es": [
@@ -10157,6 +10687,11 @@
         {
             "answerId": "primary",
             "value": "lampe",
+            "canonicalMeaningId": "canonical:vocab-0372"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "lampen",
             "canonicalMeaningId": "canonical:vocab-0372"
         }
     ],
@@ -10187,6 +10722,16 @@
             "answerId": "canonical-2",
             "value": "bilde / maleri",
             "canonicalMeaningId": "canonical:vocab-0373"
+        },
+        {
+            "answerId": "canonical-3",
+            "value": "bildet",
+            "canonicalMeaningId": "canonical:vocab-0373"
+        },
+        {
+            "answerId": "canonical-4",
+            "value": "maleriet",
+            "canonicalMeaningId": "canonical:vocab-0373"
         }
     ],
     "bilde / maleri ( ord på c)|no-es": [
@@ -10205,6 +10750,11 @@
         {
             "answerId": "primary",
             "value": "ovn",
+            "canonicalMeaningId": "canonical:vocab-0374"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "ovnen",
             "canonicalMeaningId": "canonical:vocab-0374"
         }
     ],
@@ -12461,6 +13011,11 @@
             "answerId": "primary",
             "value": "fisk",
             "canonicalMeaningId": "canonical:vocab-0495"
+        },
+        {
+            "answerId": "canonical-1",
+            "value": "fisken",
+            "canonicalMeaningId": "canonical:vocab-0495"
         }
     ],
     "fisk|no-es": [
@@ -13097,8 +13652,21 @@
 };
 
         const norwegianNounDefiniteForms = {
+    "vinter": [
+        "vinteren"
+    ],
+    "vår": [
+        "våren"
+    ],
+    "sommer": [
+        "sommeren"
+    ],
+    "høst": [
+        "høsten"
+    ],
     "jul": [
-        "jula"
+        "jula",
+        "julen"
     ],
     "nyttårsaften": [
         "nyttårsaftenen"
@@ -13126,11 +13694,50 @@
     "allehelgensdagen": [
         "allehelgensdag"
     ],
+    "fødselsdag": [
+        "fødselsdagen"
+    ],
+    "konfirmasjon": [
+        "konfirmasjonen"
+    ],
+    "barnedåp": [
+        "barnedåpen"
+    ],
+    "bryllup": [
+        "bryllupet"
+    ],
+    "hestehale": [
+        "hestehalen"
+    ],
+    "pannelugg": [
+        "panneluggen"
+    ],
+    "skjegg": [
+        "skjegget"
+    ],
+    "bart": [
+        "barten"
+    ],
+    "arr": [
+        "arret"
+    ],
     "bror": [
         "broren"
     ],
     "søster": [
         "søsteren"
+    ],
+    "fetter": [
+        "fetteren"
+    ],
+    "kusine": [
+        "kusinen"
+    ],
+    "tante": [
+        "tanten"
+    ],
+    "onkel": [
+        "onkelen"
     ],
     "mor": [
         "mamma",
@@ -13148,17 +13755,125 @@
     "kjæreste": [
         "kjæresten"
     ],
+    "stefar": [
+        "stefaren"
+    ],
+    "stemor": [
+        "stemoren"
+    ],
+    "stebror": [
+        "stebroren"
+    ],
+    "stesøster": [
+        "stesøsteren"
+    ],
+    "halvbror": [
+        "halvbroren"
+    ],
+    "halvsøster": [
+        "halvsøsteren"
+    ],
+    "storebror": [
+        "storebroren"
+    ],
+    "lillesøster": [
+        "lillesøsteren"
+    ],
+    "t-skjorte": [
+        "t-skjorten"
+    ],
+    "bikini": [
+        "bikinien"
+    ],
+    "skjorte": [
+        "skjorten"
+    ],
+    "lue": [
+        "luen"
+    ],
+    "caps": [
+        "capsen"
+    ],
     "belte": [
         "beltet"
+    ],
+    "jakke": [
+        "jakken"
+    ],
+    "kjole": [
+        "kjolen"
     ],
     "skjørt": [
         "skjørtet"
     ],
+    "håndveske": [
+        "håndvesken"
+    ],
+    "skjerf": [
+        "skjerfet"
+    ],
+    "sjal": [
+        "sjalet"
+    ],
+    "hatt": [
+        "hatten"
+    ],
     "lommetørkle": [
         "lommetørklet"
     ],
+    "slips": [
+        "slipset"
+    ],
+    "paraply": [
+        "paraplyen"
+    ],
+    "ring": [
+        "ringen"
+    ],
+    "armbånd": [
+        "armbåndet"
+    ],
+    "klokke": [
+        "klokken"
+    ],
     "kjede": [
         "kjedet"
+    ],
+    "advokat": [
+        "advokaten"
+    ],
+    "brannmann": [
+        "brannmannen"
+    ],
+    "snekker": [
+        "snekkeren"
+    ],
+    "kokk": [
+        "kokken"
+    ],
+    "tannlege": [
+        "tannlegen"
+    ],
+    "elektriker": [
+        "elektrikeren"
+    ],
+    "sykepleier": [
+        "sykepleieren"
+    ],
+    "bonde": [
+        "bonden"
+    ],
+    "lege": [
+        "legen"
+    ],
+    "frisør": [
+        "frisøren"
+    ],
+    "journalist": [
+        "journalisten"
+    ],
+    "politibetjent": [
+        "politibetjenten"
     ],
     "dyrlege": [
         "dyrlegen",
@@ -13192,20 +13907,79 @@
     "øye": [
         "øyet"
     ],
+    "munn": [
+        "munnen"
+    ],
+    "hånd": [
+        "hånden"
+    ],
+    "fot": [
+        "foten"
+    ],
+    "elev": [
+        "eleven"
+    ],
     "spansklærer": [
         "spansklæreren"
     ],
     "skoletime": [
-        "skoleklasse"
+        "skoleklasse",
+        "skoletimen",
+        "skoleklassen"
     ],
     "skoleklasse": [
-        "skoletime"
+        "skoletime",
+        "skoleklassen",
+        "skoletimen"
+    ],
+    "tavle": [
+        "tavlen"
+    ],
+    "kart": [
+        "kartet"
+    ],
+    "papirkurv": [
+        "papirkurven"
+    ],
+    "bok": [
+        "boken"
+    ],
+    "PC": [
+        "PC-en"
     ],
     "ungdomsskolen": [
         "ungdomsskole"
     ],
+    "pult": [
+        "pulten"
+    ],
+    "stol": [
+        "stolen"
+    ],
+    "sekk": [
+        "sekken"
+    ],
+    "pennal": [
+        "pennalet"
+    ],
+    "blyant": [
+        "blyanten"
+    ],
+    "penn": [
+        "pennen"
+    ],
+    "viskelær": [
+        "viskelæret"
+    ],
+    "blyantspisser": [
+        "blyantspisseren"
+    ],
+    "linjal": [
+        "linjalen"
+    ],
     "videregående": [
-        "videregående skole"
+        "videregående skole",
+        "den videregående skolen"
     ],
     "engelsk": [
         "engelsken"
@@ -13221,11 +13995,32 @@
     "rom": [
         "rommet"
     ],
+    "bad": [
+        "badet"
+    ],
+    "spisestue": [
+        "spisestuen"
+    ],
     "gang": [
         "gangen"
     ],
+    "loft": [
+        "loftet"
+    ],
+    "dør": [
+        "døren"
+    ],
+    "soverom": [
+        "soverommet"
+    ],
+    "arbeidsrom": [
+        "arbeidsrommet"
+    ],
     "kjøkken": [
         "kjøkkenet"
+    ],
+    "kjeller": [
+        "kjelleren"
     ],
     "vindu": [
         "vinduet"
@@ -13236,17 +14031,47 @@
     "møbel": [
         "møbelet"
     ],
+    "sofa": [
+        "sofaen"
+    ],
     "bord": [
         "bordet"
+    ],
+    "TV": [
+        "TV-en"
     ],
     "skap": [
         "skapet"
     ],
+    "plakat": [
+        "plakaten"
+    ],
     "skrivebord": [
         "skrivebordet"
     ],
+    "bokhylle": [
+        "bokhyllen"
+    ],
+    "kommode": [
+        "kommoden"
+    ],
+    "lenestol": [
+        "lenestolen"
+    ],
     "teppe": [
         "teppet"
+    ],
+    "oppvaskmaskin": [
+        "oppvaskmaskinen"
+    ],
+    "seng": [
+        "sengen"
+    ],
+    "lampe": [
+        "lampen"
+    ],
+    "ovn": [
+        "ovnen"
     ],
     "speil": [
         "speilet"
@@ -13341,6 +14166,9 @@
     "egg": [
         "egget"
     ],
+    "fisk": [
+        "fisken"
+    ],
     "sukker": [
         "sukkeret"
     ],
@@ -13393,6 +14221,7 @@
 
         function getVocabularyCanonicalId(card) {
             if (!card || card.isCustom || card.assignmentId) return null;
+            if (vocabularyCanonicalIds.includes(card.canonicalId)) return card.canonicalId;
             const normalize = value => String(value || '').normalize('NFC').trim().toLocaleLowerCase('nb-NO');
             const index = glossary.findIndex(([no, es]) => normalize(no) === normalize(card.no || card.norsk) && normalize(es) === normalize(card.es || card.spansk));
             return index < 0 ? null : vocabularyCanonicalIds[index];
@@ -14750,7 +15579,7 @@
                     <h2>Finn nivået mitt</h2>
                     <p>Svar på 12 korte spørsmål. Du kan bruke kallenavn eller elevkode. Svarene lagres bare på denne enheten og følger med hvis du eksporterer fremgangen.</p>
                 </div>
-                <button class="btn btn-primary btn-large" onclick="startDiagnosisFromUi()">Start nivåtest</button>
+                <button class="btn btn-primary btn-large" id="homeStartMixedQuizBtn" onclick="startDiagnosisFromUi()">Start nivåtest</button>
             `;
         }
 
@@ -16501,14 +17330,14 @@
             const badges = getMasteryBadges(loadLearningProgress());
             const reviewWordCount = getVocabularyReviewWordCount();
             content.innerHTML = `
-                <section class="home-primary-action" aria-labelledby="homeQuizTitle">
+                ${diagnosisComplete ? `<section class="home-primary-action" aria-labelledby="homeQuizTitle">
                     <div class="home-primary-copy">
-                        <span class="home-eyebrow">${diagnosisComplete ? 'Neste steg' : 'Første steg'}</span>
+                        <span class="home-eyebrow">Neste steg</span>
                         <h1 id="homeQuizTitle">${dailyQuizComplete ? 'Ta en ny quiz' : 'Dagens quiz'}</h1>
-                        <p>${dailyQuizComplete ? `Bra jobbet. Du har tatt ${todayQuizCount} quiz i dag. Ta en til for mer variert øving.` : diagnosisComplete ? 'Ti korte spørsmål fra ordforråd, grammatikk og verb.' : 'Ta nivåtesten først, så lager vi en quiz som passer deg.'}</p>
+                        <p>${dailyQuizComplete ? `Bra jobbet. Du har tatt ${todayQuizCount} quiz i dag. Ta en til for mer variert øving.` : 'Ti korte spørsmål fra ordforråd, grammatikk og verb.'}</p>
                     </div>
-                    <button type="button" class="btn btn-primary btn-large" id="homeStartMixedQuizBtn" onclick="startDailyQuizFromHome()">${dailyQuizComplete ? 'Ta en ny quiz' : diagnosisComplete ? 'Start dagens quiz' : 'Start nivåtest'}</button>
-                </section>
+                    <button type="button" class="btn btn-primary btn-large" id="homeStartMixedQuizBtn" onclick="startDailyQuizFromHome()">${dailyQuizComplete ? 'Ta en ny quiz' : 'Start dagens quiz'}</button>
+                </section>` : ''}
                 <section class="home-next-practice" id="homeVocabularyReview" aria-labelledby="homeVocabularyReviewTitle">
                     <div>
                         <span class="home-eyebrow">Gloser</span>
@@ -16520,7 +17349,6 @@
                 </section>
                 <p class="home-streak" id="homeQuizStreak">${streakText}</p>
                 <p class="home-offline-hint" id="homeOfflineHint">Gloser og grammatikk fungerer uten nett når appen er lagret i nettleseren. Diktatlyd må lastes ned separat i Lytteøvelser. ${location.protocol === 'file:' ? 'Denne lokale filen bruker lyd fra den tilhørende lydmappen.' : ''}</p>
-                <p id="appVersionLabel">Versjon ${escapeHtml(document.querySelector('meta[name="app-build"]').content)} <button class="btn btn-outline btn-sm" onclick="checkForAppUpdate()">Se etter oppdateringer</button></p>
                 ${badges.length ? `<section class="home-badges" aria-labelledby="homeBadgesTitle"><h2 id="homeBadgesTitle">🏅 Merker du har fått</h2><div class="badge-list">${badges.map(badge => `<span class="mastery-badge">${escapeHtml(badge.label)}</span>`).join('')}</div></section>` : ''}
             `;
         }
@@ -20274,10 +21102,12 @@
         }
 
         function renderMixedQuizLauncher() {
+            const launcher = document.getElementById('mixedQuizLauncher');
             const button = document.getElementById('startMixedQuizBtn');
             const status = document.getElementById('mixedQuizLauncherStatus');
-            if (!button || !status) return;
+            if (!launcher || !button || !status) return;
             const ready = loadDiagnosisState().status === 'complete';
+            launcher.classList.toggle('mixed-quiz-locked', !ready);
             button.disabled = !ready;
             status.textContent = ready
                 ? '10 spørsmål fra ordforråd, grammatikk og verb.'
@@ -20350,7 +21180,6 @@
                     <div class="mixed-quiz-prompt">${escapeHtml(item.prompt)}</div>
                     ${item.answerConstraint?.type === 'startsWith' ? `<div class="answer-constraint">(begynner på «${escapeHtml(item.answerConstraint.value)}»)</div>` : ''}
                     ${shouldShowMixedQuizContext(item) ? `<div class="mixed-quiz-context"><span class="mixed-quiz-context-label">Norsk kontekst</span>${escapeHtml(item.promptNo)}</div>` : ''}
-                    ${item.direction === 'es-no' ? '<p class="text-sm text-slate-500" role="status">Lydopptak er ikke tilgjengelig for denne oppgaven.</p>' : ''}
                     ${responseControls}
                     <div class="mixed-quiz-feedback" id="mixedQuizFeedback" aria-live="polite"></div>
                 </div>
@@ -20588,8 +21417,12 @@
             // Robust migrering: oppdater eksisterende kort etter ordpar, ikke bare id.
             // Dette gjør at nye kategorier kommer inn selv om eleven allerede har lagret fremgang i localStorage.
             const vocabularyReplacementHistory = [
-                { legacyNo: 'smykke', legacyEs: 'la cadena', no: 'kjede', es: 'la cadena' },
-                { legacyNo: 'I morgen skal jeg besøke bestemora mi', legacyEs: 'Mañana voy a visitar mi abuela', no: 'I morgen skal jeg besøke bestemora mi', es: 'Mañana voy a visitar a mi abuela' }
+                { legacyNo: 'smykke', legacyEs: 'la cadena', canonicalId: 'vocab-0232' },
+                { legacyNo: 'I morgen skal jeg besøke bestemora mi', legacyEs: 'Mañana voy a visitar mi abuela', canonicalId: 'vocab-0409' },
+                // Confirmed bundled labels predating canonical IDs (d41a936).
+                { legacyNo: 'Russland på spansk', legacyEs: 'Rusia', canonicalId: 'vocab-0075' },
+                { legacyNo: 'Sveits (spansk)', legacyEs: 'Suiza', canonicalId: 'vocab-0087' },
+                { legacyNo: '500 på spansk', legacyEs: 'quinientos', canonicalId: 'vocab-0043' }
             ];
             const pairKey = (no, es) => `${String(no || '').trim().toLocaleLowerCase('nb-NO')}|||${String(es || '').trim().toLocaleLowerCase('nb-NO')}`;
             const replacementsByLegacyPair = new Map(vocabularyReplacementHistory.map(replacement => [pairKey(replacement.legacyNo, replacement.legacyEs), replacement]));
@@ -20599,6 +21432,10 @@
             const activeCards = [];
             for (const card of [...cards, ...archivedVocabularyCards]) {
                 const isOwnWord = card.isCustom || card.assignmentId;
+                if (!isOwnWord && !card.canonicalId) {
+                    const replacement = replacementsByLegacyPair.get(pairKey(card.no || card.norsk, card.es || card.spansk));
+                    if (replacement) card.canonicalId = replacement.canonicalId;
+                }
                 const index = isOwnWord ? -1 : vocabularyCanonicalIds.indexOf(card.canonicalId);
                 if (index >= 0) {
                     [card.no, card.es, card.category] = glossary[index];
@@ -20622,14 +21459,6 @@
                 }
             };
             cards.forEach(card => {
-                const replacement = !card.isCustom && !card.assignmentId && replacementsByLegacyPair.get(pairKey(card.no || card.norsk, card.es || card.spansk));
-                if (replacement) {
-                    card.no = replacement.no;
-                    card.norsk = replacement.no;
-                    card.es = replacement.es;
-                    card.spansk = replacement.es;
-                    changed = true;
-                }
                 const key = card.isCustom || card.assignmentId ? `custom:${card.id}` : pairKey(card.no || card.norsk, card.es || card.spansk);
                 const canonicalCard = reconciledByPair.get(key);
                 if (!canonicalCard) {
@@ -20713,6 +21542,14 @@
             localStorage.setItem('spansk123Data_v4', JSON.stringify([...cards, ...archivedVocabularyCards]));
         }
 
+        function getVocabularyShortcutAction(event, answerVisible, responseMode = 'flip') {
+            if (responseMode !== 'flip' || event.isComposing || event.ctrlKey || event.metaKey || event.altKey || event.shiftKey) return null;
+            if (!answerVisible) return [' ', 'Enter'].includes(event.key) ? 'flip' : null;
+            if (event.key === ' ' || event.key === '1') return 'good';
+            if (event.key === '2') return 'again';
+            return null;
+        }
+
         function setupKeyboardShortcuts() {
             document.addEventListener('keydown', (e) => {
                 if (e.defaultPrevented || e.isComposing || document.querySelector('.settings-modal')) return;
@@ -20742,7 +21579,7 @@
                     }
                 }
                 // Vocab shortcuts
-                if (!document.getElementById('vocabStudy').classList.contains('hidden')) {
+                if (!document.getElementById('vocabPage').classList.contains('hidden') && !document.getElementById('vocabStudy').classList.contains('hidden')) {
                     if (e.target?.id === 'typedVocabInput') {
                         if (e.key === 'Enter') {
                             e.preventDefault();
@@ -20750,11 +21587,13 @@
                         }
                         return;
                     }
-                    if (!showingAnswer) {
-                        if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); flipCard(); }
-                    } else {
-                        if (e.key === '1') { e.preventDefault(); rateCard(0); }
-                        else if (e.key === '2') { e.preventDefault(); rateCard(2); }
+                    const action = getVocabularyShortcutAction(e, showingAnswer, currentCard?.responseMode || (currentCard?.typed ? 'typed' : 'flip'));
+                    if (action) {
+                        e.preventDefault();
+                        if (e.repeat) return;
+                        if (action === 'flip') flipCard();
+                        else rateCard(action === 'good' ? 2 : 0);
+                        return;
                     }
                 }
 
@@ -20961,6 +21800,7 @@
 
         function getDisplayAnswerText(item) {
             const raw = getExpectedAnswerText(item);
+            if (getVocabularyCanonicalId(item.card)) return raw;
             return String(raw).replace(/\s*\([^)]*\)/g, '').trim();
         }
 
@@ -20968,29 +21808,6 @@
             return item?.direction === 'es-no' && item.card?.category === 'tall'
                 ? 'Skriv med tall'
                 : null;
-        }
-
-        function getCardSynonymHint(item, cardList = cards) {
-            const card = item.card;
-            const direction = item.direction;
-            const promptBase = direction === 'no-es' ? card.no : card.es;
-            const answerBase = direction === 'no-es' ? card.es : card.no;
-            const cleanPrompt = promptBase.replace(/\s*\([^)]*\)/g, '').trim();
-
-            const synonyms = cardList
-                .filter(other => {
-                    if (other.id === card.id) return false;
-                    const otherPrompt = direction === 'no-es' ? other.no : other.es;
-                    const otherAnswer = direction === 'no-es' ? other.es : other.no;
-                    const otherClean = otherPrompt.replace(/\s*\([^)]*\)/g, '').trim();
-                    return otherClean === cleanPrompt && otherAnswer !== answerBase;
-                })
-                .map(other => direction === 'no-es' ? other.es : other.no);
-
-            if (synonyms.length === 0) return null;
-            const unique = [...new Set(synonyms)];
-            const promptLabel = direction === 'no-es' ? cleanPrompt : answerBase.replace(/\s*\([^)]*\)/g, '').trim();
-            return `Et annet ord for ${promptLabel} er ${unique.join(' og ')}`;
         }
 
         function normalizeTypedAnswer(text) {
@@ -21004,18 +21821,22 @@
         function getVocabPromptText(item, cardList = cards) {
             const prompt = getPromptBaseText(item);
             const expectedAnswer = getExpectedAnswerText(item);
-            const hasAmbiguousPrompt = cardList.some(card => {
-                if (card.id === item.card.id) return false;
-                const otherPrompt = item.direction === 'no-es' ? card.no : card.es;
-                const otherAnswer = item.direction === 'no-es' ? card.es : card.no;
-                return normalizeTypedAnswer(otherPrompt) === normalizeTypedAnswer(prompt) &&
-                    normalizeTypedAnswer(otherAnswer) !== normalizeTypedAnswer(expectedAnswer);
-            });
+            const otherAnswers = cardList
+                .filter(card => card.id !== item.card.id && normalizeTypedAnswer(getPromptBaseText({ card, direction: item.direction })) === normalizeTypedAnswer(prompt))
+                .map(card => getExpectedAnswerText({ card, direction: item.direction }))
+                .filter(answer => normalizeTypedAnswer(answer) !== normalizeTypedAnswer(expectedAnswer));
+            if (!otherAnswers.length) return prompt;
 
-            if (!hasAmbiguousPrompt) return prompt;
-
-            const hintBase = expectedAnswer.trim().replace(/^(el|la|los|las)\s+/i, '');
-            return `${prompt} (${hintBase.charAt(0).toLocaleLowerCase('es-ES')})`;
+            const words = answer => normalizeTypedAnswer(answer).replace(/^(el|la|los|las)\s+/i, '').split(/\s+/);
+            const answerWords = words(expectedAnswer);
+            const alternatives = otherAnswers.map(words);
+            // Skip shared words (god morgen / god dag) rather than repeat an unhelpful g.
+            const position = answerWords.findIndex((word, index) => alternatives.some(other => other[index] !== word));
+            if (position < 0) return prompt;
+            const word = answerWords[position];
+            let length = 1;
+            while (length < word.length && alternatives.some(other => (other[position] || '').startsWith(word.slice(0, length)))) length++;
+            return `${prompt} (${word.slice(0, length)})`;
         }
 
         function isLeechReviewData(srData) {
@@ -21080,15 +21901,25 @@
             const expected = getExpectedAnswerText(item);
             const accepted = getVocabularyAcceptedAnswers(item.card, item.direction, expected);
             const correct = accepted[0]?.value || expected;
+            const prompt = normalizeTypedAnswer(getPromptBaseText(item));
+            const number = card => /^\d[\d\s]*$/.test(card.no) ? Number(card.no.replace(/\s/g, '')) : NaN;
+            const targetNumber = item.card.category === 'tall' ? number(item.card) : NaN;
             const candidates = (Array.isArray(cardPool) ? cardPool : [])
-                .filter(card => card.id !== item.card.id)
-                .map(card => item.direction === 'no-es' ? card.es : card.no)
-                .filter(Boolean)
-                .filter(answer => normalizeTypedAnswer(answer) !== normalizeTypedAnswer(correct));
-            const unique = [...new Map(candidates.map(answer => [normalizeTypedAnswer(answer), answer])).values()];
-            const distractors = unique.slice(0, 3);
-            return [{ optionId: correct, label: correct, correct: true },
-                ...distractors.map(answer => ({ optionId: answer, label: answer, correct: false }))];
+                .filter(card => card.id !== item.card.id && card.category === item.card.category)
+                .filter(card => normalizeTypedAnswer(getPromptBaseText({ card, direction: item.direction })) !== prompt)
+                .map(card => ({ card, answer: getExpectedAnswerText({ card, direction: item.direction }) }))
+                .filter(({ answer }) => answer && isTypedVocabAnswerCorrect(answer, correct, accepted.map(entry => entry.value)).resultKind === 'wrong')
+                .filter(({ card }) => !Number.isFinite(targetNumber) || (Number.isFinite(number(card)) && Math.abs(number(card) - targetNumber) <= Math.max(10, targetNumber * 0.25)))
+                .sort((a, b) => {
+                    const proximity = Number.isFinite(targetNumber) ? Math.abs(number(a.card) - targetNumber) - Math.abs(number(b.card) - targetNumber) : 0;
+                    return proximity || a.answer.localeCompare(b.answer, 'es');
+                });
+            const unique = [...new Map(candidates.map(candidate => [normalizeTypedAnswer(candidate.answer), candidate.answer])).values()];
+            if (unique.length < 3) return []; // Recall is preferable to unrelated or giveaway options.
+            const options = [{ optionId: correct, label: correct, correct: true },
+                ...unique.slice(0, 3).map(answer => ({ optionId: answer, label: answer, correct: false }))];
+            const seed = `${item.card.canonicalId || item.card.no}:${item.direction}`;
+            return options.sort((a, b) => mixedQuizSeedScore(a.label, seed) - mixedQuizSeedScore(b.label, seed) || a.label.localeCompare(b.label, 'es'));
         }
 
         function getDueCards(cardList) {
@@ -21352,7 +22183,12 @@ Vil du øve på ${pronoun} likevel?`
             const srData = direction === 'no-es' ? card.noEs : card.esNo;
             const isNew = srData.repetitions === 0;
             const front = getVocabPromptText(item);
-            const responseMode = item.responseMode || (item.typed ? 'typed' : getVocabularyResponseMode(srData, item));
+            let responseMode = item.responseMode || (item.typed ? 'typed' : getVocabularyResponseMode(srData, item));
+            const selectOptions = responseMode === 'select' ? getVocabularySelectOptions(item, cards) : [];
+            if (responseMode === 'select' && selectOptions.length < 4) {
+                responseMode = item.responseMode = 'flip';
+                item.typed = false;
+            }
 
             updateVocabProgress();
 
@@ -21387,7 +22223,7 @@ Vil du øve på ${pronoun} likevel?`
             }
 
             if (responseMode === 'select') {
-                const options = getVocabularySelectOptions(item, cards);
+                const options = selectOptions;
                 document.getElementById('flashcardArea').innerHTML = `
                     <div class="flashcard">
                         <span class="card-type-badge ${item.scaffoldedAfterError ? 'badge-retry' : 'badge-review'}">${item.scaffoldedAfterError ? '💡 Støtte etter feil' : 'Velg svaret'}</span>
@@ -21423,7 +22259,6 @@ Vil du øve på ${pronoun} likevel?`
                     <div class="card-hint">Trykk for å se svar (mellomrom)</div>
                     <span class="card-category">${getCategoryEmoji(card.category)} ${capitalizeFirst(card.category)}</span>
                 </div>
-                ${direction === 'es-no' ? '<p class="text-sm text-slate-500" role="status">Lydopptak er ikke tilgjengelig for denne oppgaven.</p>' : ''}
             `;
             document.getElementById('buttonArea').innerHTML = '';
             updateUndoButtonState();
@@ -21440,7 +22275,6 @@ Vil du øve på ${pronoun} likevel?`
             const isNew = srData.repetitions === 0;
             const front = getVocabPromptText(item);
             const back = getDisplayAnswerText(item);
-            const synonymHint = getCardSynonymHint(item);
             const intervals = [0, 1, 2, 3].map(q => SM2.getIntervalText(q, srData));
 
             const cardTypeLabel = isCustomStudySession ? 'Ekstraøving' : (isNew ? 'Nytt kort' : 'Repetisjon');
@@ -21455,15 +22289,13 @@ Vil du øve på ${pronoun} likevel?`
                     </span>
                     <div class="card-word mb-2 text-lg text-gray-500">${front}</div>
                     <div class="card-answer">${back}</div>
-                    ${synonymHint ? `<div class="card-synonym-hint text-sm text-gray-400 mt-2">${escapeHtml(synonymHint)}</div>` : ''}
                     <span class="card-category">${getCategoryEmoji(card.category)} ${capitalizeFirst(card.category)}</span>
                 </div>
-                ${direction === 'no-es' ? '<p class="text-sm text-slate-500" role="status">Lydopptak er ikke tilgjengelig for denne oppgaven.</p>' : ''}
             `;
             document.getElementById('buttonArea').innerHTML = `
                 <div class="rating-buttons">
-                    <button class="rating-btn rating-again" onclick="rateCard(0)">😓 <span class="rating-label">Igjen</span><span class="interval">${intervals[0]}</span><span class="key">(1)</span></button>
-                    <button class="rating-btn rating-good" onclick="rateCard(2)">😊 <span class="rating-label">Bra</span><span class="interval">${intervals[2]}</span><span class="key">(2)</span></button>
+                    <button class="rating-btn rating-again" aria-keyshortcuts="2" onclick="rateCard(0)">😓 <span class="rating-label">Igjen</span><span class="interval">${intervals[0]}</span><span class="key">(2)</span></button>
+                    <button class="rating-btn rating-good" aria-keyshortcuts="1 Space" onclick="rateCard(2)">😊 <span class="rating-label">Bra</span><span class="interval">${intervals[2]}</span><span class="key">(1 / mellomrom)</span></button>
                 </div>
             `;
                     updateUndoButtonState();
@@ -22198,6 +23030,9 @@ Vil du øve på ${pronoun} likevel?`
             const regular = /^regular -(ar|er|ir)$/.exec(verb.type);
             if (regular) return `a1.verbs.regular_${regular[1]}.present`;
             if (['ser', 'estar', 'ir', 'tener', 'hacer'].includes(verb.infinitive)) return `a1.verbs.${verb.infinitive}.present`;
+            if (verb.type.includes('stammeendring e→ie')) return 'a1.verbs.stem_e_ie.present';
+            if (verb.type.includes('stammeendring o→ue')) return 'a1.verbs.stem_o_ue.present';
+            if (verb.type.includes('stammeendring e→i')) return 'a1.verbs.stem_e_i.present';
             // Isolated modal forms do not demonstrate use with another infinitive.
             return null;
         }
@@ -23102,8 +23937,9 @@ Vil du øve på ${pronoun} likevel?`
             if (!inputElement || inputElement.dataset.accentInputReady === 'true') return;
             inputElement.dataset.accentInputReady = 'true';
             const longPressTimers = new Map();
+            const canHandle = e => !inputElement.disabled && !inputElement.readOnly && !e.isComposing && !e.ctrlKey && !e.metaKey && !e.altKey;
             const suppressNativeAccentPicker = (e) => {
-                if (accentMap[e.key]) {
+                if (accentMap[e.key] && canHandle(e)) {
                     e.preventDefault();
                     e.stopImmediatePropagation();
                 }
@@ -23111,8 +23947,9 @@ Vil du øve på ${pronoun} likevel?`
             inputElement.addEventListener('keypress', suppressNativeAccentPicker, true);
             inputElement.addEventListener('keydown', (e) => {
                 const key = e.key;
+                const physicalKey = e.code || key;
 
-                if (!accentMap[key] || e.isComposing || e.ctrlKey || e.metaKey || e.altKey) return;
+                if (!accentMap[key] || !canHandle(e)) return;
 
                 // Take over the key event so macOS does not open its native
                 // accent picker. A quick press still inserts the plain key;
@@ -23126,9 +23963,9 @@ Vil du øve på ${pronoun} likevel?`
                 }
 
                 // Clear any existing timer
-                if (longPressTimers.has(key)) {
-                    clearTimeout(longPressTimers.get(key));
-                    longPressTimers.delete(key);
+                if (longPressTimers.has(physicalKey)) {
+                    clearTimeout(longPressTimers.get(physicalKey));
+                    longPressTimers.delete(physicalKey);
                 }
 
                 const start = inputElement.selectionStart;
@@ -23139,28 +23976,38 @@ Vil du øve på ${pronoun} likevel?`
                 const timer = setTimeout(() => {
                     const value = inputElement.value;
                     const insertedChar = value.charAt(insertedPosition - 1);
-                    if (!e.shiftKey && insertedChar === key) {
-                        inputElement.value = value.substring(0, insertedPosition - 1) + accentMap[key] + value.substring(insertedPosition);
-                        inputElement.selectionStart = inputElement.selectionEnd = insertedPosition;
+                    if ((!e.shiftKey || key === '?' || key === '!') && insertedChar === plainCharacter && !inputElement.disabled && !inputElement.readOnly) {
+                        // Keep the current caret if the pupil already typed another letter.
+                        const selectionStart = inputElement.selectionStart;
+                        const selectionEnd = inputElement.selectionEnd;
+                        inputElement.setRangeText(accentMap[key], insertedPosition - 1, insertedPosition, 'preserve');
+                        inputElement.selectionStart = selectionStart;
+                        inputElement.selectionEnd = selectionEnd;
+                        if (inputElement.selectionEnd === inputElement.value.length) {
+                            inputElement.scrollLeft = inputElement.scrollWidth;
+                            if (inputElement.tagName === 'TEXTAREA') inputElement.scrollTop = inputElement.scrollHeight;
+                        }
+                        inputElement.dispatchEvent(new Event('input', { bubbles: true }));
                     }
-                    longPressTimers.delete(key);
+                    longPressTimers.delete(physicalKey);
                 }, 400);
-                longPressTimers.set(key, timer);
+                longPressTimers.set(physicalKey, timer);
             }, true);
 
             inputElement.addEventListener('keyup', (e) => {
-                const key = e.key;
-
-                if (!accentMap[key]) return;
+                const physicalKey = e.code || e.key;
+                if (!longPressTimers.has(physicalKey)) return;
                 e.preventDefault();
                 e.stopImmediatePropagation();
 
                 // Cancel the accent replacement if key released quickly
-                if (longPressTimers.has(key)) {
-                    clearTimeout(longPressTimers.get(key));
-                    longPressTimers.delete(key);
-                }
+                clearTimeout(longPressTimers.get(physicalKey));
+                longPressTimers.delete(physicalKey);
             }, true);
+            inputElement.addEventListener('blur', () => {
+                for (const timer of longPressTimers.values()) clearTimeout(timer);
+                longPressTimers.clear();
+            });
         }
 
         function setupAccentInputs(root = document) {
@@ -23177,10 +24024,12 @@ Vil du øve på ${pronoun} likevel?`
         function insertCharacter(input, char) {
             const start = input.selectionStart;
             const end = input.selectionEnd;
-            const value = input.value;
-
-            input.value = value.substring(0, start) + char + value.substring(end);
-            input.selectionStart = input.selectionEnd = start + 1;
+            input.setRangeText(char, start, end, 'end');
+            if (input.selectionEnd === input.value.length) {
+                input.scrollLeft = input.scrollWidth;
+                if (input.tagName === 'TEXTAREA') input.scrollTop = input.scrollHeight;
+            }
+            input.dispatchEvent(new Event('input', { bubbles: true }));
         }
 
         // ============================================
@@ -25457,8 +26306,17 @@ Vil du øve på ${pronoun} likevel?`
             }
         });
 
+        function syncAdditionalNavigationVisibility() {
+            const navMore = document.querySelector('.nav-more');
+            if (!navMore) return;
+            navMore.toggleAttribute('open', !window.matchMedia('(max-width: 640px)').matches);
+        }
+
+        syncAdditionalNavigationVisibility();
+
         // Handle window resize for game
         window.addEventListener('resize', () => {
+            syncAdditionalNavigationVisibility();
             if (viGameActive) {
                 viEndY = viGetEndY();
             }

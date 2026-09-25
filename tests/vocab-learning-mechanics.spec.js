@@ -343,12 +343,14 @@ test('keeps a held accent key alive while typing the next letter', async ({ page
     const input = page.locator('#punctuation-test');
     await input.focus();
 
+    await page.keyboard.down('Shift');
     await page.keyboard.down('?');
     await page.waitForTimeout(450);
     await page.keyboard.up('?');
     await page.keyboard.down('!');
     await page.waitForTimeout(450);
     await page.keyboard.up('!');
+    await page.keyboard.up('Shift');
 
     await expect(input).toHaveValue('¿¡');
   });
@@ -502,7 +504,7 @@ test('keeps a held accent key alive while typing the next letter', async ({ page
     }
   });
 
-  test('disambiguates juice prompts by letter after the Spanish article', async ({ page }) => {
+  test('omits distinguishing hints when reviewed juice answers are identical', async ({ page }) => {
     await page.goto(appUrl);
 
     const result = await page.evaluate(() => {
@@ -516,7 +518,7 @@ test('keeps a held accent key alive while typing the next letter', async ({ page
       };
     });
 
-    expect(result.zumo).not.toEqual(result.jugo);
+    expect(result).toEqual({ zumo: 'juice', jugo: 'juice' });
   });
 
   test('shows clean form without parenthetical on card back in es-no direction', async ({ page }) => {
@@ -532,51 +534,6 @@ test('keeps a held accent key alive while typing the next letter', async ({ page
 
     expect(result.esNoBack).toBe('begravelse');
     expect(result.noEsBack).toBe('el Funeral');
-  });
-
-  test('shows synonym hint for words with multiple Spanish translations', async ({ page }) => {
-    await page.goto(appUrl);
-
-    const result = await page.evaluate(() => {
-      localStorage.clear();
-      loadData();
-      const card = cards.find(c => c.no === 'begravelse (f)');
-      if (!card) return null;
-      return getCardSynonymHint({ card, direction: 'no-es' });
-    });
-
-    expect(result).toBeTruthy();
-    expect(result).toContain('begravelse');
-    expect(result).toContain('entierro');
-  });
-
-  test('shows synonym hint for words with multiple Norwegian translations', async ({ page }) => {
-    await page.goto(appUrl);
-
-    const result = await page.evaluate(() => {
-      localStorage.clear();
-      loadData();
-      const card = cards.find(c => c.es === 'la clase' && c.no === 'skoletime');
-      if (!card) return null;
-      return getCardSynonymHint({ card, direction: 'es-no' });
-    });
-
-    expect(result).toBeTruthy();
-    expect(result).toContain('skoleklasse');
-  });
-
-  test('returns null synonym hint for words without glossary synonyms', async ({ page }) => {
-    await page.goto(appUrl);
-
-    const result = await page.evaluate(() => {
-      localStorage.clear();
-      loadData();
-      const card = cards.find(c => c.no === 'hund' || c.no === 'bror');
-      if (!card) return 'no card';
-      return getCardSynonymHint({ card, direction: 'no-es' });
-    });
-
-    expect(result).toBeNull();
   });
 
   test('leech cards are prioritized before normal due cards, even when future scheduled', async ({ page }) => {

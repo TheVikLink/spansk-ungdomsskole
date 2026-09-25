@@ -1,0 +1,28 @@
+Opprett eller oppdater et Google-dokument for Spansk på 1-2-3.
+
+Arbeidsmappe:
+/Users/olehenrikvik/spansk-ungdomsskole
+
+Les hele denne oppdaterte kildefilen:
+/Users/olehenrikvik/spansk-ungdomsskole/thoughts/shared/plans/2026-09-21_facebook-og-demonstrasjonsvideo.md
+
+Bruk Markdown-filen som fasit. Den eldre Word-filen i output/documents/Spansk-videoplan-og-manus.docx mangler den siste revideringen om Dagens quiz og skal ikke brukes som kilde.
+
+Finn Google Drive-mappen «Spansk nettside». Opprett et redigerbart Google-dokument med tittelen «Facebook-pitch og videoplan for hele Spansk på 1-2-3». Hvis det allerede finnes ett entydig dokument for denne samme planen i mappen, les det først og oppdater det i stedet for å lage en dublett. Tidligere filnavn kan også være «Spansk-videoplan-og-manus». Be om avklaring dersom flere mapper eller dokumenter passer og du ikke kan identifisere riktig mål sikkert.
+
+Overfør hele kildefilen med alle seks tabeller, alle overskrifter, fortellertekster, tidskoder, lenker og Facebook-utkastet. Bruk ordentlige dokumentoverskrifter, lesbare tabeller og klikkbare kildelenker. Ikke forkort eller oppsummer innholdet. Behold eventuelle kommentarer og tillegg i et eksisterende dokument som ikke dekkes av denne oppdateringen; avklar reelle innholdskonflikter før noe fjernes.
+
+Den siste innholdsendringen er viktig:
+- Dagens quiz skal tydelig fremstå som en hovedfunksjon og vises først i hovedvideoen.
+- Forklar testbasert læring gjennom eget svar, tilbakemelding, gjennomgang av feil og nye forsøk.
+- «Low stakes» betyr korte øvingsquizer uten karakterpress.
+- Hver quiz har ti oppgaver med ordforråd, verb og grammatikk.
+- Foreslå gjerne fem quizer fordelt gjennom dagen, eller quizøving flere ganger i uken, med tid til å forstå tilbakemeldingene.
+- Gradvis bedre grammatikkforståelse, sikrere verbbøying og større ordforråd er målet. Fem quizer er et praktisk forslag, ikke en forskningsfastsatt dose eller et krav.
+- Behold én hovedvideo på omtrent tre minutter, de to fordypningene og presentasjonen av resten av produktet.
+
+Behold plassholderen [KONTROLLERT LENKE] til produktlenken er kontrollert. Ikke finn på en nettadresse. Behold dokumentets kildehenvisninger og avgrensninger av pedagogiske påstander.
+
+Oppdraget gjelder dokumentet. Ikke endre appkode, publiser Facebook-innlegg, send meldinger eller endre delingstillatelser.
+
+Etter lagring: Les dokumentet tilbake. Bekreft at det er et Google-dokument i «Spansk nettside», at innholdet fra hele kildefilen er med i riktig rekkefølge, og at Dagens quiz er tydelig i hovedbudskap, manus og Facebook-utkast. Returner dokumentets faktiske tittel og lenke, og si om du opprettet eller oppdaterte det. Oppgi eventuelle punkter du ikke kunne fullføre.
