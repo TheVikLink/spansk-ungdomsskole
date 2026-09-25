@@ -19,7 +19,8 @@ test('F19: teacher chooses four themes; meanings appear only after an attempt an
   for(const group of groups){for(const id of group)await page.locator(`[data-ll-card-id="${id}"]`).click();await page.locator('#lingoLinksCheckButton').click();}
   await page.getByRole('button',{name:'Se resultat',exact:true}).click();
   await expect(page.locator('#lingoLinksRecall input')).toHaveCount(2);
-  const answers=await page.evaluate(()=>lingoLinksState.recallCards.map(c=>c.es));
+  // Catalog labels may contain context such as "(fag)"; type a reviewed answer.
+  const answers=await page.evaluate(()=>lingoLinksState.recallCards.map(c=>getVocabularyAcceptedAnswers(c,'no-es',c.es)[0].value));
   await expect(page.locator('#lingoLinksRecallFeedback')).toBeEmpty();
   for(let i=0;i<2;i++) await page.locator('#lingoLinksRecall input').nth(i).fill(answers[i]);
   await page.getByRole('button',{name:'Sjekk de to ordene',exact:true}).click();

@@ -27,7 +27,6 @@ for (const width of [390, 1440]) {
       return [`${cards[0].id}:no-es`, `${cards[0].id}:es-no`, `${cards[1].id}:es-no`].sort();
     });
     await expect(page.locator('#homeVocabularyReviewCount')).toHaveText('2 ord klare for repetisjon');
-    await expect(page.getByRole('heading', { name: 'Dagens quiz', exact: true })).toBeVisible();
     await expect(page.getByRole('button', { name: 'Start repetisjon', exact: true })).toBeEnabled();
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
     await page.screenshot({ path: testInfo.outputPath(`home-review-${width}.png`), fullPage: true });

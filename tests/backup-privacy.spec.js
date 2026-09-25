@@ -8,7 +8,8 @@ test.describe('privacy wording and local backup reminder', () => {
   test('asks for a data-minimizing student identifier on the welcome screen', async ({ page }) => {
     await page.goto(appUrl);
 
-    await expect(page.locator('#studentNameInput')).toHaveAttribute('placeholder', /Fornavn eller elevkode/);
+    await expect(page.locator('label[for="studentNameInput"]')).toHaveText('Fornavn eller elevkode');
+    await expect(page.locator('#studentNameInput')).toHaveAttribute('placeholder', 'Navn eller elevkode');
     await expect(page.locator('.login-hint').first()).toContainText('lagres bare i nettleseren');
     await expect(page.locator('.login-hint').first()).toContainText('lokale oppsummeringen');
     await expect(page.locator('#welcomeForm')).toContainText('nettleserdata slettes');
