@@ -61,7 +61,7 @@ Status 23. september 2026: bygg-, innholds- og Node-kontroller består; nettlese
 
 ### Lokal fremgang, avbrudd og sikkerhetskopi
 
-Elevkoden er en lokal etikett, ikke en konto. Samme kode i en annen nettleser gir ikke tilgang til tidligere arbeid. Last ned fremgang fra Lekse-fanen før enhetsbytte eller sletting, finn JSON-filen og importer den i den nye nettleseren. Filen inneholder kode/kallenavn, fremgang, øvingshistorikk, aktiv leksepakke og de lagrede svarene fra nivåtesten. Del den bare med noen du stoler på.
+Elevkoden er en lokal etikett, ikke en konto. Samme kode i en annen nettleser gir ikke tilgang til tidligere arbeid. Last ned fremgang fra Lekse-fanen før enhetsbytte eller sletting, finn JSON-filen og importer den i den nye nettleseren. Filen inneholder kode/kallenavn, fremgang, øvingshistorikk og aktiv leksepakke. Eldre eksportfiler kan også inneholde historiske diagnosedata. Del den bare med noen du stoler på.
 
 Besvarte gloser, verb, grammatikk og quizoppgaver lagres fortløpende. Ved omlasting avsluttes en uferdig økt som avbrutt; appen viser hvor mange svar som er bevart. Oppgaver som ikke er besvart, telles ikke. En ny økt starter med en ny oppgaverekke. «Angre» i gloser tilbakefører både kortfremgang og øktens opptelling.
 
@@ -132,7 +132,7 @@ Repoet har en offline audit-pipeline for å finne mulige norske/spanske svarvari
 
 **[`data/vocabulary-canonical-review.json`](data/vocabulary-canonical-review.json) er den autoritative fasiten for standardgloser og godkjente svar.** Rediger `norsk`, `spansk`, `kategori` og svarlistene `svar.es-no`/`svar.no-es` der. Behold en oppførings `id` ved tekstrettelser, og bruk en ny, unik ID for nye ord. Kjør `npm run build:app`: byggingen leser alltid review-filen først og genererer `data/vocabulary-canonical.json`, ordlisten, svaralternativene og nivåtestens glosefasit i `index.html`. Ingen manuell kopiering mellom JSON-filene er nødvendig. Den genererte canonical-filen og de innebygde glosetabellene skal ikke redigeres separat.
 
-`npm run check:vocabulary` kontrollerer uten å skrive at alle genererte data følger review-filen. Den inngår først i `npm run test:all` og CI, slik at en glemt generering oppdages. En fjernet oppføring som fortsatt er referert av nivåtestens ordkatalog stopper byggingen med beskjed om hvilken referanse som må fjernes eller erstattes. Standardgloser bruker bare svar som står i review-filen; automatisk gjettede bøyninger legges ikke til. Gloseøving, Dagens quiz og Lingo Links deler samme svarvurdering. Egne og lærerimporterte gloser beholder sin egen fasit. Verb-, grammatikk- og lytteoppgaver har egne oppgavekataloger.
+`npm run check:vocabulary` kontrollerer uten å skrive at alle genererte data følger review-filen. Den inngår først i `npm run test:all` og CI, slik at en glemt generering oppdages. En fjernet oppføring som fortsatt er referert av Dagens quiz-katalogen stopper byggingen med beskjed om hvilken referanse som må fjernes eller erstattes. Standardgloser bruker bare svar som står i review-filen; automatisk gjettede bøyninger legges ikke til. Gloseøving, Dagens quiz og Lingo Links deler samme svarvurdering. Egne og lærerimporterte gloser beholder sin egen fasit. Verb-, grammatikk- og lytteoppgaver har egne oppgavekataloger.
 
 Standardkort får en stabil `canonicalId` uten å endre elevens kort-ID eller fremgang. Når et slikt ord fjernes, arkiveres kortet utenfor øvingen, men beholdes i samme lokale lagringsarray og i vanlig sikkerhetskopi. Den tidligere standardglosen «sjokoladedrikk / el Cola Cao» gjenkjennes også fra gamle sikkerhetskopier uten `canonicalId`. Egne/lærerimporterte ord beholdes. Arkiverte ID-er gjenbrukes ikke; et ord som gjeninnføres med samme canonical-ID får sin lagrede fremgang tilbake. Ukjente, umerkede gloser slettes ikke ved gjetning.
 
@@ -208,7 +208,7 @@ MIT License - bruk fritt i undervisning!
 
 ### Første undervisningsøkt og dagens oppsummering
 
-Start viser Dagens quiz og «Repeter gloser», med antall ord som er klare for repetisjon. Hvert ord telles én gang selv om begge øvingsretninger er klare. «Start repetisjon» åpner opptil 50 oppgaver fra repetisjonskøen, på tvers av kategorier. Når køen er tom, er knappen deaktivert. Hovedknappen for quizen starter nivåtesten hvis den ikke er gjennomført.
+Start viser Dagens quiz og «Repeter gloser», med antall ord som er klare for repetisjon. Hvert ord telles én gang selv om begge øvingsretninger er klare. «Start repetisjon» åpner opptil 50 oppgaver fra repetisjonskøen, på tvers av kategorier. Når køen er tom, er knappen deaktivert. Hovedknappen starter Dagens quiz direkte.
 
 Lærerintroduksjonen vises ikke lenger på velkomstsiden eller Start. Artikkelforklaringen (el/la/los/las) finnes under Grammatikk. [PILOT.md](PILOT.md) beskriver fortsatt mål, støtte, utfordring og avslutning for lærerens utprøving.
 

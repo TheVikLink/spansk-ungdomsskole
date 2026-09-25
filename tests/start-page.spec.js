@@ -32,7 +32,7 @@ test.describe('daily quiz start page', () => {
     await expect(page.locator('#vocabPage')).toBeHidden();
   });
 
-  test('new pupil sees diagnosis before the personalized quiz', async ({ page }) => {
+  test('new pupil starts with the daily quiz without a diagnostic test', async ({ page }) => {
     await page.goto(appUrl);
 
     await page.evaluate(() => {
@@ -41,8 +41,9 @@ test.describe('daily quiz start page', () => {
       showMainApp();
     });
 
-    await expect(page.locator('#diagnosisPanel')).toContainText('Finn nivået mitt');
-    await expect(page.locator('#homeStartMixedQuizBtn')).toHaveText('Start nivåtest');
+    await expect(page.locator('#diagnosisPanel')).toBeHidden();
+    await expect(page.getByRole('heading', { name: 'Dagens quiz' })).toBeVisible();
+    await expect(page.locator('#homeStartMixedQuizBtn')).toHaveText('Start dagens quiz');
     await expect(page.locator('#homeStartMixedQuizBtn')).toBeEnabled();
   });
 

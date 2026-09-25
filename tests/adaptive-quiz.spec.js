@@ -243,7 +243,7 @@ test.describe('adaptive mixed quiz v1', () => {
     expect(result.fallbackUsed).toBe(true);
   });
 
-  test('requires completed or explicitly skipped diagnosis before personalization', async ({ page }) => {
+  test('starts a mixed quiz without a diagnostic test', async ({ page }) => {
     await page.goto(appUrl);
 
     const result = await page.evaluate(() => buildMixedQuiz({
@@ -256,7 +256,8 @@ test.describe('adaptive mixed quiz v1', () => {
       size: 10
     }));
 
-    expect(result).toMatchObject({ status: 'diagnosis_required', items: [] });
+    expect(result.status).toBe('ready');
+    expect(result.items.length).toBeGreaterThan(0);
   });
 
   test('updates exactly one progress cell for a mixed quiz answer', async ({ page }) => {

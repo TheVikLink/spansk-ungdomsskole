@@ -7,7 +7,7 @@
     <meta name="theme-color" content="#dc2626">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Crect width='192' height='192' rx='36' fill='%23dc2626'/%3E%3Ctext x='96' y='122' text-anchor='middle' font-size='96'%3E🇪🇸%3C/text%3E%3C/svg%3E">
     <link rel="manifest" href="./manifest.webmanifest">
-    <meta name="app-build" content="437b2b3a81f8bfcb">
+    <meta name="app-build" content="6a2eabb16cf21610">
     <link href="./dist/tailwind.css" rel="stylesheet">
 </head>
 <body>
@@ -67,10 +67,6 @@
         </nav>
 
         <main id="mainContent" tabindex="-1">
-        <section id="diagnosisPanel" class="panel hidden" aria-live="polite">
-            <!-- Fylles inn dynamisk -->
-        </section>
-
         <div id="homePage" class="panel hidden">
             <div id="homePrimaryContent"></div>
             <section class="home-manual-section" aria-labelledby="homeManualTitle">
@@ -559,7 +555,7 @@
             <div class="settings-section mt-6">
                 <h3>💾 Lagre/Hent fremgang</h3>
                 <p class="mb-4 text-gray-500">
-                    Last ned fremgangen din som fil, eller importer fra en tidligere lagring. Filen inneholder elevkode/kallenavn, øvingshistorikk og svarene fra nivåtesten. Del den bare med noen du stoler på.
+                    Last ned fremgangen din som fil, eller importer fra en tidligere lagring. Filen inneholder elevkode/kallenavn, øvingshistorikk og aktiv leksepakke. Del den bare med noen du stoler på.
                 </p>
                 <p class="homework-hint" id="feedbackBackupNotice">Tilbakemeldinger på oppgaver følger ikke med i fremgangsfilen. Eksporter dem separat fra Innstillinger → Tilbakemeldinger før du sletter nettleserdata.</p>
                 <p class="homework-hint" id="backupStatus"></p>
@@ -15862,10 +15858,6 @@
             size = 10,
             excludeIds = new Set()
         } = {}) {
-            if (!['complete'].includes(diagnosis?.status)) {
-                return { status: 'diagnosis_required', items: [], fallbackUsed: false };
-            }
-
             const nowDate = new Date(now);
             const allCandidates = buildMixedQuizCandidates({ cards, skillsCatalog, learningProgress, diagnosis })
                 .sort((a, b) => compareMixedQuizCandidates(a, b, nowDate, seed));
@@ -17321,7 +17313,6 @@
         function renderHomePage() {
             const content = document.getElementById('homePrimaryContent');
             if (!content) return;
-            const diagnosisComplete = loadDiagnosisState().status === 'complete';
             const quizStats = loadQuizStats();
             const dailyQuizComplete = hasCompletedDailyQuizForDate(quizStats, getLocalDateString());
             const todayQuizCount = quizStats.dailyQuizCounts[getLocalDateString()] || 0;
@@ -17330,14 +17321,14 @@
             const badges = getMasteryBadges(loadLearningProgress());
             const reviewWordCount = getVocabularyReviewWordCount();
             content.innerHTML = `
-                ${diagnosisComplete ? `<section class="home-primary-action" aria-labelledby="homeQuizTitle">
+                <section class="home-primary-action" aria-labelledby="homeQuizTitle">
                     <div class="home-primary-copy">
                         <span class="home-eyebrow">Neste steg</span>
                         <h1 id="homeQuizTitle">${dailyQuizComplete ? 'Ta en ny quiz' : 'Dagens quiz'}</h1>
                         <p>${dailyQuizComplete ? `Bra jobbet. Du har tatt ${todayQuizCount} quiz i dag. Ta en til for mer variert øving.` : 'Ti korte spørsmål fra ordforråd, grammatikk og verb.'}</p>
                     </div>
                     <button type="button" class="btn btn-primary btn-large" id="homeStartMixedQuizBtn" onclick="startDailyQuizFromHome()">${dailyQuizComplete ? 'Ta en ny quiz' : 'Start dagens quiz'}</button>
-                </section>` : ''}
+                </section>
                 <section class="home-next-practice" id="homeVocabularyReview" aria-labelledby="homeVocabularyReviewTitle">
                     <div>
                         <span class="home-eyebrow">Gloser</span>
@@ -17354,7 +17345,6 @@
         }
 
         function startDailyQuizFromHome() {
-            if (loadDiagnosisState().status !== 'complete') { startDiagnosisFromUi(); return; }
             showPage('vocab');
             startMixedQuizFromUi();
         }
@@ -17449,7 +17439,7 @@
             document.getElementById('homeworkPage').classList.add('hidden');
             document.getElementById('gamesPage').classList.add('hidden');
             document.getElementById('dictationPage').classList.add('hidden');
-            document.getElementById('diagnosisPanel').classList.add('hidden');
+            document.getElementById('diagnosisPanel')?.classList.add('hidden');
 
             // Stop any running game
             if (viGameActive) {
@@ -17472,15 +17462,7 @@
                 document.getElementById('homePage').classList.remove('hidden');
                 document.getElementById('navHome').classList.add('active');
                 document.getElementById('navHome').setAttribute('aria-current', 'page');
-                const diagState = loadDiagnosisState();
-                if (diagState.status !== 'complete') {
-                    document.getElementById('diagnosisPanel').classList.remove('hidden');
-                    if (diagState.status === 'in_progress') {
-                        document.getElementById('homePage').classList.add('hidden');
-                    }
-                }
                 renderHomePage();
-                renderDiagnosisPanel();
             } else if (page === 'vocab') {
                 document.getElementById('vocabPage').classList.remove('hidden');
                 document.getElementById('navVocab').classList.add('active');
@@ -21106,12 +21088,9 @@
             const button = document.getElementById('startMixedQuizBtn');
             const status = document.getElementById('mixedQuizLauncherStatus');
             if (!launcher || !button || !status) return;
-            const ready = loadDiagnosisState().status === 'complete';
-            launcher.classList.toggle('mixed-quiz-locked', !ready);
-            button.disabled = !ready;
-            status.textContent = ready
-                ? '10 spørsmål fra ordforråd, grammatikk og verb.'
-                : 'Fullfør nivåtesten først for å få en quiz som passer deg.';
+            launcher.classList.remove('mixed-quiz-locked');
+            button.disabled = false;
+            status.textContent = '10 spørsmål fra ordforråd, grammatikk og verb.';
         }
 
         function mixedQuizTypeLabel(item) {
@@ -21227,7 +21206,7 @@
                 excludeIds
             });
             if (quiz.status !== 'ready' || quiz.items.length === 0) {
-                alert('Fullfør nivåtesten før du starter en personlig quiz.');
+                alert('Det er ikke nok oppgaver til å starte en quiz ennå.');
                 return;
             }
             mixedQuizState = { quiz, index: 0, answered: 0, correct: 0, startedAt: new Date(), results: [] };

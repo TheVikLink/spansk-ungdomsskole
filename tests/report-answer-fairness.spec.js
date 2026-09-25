@@ -1,12 +1,8 @@
 import { test, expect } from '@playwright/test';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
-import { readFileSync } from 'node:fs';
 
 const appUrl = pathToFileURL(path.resolve('index.html')).toString();
-const reviewedMotherAnswers = JSON.parse(readFileSync('data/vocabulary-canonical-review.json', 'utf8')).entries
-  .find(entry => entry.id === 'vocab-0179').svar['es-no'];
-
 test('F03: quiz builders retain every approved vocabulary answer in both directions', async ({ page }) => {
   await page.goto(appUrl);
   const result = await page.evaluate(() => {
@@ -55,45 +51,6 @@ for (const width of [1440, 390]) {
       await page.locator('[data-feedback-next]').click();
     }
     await expect(page.locator('.mixed-quiz-results')).toContainText('2 av 2 oppgaver besvart. 2 riktige (100%).');
-  });
-}
-
-test('F04: diagnosis shows both the instruction and Spanish gap context', async ({ page }) => {
-  await page.goto(appUrl);
-  await page.evaluate(() => {
-    studentName = 'Test';
-    showMainApp();
-    const state = startDiagnosis();
-    state.questionIds = ['diag.a1.gustar.basic.choice'];
-    saveDiagnosisState(state);
-    renderDiagnosisPanel();
-  });
-  const panel = page.locator('#diagnosisPanel');
-  await expect(panel).toContainText('Velg riktig form av gustar.');
-  await expect(panel).toContainText('Me ___ los libros de aventuras.');
-  await expect(panel).toContainText('Jeg liker eventyrbøker.');
-  await panel.getByRole('button', { name: 'gustan', exact: true }).click();
-  await expect(panel).toContainText('✓ Riktig');
-});
-
-for (const [id, answer] of [
-  ...reviewedMotherAnswers.map(answer => ['diag.vocab.family.madre.es_no', answer]),
-  ['diag.a0.identity.me_llamo.typed', 'Yo me llamo Ana']
-]) {
-  test(`F04: diagnosis accepts the documented natural answer ${answer}`, async ({ page }) => {
-    await page.goto(appUrl);
-    await page.evaluate(id => {
-      studentName = 'Test';
-      showMainApp();
-      const state = startDiagnosis();
-      state.questionIds = [id];
-      saveDiagnosisState(state);
-      renderDiagnosisPanel();
-    }, id);
-    await page.locator('#diagnosisAnswerInput').fill(answer);
-    await page.locator('#diagnosisPanel').getByRole('button', { name: 'Svar', exact: true }).click();
-    await expect(page.locator('[data-diagnosis-feedback]')).toContainText('✓ Riktig');
-    expect(await page.evaluate(() => loadDiagnosisState().answers[0].correct)).toBe(true);
   });
 }
 

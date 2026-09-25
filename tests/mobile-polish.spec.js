@@ -60,15 +60,15 @@ test('keeps vocabulary rating choices in the first mobile viewport', async ({ pa
   expect(ratingBounds.top).toBeLessThan(ratingBounds.viewportHeight);
 });
 
-test('shows one level-test action before diagnosis is complete', async ({ page }) => {
+test('shows one daily-quiz action for a new pupil', async ({ page }) => {
   await page.goto(appUrl);
   await page.locator('#studentNameInput').fill('Test');
   await page.locator('.login-btn-primary').click();
 
-  await expect(page.getByRole('button', { name: 'Start nivåtest', exact: true })).toHaveCount(1);
+  await expect(page.getByRole('button', { name: 'Start dagens quiz', exact: true })).toHaveCount(1);
 });
 
-test('places the locked mixed quiz after available vocabulary practice', async ({ page }) => {
+test('places the available mixed quiz before vocabulary practice', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto(appUrl);
   await page.locator('#studentNameInput').fill('Test');
@@ -79,7 +79,7 @@ test('places the locked mixed quiz after available vocabulary practice', async (
     launcherTop: document.getElementById('mixedQuizLauncher').getBoundingClientRect().top,
     modesTop: document.querySelector('.vocab-mode-grid').getBoundingClientRect().top
   }));
-  expect(layout.launcherTop).toBeGreaterThan(layout.modesTop);
+  expect(layout.launcherTop).toBeLessThan(layout.modesTop);
 });
 
 test('keeps secondary mobile navigation behind an expandable control', async ({ page }) => {

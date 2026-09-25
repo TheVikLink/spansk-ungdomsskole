@@ -50,7 +50,7 @@ test('a fresh pupil has an empty review queue and no teacher introduction on eit
   await page.locator('.login-btn-primary').click();
   await expect(page.locator('#homeVocabularyReviewCount')).toHaveText('0 ord klare for repetisjon');
   await expect(page.getByRole('button', { name: 'Start repetisjon', exact: true })).toBeDisabled();
-  await expect(page.locator('#homeStartMixedQuizBtn')).toHaveText('Start nivåtest');
+  await expect(page.locator('#homeStartMixedQuizBtn')).toHaveText('Start dagens quiz');
   await expect(page.getByText('For læreren: første 20 minutter', { exact: true })).toHaveCount(0);
 });
 
