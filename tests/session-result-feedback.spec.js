@@ -69,6 +69,9 @@ for (const width of [1440, 390]) {
     await page.goto(appUrl);
     await page.locator('#studentNameInput').fill('Test');
     await page.locator('.login-btn-primary').click();
+    if (!await page.locator('#navGrammar').isVisible()) {
+      await page.locator('.nav-more > summary').click();
+    }
     await page.locator('#navGrammar').click();
     await page.locator('.grammar-topic-card[onclick="startGrammarTopic(\'articles\')"] .grammar-topic-theory-link').click();
     await page.locator('#grammarLessonContent .grammar-lesson-actions button').click();
