@@ -7,7 +7,7 @@
     <meta name="theme-color" content="#dc2626">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Crect width='192' height='192' rx='36' fill='%23dc2626'/%3E%3Ctext x='96' y='122' text-anchor='middle' font-size='96'%3E🇪🇸%3C/text%3E%3C/svg%3E">
     <link rel="manifest" href="./manifest.webmanifest">
-    <meta name="app-build" content="6a2eabb16cf21610">
+    <meta name="app-build" content="1f93e593c2ccb9a3">
     <link href="./dist/tailwind.css" rel="stylesheet">
 </head>
 <body>
@@ -15303,9 +15303,14 @@
                 : 'Se på mønsteret i setningen og prøv samme type oppgave igjen.');
         }
 
+        function formatAnswerAlternatives(values) {
+            if (values.length < 2) return values[0] || '';
+            return `${values.slice(0, -1).join(', ')} eller ${values[values.length - 1]}`;
+        }
+
         function formatMixedQuizCorrectAnswers(item) {
             const values = getDiagnosisAnswerValues(item).filter(Boolean);
-            return values.length > 1 ? values.join(' / ') : (values[0] || 'Ikke oppgitt');
+            return formatAnswerAlternatives(values) || 'Ikke oppgitt';
         }
 
         function evaluateTypedAnswer(answer, expected) {
@@ -21334,7 +21339,7 @@
                             ${results.map((result, index) => `<details class="mixed-quiz-review-item" ${result.correct ? '' : 'open'}>
                                 <summary><span>${index + 1}. ${escapeHtml(result.prompt)}</span><strong class="${result.correct ? 'review-correct' : 'review-wrong'}">${result.correct ? '✓ Riktig' : result.resultKind === 'near_miss' ? 'Nesten' : '✗ Feil'}</strong></summary>
                                 <p><strong>Ditt svar:</strong> ${escapeHtml(result.answer || 'Ikke besvart')}</p>
-                                <p><strong>Godkjent svar:</strong> ${escapeHtml(result.correctAnswers.join(' / ') || 'Ikke oppgitt')}</p>
+                                <p><strong>Godkjent svar:</strong> ${escapeHtml(formatAnswerAlternatives(result.correctAnswers) || 'Ikke oppgitt')}</p>
                                 <p>${escapeHtml(result.explanation)}</p>
                                 ${result.skillId ? renderGrammarLessonLinks([{ skillId: result.skillId, correct: result.correct, answered: true }]) : ''}
                             </details>`).join('')}
@@ -22301,7 +22306,7 @@ Vil du øve på ${pronoun} likevel?`
 
             feedback.innerHTML = `
                 <div class="grammar-feedback ${evaluation.resultKind === 'accent_or_case_variant' ? 'near-miss' : 'incorrect'}">
-                    ${evaluation.resultKind === 'accent_or_case_variant' ? 'Nesten riktig — sjekk aksenten.' : '✗ Feil.'} Godkjente svar: <strong>${getVocabularyAcceptedAnswers(currentCard.card, currentCard.direction, expected).map(item => escapeHtml(item.value)).join(' / ')}</strong>
+                    ${evaluation.resultKind === 'accent_or_case_variant' ? 'Nesten riktig — sjekk aksenten.' : '✗ Feil.'} Godkjente svar: <strong>${formatAnswerAlternatives(getVocabularyAcceptedAnswers(currentCard.card, currentCard.direction, expected).map(item => escapeHtml(item.value)))}</strong>
                 </div>
                 ${renderStudentFeedbackButton({itemRef:`vocab:${currentCard.card.no}:${currentCard.card.es}:${currentCard.direction}`,source:'gloser',prompt:getVocabPromptText(currentCard),studentAnswer:input.value,expectedAnswer:expected})}
             `;

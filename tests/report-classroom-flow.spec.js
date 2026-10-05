@@ -4,13 +4,13 @@ import { pathToFileURL } from 'node:url';
 const appUrl = pathToFileURL(path.resolve('index.html')).toString();
 
 for (const width of [390, 1440]) {
-  test(`F13: first action starts the level test at ${width}px`, async ({ page }) => {
+  test(`F13: first action starts the daily mixed quiz at ${width}px`, async ({ page }) => {
     await page.setViewportSize({ width, height: 900 }); await page.goto(appUrl);
     await page.locator('#studentNameInput').fill('Test'); await page.locator('.login-btn-primary').click();
-    await expect(page.locator('#homeStartMixedQuizBtn')).toBeEnabled();
+    await expect(page.locator('#homeStartMixedQuizBtn')).toHaveText('Start dagens quiz');
     await page.locator('#homeStartMixedQuizBtn').click();
-    expect(await page.evaluate(() => loadDiagnosisState().status)).toBe('in_progress');
-    await expect(page.locator('#diagnosisPanel')).toBeVisible();
+    expect(await page.evaluate(() => loadDiagnosisState().status)).toBe('not_started');
+    await expect(page.locator('#mixedQuizStudy')).toBeVisible();
   });
 }
 

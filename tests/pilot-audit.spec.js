@@ -16,18 +16,18 @@ const completedDiagnosis = {
 };
 
 test.describe('skolestart pilot audit', () => {
-  test('fresh pupil sees a diagnosis-first start flow', async ({ page }) => {
+  test('fresh pupil sees the daily quiz as the first action', async ({ page }) => {
     await page.goto(appUrl);
     await page.locator('#studentNameInput').fill('Pilot-elev-1');
     await page.getByRole('button', { name: 'Start' }).click();
 
     await expect(page.locator('#homePage')).toBeVisible();
-    await expect(page.locator('#diagnosisPanel')).toContainText('Finn nivået mitt');
-    await expect(page.locator('#homeStartMixedQuizBtn')).toHaveText('Start nivåtest');
+    await expect(page.locator('#homeStartMixedQuizBtn')).toHaveText('Start dagens quiz');
+    await expect(page.locator('#homePrimaryContent')).toContainText('Dagens quiz');
     await expect(page.locator('#homeStartMixedQuizBtn')).toBeEnabled();
   });
 
-  test('imported progress restores the pupil without requiring diagnosis again', async ({ page }) => {
+  test('imported progress restores the pupil without forcing a level test', async ({ page }) => {
     await page.goto(appUrl);
 
     await page.evaluate(() => {
@@ -44,7 +44,7 @@ test.describe('skolestart pilot audit', () => {
     });
 
     await expect(page.locator('#homePage')).toBeVisible();
-    await expect(page.locator('#diagnosisPanel')).toContainText('Nivåtest hoppet over');
+    await expect(page.locator('#homePrimaryContent')).toContainText('Repeter gloser');
     await expect(page.getByRole('button', { name: 'Start dagens quiz' })).toBeEnabled();
   });
 
