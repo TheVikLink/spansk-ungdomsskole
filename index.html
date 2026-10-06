@@ -7,7 +7,7 @@
     <meta name="theme-color" content="#dc2626">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Crect width='192' height='192' rx='36' fill='%23dc2626'/%3E%3Ctext x='96' y='122' text-anchor='middle' font-size='96'%3E🇪🇸%3C/text%3E%3C/svg%3E">
     <link rel="manifest" href="./manifest.webmanifest">
-    <meta name="app-build" content="1f93e593c2ccb9a3">
+    <meta name="app-build" content="fc18a0795a6faaa3">
     <link href="./dist/tailwind.css" rel="stylesheet">
 </head>
 <body>
@@ -462,7 +462,7 @@
                     <span class="assignment-dropzone-hint">assignment-v1 JSON med gloser og ukemål</span>
                     <input type="file" id="assignmentFileInput" accept=".json,application/json" onchange="handleAssignmentFileInput(event)">
                 </label>
-                <p class="homework-hint" id="assignmentImportStatus"></p>
+                <p class="homework-hint" id="assignmentImportStatus" role="status" aria-atomic="true"></p>
                 <div class="active-assignment-panel" id="activeAssignmentPanel">
                     <!-- Fylles inn dynamisk -->
                 </div>
@@ -498,29 +498,33 @@
                             <textarea id="builderInstructions" class="add-word-input" rows="3" autocomplete="off">Øv på leksen og lag PDF-rapport når du er ferdig.</textarea>
                         </label>
 
+                        <p class="homework-hint">Kryss av for innholdet du vil ha med. Minutter er et valgfritt mål; 0 betyr at aktiviteten ikke har et tidsmål.</p>
                         <div class="assignment-builder-columns">
                             <div>
                                 <h4>Gloser</h4>
-                                <div id="builderVocabCategories" class="assignment-builder-options"></div>
+                                <div id="builderVocabCategories" class="assignment-builder-options" role="group" aria-label="Gloser i leksepakken" aria-describedby="builderVocabError"></div>
+                                <p id="builderVocabError" class="homework-hint text-amber-800"></p>
                                 <label class="add-word-field mt-3">
                                     <span>Minutter gloser</span>
-                                    <input type="number" id="builderVocabMinutes" class="add-word-input" min="0" max="180" value="10">
+                                    <input type="number" id="builderVocabMinutes" class="add-word-input" min="0" max="180" value="0" aria-describedby="builderVocabError">
                                 </label>
                             </div>
                             <div>
                                 <h4>Verb</h4>
-                                <div id="builderVerbFocuses" class="assignment-builder-options"></div>
+                                <div id="builderVerbFocuses" class="assignment-builder-options" role="group" aria-label="Verb i leksepakken" aria-describedby="builderVerbError"></div>
+                                <p id="builderVerbError" class="homework-hint text-amber-800"></p>
                                 <label class="add-word-field mt-3">
                                     <span>Minutter verb</span>
-                                    <input type="number" id="builderVerbMinutes" class="add-word-input" min="0" max="180" value="5">
+                                    <input type="number" id="builderVerbMinutes" class="add-word-input" min="0" max="180" value="0" aria-describedby="builderVerbError">
                                 </label>
                             </div>
                             <div>
                                 <h4>Grammatikk</h4>
-                                <div id="builderGrammarTopics" class="assignment-builder-options"></div>
+                                <div id="builderGrammarTopics" class="assignment-builder-options" role="group" aria-label="Grammatikk i leksepakken" aria-describedby="builderGrammarError"></div>
+                                <p id="builderGrammarError" class="homework-hint text-amber-800"></p>
                                 <label class="add-word-field mt-3">
                                     <span>Minutter grammatikk</span>
-                                    <input type="number" id="builderGrammarMinutes" class="add-word-input" min="0" max="180" value="5">
+                                    <input type="number" id="builderGrammarMinutes" class="add-word-input" min="0" max="180" value="0" aria-describedby="builderGrammarError">
                                 </label>
                             </div>
                         </div>
@@ -528,7 +532,15 @@
                         <div class="button-group mt-4">
                             <button class="btn btn-primary" onclick="downloadTeacherAssignmentPackage()">Last ned leksepakke</button>
                         </div>
-                        <p class="homework-hint" id="assignmentBuilderStatus"></p>
+                        <p class="homework-hint" id="assignmentBuilderStatus" role="status" aria-atomic="true"></p>
+                        <div id="assignmentPupilHandoff" hidden>
+                            <label class="add-word-field mt-4" for="assignmentPupilInstructions">
+                                <span>Elevinstruks du kan dele sammen med leksefilen</span>
+                                <textarea id="assignmentPupilInstructions" class="add-word-input" rows="10" readonly></textarea>
+                            </label>
+                            <button type="button" class="btn btn-outline mt-3" onclick="copyAssignmentPupilInstructions()">Kopier elevinstruksen</button>
+                            <p id="assignmentInstructionsStatus" class="homework-hint" role="status"></p>
+                        </div>
                     </div>
                 </details>
             </div>
@@ -2605,9 +2617,33 @@
             }
         }
         function selectListeningStoryOption(id){ if(!listeningState||listeningState.submitted)return; listeningState.selectedOptionId=id; document.getElementById('listeningStoryCheckBtn')?.removeAttribute('disabled'); }
-        function renderListeningStoryQuestion(){ const state=listeningState, question=state.story.questions[state.questionIndex]; state.submitted=false; document.getElementById('listeningExercise').innerHTML=`<div class="study-header"><button class="btn btn-outline btn-sm" onclick="endListeningStory()">✕ Avslutt</button><span>Spørsmål ${state.questionIndex+1} / ${state.story.questions.length}</span></div><h2>${escapeHtml(state.story.title)}</h2><fieldset class="listening-question"><legend>${escapeHtml(question.prompt)}</legend>${shuffleArray(question.options).map(option=>`<label class="listening-option"><input type="radio" name="listeningStoryAnswer" value="${escapeHtml(option.id)}" onchange="selectListeningStoryOption(this.value)"><span>${escapeHtml(option.text)}</span></label>`).join('')}</fieldset><div id="listeningStoryFeedback" class="dictation-solution hidden" aria-live="polite"></div><button id="listeningStoryCheckBtn" class="btn btn-primary" disabled onclick="submitListeningStoryAnswer()">Sjekk svaret</button>`; }
+        function renderListeningQuestionAudio(story) {
+            return `<p>Lytt igjen når du trenger det. Svaret ditt beholdes mens du spiller av.</p>
+                <audio id="listeningQuestionAudio" class="w-full max-w-full" controls preload="metadata" ${location.protocol.startsWith('http') ? 'crossorigin="anonymous"' : ''} src="${listeningAudioUrl(story)}" aria-label="Hør hele historien igjen" onloadedmetadata="setListeningQuestionAudioStatus(this, true)" onerror="setListeningQuestionAudioStatus(this, false)"></audio>
+                <p id="listeningQuestionAudioStatus" role="status">Laster lyd …</p>
+                <p id="listeningQuestionAudioError" class="hidden" role="alert">Lyden er ikke tilgjengelig. Koble til nett og prøv igjen, eller velg en historie du har lastet ned. <button type="button" class="btn btn-outline btn-sm" onclick="retryListeningQuestionAudio()">Prøv lyden igjen</button></p>`;
+        }
+        function setListeningQuestionAudioStatus(audio, ready) {
+            if (!listeningState || audio !== document.getElementById('listeningQuestionAudio')) return;
+            document.getElementById('listeningQuestionAudioStatus').textContent = ready
+                ? 'Lyden er klar. Du kan lytte igjen før eller etter at du svarer.' : 'Lyden er ikke tilgjengelig.';
+            document.getElementById('listeningQuestionAudioError').classList.toggle('hidden', ready);
+        }
+        function retryListeningQuestionAudio() {
+            const audio = document.getElementById('listeningQuestionAudio');
+            if (!listeningState || !audio) return;
+            document.getElementById('listeningQuestionAudioError').classList.add('hidden');
+            document.getElementById('listeningQuestionAudioStatus').textContent = 'Laster lyd …';
+            audio.load();
+        }
+        function renderListeningStoryQuestion(){
+            const state=listeningState, question=state.story.questions[state.questionIndex];
+            document.querySelector('#listeningExercise audio')?.pause();
+            state.submitted=false;
+            document.getElementById('listeningExercise').innerHTML=`<div class="study-header"><button class="btn btn-outline btn-sm" onclick="endListeningStory()">✕ Avslutt</button><span>Spørsmål ${state.questionIndex+1} / ${state.story.questions.length}</span></div><h2>${escapeHtml(state.story.title)}</h2>${renderListeningQuestionAudio(state.story)}<fieldset class="listening-question"><legend>${escapeHtml(question.prompt)}</legend>${shuffleArray(question.options).map(option=>`<label class="listening-option"><input type="radio" name="listeningStoryAnswer" value="${escapeHtml(option.id)}" onchange="selectListeningStoryOption(this.value)"><span>${escapeHtml(option.text)}</span></label>`).join('')}</fieldset><div id="listeningStoryFeedback" class="dictation-solution hidden" aria-live="polite"></div><button id="listeningStoryCheckBtn" class="btn btn-primary" disabled onclick="submitListeningStoryAnswer()">Sjekk svaret</button>`;
+        }
         function submitListeningStoryAnswer(){ const state=listeningState, question=state?.story?.questions[state.questionIndex]; if(!question||!state.selectedOptionId||state.submitted)return; state.submitted=true; state.answers[state.questionIndex]=state.selectedOptionId; const correct=state.selectedOptionId===question.correctOptionId, answer=question.options.find(option=>option.id===question.correctOptionId); const feedback=document.getElementById('listeningStoryFeedback'); feedback.innerHTML=`<strong>${correct?'Riktig':'Ikke helt'}</strong><p>Riktig svar: ${escapeHtml(answer.text)}</p><p>${escapeHtml(question.explanation)}</p>`; feedback.classList.remove('hidden'); document.querySelectorAll('input[name="listeningStoryAnswer"]').forEach(input=>input.disabled=true); const button=document.getElementById('listeningStoryCheckBtn'); button.textContent=state.questionIndex===state.story.questions.length-1?'Se resultatet':'Neste spørsmål'; button.onclick=nextListeningStoryQuestion; button.removeAttribute('disabled'); }
-        function nextListeningStoryQuestion(){ if(!listeningState?.submitted)return; if(listeningState.questionIndex<listeningState.story.questions.length-1){ listeningState.questionIndex++; listeningState.selectedOptionId=''; renderListeningStoryQuestion(); } else renderListeningStoryCompletion(); }
+        function nextListeningStoryQuestion(){ if(!listeningState?.submitted)return; document.querySelector('#listeningExercise audio')?.pause(); if(listeningState.questionIndex<listeningState.story.questions.length-1){ listeningState.questionIndex++; listeningState.selectedOptionId=''; renderListeningStoryQuestion(); } else renderListeningStoryCompletion(); }
         function renderListeningStoryCompletion(){ const state=listeningState, correct=state.answers.filter((answer,index)=>answer===state.story.questions[index].correctOptionId).length; document.getElementById('listeningExercise').innerHTML=`<div class="completion-screen mx-auto max-w-5xl px-4 py-8 sm:px-8"><div class="study-header"><button class="btn btn-outline btn-sm" onclick="endListeningStory()">✕ Tilbake</button></div><h2>Lytteforståelsen er ferdig!</h2><p id="listeningStoryResult" aria-live="polite">Du fikk ${correct} av ${state.story.questions.length} riktige.</p><details id="listeningStoryTextSupport"><summary>Vis tekststøtte og oversettelse</summary><div class="completion-reading"><section><h3>Spansk tekst</h3><p>${escapeHtml(state.story.transcript)}</p></section><section><h3>Norsk oversettelse</h3><p>${escapeHtml(state.story.translation)}</p></section></div></details></div>`; }
         function endListeningStory(){ document.querySelector('#listeningExercise audio')?.pause(); listeningState=null; if(activeSessionType==='listening') activeSessionType=null; document.getElementById('listeningExercise').innerHTML=''; document.getElementById('listeningExercise').classList.add('hidden'); document.getElementById('listeningOverview').classList.remove('hidden'); document.getElementById('dictationOverview').classList.remove('hidden'); renderListeningOverview(); }
         function dictationAudioErrorMarkup() {
@@ -16138,7 +16174,7 @@
         function importAssignmentPackage(data) {
             const assignment = normalizeAssignmentPackage(data);
             if (assignment.id === activeAssignment?.id) assignment.importedAt = activeAssignment.importedAt || assignment.importedAt;
-            const summary = analyzeTeacherWordImport(assignment.vocabulary);
+            const summary = analyzeTeacherWordImport(assignment.vocabulary, cards, { preserveExistingPairs: true });
             const result = applyTeacherWordImport(summary, { assignmentId: assignment.id });
 
             activeAssignment = {
@@ -16147,6 +16183,7 @@
                 importedWords: result.imported,
                 skippedWords: result.skipped
             };
+            activeAssignment.vocabularyCount = resolveAssignmentVocabularyCards(activeAssignment).length;
             saveActiveAssignment();
 
             return {
@@ -16167,7 +16204,7 @@
 
             const resolved = [];
             const seen = new Set();
-            assignment.vocabulary.forEach(word => {
+            assignment.vocabulary.flatMap(word => getTeacherWordVariants(word, cardList, true)).forEach(word => {
                 const pairKey = getVocabPairKey(word.norsk, word.spansk);
                 const categoryKey = normalizeCategorySlug(word.category);
                 const card = cardList.find(candidate =>
@@ -16203,6 +16240,18 @@
             });
         }
 
+        function getAssignmentImportFeedback(result) {
+            const count = resolveAssignmentVocabularyCards().length;
+            if (!count) return activeAssignment?.vocabulary?.length
+                ? `${result.message}. Ingen gloser i leksepakken er tilgjengelige. Be læreren kontrollere leksefilen.`
+                : `${result.message}.`;
+            const existing = Math.max(0, count - result.importedWords);
+            const ready = `${count} ${count === 1 ? 'glose' : 'gloser'} i leksepakken er ${count === 1 ? 'klar' : 'klare'}.`;
+            const added = result.importedWords ? `${result.importedWords} ${result.importedWords === 1 ? 'ny glose' : 'nye gloser'} lagt til.` : '';
+            const reused = existing ? `${existing} ${existing === 1 ? 'glose' : 'gloser'} finnes allerede i ordlisten og brukes i leksen.` : '';
+            return [result.message + '.', ready, added, reused].filter(Boolean).join(' ');
+        }
+
         async function importAssignmentFile(file) {
             if (!file) return null;
 
@@ -16210,12 +16259,14 @@
                 const data = await readJsonFile(file);
                 const result = importAssignmentPackage(data);
                 renderHomeworkPage();
+                const feedback = getAssignmentImportFeedback(result);
+                const unavailableVocabulary = activeAssignment.vocabulary.length > 0 && resolveAssignmentVocabularyCards().length === 0;
                 const statusEl = document.getElementById('assignmentImportStatus');
                 if (statusEl) {
-                    statusEl.textContent = `${result.message}. ${result.importedWords} gloser lagt til.`;
-                    statusEl.className = 'homework-hint text-emerald-500';
+                    statusEl.textContent = feedback;
+                    statusEl.className = unavailableVocabulary ? 'homework-hint text-amber-800' : 'homework-hint text-emerald-500';
                 }
-                showToast(result.message, 'success');
+                showToast(unavailableVocabulary ? feedback : result.message, unavailableVocabulary ? 'error' : 'success');
                 return result;
             } catch (error) {
                 const statusEl = document.getElementById('assignmentImportStatus');
@@ -16261,11 +16312,14 @@
             const verbRoot = document.getElementById('builderVerbFocuses');
             const grammarRoot = document.getElementById('builderGrammarTopics');
             if (!categoryRoot || !verbRoot || !grammarRoot) return;
+            const selectedVocabulary = new Set(getCheckedBuilderValues('[data-builder-vocab-category]'));
+            const selectedVerbs = new Set(getCheckedBuilderValues('[data-builder-verb-focus]'));
+            const selectedGrammar = new Set(getCheckedBuilderValues('[data-builder-grammar-topic]'));
 
             const categories = Object.entries(getCategories()).sort(([a], [b]) => a.localeCompare(b, 'no'));
             categoryRoot.innerHTML = categories.map(([name, data]) => `
                 <label class="assignment-builder-choice">
-                    <input type="checkbox" value="${escapeHtml(name)}" data-builder-vocab-category>
+                    <input type="checkbox" value="${escapeHtml(name)}" data-builder-vocab-category aria-describedby="builderVocabError" ${selectedVocabulary.has(name) ? 'checked' : ''}>
                     <span>${getCategoryEmoji(name)} ${capitalizeFirst(name)} (${data.count})</span>
                 </label>
             `).join('');
@@ -16278,16 +16332,16 @@
                 'stem-o-ue': 'Stammeendring o-ue',
                 'stem-e-i': 'Stammeendring e-i'
             };
-            verbRoot.innerHTML = Object.entries(verbFocusLabels).map(([value, label], index) => `
+            verbRoot.innerHTML = Object.entries(verbFocusLabels).map(([value, label]) => `
                 <label class="assignment-builder-choice">
-                    <input type="checkbox" value="${value}" data-builder-verb-focus ${index === 0 ? 'checked' : ''}>
+                    <input type="checkbox" value="${value}" data-builder-verb-focus aria-describedby="builderVerbError" ${selectedVerbs.has(value) ? 'checked' : ''}>
                     <span>${label}</span>
                 </label>
             `).join('');
 
             grammarRoot.innerHTML = Object.values(grammarTopics).map(topic => `
                 <label class="assignment-builder-choice">
-                    <input type="checkbox" value="${topic.id}" data-builder-grammar-topic>
+                    <input type="checkbox" value="${topic.id}" data-builder-grammar-topic aria-describedby="builderGrammarError" ${selectedGrammar.has(topic.id) ? 'checked' : ''}>
                     <span>${topic.icon} ${topic.name}</span>
                 </label>
             `).join('');
@@ -16318,21 +16372,56 @@
             };
         }
 
+        function getAssignmentPupilInstructions(assignment) {
+            const actions = [];
+            if (assignment.vocabulary.length) actions.push('«Start gloser»');
+            if (assignment.verbFocuses.length) actions.push('«Start verb»');
+            for (const id of assignment.grammarTopics) {
+                const label = assignment.grammarTopics.length > 1 ? `Start grammatikk: ${grammarTopics[id].name}` : 'Start grammatikk';
+                actions.push(`«${label}»`);
+            }
+            return [
+                `Spansklekse: ${assignment.assignmentTitle}`,
+                '1. Åpne https://www.spansk123.no. Bruk navn eller elevkode etter avtale med læreren.',
+                '2. Velg «Lekse». Åpne «Flere områder» hvis «Lekse» ikke er synlig. Under «Hent leksepakke fra lærer» åpner du JSON-filen som følger med denne instruksen.',
+                `3. Start aktivitetene som er med i leksepakken: ${actions.join(', ')}. Følg instruksen og eventuelle tidsmål i pakken.`,
+                '4. Under «Lekse» velger du «Vis dagens oppsummering» eller «Vis ukens oppsummering». Rapporten kan skrives ut eller lagres som PDF. Del den med læreren slik dere har avtalt. Ingenting sendes automatisk.'
+            ].join('\n\n');
+        }
+
+        async function copyAssignmentPupilInstructions() {
+            const input = document.getElementById('assignmentPupilInstructions');
+            const status = document.getElementById('assignmentInstructionsStatus');
+            try {
+                await navigator.clipboard.writeText(input.value);
+                status.textContent = 'Elevinstruksen er kopiert. Del den sammen med leksefilen.';
+            } catch {
+                input.focus();
+                input.select();
+                status.textContent = 'Nettleseren kunne ikke kopiere. Instruksen er markert; kopier den manuelt.';
+            }
+        }
+
         function downloadTeacherAssignmentPackage() {
             const statusEl = document.getElementById('assignmentBuilderStatus');
+            document.getElementById('assignmentPupilHandoff').hidden = true;
+            document.getElementById('assignmentInstructionsStatus').textContent = '';
+            for (const area of ['Vocab', 'Verb', 'Grammar']) document.getElementById(`builder${area}Error`).textContent = '';
             try {
                 const assignment = buildTeacherAssignmentPackage(collectTeacherAssignmentBuilderInput());
                 const targets = assignment.minuteTargets;
-                if (targets.vocabulary > 0 && assignment.vocabulary.length === 0) {
-                    throw new Error('Velg minst én glosekategori, eller sett minutter gloser til 0');
-                }
-                if (targets.verbs > 0 && assignment.verbFocuses.length === 0) {
-                    throw new Error('Velg minst én verbgruppe, eller sett minutter verb til 0');
-                }
-                if (targets.grammar > 0 && assignment.grammarTopics.length === 0) {
-                    throw new Error('Velg minst én grammatikkoppgave, eller sett minutter grammatikk til 0');
+                const missingContent = [
+                    [targets.vocabulary, assignment.vocabulary.length, 'Vocab', '[data-builder-vocab-category]', 'Velg minst én glosekategori, eller sett minutter gloser til 0'],
+                    [targets.verbs, assignment.verbFocuses.length, 'Verb', '[data-builder-verb-focus]', 'Velg minst én verbgruppe, eller sett minutter verb til 0'],
+                    [targets.grammar, assignment.grammarTopics.length, 'Grammar', '[data-builder-grammar-topic]', 'Velg minst én grammatikkoppgave, eller sett minutter grammatikk til 0']
+                ].filter(([target, count]) => target > 0 && count === 0);
+                if (missingContent.length) {
+                    for (const [, , area, , message] of missingContent) document.getElementById(`builder${area}Error`).textContent = message;
+                    document.querySelector(missingContent[0][3])?.focus();
+                    throw new Error(missingContent.map(item => item[4]).join('. '));
                 }
                 if (assignment.vocabulary.length === 0 && assignment.verbFocuses.length === 0 && assignment.grammarTopics.length === 0) {
+                    document.querySelector('[data-builder-vocab-category]')?.focus();
                     throw new Error('Velg minst én glosekategori, verbgruppe eller grammatikkoppgave');
                 }
 
@@ -16349,10 +16438,12 @@
 
                 statusEl.textContent = 'Leksepakke laget med ' + assignment.vocabulary.length + ' gloser. Ord eleven allerede har, hoppes over som nye kort, men brukes fortsatt i lekseøkten. Del JSON-filen med elevene.';
                 statusEl.className = 'homework-hint text-emerald-500';
+                document.getElementById('assignmentPupilInstructions').value = getAssignmentPupilInstructions(assignment);
+                document.getElementById('assignmentPupilHandoff').hidden = false;
                 return assignment;
             } catch (error) {
                 statusEl.textContent = error.message;
-                statusEl.className = 'homework-hint text-amber-500';
+                statusEl.className = 'homework-hint text-amber-800';
                 return null;
             }
         }
@@ -17300,6 +17391,29 @@
             return new Set(getDueCards(cardList).map(item => item.card.id)).size;
         }
 
+        function getNextVocabularyReviewDate(cardList = cards) {
+            // getDueCards uses local midnight, not the current time. Round up to the
+            // first local midnight meeting its cutoff; calendar arithmetic preserves DST.
+            const dates = getFutureReviewCards(cardList).filter(item => !isLeechReviewItem(item)).map(item => {
+                const timestamp = new Date(getDirectionData(item.card, item.direction).nextReview);
+                const available = new Date(timestamp);
+                available.setHours(0, 0, 0, 0);
+                if (available < timestamp) available.setDate(available.getDate() + 1);
+                return available;
+            }).filter(date => Number.isFinite(date.getTime()));
+            return dates.length ? new Date(Math.min(...dates.map(date => date.getTime()))) : null;
+        }
+
+        function getHomeVocabularyReviewGuidance(reviewWordCount) {
+            if (reviewWordCount) return 'Økten starter med opptil 50 oppgaver.';
+            const nextDate = getNextVocabularyReviewDate();
+            if (nextDate) return `Neste repetisjon: ${nextDate.toLocaleDateString('nb-NO', { day: 'numeric', month: 'long', year: 'numeric' })}. Du kan øve på nye ord under Gloser i mellomtiden.`;
+            const hasPractised = cards.some(card => card.reviews > 0 || card.lastReview ||
+                card.noEs.repetitions > 0 || card.esNo.repetitions > 0 || card.noEs.lapses > 0 || card.esNo.lapses > 0);
+            return hasPractised ? 'Du har begynt å øve. Fortsett under Gloser med ord som trenger flere forsøk.'
+                : 'Øv på nye ord under Gloser, så kommer de tilbake her.';
+        }
+
         function startVocabularyReviewFromHome() {
             if (!getVocabularyReviewWordCount()) { renderHomePage(); return; }
             if (showPage('vocab') === false) return;
@@ -17339,7 +17453,7 @@
                         <span class="home-eyebrow">Gloser</span>
                         <h2 id="homeVocabularyReviewTitle">Repeter gloser</h2>
                         <p><strong id="homeVocabularyReviewCount">${reviewWordCount} ord ${reviewWordCount === 1 ? 'klart' : 'klare'} for repetisjon</strong></p>
-                        <p>${reviewWordCount ? 'Økten starter med opptil 50 oppgaver.' : 'Øv på nye ord under Gloser, så kommer de tilbake her.'}</p>
+                        <p id="homeVocabularyReviewGuidance">${getHomeVocabularyReviewGuidance(reviewWordCount)}</p>
                     </div>
                     <button type="button" class="btn btn-primary btn-large" aria-describedby="homeVocabularyReviewCount" onclick="startVocabularyReviewFromHome()" ${reviewWordCount ? '' : 'disabled'}>Start repetisjon</button>
                 </section>
@@ -23242,6 +23356,7 @@ Vil du øve på ${pronoun} likevel?`
                     <div class="conjugation-prompt">
                         <span class="pronoun">${pronouns[pronounIndex]}</span> + ${verb.infinitive}
                     </div>
+                    <p id="verbPronounMeaning" class="conjugation-translation"><span lang="es">${pronouns[pronounIndex]}</span> = ${pronounsNorwegian[pronounIndex]}</p>
 
                     <div class="conjugation-input-container">
                         <input type="text" class="conjugation-input" id="verbInput"
@@ -23653,6 +23768,14 @@ Vil du øve på ${pronoun} likevel?`
             return result;
         }
 
+        function getTeacherWordVariants(row, cardList, preserveExistingPairs = false) {
+            const word = normalizeImportedTeacherWord(row);
+            // Standard cards may contain slash-separated translations. Keep their
+            // identity/progress; expand new rows with the same rule used by lookup.
+            return preserveExistingPairs && teacherWordExistsInSameCategory(word, cardList)
+                ? [word] : splitAlternativeTranslations(word);
+        }
+
         function parseChapterVocabularyLine(line, category) {
             const trimmed = line.trim();
             if (!trimmed) return [];
@@ -23679,15 +23802,14 @@ Vil du øve på ${pronoun} likevel?`
                 .flatMap(line => parseChapterVocabularyLine(line, category));
         }
 
-        function analyzeTeacherWordImport(data, cardList = cards) {
+        function analyzeTeacherWordImport(data, cardList = cards, { preserveExistingPairs = false } = {}) {
             const rows = normalizeTeacherWordRows(data);
             const valid = [];
             const problems = [];
             const pendingKeys = new Set();
 
             rows.forEach((row, index) => {
-                const word = normalizeImportedTeacherWord(row);
-                const splits = splitAlternativeTranslations(word);
+                const splits = getTeacherWordVariants(row, cardList, preserveExistingPairs);
 
                 for (const splitWord of splits) {
                     const reason = validateTeacherWord(splitWord, index + 1, cardList, pendingKeys);
@@ -24612,8 +24734,9 @@ Vil du øve på ${pronoun} likevel?`
             const examples = (lesson.examples || []).map(example => `<div class="grammar-lesson-example"><p lang="es"><strong>${escapeHtml(example.es)}</strong></p><p>${escapeHtml(example.no)}</p></div>`).join('');
             const spanishInlineTerms = 'el|la|los|las|un|una|unos|unas|ser|estar|hay|soy|eres|es|somos|son|estoy|estás|está|estamos|están|alto|alta|altos|altas|inteligente|inteligentes|grande|grandes|gusta|gustan|me|te|le|nos|les';
             const formatGrammarTheoryText = text => escapeHtml(text).replace(new RegExp(`(?<![A-Za-zÀ-ÿ])(${spanishInlineTerms})(?![A-Za-zÀ-ÿ])`, 'gi'), '<strong lang="es">$1</strong>');
+            const practiceAction = `<div class="grammar-lesson-actions"><button type="button" class="btn btn-primary" onclick="startGrammarLessonPractice('${escapeHtml(lesson.id)}')">${escapeHtml(lesson.practice?.label || 'Øv på dette')}</button><span>Dette starter en ny økt.</span></div>`;
             const theorySections = (lesson.theorySections || []).map(section => `<section class="grammar-lesson-section"><h3>${escapeHtml(section.title)}</h3><p>${formatGrammarTheoryText(section.text)}</p>${Array.isArray(section.examples) && section.examples.length ? `<ul class="grammar-lesson-example-list">${section.examples.map(example => `<li lang="es">${formatGrammarTheoryText(example)}</li>`).join('')}</ul>` : ''}</section>`).join('');
-            return `<article class="grammar-lesson" aria-labelledby="grammarLessonTitle"><button type="button" class="btn btn-outline grammar-lesson-back" onclick="returnFromGrammarLesson()">← Tilbake til resultatet</button><p class="grammar-lesson-meta">${escapeHtml(lesson.level)} · ${escapeHtml(lesson.category)}</p><h2 id="grammarLessonTitle" tabindex="-1">${escapeHtml(lesson.title)}</h2><p class="grammar-lesson-goal"><strong>Læringsmål:</strong> ${formatGrammarTheoryText(lesson.learningGoal)}</p><p>${formatGrammarTheoryText(lesson.explanation)}</p>${theorySections}<div class="grammar-lesson-forms" aria-label="Grammatikkformer">${forms}</div><div class="grammar-lesson-examples"><h3>Eksempler</h3>${examples}</div><div class="grammar-lesson-tip"><strong>Husk dette:</strong> ${formatGrammarTheoryText(lesson.tip)}</div><div class="grammar-lesson-actions"><button type="button" class="btn btn-primary" onclick="startGrammarLessonPractice('${escapeHtml(lesson.id)}')">${escapeHtml(lesson.practice?.label || 'Øv på dette')}</button><span>Dette starter en ny økt.</span></div></article>`;
+            return `<article class="grammar-lesson" aria-labelledby="grammarLessonTitle"><button type="button" class="btn btn-outline grammar-lesson-back" onclick="returnFromGrammarLesson()">← Tilbake til resultatet</button><p class="grammar-lesson-meta">${escapeHtml(lesson.level)} · ${escapeHtml(lesson.category)}</p><h2 id="grammarLessonTitle" tabindex="-1">${escapeHtml(lesson.title)}</h2><p class="grammar-lesson-goal"><strong>Læringsmål:</strong> ${formatGrammarTheoryText(lesson.learningGoal)}</p><p>${formatGrammarTheoryText(lesson.explanation)}</p>${practiceAction}${theorySections}<div class="grammar-lesson-forms" aria-label="Grammatikkformer">${forms}</div><div class="grammar-lesson-examples"><h3>Eksempler</h3>${examples}</div><div class="grammar-lesson-tip"><strong>Husk dette:</strong> ${formatGrammarTheoryText(lesson.tip)}</div>${practiceAction}</article>`;
         }
 
         function openGrammarLesson(lessonId, triggerElement = null, entryPoint = 'result') {

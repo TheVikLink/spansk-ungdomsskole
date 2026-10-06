@@ -74,7 +74,7 @@ for (const width of [1440, 390]) {
     }
     await page.locator('#navGrammar').click();
     await page.locator('.grammar-topic-card[onclick="startGrammarTopic(\'articles\')"] .grammar-topic-theory-link').click();
-    await page.locator('#grammarLessonContent .grammar-lesson-actions button').click();
+    await page.locator('#grammarLessonContent .grammar-lesson-actions button').first().click();
     expect(await page.evaluate(() => grammarExercises.length)).toBe(14);
     for (let i = 0; i < 14; i++) {
       const answer = await page.evaluate(() => grammarExercises[grammarCurrentIndex].answer);

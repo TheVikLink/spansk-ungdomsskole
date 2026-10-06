@@ -21,7 +21,7 @@ test('F13: the bounded article lesson remains available through grammar navigati
   await page.locator('#navGrammar').click();
   await page.locator('.grammar-topic-card[onclick="startGrammarTopic(\'articles\')"] .grammar-topic-theory-link').click();
   await expect(page.locator('#grammarLessonPage')).toBeVisible();
-  await page.locator('.grammar-lesson-actions button').click();
+  await page.locator('.grammar-lesson-actions button').first().click();
   const skillIds = await page.evaluate(() => grammarExercises.map(exercise => exercise.skillId));
   expect(skillIds.length).toBeGreaterThan(0);
   expect(skillIds.every(id => ['a0.articles.definite_singular', 'a0.articles.definite_plural'].includes(id))).toBe(true);
