@@ -386,6 +386,7 @@ test.describe('teacher assignment packages', () => {
     await page.fill('#builderVocabMinutes', '12');
     await page.fill('#builderVerbMinutes', '7');
     await page.fill('#builderGrammarMinutes', '5');
+    await page.getByLabel('Vanlige -ar-verb', { exact: true }).check();
     await page.getByLabel(/Familie \(/).check();
     await page.locator('#builderGrammarTopics').getByLabel('❤️ Gustar').check();
 
