@@ -1,6 +1,7 @@
 import { createHash, randomBytes, timingSafeEqual } from 'node:crypto';
 import * as oidc from 'openid-client';
 import { decryptIdToken, encryptIdToken } from './session-service.js';
+import { markAuthFailure } from './auth-diagnostics.js';
 
 const hash = (value) => createHash('sha256').update(value).digest();
 const AUTH_CALLBACK = '/auth/callback';
@@ -72,27 +73,37 @@ export function createOidcService(pool, config, { random = randomBytes, clockTol
     },
 
     async finishLogin({ handle, callbackUrl }) {
-      if (typeof handle !== 'string' || handle.length > 100) throw new Error('Missing login transaction');
-      const claimed = await pool.query(
-        `UPDATE oidc_transaction SET consumed_at=now()
-         WHERE handle_hash=$1 AND kind='login' AND consumed_at IS NULL AND expires_at>now()
-         RETURNING expected_state,expected_nonce,encrypted_pkce_verifier`,
-        [hash(handle)],
-      );
-      if (claimed.rowCount !== 1) throw new Error('Login transaction is missing, expired or already used');
-      const transaction = claimed.rows[0];
-      const client = await configuration();
-      const tokens = await oidc.authorizationCodeGrant(client, new URL(callbackUrl), {
-        pkceCodeVerifier: decryptIdToken(transaction.encrypted_pkce_verifier, config.sessionSecret),
-        expectedState: transaction.expected_state,
-        expectedNonce: transaction.expected_nonce,
-      });
-      const claims = tokens.claims();
-      if (!claims?.sub || typeof claims.sub !== 'string' || claims.iss !== config.oidc.issuer) throw new Error('OIDC identity claims are incomplete');
-      const userInfo = await oidc.fetchUserInfo(client, tokens.access_token, claims.sub);
-      const displayName = typeof userInfo.name === 'string' ? userInfo.name.trim() : '';
-      if (userInfo.sub !== claims.sub || !displayName || displayName.length > 120) throw new Error('Required Feide display-name claim is missing or inconsistent');
-      return { issuer: claims.iss, subject: claims.sub, displayName, idToken: tokens.id_token, claims: { acr: claims.acr ?? null } };
+      let failureStage = 'login_transaction';
+      try {
+        if (typeof handle !== 'string' || handle.length > 100) throw new Error('Missing login transaction');
+        const claimed = await pool.query(
+          `UPDATE oidc_transaction SET consumed_at=now()
+           WHERE handle_hash=$1 AND kind='login' AND consumed_at IS NULL AND expires_at>now()
+           RETURNING expected_state,expected_nonce,encrypted_pkce_verifier`,
+          [hash(handle)],
+        );
+        if (claimed.rowCount !== 1) throw new Error('Login transaction is missing, expired or already used');
+        const transaction = claimed.rows[0];
+        failureStage = 'oidc_configuration';
+        const client = await configuration();
+        failureStage = 'token_exchange';
+        const tokens = await oidc.authorizationCodeGrant(client, new URL(callbackUrl), {
+          pkceCodeVerifier: decryptIdToken(transaction.encrypted_pkce_verifier, config.sessionSecret),
+          expectedState: transaction.expected_state,
+          expectedNonce: transaction.expected_nonce,
+        });
+        failureStage = 'identity_claims';
+        const claims = tokens.claims();
+        if (!claims?.sub || typeof claims.sub !== 'string' || claims.iss !== config.oidc.issuer) throw new Error('OIDC identity claims are incomplete');
+        failureStage = 'userinfo';
+        const userInfo = await oidc.fetchUserInfo(client, tokens.access_token, claims.sub);
+        failureStage = 'display_name';
+        const displayName = typeof userInfo.name === 'string' ? userInfo.name.trim() : '';
+        if (userInfo.sub !== claims.sub || !displayName || displayName.length > 120) throw new Error('Required Feide display-name claim is missing or inconsistent');
+        return { issuer: claims.iss, subject: claims.sub, displayName, idToken: tokens.id_token, claims: { acr: claims.acr ?? null } };
+      } catch (error) {
+        throw markAuthFailure(error, failureStage);
+      }
     },
 
     async beginLogout(idToken) {

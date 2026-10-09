@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { createServer } from 'node:http';
 import { generateKeyPairSync, sign as cryptoSign } from 'node:crypto';
 import { createOidcService } from '../../server/oidc-service.js';
+import { authFailureSummary } from '../../server/auth-diagnostics.js';
 
 function makePair(kid) {
   const pair = generateKeyPairSync('rsa', { modulusLength: 2048 });
@@ -158,6 +159,26 @@ test('OIDC login rejects a missing subject, a mismatched UserInfo subject, or a 
     for (const invalid of ['missing-sub', 'userinfo-missing-sub', 'userinfo-mismatched-sub', 'userinfo-missing-name']) {
       provider.setFault(invalid);
       await assert.rejects(runLogin(provider, makePool()), undefined, `${invalid} must fail closed without linking an identity`);
+    }
+  } finally { await provider.close(); }
+});
+
+test('rejected OIDC responses identify the failing step without exposing protocol or identity values', async () => {
+  const provider = await startIssuer();
+  try {
+    for (const [fault, stage] of [
+      ['audience', 'token_exchange'],
+      ['userinfo-mismatched-sub', 'userinfo'],
+      ['userinfo-missing-name', 'display_name'],
+    ]) {
+      provider.setFault(fault);
+      await assert.rejects(runLogin(provider, makePool()), (error) => {
+        const summary = authFailureSummary(error);
+        assert.equal(summary.stage, stage);
+        assert.deepEqual(Object.keys(summary).sort(), ['category', 'stage']);
+        assert.doesNotMatch(JSON.stringify(summary), /synthetic-user|Syntetisk|nonce|access_token|id_token|http/);
+        return true;
+      });
     }
   } finally { await provider.close(); }
 });

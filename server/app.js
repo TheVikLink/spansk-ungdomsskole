@@ -11,6 +11,7 @@ import { createRevocationJournal } from './revocation-journal.js';
 import { deleteOwnAccount } from './account-deletion.js';
 import { createRateLimit } from './rate-limit.js';
 import { safeRouteLabel } from './safe-log-fields.js';
+import { authFailureSummary } from './auth-diagnostics.js';
 
 const hash = (value) => createHash('sha256').update(value).digest();
 const uuidSchema = z.string().uuid();
@@ -242,25 +243,33 @@ export function createSchoolApp({ config, appPool, journalPool, serveLocalStatic
 
   const handleAuthCallback = async (req, res) => {
     res.append('Set-Cookie', clearCookie(oidcTxCookieName(config), config));
+    let failureStage = 'callback_form';
     try {
       if (req.path !== '/auth/callback' || req.originalUrl !== '/auth/callback' || !req.is('application/x-www-form-urlencoded')) {
         throw new Error('Invalid OIDC callback request');
       }
       const callbackUrl = formPostCallbackUrl(req.body, config);
+      failureStage = 'login_transaction';
       const identity = await oidc.finishLogin({ handle: cookies(req)[oidcTxCookieName(config)], callbackUrl: callbackUrl.href });
+      failureStage = 'identity_link';
       const linked = await linkFeideIdentity(appPool, identity);
       const membership = linked.membership;
       let role = linked.status === 'pending' ? 'pending' : linked.schoolChoices ? 'select_school' : membership?.role;
       let schoolId = membership?.schoolId || null;
       let idToken = identity.idToken;
+      failureStage = 'school_access';
       if (!role) throw new Error('No authorized school membership');
       if (membership?.schoolId) await assertSchoolAccess(membership.schoolId);
+      failureStage = 'journal_access';
       if (membership?.grantId) await journal.assertNotRevoked(membership.grantId);
       if (role === 'select_school') role = 'select_school';
+      failureStage = 'session';
       const session = await sessions.create({ userId: linked.userId, schoolId, role, idToken, acr: identity.claims?.acr ?? null });
       setLoginCookies(res, config, session);
       return res.redirect(303, '/school');
-    } catch {
+    } catch (error) {
+      const failure = authFailureSummary(error, failureStage);
+      console.error(`School auth callback failed: stage=${failure.stage} category=${failure.category}`);
       clearLoginCookies(res, config);
       return res.status(403).type('html').send('<!doctype html><html lang="nb"><meta charset="utf-8"><title>Ingen tilgang</title><main><h1>Vi fant ingen aktiv skoletilgang</h1><p>Kontakt spansklæreren eller skolens administrator for å få tilgang. Logg inn på nytt etter at tilgangen er ordnet.</p><a href="/school">Tilbake</a></main></html>');
     }
