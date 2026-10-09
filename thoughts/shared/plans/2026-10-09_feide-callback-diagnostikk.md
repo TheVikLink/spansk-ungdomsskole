@@ -23,3 +23,8 @@ Kjør relevante lokale tester og nødvendige bygg/full gate i isolert PR-checkou
 ## Ekstern kontroll og fortsettelse
 
 Gjenta den allerede godkjente, avgrensede syntetiske cookie-testen når diagnostikkversjonen er klar. Lax gjenopprettes også ved feil; ikke utvid utløp eller andre tilganger. Les bare de faste diagnostikkfeltene fra riktig deployment og tidsvindu. Rett den påviste årsaken med separat nærtest og samme PR-/stagingporter; ikke svekk validering for å få innlogging grønn. En nyttig diagnostikk er ikke full Feide-verifikasjon. Deretter fortsetter eksisterende plan for eksplisitt syntetisk tenant, eksisterende provisioning, separat lærerinvitasjon, elevtilgang og lekse-resultatkontroll. Ekte skole, signering og produksjon er utenfor denne leveransen.
+
+
+## Diagnose presisert etter ekstern kjøring
+
+Utkast-PR #12 og Preview dpl_G632MuTJ8YeiGwqVw91aLQuQw75f er opprettet. Ekstern syntetisk Feide-retur ga token_exchange/unknown, ingen identitet/økt. Eksisterende Lax-cookie ble gjenopprettet med samme verdi/utløp. Vercels fire sensitive miljøverdier kan ikke pulls til lokal probe; ingen lokal probe ble kjørt. Utvid bare kategoriens lukkede tabell med faste navn for bibliotekets kjente offentlige koder: authentication_challenge, http_status, content_type, unsupported_operation, authorization_response, signature_key, server_metadata, protocol, invalid_argument og invalid_request. Ingen råkode, rånavn, meldinger, challenge, body, statusverdi eller secret serialiseres. Validering og catch er uendret. Nærtest og full gate/kritisk kodegjennomgang før samme isolerte Preview-delivery. Etterpresisering er ikke full ekstern innloggingsverifikasjon.

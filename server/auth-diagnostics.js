@@ -6,6 +6,20 @@ const stages = new Set([
 ]);
 const marked = new WeakMap();
 const categories = new Map([
+  ['OAUTH_WWW_AUTHENTICATE_CHALLENGE', 'authentication_challenge'],
+  ['OAUTH_RESPONSE_IS_NOT_CONFORM', 'http_status'],
+  ['OAUTH_RESPONSE_IS_NOT_JSON', 'content_type'],
+  ['OAUTH_UNSUPPORTED_OPERATION', 'unsupported_operation'],
+  ['OAUTH_AUTHORIZATION_RESPONSE_ERROR', 'authorization_response'],
+  ['OAUTH_KEY_SELECTION_FAILED', 'signature_key'],
+  ['OAUTH_MISSING_SERVER_METADATA', 'server_metadata'],
+  ['OAUTH_INVALID_SERVER_METADATA', 'server_metadata'],
+  ['OAUTH_HTTP_REQUEST_FORBIDDEN', 'protocol'],
+  ['OAUTH_REQUEST_PROTOCOL_FORBIDDEN', 'protocol'],
+  ['ERR_INVALID_ARG_TYPE', 'invalid_argument'],
+  ['ERR_INVALID_ARG_VALUE', 'invalid_argument'],
+  ['OAUTH_PARSE_ERROR', 'invalid_response'],
+  ['OAUTH_INVALID_REQUEST', 'invalid_request'],
   ['OAUTH_INVALID_RESPONSE', 'invalid_response'],
   ['OAUTH_RESPONSE_BODY_ERROR', 'invalid_response'],
   ['OAUTH_JWT_CLAIM_COMPARISON_FAILED', 'claims'],

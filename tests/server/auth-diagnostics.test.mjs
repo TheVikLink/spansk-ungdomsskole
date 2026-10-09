@@ -33,3 +33,27 @@ test('the installed OIDC library timeout and timestamp errors have fixed diagnos
   assert.equal(authFailureSummary({ code: 'OAUTH_TIMEOUT' }, 'token_exchange').category, 'network');
   assert.equal(authFailureSummary({ code: 'OAUTH_JWT_TIMESTAMP_CHECK_FAILED' }, 'token_exchange').category, 'claims');
 });
+
+
+test('remaining installed OAuth SDK errors map only to fixed public categories', () => {
+  for (const [code, category] of [
+    ['OAUTH_WWW_AUTHENTICATE_CHALLENGE', 'authentication_challenge'],
+    ['OAUTH_RESPONSE_IS_NOT_CONFORM', 'http_status'],
+    ['OAUTH_RESPONSE_IS_NOT_JSON', 'content_type'],
+    ['OAUTH_UNSUPPORTED_OPERATION', 'unsupported_operation'],
+    ['OAUTH_AUTHORIZATION_RESPONSE_ERROR', 'authorization_response'],
+    ['OAUTH_KEY_SELECTION_FAILED', 'signature_key'],
+    ['OAUTH_MISSING_SERVER_METADATA', 'server_metadata'],
+    ['OAUTH_INVALID_SERVER_METADATA', 'server_metadata'],
+    ['OAUTH_HTTP_REQUEST_FORBIDDEN', 'protocol'],
+    ['OAUTH_REQUEST_PROTOCOL_FORBIDDEN', 'protocol'],
+    ['ERR_INVALID_ARG_TYPE', 'invalid_argument'],
+    ['ERR_INVALID_ARG_VALUE', 'invalid_argument'],
+    ['OAUTH_PARSE_ERROR', 'invalid_response'],
+    ['OAUTH_INVALID_REQUEST', 'invalid_request'],
+  ]) {
+    const error = Object.freeze({ code, message: 'private', response: { secret: 'private' } });
+    assert.deepEqual(authFailureSummary(error, 'token_exchange'), { stage: 'token_exchange', category });
+    assert.doesNotMatch(JSON.stringify(authFailureSummary(error, 'token_exchange')), /private|secret|"response":/);
+  }
+});
