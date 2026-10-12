@@ -49,7 +49,19 @@ export function authFailureSummary(error, fallbackStage) {
     || (stages.has(fallbackStage) ? fallbackStage : 'unknown');
   const cause = ownValue(error, 'cause');
   // Only exact recognized values are classified; no cause or error is serialized.
-  const providerError = ownValue(error, 'error') || ownValue(cause, 'error');
+  let providerError = ownValue(error, 'error') || ownValue(cause, 'error');
+  // SDK challenges are a bounded list. Read data descriptors only, never iterate
+  // or invoke accessors on provider-controlled objects.
+  if (ownValue(error, 'code') === 'OAUTH_WWW_AUTHENTICATE_CHALLENGE') {
+    for (let index = 0; index < 4; index += 1) {
+      const challenge = ownValue(cause, String(index));
+      const parameters = ownValue(challenge, 'parameters');
+      if (ownValue(parameters, 'error') === 'invalid_client') {
+        providerError = 'invalid_client';
+        break;
+      }
+    }
+  }
   const category = providerError === 'invalid_client' ? 'client_authentication'
     : categories.get(ownValue(error, 'code')) || categories.get(ownValue(cause, 'code')) || 'unknown';
   return { stage, category };

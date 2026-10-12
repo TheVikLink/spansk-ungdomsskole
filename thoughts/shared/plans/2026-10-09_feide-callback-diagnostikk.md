@@ -28,3 +28,12 @@ Gjenta den allerede godkjente, avgrensede syntetiske cookie-testen når diagnost
 ## Diagnose presisert etter ekstern kjøring
 
 Utkast-PR #12 og Preview dpl_G632MuTJ8YeiGwqVw91aLQuQw75f er opprettet. Ekstern syntetisk Feide-retur ga token_exchange/unknown, ingen identitet/økt. Eksisterende Lax-cookie ble gjenopprettet med samme verdi/utløp. Vercels fire sensitive miljøverdier kan ikke pulls til lokal probe; ingen lokal probe ble kjørt. Utvid bare kategoriens lukkede tabell med faste navn for bibliotekets kjente offentlige koder: authentication_challenge, http_status, content_type, unsupported_operation, authorization_response, signature_key, server_metadata, protocol, invalid_argument og invalid_request. Ingen råkode, rånavn, meldinger, challenge, body, statusverdi eller secret serialiseres. Validering og catch er uendret. Nærtest og full gate/kritisk kodegjennomgang før samme isolerte Preview-delivery. Etterpresisering er ikke full ekstern innloggingsverifikasjon.
+
+
+## 12.10: Presis klassifisering av autentiseringsutfordring
+
+To eksterne returer 12.10, også etter eierens nøkkelrotasjon, gir token_exchange/authentication_challenge. Dette er fortsatt ingen appøkt. Avklar om Feide-konfigurasjonen også ble lagret, før ytterligere credentialendring. Ikke bytt autentiseringsmetode eller svekk validering.
+
+Hvis Feide-lagring er bekreftet og avvisningen består, utvid bare eksisterende authFailureSummary: SDK-typen WWWAuthenticateChallengeError lagrer strukturerte utfordringer i cause, som en liste med scheme/parameters. Gjenkjenn kun eksakt error=invalid_client fra own data descriptors for de første fire cause-oppføringene og bare ved eksakt offisiell WWW-kode. Returner eksisterende fast kategori client_authentication; ellers behold kategorien authentication_challenge. Ingen rå error, challenge, scheme, params, response, URL, status, hemmelighet eller feilmelding skal serialiseres. Ingen getters, iteratorer eller metoder på feildata kjøres. Bevar original feil, 403, transaksjonsforbruk og all OIDC-validering.
+
+Test-first med ekte offentlig SDK-feiltype på syntetisk Response; test unknown/hostile accessors/cause og fire-elementsgrense for at labels aldri lekker privat innhold. Kritisk plan-/diffgjennomgang, nærtest og påkrevd full gate før samme PR og isolert Preview; samme runtime-hashkontroll, readiness/arn1 og cookie-restaurering. Dette er mer presis feildiagnose, ikke bevis på feil kopiert nøkkel eller full ekstern innlogging.

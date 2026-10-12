@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { WWWAuthenticateChallengeError } from 'openid-client';
 import { markAuthFailure, authFailureSummary } from '../../server/auth-diagnostics.js';
 
 test('auth diagnostics preserve the original error but expose only closed stage/category values', () => {
@@ -56,4 +57,29 @@ test('remaining installed OAuth SDK errors map only to fixed public categories',
     assert.deepEqual(authFailureSummary(error, 'token_exchange'), { stage: 'token_exchange', category });
     assert.doesNotMatch(JSON.stringify(authFailureSummary(error, 'token_exchange')), /private|secret|"response":/);
   }
+});
+
+
+test('real SDK invalid_client challenge is classified without serializing its private parameters', () => {
+  const error = new WWWAuthenticateChallengeError('private error message', {
+    response: new Response('private raw response', { status: 401 }),
+    cause: [{ scheme: 'basic', parameters: { error: 'invalid_client', error_description: 'private secret' } }],
+  });
+  assert.equal(markAuthFailure(error, 'token_exchange'), error);
+  assert.deepEqual(authFailureSummary(error, 'callback_form'), { stage: 'token_exchange', category: 'client_authentication' });
+  assert.doesNotMatch(JSON.stringify(authFailureSummary(error, 'callback_form')), /private|invalid_client|parameters|scheme/);
+});
+
+test('challenge classification is gated, bounded and ignores getters and iterators', () => {
+  const challenge = { parameters: { error: 'invalid_client' } };
+  const hostile = { get parameters() { throw new Error('private'); } };
+  const hostileParameters = { parameters: { get error() { throw new Error('private'); } } };
+  for (const cause of [[], [hostile], [hostileParameters], [{ parameters: { error: 'private' } }], [null,null,null,null,challenge]]) {
+    Object.defineProperty(cause, Symbol.iterator, { value() { throw new Error('private'); } });
+    assert.deepEqual(authFailureSummary({ code: 'OAUTH_WWW_AUTHENTICATE_CHALLENGE', cause }, 'token_exchange'), { stage: 'token_exchange', category: 'authentication_challenge' });
+  }
+  const cause = [null,null,null,challenge];
+  assert.equal(authFailureSummary({ code: 'OAUTH_WWW_AUTHENTICATE_CHALLENGE', cause }, 'token_exchange').category, 'client_authentication');
+  assert.equal(authFailureSummary({ code: 'private', cause }, 'token_exchange').category, 'unknown');
+  assert.equal(authFailureSummary({ cause: { code: 'OAUTH_WWW_AUTHENTICATE_CHALLENGE', cause } }, 'token_exchange').category, 'authentication_challenge');
 });
