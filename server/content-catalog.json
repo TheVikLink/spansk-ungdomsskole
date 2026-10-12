@@ -1,0 +1,5924 @@
+{
+  "vocabulary": [
+    {
+      "no": "1",
+      "es": "uno",
+      "category": "tall",
+      "id": "vocab-0001"
+    },
+    {
+      "no": "2",
+      "es": "dos",
+      "category": "tall",
+      "id": "vocab-0002"
+    },
+    {
+      "no": "3",
+      "es": "tres",
+      "category": "tall",
+      "id": "vocab-0003"
+    },
+    {
+      "no": "4",
+      "es": "cuatro",
+      "category": "tall",
+      "id": "vocab-0004"
+    },
+    {
+      "no": "5",
+      "es": "cinco",
+      "category": "tall",
+      "id": "vocab-0005"
+    },
+    {
+      "no": "6",
+      "es": "seis",
+      "category": "tall",
+      "id": "vocab-0006"
+    },
+    {
+      "no": "7",
+      "es": "siete",
+      "category": "tall",
+      "id": "vocab-0007"
+    },
+    {
+      "no": "8",
+      "es": "ocho",
+      "category": "tall",
+      "id": "vocab-0008"
+    },
+    {
+      "no": "9",
+      "es": "nueve",
+      "category": "tall",
+      "id": "vocab-0009"
+    },
+    {
+      "no": "10",
+      "es": "diez",
+      "category": "tall",
+      "id": "vocab-0010"
+    },
+    {
+      "no": "11",
+      "es": "once",
+      "category": "tall",
+      "id": "vocab-0011"
+    },
+    {
+      "no": "12",
+      "es": "doce",
+      "category": "tall",
+      "id": "vocab-0012"
+    },
+    {
+      "no": "13",
+      "es": "trece",
+      "category": "tall",
+      "id": "vocab-0013"
+    },
+    {
+      "no": "14",
+      "es": "catorce",
+      "category": "tall",
+      "id": "vocab-0014"
+    },
+    {
+      "no": "15",
+      "es": "quince",
+      "category": "tall",
+      "id": "vocab-0015"
+    },
+    {
+      "no": "16",
+      "es": "dieciséis",
+      "category": "tall",
+      "id": "vocab-0016"
+    },
+    {
+      "no": "17",
+      "es": "diecisiete",
+      "category": "tall",
+      "id": "vocab-0017"
+    },
+    {
+      "no": "18",
+      "es": "dieciocho",
+      "category": "tall",
+      "id": "vocab-0018"
+    },
+    {
+      "no": "19",
+      "es": "diecinueve",
+      "category": "tall",
+      "id": "vocab-0019"
+    },
+    {
+      "no": "20",
+      "es": "veinte",
+      "category": "tall",
+      "id": "vocab-0020"
+    },
+    {
+      "no": "26",
+      "es": "veintiséis",
+      "category": "tall",
+      "id": "vocab-0021"
+    },
+    {
+      "no": "30",
+      "es": "treinta",
+      "category": "tall",
+      "id": "vocab-0022"
+    },
+    {
+      "no": "39",
+      "es": "treinta y nueve",
+      "category": "tall",
+      "id": "vocab-0023"
+    },
+    {
+      "no": "40",
+      "es": "cuarenta",
+      "category": "tall",
+      "id": "vocab-0024"
+    },
+    {
+      "no": "43",
+      "es": "cuarenta y tres",
+      "category": "tall",
+      "id": "vocab-0025"
+    },
+    {
+      "no": "50",
+      "es": "cincuenta",
+      "category": "tall",
+      "id": "vocab-0026"
+    },
+    {
+      "no": "54",
+      "es": "cincuenta y cuatro",
+      "category": "tall",
+      "id": "vocab-0027"
+    },
+    {
+      "no": "60",
+      "es": "sesenta",
+      "category": "tall",
+      "id": "vocab-0028"
+    },
+    {
+      "no": "62",
+      "es": "sesenta y dos",
+      "category": "tall",
+      "id": "vocab-0029"
+    },
+    {
+      "no": "70",
+      "es": "setenta",
+      "category": "tall",
+      "id": "vocab-0030"
+    },
+    {
+      "no": "78",
+      "es": "setenta y ocho",
+      "category": "tall",
+      "id": "vocab-0031"
+    },
+    {
+      "no": "80",
+      "es": "ochenta",
+      "category": "tall",
+      "id": "vocab-0032"
+    },
+    {
+      "no": "87",
+      "es": "ochenta y siete",
+      "category": "tall",
+      "id": "vocab-0033"
+    },
+    {
+      "no": "90",
+      "es": "noventa",
+      "category": "tall",
+      "id": "vocab-0034"
+    },
+    {
+      "no": "91",
+      "es": "noventa y uno",
+      "category": "tall",
+      "id": "vocab-0035"
+    },
+    {
+      "no": "100",
+      "es": "cien",
+      "category": "tall",
+      "id": "vocab-0036"
+    },
+    {
+      "no": "110",
+      "es": "ciento diez",
+      "category": "tall",
+      "id": "vocab-0037"
+    },
+    {
+      "no": "123",
+      "es": "ciento veintitrés",
+      "category": "tall",
+      "id": "vocab-0038"
+    },
+    {
+      "no": "200",
+      "es": "doscientos",
+      "category": "tall",
+      "id": "vocab-0039"
+    },
+    {
+      "no": "245",
+      "es": "doscientos cuarenta y cinco",
+      "category": "tall",
+      "id": "vocab-0040"
+    },
+    {
+      "no": "300",
+      "es": "trescientos",
+      "category": "tall",
+      "id": "vocab-0041"
+    },
+    {
+      "no": "400",
+      "es": "cuatrocientos",
+      "category": "tall",
+      "id": "vocab-0042"
+    },
+    {
+      "no": "500",
+      "es": "quinientos",
+      "category": "tall",
+      "id": "vocab-0043"
+    },
+    {
+      "no": "600",
+      "es": "seiscientos",
+      "category": "tall",
+      "id": "vocab-0044"
+    },
+    {
+      "no": "700",
+      "es": "setecientos",
+      "category": "tall",
+      "id": "vocab-0045"
+    },
+    {
+      "no": "800",
+      "es": "ochocientos",
+      "category": "tall",
+      "id": "vocab-0046"
+    },
+    {
+      "no": "900",
+      "es": "novecientos",
+      "category": "tall",
+      "id": "vocab-0047"
+    },
+    {
+      "no": "1000",
+      "es": "mil",
+      "category": "tall",
+      "id": "vocab-0048"
+    },
+    {
+      "no": "870",
+      "es": "ochocientos setenta",
+      "category": "tall",
+      "id": "vocab-0049"
+    },
+    {
+      "no": "1200",
+      "es": "mil doscientos",
+      "category": "tall",
+      "id": "vocab-0050"
+    },
+    {
+      "no": "1589",
+      "es": "mil quinientos ochenta y nueve",
+      "category": "tall",
+      "id": "vocab-0051"
+    },
+    {
+      "no": "2000",
+      "es": "dos mil",
+      "category": "tall",
+      "id": "vocab-0052"
+    },
+    {
+      "no": "4000",
+      "es": "cuatro mil",
+      "category": "tall",
+      "id": "vocab-0053"
+    },
+    {
+      "no": "10 000",
+      "es": "diez mil",
+      "category": "tall",
+      "id": "vocab-0054"
+    },
+    {
+      "no": "1945",
+      "es": "mil novecientos cuarenta y cinco",
+      "category": "tall",
+      "id": "vocab-0055"
+    },
+    {
+      "no": "1996",
+      "es": "mil novecientos noventa y seis",
+      "category": "tall",
+      "id": "vocab-0056"
+    },
+    {
+      "no": "2011",
+      "es": "dos mil once",
+      "category": "tall",
+      "id": "vocab-0057"
+    },
+    {
+      "no": "2019",
+      "es": "dos mil diecinueve",
+      "category": "tall",
+      "id": "vocab-0058"
+    },
+    {
+      "no": "Gratulerer med dagen",
+      "es": "¡Feliz cumpleaños!",
+      "category": "bursdag",
+      "id": "vocab-0059"
+    },
+    {
+      "no": "Når har du bursdag?",
+      "es": "¿Cuándo es tu cumpleaños?",
+      "category": "bursdag",
+      "id": "vocab-0060"
+    },
+    {
+      "no": "Bursdagen min er 7. juli",
+      "es": "Mi cumpleaños es el siete de julio",
+      "category": "bursdag",
+      "id": "vocab-0061"
+    },
+    {
+      "no": "Når er bursdagen til Marius?",
+      "es": "¿Cuándo es el cumpleaños de Marius?",
+      "category": "bursdag",
+      "id": "vocab-0062"
+    },
+    {
+      "no": "Bursdagen til Marius er 26. juni",
+      "es": "El cumpleaños de Marius es el veintiséis de junio",
+      "category": "bursdag",
+      "id": "vocab-0063"
+    },
+    {
+      "no": "hei",
+      "es": "hola",
+      "category": "hilsener",
+      "id": "vocab-0064"
+    },
+    {
+      "no": "takk",
+      "es": "gracias",
+      "category": "hilsener",
+      "id": "vocab-0065"
+    },
+    {
+      "no": "god morgen",
+      "es": "buenos días",
+      "category": "hilsener",
+      "id": "vocab-0066"
+    },
+    {
+      "no": "god dag",
+      "es": "buenos días",
+      "category": "hilsener",
+      "id": "vocab-0067"
+    },
+    {
+      "no": "god kveld",
+      "es": "buenas noches",
+      "category": "hilsener",
+      "id": "vocab-0068"
+    },
+    {
+      "no": "ha det",
+      "es": "adiós",
+      "category": "hilsener",
+      "id": "vocab-0069"
+    },
+    {
+      "no": "Norge",
+      "es": "Noruega",
+      "category": "land",
+      "id": "vocab-0070"
+    },
+    {
+      "no": "Sverige",
+      "es": "Suecia",
+      "category": "land",
+      "id": "vocab-0071"
+    },
+    {
+      "no": "Danmark",
+      "es": "Dinamarca",
+      "category": "land",
+      "id": "vocab-0072"
+    },
+    {
+      "no": "Finland",
+      "es": "Finlandia",
+      "category": "land",
+      "id": "vocab-0073"
+    },
+    {
+      "no": "Island",
+      "es": "Islandia",
+      "category": "land",
+      "id": "vocab-0074"
+    },
+    {
+      "no": "Russland",
+      "es": "Rusia",
+      "category": "land",
+      "id": "vocab-0075"
+    },
+    {
+      "no": "Tyskland",
+      "es": "Alemania",
+      "category": "land",
+      "id": "vocab-0076"
+    },
+    {
+      "no": "Østerrike",
+      "es": "Austria",
+      "category": "land",
+      "id": "vocab-0077"
+    },
+    {
+      "no": "Nederland",
+      "es": "Los Países Bajos",
+      "category": "land",
+      "id": "vocab-0078"
+    },
+    {
+      "no": "Frankrike",
+      "es": "Francia",
+      "category": "land",
+      "id": "vocab-0079"
+    },
+    {
+      "no": "Italia",
+      "es": "Italia",
+      "category": "land",
+      "id": "vocab-0080"
+    },
+    {
+      "no": "Belgia",
+      "es": "Bélgica",
+      "category": "land",
+      "id": "vocab-0081"
+    },
+    {
+      "no": "Spania",
+      "es": "España",
+      "category": "land",
+      "id": "vocab-0082"
+    },
+    {
+      "no": "Portugal",
+      "es": "Portugal",
+      "category": "land",
+      "id": "vocab-0083"
+    },
+    {
+      "no": "England",
+      "es": "Inglaterra",
+      "category": "land",
+      "id": "vocab-0084"
+    },
+    {
+      "no": "Irland",
+      "es": "Irlanda",
+      "category": "land",
+      "id": "vocab-0085"
+    },
+    {
+      "no": "Hellas",
+      "es": "Grecia",
+      "category": "land",
+      "id": "vocab-0086"
+    },
+    {
+      "no": "Sveits",
+      "es": "Suiza",
+      "category": "land",
+      "id": "vocab-0087"
+    },
+    {
+      "no": "rød",
+      "es": "rojo",
+      "category": "farger",
+      "id": "vocab-0088"
+    },
+    {
+      "no": "blå",
+      "es": "azul",
+      "category": "farger",
+      "id": "vocab-0089"
+    },
+    {
+      "no": "gul",
+      "es": "amarillo",
+      "category": "farger",
+      "id": "vocab-0090"
+    },
+    {
+      "no": "grønn",
+      "es": "verde",
+      "category": "farger",
+      "id": "vocab-0091"
+    },
+    {
+      "no": "grå",
+      "es": "gris",
+      "category": "farger",
+      "id": "vocab-0092"
+    },
+    {
+      "no": "brun",
+      "es": "marrón",
+      "category": "farger",
+      "id": "vocab-0093"
+    },
+    {
+      "no": "hvit",
+      "es": "blanco",
+      "category": "farger",
+      "id": "vocab-0094"
+    },
+    {
+      "no": "svart",
+      "es": "negro",
+      "category": "farger",
+      "id": "vocab-0095"
+    },
+    {
+      "no": "rosa",
+      "es": "rosa",
+      "category": "farger",
+      "id": "vocab-0096"
+    },
+    {
+      "no": "lilla (v)",
+      "es": "violeta",
+      "category": "farger",
+      "id": "vocab-0097"
+    },
+    {
+      "no": "oransje",
+      "es": "naranja",
+      "category": "farger",
+      "id": "vocab-0098"
+    },
+    {
+      "no": "turkis",
+      "es": "turquesa",
+      "category": "farger",
+      "id": "vocab-0099"
+    },
+    {
+      "no": "vinter",
+      "es": "el invierno",
+      "category": "vær",
+      "id": "vocab-0100"
+    },
+    {
+      "no": "vår",
+      "es": "la primavera",
+      "category": "vær",
+      "id": "vocab-0101"
+    },
+    {
+      "no": "sommer",
+      "es": "el verano",
+      "category": "vær",
+      "id": "vocab-0102"
+    },
+    {
+      "no": "høst",
+      "es": "el otoño",
+      "category": "vær",
+      "id": "vocab-0103"
+    },
+    {
+      "no": "det regner",
+      "es": "llueve",
+      "category": "vær",
+      "id": "vocab-0104"
+    },
+    {
+      "no": "det snør",
+      "es": "nieva",
+      "category": "vær",
+      "id": "vocab-0105"
+    },
+    {
+      "no": "det er klart / skyfritt",
+      "es": "está despejado",
+      "category": "vær",
+      "id": "vocab-0106"
+    },
+    {
+      "no": "det er overskyet",
+      "es": "está nublado",
+      "category": "vær",
+      "id": "vocab-0107"
+    },
+    {
+      "no": "det er fem grader",
+      "es": "hace cinco grados sobre cero",
+      "category": "vær",
+      "id": "vocab-0108"
+    },
+    {
+      "no": "det er fem kuldegrader",
+      "es": "hace cinco grados bajo cero",
+      "category": "vær",
+      "id": "vocab-0109"
+    },
+    {
+      "no": "det er fint vær",
+      "es": "hace buen tiempo",
+      "category": "vær",
+      "id": "vocab-0110"
+    },
+    {
+      "no": "det er dårlig vær",
+      "es": "hace mal tiempo",
+      "category": "vær",
+      "id": "vocab-0111"
+    },
+    {
+      "no": "det er sol",
+      "es": "hace sol",
+      "category": "vær",
+      "id": "vocab-0112"
+    },
+    {
+      "no": "det er vind",
+      "es": "hace viento",
+      "category": "vær",
+      "id": "vocab-0113"
+    },
+    {
+      "no": "det blåser",
+      "es": "hace viento",
+      "category": "vær",
+      "id": "vocab-0114"
+    },
+    {
+      "no": "det er varmt",
+      "es": "hace calor",
+      "category": "vær",
+      "id": "vocab-0115"
+    },
+    {
+      "no": "det er kaldt",
+      "es": "hace frío",
+      "category": "vær",
+      "id": "vocab-0116"
+    },
+    {
+      "no": "jul",
+      "es": "La Navidad",
+      "category": "høytider",
+      "id": "vocab-0117"
+    },
+    {
+      "no": "nyttårsaften",
+      "es": "La Nochevieja",
+      "category": "høytider",
+      "id": "vocab-0118"
+    },
+    {
+      "no": "julaften",
+      "es": "La Nochebuena",
+      "category": "høytider",
+      "id": "vocab-0119"
+    },
+    {
+      "no": "sankthansaften",
+      "es": "La Noche de San Juan",
+      "category": "høytider",
+      "id": "vocab-0120"
+    },
+    {
+      "no": "påskeuken",
+      "es": "La Semana Santa",
+      "category": "høytider",
+      "id": "vocab-0121"
+    },
+    {
+      "no": "Valentinsdagen",
+      "es": "El Día de San Valentín",
+      "category": "høytider",
+      "id": "vocab-0122"
+    },
+    {
+      "no": "nasjonaldagen",
+      "es": "El día Nacional",
+      "category": "høytider",
+      "id": "vocab-0123"
+    },
+    {
+      "no": "helligtrekongersdag",
+      "es": "el Día de Reyes",
+      "category": "høytider",
+      "id": "vocab-0124"
+    },
+    {
+      "no": "allehelgensdagen",
+      "es": "el Día de Todos los Santos",
+      "category": "høytider",
+      "id": "vocab-0125"
+    },
+    {
+      "no": "fødselsdag",
+      "es": "El Cumpleaños",
+      "category": "høytider",
+      "id": "vocab-0126"
+    },
+    {
+      "no": "konfirmasjon",
+      "es": "La Confirmación",
+      "category": "høytider",
+      "id": "vocab-0127"
+    },
+    {
+      "no": "barnedåp",
+      "es": "El Bautizo",
+      "category": "høytider",
+      "id": "vocab-0128"
+    },
+    {
+      "no": "bryllup",
+      "es": "La Boda",
+      "category": "høytider",
+      "id": "vocab-0129"
+    },
+    {
+      "no": "begravelse (f)",
+      "es": "el Funeral",
+      "category": "høytider",
+      "id": "vocab-0130"
+    },
+    {
+      "no": "begravelse (ord på e)",
+      "es": "entierro",
+      "category": "høytider",
+      "id": "vocab-0131"
+    },
+    {
+      "no": "høy",
+      "es": "alto",
+      "category": "utseende",
+      "id": "vocab-0132"
+    },
+    {
+      "no": "lav",
+      "es": "bajo",
+      "category": "utseende",
+      "id": "vocab-0133"
+    },
+    {
+      "no": "mørkhåret",
+      "es": "moreno",
+      "category": "utseende",
+      "id": "vocab-0134"
+    },
+    {
+      "no": "blond",
+      "es": "rubio",
+      "category": "utseende",
+      "id": "vocab-0135"
+    },
+    {
+      "no": "rødhåret",
+      "es": "pelirrojo",
+      "category": "utseende",
+      "id": "vocab-0136"
+    },
+    {
+      "no": "skallet",
+      "es": "calvo",
+      "category": "utseende",
+      "id": "vocab-0137"
+    },
+    {
+      "no": "pen/kjekk",
+      "es": "guapo",
+      "category": "utseende",
+      "id": "vocab-0138"
+    },
+    {
+      "no": "vakker",
+      "es": "hermoso",
+      "category": "utseende",
+      "id": "vocab-0139"
+    },
+    {
+      "no": "blå øyne",
+      "es": "los ojos azules",
+      "category": "utseende",
+      "id": "vocab-0140"
+    },
+    {
+      "no": "brune øyne",
+      "es": "los ojos marrones",
+      "category": "utseende",
+      "id": "vocab-0141"
+    },
+    {
+      "no": "grønne øyne",
+      "es": "los ojos verdes",
+      "category": "utseende",
+      "id": "vocab-0142"
+    },
+    {
+      "no": "mørkt hår",
+      "es": "el pelo moreno",
+      "category": "utseende",
+      "id": "vocab-0143"
+    },
+    {
+      "no": "blondt hår",
+      "es": "el pelo rubio",
+      "category": "utseende",
+      "id": "vocab-0144"
+    },
+    {
+      "no": "rødt hår",
+      "es": "el pelo pelirrojo",
+      "category": "utseende",
+      "id": "vocab-0145"
+    },
+    {
+      "no": "kort hår",
+      "es": "el pelo corto",
+      "category": "utseende",
+      "id": "vocab-0146"
+    },
+    {
+      "no": "langt hår",
+      "es": "el pelo largo",
+      "category": "utseende",
+      "id": "vocab-0147"
+    },
+    {
+      "no": "rett hår",
+      "es": "el pelo liso",
+      "category": "utseende",
+      "id": "vocab-0148"
+    },
+    {
+      "no": "krøllete hår",
+      "es": "el pelo rizado",
+      "category": "utseende",
+      "id": "vocab-0149"
+    },
+    {
+      "no": "hestehale",
+      "es": "la cola de caballo",
+      "category": "utseende",
+      "id": "vocab-0150"
+    },
+    {
+      "no": "pannelugg",
+      "es": "el flequillo",
+      "category": "utseende",
+      "id": "vocab-0151"
+    },
+    {
+      "no": "fletter",
+      "es": "las trenzas",
+      "category": "utseende",
+      "id": "vocab-0152"
+    },
+    {
+      "no": "briller",
+      "es": "las gafas",
+      "category": "utseende",
+      "id": "vocab-0153"
+    },
+    {
+      "no": "skjegg",
+      "es": "la barba",
+      "category": "utseende",
+      "id": "vocab-0154"
+    },
+    {
+      "no": "bart",
+      "es": "el bigote",
+      "category": "utseende",
+      "id": "vocab-0155"
+    },
+    {
+      "no": "fregner",
+      "es": "las pecas",
+      "category": "utseende",
+      "id": "vocab-0156"
+    },
+    {
+      "no": "smilehull",
+      "es": "los hoyuelos",
+      "category": "utseende",
+      "id": "vocab-0157"
+    },
+    {
+      "no": "arr",
+      "es": "la cicatriz",
+      "category": "utseende",
+      "id": "vocab-0158"
+    },
+    {
+      "no": "kjedelig",
+      "es": "aburrido",
+      "category": "personlighet",
+      "id": "vocab-0159"
+    },
+    {
+      "no": "kjærlig / omsorgsfull",
+      "es": "cariñoso",
+      "category": "personlighet",
+      "id": "vocab-0160"
+    },
+    {
+      "no": "morsom",
+      "es": "gracioso",
+      "category": "personlighet",
+      "id": "vocab-0161"
+    },
+    {
+      "no": "pratsom",
+      "es": "hablador",
+      "category": "personlighet",
+      "id": "vocab-0162"
+    },
+    {
+      "no": "utålmodig",
+      "es": "impaciente",
+      "category": "personlighet",
+      "id": "vocab-0163"
+    },
+    {
+      "no": "intelligent",
+      "es": "inteligente",
+      "category": "personlighet",
+      "id": "vocab-0164"
+    },
+    {
+      "no": "ryddig",
+      "es": "ordenado",
+      "category": "personlighet",
+      "id": "vocab-0165"
+    },
+    {
+      "no": "tålmodig",
+      "es": "paciente",
+      "category": "personlighet",
+      "id": "vocab-0166"
+    },
+    {
+      "no": "ansvarsfull",
+      "es": "responsable",
+      "category": "personlighet",
+      "id": "vocab-0167"
+    },
+    {
+      "no": "snill/ hyggelig",
+      "es": "simpático",
+      "category": "personlighet",
+      "id": "vocab-0168"
+    },
+    {
+      "no": "sosial",
+      "es": "sociable",
+      "category": "personlighet",
+      "id": "vocab-0169"
+    },
+    {
+      "no": "sta",
+      "es": "terco",
+      "category": "personlighet",
+      "id": "vocab-0170"
+    },
+    {
+      "no": "sjenert",
+      "es": "tímido",
+      "category": "personlighet",
+      "id": "vocab-0171"
+    },
+    {
+      "no": "lat (v)",
+      "es": "vago",
+      "category": "personlighet",
+      "id": "vocab-0172"
+    },
+    {
+      "no": "bror",
+      "es": "el hermano",
+      "category": "familie",
+      "id": "vocab-0173"
+    },
+    {
+      "no": "søster",
+      "es": "la hermana",
+      "category": "familie",
+      "id": "vocab-0174"
+    },
+    {
+      "no": "fetter",
+      "es": "el primo",
+      "category": "familie",
+      "id": "vocab-0175"
+    },
+    {
+      "no": "kusine",
+      "es": "la prima",
+      "category": "familie",
+      "id": "vocab-0176"
+    },
+    {
+      "no": "tante",
+      "es": "la tía",
+      "category": "familie",
+      "id": "vocab-0177"
+    },
+    {
+      "no": "onkel",
+      "es": "el tío",
+      "category": "familie",
+      "id": "vocab-0178"
+    },
+    {
+      "no": "mor",
+      "es": "la madre",
+      "category": "familie",
+      "id": "vocab-0179"
+    },
+    {
+      "no": "far",
+      "es": "el padre",
+      "category": "familie",
+      "id": "vocab-0180"
+    },
+    {
+      "no": "bestemor",
+      "es": "la abuela",
+      "category": "familie",
+      "id": "vocab-0181"
+    },
+    {
+      "no": "bestefar",
+      "es": "el abuelo",
+      "category": "familie",
+      "id": "vocab-0182"
+    },
+    {
+      "no": "kjæreste",
+      "es": "el novio",
+      "category": "familie",
+      "id": "vocab-0183"
+    },
+    {
+      "no": "stefar",
+      "es": "el padrastro",
+      "category": "familie",
+      "id": "vocab-0184"
+    },
+    {
+      "no": "stemor",
+      "es": "la madrastra",
+      "category": "familie",
+      "id": "vocab-0185"
+    },
+    {
+      "no": "stebror",
+      "es": "el hermanastro",
+      "category": "familie",
+      "id": "vocab-0186"
+    },
+    {
+      "no": "stesøster",
+      "es": "la hermanastra",
+      "category": "familie",
+      "id": "vocab-0187"
+    },
+    {
+      "no": "halvbror",
+      "es": "el medio hermano",
+      "category": "familie",
+      "id": "vocab-0188"
+    },
+    {
+      "no": "halvsøster",
+      "es": "la media hermana",
+      "category": "familie",
+      "id": "vocab-0189"
+    },
+    {
+      "no": "storebror",
+      "es": "el hermano mayor",
+      "category": "familie",
+      "id": "vocab-0190"
+    },
+    {
+      "no": "lillesøster",
+      "es": "la hermana menor",
+      "category": "familie",
+      "id": "vocab-0191"
+    },
+    {
+      "no": "Vi er fem personer i familien min",
+      "es": "En mi familia somos cinco",
+      "category": "familie-setninger",
+      "id": "vocab-0192"
+    },
+    {
+      "no": "Hvem bor du sammen med?",
+      "es": "¿Con quién vives?",
+      "category": "familie-setninger",
+      "id": "vocab-0193"
+    },
+    {
+      "no": "Jeg bor sammen med moren og broren min",
+      "es": "Vivo con mi madre y mi hermano",
+      "category": "familie-setninger",
+      "id": "vocab-0194"
+    },
+    {
+      "no": "Foreldrene mine er skilt",
+      "es": "Mis padres están divorciados",
+      "category": "familie-setninger",
+      "id": "vocab-0195"
+    },
+    {
+      "no": "Foreldrene mine er gift",
+      "es": "Mis padres están casados",
+      "category": "familie-setninger",
+      "id": "vocab-0196"
+    },
+    {
+      "no": "Hva heter broren din?",
+      "es": "¿Cómo se llama tu hermano?",
+      "category": "familie-setninger",
+      "id": "vocab-0197"
+    },
+    {
+      "no": "Broren min heter",
+      "es": "Mi hermano se llama",
+      "category": "familie-setninger",
+      "id": "vocab-0198"
+    },
+    {
+      "no": "Hvor mange år er broren din?",
+      "es": "¿Cuántos años tiene tu hermano?",
+      "category": "familie-setninger",
+      "id": "vocab-0199"
+    },
+    {
+      "no": "Broren min er åtte år",
+      "es": "Mi hermano tiene ocho años",
+      "category": "familie-setninger",
+      "id": "vocab-0200"
+    },
+    {
+      "no": "å ha på seg",
+      "es": "llevar",
+      "category": "klær",
+      "id": "vocab-0201"
+    },
+    {
+      "no": "å kle på seg",
+      "es": "ponerse",
+      "category": "klær",
+      "id": "vocab-0202"
+    },
+    {
+      "no": "støvler",
+      "es": "las botas",
+      "category": "klær",
+      "id": "vocab-0203"
+    },
+    {
+      "no": "t-skjorte",
+      "es": "la camiseta",
+      "category": "klær",
+      "id": "vocab-0204"
+    },
+    {
+      "no": "bikini",
+      "es": "el biquini",
+      "category": "klær",
+      "id": "vocab-0205"
+    },
+    {
+      "no": "skjorte",
+      "es": "la camisa",
+      "category": "klær",
+      "id": "vocab-0206"
+    },
+    {
+      "no": "jeans",
+      "es": "los vaqueros",
+      "category": "klær",
+      "id": "vocab-0207"
+    },
+    {
+      "no": "lue",
+      "es": "el gorro",
+      "category": "klær",
+      "id": "vocab-0208"
+    },
+    {
+      "no": "caps",
+      "es": "la gorra",
+      "category": "klær",
+      "id": "vocab-0209"
+    },
+    {
+      "no": "belte",
+      "es": "el cinturón",
+      "category": "klær",
+      "id": "vocab-0210"
+    },
+    {
+      "no": "sokker",
+      "es": "los calcetines",
+      "category": "klær",
+      "id": "vocab-0211"
+    },
+    {
+      "no": "genser (j)",
+      "es": "el jersey",
+      "category": "klær",
+      "id": "vocab-0212"
+    },
+    {
+      "no": "tøfler",
+      "es": "las zapatillas",
+      "category": "klær",
+      "id": "vocab-0213"
+    },
+    {
+      "no": "sko",
+      "es": "los zapatos",
+      "category": "klær",
+      "id": "vocab-0214"
+    },
+    {
+      "no": "høyhælte sko",
+      "es": "los zapatos de tacón",
+      "category": "klær",
+      "id": "vocab-0215"
+    },
+    {
+      "no": "sandaler",
+      "es": "las sandalias",
+      "category": "klær",
+      "id": "vocab-0216"
+    },
+    {
+      "no": "treningssko",
+      "es": "las zapatillas deportivas",
+      "category": "klær",
+      "id": "vocab-0217"
+    },
+    {
+      "no": "jakke",
+      "es": "la chaqueta",
+      "category": "klær",
+      "id": "vocab-0218"
+    },
+    {
+      "no": "kjole",
+      "es": "el vestido",
+      "category": "klær",
+      "id": "vocab-0219"
+    },
+    {
+      "no": "skjørt",
+      "es": "la falda",
+      "category": "klær",
+      "id": "vocab-0220"
+    },
+    {
+      "no": "håndveske",
+      "es": "el bolso",
+      "category": "klær",
+      "id": "vocab-0221"
+    },
+    {
+      "no": "solbriller",
+      "es": "las gafas de sol",
+      "category": "klær",
+      "id": "vocab-0222"
+    },
+    {
+      "no": "skjerf",
+      "es": "la bufanda",
+      "category": "klær",
+      "id": "vocab-0223"
+    },
+    {
+      "no": "sjal",
+      "es": "el chal",
+      "category": "klær",
+      "id": "vocab-0224"
+    },
+    {
+      "no": "hatt",
+      "es": "el sombrero",
+      "category": "klær",
+      "id": "vocab-0225"
+    },
+    {
+      "no": "lommetørkle",
+      "es": "el pañuelo",
+      "category": "klær",
+      "id": "vocab-0226"
+    },
+    {
+      "no": "slips",
+      "es": "la corbata",
+      "category": "klær",
+      "id": "vocab-0227"
+    },
+    {
+      "no": "paraply",
+      "es": "el paraguas",
+      "category": "klær",
+      "id": "vocab-0228"
+    },
+    {
+      "no": "ring",
+      "es": "el anillo",
+      "category": "klær",
+      "id": "vocab-0229"
+    },
+    {
+      "no": "armbånd",
+      "es": "la pulsera",
+      "category": "klær",
+      "id": "vocab-0230"
+    },
+    {
+      "no": "klokke",
+      "es": "el reloj",
+      "category": "klær",
+      "id": "vocab-0231"
+    },
+    {
+      "no": "kjede",
+      "es": "la cadena",
+      "category": "klær",
+      "id": "vocab-0232"
+    },
+    {
+      "no": "øreringer",
+      "es": "los pendientes",
+      "category": "klær",
+      "id": "vocab-0233"
+    },
+    {
+      "no": "advokat",
+      "es": "el abogado",
+      "category": "yrker",
+      "id": "vocab-0234"
+    },
+    {
+      "no": "brannmann",
+      "es": "el bombero",
+      "category": "yrker",
+      "id": "vocab-0235"
+    },
+    {
+      "no": "snekker",
+      "es": "el carpintero",
+      "category": "yrker",
+      "id": "vocab-0236"
+    },
+    {
+      "no": "kokk",
+      "es": "el cocinero",
+      "category": "yrker",
+      "id": "vocab-0237"
+    },
+    {
+      "no": "tannlege",
+      "es": "el dentista",
+      "category": "yrker",
+      "id": "vocab-0238"
+    },
+    {
+      "no": "elektriker",
+      "es": "el electricista",
+      "category": "yrker",
+      "id": "vocab-0239"
+    },
+    {
+      "no": "sykepleier",
+      "es": "el enfermero",
+      "category": "yrker",
+      "id": "vocab-0240"
+    },
+    {
+      "no": "bonde",
+      "es": "el granjero",
+      "category": "yrker",
+      "id": "vocab-0241"
+    },
+    {
+      "no": "lege",
+      "es": "el médico",
+      "category": "yrker",
+      "id": "vocab-0242"
+    },
+    {
+      "no": "frisør",
+      "es": "el peluquero",
+      "category": "yrker",
+      "id": "vocab-0243"
+    },
+    {
+      "no": "journalist",
+      "es": "el periodista",
+      "category": "yrker",
+      "id": "vocab-0244"
+    },
+    {
+      "no": "politibetjent",
+      "es": "el policía",
+      "category": "yrker",
+      "id": "vocab-0245"
+    },
+    {
+      "no": "lærer (p)",
+      "es": "el profesor",
+      "category": "yrker",
+      "id": "vocab-0246"
+    },
+    {
+      "no": "dyrlege",
+      "es": "el veterinario",
+      "category": "yrker",
+      "id": "vocab-0247"
+    },
+    {
+      "no": "hva jobber du med?",
+      "es": "¿en qué trabajas?",
+      "category": "yrker",
+      "id": "vocab-0248"
+    },
+    {
+      "no": "hvor jobber du?",
+      "es": "¿Dónde trabajas?",
+      "category": "yrker",
+      "id": "vocab-0249"
+    },
+    {
+      "no": "Når jobber du?",
+      "es": "¿Cuándo trabajas?",
+      "category": "yrker",
+      "id": "vocab-0250"
+    },
+    {
+      "no": "Hva jobber moren din med?",
+      "es": "¿En qué trabaja tu madre?",
+      "category": "yrker",
+      "id": "vocab-0251"
+    },
+    {
+      "no": "golf",
+      "es": "el golf",
+      "category": "hobbyer",
+      "id": "vocab-0252"
+    },
+    {
+      "no": "amerikansk fotball",
+      "es": "el fútbol americano",
+      "category": "hobbyer",
+      "id": "vocab-0253"
+    },
+    {
+      "no": "håndball",
+      "es": "el balonmano",
+      "category": "hobbyer",
+      "id": "vocab-0254"
+    },
+    {
+      "no": "volleyball",
+      "es": "el voleibol",
+      "category": "hobbyer",
+      "id": "vocab-0255"
+    },
+    {
+      "no": "badminton",
+      "es": "bádminton",
+      "category": "hobbyer",
+      "id": "vocab-0256"
+    },
+    {
+      "no": "innebandy",
+      "es": "el floorball",
+      "category": "hobbyer",
+      "id": "vocab-0257"
+    },
+    {
+      "no": "tennis",
+      "es": "el tenis",
+      "category": "hobbyer",
+      "id": "vocab-0258"
+    },
+    {
+      "no": "bordtennis",
+      "es": "el tenis de mesa",
+      "category": "hobbyer",
+      "id": "vocab-0259"
+    },
+    {
+      "no": "ishockey",
+      "es": "el hockey sobre hielo",
+      "category": "hobbyer",
+      "id": "vocab-0260"
+    },
+    {
+      "no": "dataspill",
+      "es": "videojuegos",
+      "category": "hobbyer",
+      "id": "vocab-0261"
+    },
+    {
+      "no": "langrenn",
+      "es": "esquí de fondo",
+      "category": "hobbyer",
+      "id": "vocab-0262"
+    },
+    {
+      "no": "alpint",
+      "es": "esquí alpino",
+      "category": "hobbyer",
+      "id": "vocab-0263"
+    },
+    {
+      "no": "å handle",
+      "es": "ir de compras",
+      "category": "hobbyer",
+      "id": "vocab-0264"
+    },
+    {
+      "no": "å sykle",
+      "es": "montar en bici",
+      "category": "hobbyer",
+      "id": "vocab-0265"
+    },
+    {
+      "no": "å synge i kor",
+      "es": "cantar en un coro",
+      "category": "hobbyer",
+      "id": "vocab-0266"
+    },
+    {
+      "no": "å se på TV",
+      "es": "ver la tele",
+      "category": "hobbyer",
+      "id": "vocab-0267"
+    },
+    {
+      "no": "å spille gitar",
+      "es": "tocar la guitarra",
+      "category": "hobbyer",
+      "id": "vocab-0268"
+    },
+    {
+      "no": "å spille piano",
+      "es": "tocar el piano",
+      "category": "hobbyer",
+      "id": "vocab-0269"
+    },
+    {
+      "no": "å trene på treningssenteret",
+      "es": "entrenar en el gimnasio",
+      "category": "hobbyer",
+      "id": "vocab-0270"
+    },
+    {
+      "no": "å høre musikk",
+      "es": "escuchar música",
+      "category": "hobbyer",
+      "id": "vocab-0271"
+    },
+    {
+      "no": "å være med venner",
+      "es": "estar con amigos",
+      "category": "hobbyer",
+      "id": "vocab-0272"
+    },
+    {
+      "no": "å dra ut med venner",
+      "es": "salir con amigos",
+      "category": "hobbyer",
+      "id": "vocab-0273"
+    },
+    {
+      "no": "å danse på fritiden",
+      "es": "bailar en el tiempo libre",
+      "category": "hobbyer",
+      "id": "vocab-0274"
+    },
+    {
+      "no": "å gå tur",
+      "es": "dar un paseo",
+      "category": "hobbyer",
+      "id": "vocab-0275"
+    },
+    {
+      "no": "å slappe av",
+      "es": "relajarse",
+      "category": "hobbyer",
+      "id": "vocab-0276"
+    },
+    {
+      "no": "å surfe på internett",
+      "es": "navegar por internet",
+      "category": "hobbyer",
+      "id": "vocab-0277"
+    },
+    {
+      "no": "Har du klokke?",
+      "es": "¿Tienes reloj?",
+      "category": "klokka",
+      "id": "vocab-0278"
+    },
+    {
+      "no": "Vet du hva klokka er?",
+      "es": "¿Sabes qué hora es?",
+      "category": "klokka",
+      "id": "vocab-0279"
+    },
+    {
+      "no": "Når skal du spise?",
+      "es": "¿A qué hora vas a comer?",
+      "category": "klokka",
+      "id": "vocab-0280"
+    },
+    {
+      "no": "jeg skal spise klokka åtte",
+      "es": "voy a comer a las ocho",
+      "category": "klokka",
+      "id": "vocab-0281"
+    },
+    {
+      "no": "Den er 13:00",
+      "es": "Es la una",
+      "category": "klokka",
+      "id": "vocab-0282"
+    },
+    {
+      "no": "Den er kvart over ett",
+      "es": "es la una y cuarto",
+      "category": "klokka",
+      "id": "vocab-0283"
+    },
+    {
+      "no": "Den er halv to",
+      "es": "es la una y media",
+      "category": "klokka",
+      "id": "vocab-0284"
+    },
+    {
+      "no": "Den er to",
+      "es": "son las dos",
+      "category": "klokka",
+      "id": "vocab-0285"
+    },
+    {
+      "no": "den er ti over halv tre",
+      "es": "son las tres menos veinte",
+      "category": "klokka",
+      "id": "vocab-0286"
+    },
+    {
+      "no": "den er ti på tre",
+      "es": "son las tres menos diez",
+      "category": "klokka",
+      "id": "vocab-0287"
+    },
+    {
+      "no": "klokken åtte om morgenen",
+      "es": "a las ocho de la mañana",
+      "category": "klokka",
+      "id": "vocab-0288"
+    },
+    {
+      "no": "klokka seks på ettermiddagen",
+      "es": "a las seis de la tarde",
+      "category": "klokka",
+      "id": "vocab-0289"
+    },
+    {
+      "no": "klokka tolv på natta",
+      "es": "a las doce de la noche",
+      "category": "klokka",
+      "id": "vocab-0290"
+    },
+    {
+      "no": "Klokken er akkurat 5",
+      "es": "Son las cinco en punto",
+      "category": "klokka",
+      "id": "vocab-0291"
+    },
+    {
+      "no": "hver dag",
+      "es": "todos los días",
+      "category": "tidsuttrykk",
+      "id": "vocab-0292"
+    },
+    {
+      "no": "på mandag",
+      "es": "el lunes",
+      "category": "tidsuttrykk",
+      "id": "vocab-0293"
+    },
+    {
+      "no": "på mandager",
+      "es": "los lunes",
+      "category": "tidsuttrykk",
+      "id": "vocab-0294"
+    },
+    {
+      "no": "tirsdag",
+      "es": "martes",
+      "category": "ukedager",
+      "id": "vocab-0295"
+    },
+    {
+      "no": "onsdag",
+      "es": "miércoles",
+      "category": "ukedager",
+      "id": "vocab-0296"
+    },
+    {
+      "no": "torsdag",
+      "es": "jueves",
+      "category": "ukedager",
+      "id": "vocab-0297"
+    },
+    {
+      "no": "fredag",
+      "es": "viernes",
+      "category": "ukedager",
+      "id": "vocab-0298"
+    },
+    {
+      "no": "på morgenen",
+      "es": "por la mañana",
+      "category": "tidsuttrykk",
+      "id": "vocab-0299"
+    },
+    {
+      "no": "for noen dager siden",
+      "es": "hace unos días",
+      "category": "tidsuttrykk",
+      "id": "vocab-0300"
+    },
+    {
+      "no": "hver uke",
+      "es": "cada semana",
+      "category": "Kapittel 8: Tareas de casa",
+      "id": "vocab-0301"
+    },
+    {
+      "no": "ofte",
+      "es": "a menudo",
+      "category": "tidsuttrykk",
+      "id": "vocab-0302"
+    },
+    {
+      "no": "sjelden",
+      "es": "raramente",
+      "category": "tidsuttrykk",
+      "id": "vocab-0303"
+    },
+    {
+      "no": "på ettermiddagen",
+      "es": "por la tarde",
+      "category": "tidsuttrykk",
+      "id": "vocab-0304"
+    },
+    {
+      "no": "før",
+      "es": "antes",
+      "category": "tidsuttrykk",
+      "id": "vocab-0305"
+    },
+    {
+      "no": "i kveld",
+      "es": "esta noche",
+      "category": "tidsuttrykk",
+      "id": "vocab-0306"
+    },
+    {
+      "no": "i morgen",
+      "es": "mañana",
+      "category": "tidsuttrykk",
+      "id": "vocab-0307"
+    },
+    {
+      "no": "i går",
+      "es": "ayer",
+      "category": "tidsuttrykk",
+      "id": "vocab-0308"
+    },
+    {
+      "no": "på kvelden",
+      "es": "por la noche",
+      "category": "tidsuttrykk",
+      "id": "vocab-0309"
+    },
+    {
+      "no": "etter / etterpå",
+      "es": "después",
+      "category": "tidsuttrykk",
+      "id": "vocab-0310"
+    },
+    {
+      "no": "hode",
+      "es": "la cabeza",
+      "category": "kropp",
+      "id": "vocab-0311"
+    },
+    {
+      "no": "øye",
+      "es": "el ojo",
+      "category": "kropp",
+      "id": "vocab-0312"
+    },
+    {
+      "no": "munn",
+      "es": "la boca",
+      "category": "kropp",
+      "id": "vocab-0313"
+    },
+    {
+      "no": "hånd",
+      "es": "la mano",
+      "category": "kropp",
+      "id": "vocab-0314"
+    },
+    {
+      "no": "fot",
+      "es": "el pie",
+      "category": "kropp",
+      "id": "vocab-0315"
+    },
+    {
+      "no": "elev",
+      "es": "el alumno",
+      "category": "skole",
+      "id": "vocab-0316"
+    },
+    {
+      "no": "spansklærer",
+      "es": "el profesor de español",
+      "category": "skole",
+      "id": "vocab-0317"
+    },
+    {
+      "no": "skoletime",
+      "es": "la clase",
+      "category": "skole",
+      "id": "vocab-0318"
+    },
+    {
+      "no": "skoleklasse",
+      "es": "la clase",
+      "category": "skole",
+      "id": "vocab-0319"
+    },
+    {
+      "no": "tavle",
+      "es": "la pizarra",
+      "category": "skole",
+      "id": "vocab-0320"
+    },
+    {
+      "no": "kart",
+      "es": "el mapa",
+      "category": "skole",
+      "id": "vocab-0321"
+    },
+    {
+      "no": "papirkurv",
+      "es": "la papelera",
+      "category": "skole",
+      "id": "vocab-0322"
+    },
+    {
+      "no": "bok",
+      "es": "el libro",
+      "category": "skole",
+      "id": "vocab-0323"
+    },
+    {
+      "no": "PC",
+      "es": "el ordenador",
+      "category": "skole",
+      "id": "vocab-0324"
+    },
+    {
+      "no": "ungdomsskolen",
+      "es": "la E.S.O",
+      "category": "skole",
+      "id": "vocab-0325"
+    },
+    {
+      "no": "pult",
+      "es": "el pupitre",
+      "category": "skole",
+      "id": "vocab-0326"
+    },
+    {
+      "no": "stol",
+      "es": "la silla",
+      "category": "skole",
+      "id": "vocab-0327"
+    },
+    {
+      "no": "sekk",
+      "es": "la mochila",
+      "category": "skole",
+      "id": "vocab-0328"
+    },
+    {
+      "no": "pennal",
+      "es": "el estuche",
+      "category": "skole",
+      "id": "vocab-0329"
+    },
+    {
+      "no": "blyant",
+      "es": "el lápiz",
+      "category": "skole",
+      "id": "vocab-0330"
+    },
+    {
+      "no": "penn",
+      "es": "el bolígrafo",
+      "category": "skole",
+      "id": "vocab-0331"
+    },
+    {
+      "no": "viskelær",
+      "es": "la goma",
+      "category": "skole",
+      "id": "vocab-0332"
+    },
+    {
+      "no": "blyantspisser",
+      "es": "el sacapuntas",
+      "category": "skole",
+      "id": "vocab-0333"
+    },
+    {
+      "no": "linjal",
+      "es": "la regla",
+      "category": "skole",
+      "id": "vocab-0334"
+    },
+    {
+      "no": "videregående",
+      "es": "el bachillerato",
+      "category": "skole",
+      "id": "vocab-0335"
+    },
+    {
+      "no": "engelsk",
+      "es": "el inglés",
+      "category": "fag",
+      "id": "vocab-0336"
+    },
+    {
+      "no": "matte",
+      "es": "las matemáticas",
+      "category": "fag",
+      "id": "vocab-0337"
+    },
+    {
+      "no": "historie",
+      "es": "la historia",
+      "category": "fag",
+      "id": "vocab-0338"
+    },
+    {
+      "no": "samfunnsfag",
+      "es": "las ciencias sociales",
+      "category": "fag",
+      "id": "vocab-0339"
+    },
+    {
+      "no": "naturfag",
+      "es": "las ciencias naturales",
+      "category": "fag",
+      "id": "vocab-0340"
+    },
+    {
+      "no": "kroppsøving",
+      "es": "la educación física",
+      "category": "fag",
+      "id": "vocab-0341"
+    },
+    {
+      "no": "kunst og håndverk",
+      "es": "las artes manuales",
+      "category": "fag",
+      "id": "vocab-0342"
+    },
+    {
+      "no": "religion / KRLE",
+      "es": "la religión (fag)",
+      "category": "fag",
+      "id": "vocab-0343"
+    },
+    {
+      "no": "rom",
+      "es": "la habitación",
+      "category": "hjem",
+      "id": "vocab-0344"
+    },
+    {
+      "no": "rom (ord på c)",
+      "es": "el cuarto",
+      "category": "hjem",
+      "id": "vocab-0345"
+    },
+    {
+      "no": "bad",
+      "es": "el baño",
+      "category": "hjem",
+      "id": "vocab-0346"
+    },
+    {
+      "no": "spisestue",
+      "es": "el comedor",
+      "category": "hjem",
+      "id": "vocab-0347"
+    },
+    {
+      "no": "gang",
+      "es": "el pasillo",
+      "category": "hjem",
+      "id": "vocab-0348"
+    },
+    {
+      "no": "loft",
+      "es": "el ático",
+      "category": "hjem",
+      "id": "vocab-0349"
+    },
+    {
+      "no": "dør",
+      "es": "la puerta",
+      "category": "hjem",
+      "id": "vocab-0350"
+    },
+    {
+      "no": "soverom",
+      "es": "el dormitorio",
+      "category": "hjem",
+      "id": "vocab-0351"
+    },
+    {
+      "no": "arbeidsrom",
+      "es": "el cuarto de trabajo",
+      "category": "hjem",
+      "id": "vocab-0352"
+    },
+    {
+      "no": "stue (c)",
+      "es": "el cuarto de estar",
+      "category": "hjem",
+      "id": "vocab-0353"
+    },
+    {
+      "no": "kjøkken",
+      "es": "la cocina",
+      "category": "hjem",
+      "id": "vocab-0354"
+    },
+    {
+      "no": "kjeller",
+      "es": "el sótano",
+      "category": "hjem",
+      "id": "vocab-0355"
+    },
+    {
+      "no": "vindu",
+      "es": "la ventana",
+      "category": "hjem",
+      "id": "vocab-0356"
+    },
+    {
+      "no": "hus",
+      "es": "la casa",
+      "category": "hjem",
+      "id": "vocab-0357"
+    },
+    {
+      "no": "møbel",
+      "es": "el mueble",
+      "category": "møbler",
+      "id": "vocab-0358"
+    },
+    {
+      "no": "sofa",
+      "es": "el sofá",
+      "category": "møbler",
+      "id": "vocab-0359"
+    },
+    {
+      "no": "bord",
+      "es": "la mesa",
+      "category": "møbler",
+      "id": "vocab-0360"
+    },
+    {
+      "no": "TV",
+      "es": "el televisor",
+      "category": "møbler",
+      "id": "vocab-0361"
+    },
+    {
+      "no": "skap",
+      "es": "el armario",
+      "category": "møbler",
+      "id": "vocab-0362"
+    },
+    {
+      "no": "plakat",
+      "es": "el póster",
+      "category": "møbler",
+      "id": "vocab-0363"
+    },
+    {
+      "no": "kjøleskap (ord på n)",
+      "es": "la nevera",
+      "category": "møbler",
+      "id": "vocab-0364"
+    },
+    {
+      "no": "skrivebord",
+      "es": "el escritorio",
+      "category": "møbler",
+      "id": "vocab-0365"
+    },
+    {
+      "no": "bokhylle",
+      "es": "la estantería",
+      "category": "møbler",
+      "id": "vocab-0366"
+    },
+    {
+      "no": "kommode",
+      "es": "la cómoda",
+      "category": "møbler",
+      "id": "vocab-0367"
+    },
+    {
+      "no": "lenestol",
+      "es": "el sillón",
+      "category": "møbler",
+      "id": "vocab-0368"
+    },
+    {
+      "no": "teppe",
+      "es": "la alfombra",
+      "category": "møbler",
+      "id": "vocab-0369"
+    },
+    {
+      "no": "oppvaskmaskin",
+      "es": "el lavavajillas",
+      "category": "møbler",
+      "id": "vocab-0370"
+    },
+    {
+      "no": "seng",
+      "es": "la cama",
+      "category": "møbler",
+      "id": "vocab-0371"
+    },
+    {
+      "no": "lampe",
+      "es": "la lámpara",
+      "category": "møbler",
+      "id": "vocab-0372"
+    },
+    {
+      "no": "bilde / maleri ( ord på c)",
+      "es": "el cuadro",
+      "category": "møbler",
+      "id": "vocab-0373"
+    },
+    {
+      "no": "ovn",
+      "es": "el horno",
+      "category": "møbler",
+      "id": "vocab-0374"
+    },
+    {
+      "no": "speil",
+      "es": "el espejo",
+      "category": "møbler",
+      "id": "vocab-0375"
+    },
+    {
+      "no": "jeg liker",
+      "es": "me gusta",
+      "category": "gustar",
+      "id": "vocab-0376"
+    },
+    {
+      "no": "jeg liker ikke",
+      "es": "no me gusta",
+      "category": "gustar",
+      "id": "vocab-0377"
+    },
+    {
+      "no": "du liker",
+      "es": "te gusta",
+      "category": "gustar",
+      "id": "vocab-0378"
+    },
+    {
+      "no": "du liker ikke",
+      "es": "no te gusta",
+      "category": "gustar",
+      "id": "vocab-0379"
+    },
+    {
+      "no": "han/hun liker",
+      "es": "le gusta",
+      "category": "gustar",
+      "id": "vocab-0380"
+    },
+    {
+      "no": "jeg liker denne boken",
+      "es": "me gusta este libro",
+      "category": "gustar",
+      "id": "vocab-0381"
+    },
+    {
+      "no": "jeg liker disse bøkene",
+      "es": "me gustan estos libros",
+      "category": "gustar",
+      "id": "vocab-0382"
+    },
+    {
+      "no": "jeg elsker / jeg liker svært godt",
+      "es": "me encanta",
+      "category": "gustar",
+      "id": "vocab-0383"
+    },
+    {
+      "no": "jeg blir irritert av",
+      "es": "me molesta",
+      "category": "gustar",
+      "id": "vocab-0384"
+    },
+    {
+      "no": "jeg våkner",
+      "es": "me despierto",
+      "category": "rutiner",
+      "id": "vocab-0385"
+    },
+    {
+      "no": "jeg står opp",
+      "es": "me levanto",
+      "category": "rutiner",
+      "id": "vocab-0386"
+    },
+    {
+      "no": "jeg dusjer",
+      "es": "me ducho",
+      "category": "rutiner",
+      "id": "vocab-0387"
+    },
+    {
+      "no": "jeg pusser tennene",
+      "es": "me cepillo los dientes",
+      "category": "rutiner",
+      "id": "vocab-0388"
+    },
+    {
+      "no": "jeg sminker meg",
+      "es": "me maquillo",
+      "category": "rutiner",
+      "id": "vocab-0389"
+    },
+    {
+      "no": "jeg barberer meg",
+      "es": "me afeito",
+      "category": "rutiner",
+      "id": "vocab-0390"
+    },
+    {
+      "no": "jeg børster håret",
+      "es": "me peino",
+      "category": "rutiner",
+      "id": "vocab-0391"
+    },
+    {
+      "no": "jeg kler på meg",
+      "es": "me visto",
+      "category": "rutiner",
+      "id": "vocab-0392"
+    },
+    {
+      "no": "jeg legger meg",
+      "es": "me acuesto",
+      "category": "rutiner",
+      "id": "vocab-0393"
+    },
+    {
+      "no": "jeg spiser frokost",
+      "es": "desayuno",
+      "category": "rutiner",
+      "id": "vocab-0394"
+    },
+    {
+      "no": "jeg går ut av huset",
+      "es": "salgo de la casa",
+      "category": "rutiner",
+      "id": "vocab-0395"
+    },
+    {
+      "no": "jeg drar på skolen",
+      "es": "voy a la escuela",
+      "category": "rutiner",
+      "id": "vocab-0396"
+    },
+    {
+      "no": "jeg spiser lunsj",
+      "es": "almuerzo",
+      "category": "rutiner",
+      "id": "vocab-0397"
+    },
+    {
+      "no": "jeg drar hjem",
+      "es": "voy a casa",
+      "category": "rutiner",
+      "id": "vocab-0398"
+    },
+    {
+      "no": "jeg drar på trening",
+      "es": "voy al entrenamiento",
+      "category": "rutiner",
+      "id": "vocab-0399"
+    },
+    {
+      "no": "jeg spiser middag",
+      "es": "ceno",
+      "category": "rutiner",
+      "id": "vocab-0400"
+    },
+    {
+      "no": "jeg sover",
+      "es": "duermo",
+      "category": "rutiner",
+      "id": "vocab-0401"
+    },
+    {
+      "no": "jeg står opp tidlig",
+      "es": "me levanto temprano",
+      "category": "rutiner",
+      "id": "vocab-0402"
+    },
+    {
+      "no": "jeg tar på meg en t-skjorte",
+      "es": "me pongo una camiseta",
+      "category": "rutiner",
+      "id": "vocab-0403"
+    },
+    {
+      "no": "jeg går til skolen",
+      "es": "voy a pie a la escuela",
+      "category": "rutiner",
+      "id": "vocab-0404"
+    },
+    {
+      "no": "jeg skal gjøre noe",
+      "es": "voy a hacer algo",
+      "category": "fremtid",
+      "id": "vocab-0405"
+    },
+    {
+      "no": "hva skal du gjøre i dag?",
+      "es": "¿Qué vas a hacer hoy?",
+      "category": "fremtid",
+      "id": "vocab-0406"
+    },
+    {
+      "no": "hva skal du gjøre i morgen?",
+      "es": "¿Qué vas a hacer mañana?",
+      "category": "fremtid",
+      "id": "vocab-0407"
+    },
+    {
+      "no": "I dag skal jeg være med venner",
+      "es": "Hoy voy a estar con mis amigos",
+      "category": "fremtid",
+      "id": "vocab-0408"
+    },
+    {
+      "no": "I morgen skal jeg besøke bestemora mi",
+      "es": "Mañana voy a visitar a mi abuela",
+      "category": "fremtid",
+      "id": "vocab-0409"
+    },
+    {
+      "no": "Hva skal du gjøre til neste år?",
+      "es": "¿Qué vas a hacer el año que viene?",
+      "category": "fremtid",
+      "id": "vocab-0410"
+    },
+    {
+      "no": "Neste år skal jeg begynne på videregående",
+      "es": "El año que viene voy a empezar el bachillerato",
+      "category": "fremtid",
+      "id": "vocab-0411"
+    },
+    {
+      "no": "å snakke",
+      "es": "hablar",
+      "category": "verb",
+      "id": "vocab-0412"
+    },
+    {
+      "no": "å jobbe",
+      "es": "trabajar",
+      "category": "verb",
+      "id": "vocab-0413"
+    },
+    {
+      "no": "å trene",
+      "es": "entrenar",
+      "category": "verb",
+      "id": "vocab-0414"
+    },
+    {
+      "no": "å danse",
+      "es": "bailar",
+      "category": "verb",
+      "id": "vocab-0415"
+    },
+    {
+      "no": "å kjøpe",
+      "es": "comprar",
+      "category": "verb",
+      "id": "vocab-0416"
+    },
+    {
+      "no": "å spise",
+      "es": "comer",
+      "category": "verb",
+      "id": "vocab-0417"
+    },
+    {
+      "no": "å drikke",
+      "es": "beber",
+      "category": "verb",
+      "id": "vocab-0418"
+    },
+    {
+      "no": "å lese",
+      "es": "leer",
+      "category": "verb",
+      "id": "vocab-0419"
+    },
+    {
+      "no": "å studere",
+      "es": "estudiar",
+      "category": "verb",
+      "id": "vocab-0420"
+    },
+    {
+      "no": "å bo/ å leve",
+      "es": "vivir",
+      "category": "verb",
+      "id": "vocab-0421"
+    },
+    {
+      "no": "å skrive",
+      "es": "escribir",
+      "category": "verb",
+      "id": "vocab-0422"
+    },
+    {
+      "no": "å høre",
+      "es": "escuchar",
+      "category": "verb",
+      "id": "vocab-0423"
+    },
+    {
+      "no": "å se",
+      "es": "ver",
+      "category": "verb",
+      "id": "vocab-0424"
+    },
+    {
+      "no": "å lære",
+      "es": "aprender",
+      "category": "verb",
+      "id": "vocab-0425"
+    },
+    {
+      "no": "å vinne",
+      "es": "ganar",
+      "category": "verb",
+      "id": "vocab-0426"
+    },
+    {
+      "no": "å glemme",
+      "es": "olvidar",
+      "category": "verb",
+      "id": "vocab-0427"
+    },
+    {
+      "no": "å hjelpe",
+      "es": "ayudar",
+      "category": "verb",
+      "id": "vocab-0428"
+    },
+    {
+      "no": "å synge",
+      "es": "cantar",
+      "category": "verb",
+      "id": "vocab-0429"
+    },
+    {
+      "no": "å vente",
+      "es": "esperar",
+      "category": "verb",
+      "id": "vocab-0430"
+    },
+    {
+      "no": "å spørre",
+      "es": "preguntar",
+      "category": "verb",
+      "id": "vocab-0431"
+    },
+    {
+      "no": "å betale",
+      "es": "pagar",
+      "category": "verb",
+      "id": "vocab-0432"
+    },
+    {
+      "no": "å reise",
+      "es": "viajar",
+      "category": "verb",
+      "id": "vocab-0433"
+    },
+    {
+      "no": "og",
+      "es": "y",
+      "category": "bindeord",
+      "id": "vocab-0434"
+    },
+    {
+      "no": "eller",
+      "es": "o",
+      "category": "bindeord",
+      "id": "vocab-0435"
+    },
+    {
+      "no": "men",
+      "es": "pero",
+      "category": "bindeord",
+      "id": "vocab-0436"
+    },
+    {
+      "no": "også",
+      "es": "también",
+      "category": "bindeord",
+      "id": "vocab-0437"
+    },
+    {
+      "no": "alltid",
+      "es": "siempre",
+      "category": "bindeord",
+      "id": "vocab-0438"
+    },
+    {
+      "no": "aldri",
+      "es": "nunca",
+      "category": "bindeord",
+      "id": "vocab-0439"
+    },
+    {
+      "no": "noen ganger",
+      "es": "a veces",
+      "category": "bindeord",
+      "id": "vocab-0440"
+    },
+    {
+      "no": "vanligvis",
+      "es": "normalmente",
+      "category": "bindeord",
+      "id": "vocab-0441"
+    },
+    {
+      "no": "fordi",
+      "es": "porque",
+      "category": "bindeord",
+      "id": "vocab-0442"
+    },
+    {
+      "no": "derfor",
+      "es": "por eso",
+      "category": "bindeord",
+      "id": "vocab-0443"
+    },
+    {
+      "no": "kanskje",
+      "es": "quizás",
+      "category": "bindeord",
+      "id": "vocab-0444"
+    },
+    {
+      "no": "dermed / deretter / så",
+      "es": "entonces",
+      "category": "bindeord",
+      "id": "vocab-0445"
+    },
+    {
+      "no": "i tillegg / dessuten",
+      "es": "además",
+      "category": "bindeord",
+      "id": "vocab-0446"
+    },
+    {
+      "no": "selv om",
+      "es": "aunque",
+      "category": "bindeord",
+      "id": "vocab-0447"
+    },
+    {
+      "no": "allikevel",
+      "es": "sin embargo",
+      "category": "bindeord",
+      "id": "vocab-0448"
+    },
+    {
+      "no": "på den ene siden",
+      "es": "por un lado",
+      "category": "bindeord",
+      "id": "vocab-0449"
+    },
+    {
+      "no": "på den andre siden",
+      "es": "por otro lado",
+      "category": "bindeord",
+      "id": "vocab-0450"
+    },
+    {
+      "no": "først og fremst",
+      "es": "sobre todo",
+      "category": "bindeord",
+      "id": "vocab-0451"
+    },
+    {
+      "no": "samtidig",
+      "es": "al mismo tiempo",
+      "category": "bindeord",
+      "id": "vocab-0452"
+    },
+    {
+      "no": "selvfølgelig",
+      "es": "claro",
+      "category": "bindeord",
+      "id": "vocab-0453"
+    },
+    {
+      "no": "jeg skal snakke om",
+      "es": "voy a hablar sobre",
+      "category": "bindeord",
+      "id": "vocab-0454"
+    },
+    {
+      "no": "takk for oppmerksomheten",
+      "es": "gracias por su atención",
+      "category": "bindeord",
+      "id": "vocab-0455"
+    },
+    {
+      "no": "å gjøre innkjøp",
+      "es": "hacer las compras",
+      "category": "husarbeid",
+      "id": "vocab-0456"
+    },
+    {
+      "no": "å vaske opp",
+      "es": "lavar los platos",
+      "category": "husarbeid",
+      "id": "vocab-0457"
+    },
+    {
+      "no": "å vaske badet",
+      "es": "limpiar el cuarto de baño",
+      "category": "husarbeid",
+      "id": "vocab-0458"
+    },
+    {
+      "no": "å vaske klær",
+      "es": "lavar la ropa",
+      "category": "husarbeid",
+      "id": "vocab-0459"
+    },
+    {
+      "no": "å støvsuge",
+      "es": "pasar la aspiradora",
+      "category": "husarbeid",
+      "id": "vocab-0460"
+    },
+    {
+      "no": "å rydde rommet",
+      "es": "arreglar la habitación",
+      "category": "husarbeid",
+      "id": "vocab-0461"
+    },
+    {
+      "no": "én gang i uken",
+      "es": "una vez a la semana",
+      "category": "tidsuttrykk",
+      "id": "vocab-0462"
+    },
+    {
+      "no": "hver dag",
+      "es": "cada día",
+      "category": "tidsuttrykk",
+      "id": "vocab-0463"
+    },
+    {
+      "no": "frukt",
+      "es": "la fruta",
+      "category": "Mat og drikke",
+      "id": "vocab-0464"
+    },
+    {
+      "no": "pære",
+      "es": "la pera",
+      "category": "Mat og drikke",
+      "id": "vocab-0465"
+    },
+    {
+      "no": "appelsin",
+      "es": "la naranja",
+      "category": "Mat og drikke",
+      "id": "vocab-0466"
+    },
+    {
+      "no": "banan",
+      "es": "el plátano",
+      "category": "Mat og drikke",
+      "id": "vocab-0467"
+    },
+    {
+      "no": "eple",
+      "es": "la manzana",
+      "category": "Mat og drikke",
+      "id": "vocab-0468"
+    },
+    {
+      "no": "fersken",
+      "es": "el melocotón",
+      "category": "Mat og drikke",
+      "id": "vocab-0469"
+    },
+    {
+      "no": "drue",
+      "es": "la uva",
+      "category": "Mat og drikke",
+      "id": "vocab-0470"
+    },
+    {
+      "no": "melon",
+      "es": "el melón",
+      "category": "Mat og drikke",
+      "id": "vocab-0471"
+    },
+    {
+      "no": "vannmelon",
+      "es": "la sandía",
+      "category": "Mat og drikke",
+      "id": "vocab-0472"
+    },
+    {
+      "no": "sitron",
+      "es": "el limón",
+      "category": "Mat og drikke",
+      "id": "vocab-0473"
+    },
+    {
+      "no": "grønnsak",
+      "es": "la verdura",
+      "category": "Mat og drikke",
+      "id": "vocab-0474"
+    },
+    {
+      "no": "tomat",
+      "es": "el tomate",
+      "category": "Mat og drikke",
+      "id": "vocab-0475"
+    },
+    {
+      "no": "agurk",
+      "es": "el pepino",
+      "category": "Mat og drikke",
+      "id": "vocab-0476"
+    },
+    {
+      "no": "løk",
+      "es": "la cebolla",
+      "category": "Mat og drikke",
+      "id": "vocab-0477"
+    },
+    {
+      "no": "hvitløk",
+      "es": "el ajo",
+      "category": "Mat og drikke",
+      "id": "vocab-0478"
+    },
+    {
+      "no": "salat",
+      "es": "la lechuga",
+      "category": "Mat og drikke",
+      "id": "vocab-0479"
+    },
+    {
+      "no": "paprika",
+      "es": "el pimiento",
+      "category": "Mat og drikke",
+      "id": "vocab-0480"
+    },
+    {
+      "no": "gulrot",
+      "es": "la zanahoria",
+      "category": "Mat og drikke",
+      "id": "vocab-0481"
+    },
+    {
+      "no": "potet",
+      "es": "la patata",
+      "category": "Mat og drikke",
+      "id": "vocab-0482"
+    },
+    {
+      "no": "matvare",
+      "es": "el alimento",
+      "category": "Mat og drikke",
+      "id": "vocab-0483"
+    },
+    {
+      "no": "kjeks",
+      "es": "la galleta",
+      "category": "Mat og drikke",
+      "id": "vocab-0484"
+    },
+    {
+      "no": "brød",
+      "es": "el pan",
+      "category": "Mat og drikke",
+      "id": "vocab-0485"
+    },
+    {
+      "no": "marmelade",
+      "es": "la mermelada",
+      "category": "Mat og drikke",
+      "id": "vocab-0486"
+    },
+    {
+      "no": "korn, frokostblanding",
+      "es": "los cereales",
+      "category": "Mat og drikke",
+      "id": "vocab-0487"
+    },
+    {
+      "no": "pølse",
+      "es": "la salchicha",
+      "category": "Mat og drikke",
+      "id": "vocab-0488"
+    },
+    {
+      "no": "skinke",
+      "es": "el jamón",
+      "category": "Mat og drikke",
+      "id": "vocab-0489"
+    },
+    {
+      "no": "kjøtt",
+      "es": "la carne",
+      "category": "Mat og drikke",
+      "id": "vocab-0490"
+    },
+    {
+      "no": "kylling",
+      "es": "el pollo",
+      "category": "Mat og drikke",
+      "id": "vocab-0491"
+    },
+    {
+      "no": "pasta",
+      "es": "la pasta",
+      "category": "Mat og drikke",
+      "id": "vocab-0492"
+    },
+    {
+      "no": "ris",
+      "es": "el arroz",
+      "category": "Mat og drikke",
+      "id": "vocab-0493"
+    },
+    {
+      "no": "egg",
+      "es": "el huevo",
+      "category": "Mat og drikke",
+      "id": "vocab-0494"
+    },
+    {
+      "no": "fisk",
+      "es": "el pescado",
+      "category": "Mat og drikke",
+      "id": "vocab-0495"
+    },
+    {
+      "no": "sukker",
+      "es": "el azúcar",
+      "category": "Mat og drikke",
+      "id": "vocab-0496"
+    },
+    {
+      "no": "salt",
+      "es": "la sal",
+      "category": "Mat og drikke",
+      "id": "vocab-0497"
+    },
+    {
+      "no": "bakverk",
+      "es": "el pastel",
+      "category": "Mat og drikke",
+      "id": "vocab-0498"
+    },
+    {
+      "no": "smør",
+      "es": "la mantequilla",
+      "category": "Mat og drikke",
+      "id": "vocab-0499"
+    },
+    {
+      "no": "ost",
+      "es": "el queso",
+      "category": "Mat og drikke",
+      "id": "vocab-0500"
+    },
+    {
+      "no": "yoghurt",
+      "es": "el yogur",
+      "category": "Mat og drikke",
+      "id": "vocab-0501"
+    },
+    {
+      "no": "melk",
+      "es": "la leche",
+      "category": "Mat og drikke",
+      "id": "vocab-0502"
+    },
+    {
+      "no": "leskedrikk",
+      "es": "el refresco",
+      "category": "Mat og drikke",
+      "id": "vocab-0503"
+    },
+    {
+      "no": "juice",
+      "es": "el zumo",
+      "category": "Mat og drikke",
+      "id": "vocab-0504"
+    },
+    {
+      "no": "juice",
+      "es": "el jugo",
+      "category": "Mat og drikke",
+      "id": "vocab-0505"
+    },
+    {
+      "no": "vann",
+      "es": "el agua",
+      "category": "Mat og drikke",
+      "id": "vocab-0506"
+    },
+    {
+      "no": "behøve",
+      "es": "necesitar",
+      "category": "Mat og drikke",
+      "id": "vocab-0507"
+    },
+    {
+      "no": "etterpå",
+      "es": "después",
+      "category": "Mat og drikke",
+      "id": "vocab-0508"
+    },
+    {
+      "no": "forberede, tilberede",
+      "es": "preparar",
+      "category": "Mat og drikke",
+      "id": "vocab-0509"
+    },
+    {
+      "no": "supermarked",
+      "es": "el supermercado",
+      "category": "Mat og drikke",
+      "id": "vocab-0510"
+    },
+    {
+      "no": "kjøpe",
+      "es": "comprar",
+      "category": "Mat og drikke",
+      "id": "vocab-0511"
+    },
+    {
+      "no": "det som",
+      "es": "lo que",
+      "category": "Mat og drikke",
+      "id": "vocab-0512"
+    },
+    {
+      "no": "har nettopp kommet tilbake",
+      "es": "acaba de regresar",
+      "category": "tid",
+      "id": "vocab-0513"
+    },
+    {
+      "no": "å nettopp ha gjort noe",
+      "es": "acabar de",
+      "category": "Mat og drikke",
+      "id": "vocab-0514"
+    },
+    {
+      "no": "olivenolje",
+      "es": "el aceite de oliva",
+      "category": "Mat og drikke",
+      "id": "vocab-0515"
+    },
+    {
+      "no": "naturligvis",
+      "es": "por supuesto",
+      "category": "Mat og drikke",
+      "id": "vocab-0516"
+    },
+    {
+      "no": "lengst inn / bak",
+      "es": "al fondo",
+      "category": "Mat og drikke",
+      "id": "vocab-0517"
+    },
+    {
+      "no": "pommes frites",
+      "es": "las patatas fritas",
+      "category": "Mat og drikke",
+      "id": "vocab-0518"
+    },
+    {
+      "no": "oliven",
+      "es": "la aceituna",
+      "category": "Mat og drikke",
+      "id": "vocab-0519"
+    },
+    {
+      "no": "småspise",
+      "es": "picar",
+      "category": "Mat og drikke",
+      "id": "vocab-0520"
+    },
+    {
+      "no": "drikke",
+      "es": "beber",
+      "category": "Mat og drikke",
+      "id": "vocab-0521"
+    },
+    {
+      "no": "kassadame",
+      "es": "la cajera",
+      "category": "Mat og drikke",
+      "id": "vocab-0522"
+    }
+  ],
+  "grammar": [
+    {
+      "topicId": "a0Foundation",
+      "topicName": "A0 grunnmur",
+      "sentence": "Tengo ___ años",
+      "answer": "catorce",
+      "options": [
+        "catorce",
+        "soy",
+        "vivo",
+        "hay"
+      ],
+      "hint": "På spansk sier du «jeg har fjorten år».",
+      "word": null,
+      "no": "Jeg er fjorten år.",
+      "id": "grammar:a0Foundation:1"
+    },
+    {
+      "topicId": "a0Foundation",
+      "topicName": "A0 grunnmur",
+      "sentence": "___ un libro en la mesa",
+      "answer": "Hay",
+      "options": [
+        "Hay",
+        "Soy",
+        "Tengo",
+        "Vivo"
+      ],
+      "hint": "Bruk hay når du sier at noe finnes eller er et sted.",
+      "word": null,
+      "no": "Det er en bok på bordet.",
+      "id": "grammar:a0Foundation:2"
+    },
+    {
+      "topicId": "a0Foundation",
+      "topicName": "A0 grunnmur",
+      "sentence": "Yo ___ una hermana",
+      "answer": "tengo",
+      "options": [
+        "tengo",
+        "hay",
+        "soy",
+        "vivo"
+      ],
+      "hint": "Tener betyr å ha. Med yo blir det tengo.",
+      "word": null,
+      "no": "Jeg har en søster.",
+      "id": "grammar:a0Foundation:3"
+    },
+    {
+      "topicId": "a0Foundation",
+      "topicName": "A0 grunnmur",
+      "sentence": "—¿Cómo estás? —___ bien, gracias",
+      "answer": "Estoy",
+      "options": [
+        "Estoy",
+        "Tengo",
+        "Hay",
+        "Vivo"
+      ],
+      "hint": "Svar på hvordan du har det med estoy.",
+      "word": null,
+      "no": "—Hvordan har du det? —Jeg har det bra, takk.",
+      "id": "grammar:a0Foundation:4"
+    },
+    {
+      "topicId": "a0Foundation",
+      "topicName": "A0 grunnmur",
+      "sentence": "Yo ___ en una escuela",
+      "answer": "trabajo",
+      "options": [
+        "trabajo",
+        "trabajas",
+        "trabajar",
+        "hay"
+      ],
+      "hint": "Med yo får regelrette -ar-verb endelsen -o.",
+      "word": null,
+      "no": "Jeg jobber på en skole.",
+      "id": "grammar:a0Foundation:5"
+    },
+    {
+      "topicId": "a0Foundation",
+      "topicName": "A0 grunnmur",
+      "sentence": "___ en Oslo",
+      "answer": "Vivo",
+      "options": [
+        "Vivo",
+        "Soy",
+        "Tengo",
+        "Hay"
+      ],
+      "hint": "Vivo en betyr «jeg bor i».",
+      "word": null,
+      "no": "Jeg bor i Oslo.",
+      "id": "grammar:a0Foundation:6"
+    },
+    {
+      "topicId": "a0Foundation",
+      "topicName": "A0 grunnmur",
+      "sentence": "Mi madre es ___",
+      "answer": "profesora",
+      "options": [
+        "profesora",
+        "una profesora",
+        "la profesora",
+        "hay"
+      ],
+      "hint": "I en enkel yrkesbeskrivelse sier vi es profesora, uten artikkel. Med una eller la får beskrivelsen en annen vekt eller viser til en bestemt person.",
+      "word": null,
+      "no": "Moren min er lærer.",
+      "id": "grammar:a0Foundation:7"
+    },
+    {
+      "topicId": "a0Foundation",
+      "topicName": "A0 grunnmur",
+      "sentence": "¿___ es eso?",
+      "answer": "Qué",
+      "options": [
+        "Qué",
+        "Quién",
+        "Dónde",
+        "Cuándo"
+      ],
+      "hint": "Qué betyr «hva».",
+      "word": null,
+      "no": "Hva er det?",
+      "id": "grammar:a0Foundation:8"
+    },
+    {
+      "topicId": "articles",
+      "topicName": "Artikler",
+      "sentence": "___ casa es grande",
+      "answer": "La",
+      "options": [
+        "El",
+        "La",
+        "Un",
+        "Una"
+      ],
+      "hint": "casa (hus) er feminin",
+      "word": "casa",
+      "no": "Huset er stort.",
+      "id": "grammar:articles:9"
+    },
+    {
+      "topicId": "articles",
+      "topicName": "Artikler",
+      "sentence": "___ libro es interesante",
+      "answer": "El",
+      "options": [
+        "El",
+        "La",
+        "Los",
+        "Las"
+      ],
+      "hint": "libro (bok) slutter på -o",
+      "word": "libro",
+      "no": "Boka er interessant.",
+      "id": "grammar:articles:10"
+    },
+    {
+      "topicId": "articles",
+      "topicName": "Artikler",
+      "sentence": "Tengo ___ hermano",
+      "answer": "un",
+      "options": [
+        "un",
+        "una",
+        "el",
+        "la"
+      ],
+      "hint": "hermano (bror) er maskulin",
+      "word": "hermano",
+      "no": "Jeg har en bror.",
+      "id": "grammar:articles:11"
+    },
+    {
+      "topicId": "articles",
+      "topicName": "Artikler",
+      "sentence": "___ mesa está en la cocina",
+      "answer": "La",
+      "options": [
+        "El",
+        "La",
+        "Un",
+        "Una"
+      ],
+      "hint": "mesa (bord) slutter på -a",
+      "word": "mesa",
+      "no": "Bordet står på kjøkkenet.",
+      "id": "grammar:articles:12"
+    },
+    {
+      "topicId": "articles",
+      "topicName": "Artikler",
+      "sentence": "Veo ___ perro en el parque",
+      "answer": "un",
+      "options": [
+        "un",
+        "una",
+        "el",
+        "la"
+      ],
+      "hint": "perro (hund) er maskulin",
+      "word": "perro",
+      "no": "Jeg ser en hund i parken.",
+      "id": "grammar:articles:13"
+    },
+    {
+      "topicId": "articles",
+      "topicName": "Artikler",
+      "sentence": "___ profesora es simpática",
+      "answer": "La",
+      "options": [
+        "El",
+        "La",
+        "Un",
+        "Una"
+      ],
+      "hint": "profesora (lærer) er feminin",
+      "word": "profesora",
+      "no": "Læreren er hyggelig.",
+      "id": "grammar:articles:14"
+    },
+    {
+      "topicId": "articles",
+      "topicName": "Artikler",
+      "sentence": "___ chicos juegan fútbol",
+      "answer": "Los",
+      "options": [
+        "El",
+        "La",
+        "Los",
+        "Las"
+      ],
+      "hint": "chicos (gutter) er maskulin flertall",
+      "word": "chicos",
+      "no": "Guttene spiller fotball.",
+      "id": "grammar:articles:15"
+    },
+    {
+      "topicId": "articles",
+      "topicName": "Artikler",
+      "sentence": "___ sillas son rojas",
+      "answer": "Las",
+      "options": [
+        "El",
+        "La",
+        "Los",
+        "Las"
+      ],
+      "hint": "sillas (stoler) er feminin flertall",
+      "word": "sillas",
+      "no": "Stolene er røde.",
+      "id": "grammar:articles:16"
+    },
+    {
+      "topicId": "articles",
+      "topicName": "Artikler",
+      "sentence": "Necesito ___ bolígrafo",
+      "answer": "un",
+      "options": [
+        "un",
+        "una",
+        "el",
+        "la"
+      ],
+      "hint": "bolígrafo (penn) er maskulin",
+      "word": "bolígrafo",
+      "no": "Jeg trenger en penn.",
+      "id": "grammar:articles:17"
+    },
+    {
+      "topicId": "articles",
+      "topicName": "Artikler",
+      "sentence": "___ día es bonito",
+      "answer": "El",
+      "options": [
+        "El",
+        "La",
+        "Un",
+        "Una"
+      ],
+      "hint": "día (dag) er UNNTAK - maskulin!",
+      "word": "día",
+      "no": "Dagen er fin.",
+      "id": "grammar:articles:18"
+    },
+    {
+      "topicId": "articles",
+      "topicName": "Artikler",
+      "sentence": "___ problema es difícil",
+      "answer": "El",
+      "options": [
+        "El",
+        "La",
+        "Un",
+        "Una"
+      ],
+      "hint": "problema er UNNTAK - maskulin!",
+      "word": "problema",
+      "no": "Problemet er vanskelig.",
+      "id": "grammar:articles:19"
+    },
+    {
+      "topicId": "articles",
+      "topicName": "Artikler",
+      "sentence": "___ mano está fría",
+      "answer": "La",
+      "options": [
+        "El",
+        "La",
+        "Un",
+        "Una"
+      ],
+      "hint": "mano (hånd) er UNNTAK - feminin!",
+      "word": "mano",
+      "no": "Hånden er kald.",
+      "id": "grammar:articles:20"
+    },
+    {
+      "topicId": "articles",
+      "topicName": "Artikler",
+      "sentence": "___ ventana está abierta",
+      "answer": "La",
+      "options": [
+        "El",
+        "La",
+        "Los",
+        "Las"
+      ],
+      "hint": "ventana (vindu) slutter på -a",
+      "word": "ventana",
+      "no": "Vinduet er åpent.",
+      "id": "grammar:articles:21"
+    },
+    {
+      "topicId": "articles",
+      "topicName": "Artikler",
+      "sentence": "___ padres están en casa",
+      "answer": "Los",
+      "options": [
+        "El",
+        "La",
+        "Los",
+        "Las"
+      ],
+      "hint": "padres (foreldre) er maskulin flertall",
+      "word": "padres",
+      "no": "Foreldrene mine er hjemme.",
+      "id": "grammar:articles:22"
+    },
+    {
+      "topicId": "articles",
+      "topicName": "Artikler",
+      "sentence": "Tengo ___ gata negra",
+      "answer": "una",
+      "options": [
+        "un",
+        "una",
+        "el",
+        "la"
+      ],
+      "hint": "gata (katt, hunn) er feminin",
+      "word": "gata",
+      "no": "Jeg har en svart katt.",
+      "id": "grammar:articles:23"
+    },
+    {
+      "topicId": "adjectives",
+      "topicName": "Adjektivsamsvar",
+      "sentence": "La casa es muy ___",
+      "answer": "bonita",
+      "options": [
+        "bonito",
+        "bonita",
+        "bonitos",
+        "bonitas"
+      ],
+      "hint": "casa er feminin entall",
+      "word": "bonito",
+      "no": "Huset er veldig pent.",
+      "id": "grammar:adjectives:24"
+    },
+    {
+      "topicId": "adjectives",
+      "topicName": "Adjektivsamsvar",
+      "sentence": "Los chicos son ___",
+      "answer": "altos",
+      "options": [
+        "alto",
+        "alta",
+        "altos",
+        "altas"
+      ],
+      "hint": "chicos er maskulin flertall",
+      "word": "alto",
+      "no": "Guttene er høye.",
+      "id": "grammar:adjectives:25"
+    },
+    {
+      "topicId": "adjectives",
+      "topicName": "Adjektivsamsvar",
+      "sentence": "Mi hermana es muy ___",
+      "answer": "simpática",
+      "options": [
+        "simpático",
+        "simpática",
+        "simpáticos",
+        "simpáticas"
+      ],
+      "hint": "hermana er feminin entall",
+      "word": "simpático",
+      "no": "Søsteren min er veldig hyggelig.",
+      "id": "grammar:adjectives:26"
+    },
+    {
+      "topicId": "adjectives",
+      "topicName": "Adjektivsamsvar",
+      "sentence": "Las flores son ___",
+      "answer": "rojas",
+      "options": [
+        "rojo",
+        "roja",
+        "rojos",
+        "rojas"
+      ],
+      "hint": "flores er feminin flertall",
+      "word": "rojo",
+      "no": "Blomstene er røde.",
+      "id": "grammar:adjectives:27"
+    },
+    {
+      "topicId": "adjectives",
+      "topicName": "Adjektivsamsvar",
+      "sentence": "El profesor es ___",
+      "answer": "inteligente",
+      "options": [
+        "inteligente",
+        "inteligenta",
+        "inteligentes",
+        "inteligento"
+      ],
+      "hint": "-e adjektiv er like for begge kjønn",
+      "word": "inteligente",
+      "no": "Læreren er intelligent.",
+      "id": "grammar:adjectives:28"
+    },
+    {
+      "topicId": "adjectives",
+      "topicName": "Adjektivsamsvar",
+      "sentence": "Las chicas son muy ___",
+      "answer": "inteligentes",
+      "options": [
+        "inteligente",
+        "inteligenta",
+        "inteligentes",
+        "inteligento"
+      ],
+      "hint": "flertall av -e adjektiv får -es",
+      "word": "inteligente",
+      "no": "Jentene er veldig intelligente.",
+      "id": "grammar:adjectives:29"
+    },
+    {
+      "topicId": "adjectives",
+      "topicName": "Adjektivsamsvar",
+      "sentence": "Mi padre es ___",
+      "answer": "moreno",
+      "options": [
+        "moreno",
+        "morena",
+        "morenos",
+        "morenas"
+      ],
+      "hint": "padre er maskulin entall",
+      "word": "moreno",
+      "no": "Faren min er mørkhåret.",
+      "id": "grammar:adjectives:30"
+    },
+    {
+      "topicId": "adjectives",
+      "topicName": "Adjektivsamsvar",
+      "sentence": "Las casas son ___",
+      "answer": "grandes",
+      "options": [
+        "grande",
+        "granda",
+        "grandes",
+        "grandas"
+      ],
+      "hint": "grande er likt for begge kjønn",
+      "word": "grande",
+      "no": "Husene er store.",
+      "id": "grammar:adjectives:31"
+    },
+    {
+      "topicId": "adjectives",
+      "topicName": "Adjektivsamsvar",
+      "sentence": "El perro es ___",
+      "answer": "pequeño",
+      "options": [
+        "pequeño",
+        "pequeña",
+        "pequeños",
+        "pequeñas"
+      ],
+      "hint": "perro er maskulin entall",
+      "word": "pequeño",
+      "no": "Hunden er liten.",
+      "id": "grammar:adjectives:32"
+    },
+    {
+      "topicId": "adjectives",
+      "topicName": "Adjektivsamsvar",
+      "sentence": "Mis abuelas son ___",
+      "answer": "viejas",
+      "options": [
+        "viejo",
+        "vieja",
+        "viejos",
+        "viejas"
+      ],
+      "hint": "abuelas er feminin flertall",
+      "word": "viejo",
+      "no": "Bestemødrene mine er gamle.",
+      "id": "grammar:adjectives:33"
+    },
+    {
+      "topicId": "adjectives",
+      "topicName": "Adjektivsamsvar",
+      "sentence": "La comida está ___",
+      "answer": "rica",
+      "options": [
+        "rico",
+        "rica",
+        "ricos",
+        "ricas"
+      ],
+      "hint": "comida er feminin entall",
+      "word": "rico",
+      "no": "Maten er god.",
+      "id": "grammar:adjectives:34"
+    },
+    {
+      "topicId": "adjectives",
+      "topicName": "Adjektivsamsvar",
+      "sentence": "Los libros son ___",
+      "answer": "interesantes",
+      "options": [
+        "interesante",
+        "interesanta",
+        "interesantes",
+        "interesantos"
+      ],
+      "hint": "-e adjektiv i flertall",
+      "word": "interesante",
+      "no": "Bøkene er interessante.",
+      "id": "grammar:adjectives:35"
+    },
+    {
+      "topicId": "serEstar",
+      "topicName": "Ser vs Estar",
+      "sentence": "Yo ___ de Noruega",
+      "answer": "soy",
+      "options": [
+        "soy",
+        "estoy",
+        "es",
+        "está"
+      ],
+      "hint": "Nasjonalitet/opprinnelse = SER",
+      "word": null,
+      "no": "Jeg er fra Norge.",
+      "id": "grammar:serEstar:36"
+    },
+    {
+      "topicId": "serEstar",
+      "topicName": "Ser vs Estar",
+      "sentence": "Mi madre ___ en la cocina",
+      "answer": "está",
+      "options": [
+        "es",
+        "está",
+        "son",
+        "están"
+      ],
+      "hint": "Lokasjon = ESTAR",
+      "word": null,
+      "no": "Moren min er på kjøkkenet.",
+      "id": "grammar:serEstar:37"
+    },
+    {
+      "topicId": "serEstar",
+      "topicName": "Ser vs Estar",
+      "sentence": "Nosotros ___ estudiantes",
+      "answer": "somos",
+      "options": [
+        "somos",
+        "estamos",
+        "son",
+        "están"
+      ],
+      "hint": "Identitet = SER",
+      "word": null,
+      "no": "Vi er elever.",
+      "id": "grammar:serEstar:38"
+    },
+    {
+      "topicId": "serEstar",
+      "topicName": "Ser vs Estar",
+      "sentence": "Hoy yo ___ muy cansado",
+      "answer": "estoy",
+      "options": [
+        "soy",
+        "estoy",
+        "es",
+        "está"
+      ],
+      "hint": "Tilstand nå = ESTAR",
+      "word": null,
+      "no": "I dag er jeg veldig sliten.",
+      "id": "grammar:serEstar:39"
+    },
+    {
+      "topicId": "serEstar",
+      "topicName": "Ser vs Estar",
+      "sentence": "Mi padre ___ profesor",
+      "answer": "es",
+      "options": [
+        "es",
+        "está",
+        "soy",
+        "estoy"
+      ],
+      "hint": "Yrke = SER",
+      "word": null,
+      "no": "Faren min er lærer.",
+      "id": "grammar:serEstar:40"
+    },
+    {
+      "topicId": "serEstar",
+      "topicName": "Ser vs Estar",
+      "sentence": "¿Dónde ___ el baño?",
+      "answer": "está",
+      "options": [
+        "es",
+        "está",
+        "son",
+        "están"
+      ],
+      "hint": "Lokasjon = ESTAR",
+      "word": null,
+      "no": "Hvor er badet?",
+      "id": "grammar:serEstar:41"
+    },
+    {
+      "topicId": "serEstar",
+      "topicName": "Ser vs Estar",
+      "sentence": "Ellos ___ muy simpáticos",
+      "answer": "son",
+      "options": [
+        "son",
+        "están",
+        "es",
+        "está"
+      ],
+      "hint": "Beskrivelse = SER",
+      "word": null,
+      "no": "De er veldig hyggelige.",
+      "id": "grammar:serEstar:42"
+    },
+    {
+      "topicId": "serEstar",
+      "topicName": "Ser vs Estar",
+      "sentence": "La ventana ___ abierta",
+      "answer": "está",
+      "options": [
+        "es",
+        "está",
+        "son",
+        "están"
+      ],
+      "hint": "Tilstand = ESTAR",
+      "word": null,
+      "no": "Vinduet er åpent.",
+      "id": "grammar:serEstar:43"
+    },
+    {
+      "topicId": "serEstar",
+      "topicName": "Ser vs Estar",
+      "sentence": "Hoy ___ lunes",
+      "answer": "es",
+      "options": [
+        "es",
+        "está",
+        "soy",
+        "estoy"
+      ],
+      "hint": "Dag/tid = SER",
+      "word": null,
+      "no": "I dag er det mandag.",
+      "id": "grammar:serEstar:44"
+    },
+    {
+      "topicId": "serEstar",
+      "topicName": "Ser vs Estar",
+      "sentence": "¿Cómo ___ tú?",
+      "answer": "estás",
+      "options": [
+        "eres",
+        "estás",
+        "es",
+        "está"
+      ],
+      "hint": "Hvordan har du det (tilstand) = ESTAR",
+      "word": null,
+      "no": "Hvordan har du det?",
+      "id": "grammar:serEstar:45"
+    },
+    {
+      "topicId": "serEstar",
+      "topicName": "Ser vs Estar",
+      "sentence": "Mi hermano ___ alto y moreno",
+      "answer": "es",
+      "options": [
+        "es",
+        "está",
+        "soy",
+        "estoy"
+      ],
+      "hint": "Fysisk beskrivelse = SER",
+      "word": null,
+      "no": "Broren min er høy og mørkhåret.",
+      "id": "grammar:serEstar:46"
+    },
+    {
+      "topicId": "serEstar",
+      "topicName": "Ser vs Estar",
+      "sentence": "Los niños ___ en el parque",
+      "answer": "están",
+      "options": [
+        "son",
+        "están",
+        "es",
+        "está"
+      ],
+      "hint": "Lokasjon = ESTAR",
+      "word": null,
+      "no": "Barna er i parken.",
+      "id": "grammar:serEstar:47"
+    },
+    {
+      "topicId": "serEstar",
+      "topicName": "Ser vs Estar",
+      "sentence": "La fiesta ___ el sábado",
+      "answer": "es",
+      "options": [
+        "es",
+        "está",
+        "son",
+        "están"
+      ],
+      "hint": "Når noe skjer = SER",
+      "word": null,
+      "no": "Festen er på lørdag.",
+      "id": "grammar:serEstar:48"
+    },
+    {
+      "topicId": "serEstar",
+      "topicName": "Ser vs Estar",
+      "sentence": "Yo ___ muy feliz hoy",
+      "answer": "estoy",
+      "options": [
+        "soy",
+        "estoy",
+        "es",
+        "está"
+      ],
+      "hint": "Følelse nå = ESTAR",
+      "word": null,
+      "no": "I dag er jeg veldig glad.",
+      "id": "grammar:serEstar:49"
+    },
+    {
+      "topicId": "serEstar",
+      "topicName": "Ser vs Estar",
+      "sentence": "El libro ___ en la mesa",
+      "answer": "está",
+      "options": [
+        "es",
+        "está",
+        "son",
+        "están"
+      ],
+      "hint": "Lokasjon = ESTAR",
+      "word": null,
+      "no": "Boka er på bordet.",
+      "id": "grammar:serEstar:50"
+    },
+    {
+      "topicId": "serEstar",
+      "topicName": "Ser vs Estar",
+      "sentence": "Mis amigos ___ en la escuela",
+      "answer": "están",
+      "options": [
+        "son",
+        "están",
+        "es",
+        "está"
+      ],
+      "hint": "Lokasjon = ESTAR",
+      "word": null,
+      "no": "Vennene mine er på skolen.",
+      "id": "grammar:serEstar:51"
+    },
+    {
+      "topicId": "hayEstar",
+      "topicName": "Hay eller estar?",
+      "sentence": "___ un libro en la mesa",
+      "answer": "Hay",
+      "options": [
+        "Hay",
+        "Está",
+        "Están",
+        "Es"
+      ],
+      "hint": "un libro introduserer ei bok. Bruk hay for å si at boka finnes der.",
+      "word": null,
+      "no": "Det er en bok på bordet.",
+      "id": "grammar:hayEstar:52"
+    },
+    {
+      "topicId": "hayEstar",
+      "topicName": "Hay eller estar?",
+      "sentence": "El libro ___ en la mesa",
+      "answer": "está",
+      "options": [
+        "hay",
+        "está",
+        "están",
+        "es"
+      ],
+      "hint": "El libro er ei bestemt bok. Bruk está for å si hvor den er.",
+      "word": null,
+      "no": "Boka er på bordet.",
+      "id": "grammar:hayEstar:53"
+    },
+    {
+      "topicId": "hayEstar",
+      "topicName": "Hay eller estar?",
+      "sentence": "___ dos ventanas en el aula",
+      "answer": "Hay",
+      "options": [
+        "Hay",
+        "Está",
+        "Están",
+        "Es"
+      ],
+      "hint": "dos ventanas forteller hvor mange vinduer som finnes. Bruk hay også når det finnes flere ting.",
+      "word": null,
+      "no": "Det er to vinduer i klasserommet.",
+      "id": "grammar:hayEstar:54"
+    },
+    {
+      "topicId": "hayEstar",
+      "topicName": "Hay eller estar?",
+      "sentence": "Las ventanas ___ al lado de la puerta",
+      "answer": "están",
+      "options": [
+        "hay",
+        "está",
+        "están",
+        "es"
+      ],
+      "hint": "Las ventanas er bestemte vinduer i flertall. Bruk están for å si hvor de er.",
+      "word": null,
+      "no": "Vinduene er ved siden av døra.",
+      "id": "grammar:hayEstar:55"
+    },
+    {
+      "topicId": "hayEstar",
+      "topicName": "Hay eller estar?",
+      "sentence": "¿___ una farmacia cerca?",
+      "answer": "Hay",
+      "options": [
+        "Hay",
+        "Está",
+        "Están",
+        "Es"
+      ],
+      "hint": "una farmacia spør etter et apotek som finnes i nærheten. Bruk hay.",
+      "word": null,
+      "no": "Finnes det et apotek i nærheten?",
+      "id": "grammar:hayEstar:56"
+    },
+    {
+      "topicId": "hayEstar",
+      "topicName": "Hay eller estar?",
+      "sentence": "La farmacia ___ al lado del banco",
+      "answer": "está",
+      "options": [
+        "hay",
+        "está",
+        "están",
+        "es"
+      ],
+      "hint": "La farmacia er et bestemt apotek i entall. Bruk está for å si hvor det er.",
+      "word": null,
+      "no": "Apoteket er ved siden av banken.",
+      "id": "grammar:hayEstar:57"
+    },
+    {
+      "topicId": "hayEstar",
+      "topicName": "Hay eller estar?",
+      "sentence": "En mi mochila ___ tres libros",
+      "answer": "hay",
+      "options": [
+        "hay",
+        "está",
+        "están",
+        "es"
+      ],
+      "hint": "tres libros introduserer tre bøker. Bruk hay for å si hva som finnes i sekken.",
+      "word": null,
+      "no": "I sekken min er det tre bøker.",
+      "id": "grammar:hayEstar:58"
+    },
+    {
+      "topicId": "hayEstar",
+      "topicName": "Hay eller estar?",
+      "sentence": "Los libros ___ en mi mochila",
+      "answer": "están",
+      "options": [
+        "hay",
+        "está",
+        "están",
+        "es"
+      ],
+      "hint": "Los libros viser til bestemte bøker i flertall. Bruk están om plasseringen.",
+      "word": null,
+      "no": "Bøkene er i sekken min.",
+      "id": "grammar:hayEstar:59"
+    },
+    {
+      "topicId": "hayEstar",
+      "topicName": "Hay eller estar?",
+      "sentence": "___ una silla aquí",
+      "answer": "Hay",
+      "options": [
+        "Hay",
+        "Está",
+        "Están",
+        "Es"
+      ],
+      "hint": "una silla introduserer en stol som finnes her. Bruk hay.",
+      "word": null,
+      "no": "Det er en stol her.",
+      "id": "grammar:hayEstar:60"
+    },
+    {
+      "topicId": "hayEstar",
+      "topicName": "Hay eller estar?",
+      "sentence": "La silla ___ junto a la mesa",
+      "answer": "está",
+      "options": [
+        "hay",
+        "está",
+        "están",
+        "es"
+      ],
+      "hint": "La silla er en bestemt stol i entall. Bruk está om plasseringen.",
+      "word": null,
+      "no": "Stolen er ved siden av bordet.",
+      "id": "grammar:hayEstar:61"
+    },
+    {
+      "topicId": "gustar",
+      "topicName": "Gustar",
+      "sentence": "___ gusta el chocolate",
+      "answer": "Me",
+      "options": [
+        "Me",
+        "Te",
+        "Le",
+        "Nos"
+      ],
+      "hint": "Jeg liker...",
+      "word": null,
+      "no": "Jeg liker sjokolade.",
+      "id": "grammar:gustar:62"
+    },
+    {
+      "topicId": "gustar",
+      "topicName": "Gustar",
+      "sentence": "Me ___ los videojuegos",
+      "answer": "gustan",
+      "options": [
+        "gusta",
+        "gustan",
+        "gustas",
+        "gusto"
+      ],
+      "hint": "videojuegos er flertall",
+      "word": null,
+      "no": "Jeg liker videospill.",
+      "id": "grammar:gustar:63"
+    },
+    {
+      "topicId": "gustar",
+      "topicName": "Gustar",
+      "sentence": "¿___ gusta bailar?",
+      "answer": "Te",
+      "options": [
+        "Me",
+        "Te",
+        "Le",
+        "Se"
+      ],
+      "hint": "Liker du...?",
+      "word": null,
+      "no": "Liker du å danse?",
+      "id": "grammar:gustar:64"
+    },
+    {
+      "topicId": "gustar",
+      "topicName": "Gustar",
+      "sentence": "A mi hermano ___ gusta el fútbol",
+      "answer": "le",
+      "options": [
+        "me",
+        "te",
+        "le",
+        "nos"
+      ],
+      "hint": "Han liker...",
+      "word": null,
+      "no": "Broren min liker fotball.",
+      "id": "grammar:gustar:65"
+    },
+    {
+      "topicId": "gustar",
+      "topicName": "Gustar",
+      "sentence": "Me ___ escuchar música",
+      "answer": "gusta",
+      "options": [
+        "gusta",
+        "gustan",
+        "gustas",
+        "gusto"
+      ],
+      "hint": "Infinitiv = gusta (entall)",
+      "word": null,
+      "no": "Jeg liker å høre på musikk.",
+      "id": "grammar:gustar:66"
+    },
+    {
+      "topicId": "gustar",
+      "topicName": "Gustar",
+      "sentence": "___ gustan las películas de terror",
+      "answer": "Nos",
+      "options": [
+        "Me",
+        "Te",
+        "Le",
+        "Nos"
+      ],
+      "hint": "Vi liker...",
+      "word": null,
+      "no": "Vi liker skrekkfilmer.",
+      "id": "grammar:gustar:67"
+    },
+    {
+      "topicId": "gustar",
+      "topicName": "Gustar",
+      "sentence": "A María ___ gustan los gatos",
+      "answer": "le",
+      "options": [
+        "me",
+        "te",
+        "le",
+        "les"
+      ],
+      "hint": "Hun liker...",
+      "word": null,
+      "no": "María liker katter.",
+      "id": "grammar:gustar:68"
+    },
+    {
+      "topicId": "gustar",
+      "topicName": "Gustar",
+      "sentence": "¿Te ___ la pizza?",
+      "answer": "gusta",
+      "options": [
+        "gusta",
+        "gustan",
+        "gustas",
+        "gusto"
+      ],
+      "hint": "pizza er entall",
+      "word": null,
+      "no": "Liker du pizza?",
+      "id": "grammar:gustar:69"
+    },
+    {
+      "topicId": "gustar",
+      "topicName": "Gustar",
+      "sentence": "A mis padres ___ gusta viajar",
+      "answer": "les",
+      "options": [
+        "le",
+        "les",
+        "nos",
+        "me"
+      ],
+      "hint": "De liker... (flertall)",
+      "word": null,
+      "no": "Foreldrene mine liker å reise.",
+      "id": "grammar:gustar:70"
+    },
+    {
+      "topicId": "gustar",
+      "topicName": "Gustar",
+      "sentence": "No me ___ las verduras",
+      "answer": "gustan",
+      "options": [
+        "gusta",
+        "gustan",
+        "gustas",
+        "gusto"
+      ],
+      "hint": "verduras er flertall",
+      "word": null,
+      "no": "Jeg liker ikke grønnsaker.",
+      "id": "grammar:gustar:71"
+    },
+    {
+      "topicId": "gustar",
+      "topicName": "Gustar",
+      "sentence": "___ gusta mucho esta canción",
+      "answer": "Me",
+      "options": [
+        "Me",
+        "Mi",
+        "Yo",
+        "Mí"
+      ],
+      "hint": "Jeg liker...",
+      "word": null,
+      "no": "Jeg liker denne sangen veldig godt.",
+      "id": "grammar:gustar:72"
+    },
+    {
+      "topicId": "gustar",
+      "topicName": "Gustar",
+      "sentence": "A ella ___ gustan los perros",
+      "answer": "le",
+      "options": [
+        "le",
+        "la",
+        "les",
+        "lo"
+      ],
+      "hint": "Hun liker...",
+      "word": null,
+      "no": "Hun liker hunder.",
+      "id": "grammar:gustar:73"
+    },
+    {
+      "topicId": "reflexive",
+      "topicName": "Refleksive pronomen",
+      "sentence": "___ levanto a las siete",
+      "answer": "Me",
+      "options": [
+        "Me",
+        "Te",
+        "Se",
+        "Nos"
+      ],
+      "hint": "Jeg står opp...",
+      "word": null,
+      "no": "Jeg står opp klokken sju.",
+      "id": "grammar:reflexive:74"
+    },
+    {
+      "topicId": "reflexive",
+      "topicName": "Refleksive pronomen",
+      "sentence": "Mi hermana ___ ducha por la mañana",
+      "answer": "se",
+      "options": [
+        "me",
+        "te",
+        "se",
+        "nos"
+      ],
+      "hint": "Hun dusjer...",
+      "word": null,
+      "no": "Søsteren min dusjer om morgenen.",
+      "id": "grammar:reflexive:75"
+    },
+    {
+      "topicId": "reflexive",
+      "topicName": "Refleksive pronomen",
+      "sentence": "¿Cómo ___ llamas?",
+      "answer": "te",
+      "options": [
+        "me",
+        "te",
+        "se",
+        "nos"
+      ],
+      "hint": "Hva heter du?",
+      "word": null,
+      "no": "Hva heter du?",
+      "id": "grammar:reflexive:76"
+    },
+    {
+      "topicId": "reflexive",
+      "topicName": "Refleksive pronomen",
+      "sentence": "Nosotros ___ acostamos a las diez",
+      "answer": "nos",
+      "options": [
+        "me",
+        "te",
+        "se",
+        "nos"
+      ],
+      "hint": "Vi legger oss...",
+      "word": null,
+      "no": "Vi legger oss klokken ti.",
+      "id": "grammar:reflexive:77"
+    },
+    {
+      "topicId": "reflexive",
+      "topicName": "Refleksive pronomen",
+      "sentence": "___ visto rápidamente",
+      "answer": "Me",
+      "options": [
+        "Me",
+        "Te",
+        "Se",
+        "Nos"
+      ],
+      "hint": "Jeg kler på meg...",
+      "word": null,
+      "no": "Jeg kler på meg raskt.",
+      "id": "grammar:reflexive:78"
+    },
+    {
+      "topicId": "reflexive",
+      "topicName": "Refleksive pronomen",
+      "sentence": "Ella ___ maquilla todos los días",
+      "answer": "se",
+      "options": [
+        "me",
+        "te",
+        "se",
+        "nos"
+      ],
+      "hint": "Hun sminker seg...",
+      "word": null,
+      "no": "Hun sminker seg hver dag.",
+      "id": "grammar:reflexive:79"
+    },
+    {
+      "topicId": "reflexive",
+      "topicName": "Refleksive pronomen",
+      "sentence": "¿A qué hora ___ despiertas?",
+      "answer": "te",
+      "options": [
+        "me",
+        "te",
+        "se",
+        "nos"
+      ],
+      "hint": "Når våkner du?",
+      "word": null,
+      "no": "Når våkner du?",
+      "id": "grammar:reflexive:80"
+    },
+    {
+      "topicId": "reflexive",
+      "topicName": "Refleksive pronomen",
+      "sentence": "Los niños ___ lavan las manos",
+      "answer": "se",
+      "options": [
+        "me",
+        "te",
+        "se",
+        "nos"
+      ],
+      "hint": "De vasker seg...",
+      "word": null,
+      "no": "Barna vasker hendene sine.",
+      "id": "grammar:reflexive:81"
+    },
+    {
+      "topicId": "reflexive",
+      "topicName": "Refleksive pronomen",
+      "sentence": "___ peino antes de salir",
+      "answer": "Me",
+      "options": [
+        "Me",
+        "Te",
+        "Se",
+        "Nos"
+      ],
+      "hint": "Jeg grer meg...",
+      "word": null,
+      "no": "Jeg grer meg før jeg drar.",
+      "id": "grammar:reflexive:82"
+    },
+    {
+      "topicId": "reflexive",
+      "topicName": "Refleksive pronomen",
+      "sentence": "Mi padre ___ afeita cada mañana",
+      "answer": "se",
+      "options": [
+        "me",
+        "te",
+        "se",
+        "nos"
+      ],
+      "hint": "Han barberer seg...",
+      "word": null,
+      "no": "Faren min barberer seg hver morgen.",
+      "id": "grammar:reflexive:83"
+    },
+    {
+      "topicId": "reflexive",
+      "topicName": "Refleksive pronomen",
+      "sentence": "¿___ cepillas los dientes?",
+      "answer": "Te",
+      "options": [
+        "Me",
+        "Te",
+        "Se",
+        "Nos"
+      ],
+      "hint": "Pusser du tennene?",
+      "word": null,
+      "no": "Pusser du tennene?",
+      "id": "grammar:reflexive:84"
+    },
+    {
+      "topicId": "reflexive",
+      "topicName": "Refleksive pronomen",
+      "sentence": "Ellos ___ despiertan temprano",
+      "answer": "se",
+      "options": [
+        "me",
+        "te",
+        "se",
+        "nos"
+      ],
+      "hint": "De våkner...",
+      "word": null,
+      "no": "De våkner tidlig.",
+      "id": "grammar:reflexive:85"
+    },
+    {
+      "topicId": "demonstratives",
+      "topicName": "Pekende adjektiv",
+      "sentence": "___ libro es muy interesante",
+      "answer": "Este",
+      "options": [
+        "Este",
+        "Esta",
+        "Estos",
+        "Estas"
+      ],
+      "hint": "libro er maskulin entall, nær",
+      "word": null,
+      "no": "Denne boka er veldig interessant.",
+      "id": "grammar:demonstratives:86"
+    },
+    {
+      "topicId": "demonstratives",
+      "topicName": "Pekende adjektiv",
+      "sentence": "___ casa es grande",
+      "answer": "Esta",
+      "options": [
+        "Este",
+        "Esta",
+        "Ese",
+        "Esa"
+      ],
+      "hint": "casa er feminin entall, nær",
+      "word": null,
+      "no": "Dette huset er stort og står her nær meg.",
+      "id": "grammar:demonstratives:87"
+    },
+    {
+      "topicId": "demonstratives",
+      "topicName": "Pekende adjektiv",
+      "sentence": "___ chicos son mis amigos",
+      "answer": "Estos",
+      "options": [
+        "Este",
+        "Estos",
+        "Ese",
+        "Esos"
+      ],
+      "hint": "chicos er maskulin flertall, nær",
+      "word": null,
+      "no": "Disse guttene er vennene mine.",
+      "id": "grammar:demonstratives:88"
+    },
+    {
+      "topicId": "demonstratives",
+      "topicName": "Pekende adjektiv",
+      "sentence": "___ flores son bonitas",
+      "answer": "Estas",
+      "options": [
+        "Esta",
+        "Estas",
+        "Esa",
+        "Esas"
+      ],
+      "hint": "flores er feminin flertall, nær",
+      "word": null,
+      "no": "Disse blomstene er pene.",
+      "id": "grammar:demonstratives:89"
+    },
+    {
+      "topicId": "demonstratives",
+      "topicName": "Pekende adjektiv",
+      "sentence": "¿Qué es ___?",
+      "answer": "eso",
+      "options": [
+        "esto",
+        "eso",
+        "este",
+        "ese"
+      ],
+      "hint": "nøytralt, lenger unna",
+      "word": null,
+      "no": "Hva er det der borte?",
+      "id": "grammar:demonstratives:90"
+    },
+    {
+      "topicId": "demonstratives",
+      "topicName": "Pekende adjektiv",
+      "sentence": "___ coche es de mi padre",
+      "answer": "Ese",
+      "options": [
+        "Este",
+        "Esta",
+        "Ese",
+        "Esa"
+      ],
+      "hint": "coche er maskulin, lenger unna",
+      "word": null,
+      "no": "Den bilen der borte er faren min sin.",
+      "id": "grammar:demonstratives:91"
+    },
+    {
+      "topicId": "demonstratives",
+      "topicName": "Pekende adjektiv",
+      "sentence": "___ mesa está ocupada",
+      "answer": "Esa",
+      "options": [
+        "Esta",
+        "Esa",
+        "Este",
+        "Ese"
+      ],
+      "hint": "mesa er feminin, lenger unna",
+      "word": null,
+      "no": "Det bordet der borte er opptatt.",
+      "id": "grammar:demonstratives:92"
+    },
+    {
+      "topicId": "demonstratives",
+      "topicName": "Pekende adjektiv",
+      "sentence": "___ zapatos son nuevos",
+      "answer": "Estos",
+      "options": [
+        "Este",
+        "Estos",
+        "Estas",
+        "Esos"
+      ],
+      "hint": "zapatos er maskulin flertall, nær",
+      "word": null,
+      "no": "Disse skoene er nye.",
+      "id": "grammar:demonstratives:93"
+    },
+    {
+      "topicId": "demonstratives",
+      "topicName": "Pekende adjektiv",
+      "sentence": "___ películas son aburridas",
+      "answer": "Esas",
+      "options": [
+        "Estas",
+        "Esas",
+        "Estos",
+        "Esos"
+      ],
+      "hint": "películas er feminin flertall, lenger unna",
+      "word": null,
+      "no": "De filmene der borte er kjedelige.",
+      "id": "grammar:demonstratives:94"
+    },
+    {
+      "topicId": "demonstratives",
+      "topicName": "Pekende adjektiv",
+      "sentence": "Me gusta ___ canción",
+      "answer": "esta",
+      "options": [
+        "este",
+        "esta",
+        "ese",
+        "esa"
+      ],
+      "hint": "canción er feminin, nær",
+      "word": null,
+      "no": "Jeg liker denne sangen her.",
+      "id": "grammar:demonstratives:95"
+    },
+    {
+      "topicId": "demonstratives",
+      "topicName": "Pekende adjektiv",
+      "sentence": "___ perros son grandes",
+      "answer": "Esos",
+      "options": [
+        "Estos",
+        "Estas",
+        "Esos",
+        "Esas"
+      ],
+      "hint": "perros er maskulin flertall, lenger unna",
+      "word": null,
+      "no": "De hundene der borte er store.",
+      "id": "grammar:demonstratives:96"
+    },
+    {
+      "topicId": "demonstratives",
+      "topicName": "Pekende adjektiv",
+      "sentence": "¿Quién es ___ chica?",
+      "answer": "esta",
+      "options": [
+        "este",
+        "esta",
+        "ese",
+        "esa"
+      ],
+      "hint": "chica er feminin, nær",
+      "word": null,
+      "no": "Hvem er denne jenta her?",
+      "id": "grammar:demonstratives:97"
+    },
+    {
+      "topicId": "possessives",
+      "topicName": "Eiendomsord",
+      "sentence": "___ hermano se llama Pedro",
+      "answer": "Mi",
+      "options": [
+        "Mi",
+        "Mis",
+        "Tu",
+        "Tus"
+      ],
+      "hint": "hermano er entall - min",
+      "word": null,
+      "no": "Broren min heter Pedro.",
+      "id": "grammar:possessives:98"
+    },
+    {
+      "topicId": "possessives",
+      "topicName": "Eiendomsord",
+      "sentence": "___ padres están en casa",
+      "answer": "Mis",
+      "options": [
+        "Mi",
+        "Mis",
+        "Tu",
+        "Tus"
+      ],
+      "hint": "padres er flertall - mine",
+      "word": null,
+      "no": "Foreldrene mine er hjemme.",
+      "id": "grammar:possessives:99"
+    },
+    {
+      "topicId": "possessives",
+      "topicName": "Eiendomsord",
+      "sentence": "¿Dónde está ___ libro?",
+      "answer": "tu",
+      "options": [
+        "mi",
+        "tu",
+        "su",
+        "tus"
+      ],
+      "hint": "libro er entall - din",
+      "word": null,
+      "no": "Hvor er boka di?",
+      "id": "grammar:possessives:100"
+    },
+    {
+      "topicId": "possessives",
+      "topicName": "Eiendomsord",
+      "sentence": "Ella vive con ___ familia",
+      "answer": "su",
+      "options": [
+        "mi",
+        "tu",
+        "su",
+        "sus"
+      ],
+      "hint": "familia er entall - hennes",
+      "word": null,
+      "no": "Hun bor med familien sin.",
+      "id": "grammar:possessives:101"
+    },
+    {
+      "topicId": "possessives",
+      "topicName": "Eiendomsord",
+      "sentence": "___ abuelos son muy simpáticos",
+      "answer": "Mis",
+      "options": [
+        "Mi",
+        "Mis",
+        "Su",
+        "Sus"
+      ],
+      "hint": "abuelos er flertall - mine",
+      "word": null,
+      "no": "Besteforeldrene mine er veldig hyggelige.",
+      "id": "grammar:possessives:102"
+    },
+    {
+      "topicId": "possessives",
+      "topicName": "Eiendomsord",
+      "sentence": "¿Cómo se llaman ___ hermanas?",
+      "answer": "tus",
+      "options": [
+        "tu",
+        "tus",
+        "su",
+        "sus"
+      ],
+      "hint": "hermanas er flertall - dine",
+      "word": null,
+      "no": "Hva heter søstrene dine?",
+      "id": "grammar:possessives:103"
+    },
+    {
+      "topicId": "possessives",
+      "topicName": "Eiendomsord",
+      "sentence": "___ madre es profesora",
+      "answer": "Nuestra",
+      "options": [
+        "Nuestro",
+        "Nuestra",
+        "Nuestros",
+        "Nuestras"
+      ],
+      "hint": "madre er feminin - vår",
+      "word": null,
+      "no": "Moren vår er lærer.",
+      "id": "grammar:possessives:104"
+    },
+    {
+      "topicId": "possessives",
+      "topicName": "Eiendomsord",
+      "sentence": "___ padre trabaja en un banco",
+      "answer": "Nuestro",
+      "options": [
+        "Nuestro",
+        "Nuestra",
+        "Nuestros",
+        "Nuestras"
+      ],
+      "hint": "padre er maskulin - vår",
+      "word": null,
+      "no": "Faren vår jobber i en bank.",
+      "id": "grammar:possessives:105"
+    },
+    {
+      "topicId": "possessives",
+      "topicName": "Eiendomsord",
+      "sentence": "Ellos quieren ___ dinero",
+      "answer": "su",
+      "options": [
+        "mi",
+        "tu",
+        "su",
+        "sus"
+      ],
+      "hint": "dinero er entall - deres",
+      "word": null,
+      "no": "De vil ha pengene sine.",
+      "id": "grammar:possessives:106"
+    },
+    {
+      "topicId": "possessives",
+      "topicName": "Eiendomsord",
+      "sentence": "___ amigos vienen mañana",
+      "answer": "Sus",
+      "options": [
+        "Su",
+        "Sus",
+        "Mi",
+        "Mis"
+      ],
+      "hint": "amigos er flertall - hennes/hans",
+      "word": null,
+      "no": "Vennene hennes kommer i morgen.",
+      "id": "grammar:possessives:107"
+    },
+    {
+      "topicId": "possessives",
+      "topicName": "Eiendomsord",
+      "sentence": "Me gusta ___ casa",
+      "answer": "tu",
+      "options": [
+        "mi",
+        "tu",
+        "su",
+        "tus"
+      ],
+      "hint": "casa er entall - din",
+      "word": null,
+      "no": "Jeg liker huset ditt.",
+      "id": "grammar:possessives:108"
+    },
+    {
+      "topicId": "possessives",
+      "topicName": "Eiendomsord",
+      "sentence": "___ hijos son muy inteligentes",
+      "answer": "Nuestros",
+      "options": [
+        "Nuestro",
+        "Nuestra",
+        "Nuestros",
+        "Nuestras"
+      ],
+      "hint": "hijos er maskulin flertall - våre",
+      "word": null,
+      "no": "Barna våre er veldig intelligente.",
+      "id": "grammar:possessives:109"
+    },
+    {
+      "topicId": "possessives",
+      "topicName": "Eiendomsord",
+      "sentence": "¿Dónde están ___ llaves?",
+      "answer": "mis",
+      "options": [
+        "mi",
+        "mis",
+        "tu",
+        "tus"
+      ],
+      "hint": "llaves er flertall - mine",
+      "word": null,
+      "no": "Hvor er nøklene mine?",
+      "id": "grammar:possessives:110"
+    },
+    {
+      "topicId": "possessives",
+      "topicName": "Eiendomsord",
+      "sentence": "___ profesora es muy buena",
+      "answer": "Nuestra",
+      "options": [
+        "Nuestro",
+        "Nuestra",
+        "Nuestros",
+        "Nuestras"
+      ],
+      "hint": "profesora er feminin - vår",
+      "word": null,
+      "no": "Læreren vår er veldig flink.",
+      "id": "grammar:possessives:111"
+    },
+    {
+      "topicId": "patterns",
+      "topicName": "Uttrykksmønstre",
+      "sentence": "___ hambre",
+      "answer": "Tengo",
+      "options": [
+        "Tengo",
+        "Soy",
+        "Estoy",
+        "Hago"
+      ],
+      "hint": "På spansk uttrykker vi sult med tengo hambre.",
+      "word": null,
+      "no": "Jeg er sulten.",
+      "id": "grammar:patterns:112"
+    },
+    {
+      "topicId": "patterns",
+      "topicName": "Uttrykksmønstre",
+      "sentence": "___ sed",
+      "answer": "Tengo",
+      "options": [
+        "Tengo",
+        "Soy",
+        "Estoy",
+        "Hay"
+      ],
+      "hint": "På spansk sier vi tengo sed når vi er tørste.",
+      "word": null,
+      "no": "Jeg er tørst.",
+      "id": "grammar:patterns:113"
+    },
+    {
+      "topicId": "patterns",
+      "topicName": "Uttrykksmønstre",
+      "sentence": "___ frío",
+      "answer": "Tengo",
+      "options": [
+        "Tengo",
+        "Soy",
+        "Estoy",
+        "Hago"
+      ],
+      "hint": "Når du fryser, sier du tengo frío.",
+      "word": null,
+      "no": "Jeg fryser.",
+      "id": "grammar:patterns:114"
+    },
+    {
+      "topicId": "patterns",
+      "topicName": "Uttrykksmønstre",
+      "sentence": "___ quince años",
+      "answer": "Tengo",
+      "options": [
+        "Tengo",
+        "Soy",
+        "Estoy",
+        "Hago"
+      ],
+      "hint": "Alder uttrykkes med tener på spansk.",
+      "word": null,
+      "no": "Jeg er femten år.",
+      "id": "grammar:patterns:115"
+    },
+    {
+      "topicId": "patterns",
+      "topicName": "Uttrykksmønstre",
+      "sentence": "___ un perro negro",
+      "answer": "Tengo",
+      "options": [
+        "Tengo",
+        "Soy",
+        "Estoy",
+        "Vivo"
+      ],
+      "hint": "Tener betyr å ha eller eie.",
+      "word": null,
+      "no": "Jeg har en svart hund.",
+      "id": "grammar:patterns:116"
+    },
+    {
+      "topicId": "patterns",
+      "topicName": "Uttrykksmønstre",
+      "sentence": "___ que estudiar",
+      "answer": "Tengo",
+      "options": [
+        "Tengo",
+        "Soy",
+        "Estoy",
+        "Voy"
+      ],
+      "hint": "Tengo que betyr «jeg må».",
+      "word": null,
+      "no": "Jeg må øve til prøven.",
+      "id": "grammar:patterns:117"
+    },
+    {
+      "topicId": "patterns",
+      "topicName": "Uttrykksmønstre",
+      "sentence": "___ comer una manzana",
+      "answer": "Quiero",
+      "options": [
+        "Quiero",
+        "Voy a",
+        "Me gusta",
+        "Tengo"
+      ],
+      "hint": "Quiero + infinitiv uttrykker et ønske om å gjøre noe.",
+      "word": null,
+      "no": "Jeg vil spise et eple.",
+      "id": "grammar:patterns:118"
+    },
+    {
+      "topicId": "patterns",
+      "topicName": "Uttrykksmønstre",
+      "sentence": "Quiero ___",
+      "answer": "agua",
+      "options": [
+        "agua",
+        "hambre",
+        "quince años",
+        "frío"
+      ],
+      "hint": "Quiero + substantiv betyr «jeg vil ha».",
+      "word": null,
+      "no": "Jeg vil ha vann.",
+      "id": "grammar:patterns:119"
+    },
+    {
+      "topicId": "patterns",
+      "topicName": "Uttrykksmønstre",
+      "sentence": "___ descansar un poco",
+      "answer": "Quiero",
+      "options": [
+        "Quiero",
+        "Voy a",
+        "Me gusta",
+        "Tengo"
+      ],
+      "hint": "Quiero betyr «jeg vil».",
+      "word": null,
+      "no": "Jeg vil hvile litt.",
+      "id": "grammar:patterns:120"
+    },
+    {
+      "topicId": "patterns",
+      "topicName": "Uttrykksmønstre",
+      "sentence": "___ hablar español",
+      "answer": "Quiero",
+      "options": [
+        "Quiero",
+        "Voy a",
+        "Me gusta",
+        "Tengo que"
+      ],
+      "hint": "Quiero hablar betyr «jeg vil snakke».",
+      "word": null,
+      "no": "Jeg vil snakke spansk.",
+      "id": "grammar:patterns:121"
+    },
+    {
+      "topicId": "patterns",
+      "topicName": "Uttrykksmønstre",
+      "sentence": "Quiero ___ a casa",
+      "answer": "ir",
+      "options": [
+        "ir",
+        "hambre",
+        "música",
+        "tengo"
+      ],
+      "hint": "Ir a casa betyr å dra hjem.",
+      "word": null,
+      "no": "Jeg vil dra hjem.",
+      "id": "grammar:patterns:122"
+    },
+    {
+      "topicId": "patterns",
+      "topicName": "Uttrykksmønstre",
+      "sentence": "Quiero ___ más",
+      "answer": "aprender",
+      "options": [
+        "aprender",
+        "agua",
+        "quince",
+        "sed"
+      ],
+      "hint": "Aprender betyr å lære.",
+      "word": null,
+      "no": "Jeg vil lære mer.",
+      "id": "grammar:patterns:123"
+    },
+    {
+      "topicId": "patterns",
+      "topicName": "Uttrykksmønstre",
+      "sentence": "___ bailar",
+      "answer": "Me gusta",
+      "options": [
+        "Me gusta",
+        "Quiero",
+        "Voy a",
+        "Tengo"
+      ],
+      "hint": "Me gusta + infinitiv betyr «jeg liker å».",
+      "word": null,
+      "no": "Jeg liker å danse.",
+      "id": "grammar:patterns:124"
+    },
+    {
+      "topicId": "patterns",
+      "topicName": "Uttrykksmønstre",
+      "sentence": "Me gusta la ___",
+      "answer": "música",
+      "options": [
+        "música",
+        "hambre",
+        "comer",
+        "dormir"
+      ],
+      "hint": "Substantiv etter gustar har bestemt artikkel.",
+      "word": null,
+      "no": "Jeg liker musikk.",
+      "id": "grammar:patterns:125"
+    },
+    {
+      "topicId": "patterns",
+      "topicName": "Uttrykksmønstre",
+      "sentence": "___ leer libros",
+      "answer": "Me gusta",
+      "options": [
+        "Me gusta",
+        "Quiero",
+        "Voy a",
+        "Tengo"
+      ],
+      "hint": "Me gusta leer betyr «jeg liker å lese».",
+      "word": null,
+      "no": "Jeg liker å lese bøker.",
+      "id": "grammar:patterns:126"
+    },
+    {
+      "topicId": "patterns",
+      "topicName": "Uttrykksmønstre",
+      "sentence": "Me gusta ___ pizza",
+      "answer": "comer",
+      "options": [
+        "comer",
+        "hambre",
+        "sed",
+        "años"
+      ],
+      "hint": "Bruk infinitiv når du liker å gjøre en handling.",
+      "word": null,
+      "no": "Jeg liker å spise pizza.",
+      "id": "grammar:patterns:127"
+    },
+    {
+      "topicId": "patterns",
+      "topicName": "Uttrykksmønstre",
+      "sentence": "___ viajar en verano",
+      "answer": "Me gusta",
+      "options": [
+        "Me gusta",
+        "Quiero",
+        "Voy a",
+        "Tengo"
+      ],
+      "hint": "Viajar betyr å reise.",
+      "word": null,
+      "no": "Jeg liker å reise om sommeren.",
+      "id": "grammar:patterns:128"
+    },
+    {
+      "topicId": "patterns",
+      "topicName": "Uttrykksmønstre",
+      "sentence": "___ nadar en el mar",
+      "answer": "Me gusta",
+      "options": [
+        "Me gusta",
+        "Quiero",
+        "Voy a",
+        "Tengo"
+      ],
+      "hint": "Nadar betyr å svømme.",
+      "word": null,
+      "no": "Jeg liker å svømme i havet.",
+      "id": "grammar:patterns:129"
+    },
+    {
+      "topicId": "patterns",
+      "topicName": "Uttrykksmønstre",
+      "sentence": "___ dormir ahora",
+      "answer": "Voy a",
+      "options": [
+        "Voy a",
+        "Quiero",
+        "Me gusta",
+        "Tengo"
+      ],
+      "hint": "Voy a + infinitiv uttrykker nær framtid (jeg skal).",
+      "word": null,
+      "no": "Jeg skal sove nå.",
+      "id": "grammar:patterns:130"
+    },
+    {
+      "topicId": "patterns",
+      "topicName": "Uttrykksmønstre",
+      "sentence": "Voy a ___",
+      "answer": "estudiar",
+      "options": [
+        "estudiar",
+        "hambre",
+        "quince años",
+        "frío"
+      ],
+      "hint": "Etter voy a bruker du infinitiv.",
+      "word": null,
+      "no": "Jeg skal studere.",
+      "id": "grammar:patterns:131"
+    },
+    {
+      "topicId": "patterns",
+      "topicName": "Uttrykksmønstre",
+      "sentence": "___ jugar al fútbol",
+      "answer": "Voy a",
+      "options": [
+        "Voy a",
+        "Quiero",
+        "Me gusta",
+        "Tengo"
+      ],
+      "hint": "Voy a jugar betyr «jeg skal spille».",
+      "word": null,
+      "no": "Jeg skal spille fotball i ettermiddag.",
+      "id": "grammar:patterns:132"
+    },
+    {
+      "topicId": "patterns",
+      "topicName": "Uttrykksmønstre",
+      "sentence": "Voy a ___ una película",
+      "answer": "ver",
+      "options": [
+        "ver",
+        "hambre",
+        "música",
+        "tengo"
+      ],
+      "hint": "Ver una película betyr å se en film.",
+      "word": null,
+      "no": "Jeg skal se en film i kveld.",
+      "id": "grammar:patterns:133"
+    },
+    {
+      "topicId": "patterns",
+      "topicName": "Uttrykksmønstre",
+      "sentence": "___ hablar con Ana",
+      "answer": "Voy a",
+      "options": [
+        "Voy a",
+        "Quiero",
+        "Me gusta",
+        "Tengo que"
+      ],
+      "hint": "Voy a + infinitiv betyr at du skal gjøre noe.",
+      "word": null,
+      "no": "Jeg skal snakke med Ana.",
+      "id": "grammar:patterns:134"
+    },
+    {
+      "topicId": "patterns",
+      "topicName": "Uttrykksmønstre",
+      "sentence": "Voy a ___ con amigos",
+      "answer": "salir",
+      "options": [
+        "salir",
+        "hambre",
+        "sed",
+        "años"
+      ],
+      "hint": "Salir betyr å gå ut.",
+      "word": null,
+      "no": "Jeg skal gå ut med venner.",
+      "id": "grammar:patterns:135"
+    }
+  ],
+  "verbs": [
+    {
+      "key": "hablar",
+      "infinitive": "hablar",
+      "translation": "å snakke",
+      "type": "regular -ar",
+      "presente": [
+        "hablo",
+        "hablas",
+        "habla",
+        "hablamos",
+        "habláis",
+        "hablan"
+      ],
+      "participio": "hablado",
+      "id": "verb:hablar:present"
+    },
+    {
+      "key": "trabajar",
+      "infinitive": "trabajar",
+      "translation": "å jobbe",
+      "type": "regular -ar",
+      "presente": [
+        "trabajo",
+        "trabajas",
+        "trabaja",
+        "trabajamos",
+        "trabajáis",
+        "trabajan"
+      ],
+      "participio": "trabajado",
+      "id": "verb:trabajar:present"
+    },
+    {
+      "key": "estudiar",
+      "infinitive": "estudiar",
+      "translation": "å studere",
+      "type": "regular -ar",
+      "presente": [
+        "estudio",
+        "estudias",
+        "estudia",
+        "estudiamos",
+        "estudiáis",
+        "estudian"
+      ],
+      "participio": "estudiado",
+      "id": "verb:estudiar:present"
+    },
+    {
+      "key": "bailar",
+      "infinitive": "bailar",
+      "translation": "å danse",
+      "type": "regular -ar",
+      "presente": [
+        "bailo",
+        "bailas",
+        "baila",
+        "bailamos",
+        "bailáis",
+        "bailan"
+      ],
+      "participio": "bailado",
+      "id": "verb:bailar:present"
+    },
+    {
+      "key": "comprar",
+      "infinitive": "comprar",
+      "translation": "å kjøpe",
+      "type": "regular -ar",
+      "presente": [
+        "compro",
+        "compras",
+        "compra",
+        "compramos",
+        "compráis",
+        "compran"
+      ],
+      "participio": "comprado",
+      "id": "verb:comprar:present"
+    },
+    {
+      "key": "escuchar",
+      "infinitive": "escuchar",
+      "translation": "å høre",
+      "type": "regular -ar",
+      "presente": [
+        "escucho",
+        "escuchas",
+        "escucha",
+        "escuchamos",
+        "escucháis",
+        "escuchan"
+      ],
+      "participio": "escuchado",
+      "id": "verb:escuchar:present"
+    },
+    {
+      "key": "cantar",
+      "infinitive": "cantar",
+      "translation": "å synge",
+      "type": "regular -ar",
+      "presente": [
+        "canto",
+        "cantas",
+        "canta",
+        "cantamos",
+        "cantáis",
+        "cantan"
+      ],
+      "participio": "cantado",
+      "id": "verb:cantar:present"
+    },
+    {
+      "key": "comer",
+      "infinitive": "comer",
+      "translation": "å spise",
+      "type": "regular -er",
+      "presente": [
+        "como",
+        "comes",
+        "come",
+        "comemos",
+        "coméis",
+        "comen"
+      ],
+      "participio": "comido",
+      "id": "verb:comer:present"
+    },
+    {
+      "key": "beber",
+      "infinitive": "beber",
+      "translation": "å drikke",
+      "type": "regular -er",
+      "presente": [
+        "bebo",
+        "bebes",
+        "bebe",
+        "bebemos",
+        "bebéis",
+        "beben"
+      ],
+      "participio": "bebido",
+      "id": "verb:beber:present"
+    },
+    {
+      "key": "leer",
+      "infinitive": "leer",
+      "translation": "å lese",
+      "type": "regular -er",
+      "presente": [
+        "leo",
+        "lees",
+        "lee",
+        "leemos",
+        "leéis",
+        "leen"
+      ],
+      "participio": "leído",
+      "id": "verb:leer:present"
+    },
+    {
+      "key": "aprender",
+      "infinitive": "aprender",
+      "translation": "å lære",
+      "type": "regular -er",
+      "presente": [
+        "aprendo",
+        "aprendes",
+        "aprende",
+        "aprendemos",
+        "aprendéis",
+        "aprenden"
+      ],
+      "participio": "aprendido",
+      "id": "verb:aprender:present"
+    },
+    {
+      "key": "vivir",
+      "infinitive": "vivir",
+      "translation": "å bo",
+      "type": "regular -ir",
+      "presente": [
+        "vivo",
+        "vives",
+        "vive",
+        "vivimos",
+        "vivís",
+        "viven"
+      ],
+      "participio": "vivido",
+      "id": "verb:vivir:present"
+    },
+    {
+      "key": "escribir",
+      "infinitive": "escribir",
+      "translation": "å skrive",
+      "type": "regular -ir",
+      "presente": [
+        "escribo",
+        "escribes",
+        "escribe",
+        "escribimos",
+        "escribís",
+        "escriben"
+      ],
+      "participio": "escrito",
+      "id": "verb:escribir:present"
+    },
+    {
+      "key": "ser",
+      "infinitive": "ser",
+      "translation": "å være (identitet, beskrivelse og når noe skjer)",
+      "type": "uregelmessig",
+      "presente": [
+        "soy",
+        "eres",
+        "es",
+        "somos",
+        "sois",
+        "son"
+      ],
+      "participio": "sido",
+      "id": "verb:ser:present"
+    },
+    {
+      "key": "estar",
+      "infinitive": "estar",
+      "translation": "å være/befinne seg",
+      "type": "uregelmessig",
+      "presente": [
+        "estoy",
+        "estás",
+        "está",
+        "estamos",
+        "estáis",
+        "están"
+      ],
+      "participio": "estado",
+      "id": "verb:estar:present"
+    },
+    {
+      "key": "tener",
+      "infinitive": "tener",
+      "translation": "å ha",
+      "type": "stammeendring e→ie + yo",
+      "presente": [
+        "tengo",
+        "tienes",
+        "tiene",
+        "tenemos",
+        "tenéis",
+        "tienen"
+      ],
+      "participio": "tenido",
+      "id": "verb:tener:present"
+    },
+    {
+      "key": "ir",
+      "infinitive": "ir",
+      "translation": "å gå/dra",
+      "type": "uregelmessig",
+      "presente": [
+        "voy",
+        "vas",
+        "va",
+        "vamos",
+        "vais",
+        "van"
+      ],
+      "participio": "ido",
+      "id": "verb:ir:present"
+    },
+    {
+      "key": "hacer",
+      "infinitive": "hacer",
+      "translation": "å gjøre",
+      "type": "uregelmessig",
+      "presente": [
+        "hago",
+        "haces",
+        "hace",
+        "hacemos",
+        "hacéis",
+        "hacen"
+      ],
+      "participio": "hecho",
+      "id": "verb:hacer:present"
+    },
+    {
+      "key": "poder",
+      "infinitive": "poder",
+      "translation": "å kunne",
+      "type": "stammeendring o→ue",
+      "presente": [
+        "puedo",
+        "puedes",
+        "puede",
+        "podemos",
+        "podéis",
+        "pueden"
+      ],
+      "participio": "podido",
+      "id": "verb:poder:present"
+    },
+    {
+      "key": "querer",
+      "infinitive": "querer",
+      "translation": "å ville",
+      "type": "stammeendring e→ie",
+      "presente": [
+        "quiero",
+        "quieres",
+        "quiere",
+        "queremos",
+        "queréis",
+        "quieren"
+      ],
+      "participio": "querido",
+      "id": "verb:querer:present"
+    },
+    {
+      "key": "decir",
+      "infinitive": "decir",
+      "translation": "å si",
+      "type": "stammeendring e→i + yo",
+      "presente": [
+        "digo",
+        "dices",
+        "dice",
+        "decimos",
+        "decís",
+        "dicen"
+      ],
+      "participio": "dicho",
+      "id": "verb:decir:present"
+    },
+    {
+      "key": "saber",
+      "infinitive": "saber",
+      "translation": "å vite",
+      "type": "uregelmessig",
+      "presente": [
+        "sé",
+        "sabes",
+        "sabe",
+        "sabemos",
+        "sabéis",
+        "saben"
+      ],
+      "participio": "sabido",
+      "id": "verb:saber:present"
+    },
+    {
+      "key": "venir",
+      "infinitive": "venir",
+      "translation": "å komme",
+      "type": "stammeendring e→ie + yo",
+      "presente": [
+        "vengo",
+        "vienes",
+        "viene",
+        "venimos",
+        "venís",
+        "vienen"
+      ],
+      "participio": "venido",
+      "id": "verb:venir:present"
+    },
+    {
+      "key": "salir",
+      "infinitive": "salir",
+      "translation": "å gå ut",
+      "type": "uregelmessig",
+      "presente": [
+        "salgo",
+        "sales",
+        "sale",
+        "salimos",
+        "salís",
+        "salen"
+      ],
+      "participio": "salido",
+      "id": "verb:salir:present"
+    },
+    {
+      "key": "ver",
+      "infinitive": "ver",
+      "translation": "å se",
+      "type": "uregelmessig",
+      "presente": [
+        "veo",
+        "ves",
+        "ve",
+        "vemos",
+        "veis",
+        "ven"
+      ],
+      "participio": "visto",
+      "id": "verb:ver:present"
+    },
+    {
+      "key": "preferir",
+      "infinitive": "preferir",
+      "translation": "å foretrekke",
+      "type": "stammeendring e→ie",
+      "presente": [
+        "prefiero",
+        "prefieres",
+        "prefiere",
+        "preferimos",
+        "preferís",
+        "prefieren"
+      ],
+      "participio": "preferido",
+      "id": "verb:preferir:present"
+    },
+    {
+      "key": "empezar",
+      "infinitive": "empezar",
+      "translation": "å begynne",
+      "type": "stammeendring e→ie",
+      "presente": [
+        "empiezo",
+        "empiezas",
+        "empieza",
+        "empezamos",
+        "empezáis",
+        "empiezan"
+      ],
+      "participio": "empezado",
+      "id": "verb:empezar:present"
+    },
+    {
+      "key": "comenzar",
+      "infinitive": "comenzar",
+      "translation": "å begynne",
+      "type": "stammeendring e→ie",
+      "presente": [
+        "comienzo",
+        "comienzas",
+        "comienza",
+        "comenzamos",
+        "comenzáis",
+        "comienzan"
+      ],
+      "participio": "comenzado",
+      "id": "verb:comenzar:present"
+    },
+    {
+      "key": "entender",
+      "infinitive": "entender",
+      "translation": "å forstå",
+      "type": "stammeendring e→ie",
+      "presente": [
+        "entiendo",
+        "entiendes",
+        "entiende",
+        "entendemos",
+        "entendéis",
+        "entienden"
+      ],
+      "participio": "entendido",
+      "id": "verb:entender:present"
+    },
+    {
+      "key": "dormir",
+      "infinitive": "dormir",
+      "translation": "å sove",
+      "type": "stammeendring o→ue",
+      "presente": [
+        "duermo",
+        "duermes",
+        "duerme",
+        "dormimos",
+        "dormís",
+        "duermen"
+      ],
+      "participio": "dormido",
+      "id": "verb:dormir:present"
+    },
+    {
+      "key": "volver",
+      "infinitive": "volver",
+      "translation": "å komme tilbake",
+      "type": "stammeendring o→ue",
+      "presente": [
+        "vuelvo",
+        "vuelves",
+        "vuelve",
+        "volvemos",
+        "volvéis",
+        "vuelven"
+      ],
+      "participio": "vuelto",
+      "id": "verb:volver:present"
+    },
+    {
+      "key": "pedir",
+      "infinitive": "pedir",
+      "translation": "å be om / bestille",
+      "type": "stammeendring e→i",
+      "presente": [
+        "pido",
+        "pides",
+        "pide",
+        "pedimos",
+        "pedís",
+        "piden"
+      ],
+      "participio": "pedido",
+      "id": "verb:pedir:present"
+    },
+    {
+      "key": "repetir",
+      "infinitive": "repetir",
+      "translation": "å gjenta",
+      "type": "stammeendring e→i",
+      "presente": [
+        "repito",
+        "repites",
+        "repite",
+        "repetimos",
+        "repetís",
+        "repiten"
+      ],
+      "participio": "repetido",
+      "id": "verb:repetir:present"
+    },
+    {
+      "key": "servir",
+      "infinitive": "servir",
+      "translation": "å servere / tjene",
+      "type": "stammeendring e→i",
+      "presente": [
+        "sirvo",
+        "sirves",
+        "sirve",
+        "servimos",
+        "servís",
+        "sirven"
+      ],
+      "participio": "servido",
+      "id": "verb:servir:present"
+    }
+  ],
+  "listening": {
+    "id": "leo-sevilla",
+    "title": "En lørdag i Sevilla",
+    "level": "A1",
+    "audio": "/audio/school-content/07402d1d5757a98c88f11549828aa393c55d4bd52b1212a4b4efdd55e92e0f1d.wav",
+    "questions": [
+      {
+        "id": "leo-main",
+        "prompt": "Hva gjør Leo denne lørdagen?",
+        "options": [
+          {
+            "id": "day",
+            "text": "Han sykler til parken, møter Marta, spiller fotball og kjøper is."
+          },
+          {
+            "id": "market",
+            "text": "Han går til markedet, kjøper frukt og leser en bok."
+          },
+          {
+            "id": "beach",
+            "text": "Han tar bussen til stranden og svømmer med faren sin."
+          },
+          {
+            "id": "home",
+            "text": "Han blir hjemme, ser på film og lager middag alene."
+          }
+        ],
+        "correctOptionId": "day",
+        "explanation": "Leo sykler til parken, møter Marta, spiller fotball og kjøper is før han drar hjem."
+      },
+      {
+        "id": "leo-detail",
+        "prompt": "Hva har Marta med seg til parken?",
+        "options": [
+          {
+            "id": "yellow-ball",
+            "text": "En gul ball."
+          },
+          {
+            "id": "red-ball",
+            "text": "En rød ball."
+          },
+          {
+            "id": "yellow-bag",
+            "text": "En gul veske."
+          },
+          {
+            "id": "blue-bike",
+            "text": "En blå sykkel."
+          }
+        ],
+        "correctOptionId": "yellow-ball",
+        "explanation": "Marta har en gul ball."
+      },
+      {
+        "id": "leo-before-home",
+        "prompt": "Hva gjør Leo og Marta før de går hjem?",
+        "options": [
+          {
+            "id": "ice",
+            "text": "De kjøper en sjokoladeis."
+          },
+          {
+            "id": "lunch",
+            "text": "De spiser ris og salat."
+          },
+          {
+            "id": "comic",
+            "text": "De leser en tegneserie på benken."
+          },
+          {
+            "id": "bus",
+            "text": "De tar bussen til skolen."
+          }
+        ],
+        "correctOptionId": "ice",
+        "explanation": "Før Leo kommer hjem, kjøper han og Marta en sjokoladeis."
+      }
+    ]
+  }
+}

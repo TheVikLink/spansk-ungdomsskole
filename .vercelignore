@@ -1,0 +1,35 @@
+# Secrets and local/deployment metadata
+.env*
+.git
+.gitignore
+.vercel
+.beads
+.codex
+.github
+.DS_Store
+*.pem
+*.key
+
+# Internal plans, governance, and registration documents
+AGENTS.md
+README.md
+PILOT*.md
+progress.md
+CNAME
+docs/
+thoughts/
+
+# Tests, captures, generated audits, and local artifacts
+tests/
+test-results/
+playwright-report/
+blob-report/
+output/
+.playwright-cli/
+.playwright-mcp/
+scripts/audit-sources/ordvev-index.json
+q
+*.pdf
+*.mp4
+*.mov
+*.dmg

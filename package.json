@@ -2,11 +2,16 @@
   "name": "spansk-ungdomsskole",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=22.12 <23"
+  },
   "type": "module",
   "scripts": {
-    "build:app": "npm run sync:vocabulary && npm run build:css && node scripts/build-offline.mjs",
+    "build:app": "npm run sync:vocabulary && npm run build:css && node scripts/build-offline.mjs && npm run build:school-content",
+    "build:vercel": "npm run build:app && node scripts/build-vercel-public.mjs",
+    "build:school-content": "node scripts/build-school-content.mjs",
     "check:offline-build": "node scripts/build-offline.mjs --check",
-    "build:css": "npx @tailwindcss/cli -i ./src/styles/tailwind.css -o ./dist/tailwind.css --minify",
+    "build:css": "tailwindcss -i ./src/styles/tailwind.css -o ./dist/tailwind.css --minify",
     "check:tailwind": "node scripts/check-tailwind-adoption.mjs",
     "check:learning-catalog": "node scripts/check-learning-catalog.mjs",
     "check:grammar-lessons": "node scripts/check-grammar-lessons.mjs",
@@ -56,15 +61,36 @@
     "test:sentence-puzzle": "playwright test tests/sentence-puzzle-game.spec.js --browser chromium",
     "test:productive-patterns": "playwright test tests/productive-patterns.spec.js --browser chromium",
     "audit:student-video": "playwright test tests/model-student-video-audit.spec.js --workers=1 --browser chromium && node scripts/postprocess-student-audit.mjs output/student-agent-audit/latest",
-    "test:all": "npm run check:vocabulary && npm run check:content && npm run check:content-accuracy && npm run check:grammar-lessons && npm run check:diagnosis-catalog && node --test tests/*.test.mjs && npm run check:learning-catalog && npm run check:tailwind && npm run check:offline-build && npm run test:browser",
+    "test:all": "npm run check:vocabulary && npm run check:content && npm run check:content-accuracy && npm run check:grammar-lessons && npm run check:diagnosis-catalog && node --test tests/*.test.mjs && npm run test:school && npm run check:learning-catalog && npm run check:tailwind && npm run check:offline-build && npm run test:browser",
+    "test:school": "node --test tests/server/*.test.mjs",
+    "setup:school-demo": "node scripts/setup-school-demo.mjs",
+    "school:db:up": "docker compose -p spansk123-school-local -f docker-compose.school.yml up -d --wait",
+    "school:db:stop": "docker compose -p spansk123-school-local -f docker-compose.school.yml stop",
+    "school:migrate": "node --env-file-if-exists=.env server/migrate.js",
+    "school:seed": "node --env-file-if-exists=.env scripts/seed-school-demo.mjs",
+    "test:school:postgres": "node --env-file-if-exists=.env scripts/verify-school-postgres.mjs",
+    "test:school:postgres:ui": "node --env-file-if-exists=.env scripts/verify-school-postgres-ui.mjs",
+    "school:retention": "node --env-file-if-exists=.env scripts/school-retention.mjs",
+    "school:bootstrap-admin": "node --env-file-if-exists=.env scripts/bootstrap-school-admin.mjs",
+    "school:owner": "node --env-file-if-exists=.env scripts/manage-school-owner.mjs",
+    "school:oidc": "node --env-file-if-exists=.env server/local-oidc-provider.js",
+    "school:start": "node --env-file-if-exists=.env server/index.js",
     "test:browser": "node scripts/test-browser.mjs",
     "sync:vocabulary": "node scripts/sync-vocabulary.mjs",
     "check:vocabulary": "node scripts/sync-vocabulary.mjs --check"
   },
   "devDependencies": {
+    "@electric-sql/pglite": "^0.5.8",
     "@playwright/test": "^1.60.0",
     "@tailwindcss/cli": "^4.1.17",
+    "oidc-provider": "^9.12.2",
     "tailwindcss": "^4.1.17",
     "vitest": "^4.1.11"
+  },
+  "dependencies": {
+    "express": "^5.2.1",
+    "openid-client": "^6.8.8",
+    "pg": "^8.23.0",
+    "zod": "^4.6.5"
   }
 }

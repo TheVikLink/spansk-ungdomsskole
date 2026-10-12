@@ -1,0 +1,42 @@
+services:
+  school-postgres:
+    image: postgres:17-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: spansk_school
+      POSTGRES_USER: app_migrator
+      POSTGRES_PASSWORD: ${MIGRATOR_PASSWORD:?Run npm run setup:school-demo first}
+      APP_RUNTIME_PASSWORD: ${RUNTIME_PASSWORD:?Run npm run setup:school-demo first}
+      SCHOOL_OWNER_PROVISIONER_PASSWORD: ${SCHOOL_OWNER_PROVISIONER_PASSWORD:?Run npm run setup:school-demo first}
+    ports:
+      - "127.0.0.1:5432:5432"
+    volumes:
+      - school-postgres-data:/var/lib/postgresql/data
+      - ./server/db-init/001-runtime-role.sh:/docker-entrypoint-initdb.d/001-runtime-role.sh:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U app_migrator -d spansk_school"]
+      interval: 3s
+      timeout: 2s
+      retries: 20
+  security-journal-postgres:
+    image: postgres:17-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: spansk_journal
+      POSTGRES_USER: journal_migrator
+      POSTGRES_PASSWORD: ${JOURNAL_MIGRATOR_PASSWORD:?Run npm run setup:school-demo first}
+      JOURNAL_RUNTIME_PASSWORD: ${JOURNAL_RUNTIME_PASSWORD:?Run npm run setup:school-demo first}
+    ports:
+      - "127.0.0.1:5433:5432"
+    volumes:
+      - security-journal-data:/var/lib/postgresql/data
+      - ./server/db-init/002-journal-runtime-role.sh:/docker-entrypoint-initdb.d/001-runtime-role.sh:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U journal_migrator -d spansk_journal"]
+      interval: 3s
+      timeout: 2s
+      retries: 20
+
+volumes:
+  school-postgres-data:
+  security-journal-data:
