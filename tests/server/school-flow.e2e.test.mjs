@@ -179,7 +179,7 @@ test('synthetic local OIDC → class invite → four homework areas → saved pr
       assert.match(response.headers.get('content-security-policy') || '', /base-uri 'none'/u, `CSP must cover ${path}`);
       assert.match(response.headers.get('content-security-policy') || '', /frame-ancestors 'none'/u, `CSP must cover ${path}`);
       assert.equal(response.headers.get('x-content-type-options'), 'nosniff', `nosniff must cover ${path}`);
-      assert.equal(response.headers.get('referrer-policy'), 'no-referrer', `referrer policy must cover ${path}`);
+      assert.equal(response.headers.get('referrer-policy'), path === '/school' ? 'same-origin' : 'no-referrer', `school forms need a non-opaque Origin; other paths retain no-referrer (${path})`);
       assert.equal(response.headers.get('x-frame-options'), 'DENY', `legacy frame protection remains present on ${path}`);
     }
 
@@ -484,8 +484,19 @@ test('synthetic local OIDC → class invite → four homework areas → saved pr
     const localLogout = await teacher.request('/auth/logout', { method: 'POST', body: {}, headers: {
       'content-type': 'application/json', 'x-csrf-token': decodeURIComponent(teacher.csrf()),
     } });
-    assert.equal(localLogout.status, 303);
-    const externalLogout = await teacher.request(localLogout.headers.get('location'));
+    assert.equal(localLogout.status, 200, 'native logout finishes on an explicit safe navigation page');
+    assert.match(localLogout.headers.get('cache-control') || '', /no-store/u);
+    assert.equal(localLogout.headers.get('referrer-policy'), 'no-referrer');
+    assert.match(localLogout.headers.get('content-security-policy'), /form-action 'self'/u);
+    const logoutLanding = await localLogout.text();
+    assert.match(logoutLanding, /Den lokale økten er avsluttet/u);
+    assert.match(logoutLanding, /Logg ut av Feide/u);
+    const escapedLogoutUrl = logoutLanding.match(/<a href="([^"]+)" rel="noreferrer noopener">/u)?.[1];
+    assert.ok(escapedLogoutUrl, 'logout exposes only an explicit no-referrer navigation link');
+    const logoutUrl = escapedLogoutUrl.replaceAll('&amp;', '&');
+    assert.equal(new URL(logoutUrl).origin, issuer);
+    assert.equal((await teacher.json('/api/session')).status, 401, 'local session ends before external logout navigation');
+    const externalLogout = await teacher.request(logoutUrl);
     assert.equal(externalLogout.status, 200, 'the synthetic provider asks for an explicit RP-Initiated Logout confirmation');
     const logoutHtml = await externalLogout.text();
     const logoutAction = logoutHtml.match(/<form\b[^>]*\baction="([^"]+)"/iu)?.[1];

@@ -131,7 +131,9 @@ export function createSchoolApp({ config, appPool, journalPool, serveLocalStatic
   app.set('trust proxy', config.trustedProxyHops);
   app.use((req, res, next) => {
     res.setHeader('X-Content-Type-Options', 'nosniff');
-    res.setHeader('Referrer-Policy', 'no-referrer');
+    // Native school forms need a non-opaque Origin for strict CSRF validation.
+    // Cross-origin navigation and every callback retain no-referrer behavior.
+    res.setHeader('Referrer-Policy', req.path === '/school' ? 'same-origin' : 'no-referrer');
     res.setHeader('X-Frame-Options', 'DENY');
     res.setHeader('Permissions-Policy', 'camera=(), microphone=(), geolocation=()');
     res.setHeader('Cross-Origin-Opener-Policy', 'same-origin');
@@ -287,7 +289,11 @@ export function createSchoolApp({ config, appPool, journalPool, serveLocalStatic
       const external = await oidc.beginLogout(ended.idToken);
       if (!external.url) return res.redirect(303, '/school?logout=local');
       res.append('Set-Cookie', cookie(logoutCookieName(config), logoutStateCookie(external.state, config), config, { maxAge: 5 * 60 * 1000 }));
-      return res.redirect(303, external.url.href);
+      const logoutHref = external.url.href.replace(/[&<>"']/gu, (character) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[character]);
+      // Finish the same-origin POST before navigating to the IdP with a link.
+      // This keeps form-action 'self' and makes local/external logout distinct.
+      res.setHeader('Cache-Control', 'no-store');
+      return res.status(200).type('html').send(`<!doctype html><html lang="nb"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Utlogging</title><main><h1>Den lokale økten er avsluttet.</h1><p>Fortsett for å logge ut av Feide.</p><a href="${logoutHref}" rel="noreferrer noopener">Logg ut av Feide</a></main></html>`);
     } catch {
       return res.redirect(303, '/school?logout=local');
     }
