@@ -157,7 +157,10 @@ async function reauthenticateSameStudent(userId) {
 
 function addLogout() {
   const form = node('form', null, { method: 'post', action: '/auth/logout' });
-  form.append(node('input', null, { type: 'hidden', name: 'csrfToken', value: csrfToken() }));
+  const csrfInput = node('input', null, { type: 'hidden', name: 'csrfToken', value: csrfToken() });
+  form.append(csrfInput);
+  // Joining a class rotates the session and cookie without replacing this form.
+  form.addEventListener('submit', () => { csrfInput.value = csrfToken(); });
   form.append(node('button', 'Logg ut', { className: 'button secondary', type: 'submit' }));
   const deleteAccount = button('Slett konto', async () => {
     const phrase = window.prompt('Dette sletter Feide-kontoens tilganger, lekseresultater og identitetskobling ved alle skoler. Handlingen kan ikke angres. Skriv SLETT KONTO for å fortsette.');
@@ -343,11 +346,23 @@ async function loadTeacher() {
   const due = node('input', null, { type: 'date' });
   form.append(field('Klasse', classSelect), field('Øvingsområde og tema', activitySelect), field('Tittel på lekse', title), field('Antall oppgaver', count), field('Frist (valgfritt)', due));
   const publish = button('Publiser lekse', async () => {
+    publish.disabled = true;
     try {
       const dueAt = due.value ? new Date(`${due.value}T23:59:00`).toISOString() : undefined;
       const created = await api('/api/assignments', { method: 'POST', body: { classId: classSelect.value, activityId: activitySelect.value, title: title.value, questionCount: Number(count.value), ...(dueAt ? { dueAt } : {}) } });
-      message(assignmentCard, `Leken «${created.title}» er publisert til ${created.recipientCount} elever.`, 'success');
-    } catch (error) { message(assignmentCard, error.message, 'error'); }
+      const receipt = `Leksen «${created.title}» er publisert til ${created.recipientCount} elever.`;
+      message(assignmentCard, receipt, 'success');
+      try {
+        await loadTeacher();
+        message(root, receipt, 'success');
+      } catch {
+        message(assignmentCard, 'Oversikten kunne ikke oppdateres. Hent oversikten igjen før du publiserer en ny lekse.', 'error');
+        assignmentCard.append(button('Hent oversikten igjen', async () => {
+          try { await loadTeacher(); message(root, receipt, 'success'); }
+          catch (error) { message(assignmentCard, error.message, 'error'); }
+        }, 'secondary'));
+      }
+    } catch (error) { publish.disabled = false; message(assignmentCard, error.message, 'error'); }
   });
   form.append(publish);
   assignmentCard.append(form);
@@ -424,11 +439,11 @@ async function showClassRequests(classInfo, target) {
       const roleLabel = request.role === 'teacher' ? 'Medlærer' : 'Elev';
       row.append(node('span', `${request.displayName} · ${roleLabel}`));
       row.append(button(`Godkjenn ${roleLabel.toLowerCase()}`, async () => {
-        try { await api(`/api/classes/${classInfo.id}/members/${request.studentId}/approve`, { method: 'POST', body: {} }); await showClassRequests(classInfo, target); }
+        try { await api(`/api/classes/${classInfo.id}/members/${request.studentId}/approve`, { method: 'POST', body: {} }); await loadTeacher(); }
         catch (error) { message(card, error.message, 'error'); }
       }));
       row.append(button('Avslå', async () => {
-        try { await api(`/api/classes/${classInfo.id}/members/${request.studentId}/revoke`, { method: 'POST', body: {} }); await showClassRequests(classInfo, target); }
+        try { await api(`/api/classes/${classInfo.id}/members/${request.studentId}/revoke`, { method: 'POST', body: {} }); await loadTeacher(); }
         catch (error) { message(card, error.message, 'error'); }
       }, 'secondary'));
       list.append(row);
@@ -501,7 +516,10 @@ async function openAssignment(item) {
     }
     loadStudent();
   }, 'secondary');
-  card.append(back, node('h1', assignment.title), node('p', `${areas[assignment.area]} · ${position}/${exercise.questionCount} besvart`, { className: 'muted' }));
+  const progress = node('p', null, { className: 'muted' });
+  const updateProgress = () => { progress.textContent = `${areas[assignment.area]} · ${prior.size}/${exercise.questionCount} besvart`; };
+  updateProgress();
+  card.append(back, node('h1', assignment.title), progress);
   if (exercise.audio) {
     card.append(node('p', 'Lytt til lydfilen før du svarer. Hvis lyd ikke kan spilles av, si fra til læreren.'), node('audio', null, { controls: true, preload: 'metadata', src: exercise.audio, ariaLabel: 'Lyd til lytteoppgaven' }));
   }
@@ -534,6 +552,7 @@ async function openAssignment(item) {
       fieldset.append(label);
     }
     const feedback = node('div');
+    const navigation = node('div');
     const submit = button(pendingSubmission ? 'Prøv å lagre igjen' : 'Sjekk svaret', async () => {
       submit.disabled = true;
       const existing = pendingHomeworkSubmissions.get(pendingKey);
@@ -544,16 +563,20 @@ async function openAssignment(item) {
         return;
       }
       pendingHomeworkSubmissions.set(pendingKey, submission);
+      navigation.replaceChildren();
       fieldset.disabled = true;
       try {
         const result = await api(`/api/assignments/${assignment.id}/answers`, { method: 'POST', body: { eventId: submission.eventId, practiceSession: data.practiceSession, questionId: question.id, answerId: submission.answerId } });
         pendingHomeworkSubmissions.delete(pendingKey);
         prior.set(question.id, { question_id: question.id, outcome: result.outcome });
+        updateProgress();
+        feedback.replaceChildren();
+        navigation.replaceChildren();
         const text = result.outcome === 'correct' ? `Riktig. ${result.explanation} Svar lagret.` : `Ikke helt. ${result.explanation} Svar lagret.`;
         message(feedback, text, result.outcome === 'correct' ? 'success' : 'banner');
         if (result.outcome === 'correct') position += 1;
         const advance = button(result.outcome === 'correct' ? 'Neste oppgave' : 'Prøv et nytt svar', () => render(), 'secondary');
-        feedback.append(advance);
+        navigation.append(advance);
       } catch (error) {
         if (error.reauthenticationRequired && submission.userId) {
           currentSession = null;
@@ -585,16 +608,18 @@ async function openAssignment(item) {
           root.replaceChildren(recovery);
           return;
         }
+        feedback.replaceChildren();
+        navigation.replaceChildren();
         message(feedback, `${error.message} Svaret er ikke bekreftet lagret. Prøv å lagre igjen før du endrer svaret.`, 'error');
         submit.textContent = 'Prøv å lagre igjen';
         submit.disabled = false;
       }
     });
     submit.disabled = !pendingSubmission;
-    interaction.append(fieldset, submit, feedback);
+    interaction.append(fieldset, submit, feedback, navigation);
     if (oldAnswer) {
       message(feedback, oldAnswer.outcome === 'correct' ? 'Denne oppgaven er allerede lagret som riktig.' : 'Du har forsøkt denne oppgaven tidligere.', oldAnswer.outcome === 'correct' ? 'success' : 'banner');
-      interaction.append(button('Neste oppgave', () => { position += 1; render(); }, 'secondary'));
+      if (!pendingSubmission) navigation.append(button('Neste oppgave', () => { position += 1; render(); }, 'secondary'));
     }
   };
   render();
