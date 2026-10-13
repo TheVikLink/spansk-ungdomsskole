@@ -20,6 +20,26 @@ async function database() {
   return db;
 }
 
+// School onboarding uses the current schema and a separate durable journal.
+async function schoolDatabase() {
+  const db=await database();
+  await db.exec('CREATE ROLE school_owner_provisioner NOLOGIN NOBYPASSRLS');
+  for (const name of ['002_school_membership_lifecycle','003_account_deletion','005_school_owner_tenants','006_assignment_content_snapshots','007_runtime_migration_privileges','008_pin_provisioning_trigger_search_path','009_student_school_invitations']) {
+    await db.exec(await readFile(new URL(`../../server/migrations/${name}.sql`,import.meta.url),'utf8'));
+  }
+  await db.exec(`
+    INSERT INTO school_owner(id,display_name,external_reference,status,verification_reference,verified_by,verified_at)
+    VALUES('90000000-0000-0000-0000-000000000001','Synthetic owner','synthetic-owner','active','synthetic-only','test',now());
+    ALTER TABLE school ALTER COLUMN owner_id SET DEFAULT '90000000-0000-0000-0000-000000000001';
+  `);
+  return db;
+}
+async function separateJournalDatabase() {
+  const db=new PGlite();
+  for(const name of ['001_revocations','002_account_deletion']) await db.exec(await readFile(new URL(`../../server/journal-migrations/${name}.sql`,import.meta.url),'utf8'));
+  return db;
+}
+
 test('class invitations only enroll a student whose school membership was already approved', async () => {
   const db = await database();
   try {
@@ -118,7 +138,8 @@ test('a revoked Feide identity cannot silently bind to a new account', async () 
 });
 
 test('school-admin invitation gives a pending Feide identity only a time-limited teacher membership at that school', async () => {
-  const db = await database();
+  const db = await schoolDatabase();
+  const journalDb = await separateJournalDatabase();
   try {
     await db.exec(`
       INSERT INTO school(id,feide_org_id,name) VALUES ('10000000-0000-0000-0000-000000000010','org-admin','Syntetisk skole');
@@ -127,7 +148,7 @@ test('school-admin invitation gives a pending Feide identity only a time-limited
     `);
     const pending = await linkFeideIdentity(db, { issuer: 'http://oidc.test', subject: 'teacher-approved-by-admin', displayName: 'Syntetisk medlærer' });
     const sessions = createSessionService(db, { sessionSecret });
-    const journal = createRevocationJournal(db);
+    const journal = createRevocationJournal(journalDb);
     const session = await sessions.create({ userId: pending.userId, schoolId: null, role: 'pending', idToken: 'teacher-id-token' });
     const code = randomBytes(24).toString('base64url');
     const inviteRow = await db.query(`INSERT INTO school_invite(school_id,token_hash,created_by,expires_at)
@@ -147,13 +168,14 @@ test('school-admin invitation gives a pending Feide identity only a time-limited
     }));
 
     // Simulate restoring the pre-redemption snapshot while retaining the newer journal.
-    const restored = await database();
+    const restored = await schoolDatabase();
     try {
       await restored.exec(`
         INSERT INTO school(id,feide_org_id,name) VALUES ('10000000-0000-0000-0000-000000000010','org-admin','Syntetisk skole');
         INSERT INTO app_user(id,display_name,status) VALUES
          ('00000000-0000-0000-0000-000000000010','Syntetisk administrator','active'),
          ('${pending.userId}','Syntetisk medlærer','pending');
+        INSERT INTO school_membership(school_id,user_id,role,status) VALUES ('10000000-0000-0000-0000-000000000010','00000000-0000-0000-0000-000000000010','school_admin','active');
       `);
       await restored.query(`INSERT INTO school_invite(id,school_id,token_hash,created_by,expires_at)
         VALUES($1,$2,$3,$4,now()+interval '1 day')`, [inviteRow.rows[0].id, '10000000-0000-0000-0000-000000000010', digest(code), '00000000-0000-0000-0000-000000000010']);
@@ -164,11 +186,12 @@ test('school-admin invitation gives a pending Feide identity only a time-limited
       }), { code: 'INVITE_INVALID' });
       assert.equal((await restored.query('SELECT count(*)::int AS n FROM school_membership WHERE user_id=$1', [pending.userId])).rows[0].n, 0);
     } finally { await restored.close(); }
-  } finally { await db.close(); }
+  } finally { await Promise.all([db.close(),journalDb.close()]); }
 });
 
 test('a teacher who belongs to another school can accept an invitation after choosing a school', async () => {
-  const db = await database();
+  const db = await schoolDatabase();
+  const journalDb = await separateJournalDatabase();
   try {
     await db.exec(`
       INSERT INTO school(id,feide_org_id,name) VALUES
@@ -186,7 +209,7 @@ test('a teacher who belongs to another school can accept an invitation after cho
     const code = randomBytes(24).toString('base64url');
     await db.query(`INSERT INTO school_invite(school_id,token_hash,created_by,expires_at)
       VALUES($1,$2,$3,now()+interval '1 day')`, ['10000000-0000-0000-0000-000000000021', digest(code), '00000000-0000-0000-0000-000000000021']);
-    const joined = await redeemSchoolInvite(db, createRevocationJournal(db), {
+    const joined = await redeemSchoolInvite(db, createRevocationJournal(journalDb), {
       userId: '00000000-0000-0000-0000-000000000020', code, sessionTokenHash: hashSessionToken(session.token), sessionSecret,
     });
     assert.equal(joined.school_id, '10000000-0000-0000-0000-000000000021');
@@ -197,5 +220,5 @@ test('a teacher who belongs to another school can accept an invitation after cho
       { school_id: '10000000-0000-0000-0000-000000000020', role: 'teacher', status: 'active' },
       { school_id: '10000000-0000-0000-0000-000000000021', role: 'teacher', status: 'active' },
     ]);
-  } finally { await db.close(); }
+  } finally { await Promise.all([db.close(),journalDb.close()]); }
 });

@@ -123,6 +123,7 @@ test('synthetic local OIDC → class invite → four homework areas → saved pr
     await database.exec('CREATE ROLE school_owner_provisioner NOLOGIN NOBYPASSRLS');
     await database.exec(await readFile(new URL('../../server/migrations/005_school_owner_tenants.sql', import.meta.url), 'utf8'));
     await database.exec(await readFile(new URL('../../server/migrations/006_assignment_content_snapshots.sql', import.meta.url), 'utf8'));
+    await database.exec(await readFile(new URL('../../server/migrations/009_student_school_invitations.sql', import.meta.url), 'utf8'));
     await journalDatabase.exec(await readFile(new URL('../../server/journal-migrations/001_revocations.sql', import.meta.url), 'utf8'));
     await journalDatabase.exec(await readFile(new URL('../../server/journal-migrations/002_account_deletion.sql', import.meta.url), 'utf8'));
     await database.exec(`
@@ -139,9 +140,6 @@ test('synthetic local OIDC → class invite → four homework areas → saved pr
       INSERT INTO app_user(id,display_name,status) VALUES ('00000000-0000-4000-8000-000000000004','Syntetisk administrator uten MFA','active');
       INSERT INTO feide_identity(issuer,subject,user_id) VALUES ('http://placeholder.test','demo-admin-low','00000000-0000-4000-8000-000000000004');
       INSERT INTO school_membership(school_id,user_id,role,status) VALUES ('10000000-0000-4000-8000-000000000001','00000000-0000-4000-8000-000000000004','school_admin','active');
-      INSERT INTO app_user(id,display_name,status) VALUES ('00000000-0000-4000-8000-000000000002','Syntetisk forhåndsgodkjent elev','active');
-      INSERT INTO feide_identity(issuer,subject,user_id) VALUES ('http://placeholder.test','demo-student-a','00000000-0000-4000-8000-000000000002');
-      INSERT INTO school_membership(school_id,user_id,role,status) VALUES ('10000000-0000-4000-8000-000000000001','00000000-0000-4000-8000-000000000002','student','active');
     `);
     const appPort = await freePort();
     const issuerPort = await freePort();
@@ -169,7 +167,7 @@ test('synthetic local OIDC → class invite → four homework areas → saved pr
     assert.equal((await cookieProbe.request('/auth/login')).status, 303);
     const transactionCookie = cookieProbe.cookieHeaders.get('spansk_oidc_tx_dev') || '';
     assert.match(transactionCookie, /Path=\//iu);
-    assert.match(transactionCookie, /SameSite=None/iu);
+    assert.match(transactionCookie, /SameSite=Lax/iu, 'HTTP loopback must not emit browser-rejected SameSite=None without Secure');
     assert.match(transactionCookie, /HttpOnly/iu);
     assert.doesNotMatch(transactionCookie, /Domain=|Secure/iu, 'loopback HTTP test cookie omits production-only attributes');
     assert.ok(cookieProbe.cookies.has('spansk_oidc_tx_dev'));
@@ -292,6 +290,17 @@ test('synthetic local OIDC → class invite → four homework areas → saved pr
 
     const student = new LocalBrowser(publicOrigin);
     await signIn(student, issuer, 'demo-student-a');
+    assert.equal((await student.json('/api/session')).body.role, 'pending', 'new student has no seeded school membership');
+    assert.equal((await student.json('/api/join-class', { method: 'POST', body: { code: invitation.body.code } })).status, 409);
+    assert.equal((await teacher.json('/api/school/student-invitations', { method: 'POST', body: {} })).status, 403);
+    assert.equal((await administrator.json('/api/school/student-invitations', { method: 'POST', body: { role: 'school_admin' } })).status, 400);
+    const withdrawnStudentInvite = await administrator.json('/api/school/student-invitations', { method: 'POST', body: {} });
+    assert.equal((await administrator.json(`/api/school/teacher-invitations/${withdrawnStudentInvite.body.id}/revoke`, { method: 'POST', body: {} })).status, 404, 'teacher route cannot revoke an invitation of another type');
+    assert.equal((await administrator.json(`/api/school/student-invitations/${withdrawnStudentInvite.body.id}/revoke`, { method: 'POST', body: {} })).status, 200);
+    assert.equal((await student.json('/api/join-school', { method: 'POST', body: { code: withdrawnStudentInvite.body.code } })).status, 400);
+    const studentSchoolInvite = await administrator.json('/api/school/student-invitations', { method: 'POST', body: {} });
+    assert.equal(studentSchoolInvite.status, 201, JSON.stringify(studentSchoolInvite.body));
+    assert.equal((await student.json('/api/join-school', { method: 'POST', body: { code: studentSchoolInvite.body.code } })).status, 200);
     const studentASession = await student.json('/api/session');
     assert.equal(studentASession.body.role, 'student');
     const joined = await student.json('/api/join-class', { method: 'POST', body: { code: invitation.body.code } });
@@ -318,7 +327,7 @@ test('synthetic local OIDC → class invite → four homework areas → saved pr
     for (const [path, method, body] of [
       ['/api/classes', 'GET'], ['/api/activities', 'GET'], [`/api/classes/${classId}/progress`, 'GET'],
       [`/api/classes/${classId}/requests`, 'GET'], [`/api/classes/${classId}/export`, 'POST', {}],
-      ['/api/school/members', 'GET'], ['/api/school/teacher-invitations', 'POST', {}],
+      ['/api/school/members', 'GET'], ['/api/school/teacher-invitations', 'POST', {}], ['/api/school/student-invitations', 'POST', {}],
     ]) assert.equal((await secondStudent.json(path, { method, body })).status, 403, `student role cannot access ${method} ${path}`);
     assert.equal((await administrator.json('/api/classes')).status, 403, 'school administrator does not inherit teacher class access');
     assert.equal((await administrator.json('/api/activities')).status, 403, 'school administrator does not inherit teacher activity access');
