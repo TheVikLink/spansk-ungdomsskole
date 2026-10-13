@@ -131,7 +131,9 @@ export function createSchoolApp({ config, appPool, journalPool, serveLocalStatic
   app.set('trust proxy', config.trustedProxyHops);
   app.use((req, res, next) => {
     res.setHeader('X-Content-Type-Options', 'nosniff');
-    res.setHeader('Referrer-Policy', 'no-referrer');
+    // Native school forms need a non-opaque Origin for strict CSRF validation.
+    // Cross-origin navigation and every callback retain no-referrer behavior.
+    res.setHeader('Referrer-Policy', req.path === '/school' ? 'same-origin' : 'no-referrer');
     res.setHeader('X-Frame-Options', 'DENY');
     res.setHeader('Permissions-Policy', 'camera=(), microphone=(), geolocation=()');
     res.setHeader('Cross-Origin-Opener-Policy', 'same-origin');
@@ -236,7 +238,9 @@ export function createSchoolApp({ config, appPool, journalPool, serveLocalStatic
       if (level && !['teacher', 'school_admin'].includes(level)) return res.status(400).send('Invalid authentication-level request');
       if (level && !requiredAcrByRole[level]) return res.status(400).send('No additional authentication level is configured');
       const started = await oidc.beginLogin({ requestedAcr: requiredAcrByRole[level] || null });
-      res.append('Set-Cookie', cookie(oidcTxCookieName(config), started.handle, config, { maxAge: 5 * 60 * 1000, sameSite: 'None' }));
+      // HTTP loopback origins are same-site; browsers reject None without
+      // Secure there. External Feide form_post requires None + Secure.
+      res.append('Set-Cookie', cookie(oidcTxCookieName(config), started.handle, config, { maxAge: 5 * 60 * 1000, sameSite: config.mode === 'local-oidc-test' ? 'Lax' : 'None' }));
       return res.redirect(303, started.url.href);
     } catch (error) { return next(error); }
   });
@@ -285,7 +289,11 @@ export function createSchoolApp({ config, appPool, journalPool, serveLocalStatic
       const external = await oidc.beginLogout(ended.idToken);
       if (!external.url) return res.redirect(303, '/school?logout=local');
       res.append('Set-Cookie', cookie(logoutCookieName(config), logoutStateCookie(external.state, config), config, { maxAge: 5 * 60 * 1000 }));
-      return res.redirect(303, external.url.href);
+      const logoutHref = external.url.href.replace(/[&<>"']/gu, (character) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[character]);
+      // Finish the same-origin POST before navigating to the IdP with a link.
+      // This keeps form-action 'self' and makes local/external logout distinct.
+      res.setHeader('Cache-Control', 'no-store');
+      return res.status(200).type('html').send(`<!doctype html><html lang="nb"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Utlogging</title><main><h1>Den lokale økten er avsluttet.</h1><p>Fortsett for å logge ut av Feide.</p><a href="${logoutHref}" rel="noreferrer noopener">Logg ut av Feide</a></main></html>`);
     } catch {
       return res.redirect(303, '/school?logout=local');
     }
@@ -378,17 +386,20 @@ export function createSchoolApp({ config, appPool, journalPool, serveLocalStatic
     }
   });
 
-  app.post('/api/school/teacher-invitations', currentSession, csrf, requireSchool, requireRole('school_admin'), mutationLimit, async (req, res, next) => {
+  const createSchoolInvitation = (memberRole) => async (req, res, next) => {
+    if (!z.object({}).strict().safeParse(req.body).success) return res.status(400).json({ error: 'Invitasjonstypen bestemmes av handlingen du valgte.' });
     const code = randomBytes(24).toString('base64url');
     const id = randomUUID();
     try {
       await withUserContext(appPool, req.session, async (client) => {
-        await client.query("INSERT INTO school_invite(id,school_id,token_hash,created_by,expires_at) VALUES($1,$2,$3,$4,now()+interval '7 days')", [id, req.session.schoolId, hash(code), req.session.userId]);
+        await client.query("INSERT INTO school_invite(id,school_id,token_hash,created_by,expires_at,member_role) VALUES($1,$2,$3,$4,now()+interval '7 days',$5)", [id, req.session.schoolId, hash(code), req.session.userId, memberRole]);
         await client.query("INSERT INTO audit_event(school_id,actor_id,action,target_type,target_id) VALUES($1,$2,'school_invite_created','school_invite',$3)", [req.session.schoolId, req.session.userId, id]);
       });
-      return res.status(201).json({ id, code, note: 'Del koden direkte med læreren via en verifisert kanal. Den kan brukes én gang og utløper om sju dager.' });
+      return res.status(201).json({ id, code, note: `Del koden direkte med ${memberRole === 'student' ? 'eleven' : 'læreren'} via en verifisert kanal. Den kan brukes én gang og utløper om sju dager.` });
     } catch (error) { return next(error); }
-  });
+  };
+  app.post('/api/school/teacher-invitations', currentSession, csrf, requireSchool, requireRole('school_admin'), mutationLimit, createSchoolInvitation('teacher'));
+  app.post('/api/school/student-invitations', currentSession, csrf, requireSchool, requireRole('school_admin'), mutationLimit, createSchoolInvitation('student'));
 
   app.get('/api/school/members', currentSession, requireSchool, requireRole('school_admin'), async (req, res, next) => {
     try {
@@ -436,11 +447,11 @@ export function createSchoolApp({ config, appPool, journalPool, serveLocalStatic
     } catch (error) { return next(error); }
   });
 
-  app.post('/api/school/teacher-invitations/:inviteId/revoke', currentSession, csrf, requireSchool, requireRole('school_admin'), mutationLimit, async (req, res, next) => {
+  const revokeSchoolInvitation = (memberRole) => async (req, res, next) => {
     if (!uuidSchema.safeParse(req.params.inviteId).success) return res.status(404).json({ error: 'Invitasjonen finnes ikke.' });
     try {
       const revoked = await withUserContext(appPool, req.session, async (client) => {
-        const found = await client.query('SELECT id FROM school_invite WHERE school_id=$1 AND id=$2 AND used_at IS NULL AND revoked_at IS NULL FOR UPDATE', [req.session.schoolId, req.params.inviteId]);
+        const found = await client.query('SELECT id FROM school_invite WHERE school_id=$1 AND id=$2 AND member_role=$3 AND used_at IS NULL AND revoked_at IS NULL FOR UPDATE', [req.session.schoolId, req.params.inviteId, memberRole]);
         if (!found.rowCount) return false;
         await journal.revoke(found.rows[0].id, 'school_invitation_revoked');
         await client.query('UPDATE school_invite SET revoked_at=now() WHERE school_id=$1 AND id=$2', [req.session.schoolId, req.params.inviteId]);
@@ -449,7 +460,9 @@ export function createSchoolApp({ config, appPool, journalPool, serveLocalStatic
       });
       return revoked ? res.json({ ok: true }) : res.status(404).json({ error: 'Invitasjonen finnes ikke, er brukt eller er allerede trukket tilbake.' });
     } catch (error) { return next(error); }
-  });
+  };
+  app.post('/api/school/teacher-invitations/:inviteId/revoke', currentSession, csrf, requireSchool, requireRole('school_admin'), mutationLimit, revokeSchoolInvitation('teacher'));
+  app.post('/api/school/student-invitations/:inviteId/revoke', currentSession, csrf, requireSchool, requireRole('school_admin'), mutationLimit, revokeSchoolInvitation('student'));
 
   app.get('/api/activities', currentSession, requireSchool, requireRole('teacher'), (_req, res) => res.json({ activities: listActivities() }));
 
