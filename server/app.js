@@ -93,6 +93,10 @@ async function withUserContext(pool, session, action) {
   try {
     await client.query('BEGIN');
     await client.query(`SELECT set_config('app.user_id',$1,true), set_config('app.school_id',$2,true), set_config('app.role',$3,true)`, [session.userId, session.schoolId || '', session.role]);
+    if (session.schoolId) {
+      const barrier=await client.query('SELECT pg_try_advisory_xact_lock_shared(hashtextextended($1,345714)) AS locked',[session.schoolId]);
+      if(!barrier.rows[0]?.locked)throw Object.assign(Error('School operation busy'),{code:'55P03'});
+    }
     const result = await action(client);
     await client.query('COMMIT');
     return result;
@@ -191,6 +195,7 @@ export function createSchoolApp({ config, appPool, journalPool, serveLocalStatic
     ? next()
     : res.status(403).json({ error: 'Du har ikke tilgang til denne handlingen.' });
   const assertSchoolAccess = async (schoolId, client = appPool) => {
+    await journal.assertNotRevoked(schoolId);
     const result = await client.query('SELECT app_school_access_grant($1) AS grant_id', [schoolId]);
     const grantId = result.rows[0]?.grant_id;
     if (!grantId) throw Object.assign(new Error('School access is inactive'), { code: 'ACCESS_REVOKED' });
@@ -608,7 +613,9 @@ export function createSchoolApp({ config, appPool, journalPool, serveLocalStatic
   app.post('/api/assignments/:assignmentId/close', currentSession, csrf, requireSchool, requireRole('teacher'), mutationLimit, async (req, res, next) => {
     if (!uuidSchema.safeParse(req.params.assignmentId).success) return res.status(404).json({ error: 'Leksen finnes ikke.' });
     try {
+      if (await journal.isAssignmentRetained(req.params.assignmentId)) return res.status(404).json({ error: 'Leksen finnes ikke.' });
       const closed = await withUserContext(appPool, req.session, async (client) => {
+        if (await journal.isAssignmentRetained(req.params.assignmentId)) return false;
         const result = await client.query(
           `UPDATE assignment SET status='closed' WHERE school_id=$1 AND id=$2 AND status='published'
            AND app_is_class_member(school_id,class_id,'teacher') RETURNING id,class_id`,
@@ -644,7 +651,7 @@ export function createSchoolApp({ config, appPool, journalPool, serveLocalStatic
             && row.content_snapshot?.questions?.length === row.question_limit
             && verifyActivitySnapshot(row.content_snapshot, row.content_version);
           if (req.session.role === 'student' && !contentAvailable) continue;
-          if (await journal.isRevoked(row.class_grant_id)) continue;
+          if (await journal.isRevoked(row.class_grant_id) || await journal.isAssignmentRetained(row.id)) continue;
           if (req.session.role === 'student') {
             const recipient = await client.query("SELECT 1 FROM assignment_recipient WHERE school_id=$1 AND assignment_id=$2 AND student_id=$3 AND status='assigned'", [req.session.schoolId, row.id, req.session.userId]);
             if (!recipient.rowCount) continue;
@@ -664,12 +671,17 @@ export function createSchoolApp({ config, appPool, journalPool, serveLocalStatic
       const output = await withUserContext(appPool, req.session, async (client) => {
         const profile = await client.query('SELECT id,display_name FROM app_user WHERE id=$1', [req.session.userId]);
         const events = await client.query(
-          `SELECT id,area,content_id,content_version,question_id,outcome,attempt,hints_used,practice_session,created_at
+          `SELECT id,assignment_id,area,content_id,content_version,question_id,outcome,attempt,hints_used,practice_session,created_at
            FROM learning_event WHERE school_id=$1 AND student_id=$2 ORDER BY created_at`,
           [req.session.schoolId, req.session.userId],
         );
         await client.query("INSERT INTO audit_event(school_id,actor_id,action,target_type,target_id) VALUES($1,$2,'export_created','membership',$2)", [req.session.schoolId, req.session.userId]);
-        return { exportedAt: new Date().toISOString(), student: profile.rows[0], learningEvents: events.rows };
+        const visible=[];
+        for (const event of events.rows) {
+          if (await journal.isAssignmentRetained(event.assignment_id)) continue;
+          const {assignment_id,...publicEvent}=event; visible.push(publicEvent);
+        }
+        return { exportedAt: new Date().toISOString(), student: profile.rows[0], learningEvents: visible };
       });
       return res.json(output);
     } catch (error) { return next(error); }
@@ -678,7 +690,9 @@ export function createSchoolApp({ config, appPool, journalPool, serveLocalStatic
   app.get('/api/assignments/:assignmentId', currentSession, requireSchool, requireRole('student'), async (req, res, next) => {
     if (!uuidSchema.safeParse(req.params.assignmentId).success) return res.status(404).json({ error: 'Leksen finnes ikke.' });
     try {
+      if (await journal.isAssignmentRetained(req.params.assignmentId)) return res.status(404).json({ error: 'Leksen finnes ikke.' });
       const payload = await withUserContext(appPool, req.session, async (client) => {
+        if (await journal.isAssignmentRetained(req.params.assignmentId)) return null;
         const result = await client.query(
           `SELECT a.id,a.class_id,a.area,a.content_id,a.content_version,a.content_snapshot,a.question_limit,a.title,a.due_at,cm.grant_id AS class_grant_id
            FROM assignment a JOIN assignment_recipient ar ON ar.school_id=a.school_id AND ar.assignment_id=a.id AND ar.student_id=$3 AND ar.status='assigned'
@@ -710,6 +724,7 @@ export function createSchoolApp({ config, appPool, journalPool, serveLocalStatic
     if (!input.success) return res.status(400).json({ error: 'Velg et svar på oppgaven.' });
     try {
       const answer = await withUserContext(appPool, req.session, async (client) => {
+        if (await journal.isAssignmentRetained(req.params.assignmentId)) return null;
         const assignmentResult = await client.query('SELECT class_id,area,content_id,content_version,content_snapshot,question_limit FROM assignment WHERE school_id=$1 AND id=$2 AND status=\'published\'', [req.session.schoolId, req.params.assignmentId]);
         const assignment = assignmentResult.rows[0];
         if (!assignment) return null;
@@ -772,6 +787,7 @@ export function createSchoolApp({ config, appPool, journalPool, serveLocalStatic
       });
       const allowedRows = [];
       for (const row of data) {
+        if (await journal.isAssignmentRetained(row.assignment_id)) continue;
         if (!(await getClassGrantForStudent(appPool, req.session, req.params.classId, row.student_id, journal))) continue;
         allowedRows.push({ studentId: row.student_id, name: row.display_name, assignmentId: row.assignment_id, title: row.title, area: row.area,
           attempted: row.answered, total: row.question_limit, correct: row.correct });
@@ -790,7 +806,7 @@ export function createSchoolApp({ config, appPool, journalPool, serveLocalStatic
              SELECT DISTINCT ON (school_id,assignment_id,student_id,question_id) school_id,assignment_id,student_id,question_id,outcome
              FROM learning_event WHERE school_id=$1 ORDER BY school_id,assignment_id,student_id,question_id,attempt DESC,created_at DESC
            )
-           SELECT u.id AS student_id,u.display_name,a.area,a.title,count(DISTINCT latest.question_id)::int AS answered,
+           SELECT u.id AS student_id,u.display_name,a.id AS assignment_id,a.area,a.title,count(DISTINCT latest.question_id)::int AS answered,
              count(DISTINCT latest.question_id) FILTER(WHERE latest.outcome='correct')::int AS correct
            FROM class_membership cm JOIN app_user u ON u.id=cm.user_id
            JOIN assignment a ON a.school_id=cm.school_id AND a.class_id=cm.class_id
@@ -803,7 +819,11 @@ export function createSchoolApp({ config, appPool, journalPool, serveLocalStatic
         return { exportedAt: new Date().toISOString(), rows: result.rows };
       });
       for (const row of output.rows) if (!(await getClassGrantForStudent(appPool, req.session, req.params.classId, row.student_id, journal))) row.display_name = undefined;
-      output.rows = output.rows.filter((row) => row.display_name);
+      const visible=[];
+      for (const row of output.rows) if (row.display_name && !(await journal.isAssignmentRetained(row.assignment_id))) {
+        const {assignment_id,...publicRow}=row; visible.push(publicRow);
+      }
+      output.rows=visible;
       return res.json(output);
     } catch (error) { return next(error); }
   });

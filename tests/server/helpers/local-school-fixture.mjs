@@ -24,6 +24,7 @@ let appServer,providerServer;
     await database.exec(await readFile(new URL('../../../server/migrations/005_school_owner_tenants.sql', import.meta.url), 'utf8'));
     await database.exec(await readFile(new URL('../../../server/migrations/006_assignment_content_snapshots.sql', import.meta.url), 'utf8'));
     await database.exec(await readFile(new URL('../../../server/migrations/009_student_school_invitations.sql', import.meta.url), 'utf8'));
+    await database.exec(await readFile(new URL('../../../server/migrations/010_school_lifecycle_operations.sql', import.meta.url), 'utf8'));
     await journalDatabase.exec(await readFile(new URL('../../../server/journal-migrations/001_revocations.sql', import.meta.url), 'utf8'));
     await journalDatabase.exec(await readFile(new URL('../../../server/journal-migrations/002_account_deletion.sql', import.meta.url), 'utf8'));
     await database.exec(`
@@ -68,5 +69,5 @@ let appServer,providerServer;
  await database.query("INSERT INTO app_user(id,display_name,status) VALUES('00000000-0000-4000-8000-000000000002','Syntetisk elev','active')");
  await database.query("INSERT INTO feide_identity(issuer,subject,user_id) VALUES($1,'demo-student-a','00000000-0000-4000-8000-000000000002')",[issuer]);
  await database.query("INSERT INTO school_membership(school_id,user_id,role) VALUES('10000000-0000-4000-8000-000000000001','00000000-0000-4000-8000-000000000002','student')");
- return {origin:publicOrigin, issuer, config, database, async close(){await Promise.all([appServer,providerServer].map(s=>new Promise(r=>{s.closeAllConnections();s.close(r);})));await database.close();await journalDatabase.close();}};
+ return {origin:publicOrigin, issuer, config, database, journalDatabase, journal:school.journal, async close(){await Promise.all([appServer,providerServer].map(s=>new Promise(r=>{s.closeAllConnections();s.close(r);})));await database.close();await journalDatabase.close();}};
 }

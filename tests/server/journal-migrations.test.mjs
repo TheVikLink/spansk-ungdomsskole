@@ -12,6 +12,7 @@ test('journal immutability function pins search_path to pg_catalog', async () =>
       '002_account_deletion.sql',
       '003_fixed_trigger_search_path.sql',
       '004_runtime_least_privilege.sql',
+      '005_school_deletion.sql',
     ]) {
       await db.exec(await readFile(new URL(`../../server/journal-migrations/${filename}`, import.meta.url), 'utf8'));
     }

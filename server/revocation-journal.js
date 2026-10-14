@@ -1,6 +1,9 @@
 /** The journal is a separate PostgreSQL service/database from learning snapshots. */
 export function createRevocationJournal(pool) {
   return {
+    async deleteSchool(schoolId, accessGrantId, authorizationReference) {
+      await pool.query('SELECT journal_school.record_deletion($1,$2,$3)', [schoolId,accessGrantId,authorizationReference]);
+    },
     async revoke(grantId, reason, subjectId = grantId) {
       const allowed = new Set(['class_membership_removed', 'school_membership_removed', 'user_blocked', 'user_deleted', 'assignment_retention', 'school_blocked', 'class_invitation_used', 'school_invitation_used', 'school_invitation_revoked']);
       if (!allowed.has(reason)) throw new Error('Unsupported revocation reason');
@@ -25,7 +28,11 @@ export function createRevocationJournal(pool) {
       }
     },
     async isRevoked(grantId) {
-      const result = await pool.query('SELECT 1 FROM entitlement_revocation e LEFT JOIN entitlement_revocation_subject s ON s.event_id=e.id WHERE coalesce(s.subject_id,e.grant_id)=$1 LIMIT 1', [grantId]);
+      const result = await pool.query("SELECT 1 FROM entitlement_revocation e LEFT JOIN entitlement_revocation_subject s ON s.event_id=e.id WHERE coalesce(s.subject_id,e.grant_id)=$1 AND e.reason<>'assignment_retention' LIMIT 1", [grantId]);
+      return result.rowCount > 0;
+    },
+    async isAssignmentRetained(assignmentId) {
+      const result = await pool.query("SELECT 1 FROM entitlement_revocation e LEFT JOIN entitlement_revocation_subject s ON s.event_id=e.id WHERE coalesce(s.subject_id,e.grant_id)=$1 AND e.reason='assignment_retention' LIMIT 1", [assignmentId]);
       return result.rowCount > 0;
     },
     async assertNotRevoked(grantId) {
