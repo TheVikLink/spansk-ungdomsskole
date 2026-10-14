@@ -190,8 +190,8 @@ export function createSchoolApp({ config, appPool, journalPool, serveLocalStatic
   const requireRole = (role) => (req, res, next) => req.session.role === role
     ? next()
     : res.status(403).json({ error: 'Du har ikke tilgang til denne handlingen.' });
-  const assertSchoolAccess = async (schoolId) => {
-    const result = await appPool.query('SELECT app_school_access_grant($1) AS grant_id', [schoolId]);
+  const assertSchoolAccess = async (schoolId, client = appPool) => {
+    const result = await client.query('SELECT app_school_access_grant($1) AS grant_id', [schoolId]);
     const grantId = result.rows[0]?.grant_id;
     if (!grantId) throw Object.assign(new Error('School access is inactive'), { code: 'ACCESS_REVOKED' });
     await journal.assertNotRevoked(grantId);
@@ -325,7 +325,7 @@ export function createSchoolApp({ config, appPool, journalPool, serveLocalStatic
           const active = [];
           for (const choice of choices.rows) {
             try {
-              await assertSchoolAccess(choice.school_id);
+              await assertSchoolAccess(choice.school_id, client);
               await journal.assertNotRevoked(choice.grant_id);
               active.push({ id: choice.school_id, name: choice.school_name, role: choice.role });
             } catch {}
@@ -350,7 +350,7 @@ export function createSchoolApp({ config, appPool, journalPool, serveLocalStatic
       await assertSchoolAccess(choice.school_id);
       await journal.assertNotRevoked(choice.grant_id);
       const oldSession = await sessions.logout(req.sessionToken);
-      const newSession = await sessions.create({ userId: req.session.userId, schoolId: choice.school_id, role: choice.role, idToken: oldSession?.idToken, acr: oldSession?.acr });
+      const newSession = await sessions.create({ userId: req.session.userId, schoolId: choice.school_id, role: choice.role, idToken: oldSession?.idToken, acr: req.session.acr });
       setLoginCookies(res, config, newSession);
       return res.json({ ok: true });
     } catch (error) { return next(error); }

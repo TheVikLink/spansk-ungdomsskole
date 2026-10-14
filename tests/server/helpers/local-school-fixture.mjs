@@ -10,7 +10,7 @@ function asPool(db){
  async function connect(){let unlock;const previous=tail;tail=new Promise(r=>{unlock=r;});await previous;return {query:db.query.bind(db),release:unlock};}
  return {connect,async query(...args){const client=await connect();try{return await client.query(...args);}finally{client.release();}}};
 }
-export async function createLocalSchoolFixture(){
+export async function createLocalSchoolFixture({ teacherRequiredAcr = null } = {}){
 const database = new PGlite();
 const journalDatabase = new PGlite();
 let appServer,providerServer;
@@ -50,7 +50,7 @@ let appServer,providerServer;
       mode: 'local-oidc-test', nodeEnv: 'test', host: '127.0.0.1', port: appPort,
       publicOrigin, databaseUrl: 'postgres://local:local@127.0.0.1:5432/local', journalDatabaseUrl: 'postgres://local:local@127.0.0.1:5433/journal',
       oidc: { issuer, clientId: 'school-e2e', clientSecret: 'synthetic-oidc-client-secret-at-least-32' },
-      adminRequiredAcr: 'urn:mace:feide.no:auth:level:fad08:3', teacherRequiredAcr: null,
+      adminRequiredAcr: 'urn:mace:feide.no:auth:level:fad08:3', teacherRequiredAcr,
       sessionSecret: 'synthetic-e2e-session-secret-long-enough-123',
       cookie: { name: 'spansk_session_dev', secure: false, sameSite: 'Lax', path: '/' }, trustedProxyHops: 0,
     };
@@ -68,5 +68,5 @@ let appServer,providerServer;
  await database.query("INSERT INTO app_user(id,display_name,status) VALUES('00000000-0000-4000-8000-000000000002','Syntetisk elev','active')");
  await database.query("INSERT INTO feide_identity(issuer,subject,user_id) VALUES($1,'demo-student-a','00000000-0000-4000-8000-000000000002')",[issuer]);
  await database.query("INSERT INTO school_membership(school_id,user_id,role) VALUES('10000000-0000-4000-8000-000000000001','00000000-0000-4000-8000-000000000002','student')");
- return {origin:publicOrigin, database, async close(){await Promise.all([appServer,providerServer].map(s=>new Promise(r=>{s.closeAllConnections();s.close(r);})));await database.close();await journalDatabase.close();}};
+ return {origin:publicOrigin, issuer, config, database, async close(){await Promise.all([appServer,providerServer].map(s=>new Promise(r=>{s.closeAllConnections();s.close(r);})));await database.close();await journalDatabase.close();}};
 }

@@ -98,3 +98,13 @@ test('server port is validated before the listener is started', () => {
   assert.equal(loadConfig({ ...localEnv, PORT: '3012' }).port, 3012);
   for (const port of ['abc', '0', '65536', '1.5']) assert.throws(() => loadConfig({ ...localEnv, PORT: port }), /PORT/);
 });
+
+
+test('Feide teachers always require the supported strong signed ACR, while local fixtures remain explicit', () => {
+  const mfa = 'urn:mace:feide.no:auth:level:fad08:3';
+  assert.equal(loadConfig(safeProductionEnv).teacherRequiredAcr, mfa);
+  assert.equal(loadConfig({ ...safeProductionEnv, FEIDE_TEACHER_REQUIRED_ACR: mfa }).teacherRequiredAcr, mfa);
+  for (const weak of ['urn:feide:level:low', 'none', 'urn:mace:feide.no:auth:level:fad08:2']) {
+    assert.throws(() => loadConfig({ ...safeProductionEnv, FEIDE_TEACHER_REQUIRED_ACR: weak }), /FEIDE_TEACHER_REQUIRED_ACR/);
+  }
+});
