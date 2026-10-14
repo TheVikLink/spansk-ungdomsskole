@@ -18,13 +18,18 @@ try{
  await assert.rejects(app.query('SELECT * FROM app_user'),/permission denied/);
  await assert.rejects(exportSchool(app,{schoolId:config.schoolId,authorizationReference:'unauthorized-synthetic-reference'}),/authorization/i);
  const mode=process.argv[2]??'probe';
- if(mode==='export'){
+ if(mode==='export'||mode==='inspect-export-shape'){
   const data=await exportSchool(app,{schoolId:config.schoolId,authorizationReference:config.reference});
   assert.equal(data.school.id,config.schoolId);assert.equal(data.users.length,2);
   const bytes=JSON.stringify(data,null,2)+'\n';
-  for(const key of ['token_hash','csrf_hash','encrypted_id_token','subject','issuer','answer_text','audio'])assert.equal(new RegExp('"'+key+'"\\s*:').test(bytes),false,key);
+  if(mode==='inspect-export-shape'){
+   const fields=[];const walk=(value,path)=>{if(!value||typeof value!=='object')return;for(const [key,item] of Object.entries(value)){if(key==='audio')fields.push({path:path+'.'+key,type:typeof item,isArray:Array.isArray(item),length:Array.isArray(item)?item.length:null,empty:item===null||(Array.isArray(item)&&item.length===0)});walk(item,path+'.'+key);}};walk(data,'export');console.log(JSON.stringify({audioFields:fields}));
+  }else{
+  for(const key of ['token_hash','csrf_hash','encrypted_id_token','subject','issuer','answer_text','audio_data','recording'])assert.equal(new RegExp('"'+key+'"\\s*:').test(bytes),false,key);
+  const verifyAudio=(value)=>{if(!value||typeof value!=='object')return;for(const [key,item] of Object.entries(value)){if(key==='audio')assert.equal(item,null,'This vocabulary fixture permits only null audio metadata');verifyAudio(item);}};verifyAudio(data);
   await writeFile('/Users/olehenrikvik/spansk-ungdomsskole/output/pilot-ops-2026-10-14/synthetic-school-export.json',bytes,{mode:0o600,flag:'wx'});
   console.log(JSON.stringify({exported:true,sha256:createHash('sha256').update(bytes).digest('hex'),collections:Object.fromEntries(Object.entries(data).filter(([,value])=>Array.isArray(value)).map(([key,value])=>[key,value.length])),secretFieldsAbsent:true}));
+  }
  }else if(mode==='delete-preview'){
   const report=await deleteSchool(app,{schoolId:config.schoolId,authorizationReference:config.reference});console.log(JSON.stringify({reportOnly:!report.applied,schoolId:report.schoolId}));
  }else if(mode==='apply-delete'){
