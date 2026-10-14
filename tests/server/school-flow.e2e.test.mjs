@@ -124,6 +124,7 @@ test('synthetic local OIDC → class invite → four homework areas → saved pr
     await database.exec(await readFile(new URL('../../server/migrations/005_school_owner_tenants.sql', import.meta.url), 'utf8'));
     await database.exec(await readFile(new URL('../../server/migrations/006_assignment_content_snapshots.sql', import.meta.url), 'utf8'));
     await database.exec(await readFile(new URL('../../server/migrations/009_student_school_invitations.sql', import.meta.url), 'utf8'));
+    await database.exec(await readFile(new URL('../../server/migrations/010_school_lifecycle_operations.sql', import.meta.url), 'utf8'));
     await journalDatabase.exec(await readFile(new URL('../../server/journal-migrations/001_revocations.sql', import.meta.url), 'utf8'));
     await journalDatabase.exec(await readFile(new URL('../../server/journal-migrations/002_account_deletion.sql', import.meta.url), 'utf8'));
     await database.exec(`

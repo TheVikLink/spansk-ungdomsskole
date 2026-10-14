@@ -46,7 +46,10 @@ export function loadConfig(env = process.env) {
   const clientSecret = required(env, 'OIDC_CLIENT_SECRET');
   const sessionSecret = required(env, 'SESSION_SECRET');
   const adminRequiredAcr = env.FEIDE_ADMIN_REQUIRED_ACR?.trim() || null;
-  const teacherRequiredAcr = env.FEIDE_TEACHER_REQUIRED_ACR?.trim() || null;
+  const teacherRequiredAcr = env.FEIDE_TEACHER_REQUIRED_ACR?.trim() || (localOidcTest ? null : FEIDE_MFA_ACR);
+  if (!localOidcTest && teacherRequiredAcr !== FEIDE_MFA_ACR) {
+    throw new Error('FEIDE_TEACHER_REQUIRED_ACR must require the supported Feide MFA level');
+  }
   if (!localOidcTest && !adminRequiredAcr) throw new Error('Feide mode requires FEIDE_ADMIN_REQUIRED_ACR for privileged school administration');
   const port = Number(env.PORT || 3000);
   if (!Number.isInteger(port) || port < 1 || port > 65535) throw new Error('PORT must be an integer from 1 to 65535');

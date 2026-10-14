@@ -28,6 +28,8 @@ test('app runtime can only read migration tracking and cannot execute owner trig
       '007_runtime_migration_privileges.sql',
       '008_pin_provisioning_trigger_search_path.sql',
       '009_student_school_invitations.sql',
+      '010_school_lifecycle_operations.sql',
+      '011_bounded_retention_scheduler.sql',
     ]) {
       await db.exec(await readFile(new URL(`../../server/migrations/${filename}`, import.meta.url), 'utf8'));
     }

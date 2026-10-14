@@ -31,7 +31,14 @@ export async function verifyRestoredSchoolDatabase({ pool, journal, snapshotChec
     let reappliedAccountBlocks = 0;
     let reappliedRetentionDeletions = 0;
     let reappliedSchoolBlocks = 0;
+    const supported = new Set(['user_deleted','user_blocked','assignment_retention','school_blocked','school_deleted','class_membership_removed','school_membership_removed','class_invitation_used','school_invitation_used','school_invitation_revoked']);
     for (const entry of entries) {
+      if (!supported.has(entry.reason)) throw Error('Unsupported journal event; restored database must remain closed');
+      if (entry.reason === 'school_deleted') {
+        await client.query('SELECT school_ops.purge_school($1)',[entry.subject_id]);
+        reappliedSchoolBlocks += 1;
+        continue;
+      }
       if (entry.reason === 'user_deleted') {
         if (await replayAccountDeletion(client, entry.subject_id)) reappliedAccountDeletions += 1;
       } else if (entry.reason === 'user_blocked') {

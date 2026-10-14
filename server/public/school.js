@@ -29,18 +29,25 @@ function armSessionWarning() {
   }, teacherIdleLimitMs - 5 * 60 * 1000);
 }
 
+function strongLoginRoute(role) {
+  return ['teacher', 'school_admin'].includes(role) ? `/school?reauth=${role}` : '/school';
+}
+
 async function refreshActiveSession({ force = false } = {}) {
-  if (!currentSession) return;
+  // School selection/join rotates its cookie. A concurrent heartbeat using
+  // the previous cookie can otherwise clear the new session on its way back.
+  if (!currentSession || ['select_school', 'pending'].includes(currentSession.role)) return;
   const now = Date.now();
   if (!force && now - lastSessionHeartbeat < 2 * 60 * 1000) return;
   lastSessionHeartbeat = now;
   try {
     const response = await fetch('/api/session', { credentials: 'same-origin', cache: 'no-store' });
     if (response.status === 401 || response.status === 403) {
+      const denied = response.status === 403 ? await response.json().catch(() => ({})) : {};
       root.replaceChildren();
       userArea.replaceChildren();
       currentSession = null;
-      location.assign('/school?timeout=1');
+      location.assign(denied.reauthenticationRequired ? strongLoginRoute(denied.reauthenticationRole) : '/school?timeout=1');
       return;
     }
     if (response.ok) {
@@ -125,7 +132,7 @@ async function api(path, { method = 'GET', body } = {}) {
     root.replaceChildren();
     userArea.replaceChildren();
     currentSession = null;
-    location.assign('/school');
+    location.assign(strongLoginRoute(data.reauthenticationRole));
     throw new Error(data.error);
   }
   if (response.status !== 403) armSessionWarning();
@@ -630,11 +637,13 @@ async function load() {
     const mode = await fetch('/api/runtime-mode', { cache: 'no-store' }).then((response) => response.json());
     const logoutState = new URLSearchParams(location.search).get('logout');
     const timedOut = new URLSearchParams(location.search).get('timeout');
+    const requestedRole = new URLSearchParams(location.search).get('reauth');
+    const loginRole = ['teacher', 'school_admin'].includes(requestedRole) ? requestedRole : null;
     if (logoutState === 'local') logoutNotice = 'Den lokale økten er avsluttet. Feide-utloggingen kunne ikke bekreftes.';
     if (timedOut) logoutNotice = 'Økten eller skoletilgangen ble avsluttet. Logg inn på nytt eller kontakt skolens administrator.';
-    if (logoutState || timedOut) history.replaceState(null, '', '/school');
+    if (logoutState || timedOut || requestedRole) history.replaceState(null, '', '/school');
     const response = await fetch('/api/session', { credentials: 'same-origin', cache: 'no-store' });
-    if (response.status === 401) return loginView(mode.localOidcTest);
+    if (response.status === 401) return loginView(mode.localOidcTest, loginRole);
     if (response.status === 403) {
       const denied = await response.json().catch(() => ({}));
       return loginView(mode.localOidcTest, denied.reauthenticationRequired ? denied.reauthenticationRole : null);
