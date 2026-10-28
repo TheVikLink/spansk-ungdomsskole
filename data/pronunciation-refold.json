@@ -1,0 +1,1486 @@
+{
+  "schemaVersion": 1,
+  "catalogVersion": 1,
+  "source": {
+    "name": "Spanish Phonetic Writing System - Free Refold Deck",
+    "url": "https://ankiweb.net/shared/info/1195472731",
+    "credit": "Lyd og originaleksempler: Refold. Brukt med tillatelse. Norske forklaringer og øvelser: Spansk på 1-2-3.",
+    "permissionDate": "2026-10-07"
+  },
+  "review": {
+    "status": "pending-owner-listening",
+    "note": "Teknisk kontroll og norsk tekstbearbeiding utført. Ordrett lyd-/manuskontroll og faglig enhetsprøve gjenstår i lamg.1."
+  },
+  "groups": [
+    {
+      "id": "vokaler",
+      "title": "De fem vokalene",
+      "itemIds": [
+        "refold-es-01",
+        "refold-es-02",
+        "refold-es-03",
+        "refold-es-04",
+        "refold-es-05"
+      ]
+    },
+    {
+      "id": "konsonanter",
+      "title": "Vanlige konsonanter",
+      "itemIds": [
+        "refold-es-17",
+        "refold-es-18",
+        "refold-es-21",
+        "refold-es-23",
+        "refold-es-24",
+        "refold-es-26",
+        "refold-es-30"
+      ]
+    },
+    {
+      "id": "k-og-g",
+      "title": "c/qu/k og g/gu",
+      "itemIds": [
+        "refold-es-16",
+        "refold-es-19"
+      ]
+    },
+    {
+      "id": "b-v-og-j",
+      "title": "b/v og j/g",
+      "itemIds": [
+        "refold-es-15",
+        "refold-es-20"
+      ]
+    },
+    {
+      "id": "ene-og-elle",
+      "title": "ñ og ll/y",
+      "itemIds": [
+        "refold-es-25",
+        "refold-es-22"
+      ]
+    },
+    {
+      "id": "r-og-rr",
+      "title": "r og rr",
+      "itemIds": [
+        "refold-es-27",
+        "refold-es-28"
+      ]
+    },
+    {
+      "id": "s-c-og-z",
+      "title": "s, c og z",
+      "itemIds": [
+        "refold-es-29",
+        "refold-es-31"
+      ]
+    },
+    {
+      "id": "ai-ei-oi",
+      "title": "ai, ei og oi",
+      "itemIds": [
+        "refold-es-06",
+        "refold-es-07",
+        "refold-es-08"
+      ]
+    },
+    {
+      "id": "au-og-eu",
+      "title": "au og eu",
+      "itemIds": [
+        "refold-es-09",
+        "refold-es-10"
+      ]
+    },
+    {
+      "id": "iu-ui-ue-uo",
+      "title": "iu, ui, ue og uo",
+      "itemIds": [
+        "refold-es-11",
+        "refold-es-12",
+        "refold-es-13",
+        "refold-es-14"
+      ]
+    }
+  ],
+  "items": [
+    {
+      "id": "refold-es-01",
+      "sourceIndex": 1,
+      "contentVersion": 1,
+      "title": "a",
+      "word": "casa",
+      "wordNo": "hus, hjem",
+      "sentence": "Ana lava la taza en casa.",
+      "sentenceNo": "Ana vasker koppen hjemme.",
+      "explanation": "Åpne munnen og si en tydelig a. Prøv å beholde samme vokal gjennom hele lyden.",
+      "reflection": "Hør de to a-lydene i casa. Var begge tydelige?",
+      "sentenceNote": "Dette er en lydøvesetning. Du trenger ikke kunne alle ordene eller grammatikken.",
+      "audio": {
+        "word": "audio/uttale/refold-v1/ESPhoneticWritingSystem_1_word.mp3",
+        "sentence": "audio/uttale/refold-v1/ESPhoneticWritingSystem_1_sentence.mp3"
+      },
+      "focus": {
+        "word": [
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "sentence": [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            7,
+            8
+          ],
+          [
+            10,
+            11
+          ],
+          [
+            13,
+            14
+          ],
+          [
+            15,
+            16
+          ],
+          [
+            21,
+            22
+          ],
+          [
+            23,
+            24
+          ]
+        ]
+      }
+    },
+    {
+      "id": "refold-es-02",
+      "sourceIndex": 2,
+      "contentVersion": 1,
+      "title": "e",
+      "word": "mesa",
+      "wordNo": "bord",
+      "sentence": "El bebé bebe té en la mesa.",
+      "sentenceNo": "Babyen drikker te ved bordet.",
+      "explanation": "Lytt til e i mesa. Hold lyden samlet, uten å gli over i en annen vokal.",
+      "reflection": "Holdt du e-lyden samlet?",
+      "sentenceNote": "Dette er en lydøvesetning. Du trenger ikke kunne alle ordene eller grammatikken.",
+      "audio": {
+        "word": "audio/uttale/refold-v1/ESPhoneticWritingSystem_2_word.mp3",
+        "sentence": "audio/uttale/refold-v1/ESPhoneticWritingSystem_2_sentence.mp3"
+      },
+      "focus": {
+        "word": [
+          [
+            1,
+            2
+          ]
+        ],
+        "sentence": [
+          [
+            0,
+            1
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            6,
+            7
+          ],
+          [
+            9,
+            10
+          ],
+          [
+            11,
+            12
+          ],
+          [
+            14,
+            15
+          ],
+          [
+            16,
+            17
+          ],
+          [
+            23,
+            24
+          ]
+        ]
+      }
+    },
+    {
+      "id": "refold-es-03",
+      "sourceIndex": 3,
+      "contentVersion": 1,
+      "title": "i",
+      "word": "silla",
+      "wordNo": "stol",
+      "sentence": "Inés insiste en ir a la silla.",
+      "sentenceNo": "Inés insisterer på å gå til stolen.",
+      "explanation": "Spansk i er en tydelig i-lyd. Lytt til i i silla og prøv selv.",
+      "reflection": "Hørte du den samme i-lyden i ditt forsøk?",
+      "sentenceNote": "Dette er en lydøvesetning. Du trenger ikke kunne alle ordene eller grammatikken.",
+      "audio": {
+        "word": "audio/uttale/refold-v1/ESPhoneticWritingSystem_3_word.mp3",
+        "sentence": "audio/uttale/refold-v1/ESPhoneticWritingSystem_3_sentence.mp3"
+      },
+      "focus": {
+        "word": [
+          [
+            1,
+            2
+          ]
+        ],
+        "sentence": [
+          [
+            0,
+            1
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            8,
+            9
+          ],
+          [
+            16,
+            17
+          ],
+          [
+            25,
+            26
+          ]
+        ]
+      }
+    },
+    {
+      "id": "refold-es-04",
+      "sourceIndex": 4,
+      "contentVersion": 1,
+      "title": "o",
+      "word": "sol",
+      "wordNo": "sol",
+      "sentence": "El sol puso tos",
+      "sentenceNo": "Kildens uvanlige lydøvesetning handler om solen og hoste; den skal ikke læres som en vanlig spansk vending.",
+      "explanation": "Lytt til modellens o i sol. Hold leppene avrundet og lyden samlet.",
+      "reflection": "Ble o én samlet lyd?",
+      "sentenceNote": "Uvanlig kildesetning: bruk den som lydøvelse, ikke som en vanlig formulering.",
+      "audio": {
+        "word": "audio/uttale/refold-v1/ESPhoneticWritingSystem_4_word.mp3",
+        "sentence": "audio/uttale/refold-v1/ESPhoneticWritingSystem_4_sentence.mp3"
+      },
+      "focus": {
+        "word": [
+          [
+            1,
+            2
+          ]
+        ],
+        "sentence": [
+          [
+            4,
+            5
+          ],
+          [
+            10,
+            11
+          ],
+          [
+            13,
+            14
+          ]
+        ]
+      }
+    },
+    {
+      "id": "refold-es-05",
+      "sourceIndex": 5,
+      "contentVersion": 1,
+      "title": "u",
+      "word": "uno",
+      "wordNo": "én, en",
+      "sentence": "Uso una urna azul.",
+      "sentenceNo": "Jeg bruker en blå urne.",
+      "explanation": "Rund leppene. Spansk u ligger ofte nær norsk o i ordet «sol», men lytt til modellen.",
+      "reflection": "Var u-lyden lik modellen?",
+      "sentenceNote": "Dette er en lydøvesetning. Du trenger ikke kunne alle ordene eller grammatikken.",
+      "audio": {
+        "word": "audio/uttale/refold-v1/ESPhoneticWritingSystem_5_word.mp3",
+        "sentence": "audio/uttale/refold-v1/ESPhoneticWritingSystem_5_sentence.mp3"
+      },
+      "focus": {
+        "word": [
+          [
+            0,
+            1
+          ]
+        ],
+        "sentence": [
+          [
+            0,
+            1
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            8,
+            9
+          ],
+          [
+            15,
+            16
+          ]
+        ]
+      }
+    },
+    {
+      "id": "refold-es-06",
+      "sourceIndex": 6,
+      "contentVersion": 1,
+      "title": "ai og ay",
+      "word": "aire, hay",
+      "wordNo": "luft; det er / det finnes",
+      "sentence": "Hay aire fresco afuera.",
+      "sentenceNo": "Det er frisk luft ute.",
+      "explanation": "I aire og hay glir du fra a mot i innenfor samme stavelse.",
+      "reflection": "Hørte du overgangen fra a til i?",
+      "sentenceNote": "Dette er en lydøvesetning. Du trenger ikke kunne alle ordene eller grammatikken.",
+      "audio": {
+        "word": "audio/uttale/refold-v1/ESPhoneticWritingSystem_6_word.mp3",
+        "sentence": "audio/uttale/refold-v1/ESPhoneticWritingSystem_6_sentence.mp3"
+      },
+      "focus": {
+        "word": [
+          [
+            0,
+            2
+          ],
+          [
+            7,
+            9
+          ]
+        ],
+        "sentence": [
+          [
+            1,
+            3
+          ],
+          [
+            4,
+            6
+          ]
+        ]
+      }
+    },
+    {
+      "id": "refold-es-07",
+      "sourceIndex": 7,
+      "contentVersion": 1,
+      "title": "ei og ey",
+      "word": "rey, seis",
+      "wordNo": "konge; seks",
+      "sentence": "El rey ve seis peces en el río.",
+      "sentenceNo": "Kongen ser seks fisker i elven.",
+      "explanation": "I rey og seis glir du fra e mot i. Begge vokalene bidrar til lyden.",
+      "reflection": "Hørte du både starten og slutten av vokalforbindelsen?",
+      "sentenceNote": "Dette er en lydøvesetning. Du trenger ikke kunne alle ordene eller grammatikken.",
+      "audio": {
+        "word": "audio/uttale/refold-v1/ESPhoneticWritingSystem_7_word.mp3",
+        "sentence": "audio/uttale/refold-v1/ESPhoneticWritingSystem_7_sentence.mp3"
+      },
+      "focus": {
+        "word": [
+          [
+            1,
+            3
+          ],
+          [
+            6,
+            8
+          ]
+        ],
+        "sentence": [
+          [
+            4,
+            6
+          ],
+          [
+            11,
+            13
+          ]
+        ]
+      }
+    },
+    {
+      "id": "refold-es-08",
+      "sourceIndex": 8,
+      "contentVersion": 1,
+      "title": "oi og oy",
+      "word": "oigo, hoy",
+      "wordNo": "jeg hører; i dag",
+      "sentence": "Hoy oigo la voz de un niño.",
+      "sentenceNo": "I dag hører jeg stemmen til et barn.",
+      "explanation": "I oigo og hoy glir du fra o mot i. H i hoy er stum.",
+      "reflection": "Lot du h være stum i hoy?",
+      "sentenceNote": "Dette er en lydøvesetning. Du trenger ikke kunne alle ordene eller grammatikken.",
+      "audio": {
+        "word": "audio/uttale/refold-v1/ESPhoneticWritingSystem_8_word.mp3",
+        "sentence": "audio/uttale/refold-v1/ESPhoneticWritingSystem_8_sentence.mp3"
+      },
+      "focus": {
+        "word": [
+          [
+            0,
+            2
+          ],
+          [
+            7,
+            9
+          ]
+        ],
+        "sentence": [
+          [
+            1,
+            3
+          ],
+          [
+            4,
+            6
+          ]
+        ]
+      }
+    },
+    {
+      "id": "refold-es-09",
+      "sourceIndex": 9,
+      "contentVersion": 1,
+      "title": "au",
+      "word": "auto, causa, cacao",
+      "wordNo": "bil; årsak; kakao",
+      "sentence": "El auto causó un derrame de cacao.",
+      "sentenceNo": "Bilen førte til et kakaosøl.",
+      "explanation": "I auto og causa glir du fra a mot u. Cacao er også med i opptaket, men ao er ikke en generell skrivemåte for au.",
+      "reflection": "Hørte du forskjellen mellom auto og cacao?",
+      "sentenceNote": "Dette er en lydøvesetning. Du trenger ikke kunne alle ordene eller grammatikken.",
+      "audio": {
+        "word": "audio/uttale/refold-v1/ESPhoneticWritingSystem_9_word.mp3",
+        "sentence": "audio/uttale/refold-v1/ESPhoneticWritingSystem_9_sentence.mp3"
+      },
+      "focus": {
+        "word": [
+          [
+            0,
+            2
+          ],
+          [
+            7,
+            9
+          ]
+        ],
+        "sentence": [
+          [
+            3,
+            5
+          ],
+          [
+            9,
+            11
+          ]
+        ]
+      }
+    },
+    {
+      "id": "refold-es-10",
+      "sourceIndex": 10,
+      "contentVersion": 1,
+      "title": "eu",
+      "word": "Europa",
+      "wordNo": "Europa",
+      "sentence": "Europa es un continente diverso.",
+      "sentenceNo": "Europa er et mangfoldig kontinent.",
+      "explanation": "Lytt til eu i Europa. Før lyden fra e mot u uten en lang pause.",
+      "reflection": "Ble overgangen jevn?",
+      "sentenceNote": "Dette er en lydøvesetning. Du trenger ikke kunne alle ordene eller grammatikken.",
+      "audio": {
+        "word": "audio/uttale/refold-v1/ESPhoneticWritingSystem_10_word.mp3",
+        "sentence": "audio/uttale/refold-v1/ESPhoneticWritingSystem_10_sentence.mp3"
+      },
+      "focus": {
+        "word": [
+          [
+            0,
+            2
+          ]
+        ],
+        "sentence": [
+          [
+            0,
+            2
+          ]
+        ]
+      }
+    },
+    {
+      "id": "refold-es-11",
+      "sourceIndex": 11,
+      "contentVersion": 1,
+      "title": "iu",
+      "word": "viuda",
+      "wordNo": "enke",
+      "sentence": "La viuda vive en el pueblo.",
+      "sentenceNo": "Enken bor i landsbyen.",
+      "explanation": "Lytt til iu i viuda og prøv å si vokalene i sammenheng.",
+      "reflection": "Fikk du vokalene til å henge sammen?",
+      "sentenceNote": "Dette er en lydøvesetning. Du trenger ikke kunne alle ordene eller grammatikken.",
+      "audio": {
+        "word": "audio/uttale/refold-v1/ESPhoneticWritingSystem_11_word.mp3",
+        "sentence": "audio/uttale/refold-v1/ESPhoneticWritingSystem_11_sentence.mp3"
+      },
+      "focus": {
+        "word": [
+          [
+            1,
+            3
+          ]
+        ],
+        "sentence": [
+          [
+            4,
+            6
+          ]
+        ]
+      }
+    },
+    {
+      "id": "refold-es-12",
+      "sourceIndex": 12,
+      "contentVersion": 1,
+      "title": "ui",
+      "word": "ruido",
+      "wordNo": "lyd, støy",
+      "sentence": "El ruido sigue siendo un misterio.",
+      "sentenceNo": "Støyen er fortsatt et mysterium.",
+      "explanation": "Lytt til ui i ruido. Prøv først ordet, og deretter setningen.",
+      "reflection": "Hørte du begge vokalene i ruido?",
+      "sentenceNote": "Dette er en lydøvesetning. Du trenger ikke kunne alle ordene eller grammatikken.",
+      "audio": {
+        "word": "audio/uttale/refold-v1/ESPhoneticWritingSystem_12_word.mp3",
+        "sentence": "audio/uttale/refold-v1/ESPhoneticWritingSystem_12_sentence.mp3"
+      },
+      "focus": {
+        "word": [
+          [
+            1,
+            3
+          ]
+        ],
+        "sentence": [
+          [
+            4,
+            6
+          ]
+        ]
+      }
+    },
+    {
+      "id": "refold-es-13",
+      "sourceIndex": 13,
+      "contentVersion": 1,
+      "title": "ue",
+      "word": "huevo",
+      "wordNo": "egg",
+      "sentence": "El huevo está sobre la mesa.",
+      "sentenceNo": "Egget ligger på bordet.",
+      "explanation": "H i huevo er stum. Lytt til den raske overgangen inn mot e.",
+      "reflection": "Lot du h være stum?",
+      "sentenceNote": "Dette er en lydøvesetning. Du trenger ikke kunne alle ordene eller grammatikken.",
+      "audio": {
+        "word": "audio/uttale/refold-v1/ESPhoneticWritingSystem_13_word.mp3",
+        "sentence": "audio/uttale/refold-v1/ESPhoneticWritingSystem_13_sentence.mp3"
+      },
+      "focus": {
+        "word": [
+          [
+            1,
+            3
+          ]
+        ],
+        "sentence": [
+          [
+            4,
+            6
+          ]
+        ]
+      }
+    },
+    {
+      "id": "refold-es-14",
+      "sourceIndex": 14,
+      "contentVersion": 1,
+      "title": "uo",
+      "word": "cuota",
+      "wordNo": "andel, avgift",
+      "sentence": "La cuota del club es razonable.",
+      "sentenceNo": "Klubbens avgift er rimelig.",
+      "explanation": "Lytt til uo i cuota. Hold vokalene i sammenheng.",
+      "reflection": "Ble uo sagt uten en lang pause?",
+      "sentenceNote": "Dette er en lydøvesetning. Du trenger ikke kunne alle ordene eller grammatikken.",
+      "audio": {
+        "word": "audio/uttale/refold-v1/ESPhoneticWritingSystem_14_word.mp3",
+        "sentence": "audio/uttale/refold-v1/ESPhoneticWritingSystem_14_sentence.mp3"
+      },
+      "focus": {
+        "word": [
+          [
+            1,
+            3
+          ]
+        ],
+        "sentence": [
+          [
+            4,
+            6
+          ]
+        ]
+      }
+    },
+    {
+      "id": "refold-es-15",
+      "sourceIndex": 15,
+      "contentVersion": 1,
+      "title": "b og v",
+      "word": "bebé, vaso",
+      "wordNo": "baby; glass",
+      "sentence": "El bebé bebe en el vaso.",
+      "sentenceNo": "Babyen drikker av glasset.",
+      "explanation": "B og v tilhører samme lydkategori på spansk. Bruk begge leppene, ikke tennene mot underleppen som i norsk v. Lyden kan være mykere mellom vokaler.",
+      "reflection": "Brukte du begge leppene i vaso?",
+      "sentenceNote": "Dette er en lydøvesetning. Du trenger ikke kunne alle ordene eller grammatikken.",
+      "audio": {
+        "word": "audio/uttale/refold-v1/ESPhoneticWritingSystem_15_word.mp3",
+        "sentence": "audio/uttale/refold-v1/ESPhoneticWritingSystem_15_sentence.mp3"
+      },
+      "focus": {
+        "word": [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            6,
+            7
+          ]
+        ],
+        "sentence": [
+          [
+            3,
+            4
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            8,
+            9
+          ],
+          [
+            10,
+            11
+          ],
+          [
+            19,
+            20
+          ]
+        ]
+      }
+    },
+    {
+      "id": "refold-es-16",
+      "sourceIndex": 16,
+      "contentVersion": 1,
+      "title": "c, qu og k",
+      "word": "casa, queso, kilo",
+      "wordNo": "hus; ost; kilo",
+      "sentence": "Carlos compra un kilo de queso en la casa.",
+      "sentenceNo": "Carlos kjøper en kilo ost i huset.",
+      "explanation": "C foran a, o og u gir k-lyd. Foran e og i skriver vi ofte qu for denne lyden. U i que og qui er stum.",
+      "reflection": "Hørte du noen u i queso?",
+      "sentenceNote": "Dette er en lydøvesetning. Du trenger ikke kunne alle ordene eller grammatikken.",
+      "audio": {
+        "word": "audio/uttale/refold-v1/ESPhoneticWritingSystem_16_word.mp3",
+        "sentence": "audio/uttale/refold-v1/ESPhoneticWritingSystem_16_sentence.mp3"
+      },
+      "focus": {
+        "word": [
+          [
+            0,
+            1
+          ],
+          [
+            6,
+            8
+          ],
+          [
+            13,
+            14
+          ]
+        ],
+        "sentence": [
+          [
+            0,
+            1
+          ],
+          [
+            7,
+            8
+          ],
+          [
+            17,
+            18
+          ],
+          [
+            25,
+            27
+          ],
+          [
+            37,
+            38
+          ]
+        ]
+      }
+    },
+    {
+      "id": "refold-es-17",
+      "sourceIndex": 17,
+      "contentVersion": 1,
+      "title": "d",
+      "word": "dedo",
+      "wordNo": "finger",
+      "sentence": "David da dulces a Dora con el dedo.",
+      "sentenceNo": "David gir Dora søtsaker med fingeren.",
+      "explanation": "Lytt til d i dedo. Tungespissen er nær overtennene. D kan bli mykere mellom vokaler.",
+      "reflection": "Hørte du forskjell på de to d-lydene i dedo?",
+      "sentenceNote": "Dette er en lydøvesetning. Du trenger ikke kunne alle ordene eller grammatikken.",
+      "audio": {
+        "word": "audio/uttale/refold-v1/ESPhoneticWritingSystem_17_word.mp3",
+        "sentence": "audio/uttale/refold-v1/ESPhoneticWritingSystem_17_sentence.mp3"
+      },
+      "focus": {
+        "word": [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "sentence": [
+          [
+            0,
+            1
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            6,
+            7
+          ],
+          [
+            9,
+            10
+          ],
+          [
+            18,
+            19
+          ],
+          [
+            30,
+            31
+          ],
+          [
+            32,
+            33
+          ]
+        ]
+      }
+    },
+    {
+      "id": "refold-es-18",
+      "sourceIndex": 18,
+      "contentVersion": 1,
+      "title": "f",
+      "word": "foto",
+      "wordNo": "foto, bilde",
+      "sentence": "Felipe fotografía flores.",
+      "sentenceNo": "Felipe fotograferer blomster.",
+      "explanation": "La luft passere mellom underleppen og overtennene, som når du sier f på norsk.",
+      "reflection": "Hørte du luft gjennom f-lyden?",
+      "sentenceNote": "Dette er en lydøvesetning. Du trenger ikke kunne alle ordene eller grammatikken.",
+      "audio": {
+        "word": "audio/uttale/refold-v1/ESPhoneticWritingSystem_18_word.mp3",
+        "sentence": "audio/uttale/refold-v1/ESPhoneticWritingSystem_18_sentence.mp3"
+      },
+      "focus": {
+        "word": [
+          [
+            0,
+            1
+          ]
+        ],
+        "sentence": [
+          [
+            0,
+            1
+          ],
+          [
+            7,
+            8
+          ],
+          [
+            14,
+            15
+          ],
+          [
+            18,
+            19
+          ]
+        ]
+      }
+    },
+    {
+      "id": "refold-es-19",
+      "sourceIndex": 19,
+      "contentVersion": 1,
+      "title": "g og gu",
+      "word": "gato, guerra",
+      "wordNo": "katt; krig",
+      "sentence": "El gato sigue al guerrero.",
+      "sentenceNo": "Katten følger krigeren.",
+      "explanation": "G foran a, o og u gir g-lyd. I gue og gui er u vanligvis stum. Med ü, som i pingüino, skal u høres.",
+      "reflection": "Var u stum i guerra?",
+      "sentenceNote": "Dette er en lydøvesetning. Du trenger ikke kunne alle ordene eller grammatikken.",
+      "audio": {
+        "word": "audio/uttale/refold-v1/ESPhoneticWritingSystem_19_word.mp3",
+        "sentence": "audio/uttale/refold-v1/ESPhoneticWritingSystem_19_sentence.mp3"
+      },
+      "focus": {
+        "word": [
+          [
+            0,
+            1
+          ],
+          [
+            6,
+            8
+          ]
+        ],
+        "sentence": [
+          [
+            3,
+            4
+          ],
+          [
+            10,
+            12
+          ],
+          [
+            17,
+            19
+          ]
+        ]
+      }
+    },
+    {
+      "id": "refold-es-20",
+      "sourceIndex": 20,
+      "contentVersion": 1,
+      "title": "j og g foran e/i",
+      "word": "jirafa, gente",
+      "wordNo": "sjiraff; folk",
+      "sentence": "La jirafa juega con gente generosa.",
+      "sentenceNo": "Sjiraffen leker med gavmilde mennesker.",
+      "explanation": "J og g foran e eller i kan gi denne lyden. Lytt til jirafa og gente. Styrken varierer mellom spansktalende.",
+      "reflection": "Prøvde du samme lyd i jirafa og gente?",
+      "sentenceNote": "Dette er en lydøvesetning. Du trenger ikke kunne alle ordene eller grammatikken.",
+      "audio": {
+        "word": "audio/uttale/refold-v1/ESPhoneticWritingSystem_20_word.mp3",
+        "sentence": "audio/uttale/refold-v1/ESPhoneticWritingSystem_20_sentence.mp3"
+      },
+      "focus": {
+        "word": [
+          [
+            0,
+            1
+          ],
+          [
+            8,
+            9
+          ]
+        ],
+        "sentence": [
+          [
+            3,
+            4
+          ],
+          [
+            10,
+            11
+          ],
+          [
+            20,
+            21
+          ],
+          [
+            26,
+            27
+          ]
+        ]
+      }
+    },
+    {
+      "id": "refold-es-21",
+      "sourceIndex": 21,
+      "contentVersion": 1,
+      "title": "l",
+      "word": "luna",
+      "wordNo": "måne",
+      "sentence": "Lola lleva la luna.",
+      "sentenceNo": "Lola bærer månen.",
+      "explanation": "Legg tungespissen mot området rett bak overtennene. Lytt til l i luna.",
+      "reflection": "Var l-lyden tydelig i luna?",
+      "sentenceNote": "Dette er en lydøvesetning. Du trenger ikke kunne alle ordene eller grammatikken.",
+      "audio": {
+        "word": "audio/uttale/refold-v1/ESPhoneticWritingSystem_21_word.mp3",
+        "sentence": "audio/uttale/refold-v1/ESPhoneticWritingSystem_21_sentence.mp3"
+      },
+      "focus": {
+        "word": [
+          [
+            0,
+            1
+          ]
+        ],
+        "sentence": [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            6,
+            7
+          ],
+          [
+            11,
+            12
+          ],
+          [
+            14,
+            15
+          ]
+        ]
+      }
+    },
+    {
+      "id": "refold-es-22",
+      "sourceIndex": 22,
+      "contentVersion": 1,
+      "title": "ll og y",
+      "word": "yema, llave",
+      "wordNo": "eggeplomme; nøkkel",
+      "sentence": "La llave está en la calle con la yema.",
+      "sentenceNo": "Nøkkelen ligger i gaten sammen med eggeplommen.",
+      "explanation": "Mange spansktalende uttaler ll og y likt, men lyden varierer mellom områder. Lytt til akkurat denne modellen.",
+      "reflection": "Hørte du hvordan modellen starter llave?",
+      "sentenceNote": "Dette er en lydøvesetning. Du trenger ikke kunne alle ordene eller grammatikken.",
+      "audio": {
+        "word": "audio/uttale/refold-v1/ESPhoneticWritingSystem_22_word.mp3",
+        "sentence": "audio/uttale/refold-v1/ESPhoneticWritingSystem_22_sentence.mp3"
+      },
+      "focus": {
+        "word": [
+          [
+            0,
+            1
+          ],
+          [
+            6,
+            8
+          ]
+        ],
+        "sentence": [
+          [
+            3,
+            5
+          ],
+          [
+            22,
+            24
+          ],
+          [
+            33,
+            34
+          ]
+        ]
+      }
+    },
+    {
+      "id": "refold-es-23",
+      "sourceIndex": 23,
+      "contentVersion": 1,
+      "title": "m",
+      "word": "mamá",
+      "wordNo": "mamma",
+      "sentence": "Mi mamá me ama.",
+      "sentenceNo": "Mammaen min elsker meg.",
+      "explanation": "Lukk leppene når du starter m. I mamá ligger trykket på den siste stavelsen.",
+      "reflection": "La du trykket på siste má?",
+      "sentenceNote": "Dette er en lydøvesetning. Du trenger ikke kunne alle ordene eller grammatikken.",
+      "audio": {
+        "word": "audio/uttale/refold-v1/ESPhoneticWritingSystem_23_word.mp3",
+        "sentence": "audio/uttale/refold-v1/ESPhoneticWritingSystem_23_sentence.mp3"
+      },
+      "focus": {
+        "word": [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "sentence": [
+          [
+            0,
+            1
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            8,
+            9
+          ],
+          [
+            12,
+            13
+          ]
+        ]
+      }
+    },
+    {
+      "id": "refold-es-24",
+      "sourceIndex": 24,
+      "contentVersion": 1,
+      "title": "n",
+      "word": "nido",
+      "wordNo": "reir",
+      "sentence": "Nina tiene un nido.",
+      "sentenceNo": "Nina har et reir.",
+      "explanation": "Lytt til n i nido. Tungespissen berører området bak overtennene.",
+      "reflection": "Var n-lyden tydelig i nido?",
+      "sentenceNote": "Dette er en lydøvesetning. Du trenger ikke kunne alle ordene eller grammatikken.",
+      "audio": {
+        "word": "audio/uttale/refold-v1/ESPhoneticWritingSystem_24_word.mp3",
+        "sentence": "audio/uttale/refold-v1/ESPhoneticWritingSystem_24_sentence.mp3"
+      },
+      "focus": {
+        "word": [
+          [
+            0,
+            1
+          ]
+        ],
+        "sentence": [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            8,
+            9
+          ],
+          [
+            12,
+            13
+          ],
+          [
+            14,
+            15
+          ]
+        ]
+      }
+    },
+    {
+      "id": "refold-es-25",
+      "sourceIndex": 25,
+      "contentVersion": 1,
+      "title": "ñ",
+      "word": "niño",
+      "wordNo": "barn, gutt",
+      "sentence": "El niño come piña.",
+      "sentenceNo": "Barnet spiser ananas.",
+      "explanation": "Ñ er en egen bokstav og lyd. Løft midten av tungen mot ganen, og lytt til niño. Den er ikke den samme som vanlig n.",
+      "reflection": "Hørte du ñ i både niño og piña?",
+      "sentenceNote": "Dette er en lydøvesetning. Du trenger ikke kunne alle ordene eller grammatikken.",
+      "audio": {
+        "word": "audio/uttale/refold-v1/ESPhoneticWritingSystem_25_word.mp3",
+        "sentence": "audio/uttale/refold-v1/ESPhoneticWritingSystem_25_sentence.mp3"
+      },
+      "focus": {
+        "word": [
+          [
+            2,
+            3
+          ]
+        ],
+        "sentence": [
+          [
+            5,
+            6
+          ],
+          [
+            15,
+            16
+          ]
+        ]
+      }
+    },
+    {
+      "id": "refold-es-26",
+      "sourceIndex": 26,
+      "contentVersion": 1,
+      "title": "p",
+      "word": "papel",
+      "wordNo": "papir",
+      "sentence": "Pedro pinta un papel.",
+      "sentenceNo": "Pedro maler på et papir.",
+      "explanation": "Lukk leppene og slipp luften kort ut. Prøv p uten en stor luftpust etterpå.",
+      "reflection": "Kom p uten en stor luftpust?",
+      "sentenceNote": "Dette er en lydøvesetning. Du trenger ikke kunne alle ordene eller grammatikken.",
+      "audio": {
+        "word": "audio/uttale/refold-v1/ESPhoneticWritingSystem_26_word.mp3",
+        "sentence": "audio/uttale/refold-v1/ESPhoneticWritingSystem_26_sentence.mp3"
+      },
+      "focus": {
+        "word": [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "sentence": [
+          [
+            0,
+            1
+          ],
+          [
+            6,
+            7
+          ],
+          [
+            15,
+            16
+          ],
+          [
+            17,
+            18
+          ]
+        ]
+      }
+    },
+    {
+      "id": "refold-es-27",
+      "sourceIndex": 27,
+      "contentVersion": 1,
+      "title": "r med rulling og rr",
+      "word": "carro, raro",
+      "wordNo": "bil; rar, sjelden",
+      "sentence": "El perro raro corre rápido.",
+      "sentenceNo": "Den rare hunden løper fort.",
+      "explanation": "RR mellom vokaler og r i starten av et ord har vanligvis rulling. R kan også rulle etter blant annet n, l og s. Øv rolig; du kan gå videre selv om den er vanskelig.",
+      "reflection": "Hørte du flere korte slag i modellens r?",
+      "sentenceNote": "Dette er en lydøvesetning. Du trenger ikke kunne alle ordene eller grammatikken.",
+      "audio": {
+        "word": "audio/uttale/refold-v1/ESPhoneticWritingSystem_27_word.mp3",
+        "sentence": "audio/uttale/refold-v1/ESPhoneticWritingSystem_27_sentence.mp3"
+      },
+      "focus": {
+        "word": [
+          [
+            2,
+            4
+          ],
+          [
+            7,
+            8
+          ]
+        ],
+        "sentence": [
+          [
+            5,
+            7
+          ],
+          [
+            9,
+            10
+          ],
+          [
+            16,
+            18
+          ],
+          [
+            20,
+            21
+          ]
+        ]
+      }
+    },
+    {
+      "id": "refold-es-28",
+      "sourceIndex": 28,
+      "contentVersion": 1,
+      "title": "r med én berøring",
+      "word": "caro",
+      "wordNo": "dyr",
+      "sentence": "Marta parte la carta cara",
+      "sentenceNo": "Marta deler det dyre brevet.",
+      "explanation": "Mellom vokaler har enkel r vanligvis én kort berøring med tungespissen, som i caro. Sammenlign med rullingen i carro.",
+      "reflection": "Prøvde du én kort berøring i caro?",
+      "sentenceNote": "Dette er en lydøvesetning. Du trenger ikke kunne alle ordene eller grammatikken.",
+      "audio": {
+        "word": "audio/uttale/refold-v1/ESPhoneticWritingSystem_28_word.mp3",
+        "sentence": "audio/uttale/refold-v1/ESPhoneticWritingSystem_28_sentence.mp3"
+      },
+      "focus": {
+        "word": [
+          [
+            2,
+            3
+          ]
+        ],
+        "sentence": [
+          [
+            2,
+            3
+          ],
+          [
+            8,
+            9
+          ],
+          [
+            17,
+            18
+          ],
+          [
+            23,
+            24
+          ]
+        ]
+      }
+    },
+    {
+      "id": "refold-es-29",
+      "sourceIndex": 29,
+      "contentVersion": 1,
+      "title": "s og regional c/z",
+      "word": "casa, cine",
+      "wordNo": "hus; kino",
+      "sentence": "Susana cose en casa con una taza del cine.",
+      "sentenceNo": "Susana syr hjemme med en kopp fra kinoen.",
+      "explanation": "S har s-lyd. I Latin-Amerika og deler av Spania har også c foran e/i og z s-lyd. Det kalles seseo og er en vanlig, gyldig uttale.",
+      "reflection": "Hørte du s-lydene i modellordene?",
+      "sentenceNote": "Dette er en lydøvesetning. Du trenger ikke kunne alle ordene eller grammatikken.",
+      "audio": {
+        "word": "audio/uttale/refold-v1/ESPhoneticWritingSystem_29_word.mp3",
+        "sentence": "audio/uttale/refold-v1/ESPhoneticWritingSystem_29_sentence.mp3"
+      },
+      "focus": {
+        "word": [
+          [
+            2,
+            3
+          ],
+          [
+            6,
+            7
+          ]
+        ],
+        "sentence": [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            9,
+            10
+          ],
+          [
+            17,
+            18
+          ],
+          [
+            30,
+            31
+          ],
+          [
+            37,
+            38
+          ]
+        ]
+      }
+    },
+    {
+      "id": "refold-es-30",
+      "sourceIndex": 30,
+      "contentVersion": 1,
+      "title": "t",
+      "word": "taza",
+      "wordNo": "kopp",
+      "sentence": "Tomás toma té en la taza.",
+      "sentenceNo": "Tomás drikker te i koppen.",
+      "explanation": "La tungespissen treffe nær overtennene. Prøv en kort t uten en stor luftpust.",
+      "reflection": "Var t-lyden kort og tydelig?",
+      "sentenceNote": "Dette er en lydøvesetning. Du trenger ikke kunne alle ordene eller grammatikken.",
+      "audio": {
+        "word": "audio/uttale/refold-v1/ESPhoneticWritingSystem_30_word.mp3",
+        "sentence": "audio/uttale/refold-v1/ESPhoneticWritingSystem_30_sentence.mp3"
+      },
+      "focus": {
+        "word": [
+          [
+            0,
+            1
+          ]
+        ],
+        "sentence": [
+          [
+            0,
+            1
+          ],
+          [
+            6,
+            7
+          ],
+          [
+            11,
+            12
+          ],
+          [
+            20,
+            21
+          ]
+        ]
+      }
+    },
+    {
+      "id": "refold-es-31",
+      "sourceIndex": 31,
+      "contentVersion": 1,
+      "title": "c/z med tungespissen ved tennene",
+      "word": "cero, zapato",
+      "wordNo": "null; sko",
+      "sentence": "En Zaragoza, el cero se pronuncia diferente.",
+      "sentenceNo": "I Zaragoza uttales cero annerledes.",
+      "explanation": "I store deler av Spania skilles s fra c foran e/i og z. For denne c/z-lyden er tungespissen ved eller mellom fortennene. S-uttale er også riktig i andre områder.",
+      "reflection": "Hørte du forskjellen mellom denne modellen og s-modellen?",
+      "sentenceNote": "Dette er en lydøvesetning. Du trenger ikke kunne alle ordene eller grammatikken.",
+      "audio": {
+        "word": "audio/uttale/refold-v1/ESPhoneticWritingSystem_31_word.mp3",
+        "sentence": "audio/uttale/refold-v1/ESPhoneticWritingSystem_31_sentence.mp3"
+      },
+      "focus": {
+        "word": [
+          [
+            0,
+            1
+          ],
+          [
+            6,
+            7
+          ]
+        ],
+        "sentence": [
+          [
+            3,
+            4
+          ],
+          [
+            9,
+            10
+          ],
+          [
+            16,
+            17
+          ],
+          [
+            30,
+            31
+          ]
+        ]
+      }
+    }
+  ]
+}

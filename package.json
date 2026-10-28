@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build:app": "npm run sync:vocabulary && npm run build:css && node scripts/build-offline.mjs",
+    "build:app": "npm run sync:vocabulary && npm run sync:culture && npm run sync:pronunciation && npm run build:css && node scripts/build-offline.mjs",
     "check:offline-build": "node scripts/build-offline.mjs --check",
     "build:css": "npx @tailwindcss/cli -i ./src/styles/tailwind.css -o ./dist/tailwind.css --minify",
     "check:tailwind": "node scripts/check-tailwind-adoption.mjs",
@@ -56,10 +56,14 @@
     "test:sentence-puzzle": "playwright test tests/sentence-puzzle-game.spec.js --browser chromium",
     "test:productive-patterns": "playwright test tests/productive-patterns.spec.js --browser chromium",
     "audit:student-video": "playwright test tests/model-student-video-audit.spec.js --workers=1 --browser chromium && node scripts/postprocess-student-audit.mjs output/student-agent-audit/latest",
-    "test:all": "npm run check:vocabulary && npm run check:content && npm run check:content-accuracy && npm run check:grammar-lessons && npm run check:diagnosis-catalog && node --test tests/*.test.mjs && npm run check:learning-catalog && npm run check:tailwind && npm run check:offline-build && npm run test:browser",
+    "test:all": "npm run check:pronunciation && npm run check:culture && npm run check:vocabulary && npm run check:content && npm run check:content-accuracy && npm run check:grammar-lessons && npm run check:diagnosis-catalog && node --test tests/*.test.mjs && npm run check:learning-catalog && npm run check:tailwind && npm run check:offline-build && npm run test:browser",
     "test:browser": "node scripts/test-browser.mjs",
     "sync:vocabulary": "node scripts/sync-vocabulary.mjs",
-    "check:vocabulary": "node scripts/sync-vocabulary.mjs --check"
+    "check:vocabulary": "node scripts/sync-vocabulary.mjs --check",
+    "sync:culture": "node scripts/build-culture-preview.mjs",
+    "check:culture": "node scripts/build-culture-preview.mjs --check",
+    "sync:pronunciation": "node scripts/sync-pronunciation.mjs",
+    "check:pronunciation": "node scripts/sync-pronunciation.mjs --check"
   },
   "devDependencies": {
     "@playwright/test": "^1.60.0",

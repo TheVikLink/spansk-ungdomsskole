@@ -1,0 +1,50 @@
+[
+  {
+    "id": "honduras",
+    "source": "/Users/olehenrikvik/.codex/generated_images/01a10ba0-1388-7141-9be5-d89d9fa8a60e/exec-14231b9a-6640-4eed-b6b0-4a1aea39639b.png",
+    "path": "images/kultur/mundo-am/honduras-dia-foto-v2.png",
+    "sha256": "c9b48e3818081c8f28742863dfeecbd6d1f1bb6d02b20e9971d29b2241169dee"
+  },
+  {
+    "id": "colombia",
+    "source": "/Users/olehenrikvik/.codex/generated_images/01a10ba0-1388-7141-9be5-d89d9fa8a60e/exec-fd9976ba-0734-4a44-84d5-1891b735c967.png",
+    "path": "images/kultur/mundo-am/colombia-dia-foto-v2.png",
+    "sha256": "f5cb0ce9bb60fbf075f3e6ab6461dc49403c7ceec34a939ac669d7bb6615dd5a"
+  },
+  {
+    "id": "mexico",
+    "source": "/Users/olehenrikvik/.codex/generated_images/01a10ba0-1388-7141-9be5-d89d9fa8a60e/exec-0b096060-5828-42f8-a2a4-aee90bbffb22.png",
+    "path": "images/kultur/mundo-am/mexico-dia-foto-v2.png",
+    "sha256": "88ecddcf6afc4bb1714cc5c97d8b11738e93f8050786fe45242566b81aded0d4"
+  },
+  {
+    "id": "espana",
+    "source": "/Users/olehenrikvik/.codex/generated_images/01a10ba0-1388-7141-9be5-d89d9fa8a60e/exec-bc9ca3e3-6338-4db8-972a-ff2dc26852ab.png",
+    "path": "images/kultur/mundo-am/espana-dia-foto-v2.png",
+    "sha256": "6bb3fcaa6a52f5106a6a895aa4f87148ed6a8fc1fe2b9fa6c6e3e3af08556f58"
+  },
+  {
+    "id": "peru",
+    "source": "/Users/olehenrikvik/.codex/generated_images/01a10ba0-1388-7141-9be5-d89d9fa8a60e/exec-f78ad780-d9a2-48fd-aaa7-12ada6278ee0.png",
+    "path": "images/kultur/mundo-am/peru-dia-foto-v2.png",
+    "sha256": "8d17780fbb04318ca0ec31fe7054e9c7fdd99d60d03b1a9f63e0f0c5def16671"
+  },
+  {
+    "id": "guinea-ecuatorial",
+    "source": "/Users/olehenrikvik/.codex/generated_images/01a10ba0-1388-7141-9be5-d89d9fa8a60e/exec-9e9fbc01-b8e5-432c-97e5-42d79f3a9dab.png",
+    "path": "images/kultur/mundo-am/guinea-ecuatorial-dia-foto-v2.png",
+    "sha256": "2e9d5d7e94f61be26b1a8ac77f061126eae90d900ac970d2856f72cf1fe17a09"
+  },
+  {
+    "id": "navidad-espana",
+    "source": "/Users/olehenrikvik/.codex/generated_images/01a10ba0-1388-7141-9be5-d89d9fa8a60e/exec-670b28b0-fa5e-4a37-948b-97a5a2ac61a5.png",
+    "path": "images/kultur/jul-spania-chile/espana-navidad-foto-v2.png",
+    "sha256": "bb6f501ed3f8bb6ff5931ba9eaf7247cd3180d3a6684a535655ae7e1a9465433"
+  },
+  {
+    "id": "navidad-chile",
+    "source": "/Users/olehenrikvik/.codex/generated_images/01a10ba0-1388-7141-9be5-d89d9fa8a60e/exec-c29aef9a-e5d1-4c59-b28a-f8c6a76f69ab.png",
+    "path": "images/kultur/jul-spania-chile/chile-navidad-foto-v3.png",
+    "sha256": "5c9044af7061b8b7781b448279219a61f897ec1bf34fea83c5220de17b8a31fe"
+  }
+]

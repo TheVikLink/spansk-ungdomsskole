@@ -1,0 +1,38 @@
+[
+  {
+    "id": "honduras",
+    "path": "images/kultur/mundo-am/honduras-dia-v1.png",
+    "source": "/Users/olehenrikvik/.codex/generated_images/01a10ba0-1388-7141-9be5-d89d9fa8a60e/exec-8e80ab01-3763-4006-9495-ade2c27a429f.png",
+    "sha256": "0a9e63948e7d9a441a6ea2e0e2967523880cbd5812c659ed8504df4e72f75c07"
+  },
+  {
+    "id": "colombia",
+    "path": "images/kultur/mundo-am/colombia-dia-v1.png",
+    "source": "/Users/olehenrikvik/.codex/generated_images/01a10ba0-1388-7141-9be5-d89d9fa8a60e/exec-3e0de74d-24c1-4280-b995-6d8c1f6290e0.png",
+    "sha256": "862dbf5b29411e1f57ab57cec1f1c4d4a27a3d03312937ba5a9a58460660f373"
+  },
+  {
+    "id": "mexico",
+    "path": "images/kultur/mundo-am/mexico-dia-v1.png",
+    "source": "/Users/olehenrikvik/.codex/generated_images/01a10ba0-1388-7141-9be5-d89d9fa8a60e/exec-20b475e9-ffff-4709-b318-f25e45e8c7c6.png",
+    "sha256": "03238a4399ae40fbc8cb1ca2915bf3faf2665f6231d523c48a96e70b82564a9d"
+  },
+  {
+    "id": "espana",
+    "path": "images/kultur/mundo-am/espana-dia-v1.png",
+    "source": "/Users/olehenrikvik/.codex/generated_images/01a10ba0-1388-7141-9be5-d89d9fa8a60e/exec-3627a743-4415-495c-b5fa-4f48903d62dc.png",
+    "sha256": "2d16fc778ca4798f10fa478bde3b3a48302b4f27785eb6f70aa24129f1bf7fde"
+  },
+  {
+    "id": "peru",
+    "path": "images/kultur/mundo-am/peru-dia-v1.png",
+    "source": "/Users/olehenrikvik/.codex/generated_images/01a10ba0-1388-7141-9be5-d89d9fa8a60e/exec-6f6bc2a9-5aa8-46f2-96eb-867c96010272.png",
+    "sha256": "5df4a0e38a3efad4690bed110ac21338595d391de5d475a90fb7671eb665d2e9"
+  },
+  {
+    "id": "guinea-ecuatorial",
+    "path": "images/kultur/mundo-am/guinea-ecuatorial-dia-v1.png",
+    "source": "/Users/olehenrikvik/.codex/generated_images/01a10ba0-1388-7141-9be5-d89d9fa8a60e/exec-a2ef5f91-0f87-40de-96c1-6e3632414342.png",
+    "sha256": "c9aa22a701d0cb6e7d3a9cf8ce47a4676c6bd53e966ca2aec6f010ee8879995b"
+  }
+]

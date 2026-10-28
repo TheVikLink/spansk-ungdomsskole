@@ -1,7 +1,7 @@
 {
   "name": "Spansk på 1-2-3",
   "short_name": "Spansk 1-2-3",
-  "description": "Lokal læringsapp for spansk på ungdomsskolenivå.",
+  "description": "Læringsapp for hele ungdomsskolen og spansk nivå I i videregående. Dagens øving og fremgang lagres lokalt.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",

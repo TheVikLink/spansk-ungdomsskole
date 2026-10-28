@@ -1,3 +1,6 @@
 
 # Use bd merge for beads JSONL files
 .beads/issues.jsonl merge=beads
+
+# PDF byte offsets must not be normalized or treated as source text.
+*.pdf binary

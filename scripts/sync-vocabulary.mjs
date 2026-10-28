@@ -6,7 +6,102 @@ import { extractLearningCatalog } from './lib/extract-all-items.mjs';
 const reviewPath = 'data/vocabulary-canonical-review.json';
 const canonicalPath = 'data/vocabulary-canonical.json';
 const htmlPath = 'index.html';
+const recognitionPath = 'data/vocabulary-recognition-theme.json';
 const json = value => JSON.stringify(value, null, 4).replaceAll('<', '\\u003c');
+
+export function validateRecognitionLearning(theme, review) {
+  const fail = message => { throw new Error(`${recognitionPath}: ${message}`); };
+  const entries = new Map(review.entries.map(entry => [entry.id, entry]));
+  const starters = new Set(theme.starterIds);
+  const ids = new Set();
+  if (!Array.isArray(theme.sentences) || !theme.sentences.length) fail('Missing sentence activities');
+  for (const item of theme.sentences) {
+    if (typeof item.id !== 'string' || !item.id || ids.has(item.id)) fail('Invalid or duplicate sentence ID');
+    ids.add(item.id);
+    for (const field of ['promptNb', 'explanationNb']) {
+      if (typeof item[field] !== 'string' || !item[field].trim()) fail(`Missing ${field} for ${item.id}`);
+    }
+    if (!['tiles', 'typed'].includes(item.mode)) fail(`Invalid sentence mode ${item.id}`);
+    if (!Array.isArray(item.wordIds) || item.wordIds.length < 2 || new Set(item.wordIds).size !== item.wordIds.length
+        || item.wordIds.some(id => !starters.has(id) || !entries.has(id))) fail(`Sentence must refer to starter words: ${item.id}`);
+    const allowed = new Set(['es', 'no', 'un', 'una']);
+    for (const id of item.wordIds) for (const word of entries.get(id).spansk.toLowerCase().split(/\s+/)) allowed.add(word);
+    if (!Array.isArray(item.tokens) || item.tokens.length < 4
+        || item.tokens.some(word => typeof word !== 'string' || !allowed.has(word.toLowerCase()))) fail(`Unknown sentence token ${item.id}`);
+    const words = item.tokens.map(word => word.toLowerCase());
+    if (words.filter(word => word === 'es').length !== 1 || words.filter(word => word === 'no').length > 1
+        || (words.includes('no') && words.indexOf('no') !== words.indexOf('es') - 1)) fail(`Invalid es/no es order ${item.id}`);
+    const subject = entries.get(item.wordIds[0]).spansk.toLowerCase().split(/\s+/);
+    if (!['el', 'la'].includes(subject[0]) || subject.some((word, i) => words[i] !== word)) fail(`Subject/article mismatch ${item.id}`);
+    for (const id of item.wordIds) {
+      const stem = entries.get(id).spansk.toLowerCase().replace(/^(el|la)\s+/, '');
+      if (!words.join(' ').includes(stem)) fail(`Unused sentence word ${id}`);
+    }
+    for (let i = 0; i < words.length; i++) if (['un', 'una'].includes(words[i])) {
+      const noun = item.wordIds.map(id => entries.get(id)).find(entry => entry.spansk.toLowerCase().slice(3) === words[i + 1]);
+      if (!noun || words[i] !== (noun.spansk.startsWith('el ') ? 'un' : 'una')) fail(`Indefinite article mismatch ${item.id}`);
+    }
+  }
+  if (!Array.isArray(theme.families) || !theme.families.length) fail('Missing word families');
+  const members = new Map(theme.members.map(member => [member.vocabularyId, member]));
+  const familyIds = new Set();
+  for (const family of theme.families) {
+    if (typeof family.id !== 'string' || !family.id || familyIds.has(family.id)) fail('Invalid or duplicate family ID');
+    familyIds.add(family.id);
+    for (const field of ['title', 'introNb', 'cautionNb']) {
+      if (typeof family[field] !== 'string' || !family[field].trim()) fail(`Missing family ${field}`);
+    }
+    if (!members.has(family.probeId) || !entries.has(family.probeId)) fail(`Unknown family probe ${family.probeId}`);
+    if (!Array.isArray(family.examples) || family.examples.length < 2) fail('Missing family examples');
+    const exampleIds = new Set();
+    for (const example of family.examples) {
+      const member = members.get(example.vocabularyId);
+      if (!member || !entries.has(example.vocabularyId) || example.vocabularyId === family.probeId
+          || exampleIds.has(example.vocabularyId)) fail('Unknown, duplicate or revealed family probe');
+      exampleIds.add(example.vocabularyId);
+      if (!['nb', 'en'].includes(example.language)
+          || !member[example.language === 'nb' ? 'bridgeNb' : 'bridgeEn']) fail('Missing labelled language bridge');
+    }
+  }
+  return theme;
+}
+
+export function validateRecognitionTheme(theme, review) {
+  const fail = message => { throw new Error(`${recognitionPath}: ${message}`); };
+  if (theme?.schemaVersion !== 1 || theme.id !== 'wordkeys-recognizable'
+      || !Array.isArray(theme.members) || !theme.members.length
+      || !Array.isArray(theme.starterIds) || theme.starterIds.length < 10) fail('Invalid theme or starter selection');
+  for (const field of ['title', 'descriptionNb', 'sourceNote', 'reviewNote']) {
+    if (typeof theme[field] !== 'string' || !theme[field].trim()) fail(`Missing ${field}`);
+  }
+  const canonicalIds = new Set(review.entries.map(entry => entry.id));
+  const members = new Set();
+  for (const member of theme.members) {
+    if (!canonicalIds.has(member.vocabularyId) || members.has(member.vocabularyId)) fail(`Unknown or duplicate member ${member.vocabularyId}`);
+    members.add(member.vocabularyId);
+    for (const field of ['bridgeNb', 'bridgeEn', 'noteNb']) {
+      if (typeof member[field] !== 'string' || member[field] !== member[field].trim()) fail(`Invalid ${field} for ${member.vocabularyId}`);
+    }
+    if (!(member.bridgeNb || member.bridgeEn) || member.reviewStatus !== 'agent-reviewed') fail(`Missing reviewed bridge for ${member.vocabularyId}`);
+  }
+  const starters = new Set();
+  for (const id of theme.starterIds) {
+    if (!members.has(id) || starters.has(id)) fail(`Unknown or duplicate starter ${id}`);
+    starters.add(id);
+  }
+  return validateRecognitionLearning(theme, review);
+}
+
+export function renderRecognitionTheme(html, theme, review) {
+  validateRecognitionTheme(theme, review);
+  const open = '<script type="application/json" id="recognition-theme-data">';
+  const block = `${open}\n${json(theme)}\n    </script>`;
+  const start = html.indexOf(open);
+  if (start < 0) return html.replace('<script type="application/json" id="grammar-lessons-data">', `${block}\n    <script type="application/json" id="grammar-lessons-data">`);
+  const end = html.indexOf('</script>', start);
+  if (end < 0) throw new Error('Unclosed recognition-theme-data');
+  return html.slice(0, start) + block + html.slice(end + '</script>'.length);
+}
 
 export function validateVocabularyReview(review) {
   if (review?.schemaVersion !== 1 || !Array.isArray(review.entries) || !review.entries.length) {
@@ -133,7 +228,8 @@ export function syncVocabulary({ check = false, dryRun = false } = {}) {
   const review = validateVocabularyReview(JSON.parse(readFileSync(reviewPath, 'utf8')));
   const html = readFileSync(htmlPath, 'utf8');
   // Prepare every output before writing either file.
-  const output = renderVocabulary(html, review);
+  const theme = JSON.parse(readFileSync(recognitionPath, 'utf8'));
+  const output = renderRecognitionTheme(renderVocabulary(html, review), theme, review);
   const canonical = `${JSON.stringify({ schemaVersion: 1, description: `Generated from ${reviewPath}. Do not edit; run npm run build:app.`, entries: review.entries }, null, 2)}\n`;
   const readExisting = filename => {
     try { return readFileSync(filename, 'utf8'); } catch (error) { if (error.code === 'ENOENT') return null; throw error; }

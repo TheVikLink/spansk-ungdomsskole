@@ -4842,7 +4842,9 @@
           "skoletime",
           "skoleklasse",
           "skoletimen",
-          "skoleklassen"
+          "skoleklassen",
+          "klasse",
+          "klassen"
         ],
         "no-es": [
           "la clase",
@@ -5570,7 +5572,8 @@
       "svar": {
         "es-no": [
           "plakat",
-          "plakaten"
+          "plakaten",
+          "poster"
         ],
         "no-es": [
           "el póster",
@@ -7516,7 +7519,8 @@
           "pastaen"
         ],
         "no-es": [
-          "la pasta"
+          "la pasta",
+          "pasta"
         ]
       }
     },
@@ -7656,7 +7660,9 @@
       "svar": {
         "es-no": [
           "yoghurt",
-          "yoghurten"
+          "yoghurten",
+          "jogurt",
+          "jogurten"
         ],
         "no-es": [
           "el yogur",
@@ -7992,6 +7998,1108 @@
         "no-es": [
           "la cajera",
           "cajera"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0523",
+      "norsk": "hotell",
+      "spansk": "el hotel",
+      "kategori": "reise",
+      "svar": {
+        "es-no": [
+          "hotell",
+          "hotellet"
+        ],
+        "no-es": [
+          "el hotel",
+          "hotel"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0524",
+      "norsk": "restaurant",
+      "spansk": "el restaurante",
+      "kategori": "reise",
+      "svar": {
+        "es-no": [
+          "restaurant",
+          "restauranten"
+        ],
+        "no-es": [
+          "el restaurante",
+          "restaurante"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0525",
+      "norsk": "musikk",
+      "spansk": "la música",
+      "kategori": "kultur",
+      "svar": {
+        "es-no": [
+          "musikk",
+          "musikken"
+        ],
+        "no-es": [
+          "la música",
+          "música"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0526",
+      "norsk": "piano",
+      "spansk": "el piano",
+      "kategori": "kultur",
+      "svar": {
+        "es-no": [
+          "piano",
+          "pianoet"
+        ],
+        "no-es": [
+          "el piano",
+          "piano"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0527",
+      "norsk": "gitar",
+      "spansk": "la guitarra",
+      "kategori": "kultur",
+      "svar": {
+        "es-no": [
+          "gitar",
+          "gitaren"
+        ],
+        "no-es": [
+          "la guitarra",
+          "guitarra"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0528",
+      "norsk": "radio",
+      "spansk": "la radio",
+      "kategori": "teknologi",
+      "svar": {
+        "es-no": [
+          "radio",
+          "radioen"
+        ],
+        "no-es": [
+          "la radio",
+          "radio",
+          "el radio"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0529",
+      "norsk": "telefon",
+      "spansk": "el teléfono",
+      "kategori": "teknologi",
+      "svar": {
+        "es-no": [
+          "telefon",
+          "telefonen"
+        ],
+        "no-es": [
+          "el teléfono",
+          "teléfono"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0530",
+      "norsk": "normal",
+      "spansk": "normal",
+      "kategori": "egenskaper",
+      "svar": {
+        "es-no": [
+          "normal"
+        ],
+        "no-es": [
+          "normal"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0531",
+      "norsk": "sykehus",
+      "spansk": "el hospital",
+      "kategori": "reise",
+      "svar": {
+        "es-no": [
+          "sykehus",
+          "sykehuset"
+        ],
+        "no-es": [
+          "el hospital",
+          "hospital"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0532",
+      "norsk": "museum",
+      "spansk": "el museo",
+      "kategori": "kultur",
+      "svar": {
+        "es-no": [
+          "museum",
+          "museet"
+        ],
+        "no-es": [
+          "el museo",
+          "museo"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0533",
+      "norsk": "teater",
+      "spansk": "el teatro",
+      "kategori": "kultur",
+      "svar": {
+        "es-no": [
+          "teater",
+          "teateret",
+          "teatret"
+        ],
+        "no-es": [
+          "el teatro",
+          "teatro"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0534",
+      "norsk": "kino",
+      "spansk": "el cine",
+      "kategori": "kultur",
+      "svar": {
+        "es-no": [
+          "kino",
+          "kinoen"
+        ],
+        "no-es": [
+          "el cine",
+          "cine"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0535",
+      "norsk": "fjernsyn",
+      "spansk": "la televisión",
+      "kategori": "teknologi",
+      "svar": {
+        "es-no": [
+          "fjernsyn",
+          "TV",
+          "tv",
+          "televisjon",
+          "fjernsynet",
+          "TV-en"
+        ],
+        "no-es": [
+          "la televisión",
+          "televisión"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0536",
+      "norsk": "foto",
+      "spansk": "la foto",
+      "kategori": "teknologi",
+      "svar": {
+        "es-no": [
+          "foto",
+          "bilde",
+          "fotoet",
+          "bildet",
+          "fotografi",
+          "fotografiet"
+        ],
+        "no-es": [
+          "la foto",
+          "foto",
+          "la fotografía",
+          "fotografía"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0537",
+      "norsk": "sjokolade",
+      "spansk": "el chocolate",
+      "kategori": "Mat og drikke",
+      "svar": {
+        "es-no": [
+          "sjokolade",
+          "sjokoladen"
+        ],
+        "no-es": [
+          "el chocolate",
+          "chocolate"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0538",
+      "norsk": "pizza",
+      "spansk": "la pizza",
+      "kategori": "Mat og drikke",
+      "svar": {
+        "es-no": [
+          "pizza",
+          "pizzaen"
+        ],
+        "no-es": [
+          "la pizza",
+          "pizza"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0539",
+      "norsk": "kaffe",
+      "spansk": "el café",
+      "kategori": "Mat og drikke",
+      "svar": {
+        "es-no": [
+          "kaffe",
+          "kaffen"
+        ],
+        "no-es": [
+          "el café",
+          "café"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0540",
+      "norsk": "te",
+      "spansk": "el té",
+      "kategori": "Mat og drikke",
+      "svar": {
+        "es-no": [
+          "te",
+          "teen"
+        ],
+        "no-es": [
+          "el té",
+          "té"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0541",
+      "norsk": "taxi",
+      "spansk": "el taxi",
+      "kategori": "reise",
+      "svar": {
+        "es-no": [
+          "taxi",
+          "taxien"
+        ],
+        "no-es": [
+          "el taxi",
+          "taxi"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0542",
+      "norsk": "buss",
+      "spansk": "el autobús",
+      "kategori": "reise",
+      "svar": {
+        "es-no": [
+          "buss",
+          "bussen"
+        ],
+        "no-es": [
+          "el autobús",
+          "autobús"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0543",
+      "norsk": "tog",
+      "spansk": "el tren",
+      "kategori": "reise",
+      "svar": {
+        "es-no": [
+          "tog",
+          "toget"
+        ],
+        "no-es": [
+          "el tren",
+          "tren"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0544",
+      "norsk": "T-bane",
+      "spansk": "el metro",
+      "kategori": "reise",
+      "svar": {
+        "es-no": [
+          "T-bane",
+          "t-bane",
+          "metro",
+          "T-banen",
+          "t-banen"
+        ],
+        "no-es": [
+          "el metro",
+          "metro"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0545",
+      "norsk": "sykkel",
+      "spansk": "la bicicleta",
+      "kategori": "reise",
+      "svar": {
+        "es-no": [
+          "sykkel",
+          "sykkelen"
+        ],
+        "no-es": [
+          "la bicicleta",
+          "bicicleta"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0546",
+      "norsk": "flyplass",
+      "spansk": "el aeropuerto",
+      "kategori": "reise",
+      "svar": {
+        "es-no": [
+          "flyplass",
+          "flyplassen"
+        ],
+        "no-es": [
+          "el aeropuerto",
+          "aeropuerto"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0547",
+      "norsk": "turist",
+      "spansk": "el turista",
+      "kategori": "personer",
+      "svar": {
+        "es-no": [
+          "turist",
+          "turisten"
+        ],
+        "no-es": [
+          "el turista",
+          "turista",
+          "la turista"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0548",
+      "norsk": "kunstner",
+      "spansk": "el artista",
+      "kategori": "personer",
+      "svar": {
+        "es-no": [
+          "kunstner",
+          "artist",
+          "kunstneren",
+          "artisten"
+        ],
+        "no-es": [
+          "el artista",
+          "artista",
+          "la artista"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0549",
+      "norsk": "skuespiller",
+      "spansk": "el actor",
+      "kategori": "personer",
+      "svar": {
+        "es-no": [
+          "skuespiller",
+          "skuespilleren"
+        ],
+        "no-es": [
+          "el actor",
+          "actor",
+          "la actriz",
+          "actriz"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0550",
+      "norsk": "doktor",
+      "spansk": "el doctor",
+      "kategori": "yrker",
+      "svar": {
+        "es-no": [
+          "doktor",
+          "doktoren",
+          "lege",
+          "legen"
+        ],
+        "no-es": [
+          "el doctor",
+          "doctor",
+          "la doctora",
+          "doctora"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0551",
+      "norsk": "student",
+      "spansk": "el estudiante",
+      "kategori": "skole",
+      "svar": {
+        "es-no": [
+          "student",
+          "elev",
+          "studenten",
+          "eleven"
+        ],
+        "no-es": [
+          "el estudiante",
+          "estudiante",
+          "la estudiante"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0552",
+      "norsk": "dyr",
+      "spansk": "el animal",
+      "kategori": "dyr",
+      "svar": {
+        "es-no": [
+          "dyr",
+          "dyret"
+        ],
+        "no-es": [
+          "el animal",
+          "animal"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0553",
+      "norsk": "elefant",
+      "spansk": "el elefante",
+      "kategori": "dyr",
+      "svar": {
+        "es-no": [
+          "elefant",
+          "elefanten"
+        ],
+        "no-es": [
+          "el elefante",
+          "elefante"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0554",
+      "norsk": "løve",
+      "spansk": "el león",
+      "kategori": "dyr",
+      "svar": {
+        "es-no": [
+          "løve",
+          "løven"
+        ],
+        "no-es": [
+          "el león",
+          "león"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0555",
+      "norsk": "tiger",
+      "spansk": "el tigre",
+      "kategori": "dyr",
+      "svar": {
+        "es-no": [
+          "tiger",
+          "tigeren"
+        ],
+        "no-es": [
+          "el tigre",
+          "tigre"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0556",
+      "norsk": "gorilla",
+      "spansk": "el gorila",
+      "kategori": "dyr",
+      "svar": {
+        "es-no": [
+          "gorilla",
+          "gorillaen"
+        ],
+        "no-es": [
+          "el gorila",
+          "gorila"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0557",
+      "norsk": "familie",
+      "spansk": "la familia",
+      "kategori": "familie",
+      "svar": {
+        "es-no": [
+          "familie",
+          "familien"
+        ],
+        "no-es": [
+          "la familia",
+          "familia"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0558",
+      "norsk": "problem",
+      "spansk": "el problema",
+      "kategori": "ord og uttrykk",
+      "svar": {
+        "es-no": [
+          "problem",
+          "problemet"
+        ],
+        "no-es": [
+          "el problema",
+          "problema"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0559",
+      "norsk": "system",
+      "spansk": "el sistema",
+      "kategori": "ord og uttrykk",
+      "svar": {
+        "es-no": [
+          "system",
+          "systemet"
+        ],
+        "no-es": [
+          "el sistema",
+          "sistema"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0560",
+      "norsk": "program",
+      "spansk": "el programa",
+      "kategori": "ord og uttrykk",
+      "svar": {
+        "es-no": [
+          "program",
+          "programmet"
+        ],
+        "no-es": [
+          "el programa",
+          "programa"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0561",
+      "norsk": "informasjon",
+      "spansk": "la información",
+      "kategori": "ord og uttrykk",
+      "svar": {
+        "es-no": [
+          "informasjon",
+          "informasjonen"
+        ],
+        "no-es": [
+          "la información",
+          "información"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0562",
+      "norsk": "tradisjon",
+      "spansk": "la tradición",
+      "kategori": "ord og uttrykk",
+      "svar": {
+        "es-no": [
+          "tradisjon",
+          "tradisjonen"
+        ],
+        "no-es": [
+          "la tradición",
+          "tradición"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0563",
+      "norsk": "situasjon",
+      "spansk": "la situación",
+      "kategori": "ord og uttrykk",
+      "svar": {
+        "es-no": [
+          "situasjon",
+          "situasjonen"
+        ],
+        "no-es": [
+          "la situación",
+          "situación"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0564",
+      "norsk": "samtale",
+      "spansk": "la conversación",
+      "kategori": "ord og uttrykk",
+      "svar": {
+        "es-no": [
+          "samtale",
+          "samtalen",
+          "konversasjon",
+          "konversasjonen"
+        ],
+        "no-es": [
+          "la conversación",
+          "conversación"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0565",
+      "norsk": "invitasjon",
+      "spansk": "la invitación",
+      "kategori": "ord og uttrykk",
+      "svar": {
+        "es-no": [
+          "invitasjon",
+          "invitasjonen"
+        ],
+        "no-es": [
+          "la invitación",
+          "invitación"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0566",
+      "norsk": "organisasjon",
+      "spansk": "la organización",
+      "kategori": "ord og uttrykk",
+      "svar": {
+        "es-no": [
+          "organisasjon",
+          "organisasjonen"
+        ],
+        "no-es": [
+          "la organización",
+          "organización"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0567",
+      "norsk": "aktivitet",
+      "spansk": "la actividad",
+      "kategori": "ord og uttrykk",
+      "svar": {
+        "es-no": [
+          "aktivitet",
+          "aktiviteten"
+        ],
+        "no-es": [
+          "la actividad",
+          "actividad"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0568",
+      "norsk": "universitet",
+      "spansk": "la universidad",
+      "kategori": "skole",
+      "svar": {
+        "es-no": [
+          "universitet",
+          "universitetet"
+        ],
+        "no-es": [
+          "la universidad",
+          "universidad"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0569",
+      "norsk": "populær",
+      "spansk": "popular",
+      "kategori": "egenskaper",
+      "svar": {
+        "es-no": [
+          "populær"
+        ],
+        "no-es": [
+          "popular"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0570",
+      "norsk": "viktig",
+      "spansk": "importante",
+      "kategori": "egenskaper",
+      "svar": {
+        "es-no": [
+          "viktig"
+        ],
+        "no-es": [
+          "importante"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0571",
+      "norsk": "interessant",
+      "spansk": "interesante",
+      "kategori": "egenskaper",
+      "svar": {
+        "es-no": [
+          "interessant"
+        ],
+        "no-es": [
+          "interesante"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0572",
+      "norsk": "annerledes",
+      "spansk": "diferente",
+      "kategori": "egenskaper",
+      "svar": {
+        "es-no": [
+          "annerledes",
+          "forskjellig"
+        ],
+        "no-es": [
+          "diferente"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0573",
+      "norsk": "naturlig",
+      "spansk": "natural",
+      "kategori": "egenskaper",
+      "svar": {
+        "es-no": [
+          "naturlig"
+        ],
+        "no-es": [
+          "natural"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0574",
+      "norsk": "internasjonal",
+      "spansk": "internacional",
+      "kategori": "egenskaper",
+      "svar": {
+        "es-no": [
+          "internasjonal"
+        ],
+        "no-es": [
+          "internacional"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0575",
+      "norsk": "sosial (om samfunnet)",
+      "spansk": "social",
+      "kategori": "egenskaper",
+      "svar": {
+        "es-no": [
+          "sosial (om samfunnet)",
+          "sosial",
+          "samfunnsmessig",
+          "som gjelder samfunnet"
+        ],
+        "no-es": [
+          "social"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0576",
+      "norsk": "kulturell",
+      "spansk": "cultural",
+      "kategori": "egenskaper",
+      "svar": {
+        "es-no": [
+          "kulturell"
+        ],
+        "no-es": [
+          "cultural"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0577",
+      "norsk": "musikalsk (som gjelder musikk)",
+      "spansk": "musical",
+      "kategori": "egenskaper",
+      "svar": {
+        "es-no": [
+          "musikalsk (som gjelder musikk)",
+          "musikalsk",
+          "som gjelder musikk",
+          "musikkrelatert"
+        ],
+        "no-es": [
+          "musical"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0578",
+      "norsk": "mulig",
+      "spansk": "posible",
+      "kategori": "egenskaper",
+      "svar": {
+        "es-no": [
+          "mulig"
+        ],
+        "no-es": [
+          "posible"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0579",
+      "norsk": "umulig",
+      "spansk": "imposible",
+      "kategori": "egenskaper",
+      "svar": {
+        "es-no": [
+          "umulig"
+        ],
+        "no-es": [
+          "imposible"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0580",
+      "norsk": "forferdelig",
+      "spansk": "terrible",
+      "kategori": "egenskaper",
+      "svar": {
+        "es-no": [
+          "forferdelig"
+        ],
+        "no-es": [
+          "terrible"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0581",
+      "norsk": "grusom",
+      "spansk": "horrible",
+      "kategori": "egenskaper",
+      "svar": {
+        "es-no": [
+          "grusom",
+          "forferdelig",
+          "horribel"
+        ],
+        "no-es": [
+          "horrible"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0582",
+      "norsk": "elegant",
+      "spansk": "elegante",
+      "kategori": "egenskaper",
+      "svar": {
+        "es-no": [
+          "elegant"
+        ],
+        "no-es": [
+          "elegante"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0583",
+      "norsk": "moderne",
+      "spansk": "moderno",
+      "kategori": "egenskaper",
+      "svar": {
+        "es-no": [
+          "moderne"
+        ],
+        "no-es": [
+          "moderno",
+          "moderna"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0584",
+      "norsk": "fantastisk",
+      "spansk": "fantástico",
+      "kategori": "egenskaper",
+      "svar": {
+        "es-no": [
+          "fantastisk"
+        ],
+        "no-es": [
+          "fantástico",
+          "fantástica"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0585",
+      "norsk": "romantisk",
+      "spansk": "romántico",
+      "kategori": "egenskaper",
+      "svar": {
+        "es-no": [
+          "romantisk"
+        ],
+        "no-es": [
+          "romántico",
+          "romántica"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0586",
+      "norsk": "praktisk",
+      "spansk": "práctico",
+      "kategori": "egenskaper",
+      "svar": {
+        "es-no": [
+          "praktisk"
+        ],
+        "no-es": [
+          "práctico",
+          "práctica"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0587",
+      "norsk": "optimistisk",
+      "spansk": "optimista",
+      "kategori": "egenskaper",
+      "svar": {
+        "es-no": [
+          "optimistisk"
+        ],
+        "no-es": [
+          "optimista"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0588",
+      "norsk": "pessimistisk",
+      "spansk": "pesimista",
+      "kategori": "egenskaper",
+      "svar": {
+        "es-no": [
+          "pessimistisk"
+        ],
+        "no-es": [
+          "pesimista"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0589",
+      "norsk": "sjenerøs",
+      "spansk": "generoso",
+      "kategori": "egenskaper",
+      "svar": {
+        "es-no": [
+          "sjenerøs"
+        ],
+        "no-es": [
+          "generoso",
+          "generosa"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0590",
+      "norsk": "nysgjerrig",
+      "spansk": "curioso",
+      "kategori": "egenskaper",
+      "svar": {
+        "es-no": [
+          "nysgjerrig"
+        ],
+        "no-es": [
+          "curioso",
+          "curiosa"
+        ]
+      }
+    },
+    {
+      "id": "vocab-0591",
+      "norsk": "berømt",
+      "spansk": "famoso",
+      "kategori": "egenskaper",
+      "svar": {
+        "es-no": [
+          "berømt"
+        ],
+        "no-es": [
+          "famoso",
+          "famosa"
         ]
       }
     }

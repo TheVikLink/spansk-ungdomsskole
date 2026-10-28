@@ -1,12 +1,43 @@
 # 🇪🇸 Spansk på 1-2-3
 
-En gratis, interaktiv læringsapp for spansk på ungdomsskolenivå (A0-A1 CEFR). Bygget for norske elever og kan brukes uten innlogging.
+En gratis læringsapp for hele ungdomsskolen og elever i videregående som tar spansk nivå I. Velg innhold etter tema og forkunnskaper. Appen kan brukes uten Feide eller brukerkonto; elevkoden er en lokal etikett. A0–A1 beskriver eksisterende innhold, ikke full læreplandekning.
 
-**[🚀 Prøv appen](https://theviklink.github.io/spansk-ungdomsskole/)**
+**[🚀 Prøv appen](https://www.spansk123.no/)**
 
-Status 23. september 2026: bygg-, innholds- og Node-kontroller består; nettleserkontrollen er blokkert av oppstartstillatelsen i agentmiljøet. Se [gjeldende verifikasjon og avgrensning](docs/release-verification-2026-09-23.md) for bevis og gjenstående kontroll. Faglig lærerkontroll, fysisk skoleutstyr og moderert elevpilot gjenstår. Arbeidskopiens siste endringer er ikke bekreftet publisert.
+Publiseringskandidaten 28. oktober 2026 omfatter Madrigal-inspirert ordgjenkjenning, uttaleskolen og kulturopplegg. Se [publiseringsrapporten](docs/release-verification-2026-10-28.md) for faktisk leveringsstatus og verifikasjon.
 
 ## ✨ Funksjoner
+
+### 🔑 Spansk du kjenner igjen
+
+Åpne **Gloser → Spansk du kjenner igjen → Utforsk temaet**. Samlingen har 87 ord med forbindelser til norsk og/eller engelsk, og et startutvalg på 18 ord. «Oppdag ordene» gir ti korte oppgaver fra spansk til norsk: eleven prøver før betydningen og forbindelsen vises. Hint er valgfrie, og riktige svar med støtte oppsummeres separat. Runden lagrer ikke svar og endrer ikke repetisjonsplanen eller stjernene.
+
+Temaet har en lærerveiledning til første spansktime: **Gjett betydningen → finn likheten → lag en setning**. Hele ordlisten kan åpnes underveis. Samlingen omfatter internasjonale ord med ulik opprinnelse; alle omtales ikke som latinske, og gjenkjenning regnes ikke som ferdig innlært ordforråd.
+
+«Øv på startutvalget» og «Øv på hele samlingen» bruker vanlig gloseøving og samme fremgang som ordenes ordinære kategorier. Ingen doble standardkort, ny innlogging, lydgenerering eller eksterne tjenester er lagt til. Temaet er innebygd i appen og fungerer fra den lagrede appen uten nett.
+
+Standardord og fasit vedlikeholdes i `data/vocabulary-canonical-review.json`; temamedlemskap, startrekkefølge og betydningsbroer ligger i `data/vocabulary-recognition-theme.json`. `npm run build:app` bygger begge inn i appen, og `npm run check:vocabulary` kontrollerer synkronisering og referanser. Ordutvalget er gjennomgått av kodeagenten; uavhengig spansklærervurdering er ikke dokumentert. Metodeinspirasjon: Margarita Madrigal, *Madrigal’s Magic Key to Spanish*, forord og leksjon 1–5; forklaringer og ordutvalg er utformet selvstendig.
+
+Temaet har også **Bygg setninger**: åtte setninger med **es / no es** og ord fra startutvalget. De fire første bygges med ordbrikker, de fire siste skrives. Småordene el/la/un/una forklares før start. Valgfri støtte gir ordbrikkene tilbake og telles separat.
+
+**Oppdag ordfamilier** gir sju korte sider med eksempler, forbehold og ett annet prøveord: -sjon/-ción, -ist/-ista, -el/-al, -ell/-lig/-al, -ant/-ent mot -ante/-ente, -isk mot -ico/-ica, og en uttrykkelig engelsk -ble-bro. Sidene kan brukes som elevgjennomgang eller presentasjon på storskjerm. Menyen og forrige/neste lar læreren velge rekkefølge. Prøveord er valgfrie; oppsummeringen viser bare besvarte ord og skiller støtte fra svar uten støtte. Likhetsmønstre presenteres som ledetråder, aldri som en automatisk oversettelsesregel.
+
+Begge aktivitetene fungerer offline og holder runde, støtte og resultat i minnet. Ingen elevsvar eller nye fremgangsfelt lagres. Avbrudd går gjennom det vanlige navigasjonsvernet. Setninger og familier vedlikeholdes i temakilden og kontrolleres under bygging; oppgavene lager ikke vilkårlige kombinasjoner.
+
+Den faglige agentgjennomgangen 27. oktober 2026, med kildegrunnlag, rettinger og vurdering av alle 87 ord, finnes i [gjennomgangsrapporten](docs/madrigal-faglig-gjennomgang-2026-10-27.md).
+
+Setningsbygging, ordfamilier og regresjonstester for lokal overlapping er beskrevet i [verifikasjonen 28. oktober](docs/recognition-learning-verification-2026-10-28.md).
+
+### Uttaleskolen
+
+Åpne **Start → Åpne uttaleskolen** eller **Uttale**. Ti temaer samler 31 lydkort med ord og setninger og 62 Refold-opptak, brukt med tillatelse og synlig kreditering. Les, lytt og sammenlign. Et valgfritt eget opptak finnes bare midlertidig i nettleseren og slettes når eleven går videre eller forlater oppgaven. Ingen lyd lastes opp. Ingen talesyntese brukes. Se [lærerveiledningen](docs/uttale/laererveiledning.md) og [rettighetsgrunnlaget](docs/uttale/refold-rettigheter.md).
+
+### Kultur: Mundo AM
+
+Åpne **Start → Utforsk kultur**, eller gå [direkte til kulturoppleggene](https://www.spansk123.no/docs/kultur/index.html). Sju opplegg gir lesetekster, bilder, norsk ordstøtte, fire forståelsesspørsmål, parsamtale, lærerveiledning og PDF-ark. Seks fortellinger handler om en dag i Honduras, Colombia, Mexico, Spania, Peru og Ekvatorial-Guinea; ett opplegg sammenligner jul i Spania og Chile. Elevene kan øve videre på ti ord fra hver tekst.
+
+Kulturoppleggene er **arbeidsutkast til lærervurdering**, ikke ferdig faglig godkjente opplegg. Denne statusen vises i katalogen, øktene og PDF-arkene. PDF-er publiseres i `docs/kultur/pdf/`; den lokale `output/`-mappen skal ikke publiseres. Bygg nettsidene med `npm run sync:culture`, og bygg PDF-ene med `scripts/build-culture-pdfs.py --site-base-url https://www.spansk123.no/ --output-dir docs/kultur/pdf` med Noto Sans og de valgte `--pack`-ID-ene.
+
 
 ### 📚 Gloselæring
 - **Over 500 gloser** på ungdomsskolenivå
