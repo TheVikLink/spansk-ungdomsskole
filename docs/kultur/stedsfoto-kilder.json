@@ -1,0 +1,1775 @@
+{
+  "checkedOn": "2026-10-07",
+  "method": "Commons imageinfo API (extmetadata), served previews up to 1280 px. All 12 images visually inspected; no local image editing.",
+  "records": [
+    {
+      "page": {
+        "pageid": 75234811,
+        "ns": 6,
+        "title": "File:20151119 054 Valencia - Jardín del Turia (22917615359).jpg",
+        "imagerepository": "local",
+        "imageinfo": [
+          {
+            "thumburl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1f/20151119_054_Valencia_-_Jard%C3%ADn_del_Turia_%2822917615359%29.jpg/1280px-20151119_054_Valencia_-_Jard%C3%ADn_del_Turia_%2822917615359%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+            "thumbwidth": 1200,
+            "thumbheight": 900,
+            "responsiveUrls": {
+              "2": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1f/20151119_054_Valencia_-_Jard%C3%ADn_del_Turia_%2822917615359%29.jpg/3840px-20151119_054_Valencia_-_Jard%C3%ADn_del_Turia_%2822917615359%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+            },
+            "thumbattribs": {
+              "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1f/20151119_054_Valencia_-_Jard%C3%ADn_del_Turia_%2822917615359%29.jpg/1280px-20151119_054_Valencia_-_Jard%C3%ADn_del_Turia_%2822917615359%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+              "decoding": "async",
+              "loading": "lazy",
+              "width": 1200,
+              "height": 900,
+              "srcset": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1f/20151119_054_Valencia_-_Jard%C3%ADn_del_Turia_%2822917615359%29.jpg/3840px-20151119_054_Valencia_-_Jard%C3%ADn_del_Turia_%2822917615359%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail 2x"
+            },
+            "url": "https://upload.wikimedia.org/wikipedia/commons/1/1f/20151119_054_Valencia_-_Jard%C3%ADn_del_Turia_%2822917615359%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+            "descriptionurl": "https://commons.wikimedia.org/wiki/File:20151119_054_Valencia_-_Jard%C3%ADn_del_Turia_(22917615359).jpg",
+            "descriptionshorturl": "https://commons.wikimedia.org/w/index.php?curid=75234811",
+            "extmetadata": {
+              "DateTime": {
+                "value": "2018-12-21 15:46:06",
+                "source": "mediawiki-metadata",
+                "hidden": ""
+              },
+              "ObjectName": {
+                "value": "20151119 054 Valencia - Jardín del Turia (22917615359)",
+                "source": "mediawiki-metadata"
+              },
+              "CommonsMetadataExtension": {
+                "value": 1.2,
+                "source": "extension",
+                "hidden": ""
+              },
+              "Categories": {
+                "value": "Jardín del Turia|Files with coordinates missing SDC location of creation|Flickr images reviewed by FlickreviewR 2|Photographs by Sjaak Kempe",
+                "source": "commons-categories",
+                "hidden": ""
+              },
+              "Assessments": {
+                "value": "",
+                "source": "commons-categories",
+                "hidden": ""
+              },
+              "GPSLatitude": {
+                "value": "39.465445",
+                "source": "commons-desc-page"
+              },
+              "GPSLongitude": {
+                "value": "-0.360703",
+                "source": "commons-desc-page"
+              },
+              "GPSMapDatum": {
+                "value": "WGS-84",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "ImageDescription": {
+                "value": "20151119 054 Valencia - Jardín del Turia",
+                "source": "commons-desc-page"
+              },
+              "DateTimeOriginal": {
+                "value": "2015-11-19 14:10",
+                "source": "commons-desc-page"
+              },
+              "Credit": {
+                "value": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/photos/sjaakkempe/22917615359/\">20151119 054 Valencia - Jardín del Turia</a>",
+                "source": "commons-desc-page"
+              },
+              "Artist": {
+                "value": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/people/22991060@N04\">Sjaak Kempe</a> from Groningen, The Netherlands",
+                "source": "commons-desc-page"
+              },
+              "LicenseShortName": {
+                "value": "CC BY 2.0",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "UsageTerms": {
+                "value": "Creative Commons Attribution 2.0",
+                "source": "commons-desc-page"
+              },
+              "AttributionRequired": {
+                "value": "true",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "LicenseUrl": {
+                "value": "https://creativecommons.org/licenses/by/2.0",
+                "source": "commons-desc-page"
+              },
+              "Copyrighted": {
+                "value": "True",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "Restrictions": {
+                "value": "",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "License": {
+                "value": "cc-by-2.0",
+                "source": "commons-templates",
+                "hidden": ""
+              }
+            }
+          }
+        ]
+      },
+      "target": "images/kultur/stedsfoto/commons-75234811.jpg",
+      "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1f/20151119_054_Valencia_-_Jard%C3%ADn_del_Turia_%2822917615359%29.jpg/1280px-20151119_054_Valencia_-_Jard%C3%ADn_del_Turia_%2822917615359%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "width": 1280,
+      "height": 960,
+      "sha256": "cfbfd87c7ae1c0d38f268646181dcadbe83fa4806143b23b96b75acfe143f333",
+      "bytes": 412051,
+      "usage": {
+        "id": "photo-75234811",
+        "path": "images/kultur/stedsfoto/commons-75234811.jpg",
+        "width": 1280,
+        "height": 960,
+        "afterParagraph": 2,
+        "caption": "Jardín del Turia i Valencia. Foto fra 2015.",
+        "alt": "Et vannspeil omgitt av trær i Turia-parken i Valencia.",
+        "author": "Sjaak Kempe",
+        "date": "2015",
+        "license": "CC BY 2.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:20151119_054_Valencia_-_Jard%C3%ADn_del_Turia_%2822917615359%29.jpg",
+        "changes": "Nedskalert av Commons; ikke beskåret.",
+        "originalTitle": "20151119 054 Valencia - Jardín del Turia (22917615359).jpg"
+      },
+      "reviewedOn": "2026-10-07",
+      "active": true,
+      "placement": "reading-side",
+      "packId": "un-dia-en-espana"
+    },
+    {
+      "page": {
+        "pageid": 90776372,
+        "ns": 6,
+        "title": "File:Bata, 2015-02 -i---i- (15890576434).jpg",
+        "imagerepository": "local",
+        "imageinfo": [
+          {
+            "thumburl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/31/Bata%2C_2015-02_-i---i-_%2815890576434%29.jpg/1280px-Bata%2C_2015-02_-i---i-_%2815890576434%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+            "thumbwidth": 1200,
+            "thumbheight": 795,
+            "responsiveUrls": {
+              "2": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/31/Bata%2C_2015-02_-i---i-_%2815890576434%29.jpg/3840px-Bata%2C_2015-02_-i---i-_%2815890576434%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+            },
+            "thumbattribs": {
+              "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/31/Bata%2C_2015-02_-i---i-_%2815890576434%29.jpg/1280px-Bata%2C_2015-02_-i---i-_%2815890576434%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+              "decoding": "async",
+              "loading": "lazy",
+              "width": 1200,
+              "height": 795,
+              "srcset": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/31/Bata%2C_2015-02_-i---i-_%2815890576434%29.jpg/3840px-Bata%2C_2015-02_-i---i-_%2815890576434%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail 2x"
+            },
+            "url": "https://upload.wikimedia.org/wikipedia/commons/3/31/Bata%2C_2015-02_-i---i-_%2815890576434%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+            "descriptionurl": "https://commons.wikimedia.org/wiki/File:Bata,_2015-02_-i---i-_(15890576434).jpg",
+            "descriptionshorturl": "https://commons.wikimedia.org/w/index.php?curid=90776372",
+            "extmetadata": {
+              "DateTime": {
+                "value": "2020-05-30 00:28:40",
+                "source": "mediawiki-metadata",
+                "hidden": ""
+              },
+              "ObjectName": {
+                "value": "Bata, 2015-02 -i---i- (15890576434)",
+                "source": "mediawiki-metadata"
+              },
+              "CommonsMetadataExtension": {
+                "value": 1.2,
+                "source": "extension",
+                "hidden": ""
+              },
+              "Categories": {
+                "value": "Flickr images reviewed by FlickreviewR 2|Paseo Marítimo de Bata",
+                "source": "commons-categories",
+                "hidden": ""
+              },
+              "Assessments": {
+                "value": "",
+                "source": "commons-categories",
+                "hidden": ""
+              },
+              "ImageDescription": {
+                "value": "Bata, February 2015",
+                "source": "commons-desc-page"
+              },
+              "DateTimeOriginal": {
+                "value": "2015-02-04 14:45",
+                "source": "commons-desc-page"
+              },
+              "Credit": {
+                "value": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/photos/bensutherland/15890576434/\">Flickr</a>",
+                "source": "commons-desc-page"
+              },
+              "Artist": {
+                "value": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/people/60179301@N00\">Ben Sutherland</a> from Crystal Palace, London, UK",
+                "source": "commons-desc-page"
+              },
+              "LicenseShortName": {
+                "value": "CC BY 2.0",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "UsageTerms": {
+                "value": "Creative Commons Attribution 2.0",
+                "source": "commons-desc-page"
+              },
+              "AttributionRequired": {
+                "value": "true",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "LicenseUrl": {
+                "value": "https://creativecommons.org/licenses/by/2.0",
+                "source": "commons-desc-page"
+              },
+              "Copyrighted": {
+                "value": "True",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "Restrictions": {
+                "value": "",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "License": {
+                "value": "cc-by-2.0",
+                "source": "commons-templates",
+                "hidden": ""
+              }
+            }
+          }
+        ]
+      },
+      "target": "images/kultur/stedsfoto/commons-90776372.jpg",
+      "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/31/Bata%2C_2015-02_-i---i-_%2815890576434%29.jpg/1280px-Bata%2C_2015-02_-i---i-_%2815890576434%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "width": 1280,
+      "height": 848,
+      "sha256": "1e4f45da1f6f6b0e3121a81319126f56eaf0f3b1eee5161d7f55b6f66a70905f",
+      "bytes": 272785,
+      "usage": {
+        "id": "photo-90776372",
+        "path": "images/kultur/stedsfoto/commons-90776372.jpg",
+        "width": 1280,
+        "height": 848,
+        "afterParagraph": 2,
+        "caption": "Strandpromenaden i Bata med serveringssteder og et bygg under oppføring. Foto fra 2015.",
+        "alt": "En bred promenade ved havet i Bata med serveringssteder og et bygg under oppføring.",
+        "author": "Ben Sutherland",
+        "date": "2015",
+        "license": "CC BY 2.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bata%2C_2015-02_-i---i-_%2815890576434%29.jpg",
+        "changes": "Nedskalert av Commons; ikke beskåret.",
+        "originalTitle": "Bata, 2015-02 -i---i- (15890576434).jpg"
+      },
+      "reviewedOn": "2026-10-07",
+      "active": true,
+      "placement": "reading-side",
+      "packId": "un-dia-en-guinea-ecuatorial"
+    },
+    {
+      "page": {
+        "pageid": 90776387,
+        "ns": 6,
+        "title": "File:Bata, 2015-02 -i---i- (16325683430).jpg",
+        "imagerepository": "local",
+        "imageinfo": [
+          {
+            "thumburl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/22/Bata%2C_2015-02_-i---i-_%2816325683430%29.jpg/1280px-Bata%2C_2015-02_-i---i-_%2816325683430%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+            "thumbwidth": 1200,
+            "thumbheight": 1812,
+            "responsiveUrls": {
+              "2": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/22/Bata%2C_2015-02_-i---i-_%2816325683430%29.jpg/1920px-Bata%2C_2015-02_-i---i-_%2816325683430%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+            },
+            "thumbattribs": {
+              "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/22/Bata%2C_2015-02_-i---i-_%2816325683430%29.jpg/1280px-Bata%2C_2015-02_-i---i-_%2816325683430%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+              "decoding": "async",
+              "loading": "lazy",
+              "width": 1200,
+              "height": 1812,
+              "srcset": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/22/Bata%2C_2015-02_-i---i-_%2816325683430%29.jpg/1920px-Bata%2C_2015-02_-i---i-_%2816325683430%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail 2x"
+            },
+            "url": "https://upload.wikimedia.org/wikipedia/commons/2/22/Bata%2C_2015-02_-i---i-_%2816325683430%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+            "descriptionurl": "https://commons.wikimedia.org/wiki/File:Bata,_2015-02_-i---i-_(16325683430).jpg",
+            "descriptionshorturl": "https://commons.wikimedia.org/w/index.php?curid=90776387",
+            "extmetadata": {
+              "DateTime": {
+                "value": "2020-05-30 00:28:59",
+                "source": "mediawiki-metadata",
+                "hidden": ""
+              },
+              "ObjectName": {
+                "value": "Bata, 2015-02 -i---i- (16325683430)",
+                "source": "mediawiki-metadata"
+              },
+              "CommonsMetadataExtension": {
+                "value": 1.2,
+                "source": "extension",
+                "hidden": ""
+              },
+              "Categories": {
+                "value": "Flickr images reviewed by FlickreviewR 2|Paseo Marítimo de Bata",
+                "source": "commons-categories",
+                "hidden": ""
+              },
+              "Assessments": {
+                "value": "",
+                "source": "commons-categories",
+                "hidden": ""
+              },
+              "ImageDescription": {
+                "value": "Bata, February 2015",
+                "source": "commons-desc-page"
+              },
+              "DateTimeOriginal": {
+                "value": "2015-02-04 14:50",
+                "source": "commons-desc-page"
+              },
+              "Credit": {
+                "value": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/photos/bensutherland/16325683430/\">Flickr</a>",
+                "source": "commons-desc-page"
+              },
+              "Artist": {
+                "value": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/people/60179301@N00\">Ben Sutherland</a> from Crystal Palace, London, UK",
+                "source": "commons-desc-page"
+              },
+              "LicenseShortName": {
+                "value": "CC BY 2.0",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "UsageTerms": {
+                "value": "Creative Commons Attribution 2.0",
+                "source": "commons-desc-page"
+              },
+              "AttributionRequired": {
+                "value": "true",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "LicenseUrl": {
+                "value": "https://creativecommons.org/licenses/by/2.0",
+                "source": "commons-desc-page"
+              },
+              "Copyrighted": {
+                "value": "True",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "Restrictions": {
+                "value": "",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "License": {
+                "value": "cc-by-2.0",
+                "source": "commons-templates",
+                "hidden": ""
+              }
+            }
+          }
+        ]
+      },
+      "target": "images/kultur/stedsfoto/commons-90776387.jpg",
+      "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/22/Bata%2C_2015-02_-i---i-_%2816325683430%29.jpg/1280px-Bata%2C_2015-02_-i---i-_%2816325683430%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "width": 1280,
+      "height": 1933,
+      "sha256": "355a8867c1cbb72e142bfc010b254a20dbf1a18f2116f69f972843837dc1156d",
+      "bytes": 765134,
+      "usage": {
+        "id": "photo-90776387",
+        "path": "images/kultur/stedsfoto/commons-90776387.jpg",
+        "width": 1280,
+        "height": 1933,
+        "afterParagraph": 2,
+        "caption": "Palmer, benker og gangvei langs strandpromenaden i Bata. Foto fra 2015.",
+        "alt": "En palme langs en flislagt gangvei med benker og havet til venstre.",
+        "author": "Ben Sutherland",
+        "date": "2015",
+        "license": "CC BY 2.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bata%2C_2015-02_-i---i-_%2816325683430%29.jpg",
+        "changes": "Nedskalert av Commons; ikke beskåret.",
+        "originalTitle": "Bata, 2015-02 -i---i- (16325683430).jpg"
+      },
+      "reviewedOn": "2026-10-07",
+      "active": true,
+      "placement": "annotated-header",
+      "packId": "un-dia-en-guinea-ecuatorial"
+    },
+    {
+      "page": {
+        "pageid": 31950049,
+        "ns": 6,
+        "title": "File:Cartagena's fortresses built by the Spanish to defend it - Engineering works took well over 208 years and ended with some eleven kilometres of walls surrounding the city (4625638605).jpg",
+        "imagerepository": "local",
+        "imageinfo": [
+          {
+            "thumburl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/85/Cartagena%27s_fortresses_built_by_the_Spanish_to_defend_it_-_Engineering_works_took_well_over_208_years_and_ended_with_some_eleven_kilometres_of_walls_surrounding_the_city_%284625638605%29.jpg/1280px-thumbnail.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+            "thumbwidth": 1200,
+            "thumbheight": 797,
+            "responsiveUrls": {
+              "2": "https://upload.wikimedia.org/wikipedia/commons/8/85/Cartagena%27s_fortresses_built_by_the_Spanish_to_defend_it_-_Engineering_works_took_well_over_208_years_and_ended_with_some_eleven_kilometres_of_walls_surrounding_the_city_%284625638605%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+            },
+            "thumbattribs": {
+              "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/85/Cartagena%27s_fortresses_built_by_the_Spanish_to_defend_it_-_Engineering_works_took_well_over_208_years_and_ended_with_some_eleven_kilometres_of_walls_surrounding_the_city_%284625638605%29.jpg/1280px-thumbnail.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+              "decoding": "async",
+              "loading": "lazy",
+              "width": 1200,
+              "height": 797,
+              "srcset": "https://upload.wikimedia.org/wikipedia/commons/8/85/Cartagena%27s_fortresses_built_by_the_Spanish_to_defend_it_-_Engineering_works_took_well_over_208_years_and_ended_with_some_eleven_kilometres_of_walls_surrounding_the_city_%284625638605%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled 2x"
+            },
+            "url": "https://upload.wikimedia.org/wikipedia/commons/8/85/Cartagena%27s_fortresses_built_by_the_Spanish_to_defend_it_-_Engineering_works_took_well_over_208_years_and_ended_with_some_eleven_kilometres_of_walls_surrounding_the_city_%284625638605%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+            "descriptionurl": "https://commons.wikimedia.org/wiki/File:Cartagena%27s_fortresses_built_by_the_Spanish_to_defend_it_-_Engineering_works_took_well_over_208_years_and_ended_with_some_eleven_kilometres_of_walls_surrounding_the_city_(4625638605).jpg",
+            "descriptionshorturl": "https://commons.wikimedia.org/w/index.php?curid=31950049",
+            "extmetadata": {
+              "DateTime": {
+                "value": "2014-04-02 07:49:27",
+                "source": "mediawiki-metadata",
+                "hidden": ""
+              },
+              "ObjectName": {
+                "value": "Cartagena's fortresses built by the Spanish to defend it - Engineering works took well over 208 years and ended with some eleven kilometres of walls surrounding the city (4625638605)",
+                "source": "mediawiki-metadata"
+              },
+              "CommonsMetadataExtension": {
+                "value": 1.2,
+                "source": "extension",
+                "hidden": ""
+              },
+              "Categories": {
+                "value": "Taken with Nikon D90|City walls of Cartagena, Colombia|Flickr images reviewed by FlickreviewR|Files with coordinates missing SDC location of creation|Colombia photographs taken on 2009-09-21|Files from Jorge Láscar Flickr stream",
+                "source": "commons-categories",
+                "hidden": ""
+              },
+              "Assessments": {
+                "value": "",
+                "source": "commons-categories",
+                "hidden": ""
+              },
+              "GPSLatitude": {
+                "value": "10.408468",
+                "source": "commons-desc-page"
+              },
+              "GPSLongitude": {
+                "value": "-75.522079",
+                "source": "commons-desc-page"
+              },
+              "GPSMapDatum": {
+                "value": "WGS-84",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "ImageDescription": {
+                "value": "Bartizan at Cartagena wall",
+                "source": "commons-desc-page"
+              },
+              "DateTimeOriginal": {
+                "value": "2009-09-21 18:19",
+                "source": "commons-desc-page"
+              },
+              "Credit": {
+                "value": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/photos/jlascar/4625638605/\">There are some eleven kilometres of walls surrounding Cartagena</a>",
+                "source": "commons-desc-page"
+              },
+              "Artist": {
+                "value": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/people/8721758@N06\">Jorge Láscar</a> from Australia",
+                "source": "commons-desc-page"
+              },
+              "LicenseShortName": {
+                "value": "CC BY 2.0",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "UsageTerms": {
+                "value": "Creative Commons Attribution 2.0",
+                "source": "commons-desc-page"
+              },
+              "AttributionRequired": {
+                "value": "true",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "LicenseUrl": {
+                "value": "https://creativecommons.org/licenses/by/2.0",
+                "source": "commons-desc-page"
+              },
+              "Copyrighted": {
+                "value": "True",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "Restrictions": {
+                "value": "",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "License": {
+                "value": "cc-by-2.0",
+                "source": "commons-templates",
+                "hidden": ""
+              }
+            }
+          }
+        ]
+      },
+      "target": "images/kultur/stedsfoto/commons-31950049.jpg",
+      "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/85/Cartagena%27s_fortresses_built_by_the_Spanish_to_defend_it_-_Engineering_works_took_well_over_208_years_and_ended_with_some_eleven_kilometres_of_walls_surrounding_the_city_%284625638605%29.jpg/1280px-thumbnail.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "width": 1280,
+      "height": 850,
+      "sha256": "08a83afb5884c2f6f06cd2befeec12cbdae0bb9f711464d817534823f1e44c3d",
+      "bytes": 424409,
+      "usage": {
+        "id": "photo-31950049",
+        "path": "images/kultur/stedsfoto/commons-31950049.jpg",
+        "width": 1280,
+        "height": 850,
+        "afterParagraph": 2,
+        "caption": "Bymurene i Cartagena i kveldslys. Foto fra 2009.",
+        "alt": "Cartagenas steinmurer opplyst i varmt lys mot en mørk blå himmel.",
+        "author": "Jorge Láscar",
+        "date": "2009",
+        "license": "CC BY 2.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Cartagena%27s_fortresses_built_by_the_Spanish_to_defend_it_-_Engineering_works_took_well_over_208_years_and_ended_with_some_eleven_kilometres_of_walls_surrounding_the_city_%284625638605%29.jpg",
+        "changes": "Nedskalert av Commons; ikke beskåret.",
+        "originalTitle": "Cartagena's fortresses built by the Spanish to defend it - Engineering works took well over 208 years and ended with some eleven kilometres of walls surrounding the city (4625638605).jpg"
+      },
+      "reviewedOn": "2026-10-07",
+      "active": true,
+      "placement": "reading-side",
+      "packId": "un-dia-en-colombia"
+    },
+    {
+      "page": {
+        "pageid": 24326854,
+        "ns": 6,
+        "title": "File:Cartagena, Colombia (5003058315).jpg",
+        "imagerepository": "local",
+        "imageinfo": [
+          {
+            "thumburl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/14/Cartagena%2C_Colombia_%285003058315%29.jpg/1280px-Cartagena%2C_Colombia_%285003058315%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+            "thumbwidth": 1200,
+            "thumbheight": 799,
+            "responsiveUrls": {
+              "2": "https://upload.wikimedia.org/wikipedia/commons/1/14/Cartagena%2C_Colombia_%285003058315%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+            },
+            "thumbattribs": {
+              "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/14/Cartagena%2C_Colombia_%285003058315%29.jpg/1280px-Cartagena%2C_Colombia_%285003058315%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+              "decoding": "async",
+              "loading": "lazy",
+              "width": 1200,
+              "height": 799,
+              "srcset": "https://upload.wikimedia.org/wikipedia/commons/1/14/Cartagena%2C_Colombia_%285003058315%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled 2x"
+            },
+            "url": "https://upload.wikimedia.org/wikipedia/commons/1/14/Cartagena%2C_Colombia_%285003058315%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+            "descriptionurl": "https://commons.wikimedia.org/wiki/File:Cartagena,_Colombia_(5003058315).jpg",
+            "descriptionshorturl": "https://commons.wikimedia.org/w/index.php?curid=24326854",
+            "extmetadata": {
+              "DateTime": {
+                "value": "2017-07-04 02:16:38",
+                "source": "mediawiki-metadata",
+                "hidden": ""
+              },
+              "ObjectName": {
+                "value": "Cartagena, Colombia (5003058315)",
+                "source": "mediawiki-metadata"
+              },
+              "CommonsMetadataExtension": {
+                "value": 1.2,
+                "source": "extension",
+                "hidden": ""
+              },
+              "Categories": {
+                "value": "2010 in Colombia|Cornices|Flickr images reviewed by File Upload Bot (Magnus Manske)|Tone-mapped HDR images of Colombia|Files with coordinates missing SDC location of creation|Yellow buildings in Colombia|Colombia photographs taken on 2010-07-24|Buildings in Cartagena, Colombia|Streets in Cartagena, Colombia|Files from Pedro Szekely Flickr stream",
+                "source": "commons-categories",
+                "hidden": ""
+              },
+              "Assessments": {
+                "value": "",
+                "source": "commons-categories",
+                "hidden": ""
+              },
+              "GPSLatitude": {
+                "value": "10.422650",
+                "source": "commons-desc-page"
+              },
+              "GPSLongitude": {
+                "value": "-75.551519",
+                "source": "commons-desc-page"
+              },
+              "GPSMapDatum": {
+                "value": "WGS-84",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "ImageDescription": {
+                "value": "Cartagena has many yellow buildings. This one is a fine example. Very typical of Cartagena.",
+                "source": "commons-desc-page"
+              },
+              "DateTimeOriginal": {
+                "value": "2010-07-24 09:34",
+                "source": "commons-desc-page"
+              },
+              "Credit": {
+                "value": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/photos/pedrosz/5003058315/\">Cartagena, Colombia</a>",
+                "source": "commons-desc-page"
+              },
+              "Artist": {
+                "value": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/people/43355249@N00\">Pedro Szekely</a> from Los Angeles, USA",
+                "source": "commons-desc-page"
+              },
+              "LicenseShortName": {
+                "value": "CC BY 2.0",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "UsageTerms": {
+                "value": "Creative Commons Attribution 2.0",
+                "source": "commons-desc-page"
+              },
+              "AttributionRequired": {
+                "value": "true",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "LicenseUrl": {
+                "value": "https://creativecommons.org/licenses/by/2.0",
+                "source": "commons-desc-page"
+              },
+              "Copyrighted": {
+                "value": "True",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "Restrictions": {
+                "value": "",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "License": {
+                "value": "cc-by-2.0",
+                "source": "commons-templates",
+                "hidden": ""
+              }
+            }
+          }
+        ]
+      },
+      "target": "images/kultur/stedsfoto/commons-24326854.jpg",
+      "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/14/Cartagena%2C_Colombia_%285003058315%29.jpg/1280px-Cartagena%2C_Colombia_%285003058315%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "width": 1280,
+      "height": 852,
+      "sha256": "279e76a130ae429017d19892d9d87c283c6ccefd1ed6cae117f7b6d933c136f5",
+      "bytes": 351412,
+      "usage": {
+        "id": "photo-24326854",
+        "path": "images/kultur/stedsfoto/commons-24326854.jpg",
+        "width": 1280,
+        "height": 852,
+        "afterParagraph": 2,
+        "caption": "En gate i gamlebyen i Cartagena. Foto fra 2010.",
+        "alt": "En smal gate mellom gule bygninger med balkonger i Cartagena.",
+        "author": "Pedro Szekely",
+        "date": "2010",
+        "license": "CC BY 2.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Cartagena%2C_Colombia_%285003058315%29.jpg",
+        "changes": "Nedskalert av Commons; ikke beskåret.",
+        "originalTitle": "Cartagena, Colombia (5003058315).jpg"
+      },
+      "reviewedOn": "2026-10-07",
+      "active": true,
+      "placement": "annotated-header",
+      "packId": "un-dia-en-colombia"
+    },
+    {
+      "page": {
+        "pageid": 122647947,
+        "ns": 6,
+        "title": "File:Cobbled street - Oaxaca de Juárez, 2022-08.jpg",
+        "imagerepository": "local",
+        "imageinfo": [
+          {
+            "thumburl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1c/Cobbled_street_-_Oaxaca_de_Ju%C3%A1rez%2C_2022-08.jpg/1280px-Cobbled_street_-_Oaxaca_de_Ju%C3%A1rez%2C_2022-08.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+            "thumbwidth": 1200,
+            "thumbheight": 949,
+            "responsiveUrls": {
+              "2": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1c/Cobbled_street_-_Oaxaca_de_Ju%C3%A1rez%2C_2022-08.jpg/3840px-Cobbled_street_-_Oaxaca_de_Ju%C3%A1rez%2C_2022-08.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+            },
+            "thumbattribs": {
+              "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1c/Cobbled_street_-_Oaxaca_de_Ju%C3%A1rez%2C_2022-08.jpg/1280px-Cobbled_street_-_Oaxaca_de_Ju%C3%A1rez%2C_2022-08.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+              "decoding": "async",
+              "loading": "lazy",
+              "width": 1200,
+              "height": 949,
+              "srcset": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1c/Cobbled_street_-_Oaxaca_de_Ju%C3%A1rez%2C_2022-08.jpg/3840px-Cobbled_street_-_Oaxaca_de_Ju%C3%A1rez%2C_2022-08.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail 2x"
+            },
+            "url": "https://upload.wikimedia.org/wikipedia/commons/1/1c/Cobbled_street_-_Oaxaca_de_Ju%C3%A1rez%2C_2022-08.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+            "descriptionurl": "https://commons.wikimedia.org/wiki/File:Cobbled_street_-_Oaxaca_de_Ju%C3%A1rez,_2022-08.jpg",
+            "descriptionshorturl": "https://commons.wikimedia.org/w/index.php?curid=122647947",
+            "extmetadata": {
+              "DateTime": {
+                "value": "2022-09-04 16:54:40",
+                "source": "mediawiki-metadata",
+                "hidden": ""
+              },
+              "ObjectName": {
+                "value": "Cobbled street - Oaxaca de Juárez, 2022-08",
+                "source": "mediawiki-metadata"
+              },
+              "CommonsMetadataExtension": {
+                "value": 1.2,
+                "source": "extension",
+                "hidden": ""
+              },
+              "Categories": {
+                "value": "Files with coordinates missing SDC location of creation|Flickr images reviewed by FlickreviewR 2|2022 in Oaxaca de Juárez|Streets in Oaxaca de Juárez|Sett-paved streets in Mexico",
+                "source": "commons-categories",
+                "hidden": ""
+              },
+              "Assessments": {
+                "value": "",
+                "source": "commons-categories",
+                "hidden": ""
+              },
+              "GPSLatitude": {
+                "value": "17.063677",
+                "source": "commons-desc-page"
+              },
+              "GPSLongitude": {
+                "value": "-96.722989",
+                "source": "commons-desc-page"
+              },
+              "GPSMapDatum": {
+                "value": "WGS-84",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "ImageDescription": {
+                "value": "Oaxaca de Juárez, Mexico",
+                "source": "commons-desc-page"
+              },
+              "DateTimeOriginal": {
+                "value": "2022-08-26 22:35:43",
+                "source": "commons-desc-page"
+              },
+              "Credit": {
+                "value": "<a rel=\"nofollow\" class=\"external free\" href=\"https://www.flickr.com/photos/fran001/52326255927/\">https://www.flickr.com/photos/fran001/52326255927/</a>",
+                "source": "commons-desc-page"
+              },
+              "Artist": {
+                "value": "Francisco Anzola",
+                "source": "commons-desc-page"
+              },
+              "LicenseShortName": {
+                "value": "CC BY 2.0",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "UsageTerms": {
+                "value": "Creative Commons Attribution 2.0",
+                "source": "commons-desc-page"
+              },
+              "AttributionRequired": {
+                "value": "true",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "LicenseUrl": {
+                "value": "https://creativecommons.org/licenses/by/2.0",
+                "source": "commons-desc-page"
+              },
+              "Copyrighted": {
+                "value": "True",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "Restrictions": {
+                "value": "",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "License": {
+                "value": "cc-by-2.0",
+                "source": "commons-templates",
+                "hidden": ""
+              }
+            }
+          }
+        ]
+      },
+      "target": "images/kultur/stedsfoto/commons-122647947.jpg",
+      "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1c/Cobbled_street_-_Oaxaca_de_Ju%C3%A1rez%2C_2022-08.jpg/1280px-Cobbled_street_-_Oaxaca_de_Ju%C3%A1rez%2C_2022-08.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "width": 1280,
+      "height": 1012,
+      "sha256": "648ca490f0d486e95520cebd2291d1fb2db3a4fca67927b5df6c12bf25d48d7b",
+      "bytes": 497700,
+      "usage": {
+        "id": "photo-122647947",
+        "path": "images/kultur/stedsfoto/commons-122647947.jpg",
+        "width": 1280,
+        "height": 1012,
+        "afterParagraph": 2,
+        "caption": "En brosteinsgate i Oaxaca de Juárez. Foto fra 2022.",
+        "alt": "En brosteinsgate med fargerike vimpler mellom bygningene i Oaxaca.",
+        "author": "Francisco Anzola",
+        "date": "2022",
+        "license": "CC BY 2.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Cobbled_street_-_Oaxaca_de_Ju%C3%A1rez%2C_2022-08.jpg",
+        "changes": "Nedskalert av Commons; ikke beskåret.",
+        "originalTitle": "Cobbled street - Oaxaca de Juárez, 2022-08.jpg"
+      },
+      "reviewedOn": "2026-10-07",
+      "active": true,
+      "placement": "annotated-header",
+      "packId": "un-dia-en-mexico"
+    },
+    {
+      "page": {
+        "pageid": 61922400,
+        "ns": 6,
+        "title": "File:Copan (3831028715).jpg",
+        "imagerepository": "local",
+        "imageinfo": [
+          {
+            "thumburl": "https://upload.wikimedia.org/wikipedia/commons/e/ee/Copan_%283831028715%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+            "thumbwidth": 1200,
+            "thumbheight": 900,
+            "thumbattribs": {
+              "src": "https://upload.wikimedia.org/wikipedia/commons/e/ee/Copan_%283831028715%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+              "decoding": "async",
+              "loading": "lazy",
+              "width": 1200,
+              "height": 900
+            },
+            "url": "https://upload.wikimedia.org/wikipedia/commons/e/ee/Copan_%283831028715%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+            "descriptionurl": "https://commons.wikimedia.org/wiki/File:Copan_(3831028715).jpg",
+            "descriptionshorturl": "https://commons.wikimedia.org/w/index.php?curid=61922400",
+            "extmetadata": {
+              "DateTime": {
+                "value": "2017-08-25 10:15:52",
+                "source": "mediawiki-metadata",
+                "hidden": ""
+              },
+              "ObjectName": {
+                "value": "Copan (3831028715)",
+                "source": "mediawiki-metadata"
+              },
+              "CommonsMetadataExtension": {
+                "value": 1.2,
+                "source": "extension",
+                "hidden": ""
+              },
+              "Categories": {
+                "value": "Copán|Flickr images reviewed by FlickreviewR",
+                "source": "commons-categories",
+                "hidden": ""
+              },
+              "Assessments": {
+                "value": "",
+                "source": "commons-categories",
+                "hidden": ""
+              },
+              "ImageDescription": {
+                "value": "<p>Copan<br>\n</p>\nCopán, Honduras",
+                "source": "commons-desc-page"
+              },
+              "DateTimeOriginal": {
+                "value": "2009-08-17 10:37",
+                "source": "commons-desc-page"
+              },
+              "Credit": {
+                "value": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/photos/martijnmunneke/3831028715/\">Copan</a>",
+                "source": "commons-desc-page"
+              },
+              "Artist": {
+                "value": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/people/25529311@N03\">Martijn.Munneke</a> from Netherlands",
+                "source": "commons-desc-page"
+              },
+              "LicenseShortName": {
+                "value": "CC BY 2.0",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "UsageTerms": {
+                "value": "Creative Commons Attribution 2.0",
+                "source": "commons-desc-page"
+              },
+              "AttributionRequired": {
+                "value": "true",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "LicenseUrl": {
+                "value": "https://creativecommons.org/licenses/by/2.0",
+                "source": "commons-desc-page"
+              },
+              "Copyrighted": {
+                "value": "True",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "Restrictions": {
+                "value": "",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "License": {
+                "value": "cc-by-2.0",
+                "source": "commons-templates",
+                "hidden": ""
+              }
+            }
+          }
+        ]
+      },
+      "target": "images/kultur/stedsfoto/commons-61922400.jpg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/e/ee/Copan_%283831028715%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "width": 800,
+      "height": 600,
+      "sha256": "c977f936a56e3b219d0b342aa339fe3969430751b457a4e55cc93f214023de57",
+      "bytes": 198579,
+      "usage": {
+        "id": "photo-61922400",
+        "path": "images/kultur/stedsfoto/commons-61922400.jpg",
+        "width": 800,
+        "height": 600,
+        "afterParagraph": 2,
+        "caption": "Byggverk fra mayabyen Copán. Foto fra 2009.",
+        "alt": "Et trappeformet steinbygg omgitt av gress og trær i Copán.",
+        "author": "Martijn.Munneke",
+        "date": "2009",
+        "license": "CC BY 2.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Copan_%283831028715%29.jpg",
+        "changes": "Nedskalert av Commons; ikke beskåret.",
+        "originalTitle": "Copan (3831028715).jpg"
+      },
+      "reviewedOn": "2026-10-07",
+      "active": true,
+      "placement": "annotated-header",
+      "packId": "un-dia-en-honduras"
+    },
+    {
+      "page": {
+        "pageid": 61922367,
+        "ns": 6,
+        "title": "File:Copan (3831820766).jpg",
+        "imagerepository": "local",
+        "imageinfo": [
+          {
+            "thumburl": "https://upload.wikimedia.org/wikipedia/commons/3/31/Copan_%283831820766%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+            "thumbwidth": 1200,
+            "thumbheight": 1600,
+            "thumbattribs": {
+              "src": "https://upload.wikimedia.org/wikipedia/commons/3/31/Copan_%283831820766%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+              "decoding": "async",
+              "loading": "lazy",
+              "width": 1200,
+              "height": 1600
+            },
+            "url": "https://upload.wikimedia.org/wikipedia/commons/3/31/Copan_%283831820766%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+            "descriptionurl": "https://commons.wikimedia.org/wiki/File:Copan_(3831820766).jpg",
+            "descriptionshorturl": "https://commons.wikimedia.org/w/index.php?curid=61922367",
+            "extmetadata": {
+              "DateTime": {
+                "value": "2017-08-25 10:15:13",
+                "source": "mediawiki-metadata",
+                "hidden": ""
+              },
+              "ObjectName": {
+                "value": "Copan (3831820766)",
+                "source": "mediawiki-metadata"
+              },
+              "CommonsMetadataExtension": {
+                "value": 1.2,
+                "source": "extension",
+                "hidden": ""
+              },
+              "Categories": {
+                "value": "Copán|Flickr images reviewed by FlickreviewR|Flickr images missing SDC published in",
+                "source": "commons-categories",
+                "hidden": ""
+              },
+              "Assessments": {
+                "value": "",
+                "source": "commons-categories",
+                "hidden": ""
+              },
+              "ImageDescription": {
+                "value": "<p>Copan<br>\n</p>\nCopán, Honduras",
+                "source": "commons-desc-page"
+              },
+              "DateTimeOriginal": {
+                "value": "2009-08-17 09:56",
+                "source": "commons-desc-page"
+              },
+              "Credit": {
+                "value": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/photos/martijnmunneke/3831820766/\">Copan</a>",
+                "source": "commons-desc-page"
+              },
+              "Artist": {
+                "value": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/people/25529311@N03\">Martijn.Munneke</a> from Netherlands",
+                "source": "commons-desc-page"
+              },
+              "LicenseShortName": {
+                "value": "CC BY 2.0",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "UsageTerms": {
+                "value": "Creative Commons Attribution 2.0",
+                "source": "commons-desc-page"
+              },
+              "AttributionRequired": {
+                "value": "true",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "LicenseUrl": {
+                "value": "https://creativecommons.org/licenses/by/2.0",
+                "source": "commons-desc-page"
+              },
+              "Copyrighted": {
+                "value": "True",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "Restrictions": {
+                "value": "",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "License": {
+                "value": "cc-by-2.0",
+                "source": "commons-templates",
+                "hidden": ""
+              }
+            }
+          }
+        ]
+      },
+      "target": "images/kultur/stedsfoto/commons-61922367.jpg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/3/31/Copan_%283831820766%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "width": 600,
+      "height": 800,
+      "sha256": "28a95053ab1b68f1a060d9f890e11d0f0744dc8ef630638197c1a01c600d8324",
+      "bytes": 171255,
+      "usage": {
+        "id": "photo-61922367",
+        "path": "images/kultur/stedsfoto/commons-61922367.jpg",
+        "width": 600,
+        "height": 800,
+        "afterParagraph": 2,
+        "caption": "Detaljer i et steinbygg i Copán. Foto fra 2009.",
+        "alt": "Steinblokker med relieffer og utskårne figurer i Copán.",
+        "author": "Martijn.Munneke",
+        "date": "2009",
+        "license": "CC BY 2.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Copan_%283831820766%29.jpg",
+        "changes": "Nedskalert av Commons; ikke beskåret.",
+        "originalTitle": "Copan (3831820766).jpg"
+      },
+      "reviewedOn": "2026-10-07",
+      "active": true,
+      "placement": "reading-side",
+      "packId": "un-dia-en-honduras"
+    },
+    {
+      "page": {
+        "pageid": 169899306,
+        "ns": 6,
+        "title": "File:Cusco Plaza de Armas - 48898954308.jpg",
+        "imagerepository": "local",
+        "imageinfo": [
+          {
+            "thumburl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/48/Cusco_Plaza_de_Armas_-_48898954308.jpg/1280px-Cusco_Plaza_de_Armas_-_48898954308.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+            "thumbwidth": 1200,
+            "thumbheight": 170,
+            "responsiveUrls": {
+              "2": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/48/Cusco_Plaza_de_Armas_-_48898954308.jpg/3840px-Cusco_Plaza_de_Armas_-_48898954308.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+            },
+            "thumbattribs": {
+              "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/48/Cusco_Plaza_de_Armas_-_48898954308.jpg/1280px-Cusco_Plaza_de_Armas_-_48898954308.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+              "decoding": "async",
+              "loading": "lazy",
+              "width": 1200,
+              "height": 170,
+              "srcset": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/48/Cusco_Plaza_de_Armas_-_48898954308.jpg/3840px-Cusco_Plaza_de_Armas_-_48898954308.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail 2x"
+            },
+            "url": "https://upload.wikimedia.org/wikipedia/commons/4/48/Cusco_Plaza_de_Armas_-_48898954308.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+            "descriptionurl": "https://commons.wikimedia.org/wiki/File:Cusco_Plaza_de_Armas_-_48898954308.jpg",
+            "descriptionshorturl": "https://commons.wikimedia.org/w/index.php?curid=169899306",
+            "extmetadata": {
+              "DateTime": {
+                "value": "2025-07-13 20:06:15",
+                "source": "mediawiki-metadata",
+                "hidden": ""
+              },
+              "ObjectName": {
+                "value": "Cusco Plaza de Armas - 48898954308",
+                "source": "mediawiki-metadata"
+              },
+              "CommonsMetadataExtension": {
+                "value": 1.2,
+                "source": "extension",
+                "hidden": ""
+              },
+              "Categories": {
+                "value": "Plaza de Armas (Cusco)|Files with coordinates missing SDC location of creation|Flickr images reviewed by FlickreviewR 2",
+                "source": "commons-categories",
+                "hidden": ""
+              },
+              "Assessments": {
+                "value": "",
+                "source": "commons-categories",
+                "hidden": ""
+              },
+              "GPSLatitude": {
+                "value": "-13.516310",
+                "source": "commons-desc-page"
+              },
+              "GPSLongitude": {
+                "value": "-71.978433",
+                "source": "commons-desc-page"
+              },
+              "GPSMapDatum": {
+                "value": "WGS-84",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "ImageDescription": {
+                "value": "Panorama of Cusco's main square",
+                "source": "commons-desc-page"
+              },
+              "DateTimeOriginal": {
+                "value": "2018-11-25 18:45:09",
+                "source": "commons-desc-page"
+              },
+              "Credit": {
+                "value": "<a rel=\"nofollow\" class=\"external free\" href=\"https://www.flickr.com/photos/sucramyef2/48898954308/\">https://www.flickr.com/photos/sucramyef2/48898954308/</a>",
+                "source": "commons-desc-page"
+              },
+              "Artist": {
+                "value": "Sucram Yef",
+                "source": "commons-desc-page"
+              },
+              "LicenseShortName": {
+                "value": "CC BY 2.0",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "UsageTerms": {
+                "value": "Creative Commons Attribution 2.0",
+                "source": "commons-desc-page"
+              },
+              "AttributionRequired": {
+                "value": "true",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "LicenseUrl": {
+                "value": "https://creativecommons.org/licenses/by/2.0",
+                "source": "commons-desc-page"
+              },
+              "Copyrighted": {
+                "value": "True",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "Restrictions": {
+                "value": "",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "License": {
+                "value": "cc-by-2.0",
+                "source": "commons-templates",
+                "hidden": ""
+              }
+            }
+          }
+        ]
+      },
+      "target": "images/kultur/stedsfoto/commons-169899306.jpg",
+      "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/48/Cusco_Plaza_de_Armas_-_48898954308.jpg/1280px-Cusco_Plaza_de_Armas_-_48898954308.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "width": 1280,
+      "height": 182,
+      "sha256": "65dc07d773e39babe03c8ab176babf73c4956a6d06e1eb1af6b76ec7154bd388",
+      "bytes": 82794,
+      "usage": {
+        "packId": "un-dia-en-peru",
+        "id": "photo-169899306",
+        "path": "images/kultur/stedsfoto/commons-169899306.jpg",
+        "width": 1280,
+        "height": 182,
+        "afterParagraph": 5,
+        "caption": "Panorama over Plaza de Armas i Cusco. Foto fra 2018.",
+        "alt": "Et bredt utsyn over Plaza de Armas med kirker, bygninger og fjell i bakgrunnen.",
+        "author": "Sucram Yef",
+        "date": "2018",
+        "license": "CC BY 2.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Cusco_Plaza_de_Armas_-_48898954308.jpg",
+        "changes": "Nedskalert av Commons; ikke beskåret.",
+        "originalTitle": "Cusco Plaza de Armas - 48898954308.jpg"
+      },
+      "reviewedOn": "2026-10-07",
+      "active": false
+    },
+    {
+      "page": {
+        "pageid": 151201799,
+        "ns": 6,
+        "title": "File:Cusco San Pedro Market 1.jpg",
+        "imagerepository": "local",
+        "imageinfo": [
+          {
+            "thumburl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3e/Cusco_San_Pedro_Market_1.jpg/1280px-Cusco_San_Pedro_Market_1.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+            "thumbwidth": 1200,
+            "thumbheight": 900,
+            "responsiveUrls": {
+              "2": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3e/Cusco_San_Pedro_Market_1.jpg/3840px-Cusco_San_Pedro_Market_1.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+            },
+            "thumbattribs": {
+              "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3e/Cusco_San_Pedro_Market_1.jpg/1280px-Cusco_San_Pedro_Market_1.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+              "decoding": "async",
+              "loading": "lazy",
+              "width": 1200,
+              "height": 900,
+              "srcset": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3e/Cusco_San_Pedro_Market_1.jpg/3840px-Cusco_San_Pedro_Market_1.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail 2x"
+            },
+            "url": "https://upload.wikimedia.org/wikipedia/commons/3/3e/Cusco_San_Pedro_Market_1.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+            "descriptionurl": "https://commons.wikimedia.org/wiki/File:Cusco_San_Pedro_Market_1.jpg",
+            "descriptionshorturl": "https://commons.wikimedia.org/w/index.php?curid=151201799",
+            "extmetadata": {
+              "DateTime": {
+                "value": "2024-08-05 18:02:01",
+                "source": "mediawiki-metadata",
+                "hidden": ""
+              },
+              "ObjectName": {
+                "value": "Cusco San Pedro Market 1",
+                "source": "mediawiki-metadata"
+              },
+              "CommonsMetadataExtension": {
+                "value": 1.2,
+                "source": "extension",
+                "hidden": ""
+              },
+              "Categories": {
+                "value": "Mercado Central de San Pedro|Flickr images reviewed by FlickreviewR 2",
+                "source": "commons-categories",
+                "hidden": ""
+              },
+              "Assessments": {
+                "value": "",
+                "source": "commons-categories",
+                "hidden": ""
+              },
+              "ImageDescription": {
+                "value": "San Pedro Market in Cusco",
+                "source": "commons-desc-page"
+              },
+              "DateTimeOriginal": {
+                "value": "2014-07-04 19:07:46",
+                "source": "commons-desc-page"
+              },
+              "Credit": {
+                "value": "<a rel=\"nofollow\" class=\"external free\" href=\"https://www.flickr.com/photos/21822583@N08/15984604267/\">https://www.flickr.com/photos/21822583@N08/15984604267/</a>",
+                "source": "commons-desc-page"
+              },
+              "Artist": {
+                "value": "Chuck Moravec",
+                "source": "commons-desc-page"
+              },
+              "LicenseShortName": {
+                "value": "CC BY 2.0",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "UsageTerms": {
+                "value": "Creative Commons Attribution 2.0",
+                "source": "commons-desc-page"
+              },
+              "AttributionRequired": {
+                "value": "true",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "LicenseUrl": {
+                "value": "https://creativecommons.org/licenses/by/2.0",
+                "source": "commons-desc-page"
+              },
+              "Copyrighted": {
+                "value": "True",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "Restrictions": {
+                "value": "",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "License": {
+                "value": "cc-by-2.0",
+                "source": "commons-templates",
+                "hidden": ""
+              }
+            }
+          }
+        ]
+      },
+      "target": "images/kultur/stedsfoto/commons-151201799.jpg",
+      "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3e/Cusco_San_Pedro_Market_1.jpg/1280px-Cusco_San_Pedro_Market_1.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "width": 1280,
+      "height": 960,
+      "sha256": "af2134b5ae6d7ebaa727d5d67c3f8ccde46937799dad9452b40a7300d90d6f73",
+      "bytes": 400616,
+      "usage": {
+        "id": "photo-151201799",
+        "path": "images/kultur/stedsfoto/commons-151201799.jpg",
+        "width": 1280,
+        "height": 960,
+        "afterParagraph": 2,
+        "caption": "San Pedro-markedet i Cusco. Foto fra 2014.",
+        "alt": "Folk og markedsboder utenfor San Pedro-markedet, med fjell i bakgrunnen.",
+        "author": "Chuck Moravec",
+        "date": "2014",
+        "license": "CC BY 2.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Cusco_San_Pedro_Market_1.jpg",
+        "changes": "Nedskalert av Commons; ikke beskåret.",
+        "originalTitle": "Cusco San Pedro Market 1.jpg"
+      },
+      "reviewedOn": "2026-10-07",
+      "active": true,
+      "placement": "annotated-header",
+      "packId": "un-dia-en-peru"
+    },
+    {
+      "page": {
+        "pageid": 9946704,
+        "ns": 6,
+        "title": "File:Horchateria de Santa Catalina en Valencia.jpg",
+        "imagerepository": "local",
+        "imageinfo": [
+          {
+            "thumburl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/87/Horchateria_de_Santa_Catalina_en_Valencia.jpg/1280px-Horchateria_de_Santa_Catalina_en_Valencia.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+            "thumbwidth": 1200,
+            "thumbheight": 900,
+            "responsiveUrls": {
+              "2": "https://upload.wikimedia.org/wikipedia/commons/8/87/Horchateria_de_Santa_Catalina_en_Valencia.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+            },
+            "thumbattribs": {
+              "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/87/Horchateria_de_Santa_Catalina_en_Valencia.jpg/1280px-Horchateria_de_Santa_Catalina_en_Valencia.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+              "decoding": "async",
+              "loading": "lazy",
+              "width": 1200,
+              "height": 900,
+              "srcset": "https://upload.wikimedia.org/wikipedia/commons/8/87/Horchateria_de_Santa_Catalina_en_Valencia.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled 2x"
+            },
+            "url": "https://upload.wikimedia.org/wikipedia/commons/8/87/Horchateria_de_Santa_Catalina_en_Valencia.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+            "descriptionurl": "https://commons.wikimedia.org/wiki/File:Horchateria_de_Santa_Catalina_en_Valencia.jpg",
+            "descriptionshorturl": "https://commons.wikimedia.org/w/index.php?curid=9946704",
+            "extmetadata": {
+              "DateTime": {
+                "value": "2022-06-24 10:12:01",
+                "source": "mediawiki-metadata",
+                "hidden": ""
+              },
+              "ObjectName": {
+                "value": "Horchateria de Santa Catalina en Valencia",
+                "source": "mediawiki-metadata"
+              },
+              "CommonsMetadataExtension": {
+                "value": 1.2,
+                "source": "extension",
+                "hidden": ""
+              },
+              "Categories": {
+                "value": "Retouched pictures|Horchatería de Santa Catalina|Flickr images reviewed by trusted users|Food with visible powdered sugar|Glasses of orxata de xufa|Orxata and fartons|Files from Heather Cowper Flickr stream",
+                "source": "commons-categories",
+                "hidden": ""
+              },
+              "Assessments": {
+                "value": "",
+                "source": "commons-categories",
+                "hidden": ""
+              },
+              "ImageDescription": {
+                "value": "Horchata, servida en una horchatería de Valencia.",
+                "source": "commons-desc-page"
+              },
+              "DateTimeOriginal": {
+                "value": "2008-04-07 15:25",
+                "source": "commons-desc-page"
+              },
+              "Credit": {
+                "value": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/photos/22446827@N02/2407417818/\">Horchateria de Santa Catalina in Valencia</a>",
+                "source": "commons-desc-page"
+              },
+              "Artist": {
+                "value": "<p><a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/people/22446827@N02\">Heather Cowper</a> from Bristol, UK \n</p>\n<a rel=\"nofollow\" class=\"external autonumber\" href=\"http://www.heatheronhertravels.com/\">[1]</a>",
+                "source": "commons-desc-page"
+              },
+              "Permission": {
+                "value": "See below.This photo is licensed under Creative commons for use including commercial on condition that you link back to or credit <a rel=\"nofollow\" class=\"external free\" href=\"http://www.heatheronhertravels.com/\">http://www.heatheronhertravels.com/</a>.",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "LicenseShortName": {
+                "value": "CC BY 2.0",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "UsageTerms": {
+                "value": "Creative Commons Attribution 2.0",
+                "source": "commons-desc-page"
+              },
+              "AttributionRequired": {
+                "value": "true",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "Attribution": {
+                "value": "www.heatheronhertravels.com",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "LicenseUrl": {
+                "value": "https://creativecommons.org/licenses/by/2.0",
+                "source": "commons-desc-page"
+              },
+              "Copyrighted": {
+                "value": "True",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "Restrictions": {
+                "value": "",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "License": {
+                "value": "cc-by-2.0",
+                "source": "commons-templates",
+                "hidden": ""
+              }
+            }
+          }
+        ]
+      },
+      "target": "images/kultur/stedsfoto/commons-9946704.jpg",
+      "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/87/Horchateria_de_Santa_Catalina_en_Valencia.jpg/1280px-Horchateria_de_Santa_Catalina_en_Valencia.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "width": 1280,
+      "height": 960,
+      "sha256": "6a6ab656cd1b8848078437e25925ae638f5afda6f5e0913e18485ff8edd492fe",
+      "bytes": 299065,
+      "usage": {
+        "id": "photo-9946704",
+        "path": "images/kultur/stedsfoto/commons-9946704.jpg",
+        "width": 1280,
+        "height": 960,
+        "afterParagraph": 2,
+        "caption": "Horchata og fartons servert i Horchatería de Santa Catalina i Valencia. Foto fra 2008.",
+        "alt": "Et glass horchata og avlange bakverk på en tallerken.",
+        "author": "Heather Cowper",
+        "date": "2008",
+        "license": "CC BY 2.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Horchateria_de_Santa_Catalina_en_Valencia.jpg",
+        "changes": "Commons-versjon med justerte fargenivåer, nedskalert; ikke beskåret.",
+        "authorUrl": "https://www.heatheronhertravels.com/",
+        "originalTitle": "Horchateria de Santa Catalina en Valencia.jpg"
+      },
+      "reviewedOn": "2026-10-07",
+      "active": true,
+      "placement": "annotated-header",
+      "packId": "un-dia-en-espana"
+    },
+    {
+      "page": {
+        "pageid": 99573778,
+        "ns": 6,
+        "title": "File:Mercado a 20 Noviembre, Oaxaca.jpg",
+        "imagerepository": "local",
+        "imageinfo": [
+          {
+            "thumburl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/88/Mercado_a_20_Noviembre%2C_Oaxaca.jpg/1280px-Mercado_a_20_Noviembre%2C_Oaxaca.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+            "thumbwidth": 1200,
+            "thumbheight": 698,
+            "responsiveUrls": {
+              "2": "https://upload.wikimedia.org/wikipedia/commons/8/88/Mercado_a_20_Noviembre%2C_Oaxaca.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+            },
+            "thumbattribs": {
+              "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/88/Mercado_a_20_Noviembre%2C_Oaxaca.jpg/1280px-Mercado_a_20_Noviembre%2C_Oaxaca.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+              "decoding": "async",
+              "loading": "lazy",
+              "width": 1200,
+              "height": 698,
+              "srcset": "https://upload.wikimedia.org/wikipedia/commons/8/88/Mercado_a_20_Noviembre%2C_Oaxaca.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled 2x"
+            },
+            "url": "https://upload.wikimedia.org/wikipedia/commons/8/88/Mercado_a_20_Noviembre%2C_Oaxaca.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+            "descriptionurl": "https://commons.wikimedia.org/wiki/File:Mercado_a_20_Noviembre,_Oaxaca.jpg",
+            "descriptionshorturl": "https://commons.wikimedia.org/w/index.php?curid=99573778",
+            "extmetadata": {
+              "DateTime": {
+                "value": "2021-02-04 18:39:57",
+                "source": "mediawiki-metadata",
+                "hidden": ""
+              },
+              "ObjectName": {
+                "value": "Mercado a 20 Noviembre, Oaxaca",
+                "source": "mediawiki-metadata"
+              },
+              "CommonsMetadataExtension": {
+                "value": 1.2,
+                "source": "extension",
+                "hidden": ""
+              },
+              "Categories": {
+                "value": "January 2021 in Mexico|Files with coordinates missing SDC location of creation|Flickr images reviewed by FlickreviewR 2|Mexico photographs taken on 2021-01-22|Protective masks during the COVID-19 pandemic in Mexico|Restaurants in Mexico photographed in 2021|2021 in Oaxaca de Juárez|Restaurants in Oaxaca de Juárez|20 de noviembre Market, Oaxaca",
+                "source": "commons-categories",
+                "hidden": ""
+              },
+              "Assessments": {
+                "value": "",
+                "source": "commons-categories",
+                "hidden": ""
+              },
+              "GPSLatitude": {
+                "value": "17.057950",
+                "source": "commons-desc-page"
+              },
+              "GPSLongitude": {
+                "value": "-96.727106",
+                "source": "commons-desc-page"
+              },
+              "GPSMapDatum": {
+                "value": "WGS-84",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "ImageDescription": {
+                "value": "Mercado a 20 Noviembre, Oaxaca",
+                "source": "commons-desc-page"
+              },
+              "DateTimeOriginal": {
+                "value": "2021-01-22 14:12:53",
+                "source": "commons-desc-page"
+              },
+              "Credit": {
+                "value": "<a rel=\"nofollow\" class=\"external free\" href=\"https://www.flickr.com/photos/dnevill/50864915252/\">https://www.flickr.com/photos/dnevill/50864915252/</a>",
+                "source": "commons-desc-page"
+              },
+              "Artist": {
+                "value": "Dan Nevill",
+                "source": "commons-desc-page"
+              },
+              "LicenseShortName": {
+                "value": "CC BY 2.0",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "UsageTerms": {
+                "value": "Creative Commons Attribution 2.0",
+                "source": "commons-desc-page"
+              },
+              "AttributionRequired": {
+                "value": "true",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "LicenseUrl": {
+                "value": "https://creativecommons.org/licenses/by/2.0",
+                "source": "commons-desc-page"
+              },
+              "Copyrighted": {
+                "value": "True",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "Restrictions": {
+                "value": "",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "License": {
+                "value": "cc-by-2.0",
+                "source": "commons-templates",
+                "hidden": ""
+              }
+            }
+          }
+        ]
+      },
+      "target": "images/kultur/stedsfoto/commons-99573778.jpg",
+      "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/88/Mercado_a_20_Noviembre%2C_Oaxaca.jpg/1280px-Mercado_a_20_Noviembre%2C_Oaxaca.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "width": 1280,
+      "height": 744,
+      "sha256": "41320dc6ac9769f32163373b5748be143666544327d6c74e48241ed8ec582dd3",
+      "bytes": 340331,
+      "usage": {
+        "id": "photo-99573778",
+        "path": "images/kultur/stedsfoto/commons-99573778.jpg",
+        "width": 1280,
+        "height": 744,
+        "afterParagraph": 2,
+        "caption": "Matboder i Mercado 20 de Noviembre i Oaxaca, et annet marked enn Benito Juárez i fortellingen. Foto fra 2021.",
+        "alt": "Matboder med kokekar og disker under skilt som sier Comedor og Catita.",
+        "author": "Dan Nevill",
+        "date": "2021",
+        "license": "CC BY 2.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mercado_a_20_Noviembre%2C_Oaxaca.jpg",
+        "changes": "Nedskalert av Commons; ikke beskåret.",
+        "originalTitle": "Mercado a 20 Noviembre, Oaxaca.jpg"
+      },
+      "reviewedOn": "2026-10-07",
+      "active": true,
+      "placement": "reading-side",
+      "packId": "un-dia-en-mexico"
+    },
+    {
+      "page": {
+        "pageid": 105047856,
+        "ns": 6,
+        "title": "File:Plaza Regocijo Cusco.jpg",
+        "imagerepository": "local",
+        "imageinfo": [
+          {
+            "thumburl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/17/Plaza_Regocijo_Cusco.jpg/1280px-Plaza_Regocijo_Cusco.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+            "thumbwidth": 1280,
+            "thumbheight": 960,
+            "responsiveUrls": {
+              "2": "https://upload.wikimedia.org/wikipedia/commons/1/17/Plaza_Regocijo_Cusco.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+            },
+            "thumbattribs": {
+              "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/17/Plaza_Regocijo_Cusco.jpg/1280px-Plaza_Regocijo_Cusco.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+              "decoding": "async",
+              "loading": "lazy",
+              "width": 1280,
+              "height": 960,
+              "srcset": "https://upload.wikimedia.org/wikipedia/commons/1/17/Plaza_Regocijo_Cusco.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled 2x"
+            },
+            "url": "https://upload.wikimedia.org/wikipedia/commons/1/17/Plaza_Regocijo_Cusco.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+            "descriptionurl": "https://commons.wikimedia.org/wiki/File:Plaza_Regocijo_Cusco.jpg",
+            "descriptionshorturl": "https://commons.wikimedia.org/w/index.php?curid=105047856",
+            "extmetadata": {
+              "DateTime": {
+                "value": "2021-05-08 14:48:18",
+                "source": "mediawiki-metadata",
+                "hidden": ""
+              },
+              "ObjectName": {
+                "value": "Plaza Regocijo Cusco",
+                "source": "mediawiki-metadata"
+              },
+              "CommonsMetadataExtension": {
+                "value": 1.2,
+                "source": "extension",
+                "hidden": ""
+              },
+              "Categories": {
+                "value": "Plaza Kusipata|Flickr images reviewed by FlickreviewR 2|Photographs by Sasha India",
+                "source": "commons-categories",
+                "hidden": ""
+              },
+              "Assessments": {
+                "value": "",
+                "source": "commons-categories",
+                "hidden": ""
+              },
+              "ImageDescription": {
+                "value": "Cusco, Peru",
+                "source": "commons-desc-page"
+              },
+              "DateTimeOriginal": {
+                "value": "2014-06-16 17:19",
+                "source": "commons-desc-page"
+              },
+              "Credit": {
+                "value": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/photos/sasha-india/37016095865/\">Cusco, Peru</a>",
+                "source": "commons-desc-page"
+              },
+              "Artist": {
+                "value": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/people/35385832@N05\">Sasha India</a>",
+                "source": "commons-desc-page"
+              },
+              "LicenseShortName": {
+                "value": "CC BY 2.0",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "UsageTerms": {
+                "value": "Creative Commons Attribution 2.0",
+                "source": "commons-desc-page"
+              },
+              "AttributionRequired": {
+                "value": "true",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "LicenseUrl": {
+                "value": "https://creativecommons.org/licenses/by/2.0",
+                "source": "commons-desc-page"
+              },
+              "Copyrighted": {
+                "value": "True",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "Restrictions": {
+                "value": "",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "License": {
+                "value": "cc-by-2.0",
+                "source": "commons-templates",
+                "hidden": ""
+              }
+            }
+          }
+        ]
+      },
+      "target": "images/kultur/stedsfoto/commons-105047856.jpg",
+      "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/17/Plaza_Regocijo_Cusco.jpg/1280px-Plaza_Regocijo_Cusco.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "width": 1280,
+      "height": 960,
+      "bytes": 407578,
+      "sha256": "1721d811e94744a4aabdbbcad6d5247c8b6d6efc83badfc472aacffe548050f7",
+      "active": true,
+      "usage": {
+        "id": "photo-105047856",
+        "path": "images/kultur/stedsfoto/commons-105047856.jpg",
+        "width": 1280,
+        "height": 960,
+        "afterParagraph": 2,
+        "caption": "Plaza Regocijo i Cusco, en annen plass enn Plaza de Armas. Foto fra 2014.",
+        "alt": "Trær, benker og en fontene på Plaza Regocijo i Cusco.",
+        "author": "Sasha India",
+        "date": "2014",
+        "license": "CC BY 2.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Plaza_Regocijo_Cusco.jpg",
+        "changes": "Nedskalert av Commons; ikke beskåret.",
+        "originalTitle": "Plaza Regocijo Cusco.jpg"
+      },
+      "placement": "reading-side",
+      "packId": "un-dia-en-peru"
+    }
+  ]
+}
