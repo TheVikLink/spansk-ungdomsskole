@@ -70,7 +70,7 @@ Kulturoppleggene er **arbeidsutkast til lærervurdering**, ikke ferdig faglig go
 ### 🧠 Brainmap
 - Visuell oversikt over A0- og A1-mikroskills og ordforråd
 - Mikroskills er gruppert etter nivå og språkområde
-- Fargekoding: grå (ikke startet), rød (trenger øving), gul (på vei), grønn/gull (gode/sterke svar på øvde oppgaver)
+- Fargekoding: grå (ikke startet), rød (trenger øving), gul (på vei), grønn (sitter godt) og mørkegrønn (sitter svært godt)
 - Ferdigheter uten ferdig øvingsrute vises åpent som planlagt innhold og skjules ikke som om de var mestret
 - Katalogen har 64 ferdigheter: 37 med relevant øvingsrute og 27 planlagte. Dette er ikke et komplett A0–A1-kurs.
 - Eksisterende lokal progresjon og eksport/import beholdes når Brainmap-katalogen utvides

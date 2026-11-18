@@ -16,7 +16,8 @@ test.describe('brainmap v1 progress model', () => {
       getBrainmapStatus({ strength: 5, attempts: 3 })
     ]);
 
-    expect(statuses.map(status => status.key)).toEqual(['gray', 'red', 'yellow', 'green', 'gold']);
+    expect(statuses.map(status => status.key)).toEqual(['gray', 'red', 'yellow', 'green', 'dark-green']);
+    expect(statuses.slice(-2).map(status => status.label)).toEqual(['Sitter godt', 'Sitter svært godt']);
   });
 
   test('builds current nodes, keeps direction differences, and hides unknown ids', async ({ page }) => {
