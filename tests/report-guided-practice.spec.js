@@ -26,7 +26,7 @@ test('F15: repeated single form cannot award a broad verb badge; varied forms su
   expect(result.repeated?.attempts).toBe(6);
   expect(result.repeated.verbForms).toEqual(['hablar:0']);
   expect(result.prematureBadge).toBe(false);
-  expect(['green','gold']).not.toContain(result.status);
+  expect(['green', 'dark-green']).not.toContain(result.status);
   expect(result.varied.verbForms).toHaveLength(6);
   expect(result.badges.some(b => b.skillId===skill)).toBe(true);
   await page.reload();

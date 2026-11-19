@@ -8,7 +8,12 @@ test.afterAll(async () => { await server.close(); });
 async function open(page) {
   await page.goto(server.url);
   await page.evaluate(() => { studentName = 'Test'; showMainApp(); });
-  await page.getByRole('button', { name: 'Åpne uttaleskolen', exact: true }).click();
+  await expect(page.locator('#homePage')).not.toContainText('Lær å lese spansk høyt');
+  const pronunciation = page.getByRole('button', { name: 'Uttale', exact: true });
+  if (!(await pronunciation.isVisible())) {
+    await page.locator('.nav-more summary').click();
+  }
+  await pronunciation.click();
 }
 async function listen(page, role) {
   await page.locator(`[data-pron-play="${role}"]`).click();

@@ -7,7 +7,7 @@
     <meta name="theme-color" content="#dc2626">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Crect width='192' height='192' rx='36' fill='%23dc2626'/%3E%3Ctext x='96' y='122' text-anchor='middle' font-size='96'%3E🇪🇸%3C/text%3E%3C/svg%3E">
     <link rel="manifest" href="./manifest.webmanifest">
-    <meta name="app-build" content="b96d2988d39f2d88">
+    <meta name="app-build" content="21c0592e36137f0e">
     <link href="./dist/tailwind.css" rel="stylesheet">
 </head>
 <body>
@@ -72,7 +72,6 @@
         <main id="mainContent" tabindex="-1">
         <div id="homePage" class="panel hidden">
             <div id="homePrimaryContent"></div>
-            <section class="pron-home"><h2>Lær å lese spansk høyt</h2><p>Uttaleskolen: lytt, prøv selv og sammenlign. En kort økt på 5–8 minutter.</p><button class="btn btn-secondary" onclick="showPage('pronunciation')">Åpne uttaleskolen</button></section>
             <section class="pron-home culture-home" aria-labelledby="homeCultureTitle"><h2 id="homeCultureTitle">Kultur: Mundo AM</h2><p>Les kulturtekster, utforsk bilder og øv på ord fra teksten. Sju opplegg til utprøving og lærervurdering.</p><a class="btn btn-secondary" href="docs/kultur/index.html">Utforsk kultur</a></section>
             <section class="home-manual-section" aria-labelledby="homeManualTitle">
                 <div class="page-header">
@@ -20635,7 +20634,7 @@ const pronunciationManifest = {"schemaVersion":1,"sourceArchiveSha256":"d67fa8c7
         }
 
         function getHomeVocabularyReviewGuidance(reviewWordCount) {
-            if (reviewWordCount) return 'Økten starter med opptil 50 oppgaver.';
+            if (reviewWordCount) return 'Det du henter fram igjen, sitter bedre.';
             const nextDate = getNextVocabularyReviewDate();
             if (nextDate) return `Neste repetisjon: ${nextDate.toLocaleDateString('nb-NO', { day: 'numeric', month: 'long', year: 'numeric' })}. Du kan øve på nye ord under Gloser i mellomtiden.`;
             const hasPractised = cards.some(card => card.reviews > 0 || card.lastReview ||
@@ -20645,57 +20644,380 @@ const pronunciationManifest = {"schemaVersion":1,"sourceArchiveSha256":"d67fa8c7
         }
 
         function startVocabularyReviewFromHome() {
-            if (!getVocabularyReviewWordCount()) { renderHomePage(); return; }
+            const limit = Number(document.getElementById('homeReviewWordLimit')?.value ?? 10);
+            const dueWords = new Map(getDueCards(cards).map(({ card }) => [card.id, card]));
+            const pool = [...dueWords.values()].slice(0, limit);
+            if (!pool.length) { renderHomePage(); return; }
             if (showPage('vocab') === false) return;
-            clearCultureVocabularyContext();
-            startVocabSession('review', null, { reviewLimit: 50 });
+            startVocabSession('review', pool, { reviewLimit: pool.length * 2 });
         }
+
+        const homeActivityLabels = { vocabulary: 'gloser', verbs: 'verb', grammar: 'grammatikk', 'mixed-quiz': 'blandet quiz', practice: 'øving' };
 
         function getTodayActivityText() {
             const entries = practiceHistory.filter(entry => entry.date === getLocalDateString() && entry.words > 0);
             const dictations = loadDictationData().completed.filter(entry => entry.completedOn === getLocalDateString()).length;
-            const labels = { vocabulary: 'gloser', verbs: 'verb', grammar: 'grammatikk', 'mixed-quiz': 'blandet quiz', practice: 'øving' };
-            const activities = [...new Set(entries.map(entry => labels[entry.activity] || 'øving'))];
+            const activities = [...new Set(entries.map(entry => homeActivityLabels[entry.activity] || 'øving'))];
             const words = entries.reduce((sum, entry) => sum + entry.words, 0);
             return [words ? `I dag: ${words} besvarte oppgaver i ${activities.join(', ')}.` : '', dictations ? `${dictations} diktathistorie(r) forsøkt.` : ''].filter(Boolean).join(' ');
+        }
+
+        function getHomeWeekDays(today) {
+            return Array.from({ length: 7 }, (_, index) => {
+                const date = new Date(today);
+                date.setDate(date.getDate() - 6 + index);
+                const answers = new Map();
+                for (const entry of practiceHistory) {
+                    if (entry.date !== getLocalDateString(date) || entry.words <= 0) continue;
+                    const label = homeActivityLabels[entry.activity] || 'øving';
+                    answers.set(label, (answers.get(label) || 0) + entry.words);
+                }
+                return {
+                    date,
+                    total: [...answers.values()].reduce((sum, value) => sum + value, 0),
+                    detail: [...answers].map(([label, count]) => `${count} svar i ${label}`).join(' · ') || 'Ingen øving registrert'
+                };
+            });
+        }
+
+        function renderHomeProgress(progress, days, dateLabel) {
+            const weekday = new Intl.DateTimeFormat('nb-NO', { weekday: 'short' });
+            const lastDay = days[days.length - 1];
+            const max = Math.max(1, ...days.map(day => day.total));
+            const practiced = new Set();
+            const retained = new Set();
+            for (const card of cards) {
+                const pair = getVocabPairKey(card.no, card.es);
+                const wordProgress = progress.wordProgress[card.id];
+                if (card.reviews > 0 || card.noEs.repetitions > 0 || card.esNo.repetitions > 0 || wordProgress?.noToEs?.attempts || wordProgress?.esToNo?.attempts) practiced.add(pair);
+                if (card.noEs.repetitions >= 3 && card.noEs.interval >= 7) retained.add(pair);
+            }
+            const skills = buildBrainmapSkillNodes(progress);
+            const practicedSkills = skills.filter(skill => skill.attempts > 0).sort((a, b) =>
+                (progress.skillProgress[b.id]?.lastSeenAt || '').localeCompare(progress.skillProgress[a.id]?.lastSeenAt || '')
+            );
+            const shownGroups = new Set(practicedSkills.map(skill => skill.group));
+            const featured = practicedSkills.slice(0, 8);
+            for (const skill of skills) {
+                if (featured.length >= 8) break;
+                if (shownGroups.has(skill.group)) continue;
+                featured.push(skill);
+                shownGroups.add(skill.group);
+            }
+            return `
+                <h1 class="home-dashboard-title">Din fremgang</h1>
+                <div class="home-dashboard-grid">
+                    <section class="home-dashboard-panel" id="homeWeekActivity" aria-labelledby="homeWeekTitle">
+                        <h2 id="homeWeekTitle">De siste 7 dagene</h2>
+                        <p class="home-week-range">${dateLabel.format(days[0].date)}–${dateLabel.format(lastDay.date)}</p>
+                        <div class="home-week-metrics">
+                            <p><strong>${days.filter(day => day.total > 0).length} av 7</strong> dager med øving</p>
+                            <p><strong>${days.reduce((sum, day) => sum + day.total, 0)}</strong> besvarte oppgaver</p>
+                        </div>
+                        <div class="home-week-days" role="group" aria-label="Velg dag">
+                            ${days.map(({ date, total }, index) => `<button type="button" data-home-day="${index}" aria-pressed="${index === 6}" aria-label="${weekday.format(date)} ${dateLabel.format(date)}, ${total} svar">
+                                <span>${total}</span>
+                                <span class="home-week-track" aria-hidden="true"><span style="--home-bar-height: ${total / max * 100}%"></span></span>
+                                <span>${weekday.format(date)}</span>
+                            </button>`).join('')}
+                        </div>
+                        <p id="homeDayDetail" class="home-day-detail" aria-live="polite">${lastDay.detail}</p>
+                    </section>
+                    <section class="home-dashboard-panel" id="homeWordProgress" aria-labelledby="homeWordsTitle">
+                        <h2 id="homeWordsTitle">Gloser</h2>
+                        <p class="home-word-total"><strong>${retained.size}</strong> ord sitter i øvingen</p>
+                        <p>Ord du har repetert minst tre ganger mot spansk og som nå har minst én uke mellom repetisjonene.</p>
+                        ${practiced.size ? `<meter min="0" max="${practiced.size}" value="${retained.size}" aria-label="Ord som sitter av ord du har øvd på"></meter>
+                            <p>${practiced.size - retained.size} andre ord du har øvd på</p>` : '<p>Prøv en økt med nye ord for å komme i gang.</p>'}
+                    </section>
+                </div>
+                <section class="home-dashboard-panel home-skill-panel" aria-labelledby="homeSkillsTitle">
+                    <div class="home-section-header">
+                        <h2 id="homeSkillsTitle">Grammatikkart</h2>
+                        <button type="button" class="btn btn-secondary btn-sm" onclick="showPage('brainmap')">Åpne Brainmap</button>
+                    </div>
+                    <div class="home-skill-grid">
+                        ${featured.map(skill => `<button type="button" class="brainmap-node brainmap-node-${skill.status}" onclick="openHomeBrainmapSkill('${skill.id}')">
+                            <strong>${escapeHtml(skill.label)}</strong><span>${escapeHtml(skill.statusLabel)}</span>
+                        </button>`).join('')}
+                    </div>
+                </section>
+            `;
+        }
+
+        function openHomeBrainmapSkill(skillId) {
+            if (showPage('brainmap') === false) return;
+            document.getElementById('navBrainmap').focus();
+            showBrainmapSkillDetail(skillId);
+        }
+
+        const homeNewWordLimit = 5;
+        const homeRecommendedSizes = [5, 10, 15];
+        const homeRecommendationLimit = homeRecommendedSizes.at(-1);
+
+        function renderHomeWordCountSelect(id, label, sizes) {
+            return `<div class="home-word-count">
+                <label for="${id}">${label}</label>
+                <select id="${id}">${sizes.map(size => `<option value="${size}">${size} ord</option>`).join('')}</select>
+            </div>`;
+        }
+
+        function interleaveHomeRecommendationTopics(queues) {
+            const result = [];
+            for (let index = 0; result.length < homeRecommendationLimit; index++) {
+                const round = queues.map(queue => queue[index]).filter(Boolean);
+                if (!round.length) break;
+                result.push(...round.slice(0, homeRecommendationLimit - result.length));
+            }
+            return result;
+        }
+
+        function getHomeVocabularyRecommendations(cardList, progress, today) {
+            // Greetings, everyday verbs, and short words for joining sentences.
+            const starterIds = [
+                'vocab-0064', 'vocab-0065', 'vocab-0066', 'vocab-0412', 'vocab-0417',
+                'vocab-0421', 'vocab-0434', 'vocab-0435', 'vocab-0436', 'vocab-0437',
+                'vocab-0307', 'vocab-0438', 'vocab-0439', 'vocab-0440',
+                'vocab-0068', 'vocab-0069', 'vocab-0418', 'vocab-0419', 'vocab-0422', 'vocab-0425'
+            ];
+            const priorityTopics = ['skole', 'mat-og-drikke', 'familie', 'verb', 'tidsuttrykk', 'rutiner', 'hjem', 'hobbyer', 'reise'];
+            const starterRank = new Map(starterIds.map((id, index) => [id, index]));
+            const topicRank = new Map(priorityTopics.map((topic, index) => [topic, index]));
+            const since = new Date(today);
+            since.setDate(since.getDate() - 14);
+            const practiced = new Set();
+            const recentByTopic = new Map();
+            const unseen = [];
+
+            for (const card of cardList) {
+                const word = normalizeVocabCompareText(card.es);
+                const evidence = progress.wordProgress[card.id];
+                const noToEs = evidence?.noToEs;
+                const esToNo = evidence?.esToNo;
+                const attempted = card.reviews > 0 || card.noEs.repetitions > 0 || card.esNo.repetitions > 0 || noToEs?.attempts || esToNo?.attempts;
+                if (attempted) practiced.add(word);
+                if (!word || card.isCustom || card.assignmentId) continue;
+                const id = getVocabularyCanonicalId(card);
+                if (!id) continue;
+                const topic = normalizeCategorySlug(card.category);
+                if (!attempted) {
+                    unseen.push({ card, id, word, topic, starter: starterRank.has(id) });
+                    continue;
+                }
+
+                const confidentDates = [[noToEs, card.noEs], [esToNo, card.esNo]]
+                    .map(([cell, schedule]) => {
+                        if (!cell?.attempts) return schedule.repetitions >= 3 ? card.lastReview : null;
+                        return cell.strength >= 4 && cell.attempts >= 3 ? cell.lastSeenAt : null;
+                    })
+                    .map(value => Date.parse(value))
+                    .filter(date => date >= since.getTime() && date <= today.getTime());
+                if (!confidentDates.length) continue;
+
+                if (!recentByTopic.has(topic)) recentByTopic.set(topic, new Map());
+                const recentWords = recentByTopic.get(topic);
+                recentWords.set(word, Math.max(recentWords.get(word) || 0, ...confidentDates));
+            }
+
+            unseen.sort((a, b) => (starterRank.get(a.id) ?? starterIds.length) - (starterRank.get(b.id) ?? starterIds.length)
+                || (topicRank.get(a.topic) ?? priorityTopics.length) - (topicRank.get(b.topic) ?? priorityTopics.length)
+                || a.id.localeCompare(b.id));
+            const candidates = [];
+            const byTopic = new Map();
+            for (const entry of unseen) {
+                if (practiced.has(entry.word)) continue;
+                practiced.add(entry.word);
+                candidates.push(entry);
+                if (!byTopic.has(entry.topic)) byTopic.set(entry.topic, []);
+                byTopic.get(entry.topic).push(entry);
+            }
+
+            const focusTopics = new Set([...recentByTopic]
+                .filter(([topic, words]) => words.size >= 2 && byTopic.has(topic))
+                .sort(([topicA, wordsA], [topicB, wordsB]) => wordsB.size - wordsA.size
+                    || Math.max(...wordsB.values()) - Math.max(...wordsA.values())
+                    || topicA.localeCompare(topicB, 'nb'))
+                .slice(0, 2).map(([topic]) => topic));
+            const focused = interleaveHomeRecommendationTopics([...focusTopics].map(topic => byTopic.get(topic)));
+            const generalStarters = candidates.filter(entry => entry.starter && !focusTopics.has(entry.topic));
+            const otherTopics = [...byTopic].filter(([topic]) => !focusTopics.has(topic))
+                .map(([, queue]) => queue.filter(entry => !entry.starter));
+            const varied = [...generalStarters, ...interleaveHomeRecommendationTopics(otherTopics)];
+
+            return Array.from({ length: Math.min(homeRecommendationLimit, candidates.length) }, (_, index) => {
+                const entry = index % 5 < 3 ? focused.shift() ?? varied.shift() : varied.shift() ?? focused.shift();
+                return { ...entry, fromRecentTheme: focusTopics.has(entry.topic) };
+            });
+        }
+
+        function getHomeRecommendationReason(entries) {
+            if (!entries.length) return 'Du har øvd på alle ordene i anbefalingene. Du kan fortsette med repetisjon eller en egen gloseliste.';
+            const recent = entries.filter(entry => entry.fromRecentTheme);
+            if (recent.length) {
+                const labels = [...new Map(recent.map(({ card, topic }) => [topic, `«${capitalizeFirst(card.category.replaceAll('-', ' '))}»`])).values()];
+                const themes = new Intl.ListFormat('nb-NO').format(labels);
+                const variation = recent.length < entries.length ? ' og fra andre temaer' : '';
+                return `Du har nylig fått til flere ord i ${themes}. Her får du nye ord derfra${variation}.`;
+            }
+            if (entries.every(entry => entry.starter)) return 'Vanlige startord du kan bruke i hverdagen.';
+            if (entries.some(entry => entry.starter)) return 'Vanlige startord sammen med nye ord fra ordlista.';
+            return 'Du får nye ord fra ordlista.';
+        }
+
+        function renderHomeNewWords(content, progress, today) {
+            const themes = new Map();
+            const lists = new Map();
+            for (const card of cards) {
+                if (card.assignmentId) continue;
+                const groups = card.isCustom ? lists : themes;
+                const category = card.category || 'importert';
+                if (!groups.has(category)) groups.set(category, []);
+                groups.get(category).push(card);
+            }
+            const recommended = getHomeVocabularyRecommendations(cards, progress, today);
+            const recommendedSizes = homeRecommendedSizes.filter(size => size <= recommended.length);
+            const defaultRecommendedSize = Math.min(homeNewWordLimit, recommended.length);
+            const toChoices = (groups, isList) => [...groups].map(([category, pool]) => ({
+                label: capitalizeFirst(category.replaceAll('-', ' ')),
+                pool: isList ? pool : pool.filter(card => card.noEs.repetitions === 0 || card.esNo.repetitions === 0).slice(0, homeNewWordLimit),
+                isList
+            })).sort((a, b) => a.label.localeCompare(b.label, 'nb'));
+            const themeChoices = toChoices(themes, false);
+            const listChoices = toChoices(lists, true);
+            const choices = [...themeChoices, ...listChoices];
+            const options = (items, offset = 0) => items.map(({ label }, index) => `<option value="${index + offset}">${escapeHtml(label)}</option>`).join('');
+            const panel = content.querySelector('#homeNewWords');
+            panel.innerHTML = `
+                <h2 id="homeNewWordsTitle">Lær nye ord</h2>
+                <div class="home-word-choices">
+                    <div>
+                        <h3>Anbefalte ord</h3>
+                        <p id="homeRecommendedReason" aria-live="polite"></p>
+                        ${recommendedSizes.length > 1 ? renderHomeWordCountSelect('homeRecommendedWordLimit', 'Antall nye ord', recommendedSizes) : ''}
+                        <ul class="home-recommended-preview" id="homeRecommendedPreview" role="list" aria-label="Spanske ord i økta" hidden></ul>
+                        <button type="button" class="btn btn-primary" id="homeRecommendedWords" ${recommended.length ? '' : 'disabled'}>Start med anbefalte ord</button>
+                    </div>
+                    <details id="homeWordChoice">
+                        <summary>Velg tema eller gloseliste</summary>
+                        <form id="homeWordChoiceForm">
+                            <label for="homeVocabularyChoice">Tema eller gloseliste</label>
+                            <select id="homeVocabularyChoice" aria-describedby="homeChoiceInfo">
+                                <option value="">Velg …</option>
+                                ${themeChoices.length ? `<optgroup label="Temaer">${options(themeChoices)}</optgroup>` : ''}
+                                ${listChoices.length ? `<optgroup label="Egne og importerte gloselister">${options(listChoices, themeChoices.length)}</optgroup>` : ''}
+                            </select>
+                            <p id="homeChoiceInfo" aria-live="polite"></p>
+                            <div class="home-choice-buttons">
+                                <button type="submit" class="btn btn-primary" disabled>Start nye ord</button>
+                                <button type="button" class="btn btn-secondary" id="homeImportWords">Importer gloseliste</button>
+                            </div>
+                        </form>
+                    </details>
+                </div>
+            `;
+
+            const recommendedSize = panel.querySelector('#homeRecommendedWordLimit');
+            const selectedRecommendations = () => recommended.slice(0, Number(recommendedSize?.value ?? defaultRecommendedSize));
+            const reason = panel.querySelector('#homeRecommendedReason');
+            const preview = panel.querySelector('#homeRecommendedPreview');
+            const updateRecommendationPreview = () => {
+                const selected = selectedRecommendations();
+                reason.textContent = getHomeRecommendationReason(selected);
+                preview.hidden = !selected.length;
+                preview.innerHTML = selected.map(({ card }) => `<li lang="es">${escapeHtml(card.es)}</li>`).join('');
+            };
+            updateRecommendationPreview();
+            recommendedSize?.addEventListener('change', updateRecommendationPreview);
+            panel.querySelector('#homeRecommendedWords').onclick = () => {
+                startHomeVocabulary(selectedRecommendations().map(entry => entry.card));
+            };
+            const form = panel.querySelector('#homeWordChoiceForm');
+            const select = form.querySelector('select');
+            const submit = form.querySelector('[type="submit"]');
+            const info = form.querySelector('#homeChoiceInfo');
+            const getChoice = () => select.value === '' ? null : choices[Number(select.value)];
+            select.onchange = () => {
+                const choice = getChoice();
+                submit.disabled = !choice?.pool.length;
+                submit.textContent = choice?.isList ? 'Øv på gloselista' : 'Start nye ord';
+                info.textContent = !choice ? '' : choice.isList
+                    ? `Øv på alle ${choice.pool.length} ord i lista.`
+                    : choice.pool.length
+                        ? `${choice.pool.length} ord med nye oppgaver.`
+                        : 'Du har allerede øvd på alle ordene i dette temaet.';
+            };
+            form.onsubmit = event => {
+                event.preventDefault();
+                const choice = getChoice();
+                if (choice) startHomeVocabulary(choice.pool, choice.isList);
+            };
+            form.querySelector('#homeImportWords').onclick = () => importTeacherWords(() => {
+                if (document.getElementById('homePage').classList.contains('hidden')) return;
+                renderHomePage();
+                content.querySelector('#homeWordChoice').open = true;
+                content.querySelector('#homeVocabularyChoice').focus();
+            });
+        }
+
+        function startHomeVocabulary(pool, isList = false) {
+            if (!pool.length || showPage('vocab') === false) return;
+            startVocabSession(isList ? 'home-list' : 'home-new', pool, { newLimit: pool.length });
         }
 
         function renderHomePage() {
             const content = document.getElementById('homePrimaryContent');
             if (!content) return;
+            const today = new Date();
+            const todayKey = getLocalDateString(today);
             const quizStats = loadQuizStats();
-            const dailyQuizComplete = hasCompletedDailyQuizForDate(quizStats, getLocalDateString());
-            const todayQuizCount = quizStats.dailyQuizCounts[getLocalDateString()] || 0;
+            const dailyQuizComplete = hasCompletedDailyQuizForDate(quizStats, todayKey);
+            const todayQuizCount = quizStats.dailyQuizCounts[todayKey] || 0;
             const activityText = getTodayActivityText();
             const streakText = activityText || (dailyQuizComplete ? formatQuizStreakSummary(quizStats) : 'Ingen registrert øving i dag ennå.');
-            const badges = getMasteryBadges(loadLearningProgress());
+            const progress = loadLearningProgress();
+            const badges = getMasteryBadges(progress);
             const reviewWordCount = getVocabularyReviewWordCount();
+            const reviewSizes = [10, 20, 30, 40, 50].filter(size => size <= reviewWordCount);
+            const days = getHomeWeekDays(today);
+            const dateLabel = new Intl.DateTimeFormat('nb-NO', { day: 'numeric', month: 'short' });
             content.innerHTML = `
+                ${renderHomeProgress(progress, days, dateLabel)}
+                <div class="home-practice-grid">
                 <section class="home-primary-action" aria-labelledby="homeQuizTitle">
                     <div class="home-primary-copy">
-                        <span class="home-eyebrow">Neste steg</span>
-                        <h1 id="homeQuizTitle">${dailyQuizComplete ? 'Ta en ny quiz' : 'Dagens quiz'}</h1>
+                        <h2 id="homeQuizTitle">${dailyQuizComplete ? 'Ta en ny quiz' : 'Dagens quiz'}</h2>
                         <p>${dailyQuizComplete ? `Bra jobbet. Du har tatt ${todayQuizCount} quiz i dag. Ta en til for mer variert øving.` : 'Ti korte spørsmål fra ordforråd, grammatikk og verb.'}</p>
                     </div>
                     <button type="button" class="btn btn-primary btn-large" id="homeStartMixedQuizBtn" onclick="startDailyQuizFromHome()">${dailyQuizComplete ? 'Ta en ny quiz' : 'Start dagens quiz'}</button>
                 </section>
                 <section class="home-next-practice" id="homeVocabularyReview" aria-labelledby="homeVocabularyReviewTitle">
                     <div>
-                        <span class="home-eyebrow">Gloser</span>
                         <h2 id="homeVocabularyReviewTitle">Repeter gloser</h2>
                         <p><strong id="homeVocabularyReviewCount">${reviewWordCount} ord ${reviewWordCount === 1 ? 'klart' : 'klare'} for repetisjon</strong></p>
                         <p id="homeVocabularyReviewGuidance">${getHomeVocabularyReviewGuidance(reviewWordCount)}</p>
                     </div>
+                    ${reviewWordCount > 10 ? renderHomeWordCountSelect('homeReviewWordLimit', 'Antall ord til repetisjon', reviewSizes) : ''}
                     <button type="button" class="btn btn-primary btn-large" aria-describedby="homeVocabularyReviewCount" onclick="startVocabularyReviewFromHome()" ${reviewWordCount ? '' : 'disabled'}>Start repetisjon</button>
                 </section>
+                </div>
+                <section class="home-dashboard-panel home-new-words" id="homeNewWords" aria-labelledby="homeNewWordsTitle"></section>
                 <p class="home-streak" id="homeQuizStreak">${streakText}</p>
                 <p class="home-offline-hint" id="homeOfflineHint">Gloser og grammatikk fungerer uten nett når appen er lagret i nettleseren. Diktatlyd må lastes ned separat i Lytteøvelser. ${location.protocol === 'file:' ? 'Denne lokale filen bruker lyd fra den tilhørende lydmappen.' : ''}</p>
                 ${badges.length ? `<section class="home-badges" aria-labelledby="homeBadgesTitle"><h2 id="homeBadgesTitle">🏅 Merker du har fått</h2><div class="badge-list">${badges.map(badge => `<span class="mastery-badge">${escapeHtml(badge.label)}</span>`).join('')}</div></section>` : ''}
             `;
+            renderHomeNewWords(content, progress, today);
+            const dayButtons = [...content.querySelectorAll('[data-home-day]')];
+            const dayDetail = content.querySelector('#homeDayDetail');
+            for (const button of dayButtons) {
+                button.addEventListener('click', () => {
+                    dayButtons.forEach(item => item.setAttribute('aria-pressed', String(item === button)));
+                    dayDetail.textContent = days[Number(button.dataset.homeDay)].detail;
+                });
+            }
         }
 
         function startDailyQuizFromHome() {
-            showPage('vocab');
+            if (showPage('vocab') === false) return;
             startMixedQuizFromUi();
         }
 
@@ -26401,7 +26723,7 @@ Vil du øve på ${pronoun} likevel?`
             if (currentCultureSetId && !selectedCategories.has(`culture:${currentCultureSetId}`)) clearCultureVocabularyContext();
             if (Array.isArray(cardPool)) clearCultureVocabularyContext();
             if (currentCultureSetId) cardPool = getCultureVocabularyCards(currentCultureSetId);
-            const newLimit = getLimitValue('newCardsLimit', 10);
+            const newLimit = options.newLimit ?? getLimitValue('newCardsLimit', 10);
             const reviewLimit = options.reviewLimit ?? getLimitValue('reviewCardsLimit', 50);
             sessionTimeLimitMinutes = getLimitValue('sessionTimeLimit', 0);
             currentVocabMode = mode;
@@ -26415,7 +26737,9 @@ Vil du øve på ${pronoun} likevel?`
 
             if (mode === 'review') {
                 sessionCards = shuffleArray(dueCards);
-            } else if (mode === 'new') {
+            } else if (mode === 'home-list') {
+                sessionCards = getCustomStudyCards(availableCards, availableCards.length * 2);
+            } else if (mode === 'new' || mode === 'home-new') {
                 sessionCards = shuffleArray(filteredNewCards);
             } else {
                 sessionCards = shuffleArray([...dueCards, ...filteredNewCards]);
@@ -26444,7 +26768,7 @@ Vil du øve på ${pronoun} likevel?`
                 return;
             }
 
-            if (sessionCards.length === 0 && mode === 'new') {
+            if (sessionCards.length === 0 && (mode === 'new' || mode === 'home-new')) {
                 alert('Ingen nye ord tilgjengelig i de valgte kategoriene.');
                 return;
             }
@@ -26811,7 +27135,10 @@ Vil du øve på ${pronoun} likevel?`
                 </div>
             `;
 
-            document.getElementById('buttonArea').innerHTML = `
+            const fromHomeWordChoice = currentVocabMode === 'home-new' || currentVocabMode === 'home-list';
+            document.getElementById('buttonArea').innerHTML = fromHomeWordChoice
+                ? `<button class="btn btn-primary" onclick="showPage('home')">Tilbake til Start</button>`
+                : `
                 <div class="button-group">
                     <button class="btn btn-primary" onclick="restartCurrentVocabMode()">▶️ Start ny økt</button>
                     <button class="btn btn-secondary" onclick="${recognitionPractice ? 'openRecognitionTheme()' : "showPage('vocab')"}">← ${recognitionPractice ? 'Tilbake til temaet' : 'Tilbake'}</button>
@@ -26831,8 +27158,8 @@ Vil du øve på ${pronoun} likevel?`
             if (attempts === 0) return { key: 'gray', label: 'Ikke startet', strength, attempts };
             if (strength < 2) return { key: 'red', label: 'Trenger øving', strength, attempts };
             if (strength < 4) return { key: 'yellow', label: 'På vei', strength, attempts };
-            if (strength < 5) return { key: 'green', label: 'Gode svar på øvde oppgaver', strength, attempts };
-            return { key: 'gold', label: 'Sterke svar på øvde oppgaver', strength, attempts };
+            if (strength < 5) return { key: 'green', label: 'Sitter godt', strength, attempts };
+            return { key: 'dark-green', label: 'Sitter svært godt', strength, attempts };
         }
 
         function getBrainmapProgressCell(progress, targetId, direction = null) {
@@ -27034,13 +27361,16 @@ Vil du øve på ${pronoun} likevel?`
             }
         }
 
-        function buildBrainmapModel(progress = loadLearningProgress()) {
-            const skills = learningCatalog.skills.map(skill => {
+        function buildBrainmapSkillNodes(progress) {
+            return learningCatalog.skills.map(skill => {
                 const cell = getBrainmapProgressCell(progress, skill.id);
                 const status = getBrainmapStatus(hasVariedVerbEvidence(skill.id, cell) ? cell : { ...cell, strength: Math.min(Number(cell.strength) || 0, 3) });
                 return { ...skill, nodeType: 'skill', strength: status.strength, attempts: status.attempts, status: status.key, statusLabel: status.label };
             });
+        }
 
+        function buildBrainmapModel(progress = loadLearningProgress()) {
+            const skills = buildBrainmapSkillNodes(progress);
             const vocabularyAreas = buildBrainmapVocabularyAreas(cards).map(area => {
                 const words = area.cards;
                 const wordDetails = words.map(word => {
@@ -27096,8 +27426,8 @@ Vil du øve på ${pronoun} likevel?`
                     nodeType: 'group',
                     strength,
                     attempts,
-                    status: hasAttemptedRedChild && ['green', 'gold'].includes(status.key) ? 'yellow' : status.key,
-                    statusLabel: hasAttemptedRedChild && ['green', 'gold'].includes(status.key) ? 'På vei' : status.label,
+                    status: hasAttemptedRedChild && ['green', 'dark-green'].includes(status.key) ? 'yellow' : status.key,
+                    statusLabel: hasAttemptedRedChild && ['green', 'dark-green'].includes(status.key) ? 'På vei' : status.label,
                     childIds: children.map(child => child.id)
                 };
             });
@@ -27122,8 +27452,8 @@ Vil du øve på ${pronoun} likevel?`
                     ...group,
                     strength,
                     attempts,
-                    status: hasAttemptedRedChild && ['green', 'gold'].includes(status.key) ? 'yellow' : status.key,
-                    statusLabel: hasAttemptedRedChild && ['green', 'gold'].includes(status.key) ? 'På vei' : status.label,
+                    status: hasAttemptedRedChild && ['green', 'dark-green'].includes(status.key) ? 'yellow' : status.key,
+                    statusLabel: hasAttemptedRedChild && ['green', 'dark-green'].includes(status.key) ? 'På vei' : status.label,
                     childIds: children.map(child => child.id)
                 };
             }).filter(group => group.childIds.length > 0);
@@ -27156,8 +27486,8 @@ Vil du øve på ${pronoun} likevel?`
                             <span><i class="brainmap-legend-dot brainmap-legend-gray" aria-hidden="true"></i>Grå = ikke startet</span>
                             <span><i class="brainmap-legend-dot brainmap-legend-red" aria-hidden="true"></i>Rød = trenger øving</span>
                             <span><i class="brainmap-legend-dot brainmap-legend-yellow" aria-hidden="true"></i>Gul = på vei</span>
-                            <span><i class="brainmap-legend-dot brainmap-legend-green" aria-hidden="true"></i>Grønn = god kontroll</span>
-                            <span><i class="brainmap-legend-dot brainmap-legend-gold" aria-hidden="true"></i>Gull = svært sterk</span>
+                            <span><i class="brainmap-legend-dot brainmap-legend-green" aria-hidden="true"></i>Grønn = sitter godt</span>
+                            <span><i class="brainmap-legend-dot brainmap-legend-dark-green" aria-hidden="true"></i>Mørkegrønn = sitter svært godt</span>
                         </div>
                     <h4 class="brainmap-section-title">Ferdigheter</h4>
                     <p class="brainmap-interaction-hint">Trykk på et emne for å lese kort og øve.</p>
@@ -28222,7 +28552,7 @@ Vil du øve på ${pronoun} likevel?`
             };
         }
 
-        function importTeacherWords() {
+        function importTeacherWords(onImported) {
             const input = document.createElement('input');
             input.type = 'file';
             input.accept = '.json';
@@ -28254,6 +28584,7 @@ Vil du øve på ${pronoun} likevel?`
 
                         if (result.imported > 0) {
                             showToast(result.message + (result.skipped > 0 ? ` (${result.skipped} hoppet over)` : ''), 'success');
+                            onImported?.();
                         } else {
                             showToast(result.message, 'error');
                         }

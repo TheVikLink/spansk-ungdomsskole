@@ -213,7 +213,7 @@ test.describe('student learning flow audit', () => {
       showPage('brainmap');
     });
 
-    await expect(page.locator('.brainmap-legend')).toContainText('Gull = svært sterk');
+    await expect(page.locator('.brainmap-legend')).toContainText('Mørkegrønn = sitter svært godt');
     const firstNode = page.locator('.brainmap-node-gray').first();
     await expect(firstNode).toContainText('Ikke startet');
     await expect(firstNode).not.toContainText('/ 5');
