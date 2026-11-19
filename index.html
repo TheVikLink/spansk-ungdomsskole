@@ -7,7 +7,7 @@
     <meta name="theme-color" content="#dc2626">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Crect width='192' height='192' rx='36' fill='%23dc2626'/%3E%3Ctext x='96' y='122' text-anchor='middle' font-size='96'%3E🇪🇸%3C/text%3E%3C/svg%3E">
     <link rel="manifest" href="./manifest.webmanifest">
-    <meta name="app-build" content="21c0592e36137f0e">
+    <meta name="app-build" content="8352c0a7529b1d21">
     <link href="./dist/tailwind.css" rel="stylesheet">
 </head>
 <body>
@@ -72,7 +72,6 @@
         <main id="mainContent" tabindex="-1">
         <div id="homePage" class="panel hidden">
             <div id="homePrimaryContent"></div>
-            <section class="pron-home culture-home" aria-labelledby="homeCultureTitle"><h2 id="homeCultureTitle">Kultur: Mundo AM</h2><p>Les kulturtekster, utforsk bilder og øv på ord fra teksten. Sju opplegg til utprøving og lærervurdering.</p><a class="btn btn-secondary" href="docs/kultur/index.html">Utforsk kultur</a></section>
             <section class="home-manual-section" aria-labelledby="homeManualTitle">
                 <div class="page-header">
                     <h2 id="homeManualTitle">Flere måter å øve på</h2>
@@ -20973,7 +20972,7 @@ const pronunciationManifest = {"schemaVersion":1,"sourceArchiveSha256":"d67fa8c7
             const dailyQuizComplete = hasCompletedDailyQuizForDate(quizStats, todayKey);
             const todayQuizCount = quizStats.dailyQuizCounts[todayKey] || 0;
             const activityText = getTodayActivityText();
-            const streakText = activityText || (dailyQuizComplete ? formatQuizStreakSummary(quizStats) : 'Ingen registrert øving i dag ennå.');
+            const streakText = activityText || (dailyQuizComplete ? formatQuizStreakSummary(quizStats) : '');
             const progress = loadLearningProgress();
             const badges = getMasteryBadges(progress);
             const reviewWordCount = getVocabularyReviewWordCount();
@@ -21001,7 +21000,7 @@ const pronunciationManifest = {"schemaVersion":1,"sourceArchiveSha256":"d67fa8c7
                 </section>
                 </div>
                 <section class="home-dashboard-panel home-new-words" id="homeNewWords" aria-labelledby="homeNewWordsTitle"></section>
-                <p class="home-streak" id="homeQuizStreak">${streakText}</p>
+                ${streakText ? `<p class="home-streak" id="homeQuizStreak">${streakText}</p>` : ''}
                 <p class="home-offline-hint" id="homeOfflineHint">Gloser og grammatikk fungerer uten nett når appen er lagret i nettleseren. Diktatlyd må lastes ned separat i Lytteøvelser. ${location.protocol === 'file:' ? 'Denne lokale filen bruker lyd fra den tilhørende lydmappen.' : ''}</p>
                 ${badges.length ? `<section class="home-badges" aria-labelledby="homeBadgesTitle"><h2 id="homeBadgesTitle">🏅 Merker du har fått</h2><div class="badge-list">${badges.map(badge => `<span class="mastery-badge">${escapeHtml(badge.label)}</span>`).join('')}</div></section>` : ''}
             `;

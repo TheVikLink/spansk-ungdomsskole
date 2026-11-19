@@ -5045,7 +5045,7 @@ select {
 }
 
 /* Uttaleskolen: shared layout for short practice, lookup and classroom display. */
-.pron-home, .pron-next { margin: 1.25rem 0; padding: 1.4rem; border: 1px solid #c7d2fe; border-radius: 1rem; background: #eef2ff; }
+.pron-next { margin: 1.25rem 0; padding: 1.4rem; border: 1px solid #c7d2fe; border-radius: 1rem; background: #eef2ff; }
 .pron-header { max-width: 46rem; margin-bottom: 1.5rem; }
 .pron-header h1 { font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 750; line-height: 1.15; margin-bottom: .8rem; }
 #pronunciationPage h2 { font-size: 1.4rem; font-weight: 700; margin: 1rem 0 .7rem; }
