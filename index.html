@@ -7,7 +7,7 @@
     <meta name="theme-color" content="#dc2626">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Crect width='192' height='192' rx='36' fill='%23dc2626'/%3E%3Ctext x='96' y='122' text-anchor='middle' font-size='96'%3E🇪🇸%3C/text%3E%3C/svg%3E">
     <link rel="manifest" href="./manifest.webmanifest">
-    <meta name="app-build" content="744b8a2b075d5f2a">
+    <meta name="app-build" content="d20354f0879de188">
     <link href="./dist/tailwind.css" rel="stylesheet">
 </head>
 <body>
@@ -27957,7 +27957,7 @@ Vil du øve på ${pronoun} likevel?`
                     </div>
                     ${renderAccentHint('verbAccentHint', 'Hold også inne n for ñ, ? for ¿ eller ! for ¡.')}
                     ${needsSupport && verbOptions.length > 0 ? `
-                        <div class="verb-scaffolding-container">
+                        <div id="verbAnswerOptions" class="verb-scaffolding-container">
                             <span class="verb-scaffolding-badge">💡 Støtte: Velg eller skriv</span>
                             <div class="verb-options-row">
                                 ${verbOptions.map(opt => `<button type="button" class="btn btn-sm btn-outline verb-choice-btn" onclick="selectVerbOption('${escapeHtml(opt)}')">${escapeHtml(opt)}</button>`).join('')}
@@ -27972,7 +27972,7 @@ Vil du øve på ${pronoun} likevel?`
                     <div class="conjugation-feedback" id="verbFeedback"></div>
                     <p id="verbHint" aria-live="polite" hidden></p>
 
-                    <div class="button-group">
+                    <div id="verbAnswerActions" class="button-group">
                         <button class="btn btn-primary" onclick="checkVerbAnswer()">✓ Sjekk svar</button>
                         <button class="btn btn-outline" onclick="showVerbHint()">💡 Hint</button>
                     </div>
@@ -27996,6 +27996,10 @@ Vil du øve på ${pronoun} likevel?`
 
             verbAnswerPending = true;
             verbStats.answered = (verbStats.answered || 0) + 1;
+            input.readOnly = true;
+            document.getElementById('verbAnswerActions').remove();
+            document.getElementById('verbAnswerOptions')?.remove();
+            document.getElementById('verbHint').hidden = true;
 
             if (evaluation.resultKind === 'correct') {
                 feedback.innerHTML = '✓ Riktig!<div class="button-group"><button data-feedback-next class="btn btn-primary btn-sm mt-4" onclick="advanceVerbExercise()">Neste</button></div>';
@@ -28023,6 +28027,7 @@ Vil du øve på ${pronoun} likevel?`
             const skillId = getVerbPracticeSkillId(exercise);
             if (skillId) saveLearningProgress(updateLearningProgress({ targetType: 'skill', targetId: skillId, resultKind: evaluation.resultKind, verbForm: `${exercise.verb.infinitive}:${exercise.pronounIndex}` }));
             checkpointPracticeSession('verbs', verbStats.answered, verbStats.correct, verbSessionStartTime);
+            feedback.querySelector('[data-feedback-next]').focus();
         }
 
         function advanceVerbExercise() {
