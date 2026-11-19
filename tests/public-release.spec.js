@@ -3,15 +3,15 @@ import { startStaticAppServer } from './helpers/static-app-server.js';
 let server;
 test.beforeAll(async () => { server = await startStaticAppServer(); });
 test.afterAll(async () => server.close());
-for (const width of [390, 1280]) test(`Start leads to culture lessons and downloadable PDFs at ${width}px`, async ({ page }) => {
+for (const width of [390, 1280]) test(`Start omits the culture card and the culture catalog remains accessible at ${width}px`, async ({ page }) => {
   await page.setViewportSize({ width, height: 900 });
   await page.goto(server.url);
   await page.locator('#studentNameInput').fill('Prøv');
   await page.locator('.login-btn-primary').click();
-  const link = page.getByRole('link', { name: 'Utforsk kultur', exact: true });
-  await expect(link).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Utforsk kultur', exact: true })).toHaveCount(0);
+  await expect(page.getByRole('heading', { name: 'Kultur: Mundo AM', exact: true })).toHaveCount(0);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
-  await link.click();
+  await page.goto(new URL('docs/kultur/index.html', server.url).href);
   await expect(page.getByRole('heading', { name: 'Mundo AM', exact: true })).toBeVisible();
   await expect(page.locator('.culture-card')).toHaveCount(7);
   await expect(page.locator('.catalog-status').first()).toContainText('til lærervurdering');

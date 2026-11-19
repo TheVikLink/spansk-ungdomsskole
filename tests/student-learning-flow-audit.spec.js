@@ -140,7 +140,7 @@ test.describe('student learning flow audit', () => {
       document.getElementById('homePage').classList.remove('hidden');
       renderHomePage();
       const before = {
-        text: document.getElementById('homeQuizStreak').textContent,
+        text: document.getElementById('homeQuizStreak')?.textContent ?? null,
         button: document.getElementById('homeStartMixedQuizBtn').textContent
       };
       completeQuizForToday(new Date());
@@ -155,7 +155,7 @@ test.describe('student learning flow audit', () => {
       };
     });
 
-    expect(result.before.text).toContain('Ingen registrert øving i dag ennå.');
+    expect(result.before.text).toBeNull();
     expect(result.before.button).toContain('Start dagens quiz');
     expect(result.after.title).toContain('Ta en ny quiz');
     expect(result.after.button).toContain('Ta en ny quiz');

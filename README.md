@@ -34,7 +34,7 @@ Setningsbygging, ordfamilier og regresjonstester for lokal overlapping er beskre
 
 ### Kultur: Mundo AM
 
-Åpne **Start → Utforsk kultur**, eller gå [direkte til kulturoppleggene](https://www.spansk123.no/docs/kultur/index.html). Sju opplegg gir lesetekster, bilder, norsk ordstøtte, fire forståelsesspørsmål, parsamtale, lærerveiledning og PDF-ark. Seks fortellinger handler om en dag i Honduras, Colombia, Mexico, Spania, Peru og Ekvatorial-Guinea; ett opplegg sammenligner jul i Spania og Chile. Elevene kan øve videre på ti ord fra hver tekst.
+Sju [kulturopplegg](https://www.spansk123.no/docs/kultur/index.html) gir lesetekster, bilder, norsk ordstøtte, fire forståelsesspørsmål, parsamtale, lærerveiledning og PDF-ark. Seks fortellinger handler om en dag i Honduras, Colombia, Mexico, Spania, Peru og Ekvatorial-Guinea, og ett opplegg sammenligner jul i Spania og Chile. Elevene kan øve videre på ti ord fra hver tekst.
 
 Kulturoppleggene er **arbeidsutkast til lærervurdering**, ikke ferdig faglig godkjente opplegg. Denne statusen vises i katalogen, øktene og PDF-arkene. PDF-er publiseres i `docs/kultur/pdf/`; den lokale `output/`-mappen skal ikke publiseres. Bygg nettsidene med `npm run sync:culture`, og bygg PDF-ene med `scripts/build-culture-pdfs.py --site-base-url https://www.spansk123.no/ --output-dir docs/kultur/pdf` med Noto Sans og de valgte `--pack`-ID-ene.
 
