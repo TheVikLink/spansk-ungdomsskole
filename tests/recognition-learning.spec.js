@@ -40,6 +40,7 @@ test('sentence building teaches es/no es, requires effort and records no progres
   }
   await page.locator('#recognitionLearningNextBtn').click();
   await expect(page.locator('#recognitionLearningInput')).toBeVisible();
+  await expect(page.locator('#recognitionLearningInput')).toHaveAccessibleDescription(/Hold inne en vokal.*a → á/);
   await page.locator('#recognitionLearningInput').fill('  LA TRADICIÓN ES POPULAR. ');
   await page.locator('#recognitionLearningCheckBtn').click();
   await expect(page.locator('#recognitionLearningFeedback')).toContainText('Riktig!');

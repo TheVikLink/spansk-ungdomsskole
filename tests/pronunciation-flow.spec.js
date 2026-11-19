@@ -13,6 +13,7 @@ async function open(page) {
   if (!(await pronunciation.isVisible())) {
     await page.locator('.nav-more summary').click();
   }
+  await expect(pronunciation.locator('[aria-hidden="true"]')).toHaveText('🔊');
   await pronunciation.click();
 }
 async function listen(page, role) {
