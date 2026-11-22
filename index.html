@@ -7,7 +7,7 @@
     <meta name="theme-color" content="#dc2626">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Crect width='192' height='192' rx='36' fill='%23dc2626'/%3E%3Ctext x='96' y='122' text-anchor='middle' font-size='96'%3E🇪🇸%3C/text%3E%3C/svg%3E">
     <link rel="manifest" href="./manifest.webmanifest">
-    <meta name="app-build" content="d20354f0879de188">
+    <meta name="app-build" content="f08366b499b961bc">
     <link href="./dist/tailwind.css" rel="stylesheet">
 </head>
 <body>
@@ -72,6 +72,7 @@
         <main id="mainContent" tabindex="-1">
         <div id="homePage" class="panel hidden">
             <div id="homePrimaryContent"></div>
+            <p><a class="btn btn-outline" href="undervisning/index.html">Undervisningstimer</a></p>
             <section class="home-manual-section" aria-labelledby="homeManualTitle">
                 <div class="page-header">
                     <h2 id="homeManualTitle">Flere måter å øve på</h2>
@@ -26280,7 +26281,24 @@ const pronunciationManifest = {"schemaVersion":1,"sourceArchiveSha256":"d67fa8c7
             return true;
         }
 
+        function startLessonVocabulary(route) {
+            const ids = route.slice('time/'.length).split(',');
+            if (ids.length > 10 || ids.some(id => !/^vocab-[0-9]+$/.test(id))) {
+                showToast('Gloselenken er ugyldig.', 'info');
+                return false;
+            }
+            const pool = cards.filter(card => ids.includes(getVocabularyCanonicalId(card)));
+            if (pool.length !== ids.length) {
+                showToast('Ordlisten er utilgjengelig. Åpne timen og velg glosene på nytt.', 'info');
+                return false;
+            }
+            if (showPage('vocab') === false) return false;
+            startVocabSession(route, pool, { newLimit: pool.length, reviewLimit: pool.length * 2 });
+            return true;
+        }
+
         function handleCultureVocabularyRoute() {
+            if (location.hash.startsWith('#time/')) return startLessonVocabulary(location.hash.slice(1));
             const match = /^#gloser\/([a-z0-9-]+)$/.exec(location.hash);
             if (match) {
                 const previousHash = currentCultureSetId ? `#gloser/${currentCultureSetId}` : '';
@@ -26751,6 +26769,10 @@ Vil du øve på ${pronoun} likevel?`
             } else {
                 sessionCards = shuffleArray([...dueCards, ...filteredNewCards]);
             }
+            if (mode.startsWith('time/') && !sessionCards.length) {
+                sessionCards = getCustomStudyCards(availableCards, availableCards.length * 2);
+                isCustomStudySession = true;
+            }
             if (currentCultureSetId) {
                 document.querySelector('[data-culture-availability]')?.remove();
                 if (options.extraPractice) {
@@ -26839,6 +26861,10 @@ Vil du øve på ${pronoun} likevel?`
         }
 
         function restartCurrentVocabMode() {
+            if (currentVocabMode.startsWith('time/')) {
+                startLessonVocabulary(currentVocabMode);
+                return;
+            }
             if (recognitionPractice) {
                 startRecognitionPractice(recognitionPractice.mode, recognitionPractice.starters);
                 return;

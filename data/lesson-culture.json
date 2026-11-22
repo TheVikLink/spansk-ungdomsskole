@@ -1,0 +1,307 @@
+[
+  {
+    "pack": "jul-spania-chile",
+    "title": "Planlegg julekvelden",
+    "goal": "Avtal et måltid med familien og finn et tidspunkt som passer.",
+    "writing": [
+      [
+        "Si at familien spiser middag sammen.",
+        "Mi familia cena junta."
+      ],
+      [
+        "Fortell at du har en gave til søsteren din.",
+        "Tengo un regalo para mi hermana."
+      ],
+      [
+        "Spør hva dere gjør ved midnatt.",
+        "¿Qué hacemos a medianoche?"
+      ]
+    ],
+    "script": [
+      "¿Dónde vamos a cenar en Nochebuena?",
+      "En casa de mi abuela, con la familia.",
+      "¿A qué hora cenamos?",
+      "A las nueve. A medianoche abrimos los regalos."
+    ],
+    "questions": [
+      [
+        "Hos hvem skal de spise?",
+        "Hos bestemoren."
+      ],
+      [
+        "Når spiser de?",
+        "Klokka ni."
+      ],
+      [
+        "Hva gjør de ved midnatt?",
+        "Åpner gavene."
+      ]
+    ],
+    "cards": [
+      "Du er vert. Dere spiser hos bestemoren klokka åtte og åpner gaver ved midnatt. Partneren spør om planen. Finn deretter ut hva partneren tar med, og hvem som kommer.",
+      "Du er gjest. Du kommer med søsteren din og tar med søtsaker. Finn ut hvor og når dere spiser, og når dere åpner gaver. Svar deretter på vertens spørsmål."
+    ]
+  },
+  {
+    "pack": "un-dia-en-honduras",
+    "title": "Pakk til en dag i Copán",
+    "goal": "Finn ut hva dere skal ta med, og avtal et møtested.",
+    "writing": [
+      [
+        "Fortell at du spiser frokost med bestemoren din.",
+        "Desayuno con mi abuela."
+      ],
+      [
+        "Si at du har en skrivebok i sekken.",
+        "Tengo un cuaderno en la mochila."
+      ],
+      [
+        "Spør hva partneren liker å tegne.",
+        "¿Qué te gusta dibujar?"
+      ]
+    ],
+    "script": [
+      "¿Qué llevas en la mochila?",
+      "Un cuaderno. Quiero dibujar en la plaza.",
+      "¿Y dónde vamos a desayunar?",
+      "En casa de mi abuela. Tiene queso y frijoles."
+    ],
+    "questions": [
+      [
+        "Hva er i sekken?",
+        "En skrivebok."
+      ],
+      [
+        "Hvor skal de tegne?",
+        "På torget."
+      ],
+      [
+        "Hvilke to matvarer har bestemoren?",
+        "Ost og bønner."
+      ]
+    ],
+    "cards": [
+      "Du pakker sekken med en skrivebok og en blyant. Du vil tegne en stein på torget. Spør B hvor og når dere skal spise frokost. Fortell B hva du har pakket og hva du vil tegne.",
+      "Du har avtalt frokost hos bestemoren din klokka ni. Hun serverer ost og bønner. Spør A hva dere kan tegne, hvor dere skal tegne og hva som ligger i sekken. Fortell om frokosten."
+    ]
+  },
+  {
+    "pack": "un-dia-en-colombia",
+    "title": "Rydd stranden sammen",
+    "goal": "Fordel utstyr og avtal hva dere skal samle på stranden.",
+    "writing": [
+      [
+        "Si at du har en pose og hansker.",
+        "Tengo una bolsa y unos guantes."
+      ],
+      [
+        "Fortell at du plukker opp en flaske.",
+        "Recojo una botella."
+      ],
+      [
+        "Spør om partneren vil ta vare på stranden.",
+        "¿Quieres cuidar la playa?"
+      ]
+    ],
+    "script": [
+      "¿Vamos a la playa esta mañana?",
+      "Sí. Hay basura cerca del mar.",
+      "Tengo guantes. ¿Tienes una bolsa?",
+      "Sí, una bolsa grande para las botellas."
+    ],
+    "questions": [
+      [
+        "Når vil de gå til stranden?",
+        "I formiddag."
+      ],
+      [
+        "Hva finnes nær sjøen?",
+        "Søppel."
+      ],
+      [
+        "Hva vil de legge i den store posen?",
+        "Flaskene."
+      ]
+    ],
+    "cards": [
+      "Du har hansker og én tom flaske. Møt B på stranden klokka ti. Spør hva B har til flaskene og hva dere skal spise etterpå. Svar når B ber om tid og utstyr.",
+      "Du har to poser og har med ris og fisk til lunsj. Finn ut når dere skal møtes, og hvem som har hansker. Fortell A hvor mange poser du har, og hva dere kan spise."
+    ]
+  },
+  {
+    "pack": "un-dia-en-mexico",
+    "title": "På markedet i Oaxaca",
+    "goal": "Bestill en vare, forstå prisen og finn ut hva du har råd til.",
+    "writing": [
+      [
+        "Si at du går til markedet for å kjøpe tomater.",
+        "Voy al mercado a comprar tomates."
+      ],
+      [
+        "Be om en kopp varm sjokolade.",
+        "Una taza de chocolate caliente, por favor."
+      ],
+      [
+        "Spør hva maisen koster.",
+        "¿Cuánto cuesta el maíz?"
+      ]
+    ],
+    "script": [
+      "Buenos días. ¿Cuánto cuesta el maíz?",
+      "Buenos días. Doce pesos.",
+      "Quiero el maíz y una taza de chocolate caliente, por favor.",
+      "Muy bien. El chocolate cuesta veinte pesos.",
+      "¿Cuánto es en total?",
+      "Son treinta y dos pesos."
+    ],
+    "questions": [
+      [
+        "Hvilken vare spør kunden om først?",
+        "Mais."
+      ],
+      [
+        "Hva bestiller kunden å drikke?",
+        "En kopp varm sjokolade."
+      ],
+      [
+        "Hva koster drikken og hele kjøpet?",
+        "20 pesos for drikken og 32 pesos til sammen."
+      ]
+    ],
+    "cards": [
+      "Du har 30 pesos. Kjøp varm sjokolade og enten frukt eller mais hos B. Spør om prisene før du velger. Bytt rolle. Din bod selger én tomat for 6 pesos, varm sjokolade for 24 og ett eple for 9.",
+      "Selg varm sjokolade for 18 pesos, en pose frukt for 15 og mais for 10. Gi bare prisene A ber om. Bytt rolle. Du har 28 pesos og vil kjøpe en tomat og enten varm sjokolade eller et eple."
+    ]
+  },
+  {
+    "pack": "un-dia-en-espana",
+    "title": "Finn veien til parken",
+    "goal": "Forstå en enkel veibeskrivelse og avtal hvor dere skal møtes.",
+    "writing": [
+      [
+        "Si at parken ligger nær elva.",
+        "El parque está cerca del río."
+      ],
+      [
+        "Fortell at du er på sykkel.",
+        "Voy en bicicleta."
+      ],
+      [
+        "Be om et glass kald horchata.",
+        "Un vaso de horchata fría, por favor."
+      ]
+    ],
+    "script": [
+      "¿Vamos en bicicleta al parque?",
+      "Prefiero caminar. Está cerca del puente.",
+      "¿Dónde nos vemos?",
+      "Al lado del árbol grande, cerca del río.",
+      "¿Tomamos algo después?",
+      "Sí, un vaso de horchata fría."
+    ],
+    "questions": [
+      [
+        "Hvordan vil den andre personen komme seg dit?",
+        "Til fots."
+      ],
+      [
+        "Hva slags tre møtes de ved?",
+        "Et stort tre."
+      ],
+      [
+        "Hva vil de drikke?",
+        "Kald horchata."
+      ]
+    ],
+    "cards": [
+      "Du vet veien. Parken ligger nær brua, og dere møtes ved det store treet. Spør B hvordan B vil komme dit og hva B vil drikke. Forklar møtestedet.",
+      "Du vil gå til fots og drikke et glass kald horchata etter turen. Spør A hvor parken ligger og hvilket tre dere møtes ved. Oppsummer planen."
+    ]
+  },
+  {
+    "pack": "un-dia-en-peru",
+    "title": "Handle til et måltid i Cusco",
+    "goal": "Spør etter råvarer og avtal hva dere skal lage.",
+    "writing": [
+      [
+        "Si at du vil lage poteter.",
+        "Quiero cocinar papas."
+      ],
+      [
+        "Spør om posen er stor.",
+        "¿La bolsa es grande?"
+      ],
+      [
+        "Fortell at du lærer å lage mat.",
+        "Aprendo a cocinar."
+      ]
+    ],
+    "script": [
+      "¿Qué vamos a cocinar hoy?",
+      "Papas con maíz.",
+      "Tengo maíz. ¿Necesitamos muchas papas?",
+      "Sí. Lleva la bolsa grande al mercado."
+    ],
+    "questions": [
+      [
+        "Hva skal de lage?",
+        "Poteter med mais."
+      ],
+      [
+        "Hva har de allerede?",
+        "Mais."
+      ],
+      [
+        "Hvilken pose skal de ta?",
+        "Den store."
+      ]
+    ],
+    "cards": [
+      "Du har en liten pose mais og vil lære å lage poteter med mais. Spør hva B har og hvor dere kan lage maten. Fortell hvilken råvare du tar med.",
+      "Du har fem store poteter og kan lage mat hjemme klokka fire. Spør hva A vil lage og hvilken råvare A tar med. Oppgi sted og tid."
+    ]
+  },
+  {
+    "pack": "un-dia-en-guinea-ecuatorial",
+    "title": "Tegn og fortell i Bata",
+    "goal": "Finn motivet til en tegning og avtal hvordan dere skal dele en historie.",
+    "writing": [
+      [
+        "Fortell at du har en blyant og en skrivebok.",
+        "Tengo un lápiz y un cuaderno."
+      ],
+      [
+        "Si at du tegner en båt.",
+        "Dibujo una barca."
+      ],
+      [
+        "Spør om partneren vil høre en historie.",
+        "¿Quieres escuchar una historia?"
+      ]
+    ],
+    "script": [
+      "¿Tienes un lápiz para dibujar?",
+      "Sí. También tengo un cuaderno.",
+      "¿Qué quieres dibujar?",
+      "Una barca bajo el cielo azul. Después quiero compartir mi historia."
+    ],
+    "questions": [
+      [
+        "Hva har personen i tillegg til en blyant?",
+        "En skrivebok."
+      ],
+      [
+        "Hva vil personen tegne?",
+        "En båt."
+      ],
+      [
+        "Hva vil personen dele etterpå?",
+        "Historien sin."
+      ]
+    ],
+    "cards": [
+      "Du har en blyant og vil tegne et blad i skyggen. Spør om B har papir og hva historien til B handler om. Beskriv deretter ditt eget motiv.",
+      "Du har en skrivebok og en historie om en blå båt. Finn ut hva A vil tegne og hvor. Tilby papir og fortell hva din historie handler om."
+    ]
+  }
+]
