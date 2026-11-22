@@ -1,0 +1,2039 @@
+[
+  {
+    "category": "tall",
+    "title": "Hvor mange billetter?",
+    "ids": [
+      "vocab-0002",
+      "vocab-0003",
+      "vocab-0004",
+      "vocab-0005",
+      "vocab-0006",
+      "vocab-0007",
+      "vocab-0008"
+    ],
+    "writing": [
+      [
+        "Be om tre billetter.",
+        "Tres entradas, por favor."
+      ],
+      [
+        "Si at dere er fem personer.",
+        "Somos cinco personas."
+      ],
+      [
+        "Spør om det er seks plasser.",
+        "¿Hay seis plazas?"
+      ]
+    ],
+    "script": [
+      "¿Cuántas entradas quieres?",
+      "Dos para el sábado y cuatro para el domingo.",
+      "¿Seis en total?",
+      "Sí, seis. Vamos con dos amigos el domingo."
+    ],
+    "questions": [
+      [
+        "Hvor mange billetter gjelder lørdag?",
+        "To."
+      ],
+      [
+        "Hvor mange gjelder søndag?",
+        "Fire."
+      ],
+      [
+        "Hvor mange venner blir med på søndag?",
+        "To."
+      ]
+    ],
+    "cards": [
+      "Du bestiller tre billetter til fredag og to til lørdag. Spør om det er plass. Bytt så til billettselger. På søndag har du fem ledige plasser, på mandag sju. Be kunden bekrefte antallet.",
+      "Du selger billetter. Du har to plasser fredag og åtte lørdag. Hjelp kunden å finne en løsning. Bytt så til kunde. Dere er seks som vil dra sammen søndag eller mandag."
+    ],
+    "goal": "Bestill billetter og kontroller antallet."
+  },
+  {
+    "category": "bursdag",
+    "title": "Klassens bursdagskalender",
+    "ids": [
+      "vocab-0059",
+      "vocab-0060",
+      "vocab-0061",
+      "vocab-0062",
+      "vocab-0063"
+    ],
+    "writing": [
+      [
+        "Spør når partneren har bursdag.",
+        "¿Cuándo es tu cumpleaños?"
+      ],
+      [
+        "Skriv at du har bursdag 7. juli.",
+        "Mi cumpleaños es el siete de julio."
+      ],
+      [
+        "Gratuler Marius.",
+        "¡Feliz cumpleaños, Marius!"
+      ]
+    ],
+    "script": [
+      "¿Cuándo es tu cumpleaños, Alba?",
+      "Es el siete de julio. ¿Y el de Marius?",
+      "El veintiséis de junio.",
+      "Entonces en junio celebramos el cumpleaños de Marius."
+    ],
+    "questions": [
+      [
+        "Når har Alba bursdag?",
+        "7. juli."
+      ],
+      [
+        "Når har Marius bursdag?",
+        "26. juni."
+      ],
+      [
+        "Hvem feirer de i juni?",
+        "Marius."
+      ]
+    ],
+    "cards": [
+      "Du er Nora. Bursdagen din er 8. juni, og Leo har bursdag 7. juli. Spør når Dani og Eva har bursdag. Skriv ned hvem som kan feire i samme måned.",
+      "Du er Dani. Bursdagen din er 26. juni, og Eva har bursdag 2. juli. Svar Nora og spør om Nora og Leo. Bli enige om én juni-gruppe og én juli-gruppe."
+    ],
+    "goal": "Spør etter en fødselsdato og avtal når dere skal feire."
+  },
+  {
+    "category": "hilsener",
+    "title": "Møt den nye naboen",
+    "ids": [
+      "vocab-0064",
+      "vocab-0065",
+      "vocab-0066",
+      "vocab-0068",
+      "vocab-0069"
+    ],
+    "writing": [
+      [
+        "Hils på en nabo om morgenen.",
+        "¡Buenos días!"
+      ],
+      [
+        "Takk for hjelpen.",
+        "Gracias por tu ayuda."
+      ],
+      [
+        "Ta farvel med Ana.",
+        "¡Adiós, Ana!"
+      ]
+    ],
+    "script": [
+      "¡Buenos días! Soy Leo, tu nuevo vecino.",
+      "Hola, Leo. Soy Ana. Vivo en el número tres.",
+      "Gracias, Ana. ¿Nos vemos esta noche?",
+      "Sí, a las ocho. ¡Adiós!"
+    ],
+    "questions": [
+      [
+        "Hva heter den nye naboen?",
+        "Leo."
+      ],
+      [
+        "Hvilket nummer bor Ana i?",
+        "Tre."
+      ],
+      [
+        "Når skal de ses igjen?",
+        "Klokka åtte i kveld."
+      ]
+    ],
+    "cards": [
+      "Først møter du en ny nabo om morgenen. Du heter Luz og bor i nummer fem. Hils og finn naboens navn og nummer. I neste runde er det kveld. Svar at biblioteket stenger klokka ni.",
+      "Først er du naboen Tomás i nummer to. Svar og spør tilbake. I neste runde møter du Luz om kvelden. Spør når biblioteket stenger, takk for svaret og ta farvel."
+    ],
+    "goal": "Velg en hilsen som passer, og finn ut hvem du møter."
+  },
+  {
+    "category": "land",
+    "title": "Finn reisemålet",
+    "ids": [
+      "vocab-0070",
+      "vocab-0071",
+      "vocab-0076",
+      "vocab-0079",
+      "vocab-0080",
+      "vocab-0082",
+      "vocab-0083"
+    ],
+    "writing": [
+      [
+        "Si at toget går fra Frankrike.",
+        "El tren sale de Francia."
+      ],
+      [
+        "Spør om toget går til Spania.",
+        "¿El tren va a España?"
+      ],
+      [
+        "Si at du vil reise til Portugal.",
+        "Quiero viajar a Portugal."
+      ]
+    ],
+    "script": [
+      "¿Vas a Italia en verano?",
+      "No, voy a Francia con mi hermana.",
+      "¿Y después?",
+      "Vamos a España. Mi hermana quiere visitar Madrid."
+    ],
+    "questions": [
+      [
+        "Hvor reiser de først?",
+        "Frankrike."
+      ],
+      [
+        "Hvem reiser sammen med den som svarer?",
+        "Søsteren."
+      ],
+      [
+        "Hvilken by vil søsteren besøke?",
+        "Madrid."
+      ]
+    ],
+    "cards": [
+      "Du kjenner første del av ruta. Fra Norge reiser gruppen til Sverige, så til Tyskland. Fortell B dette og spør om de siste to landene. Les tilbake hele ruta.",
+      "Du kjenner siste del av ruta. Etter Tyskland reiser gruppen til Frankrike og Spania. Spør A hvor reisen begynner og hvilket land som kommer før Tyskland. Kontroller ruta sammen."
+    ],
+    "goal": "Fortell hvor en reise starter, og spør hvor den ender."
+  },
+  {
+    "category": "farger",
+    "title": "Finn det riktige flagget",
+    "ids": [
+      "vocab-0088",
+      "vocab-0089",
+      "vocab-0090",
+      "vocab-0091",
+      "vocab-0094",
+      "vocab-0095"
+    ],
+    "writing": [
+      [
+        "Si at flagget er rødt og hvitt.",
+        "La bandera es roja y blanca."
+      ],
+      [
+        "Beskriv en gul sirkel.",
+        "Hay un círculo amarillo."
+      ],
+      [
+        "Spør om stripen er grønn.",
+        "¿La raya es verde?"
+      ]
+    ],
+    "script": [
+      "Mi bandera tiene dos colores.",
+      "¿Es azul y blanca?",
+      "No, es verde y blanca. Tiene una estrella negra en el centro.",
+      "Entonces tiene tres colores."
+    ],
+    "questions": [
+      [
+        "Hvilken farge gjetter partneren som ikke er på flagget?",
+        "Blå."
+      ],
+      [
+        "Hvilken figur er i midten?",
+        "En stjerne."
+      ],
+      [
+        "Hvilken farge har figuren?",
+        "Svart."
+      ]
+    ],
+    "cards": [
+      "Tegn et hemmelig flagg med en rød stripe øverst og en gul sirkel i midten. Beskriv det. Når B beskriver sitt flagg, tegner du det du hører. Sammenlign til slutt.",
+      "Tegn flagget A beskriver. Lag så ditt hemmelige flagg med en blå stripe nederst og en grønn sirkel i midten. Beskriv det uten å vise det."
+    ],
+    "goal": "Beskriv farger og plassering slik at en annen kan finne riktig flagg."
+  },
+  {
+    "category": "vær",
+    "title": "Velg turdag",
+    "ids": [
+      "vocab-0104",
+      "vocab-0105",
+      "vocab-0107",
+      "vocab-0110",
+      "vocab-0112",
+      "vocab-0113",
+      "vocab-0116"
+    ],
+    "writing": [
+      [
+        "Si at det regner i dag.",
+        "Hoy llueve."
+      ],
+      [
+        "Si at det blåser i parken.",
+        "Hace viento en el parque."
+      ],
+      [
+        "Spør om det er sol i morgen.",
+        "¿Hace sol mañana?"
+      ]
+    ],
+    "script": [
+      "¿Vamos al parque hoy?",
+      "Hoy llueve y hace frío.",
+      "¿Y mañana?",
+      "Mañana hace sol. Podemos ir en bici."
+    ],
+    "questions": [
+      [
+        "Hvordan er været i dag? Nevn to ting.",
+        "Det regner og er kaldt."
+      ],
+      [
+        "Hvordan er været i morgen?",
+        "Det er sol."
+      ],
+      [
+        "Hvordan foreslår de å reise?",
+        "På sykkel."
+      ]
+    ],
+    "cards": [
+      "Du kjenner lørdagsværet. Ved sjøen blåser det, i parken regner det. Spør om søndagen. Dere vil sykle i sol og lite vind. Velg sted og dag.",
+      "Du kjenner søndagsværet. Ved sjøen blåser det fortsatt, men i parken er det sol og vindstille. Spør om lørdagen og forklar valget deres."
+    ],
+    "goal": "Forstå en enkel værmelding og velg en dag til en aktivitet."
+  },
+  {
+    "category": "høytider",
+    "title": "Velg riktig invitasjon",
+    "ids": [
+      "vocab-0117",
+      "vocab-0118",
+      "vocab-0119",
+      "vocab-0124",
+      "vocab-0126"
+    ],
+    "writing": [
+      [
+        "Si at du spiser med familien på julaften.",
+        "En Nochebuena como con mi familia."
+      ],
+      [
+        "Spør hvor de feirer nyttårsaften.",
+        "¿Dónde celebráis la Nochevieja?"
+      ],
+      [
+        "Inviter en venn i bursdagen din.",
+        "¿Vienes a mi cumpleaños?"
+      ]
+    ],
+    "script": [
+      "¿Vienes a casa en Nochebuena?",
+      "Sí. ¿A qué hora cenamos?",
+      "A las ocho. En Navidad comemos con los abuelos.",
+      "Perfecto, nos vemos el día veinticuatro."
+    ],
+    "questions": [
+      [
+        "Til hvilken kveld blir gjesten invitert?",
+        "Julaften."
+      ],
+      [
+        "Når er middagen?",
+        "Klokka åtte."
+      ],
+      [
+        "Hvem skal de spise med i julen?",
+        "Besteforeldrene."
+      ]
+    ],
+    "cards": [
+      "Du inviterer til julaften hjemme klokka sju og nyttårsaften på torget klokka ni. Finn ut hvilken invitasjon B kan ta imot. Spør deretter om tid og sted for bursdagen til B.",
+      "Du kan komme nyttårsaften, men besøker familien på julaften. Finn tid og sted for besøket. Bytt rolle og inviter A til bursdag på kafeen klokka fem."
+    ],
+    "goal": "Forstå hvilken feiring en invitasjon gjelder og avtale når dere møtes."
+  },
+  {
+    "category": "utseende",
+    "title": "Hvem er figuren?",
+    "ids": [
+      "vocab-0132",
+      "vocab-0133",
+      "vocab-0141",
+      "vocab-0146",
+      "vocab-0147",
+      "vocab-0149",
+      "vocab-0153"
+    ],
+    "writing": [
+      [
+        "Gi figuren kort hår.",
+        "Tiene el pelo corto."
+      ],
+      [
+        "Si at figuren bruker briller.",
+        "Lleva gafas."
+      ],
+      [
+        "Beskriv brune øyne.",
+        "Tiene los ojos marrones."
+      ]
+    ],
+    "script": [
+      "¿Tu personaje es alto?",
+      "No, es bajo y tiene el pelo largo.",
+      "¿Lleva gafas?",
+      "Sí, y tiene los ojos marrones."
+    ],
+    "questions": [
+      [
+        "Er figuren høy eller lav?",
+        "Lav."
+      ],
+      [
+        "Hvordan er håret?",
+        "Langt."
+      ],
+      [
+        "Hvilke to detaljer får du vite til slutt?",
+        "Briller og brune øyne."
+      ]
+    ],
+    "cards": [
+      "Beskriv figur A uten å vise kortet. Figuren er høy, har kort krøllete hår og briller. Be om å få se tegningen etterpå. Bytt rolle og tegn figuren B beskriver.",
+      "Tegn A sin figur. Spør hvis du mangler en detalj. Beskriv så figur B. Figuren er lav, har langt hår, brune øyne og ingen briller."
+    ],
+    "goal": "Beskriv en oppdiktet figur slik at partneren kan tegne den."
+  },
+  {
+    "category": "personlighet",
+    "title": "Velg en makker til oppdraget",
+    "ids": [
+      "vocab-0161",
+      "vocab-0162",
+      "vocab-0165",
+      "vocab-0166",
+      "vocab-0167",
+      "vocab-0168",
+      "vocab-0171"
+    ],
+    "writing": [
+      [
+        "Beskriv Leo som tålmodig.",
+        "Leo es paciente."
+      ],
+      [
+        "Si at Inés er ryddig og ansvarsfull.",
+        "Inés es ordenada y responsable."
+      ],
+      [
+        "Spør om personen er pratsom.",
+        "¿Es una persona habladora?"
+      ]
+    ],
+    "script": [
+      "Necesitamos a una persona para explicar el juego.",
+      "Leo es paciente y muy simpático.",
+      "¿Y Sara?",
+      "Es responsable, pero hoy no está aquí. Vamos con Leo."
+    ],
+    "questions": [
+      [
+        "Hva trenger de hjelp til?",
+        "Å forklare spillet."
+      ],
+      [
+        "Hvilke to egenskaper har Leo?",
+        "Tålmodig og hyggelig."
+      ],
+      [
+        "Hvorfor kan de ikke velge Sara?",
+        "Hun er borte i dag."
+      ]
+    ],
+    "cards": [
+      "Du kjenner fiktive Leo og Ana. Leo er tålmodig og pratsom. Ana er ryddig og sjenert. B trenger en som kan forklare en lek. Beskriv begge. Spør så om B sine kandidater til å holde orden på kortene.",
+      "Spør hvem som kan forklare en lek. Velg én av A sine kandidater. Hos deg er Noa ryddig og ansvarsfull, og Eva morsom og pratsom. Beskriv dem når A skal velge en som kan holde orden på kortene."
+    ],
+    "goal": "Spør om egenskaper og velg en fiktiv person til en oppgave."
+  },
+  {
+    "category": "familie",
+    "title": "Hvem kommer på besøk?",
+    "ids": [
+      "vocab-0173",
+      "vocab-0174",
+      "vocab-0175",
+      "vocab-0176",
+      "vocab-0177",
+      "vocab-0178",
+      "vocab-0181",
+      "vocab-0182"
+    ],
+    "writing": [
+      [
+        "Si at søsteren din kommer.",
+        "Viene mi hermana."
+      ],
+      [
+        "Spør om tanten også kommer.",
+        "¿Viene también tu tía?"
+      ],
+      [
+        "Si at bestefaren din er hjemme.",
+        "Mi abuelo está en casa."
+      ]
+    ],
+    "script": [
+      "¿Quién viene el domingo?",
+      "Vienen mi abuela y mi primo Luis.",
+      "¿Y tu hermana?",
+      "No, va a casa de mi tía."
+    ],
+    "questions": [
+      [
+        "Hvilken dag gjelder besøket?",
+        "Søndag."
+      ],
+      [
+        "Hvilke to personer kommer?",
+        "Bestemoren og fetteren Luis."
+      ],
+      [
+        "Hvor drar søsteren?",
+        "Til tanten."
+      ]
+    ],
+    "cards": [
+      "Din fiktive familie får besøk. På lørdag kommer fetteren din og bestemoren din. Søsteren din kommer søndag. Fortell B hvem som kommer hver dag. Finn ut hvem som kommer fra B sin familie.",
+      "Fra din fiktive familie kommer tanten og onkelen lørdag, mens bestefaren kommer søndag. Spør om A sin familie og lag en gjesteliste sammen, én dag om gangen."
+    ],
+    "goal": "Spør hvem som kommer og lag en felles gjesteliste."
+  },
+  {
+    "category": "familie-setninger",
+    "title": "Lag en fiktiv familieprofil",
+    "ids": [
+      "vocab-0192",
+      "vocab-0193",
+      "vocab-0194",
+      "vocab-0197",
+      "vocab-0198",
+      "vocab-0199",
+      "vocab-0200"
+    ],
+    "writing": [
+      [
+        "Spør hvem personen bor med.",
+        "¿Con quién vives?"
+      ],
+      [
+        "Si at broren din heter Bruno.",
+        "Mi hermano se llama Bruno."
+      ],
+      [
+        "Spør hvor gammel broren er.",
+        "¿Cuántos años tiene tu hermano?"
+      ]
+    ],
+    "script": [
+      "¿Con quién vives, Lola?",
+      "Vivo con mi madre y mi hermano.",
+      "¿Cómo se llama tu hermano?",
+      "Se llama Pablo y tiene ocho años."
+    ],
+    "questions": [
+      [
+        "Hvem bor Lola med?",
+        "Mor og bror."
+      ],
+      [
+        "Hva heter broren?",
+        "Pablo."
+      ],
+      [
+        "Hvor gammel er han?",
+        "Åtte år."
+      ]
+    ],
+    "cards": [
+      "Spill rollen som Alex. Du bor med faren din og broren din, som heter Nico og er ni år. Finn tilsvarende tre opplysninger om B sin rolle. Presenter B sin familie.",
+      "Spill rollen som Sol. Du bor med moren din og broren din, som heter Teo og er elleve år. Finn ut hvem Alex bor med, og få navn og alder på broren. Presenter Alex sin familie."
+    ],
+    "goal": "Spør om en fiktiv familie og presenter den for en annen."
+  },
+  {
+    "category": "klær",
+    "title": "På hittegodskontoret",
+    "ids": [
+      "vocab-0203",
+      "vocab-0204",
+      "vocab-0207",
+      "vocab-0208",
+      "vocab-0212",
+      "vocab-0218",
+      "vocab-0223"
+    ],
+    "writing": [
+      [
+        "Si at du leter etter en jakke.",
+        "Busco una chaqueta."
+      ],
+      [
+        "Beskriv en grå lue.",
+        "Es un gorro gris."
+      ],
+      [
+        "Spør om skjerfet er blått.",
+        "¿La bufanda es azul?"
+      ]
+    ],
+    "script": [
+      "Busco un jersey rojo.",
+      "Aquí hay un jersey azul y una chaqueta roja.",
+      "Mi jersey tiene una estrella blanca.",
+      "Entonces es este. Aquí tienes."
+    ],
+    "questions": [
+      [
+        "Hva leter personen etter?",
+        "En rød genser."
+      ],
+      [
+        "Hvilket annet rødt plagg ligger på kontoret?",
+        "En jakke."
+      ],
+      [
+        "Hva gjør genseren lett å kjenne igjen?",
+        "En hvit stjerne."
+      ]
+    ],
+    "cards": [
+      "Du har mistet en grønn jakke og et gult skjerf. Spør på kontoret og finn ut hva som er funnet. Bytt rolle. På ditt kontor ligger en grå lue og en svart T-skjorte.",
+      "På kontoret ditt ligger en grønn jakke og et blått skjerf. Finn ut hva A skal ha. Bytt rolle. Du har mistet en svart T-skjorte og en blå lue. Spør hva som er funnet."
+    ],
+    "goal": "Beskriv et mistet plagg og finn ut om det er levert inn."
+  },
+  {
+    "category": "yrker",
+    "title": "Hvem møter vi på yrkesdagen?",
+    "ids": [
+      "vocab-0237",
+      "vocab-0238",
+      "vocab-0242",
+      "vocab-0246",
+      "vocab-0247",
+      "vocab-0248",
+      "vocab-0249"
+    ],
+    "writing": [
+      [
+        "Spør hva noen arbeider med.",
+        "¿En qué trabajas?"
+      ],
+      [
+        "Si at du jobber som lærer.",
+        "Soy profesor."
+      ],
+      [
+        "Spør hvor personen arbeider.",
+        "¿Dónde trabajas?"
+      ]
+    ],
+    "script": [
+      "¿En qué trabajas, Julia?",
+      "Soy veterinaria y trabajo en una clínica.",
+      "¿Y tu hermano?",
+      "Es cocinero. Trabaja en un hotel."
+    ],
+    "questions": [
+      [
+        "Hva er yrket til Julia?",
+        "Veterinær."
+      ],
+      [
+        "Hvor jobber hun?",
+        "På en klinikk."
+      ],
+      [
+        "Hva gjør broren, og hvor jobber han?",
+        "Han er kokk på et hotell."
+      ]
+    ],
+    "cards": [
+      "Spill først en kokk på en skole. Svar på spørsmål, og røp arbeidsstedet først når B spør. Intervju så B. Finn ut hvem av dere som kan hjelpe en syk katt, og hvem som kan lage lunsj.",
+      "Intervju A om yrke og arbeidssted. Spill så en veterinær på en dyreklinikk. Svar på spørsmål og bli enige om hvem som kan hjelpe med lunsj og hvem som kan hjelpe katten."
+    ],
+    "goal": "Spør om yrke og arbeidssted og finn rett person."
+  },
+  {
+    "category": "hobbyer",
+    "title": "Finn noe dere kan gjøre sammen",
+    "ids": [
+      "vocab-0258",
+      "vocab-0265",
+      "vocab-0268",
+      "vocab-0269",
+      "vocab-0271",
+      "vocab-0275"
+    ],
+    "writing": [
+      [
+        "Si at du liker å sykle.",
+        "Me gusta montar en bici."
+      ],
+      [
+        "Inviter til en tur til fots.",
+        "¿Quieres dar un paseo?"
+      ],
+      [
+        "Si at du foretrekker å høre på musikk.",
+        "Prefiero escuchar música."
+      ]
+    ],
+    "script": [
+      "¿Quieres jugar al tenis?",
+      "Hoy no. Prefiero montar en bici.",
+      "Mi bici está en casa. ¿Damos un paseo?",
+      "¡Vale! Después podemos escuchar música."
+    ],
+    "questions": [
+      [
+        "Hva foreslås først?",
+        "Å spille tennis."
+      ],
+      [
+        "Hvor er sykkelen til den som foreslår en gåtur?",
+        "Hjemme."
+      ],
+      [
+        "Hva vil de gjøre etter turen?",
+        "Høre på musikk."
+      ]
+    ],
+    "cards": [
+      "Lørdag kan du sykle eller gå tur. Søndag kan du spille gitar eller høre på musikk. Finn én felles aktivitet for hver dag uten å vise lista.",
+      "Lørdag kan du spille tennis eller gå tur. Søndag kan du høre på musikk eller spille piano. Spør A om begge dagene og bekreft planene sammen."
+    ],
+    "goal": "Fortell hva du liker og avtal én felles aktivitet."
+  },
+  {
+    "category": "klokka",
+    "title": "Rekk toget etter lunsj",
+    "ids": [
+      "vocab-0279",
+      "vocab-0280",
+      "vocab-0282",
+      "vocab-0283",
+      "vocab-0284",
+      "vocab-0285",
+      "vocab-0291"
+    ],
+    "writing": [
+      [
+        "Spør hva klokka er.",
+        "¿Sabes qué hora es?"
+      ],
+      [
+        "Si at klokka er halv to.",
+        "Es la una y media."
+      ],
+      [
+        "Si at toget går klokka fem presis.",
+        "El tren sale a las cinco en punto."
+      ]
+    ],
+    "script": [
+      "¿A qué hora vas a comer?",
+      "A la una. Termino a la una y media.",
+      "Hay un tren a la una y cuarto y otro a las dos.",
+      "Entonces voy a tomar el tren de las dos."
+    ],
+    "questions": [
+      [
+        "Når begynner lunsjen?",
+        "Klokka ett."
+      ],
+      [
+        "Når er lunsjen ferdig?",
+        "Halv to."
+      ],
+      [
+        "Hvilket tog velger personen?",
+        "Toget klokka to."
+      ]
+    ],
+    "cards": [
+      "Du spiser fra 13.00 til 13.30. Spør B når togene går og velg første mulige avgang etter lunsj. Når B spør om returen, oppgi 16.30 og 17.00.",
+      "Togene går klokka 13.15 og 14.00. Hjelp A å velge. På returen er du klar klokka 16.45. Spør A om avgangene og velg toget du rekker."
+    ],
+    "goal": "Spør om klokkeslett og velg en avgang du rekker."
+  },
+  {
+    "category": "tidsuttrykk",
+    "title": "Få dagen i riktig rekkefølge",
+    "ids": [
+      "vocab-0292",
+      "vocab-0299",
+      "vocab-0304",
+      "vocab-0305",
+      "vocab-0306",
+      "vocab-0307",
+      "vocab-0310"
+    ],
+    "writing": [
+      [
+        "Si at du leser om morgenen.",
+        "Leo por la mañana."
+      ],
+      [
+        "Si at du spiller etter middagen.",
+        "Juego después de cenar."
+      ],
+      [
+        "Spør hva personen gjør i kveld.",
+        "¿Qué haces esta noche?"
+      ]
+    ],
+    "script": [
+      "¿Qué haces mañana por la mañana?",
+      "Voy a clase. Por la tarde juego al tenis.",
+      "¿Antes o después de comer?",
+      "Después. Antes de comer hago los deberes."
+    ],
+    "questions": [
+      [
+        "Hva skjer om morgenen?",
+        "Skole."
+      ],
+      [
+        "Hvilken aktivitet gjør personen etter måltidet?",
+        "Spiller tennis."
+      ],
+      [
+        "Hva gjør personen før måltidet?",
+        "Lekser."
+      ]
+    ],
+    "cards": [
+      "Du kjenner starten av turdagen. Om morgenen tar gruppen buss. Før lunsj besøker den et marked. Spør B om resten. Lag en plan i riktig rekkefølge.",
+      "Du kjenner slutten av turdagen. Etter lunsj går gruppen til parken. Om kvelden spiller den kort. Spør A om starten og les tilbake hele dagen."
+    ],
+    "goal": "Finn ut hva som skjer før og etter et måltid."
+  },
+  {
+    "category": "ukedager",
+    "title": "Finn en ledig dag",
+    "ids": [
+      "vocab-0293",
+      "vocab-0295",
+      "vocab-0296",
+      "vocab-0297",
+      "vocab-0298"
+    ],
+    "writing": [
+      [
+        "Foreslå tirsdag.",
+        "¿Puedes el martes?"
+      ],
+      [
+        "Si at du er opptatt onsdag.",
+        "No puedo el miércoles."
+      ],
+      [
+        "Avtal å møtes på torsdag.",
+        "Nos vemos el jueves."
+      ]
+    ],
+    "script": [
+      "¿Puedes venir el lunes?",
+      "No. El martes tampoco puedo. ¿Y el jueves?",
+      "El jueves sí, pero solo por la tarde.",
+      "Perfecto. Nos vemos el jueves por la tarde."
+    ],
+    "questions": [
+      [
+        "Hvilken dag foreslås først?",
+        "Mandag."
+      ],
+      [
+        "Hvilken annen dag kan personen heller ikke?",
+        "Tirsdag."
+      ],
+      [
+        "Når blir avtalen?",
+        "Torsdag ettermiddag."
+      ]
+    ],
+    "cards": [
+      "Denne uken kan du tirsdag og torsdag. Neste uke kan du mandag og fredag. Spør B om denne uken først. Finn én felles dag for hver uke.",
+      "Denne uken kan du onsdag og torsdag. Neste uke kan du tirsdag og fredag. Svar og spør om neste uke. Si begge avtalene høyt til slutt."
+    ],
+    "goal": "Spør hvilke dager noen kan, og gjør en avtale."
+  },
+  {
+    "category": "Kapittel 8: Tareas de casa",
+    "title": "Fordel ukens oppgaver",
+    "ids": [
+      "vocab-0301",
+      "vocab-0456",
+      "vocab-0457",
+      "vocab-0459",
+      "vocab-0460",
+      "vocab-0461"
+    ],
+    "writing": [
+      [
+        "Si at du vasker opp hver uke.",
+        "Lavo los platos cada semana."
+      ],
+      [
+        "Spør hvem som støvsuger.",
+        "¿Quién pasa la aspiradora?"
+      ],
+      [
+        "Tilby deg å vaske klær.",
+        "Puedo lavar la ropa."
+      ]
+    ],
+    "script": [
+      "¿Qué haces en casa cada semana?",
+      "Lavo los platos y arreglo mi habitación.",
+      "¿Quién hace las compras?",
+      "Mi padre. Yo paso la aspiradora el sábado."
+    ],
+    "questions": [
+      [
+        "Hvilke to faste oppgaver nevnes først?",
+        "Vaske opp og rydde rommet."
+      ],
+      [
+        "Hvem handler?",
+        "Faren."
+      ],
+      [
+        "Når støvsuger personen?",
+        "På lørdag."
+      ]
+    ],
+    "cards": [
+      "Dere skal fordele oppvask, klesvask og støvsuging. Du kan vaske opp og støvsuge, men har bare tid til én oppgave. Spør hva B kan, og finn en løsning.",
+      "Du kan vaske klær og støvsuge, men kan ikke vaske opp. Spør hva A kan gjøre. Fordel alle tre oppgavene og fortell hvem som gjør hva denne uken."
+    ],
+    "goal": "Avtal hvem som gjør hvilke oppgaver denne uken."
+  },
+  {
+    "category": "kropp",
+    "title": "Tegn en robot fra beskrivelsen",
+    "ids": [
+      "vocab-0311",
+      "vocab-0312",
+      "vocab-0313",
+      "vocab-0314",
+      "vocab-0315"
+    ],
+    "writing": [
+      [
+        "Gi roboten ett øye.",
+        "El robot tiene un ojo."
+      ],
+      [
+        "Si at roboten har to hoder.",
+        "Tiene dos cabezas."
+      ],
+      [
+        "Spør hvor mange hender den har.",
+        "¿Cuántas manos tiene?"
+      ]
+    ],
+    "script": [
+      "Mi robot tiene una cabeza y tres ojos.",
+      "¿Tiene boca?",
+      "Sí, tiene una boca muy pequeña.",
+      "¿Y los pies?",
+      "Tiene dos pies grandes."
+    ],
+    "questions": [
+      [
+        "Hvor mange øyne har roboten?",
+        "Tre."
+      ],
+      [
+        "Hvordan er munnen?",
+        "Veldig liten."
+      ],
+      [
+        "Hva får du vite om føttene?",
+        "To store føtter."
+      ]
+    ],
+    "cards": [
+      "Robot A har ett hode, to munner, tre hender og én fot. Beskriv den slik at B kan tegne. Spør så om robot B og tegn den. Sammenlign etterpå.",
+      "Tegn robot A og be om oppklaring ved behov. Robot B har to hoder, ett øye på hvert hode, én hånd og tre føtter. Beskriv den for A uten å vise tegningen."
+    ],
+    "goal": "Forstå og gi en enkel beskrivelse av en fantasifigur."
+  },
+  {
+    "category": "skole",
+    "title": "Pakk sekken for to",
+    "ids": [
+      "vocab-0323",
+      "vocab-0328",
+      "vocab-0329",
+      "vocab-0330",
+      "vocab-0331",
+      "vocab-0332"
+    ],
+    "writing": [
+      [
+        "Si at boka ligger i sekken.",
+        "El libro está en la mochila."
+      ],
+      [
+        "Be om en blyant.",
+        "¿Tienes un lápiz?"
+      ],
+      [
+        "Fortell hva som ligger i pennalet.",
+        "En mi estuche hay una goma y un bolígrafo."
+      ]
+    ],
+    "script": [
+      "¿Qué tienes en la mochila?",
+      "Un libro y un estuche.",
+      "¿Tienes un lápiz?",
+      "No, tengo un bolígrafo y una goma.",
+      "Yo tengo dos lápices. Toma uno.",
+      "¡Gracias!"
+    ],
+    "questions": [
+      [
+        "Nevn de to tingene som ligger i sekken.",
+        "En bok og et pennal."
+      ],
+      [
+        "Hva mangler eleven?",
+        "En blyant."
+      ],
+      [
+        "Hvor mange blyanter har den andre?",
+        "To."
+      ]
+    ],
+    "cards": [
+      "Du har bok, to viskelær og to penner. Finn ut hvem som kan låne deg en blyant. Svar så på partnerens spørsmål og tilby det du har to av.",
+      "Du har bok, to blyanter og pennal. Svar først på hva du kan låne bort. Spør så om et viskelær og en penn. Gjenta avtalen."
+    ],
+    "goal": "Du kan spørre etter skolesaker og avtale hvem som tar dem med."
+  },
+  {
+    "category": "fag",
+    "title": "Finn riktig skoledag",
+    "ids": [
+      "vocab-0336",
+      "vocab-0337",
+      "vocab-0338",
+      "vocab-0340",
+      "vocab-0341"
+    ],
+    "writing": [
+      [
+        "Skriv at du har matematikk på mandag.",
+        "El lunes tengo matemáticas."
+      ],
+      [
+        "Spør når partneren har kroppsøving.",
+        "¿Cuándo tienes educación física?"
+      ],
+      [
+        "Fortell hvilke to fag du liker.",
+        "Me gustan el inglés y la historia."
+      ]
+    ],
+    "script": [
+      "¿Qué tenemos el lunes?",
+      "Tenemos inglés y matemáticas.",
+      "¿Y el martes?",
+      "Historia y educación física.",
+      "¿Cuándo tenemos ciencias naturales?",
+      "El miércoles."
+    ],
+    "questions": [
+      [
+        "Hvilke fag har de mandag?",
+        "Engelsk og matematikk."
+      ],
+      [
+        "Når har de kroppsøving?",
+        "Tirsdag."
+      ],
+      [
+        "Hvilket fag har de onsdag?",
+        "Naturfag."
+      ]
+    ],
+    "cards": [
+      "Din skole har engelsk og matematikk mandag, historie og naturfag tirsdag. Finn dagen du kan besøke B for å delta i kroppsøving. Gi deretter B informasjon om din skole.",
+      "Din skole har historie mandag og kroppsøving onsdag. Svar på As spørsmål. Du ønsker å besøke A for å ha naturfag. Finn dagen og gjenta fag og dag."
+    ],
+    "goal": "Du kan spørre om fag og bruke svaret til å velge en skoledag."
+  },
+  {
+    "category": "hjem",
+    "title": "Hvor ligger nøkkelen?",
+    "ids": [
+      "vocab-0346",
+      "vocab-0347",
+      "vocab-0348",
+      "vocab-0350",
+      "vocab-0354",
+      "vocab-0356"
+    ],
+    "writing": [
+      [
+        "Skriv at kjøkkenet ligger ved spisestuen.",
+        "La cocina está al lado del comedor."
+      ],
+      [
+        "Spør om nøkkelen ligger ved vinduet.",
+        "¿Está la llave al lado de la ventana?"
+      ],
+      [
+        "Si at baderomsdøren er åpen.",
+        "La puerta del baño está abierta."
+      ]
+    ],
+    "script": [
+      "¿Dónde está la llave?",
+      "En la cocina.",
+      "¿Al lado de la puerta?",
+      "No, al lado de la ventana.",
+      "¿Y mi mochila?",
+      "Está en el pasillo."
+    ],
+    "questions": [
+      [
+        "I hvilket rom ligger nøkkelen?",
+        "På kjøkkenet."
+      ],
+      [
+        "Hva ligger den ved?",
+        "Vinduet."
+      ],
+      [
+        "Hvor er sekken?",
+        "I gangen."
+      ]
+    ],
+    "cards": [
+      "Du vet at nøkkelen er i spisestuen, ved døra. Svar på Bs spørsmål om den. Finn så sekken ved å spørre om rom og plassering.",
+      "Du kjenner sekkens plassering på kjøkkenet, ved vinduet. Spør først etter nøkkelen. Hjelp så A med å finne sekken og be A gjenta stedet."
+    ],
+    "goal": "Du kan beskrive rom og gi en medelev nok informasjon til å finne en ting."
+  },
+  {
+    "category": "møbler",
+    "title": "Innred rommet sammen",
+    "ids": [
+      "vocab-0359",
+      "vocab-0360",
+      "vocab-0362",
+      "vocab-0365",
+      "vocab-0371",
+      "vocab-0372"
+    ],
+    "writing": [
+      [
+        "Plasser sengen ved siden av skapet.",
+        "La cama está al lado del armario."
+      ],
+      [
+        "Si hvor lampen står.",
+        "La lámpara está en la mesa."
+      ],
+      [
+        "Spør hvor skrivebordet er.",
+        "¿Dónde está el escritorio?"
+      ]
+    ],
+    "script": [
+      "¿Dónde está el sofá?",
+      "Al lado de la mesa.",
+      "¿Y la lámpara?",
+      "Está en el escritorio.",
+      "¿Está la cama al lado del armario?",
+      "Sí, la cama está allí."
+    ],
+    "questions": [
+      [
+        "Hva står ved bordet?",
+        "Sofaen."
+      ],
+      [
+        "Hva står på skrivebordet?",
+        "Lampen."
+      ],
+      [
+        "Hva står ved skapet?",
+        "Sengen."
+      ]
+    ],
+    "cards": [
+      "Din halvdel av tegningen har en sofa til venstre for bordet og en lampe på bordet. Beskriv dette uten å vise tegningen. Be så B plassere sengen, skapet og skrivebordet på din skisse.",
+      "Tegn møblene som A beskriver. På din halvdel står sengen til høyre for skapet og skrivebordet foran sengen. Gi A opplysningene én om gangen og sammenlign skissene til slutt."
+    ],
+    "goal": "Du kan beskrive hvor møbler står, slik at en annen kan tegne rommet."
+  },
+  {
+    "category": "gustar",
+    "title": "Velg gave på biblioteket",
+    "ids": [
+      "vocab-0376",
+      "vocab-0377",
+      "vocab-0378",
+      "vocab-0380",
+      "vocab-0381",
+      "vocab-0382",
+      "vocab-0383"
+    ],
+    "writing": [
+      [
+        "Si at du liker denne boka.",
+        "Me gusta este libro."
+      ],
+      [
+        "Spør om partneren liker bøker om dyr.",
+        "¿Te gustan los libros de animales?"
+      ],
+      [
+        "Fortell hva en venn liker ekstra godt.",
+        "A mi amiga le encanta la música."
+      ]
+    ],
+    "script": [
+      "¿Te gusta este libro de fútbol?",
+      "No me gusta el fútbol. Me encanta la música.",
+      "¿Y a tu hermana?",
+      "A ella le gustan los animales.",
+      "Entonces, ¿un libro de animales para ella?",
+      "Sí, le va a gustar."
+    ],
+    "questions": [
+      [
+        "Hva liker den første kunden ekstra godt?",
+        "Musikk."
+      ],
+      [
+        "Hva liker søsteren?",
+        "Dyr."
+      ],
+      [
+        "Hvem skal få dyreboka?",
+        "Søsteren."
+      ]
+    ],
+    "cards": [
+      "Du liker sport og misliker musikkbøker. På din bokhylle er det bøker om dyr og sport. Finn ut hva B liker, og foreslå en bok. Når B foreslår noe til deg, svar om det passer.",
+      "Du liker dyr og misliker sportsbøker. På din bokhylle er det bøker om sport og musikk. Svar først på As spørsmål. Spør så A om smak og foreslå en bok til A."
+    ],
+    "goal": "Du kan spørre hva noen liker og bruke svaret til å velge bok."
+  },
+  {
+    "category": "rutiner",
+    "title": "Finn tid til frokost",
+    "ids": [
+      "vocab-0385",
+      "vocab-0386",
+      "vocab-0387",
+      "vocab-0392",
+      "vocab-0394",
+      "vocab-0396"
+    ],
+    "writing": [
+      [
+        "Skriv når du våkner.",
+        "Me despierto a las siete."
+      ],
+      [
+        "Skriv hva du gjør før frokost.",
+        "Me ducho y me visto antes de desayunar."
+      ],
+      [
+        "Fortell når du går til skolen.",
+        "Voy a la escuela a las ocho."
+      ]
+    ],
+    "script": [
+      "¿A qué hora te levantas?",
+      "Me levanto a las siete. Después me ducho.",
+      "¿Desayunas a las siete y media?",
+      "Sí. Después me visto.",
+      "¿Y cuándo vas a la escuela?",
+      "A las ocho."
+    ],
+    "questions": [
+      [
+        "Når står eleven opp?",
+        "Klokka sju."
+      ],
+      [
+        "Hva gjør eleven rett etter å ha stått opp?",
+        "Dusjer."
+      ],
+      [
+        "Når går eleven til skolen?",
+        "Klokka åtte."
+      ]
+    ],
+    "cards": [
+      "Du står opp 07.00, dusjer 07.15 og går til skolen 08.00. Foreslå 07.15 eller 07.30 som felles frokosttid. Finn ut hva B gjør da. Fortell deretter når du går hjemmefra.",
+      "Du står opp 07.10 og kler på deg 07.15. Du kan spise 07.30. Svar på As forslag. Spør så når A går til skolen, og bli enige om når dere møtes."
+    ],
+    "goal": "Du kan fortelle om morgenrutiner og avtale når dere kan spise sammen."
+  },
+  {
+    "category": "fremtid",
+    "title": "Finn en ledig dag",
+    "ids": [
+      "vocab-0405",
+      "vocab-0406",
+      "vocab-0407",
+      "vocab-0408",
+      "vocab-0409"
+    ],
+    "writing": [
+      [
+        "Spør hva partneren skal gjøre i dag.",
+        "¿Qué vas a hacer hoy?"
+      ],
+      [
+        "Si at du skal besøke bestemor i morgen.",
+        "Mañana voy a visitar a mi abuela."
+      ],
+      [
+        "Foreslå å være sammen med venner på lørdag.",
+        "El sábado vamos a estar con nuestros amigos."
+      ]
+    ],
+    "script": [
+      "¿Qué vas a hacer hoy?",
+      "Hoy voy a estar con mis amigos.",
+      "¿Y mañana?",
+      "Voy a visitar a mi abuela.",
+      "¿Vamos al cine el sábado?",
+      "Sí, el sábado puedo."
+    ],
+    "questions": [
+      [
+        "Hva skal eleven gjøre i dag?",
+        "Være sammen med venner."
+      ],
+      [
+        "Hvem skal eleven besøke i morgen?",
+        "Bestemor."
+      ],
+      [
+        "Hva avtaler de på lørdag?",
+        "Å gå på kino."
+      ]
+    ],
+    "cards": [
+      "Det er torsdag. I dag skal du besøke bestemor. Fredag kan du gå på kino etter klokka fem. Lørdag kan du ikke. Spør når B kan gå på kino. Forklar så hva du skal ellers.",
+      "Det er torsdag. Du skal være med venner i dag og lørdag. Fredag kan du gå på kino klokka seks. Svar på As spørsmål. Spør så hva A skal i dag. Bekreft dag og tid for kinoen."
+    ],
+    "goal": "Du kan spørre om planer og avtale en aktivitet."
+  },
+  {
+    "category": "verb",
+    "title": "Sett sammen en klubbkveld",
+    "ids": [
+      "vocab-0414",
+      "vocab-0415",
+      "vocab-0419",
+      "vocab-0422",
+      "vocab-0423",
+      "vocab-0429"
+    ],
+    "writing": [
+      [
+        "Skriv at du vil danse.",
+        "Quiero bailar."
+      ],
+      [
+        "Spør om vennen vil lese eller skrive.",
+        "¿Quieres leer o escribir?"
+      ],
+      [
+        "Foreslå å høre på musikk og synge.",
+        "Podemos escuchar música y cantar."
+      ]
+    ],
+    "script": [
+      "¿Qué quieres hacer en el club?",
+      "Quiero bailar y escuchar música.",
+      "¿Quieres cantar también?",
+      "Hoy no. Prefiero escribir una canción.",
+      "¿Podemos leer tu canción después?",
+      "Sí, claro."
+    ],
+    "questions": [
+      [
+        "Hvilke to ting vil eleven gjøre først?",
+        "Danse og høre på musikk."
+      ],
+      [
+        "Hva vil eleven skrive?",
+        "En sang."
+      ],
+      [
+        "Hva får de andre gjøre etterpå?",
+        "Lese sangen."
+      ]
+    ],
+    "cards": [
+      "Du vil danse og synge. Du har et rom der man kan lese eller skrive. Spør hva som er mulig i Bs rom. Foreslå én aktivitet der, og fortell deretter B om ditt rom.",
+      "Du vil skrive og trene. Du har et rom der man kan danse eller høre på musikk. Fortell A hva dere kan gjøre der. Finn så en aktivitet du liker i As rom. Oppsummer programmet."
+    ],
+    "goal": "Du kan spørre hva folk vil gjøre og foreslå et program med to aktiviteter."
+  },
+  {
+    "category": "bindeord",
+    "title": "Velg en plan og begrunn den",
+    "ids": [
+      "vocab-0434",
+      "vocab-0435",
+      "vocab-0436",
+      "vocab-0437",
+      "vocab-0442",
+      "vocab-0443"
+    ],
+    "writing": [
+      [
+        "Foreslå kino eller park.",
+        "¿Vamos al cine o al parque?"
+      ],
+      [
+        "Si at du liker kino, men at du er trøtt.",
+        "Me gusta el cine, pero estoy cansado."
+      ],
+      [
+        "Begrunn valget av park med været.",
+        "Quiero ir al parque porque hace sol."
+      ]
+    ],
+    "script": [
+      "¿Vamos al parque o al cine?",
+      "Me gusta el parque, pero llueve.",
+      "Sí, por eso prefiero el cine.",
+      "Yo también. ¿Vamos hoy?",
+      "Sí, porque mañana tengo clase.",
+      "Perfecto."
+    ],
+    "questions": [
+      [
+        "Hvilke to steder foreslås?",
+        "Parken og kinoen."
+      ],
+      [
+        "Hvorfor velger de kino?",
+        "Det regner."
+      ],
+      [
+        "Hvorfor passer i dag best?",
+        "En av dem har undervisning i morgen."
+      ]
+    ],
+    "cards": [
+      "Du vet at kinoen er stengt og at parken er åpen. Spør først B om været før dere velger park eller kafé. Gi en grunn med «porque». Svar så på Bs spørsmål om kinoen.",
+      "Du vet at det er sol i dag og regn i morgen. Hør på As alternativer, og fortell om været. Spør deretter hvorfor kino ikke er mulig. Gjenta planen med «pero» eller «por eso»."
+    ],
+    "goal": "Du kan knytte sammen forslag, alternativer og en enkel begrunnelse."
+  },
+  {
+    "category": "husarbeid",
+    "title": "Fordel oppgavene før gjestene kommer",
+    "ids": [
+      "vocab-0456",
+      "vocab-0457",
+      "vocab-0458",
+      "vocab-0459",
+      "vocab-0460",
+      "vocab-0461"
+    ],
+    "writing": [
+      [
+        "Si at du kan vaske opp.",
+        "Puedo lavar los platos."
+      ],
+      [
+        "Spør hvem som kan støvsuge.",
+        "¿Quién puede pasar la aspiradora?"
+      ],
+      [
+        "Fortell at du skal rydde rommet.",
+        "Voy a arreglar la habitación."
+      ]
+    ],
+    "script": [
+      "¿Qué vas a hacer antes de la visita?",
+      "Voy a lavar los platos y a arreglar la habitación.",
+      "Yo puedo pasar la aspiradora.",
+      "Gracias. ¿Quién va a hacer las compras?",
+      "Mi padre. Después va a lavar la ropa.",
+      "Perfecto."
+    ],
+    "questions": [
+      [
+        "Hvilke to oppgaver tar den første som svarer?",
+        "Vaske opp og rydde rommet."
+      ],
+      [
+        "Hvilken oppgave tilbyr den andre seg å gjøre?",
+        "Støvsuge."
+      ],
+      [
+        "Hvem skal handle?",
+        "Faren."
+      ]
+    ],
+    "cards": [
+      "Oppgaver før besøket er å handle, vaske opp og støvsuge. Du kan handle og vaske opp, men har ingen støvsuger. Spør hva B kan gjøre. Svar så på Bs spørsmål om badet. Du kan vaske det etterpå.",
+      "Du har støvsuger og vaskemaskin. Tilby hjelp der du kan. Spør så hvem som kan vaske badet. Avtal hvem som skal gjøre hva, og gjenta begge personenes oppgaver."
+    ],
+    "goal": "Du kan avtale hvem som gjør husarbeidet."
+  },
+  {
+    "category": "Mat og drikke",
+    "title": "Pakk en piknikkurv",
+    "ids": [
+      "vocab-0464",
+      "vocab-0468",
+      "vocab-0485",
+      "vocab-0500",
+      "vocab-0502",
+      "vocab-0504",
+      "vocab-0506"
+    ],
+    "writing": [
+      [
+        "Fortell at du tar med brød og ost.",
+        "Llevo pan y queso."
+      ],
+      [
+        "Spør om partneren har vann.",
+        "¿Tienes agua?"
+      ],
+      [
+        "Si hvilken frukt du vil ha.",
+        "Quiero una manzana."
+      ]
+    ],
+    "script": [
+      "¿Qué llevamos al parque?",
+      "Tengo pan y queso.",
+      "Yo tengo agua. ¿Tienes fruta?",
+      "Sí, dos manzanas.",
+      "¿Compramos leche o zumo?",
+      "Zumo, por favor."
+    ],
+    "questions": [
+      [
+        "Hvilket pålegg har de?",
+        "Ost."
+      ],
+      [
+        "Hvilken frukt har de?",
+        "To epler."
+      ],
+      [
+        "Hva bestemmer de seg for å kjøpe?",
+        "Juice."
+      ]
+    ],
+    "cards": [
+      "Du har brød, to epler og melk. Spør B hvilke varer B har. Dere trenger brød, ost, frukt, vann og juice. Finn det som mangler. Svar deretter på hvor mye frukt du har.",
+      "Du har ost og vann. Fortell hva du kan ta med når A spør. Spør så A om frukten, og avtal hvem som kjøper det dere mangler."
+    ],
+    "goal": "Du kan finne ut hva dere har, og hva dere må kjøpe til en piknik."
+  },
+  {
+    "category": "tid",
+    "title": "Lag en kort statusmelding",
+    "ids": [
+      "vocab-0513",
+      "vocab-0508",
+      "vocab-0398",
+      "vocab-0397",
+      "vocab-0400",
+      "vocab-0409"
+    ],
+    "writing": [
+      [
+        "Fortell at Ana akkurat har kommet tilbake.",
+        "Ana acaba de regresar."
+      ],
+      [
+        "Si hva du gjør etterpå.",
+        "Después voy a casa."
+      ],
+      [
+        "Si når du skal besøke bestemor.",
+        "Mañana voy a visitar a mi abuela."
+      ]
+    ],
+    "script": [
+      "¿Dónde está Ana?",
+      "Acaba de regresar. Está en casa.",
+      "¿Qué hace después?",
+      "Almuerza con su hermano.",
+      "¿Y mañana?",
+      "Mañana va a visitar a su abuela."
+    ],
+    "questions": [
+      [
+        "Hva har Ana akkurat gjort?",
+        "Kommet tilbake."
+      ],
+      [
+        "Hvem spiser hun lunsj med?",
+        "Broren."
+      ],
+      [
+        "Hva skal hun i morgen?",
+        "Besøke bestemor."
+      ]
+    ],
+    "cards": [
+      "Du vet at Leo akkurat har kommet tilbake fra skolen, og at han spiser lunsj nå. B vet hva han gjør i kveld og i morgen. Finn begge planene. Svar så på hva som akkurat har skjedd.",
+      "Du vet at Leo spiser middag med faren i kveld og besøker bestemor i morgen. Svar på As spørsmål. Spør så hvor Leo kommer fra og hva han gjør nå. Fortell historien sammen i rekkefølge."
+    ],
+    "goal": "Du kan skille mellom det som akkurat har skjedd, og det som skal skje senere."
+  },
+  {
+    "category": "reise",
+    "title": "Velg reisen som rekker fram",
+    "ids": [
+      "vocab-0523",
+      "vocab-0541",
+      "vocab-0542",
+      "vocab-0543",
+      "vocab-0544",
+      "vocab-0546"
+    ],
+    "writing": [
+      [
+        "Spør om bussen går til flyplassen.",
+        "¿Va el autobús al aeropuerto?"
+      ],
+      [
+        "Si at du bor på hotell.",
+        "Estoy en un hotel."
+      ],
+      [
+        "Spør når toget går.",
+        "¿A qué hora sale el tren?"
+      ]
+    ],
+    "script": [
+      "¿Cómo vamos del hotel al aeropuerto?",
+      "Podemos ir en autobús o en taxi.",
+      "¿A qué hora sale el autobús?",
+      "A las ocho. Llega a las nueve.",
+      "El avión sale a las nueve. ¡Vamos en taxi!",
+      "De acuerdo."
+    ],
+    "questions": [
+      [
+        "Hvor skal de fra hotellet?",
+        "Til flyplassen."
+      ],
+      [
+        "Når kommer bussen fram?",
+        "Klokka ni."
+      ],
+      [
+        "Hvilken transport velger de?",
+        "Taxi."
+      ]
+    ],
+    "cards": [
+      "Du skal fra hotellet til flyplassen innen 10.00. Du kjenner togtiden, med ankomst 10.15. Spør B om buss og metro. Fortell B når toget kommer fram, og velg ruten sammen.",
+      "Bussen er framme 09.30, metroen 10.30. Svar på As spørsmål og spør så om fristen og toget. Oppsummer valget med transportmiddel og ankomsttid."
+    ],
+    "goal": "Du kan spørre om transport og velge en reise som passer."
+  },
+  {
+    "category": "kultur",
+    "title": "Avtal en kulturkveld",
+    "ids": [
+      "vocab-0525",
+      "vocab-0526",
+      "vocab-0527",
+      "vocab-0532",
+      "vocab-0533",
+      "vocab-0534"
+    ],
+    "writing": [
+      [
+        "Si at du liker gitarmusikk.",
+        "Me gusta la música de guitarra."
+      ],
+      [
+        "Spør hvor konserten er.",
+        "¿Dónde es el concierto?"
+      ],
+      [
+        "Foreslå å gå på teater.",
+        "¿Vamos al teatro?"
+      ]
+    ],
+    "script": [
+      "¿Hay música en el museo hoy?",
+      "Sí. Hay un concierto de piano a las cinco.",
+      "¿Y en el teatro?",
+      "Hay música de guitarra a las siete.",
+      "Prefiero la guitarra. ¿Vamos al teatro?",
+      "Sí, a las siete."
+    ],
+    "questions": [
+      [
+        "Hva slags konsert er på museet?",
+        "Pianokonsert."
+      ],
+      [
+        "Hvor kan de høre gitar?",
+        "På teateret."
+      ],
+      [
+        "Når vil de møtes?",
+        "Klokka sju."
+      ]
+    ],
+    "cards": [
+      "Du kan møtes etter klokka seks. Du kjenner programmet på museet med piano klokka fem. Spør B om musikk på teateret. Si hvilken konsert du rekker. Svar så på Bs spørsmål om museet.",
+      "Du vet at teateret har gitar klokka sju, og at kinoen har film klokka åtte. Fortell A om de to alternativene. Spør så når det er piano på museet. Bli enige om et sted og tidspunkt."
+    ],
+    "goal": "Du kan spørre om konserter og velge tid og sted."
+  },
+  {
+    "category": "teknologi",
+    "title": "Velg hvordan du vil få nyheten",
+    "ids": [
+      "vocab-0528",
+      "vocab-0529",
+      "vocab-0535",
+      "vocab-0536",
+      "vocab-0423",
+      "vocab-0424"
+    ],
+    "writing": [
+      [
+        "Fortell at du hører på radio.",
+        "Escucho la radio."
+      ],
+      [
+        "Spør om du kan se bildet på telefonen.",
+        "¿Puedo ver la foto en el teléfono?"
+      ],
+      [
+        "Si at du vil se programmet på TV.",
+        "Quiero ver el programa en la televisión."
+      ]
+    ],
+    "script": [
+      "¿Dónde puedo escuchar el partido?",
+      "En la radio, a las seis.",
+      "¿Puedo verlo en la televisión?",
+      "Sí, a las seis también.",
+      "¿Y la foto del equipo?",
+      "Está en mi teléfono."
+    ],
+    "questions": [
+      [
+        "Hva vil personen lytte til?",
+        "En kamp."
+      ],
+      [
+        "Når vises den på TV?",
+        "Klokka seks."
+      ],
+      [
+        "Hvor er lagbildet?",
+        "På telefonen."
+      ]
+    ],
+    "cards": [
+      "Du har et bilde av laget på telefonen. Du vil høre kampen mens du er ute. Spør B hvor og når den sendes. Fortell så B hvor lagbildet er.",
+      "Du vet at kampen sendes på radio klokka fem og på TV klokka sju. Svar på As spørsmål. Finn så ut hvor du kan se lagbildet. Bekreft forskjellen mellom bildet og sendingen."
+    ],
+    "goal": "Du kan spørre hvor man kan høre eller se informasjon."
+  },
+  {
+    "category": "egenskaper",
+    "title": "Velg en gave som passer",
+    "ids": [
+      "vocab-0569",
+      "vocab-0571",
+      "vocab-0577",
+      "vocab-0582",
+      "vocab-0583",
+      "vocab-0586"
+    ],
+    "writing": [
+      [
+        "Beskriv en moderne og praktisk sekk.",
+        "Es una mochila moderna y práctica."
+      ],
+      [
+        "Si at du synes boka er interessant.",
+        "El libro es interesante."
+      ],
+      [
+        "Spør om gaven er populær.",
+        "¿Es un regalo popular?"
+      ]
+    ],
+    "script": [
+      "¿Cómo es la mochila azul?",
+      "Es moderna y práctica.",
+      "¿Y la mochila negra?",
+      "Es elegante, pero muy pequeña.",
+      "Necesito espacio para mis libros. Quiero la azul.",
+      "Buena idea. Es muy popular."
+    ],
+    "questions": [
+      [
+        "Hvilken farge har den praktiske sekken?",
+        "Blå."
+      ],
+      [
+        "Hva er problemet med den svarte?",
+        "Den er veldig liten."
+      ],
+      [
+        "Hva trenger kunden plass til?",
+        "Bøkene sine."
+      ]
+    ],
+    "cards": [
+      "Du leter etter en praktisk gave til en venn. På din hylle er det en elegant klokke og en interessant bok. Be B beskrive to gaver på sin hylle. Velg én, og forklar så B hvordan dine egne gaver er.",
+      "På din hylle står en moderne og praktisk lampe og en populær musikkboks. Beskriv dem for A. Du vil selv gi bort noe å lese. Spør om tingene på As hylle og forklar valget ditt."
+    ],
+    "goal": "Du kan sammenligne beskrivelser og velge en ting som passer en annen."
+  },
+  {
+    "category": "personer",
+    "title": "Hvem skal vi møte?",
+    "ids": [
+      "vocab-0547",
+      "vocab-0548",
+      "vocab-0549",
+      "vocab-0532",
+      "vocab-0533",
+      "vocab-0536"
+    ],
+    "writing": [
+      [
+        "Si at kunstneren er på museet.",
+        "La artista está en el museo."
+      ],
+      [
+        "Spør hvor skuespilleren er.",
+        "¿Dónde está el actor?"
+      ],
+      [
+        "Be turisten om et bilde.",
+        "¿Tienes una foto?"
+      ]
+    ],
+    "script": [
+      "¿Buscas al actor?",
+      "No, busco a la artista.",
+      "Está en el museo con un turista.",
+      "¿Y el actor?",
+      "Está en el teatro. Tengo una foto.",
+      "Gracias. Primero voy al museo."
+    ],
+    "questions": [
+      [
+        "Hvem leter personen etter?",
+        "Kunstneren."
+      ],
+      [
+        "Hvem er sammen med kunstneren?",
+        "En turist."
+      ],
+      [
+        "Hvor er skuespilleren?",
+        "På teateret."
+      ]
+    ],
+    "cards": [
+      "Du har en beskjed til kunstneren, men vet bare at skuespilleren er på museet klokka fire. Be B om kunstnerens møtested og tid. Svar så på Bs spørsmål om skuespilleren.",
+      "Du vet at kunstneren møter en turist ved teateret klokka tre. Gi A opplysningene. Du skal selv møte skuespilleren. Spør om tid og sted, og oppsummer begge avtalene."
+    ],
+    "goal": "Du kan spørre etter en person og avtale et møtested."
+  },
+  {
+    "category": "dyr",
+    "title": "Finn riktig dyr på kartet",
+    "ids": [
+      "vocab-0552",
+      "vocab-0553",
+      "vocab-0554",
+      "vocab-0555",
+      "vocab-0556"
+    ],
+    "writing": [
+      [
+        "Spør hvor tigeren er.",
+        "¿Dónde está el tigre?"
+      ],
+      [
+        "Si at løven er ved siden av gorillaen.",
+        "El león está al lado del gorila."
+      ],
+      [
+        "Fortell hvilket dyr du vil se.",
+        "Quiero ver el elefante."
+      ]
+    ],
+    "script": [
+      "¿Qué animal quieres ver primero?",
+      "El tigre. ¿Dónde está?",
+      "Al lado del gorila.",
+      "¿Y el elefante?",
+      "Está cerca de la entrada. El león está al fondo.",
+      "Entonces vamos primero a ver el elefante."
+    ],
+    "questions": [
+      [
+        "Hvilket dyr vil personen først se?",
+        "Tigeren."
+      ],
+      [
+        "Hvilket dyr er ved inngangen?",
+        "Elefanten."
+      ],
+      [
+        "Hvilket dyr bestemmer de seg til slutt for å se først?",
+        "Elefanten."
+      ]
+    ],
+    "cards": [
+      "Tegn fire nummererte ruter. Din hemmelige informasjon er elefant i rute 1 og løve i rute 4. Spør B hvor tigeren og gorillaen er. Svar så på Bs spørsmål før dere sammenligner kart.",
+      "Tegn fire nummererte ruter. Din hemmelige informasjon er tiger i rute 2 og gorilla i rute 3. Svar på As spørsmål. Spør så hvor elefanten og løven er, og les opp hele rekkefølgen."
+    ],
+    "goal": "Du kan spørre etter dyr og plassere dem på et enkelt kart."
+  },
+  {
+    "category": "ord og uttrykk",
+    "title": "Finn feilen i invitasjonen",
+    "ids": [
+      "vocab-0558",
+      "vocab-0560",
+      "vocab-0561",
+      "vocab-0564",
+      "vocab-0565",
+      "vocab-0567"
+    ],
+    "writing": [
+      [
+        "Skriv at det er et problem med invitasjonen.",
+        "Hay un problema con la invitación."
+      ],
+      [
+        "Spør hvilken aktivitet som står på programmet.",
+        "¿Qué actividad hay en el programa?"
+      ],
+      [
+        "Be om mer informasjon.",
+        "¿Tienes más información?"
+      ]
+    ],
+    "script": [
+      "¿Tienes la invitación?",
+      "Sí, pero hay un problema. Dice «lunes».",
+      "La actividad es el martes.",
+      "¿A qué hora? No tengo esa información.",
+      "A las cuatro. Está en el programa.",
+      "Gracias. Voy a cambiar la invitación."
+    ],
+    "questions": [
+      [
+        "Hva står feil i invitasjonen?",
+        "Det står mandag."
+      ],
+      [
+        "Hva er riktig dag?",
+        "Tirsdag."
+      ],
+      [
+        "Hvor står klokkeslettet?",
+        "I programmet."
+      ]
+    ],
+    "cards": [
+      "Din invitasjon sier onsdag klokka seks i parken. B har programmet. Les opp invitasjonen og spør om det er et problem. Rett de to feilene, og les tilbake den nye teksten.",
+      "Programmet ditt sier torsdag klokka fem i parken. Finn ut hva som står i As invitasjon før du røper programmet. Gi de to rettelsene og be A bekrefte dag og tid."
+    ],
+    "goal": "Du kan be om informasjon og rette en opplysning i en invitasjon."
+  },
+  {
+    "theme": "wordkeys-recognizable",
+    "title": "Finn riktig sted for musikken",
+    "goal": "Bruk spanske ord du kjenner igjen til å velge et sted og avtale hva dere skal høre.",
+    "ids": [
+      "vocab-0523",
+      "vocab-0524",
+      "vocab-0525",
+      "vocab-0526",
+      "vocab-0527",
+      "vocab-0569",
+      "vocab-0547"
+    ],
+    "writing": [
+      [
+        "Si at hotellet har et piano.",
+        "El hotel tiene un piano."
+      ],
+      [
+        "Fortell at du liker gitarmusikk.",
+        "Me gusta la música de guitarra."
+      ],
+      [
+        "Spør om restauranten er populær.",
+        "¿Es popular el restaurante?"
+      ]
+    ],
+    "script": [
+      "¿Hay música en el hotel?",
+      "Sí, una turista toca el piano a las cinco.",
+      "¿Y en el restaurante?",
+      "Allí hay música de guitarra a las siete.",
+      "Prefiero la guitarra. ¿Vamos juntos?",
+      "Sí, nos vemos en el restaurante."
+    ],
+    "questions": [
+      [
+        "Hvem spiller piano?",
+        "En turist."
+      ],
+      [
+        "Hvor kan de høre gitar?",
+        "På restauranten."
+      ],
+      [
+        "Når begynner gitarmusikken?",
+        "Klokka sju."
+      ]
+    ],
+    "cards": [
+      "Du kjenner hotellprogrammet. Piano klokka fire og gitar klokka seks. Spør B om programmet på restauranten. Du kan gå klokka fem og vil høre piano. Finn et sted som passer. Hjelp så B med å velge.",
+      "Du kjenner restaurantprogrammet. Piano klokka fem og gitar klokka åtte. Fortell A om ditt program. Spør A om hotellet. Du vil høre gitar før klokka sju. Avtal hvor dere går."
+    ]
+  }
+]
