@@ -1,0 +1,546 @@
+{
+  "skills": [
+    {
+      "id": "a0.identity.me_llamo",
+      "level": "A0",
+      "group": "Setninger og uttrykk",
+      "label": "Si hva du heter med me llamo",
+      "sourceNote": "written-original"
+    },
+    {
+      "id": "a0.identity.soy_de",
+      "level": "A0",
+      "group": "Setninger og uttrykk",
+      "label": "Si hvor du er fra med soy de",
+      "sourceNote": "written-original"
+    },
+    {
+      "id": "a0.articles.indefinite_singular",
+      "level": "A0",
+      "group": "Artikler og substantiv",
+      "label": "Bruke un og una",
+      "sourceNote": "written-original"
+    },
+    {
+      "id": "a0.articles.indefinite_plural",
+      "level": "A0",
+      "group": "Artikler og substantiv",
+      "label": "Bruke unos og unas",
+      "contentStatus": "ready",
+      "sourceNote": "grammar-topic"
+    },
+    {
+      "id": "a0.articles.definite_singular",
+      "level": "A0",
+      "group": "Artikler og substantiv",
+      "label": "Bruke el og la",
+      "sourceNote": "written-original"
+    },
+    {
+      "id": "a1.verbs.regular_ar.present",
+      "level": "A1",
+      "group": "Verb i presens",
+      "label": "Bøye regelrette -ar-verb i presens",
+      "sourceNote": "written-original"
+    },
+    {
+      "id": "a1.verbs.regular_er.present",
+      "level": "A1",
+      "group": "Verb i presens",
+      "label": "Bøye regelrette -er-verb i presens",
+      "sourceNote": "written-original"
+    },
+    {
+      "id": "a1.gustar.basic",
+      "level": "A1",
+      "group": "Setninger og uttrykk",
+      "label": "Bruke gustar med én ting eller aktivitet",
+      "sourceNote": "written-original"
+    },
+    {
+      "id": "a1.ser_estar.identity_or_location",
+      "level": "A1",
+      "group": "Setninger og uttrykk",
+      "label": "Velge ser eller estar for identitet og sted",
+      "sourceNote": "written-original"
+    },
+    {
+      "id": "a0.identity.age",
+      "level": "A0",
+      "group": "Setninger og uttrykk",
+      "label": "Si hvor gammel du er med tener años",
+      "contentStatus": "ready",
+      "sourceNote": "a0-foundation"
+    },
+    {
+      "id": "a0.existential.hay",
+      "level": "A0",
+      "group": "Setninger og uttrykk",
+      "label": "Bruke hay for å si at noe finnes",
+      "contentStatus": "ready",
+      "sourceNote": "a0-foundation"
+    },
+    {
+      "id": "a0.possession.tener",
+      "level": "A0",
+      "group": "Setninger og uttrykk",
+      "label": "Si at du har noe med tener",
+      "contentStatus": "ready",
+      "sourceNote": "a0-foundation"
+    },
+    {
+      "id": "a0.patterns.tengo",
+      "level": "A0",
+      "group": "Setninger og uttrykk",
+      "label": "Bruke uttrykk med tengo",
+      "contentStatus": "ready",
+      "sourceNote": "grammar-topic"
+    },
+    {
+      "id": "a1.patterns.quiero",
+      "level": "A1",
+      "group": "Setninger og uttrykk",
+      "label": "Uttrykke ønsker med quiero",
+      "contentStatus": "ready",
+      "sourceNote": "grammar-topic"
+    },
+    {
+      "id": "a1.patterns.me_gusta",
+      "level": "A1",
+      "group": "Setninger og uttrykk",
+      "label": "Uttrykke hva du liker med me gusta",
+      "contentStatus": "ready",
+      "sourceNote": "grammar-topic"
+    },
+    {
+      "id": "a1.patterns.voy_a",
+      "level": "A1",
+      "group": "Setninger og uttrykk",
+      "label": "Fortelle hva du skal gjøre med voy a",
+      "contentStatus": "ready",
+      "sourceNote": "grammar-topic"
+    },
+    {
+      "id": "a0.greetings.como_estas",
+      "level": "A0",
+      "group": "Setninger og uttrykk",
+      "label": "Spørre og svare på hvordan det går",
+      "contentStatus": "ready",
+      "sourceNote": "a0-foundation"
+    },
+    {
+      "id": "a0.work.trabajar",
+      "level": "A0",
+      "group": "Setninger og uttrykk",
+      "label": "Fortelle hva du jobber med",
+      "contentStatus": "ready",
+      "sourceNote": "a0-foundation"
+    },
+    {
+      "id": "a0.location.vivo_en",
+      "level": "A0",
+      "group": "Preposisjoner og bindeord",
+      "label": "Si hvor du bor med vivo en",
+      "contentStatus": "ready",
+      "sourceNote": "a0-foundation"
+    },
+    {
+      "id": "a0.articles.definite_plural",
+      "level": "A0",
+      "group": "Artikler og substantiv",
+      "label": "Bruke los og las",
+      "contentStatus": "ready",
+      "sourceNote": "grammar-topic"
+    },
+    {
+      "id": "a0.professions.zero_article",
+      "level": "A0",
+      "group": "Artikler og substantiv",
+      "label": "Utelate artikkel foran yrker",
+      "contentStatus": "ready",
+      "sourceNote": "a0-foundation"
+    },
+    {
+      "id": "a0.questions.que_es_eso",
+      "level": "A0",
+      "group": "Spørsmål og spørreord",
+      "label": "Spørre hva noe er med qué",
+      "contentStatus": "ready",
+      "sourceNote": "a0-foundation"
+    },
+    {
+      "id": "a1.verbs.regular_ir.present",
+      "level": "A1",
+      "group": "Verb, tid og bøying",
+      "label": "Bøye regelrette -ir-verb i presens",
+      "contentStatus": "ready",
+      "sourceNote": "verb-database"
+    },
+    {
+      "id": "a1.verbs.ser.present",
+      "level": "A1",
+      "group": "Verb, tid og bøying",
+      "label": "Bøye ser i presens",
+      "contentStatus": "ready",
+      "sourceNote": "verb-database"
+    },
+    {
+      "id": "a1.verbs.estar.present",
+      "level": "A1",
+      "group": "Verb, tid og bøying",
+      "label": "Bøye estar i presens",
+      "contentStatus": "ready",
+      "sourceNote": "verb-database"
+    },
+    {
+      "id": "a1.verbs.ir.present",
+      "level": "A1",
+      "group": "Verb, tid og bøying",
+      "label": "Bøye ir i presens",
+      "contentStatus": "ready",
+      "sourceNote": "verb-database"
+    },
+    {
+      "id": "a1.verbs.tener.present",
+      "level": "A1",
+      "group": "Verb, tid og bøying",
+      "label": "Bøye tener i presens",
+      "contentStatus": "ready",
+      "sourceNote": "verb-database"
+    },
+    {
+      "id": "a1.verbs.hacer.present",
+      "level": "A1",
+      "group": "Verb, tid og bøying",
+      "label": "Bøye hacer i presens",
+      "contentStatus": "ready",
+      "sourceNote": "verb-database"
+    },
+    {
+      "id": "a1.verbs.modal.present",
+      "level": "A1",
+      "group": "Verb, tid og bøying",
+      "label": "Bruke poder, querer og deber med infinitiv",
+      "contentStatus": "planned",
+      "sourceNote": "verb-database"
+    },
+    {
+      "id": "a1.verbs.reflexive.present",
+      "level": "A1",
+      "group": "Verb, tid og bøying",
+      "label": "Bøye refleksive verb i presens",
+      "contentStatus": "ready",
+      "sourceNote": "grammar-topic"
+    },
+    {
+      "id": "a1.verbs.near_future",
+      "level": "A1",
+      "group": "Verb, tid og bøying",
+      "label": "Fortelle om nær framtid med ir a",
+      "contentStatus": "planned",
+      "sourceNote": "curriculum-derived"
+    },
+    {
+      "id": "a1.adjectives.gender_number",
+      "level": "A1",
+      "group": "Adjektiv og adverb",
+      "label": "Bøye adjektiv etter kjønn og tall",
+      "contentStatus": "ready",
+      "sourceNote": "grammar-topic"
+    },
+    {
+      "id": "a1.adjectives.regular_o",
+      "level": "A1",
+      "group": "Adjektiv og adverb",
+      "label": "Bøye regelrette adjektiv på -o",
+      "contentStatus": "ready",
+      "sourceNote": "grammar-topic"
+    },
+    {
+      "id": "a1.adjectives.common_gender",
+      "level": "A1",
+      "group": "Adjektiv og adverb",
+      "label": "Bøye adjektiv på -e",
+      "contentStatus": "ready",
+      "sourceNote": "grammar-topic"
+    },
+    {
+      "id": "a1.ser.identity",
+      "level": "A1",
+      "group": "Setninger og uttrykk",
+      "label": "Bruke ser for identitet, yrke og opprinnelse",
+      "contentStatus": "ready",
+      "sourceNote": "grammar-topic"
+    },
+    {
+      "id": "a1.estar.location",
+      "level": "A1",
+      "group": "Setninger og uttrykk",
+      "label": "Bruke estar for hvor noen eller noe er",
+      "contentStatus": "ready",
+      "sourceNote": "grammar-topic"
+    },
+    {
+      "id": "a1.hay_estar.contrast",
+      "level": "A1",
+      "group": "Setninger og uttrykk",
+      "label": "Skille mellom hay og estar",
+      "contentStatus": "ready",
+      "sourceNote": "grammar-topic"
+    },
+    {
+      "id": "a1.adjectives.demonstratives",
+      "level": "A1",
+      "group": "Adjektiv og adverb",
+      "label": "Bruke pekende adjektiv",
+      "contentStatus": "ready",
+      "sourceNote": "grammar-topic"
+    },
+    {
+      "id": "a1.adjectives.possessives",
+      "level": "A1",
+      "group": "Adjektiv og adverb",
+      "label": "Bruke eiendomsord",
+      "contentStatus": "ready",
+      "sourceNote": "grammar-topic"
+    },
+    {
+      "id": "a1.time.clock",
+      "level": "A1",
+      "group": "Tall, klokkeslett og dato",
+      "label": "Fortelle hva klokka er",
+      "contentStatus": "planned",
+      "sourceNote": "curriculum-derived"
+    },
+    {
+      "id": "a1.time.dates",
+      "level": "A1",
+      "group": "Tall, klokkeslett og dato",
+      "label": "Si datoer og ukedager",
+      "contentStatus": "planned",
+      "sourceNote": "curriculum-derived"
+    },
+    {
+      "id": "a1.negation.no",
+      "level": "A1",
+      "group": "Negasjon",
+      "label": "Lage negative setninger med no",
+      "contentStatus": "planned",
+      "sourceNote": "curriculum-derived"
+    },
+    {
+      "id": "a1.questions.interrogatives",
+      "level": "A1",
+      "group": "Spørsmål og spørreord",
+      "label": "Bruke grunnleggende spørreord",
+      "contentStatus": "planned",
+      "sourceNote": "curriculum-derived"
+    },
+    {
+      "id": "a1.prepositions.basic",
+      "level": "A1",
+      "group": "Preposisjoner og bindeord",
+      "label": "Bruke grunnleggende preposisjoner",
+      "contentStatus": "planned",
+      "sourceNote": "preposition-database"
+    },
+    {
+      "id": "a1.pronouns.subject",
+      "level": "A1",
+      "group": "Pronomen",
+      "label": "Velge riktig subjektpronomen",
+      "contentStatus": "planned",
+      "sourceNote": "curriculum-derived"
+    },
+    {
+      "id": "a1.nouns.gender_number",
+      "level": "A1",
+      "group": "Artikler og substantiv",
+      "label": "Finne kjønn og tall på substantiv",
+      "contentStatus": "planned",
+      "sourceNote": "curriculum-derived"
+    },
+    {
+      "id": "a1.nouns.plural_z",
+      "level": "A1",
+      "group": "Artikler og substantiv",
+      "label": "Lage flertall av ord på -z",
+      "contentStatus": "planned",
+      "sourceNote": "curriculum-derived"
+    },
+    {
+      "id": "a1.articles.al_del",
+      "level": "A1",
+      "group": "Artikler og substantiv",
+      "label": "Bruke al og del",
+      "contentStatus": "planned",
+      "sourceNote": "curriculum-derived"
+    },
+    {
+      "id": "a1.adjectives.muy_mucho",
+      "level": "A1",
+      "group": "Adjektiv og adverb",
+      "label": "Skille mellom muy og mucho",
+      "contentStatus": "planned",
+      "sourceNote": "curriculum-derived"
+    },
+    {
+      "id": "a1.adjectives.colours",
+      "level": "A1",
+      "group": "Adjektiv og adverb",
+      "label": "Bruke farger med riktig samsvar",
+      "contentStatus": "planned",
+      "sourceNote": "curriculum-derived"
+    },
+    {
+      "id": "a1.adverbs.mente",
+      "level": "A1",
+      "group": "Adjektiv og adverb",
+      "label": "Lage enkle adverb på -mente",
+      "contentStatus": "planned",
+      "sourceNote": "curriculum-derived"
+    },
+    {
+      "id": "a1.gustar.activities",
+      "level": "A1",
+      "group": "Setninger og uttrykk",
+      "label": "Si at du liker å gjøre noe med gustar",
+      "contentStatus": "planned",
+      "sourceNote": "curriculum-derived"
+    },
+    {
+      "id": "a1.ser_estar.origin",
+      "level": "A1",
+      "group": "Setninger og uttrykk",
+      "label": "Bruke ser for opprinnelse og nasjonalitet",
+      "contentStatus": "planned",
+      "sourceNote": "curriculum-derived"
+    },
+    {
+      "id": "a1.ser_estar.weather",
+      "level": "A1",
+      "group": "Setninger og uttrykk",
+      "label": "Snakke om vær med hace, hay og está",
+      "contentStatus": "planned",
+      "sourceNote": "curriculum-derived"
+    },
+    {
+      "id": "a1.ser_estar.time",
+      "level": "A1",
+      "group": "Setninger og uttrykk",
+      "label": "Bruke ser for klokkeslett og dato",
+      "contentStatus": "planned",
+      "sourceNote": "curriculum-derived"
+    },
+    {
+      "id": "a1.reflexive.llamarse",
+      "level": "A1",
+      "group": "Setninger og uttrykk",
+      "label": "Bruke llamarse for å si navn",
+      "contentStatus": "planned",
+      "sourceNote": "curriculum-derived"
+    },
+    {
+      "id": "a1.questions.que",
+      "level": "A1",
+      "group": "Spørsmål og spørreord",
+      "label": "Spørre med qué",
+      "contentStatus": "planned",
+      "sourceNote": "curriculum-derived"
+    },
+    {
+      "id": "a1.questions.quien",
+      "level": "A1",
+      "group": "Spørsmål og spørreord",
+      "label": "Spørre med quién",
+      "contentStatus": "planned",
+      "sourceNote": "curriculum-derived"
+    },
+    {
+      "id": "a1.questions.donde_cuando",
+      "level": "A1",
+      "group": "Spørsmål og spørreord",
+      "label": "Spørre hvor og når",
+      "contentStatus": "planned",
+      "sourceNote": "curriculum-derived"
+    },
+    {
+      "id": "a1.prepositions.de_possession",
+      "level": "A1",
+      "group": "Preposisjoner og bindeord",
+      "label": "Bruke de for å uttrykke eierskap",
+      "contentStatus": "planned",
+      "sourceNote": "curriculum-derived"
+    },
+    {
+      "id": "a1.prepositions.a_en",
+      "level": "A1",
+      "group": "Preposisjoner og bindeord",
+      "label": "Skille mellom a og en",
+      "contentStatus": "planned",
+      "sourceNote": "curriculum-derived"
+    },
+    {
+      "id": "a1.prepositions.por_para",
+      "level": "A1",
+      "group": "Preposisjoner og bindeord",
+      "label": "Skille mellom por og para",
+      "contentStatus": "planned",
+      "sourceNote": "curriculum-derived"
+    },
+    {
+      "id": "a1.pronouns.tu_tu",
+      "level": "A1",
+      "group": "Pronomen",
+      "label": "Skille mellom tú og tu",
+      "contentStatus": "planned",
+      "sourceNote": "curriculum-derived"
+    },
+    {
+      "id": "a1.pronouns.el_el",
+      "level": "A1",
+      "group": "Pronomen",
+      "label": "Skille mellom él og el",
+      "contentStatus": "planned",
+      "sourceNote": "curriculum-derived"
+    }
+  ],
+  "words": [
+    {
+      "id": "core.hola",
+      "level": "A0",
+      "area": "Hilsener",
+      "no": "hei",
+      "es": "hola",
+      "sourceNote": "written-original",
+      "vocabularyId": "vocab-0064"
+    },
+    {
+      "id": "core.gracias",
+      "level": "A0",
+      "area": "Hilsener",
+      "no": "takk",
+      "es": "gracias",
+      "sourceNote": "written-original",
+      "vocabularyId": "vocab-0065"
+    },
+    {
+      "id": "core.madre",
+      "level": "A0",
+      "area": "Familie",
+      "no": "mor",
+      "es": "la madre",
+      "sourceNote": "written-original",
+      "vocabularyId": "vocab-0179"
+    },
+    {
+      "id": "core.cinco",
+      "level": "A0",
+      "area": "Tall",
+      "no": "fem",
+      "es": "cinco",
+      "sourceNote": "written-original",
+      "vocabularyId": "vocab-0005"
+    }
+  ]
+}

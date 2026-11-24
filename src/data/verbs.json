@@ -1,0 +1,481 @@
+{
+  "version": 1,
+  "verbs": {
+    "hablar": {
+      "infinitive": "hablar",
+      "translation": "å snakke",
+      "type": "regular -ar",
+      "presente": [
+        "hablo",
+        "hablas",
+        "habla",
+        "hablamos",
+        "habláis",
+        "hablan"
+      ],
+      "participio": "hablado"
+    },
+    "trabajar": {
+      "infinitive": "trabajar",
+      "translation": "å jobbe",
+      "type": "regular -ar",
+      "presente": [
+        "trabajo",
+        "trabajas",
+        "trabaja",
+        "trabajamos",
+        "trabajáis",
+        "trabajan"
+      ],
+      "participio": "trabajado"
+    },
+    "estudiar": {
+      "infinitive": "estudiar",
+      "translation": "å studere",
+      "type": "regular -ar",
+      "presente": [
+        "estudio",
+        "estudias",
+        "estudia",
+        "estudiamos",
+        "estudiáis",
+        "estudian"
+      ],
+      "participio": "estudiado"
+    },
+    "bailar": {
+      "infinitive": "bailar",
+      "translation": "å danse",
+      "type": "regular -ar",
+      "presente": [
+        "bailo",
+        "bailas",
+        "baila",
+        "bailamos",
+        "bailáis",
+        "bailan"
+      ],
+      "participio": "bailado"
+    },
+    "comprar": {
+      "infinitive": "comprar",
+      "translation": "å kjøpe",
+      "type": "regular -ar",
+      "presente": [
+        "compro",
+        "compras",
+        "compra",
+        "compramos",
+        "compráis",
+        "compran"
+      ],
+      "participio": "comprado"
+    },
+    "escuchar": {
+      "infinitive": "escuchar",
+      "translation": "å høre",
+      "type": "regular -ar",
+      "presente": [
+        "escucho",
+        "escuchas",
+        "escucha",
+        "escuchamos",
+        "escucháis",
+        "escuchan"
+      ],
+      "participio": "escuchado"
+    },
+    "cantar": {
+      "infinitive": "cantar",
+      "translation": "å synge",
+      "type": "regular -ar",
+      "presente": [
+        "canto",
+        "cantas",
+        "canta",
+        "cantamos",
+        "cantáis",
+        "cantan"
+      ],
+      "participio": "cantado"
+    },
+    "comer": {
+      "infinitive": "comer",
+      "translation": "å spise",
+      "type": "regular -er",
+      "presente": [
+        "como",
+        "comes",
+        "come",
+        "comemos",
+        "coméis",
+        "comen"
+      ],
+      "participio": "comido"
+    },
+    "beber": {
+      "infinitive": "beber",
+      "translation": "å drikke",
+      "type": "regular -er",
+      "presente": [
+        "bebo",
+        "bebes",
+        "bebe",
+        "bebemos",
+        "bebéis",
+        "beben"
+      ],
+      "participio": "bebido"
+    },
+    "leer": {
+      "infinitive": "leer",
+      "translation": "å lese",
+      "type": "regular -er",
+      "presente": [
+        "leo",
+        "lees",
+        "lee",
+        "leemos",
+        "leéis",
+        "leen"
+      ],
+      "participio": "leído"
+    },
+    "aprender": {
+      "infinitive": "aprender",
+      "translation": "å lære",
+      "type": "regular -er",
+      "presente": [
+        "aprendo",
+        "aprendes",
+        "aprende",
+        "aprendemos",
+        "aprendéis",
+        "aprenden"
+      ],
+      "participio": "aprendido"
+    },
+    "vivir": {
+      "infinitive": "vivir",
+      "translation": "å bo",
+      "type": "regular -ir",
+      "presente": [
+        "vivo",
+        "vives",
+        "vive",
+        "vivimos",
+        "vivís",
+        "viven"
+      ],
+      "participio": "vivido"
+    },
+    "escribir": {
+      "infinitive": "escribir",
+      "translation": "å skrive",
+      "type": "regular -ir",
+      "presente": [
+        "escribo",
+        "escribes",
+        "escribe",
+        "escribimos",
+        "escribís",
+        "escriben"
+      ],
+      "participio": "escrito"
+    },
+    "ser": {
+      "infinitive": "ser",
+      "translation": "å være (identitet, beskrivelse og når noe skjer)",
+      "type": "uregelmessig",
+      "presente": [
+        "soy",
+        "eres",
+        "es",
+        "somos",
+        "sois",
+        "son"
+      ],
+      "participio": "sido"
+    },
+    "estar": {
+      "infinitive": "estar",
+      "translation": "å være/befinne seg",
+      "type": "uregelmessig",
+      "presente": [
+        "estoy",
+        "estás",
+        "está",
+        "estamos",
+        "estáis",
+        "están"
+      ],
+      "participio": "estado"
+    },
+    "tener": {
+      "infinitive": "tener",
+      "translation": "å ha",
+      "type": "stammeendring e→ie + yo",
+      "presente": [
+        "tengo",
+        "tienes",
+        "tiene",
+        "tenemos",
+        "tenéis",
+        "tienen"
+      ],
+      "participio": "tenido"
+    },
+    "ir": {
+      "infinitive": "ir",
+      "translation": "å gå/dra",
+      "type": "uregelmessig",
+      "presente": [
+        "voy",
+        "vas",
+        "va",
+        "vamos",
+        "vais",
+        "van"
+      ],
+      "participio": "ido"
+    },
+    "hacer": {
+      "infinitive": "hacer",
+      "translation": "å gjøre",
+      "type": "uregelmessig",
+      "presente": [
+        "hago",
+        "haces",
+        "hace",
+        "hacemos",
+        "hacéis",
+        "hacen"
+      ],
+      "participio": "hecho"
+    },
+    "poder": {
+      "infinitive": "poder",
+      "translation": "å kunne",
+      "type": "stammeendring o→ue",
+      "presente": [
+        "puedo",
+        "puedes",
+        "puede",
+        "podemos",
+        "podéis",
+        "pueden"
+      ],
+      "participio": "podido"
+    },
+    "querer": {
+      "infinitive": "querer",
+      "translation": "å ville",
+      "type": "stammeendring e→ie",
+      "presente": [
+        "quiero",
+        "quieres",
+        "quiere",
+        "queremos",
+        "queréis",
+        "quieren"
+      ],
+      "participio": "querido"
+    },
+    "decir": {
+      "infinitive": "decir",
+      "translation": "å si",
+      "type": "stammeendring e→i + yo",
+      "presente": [
+        "digo",
+        "dices",
+        "dice",
+        "decimos",
+        "decís",
+        "dicen"
+      ],
+      "participio": "dicho"
+    },
+    "saber": {
+      "infinitive": "saber",
+      "translation": "å vite",
+      "type": "uregelmessig",
+      "presente": [
+        "sé",
+        "sabes",
+        "sabe",
+        "sabemos",
+        "sabéis",
+        "saben"
+      ],
+      "participio": "sabido"
+    },
+    "venir": {
+      "infinitive": "venir",
+      "translation": "å komme",
+      "type": "stammeendring e→ie + yo",
+      "presente": [
+        "vengo",
+        "vienes",
+        "viene",
+        "venimos",
+        "venís",
+        "vienen"
+      ],
+      "participio": "venido"
+    },
+    "salir": {
+      "infinitive": "salir",
+      "translation": "å gå ut",
+      "type": "uregelmessig",
+      "presente": [
+        "salgo",
+        "sales",
+        "sale",
+        "salimos",
+        "salís",
+        "salen"
+      ],
+      "participio": "salido"
+    },
+    "ver": {
+      "infinitive": "ver",
+      "translation": "å se",
+      "type": "uregelmessig",
+      "presente": [
+        "veo",
+        "ves",
+        "ve",
+        "vemos",
+        "veis",
+        "ven"
+      ],
+      "participio": "visto"
+    },
+    "preferir": {
+      "infinitive": "preferir",
+      "translation": "å foretrekke",
+      "type": "stammeendring e→ie",
+      "presente": [
+        "prefiero",
+        "prefieres",
+        "prefiere",
+        "preferimos",
+        "preferís",
+        "prefieren"
+      ],
+      "participio": "preferido"
+    },
+    "empezar": {
+      "infinitive": "empezar",
+      "translation": "å begynne",
+      "type": "stammeendring e→ie",
+      "presente": [
+        "empiezo",
+        "empiezas",
+        "empieza",
+        "empezamos",
+        "empezáis",
+        "empiezan"
+      ],
+      "participio": "empezado"
+    },
+    "comenzar": {
+      "infinitive": "comenzar",
+      "translation": "å begynne",
+      "type": "stammeendring e→ie",
+      "presente": [
+        "comienzo",
+        "comienzas",
+        "comienza",
+        "comenzamos",
+        "comenzáis",
+        "comienzan"
+      ],
+      "participio": "comenzado"
+    },
+    "entender": {
+      "infinitive": "entender",
+      "translation": "å forstå",
+      "type": "stammeendring e→ie",
+      "presente": [
+        "entiendo",
+        "entiendes",
+        "entiende",
+        "entendemos",
+        "entendéis",
+        "entienden"
+      ],
+      "participio": "entendido"
+    },
+    "dormir": {
+      "infinitive": "dormir",
+      "translation": "å sove",
+      "type": "stammeendring o→ue",
+      "presente": [
+        "duermo",
+        "duermes",
+        "duerme",
+        "dormimos",
+        "dormís",
+        "duermen"
+      ],
+      "participio": "dormido"
+    },
+    "volver": {
+      "infinitive": "volver",
+      "translation": "å komme tilbake",
+      "type": "stammeendring o→ue",
+      "presente": [
+        "vuelvo",
+        "vuelves",
+        "vuelve",
+        "volvemos",
+        "volvéis",
+        "vuelven"
+      ],
+      "participio": "vuelto"
+    },
+    "pedir": {
+      "infinitive": "pedir",
+      "translation": "å be om / bestille",
+      "type": "stammeendring e→i",
+      "presente": [
+        "pido",
+        "pides",
+        "pide",
+        "pedimos",
+        "pedís",
+        "piden"
+      ],
+      "participio": "pedido"
+    },
+    "repetir": {
+      "infinitive": "repetir",
+      "translation": "å gjenta",
+      "type": "stammeendring e→i",
+      "presente": [
+        "repito",
+        "repites",
+        "repite",
+        "repetimos",
+        "repetís",
+        "repiten"
+      ],
+      "participio": "repetido"
+    },
+    "servir": {
+      "infinitive": "servir",
+      "translation": "å servere / tjene",
+      "type": "stammeendring e→i",
+      "presente": [
+        "sirvo",
+        "sirves",
+        "sirve",
+        "servimos",
+        "servís",
+        "sirven"
+      ],
+      "participio": "servido"
+    }
+  }
+}

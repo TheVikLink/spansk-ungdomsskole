@@ -1,0 +1,1356 @@
+{
+  "schemaVersion": 1,
+  "lessons": [
+    {
+      "id": "a0.articles.definite",
+      "level": "A0",
+      "category": "Artikler og substantiv",
+      "title": "Velg el, la, los eller las",
+      "status": "published",
+      "reviewedBy": null,
+      "reviewedAt": null,
+      "learningGoal": "Jeg kan velge el, la, los eller las ut fra substantivets kjønn og tall.",
+      "explanation": "Her øver du på formen til den bestemte artikkelen. Se på substantivet: Er det hankjønn eller hunkjønn? Er det én eller flere?",
+      "theorySections": [
+        {
+          "title": "Hovedregelen",
+          "text": "Substantiv som ender på -o er ofte hankjønn og får el i entall og los i flertall. Substantiv som ender på -a er ofte hunkjønn og får la i entall og las i flertall.",
+          "examples": [
+            "el libro → los libros",
+            "la mochila → las mochilas"
+          ]
+        },
+        {
+          "title": "Vanlige ord på -ma",
+          "text": "Mange vanlige ord på -ma er hankjønn, selv om de ender på -a. Lær dem sammen med el.",
+          "examples": [
+            "el problema → los problemas",
+            "el tema → los temas",
+            "el programa → los programas",
+            "el idioma → los idiomas"
+          ]
+        },
+        {
+          "title": "Hunkjønnsord som begynner med a- eller ha-",
+          "text": "Noen hunkjønnsord som begynner med trykksterk a- eller ha- får el i entall fordi det er lettere å uttale. De er fortsatt hunkjønn, og får las i flertall.",
+          "examples": [
+            "el agua fría → las aguas frías",
+            "el águila grande → las águilas grandes"
+          ]
+        },
+        {
+          "title": "Ord du må lære som unntak",
+          "text": "Noen svært vanlige ord følger ikke hovedregelen. Det gjelder for eksempel la mano og el día.",
+          "examples": [
+            "la mano → las manos",
+            "el día → los días"
+          ]
+        }
+      ],
+      "forms": [
+        {
+          "article": "el",
+          "gender": "hankjønn",
+          "number": "entall"
+        },
+        {
+          "article": "la",
+          "gender": "hunkjønn",
+          "number": "entall"
+        },
+        {
+          "article": "los",
+          "gender": "hankjønn",
+          "number": "flertall"
+        },
+        {
+          "article": "las",
+          "gender": "hunkjønn",
+          "number": "flertall"
+        }
+      ],
+      "examples": [
+        {
+          "es": "El libro es rojo.",
+          "no": "Boka er rød."
+        },
+        {
+          "es": "Los libros son rojos.",
+          "no": "Bøkene er røde."
+        },
+        {
+          "es": "La mochila es negra.",
+          "no": "Sekken er svart."
+        },
+        {
+          "es": "Las mochilas son negras.",
+          "no": "Sekkene er svarte."
+        }
+      ],
+      "tip": "Lær gjerne substantivet sammen med artikkelen. Hovedregelen er at substantiv som ender på -a har la, og substantiv som ender på -o har el. Men det finnes unntak, som el día, substantiv som ender på -ma (el problema) og la mano.",
+      "shortHint": "Velg bestemt artikkel etter substantivets kjønn og tall.",
+      "skillIds": [
+        "a0.articles.definite_singular",
+        "a0.articles.definite_plural"
+      ],
+      "practice": {
+        "topicId": "articles",
+        "label": "Øv på el, la, los og las",
+        "options": [
+          "El",
+          "La",
+          "Los",
+          "Las"
+        ]
+      },
+      "transferExercises": [
+        {
+          "id": "a0.articles.definite.transfer.bicicletas",
+          "skillId": "a0.articles.definite_plural",
+          "sentence": "___ bicicletas son nuevas",
+          "no": "Syklene er nye.",
+          "answer": "Las",
+          "options": [
+            "El",
+            "La",
+            "Los",
+            "Las"
+          ],
+          "hint": "bicicletas er feminin flertall"
+        },
+        {
+          "id": "a0.articles.definite.transfer.ventanas",
+          "skillId": "a0.articles.definite_plural",
+          "sentence": "___ ventanas están al lado de la puerta",
+          "no": "Vinduene er ved siden av døra.",
+          "answer": "Las",
+          "options": [
+            "El",
+            "La",
+            "Los",
+            "Las"
+          ],
+          "hint": "ventanas ender på -a og er feminin flertall"
+        },
+        {
+          "id": "a0.articles.definite.transfer.flores",
+          "skillId": "a0.articles.definite_plural",
+          "sentence": "___ flores son bonitas",
+          "no": "Blomstene er fine.",
+          "answer": "Las",
+          "options": [
+            "El",
+            "La",
+            "Los",
+            "Las"
+          ],
+          "hint": "flores er hunkjønn flertall"
+        },
+        {
+          "id": "a0.articles.definite.transfer.problema",
+          "skillId": "a0.articles.definite_singular",
+          "sentence": "___ problema es difícil",
+          "no": "Problemet er vanskelig.",
+          "answer": "El",
+          "options": [
+            "El",
+            "La",
+            "Los",
+            "Las"
+          ],
+          "hint": "problema ender på -ma, men er hankjønn"
+        },
+        {
+          "id": "a0.articles.definite.transfer.perros",
+          "skillId": "a0.articles.definite_plural",
+          "sentence": "___ perros son grandes",
+          "no": "Hundene er store.",
+          "answer": "Los",
+          "options": [
+            "El",
+            "La",
+            "Los",
+            "Las"
+          ],
+          "hint": "perros ender på -o og er maskulin flertall"
+        }
+      ],
+      "recommendedNext": null,
+      "relatedLessonIds": [
+        "a0.articles.indefinite"
+      ]
+    },
+    {
+      "id": "a0.articles.indefinite",
+      "level": "A0",
+      "category": "Artikler og substantiv",
+      "title": "Velg un, una, unos eller unas",
+      "status": "published",
+      "reviewedBy": null,
+      "reviewedAt": null,
+      "learningGoal": "Jeg kan velge un, una, unos eller unas når jeg snakker om én eller flere ting på en ubestemt måte.",
+      "explanation": "Ubestemte artikler betyr omtrent en, ei, et eller noen. Velg formen etter substantivets kjønn og tall.",
+      "theorySections": [
+        {
+          "title": "Entall",
+          "text": "Bruk un foran hankjønn og una foran hunkjønn når du snakker om én ting.",
+          "examples": [
+            "un libro → en bok",
+            "una mochila → en sekk"
+          ]
+        },
+        {
+          "title": "Flertall",
+          "text": "Bruk unos foran hankjønn og unas foran hunkjønn når du mener noen eller flere.",
+          "examples": [
+            "unos libros → noen bøker",
+            "unas mochilas → noen sekker"
+          ]
+        },
+        {
+          "title": "Artikkelen følger substantivet",
+          "text": "Endelsen på substantivet kan gi et hint, men lær gjerne ordet sammen med artikkelen. Unntakene fra hovedregelen gjelder også her.",
+          "examples": [
+            "un problema → et problem",
+            "una mano → en hånd"
+          ]
+        }
+      ],
+      "forms": [
+        {
+          "article": "un",
+          "gender": "hankjønn",
+          "number": "entall"
+        },
+        {
+          "article": "una",
+          "gender": "hunkjønn",
+          "number": "entall"
+        },
+        {
+          "article": "unos",
+          "gender": "hankjønn",
+          "number": "flertall"
+        },
+        {
+          "article": "unas",
+          "gender": "hunkjønn",
+          "number": "flertall"
+        }
+      ],
+      "examples": [
+        {
+          "es": "Tengo un libro.",
+          "no": "Jeg har en bok."
+        },
+        {
+          "es": "Tengo una mochila.",
+          "no": "Jeg har en sekk."
+        },
+        {
+          "es": "Veo unos perros.",
+          "no": "Jeg ser noen hunder."
+        },
+        {
+          "es": "Veo unas casas.",
+          "no": "Jeg ser noen hus."
+        }
+      ],
+      "tip": "Husk forskjellen: un/una er entall, mens unos/unas er flertall. Lær substantivet sammen med artikkelen når du kan.",
+      "shortHint": "Velg ubestemt artikkel etter substantivets kjønn og tall.",
+      "skillIds": [
+        "a0.articles.indefinite_singular",
+        "a0.articles.indefinite_plural"
+      ],
+      "practice": {
+        "topicId": "articles",
+        "label": "Øv på un, una, unos og unas",
+        "options": [
+          "Un",
+          "Una",
+          "Unos",
+          "Unas"
+        ]
+      },
+      "transferExercises": [
+        {
+          "id": "a0.articles.indefinite.transfer.libro",
+          "skillId": "a0.articles.indefinite_singular",
+          "sentence": "Tengo ___ libro",
+          "no": "Jeg har en bok.",
+          "answer": "Un",
+          "options": [
+            "Un",
+            "Una",
+            "Unos",
+            "Unas"
+          ],
+          "hint": "libro er hankjønn entall"
+        },
+        {
+          "id": "a0.articles.indefinite.transfer.casa",
+          "skillId": "a0.articles.indefinite_singular",
+          "sentence": "Veo ___ casa",
+          "no": "Jeg ser et hus.",
+          "answer": "Una",
+          "options": [
+            "Un",
+            "Una",
+            "Unos",
+            "Unas"
+          ],
+          "hint": "casa er hunkjønn entall"
+        },
+        {
+          "id": "a0.articles.indefinite.transfer.perros",
+          "skillId": "a0.articles.indefinite_plural",
+          "sentence": "Hay ___ perros en el parque",
+          "no": "Det er noen hunder i parken.",
+          "answer": "Unos",
+          "options": [
+            "Un",
+            "Una",
+            "Unos",
+            "Unas"
+          ],
+          "hint": "perros er hankjønn flertall"
+        },
+        {
+          "id": "a0.articles.indefinite.transfer.mochilas",
+          "skillId": "a0.articles.indefinite_plural",
+          "sentence": "Hay ___ mochilas aquí",
+          "no": "Det er noen sekker her.",
+          "answer": "Unas",
+          "options": [
+            "Un",
+            "Una",
+            "Unos",
+            "Unas"
+          ],
+          "hint": "mochilas er hunkjønn flertall"
+        },
+        {
+          "id": "a0.articles.indefinite.transfer.problema",
+          "skillId": "a0.articles.indefinite_singular",
+          "sentence": "Es ___ problema difícil",
+          "no": "Det er et vanskelig problem.",
+          "answer": "Un",
+          "options": [
+            "Un",
+            "Una",
+            "Unos",
+            "Unas"
+          ],
+          "hint": "problema er et vanlig hankjønnsord på -ma"
+        }
+      ],
+      "recommendedNext": null,
+      "relatedLessonIds": [
+        "a0.articles.definite"
+      ]
+    },
+    {
+      "id": "a1.adjectives.regular_o",
+      "level": "A1",
+      "category": "Adjektiv og adverb",
+      "title": "La adjektivet følge substantivet",
+      "status": "published",
+      "reviewedBy": null,
+      "reviewedAt": null,
+      "learningGoal": "Jeg kan velge riktig form av et adjektiv på -o etter substantivets kjønn og tall.",
+      "explanation": "Spanske adjektiver som beskriver et substantiv, må passe med substantivet. Når grunnformen slutter på -o, endrer adjektivet slutten etter kjønn og tall.",
+      "theorySections": [
+        {
+          "title": "Fire former",
+          "text": "Hankjønn entall får -o, hunkjønn entall får -a, hankjønn flertall får -os og hunkjønn flertall får -as.",
+          "examples": [
+            "un chico alto → en høy gutt",
+            "una chica alta → en høy jente",
+            "unos chicos altos → noen høye gutter",
+            "unas chicas altas → noen høye jenter"
+          ]
+        },
+        {
+          "title": "Finn substantivet først",
+          "text": "Se på ordet adjektivet beskriver. Finn kjønn og tall der først, og velg så riktig adjektivform.",
+          "examples": [
+            "La casa es bonita.",
+            "Los perros son pequeños."
+          ]
+        },
+        {
+          "title": "Ikke bland kjønn og tall",
+          "text": "Endelsen viser to ting samtidig: -a betyr hunkjønn entall, mens -as betyr hunkjønn flertall. På samme måte betyr -o hankjønn entall, og -os hankjønn flertall.",
+          "examples": [
+            "una mochila negra → en svart sekk",
+            "unas mochilas negras → noen svarte sekker"
+          ]
+        }
+      ],
+      "forms": [
+        {
+          "article": "alto",
+          "gender": "hankjønn",
+          "number": "entall"
+        },
+        {
+          "article": "alta",
+          "gender": "hunkjønn",
+          "number": "entall"
+        },
+        {
+          "article": "altos",
+          "gender": "hankjønn",
+          "number": "flertall"
+        },
+        {
+          "article": "altas",
+          "gender": "hunkjønn",
+          "number": "flertall"
+        }
+      ],
+      "examples": [
+        {
+          "es": "El chico es alto.",
+          "no": "Gutten er høy."
+        },
+        {
+          "es": "La chica es alta.",
+          "no": "Jenta er høy."
+        },
+        {
+          "es": "Los chicos son altos.",
+          "no": "Guttene er høye."
+        },
+        {
+          "es": "Las chicas son altas.",
+          "no": "Jentene er høye."
+        }
+      ],
+      "tip": "Finn substantivet først. Adjektivet følger substantivets kjønn og tall, også når substantivet står etter verbet.",
+      "shortHint": "Se på substantivet og velg -o, -a, -os eller -as.",
+      "skillIds": [
+        "a1.adjectives.regular_o"
+      ],
+      "practice": {
+        "topicId": "adjectives",
+        "label": "Øv på adjektivsamsvar"
+      },
+      "transferExercises": [
+        {
+          "id": "a1.adjectives.regular_o.transfer.coche",
+          "skillId": "a1.adjectives.regular_o",
+          "sentence": "El coche es ___",
+          "no": "Bilen er rød.",
+          "answer": "Rojo",
+          "options": [
+            "Rojo",
+            "Roja",
+            "Rojos",
+            "Rojas"
+          ],
+          "hint": "coche er hankjønn entall"
+        },
+        {
+          "id": "a1.adjectives.regular_o.transfer.mesa",
+          "skillId": "a1.adjectives.regular_o",
+          "sentence": "La mesa es ___",
+          "no": "Bordet er hvitt.",
+          "answer": "Blanca",
+          "options": [
+            "Blanco",
+            "Blanca",
+            "Blancos",
+            "Blancas"
+          ],
+          "hint": "mesa er hunkjønn entall"
+        },
+        {
+          "id": "a1.adjectives.regular_o.transfer.libros",
+          "skillId": "a1.adjectives.regular_o",
+          "sentence": "Los libros son ___",
+          "no": "Bøkene er nye.",
+          "answer": "Nuevos",
+          "options": [
+            "Nuevo",
+            "Nueva",
+            "Nuevos",
+            "Nuevas"
+          ],
+          "hint": "libros er hankjønn flertall"
+        },
+        {
+          "id": "a1.adjectives.regular_o.transfer.casas",
+          "skillId": "a1.adjectives.regular_o",
+          "sentence": "Las casas son ___",
+          "no": "Husene er gamle.",
+          "answer": "Viejas",
+          "options": [
+            "Viejo",
+            "Vieja",
+            "Viejos",
+            "Viejas"
+          ],
+          "hint": "casas er hunkjønn flertall"
+        },
+        {
+          "id": "a1.adjectives.regular_o.transfer.profesora",
+          "skillId": "a1.adjectives.regular_o",
+          "sentence": "La profesora es ___",
+          "no": "Læreren er hyggelig.",
+          "answer": "Simpática",
+          "options": [
+            "Simpático",
+            "Simpática",
+            "Simpáticos",
+            "Simpáticas"
+          ],
+          "hint": "profesora er hunkjønn entall"
+        }
+      ],
+      "recommendedNext": null,
+      "relatedLessonIds": []
+    },
+    {
+      "id": "a1.adjectives.common_gender",
+      "level": "A1",
+      "category": "Adjektiv og adverb",
+      "title": "Adjektiv på -e: samme form for kjønn",
+      "status": "published",
+      "reviewedBy": null,
+      "reviewedAt": null,
+      "learningGoal": "Jeg kan bruke adjektiv på -e i entall og flertall.",
+      "explanation": "Mange adjektiver som slutter på -e, har samme form for hankjønn og hunkjønn. I flertall får de vanligvis -s.",
+      "theorySections": [
+        {
+          "title": "Kjønn endrer ikke formen",
+          "text": "Et adjektiv på -e ser likt ut etter et hankjønnsord og et hunkjønnsord. Det er tallet som endrer formen.",
+          "examples": [
+            "un chico inteligente → en intelligent gutt",
+            "una chica inteligente → en intelligent jente"
+          ]
+        },
+        {
+          "title": "Flertall får -s",
+          "text": "Når substantivet er i flertall, legger du vanligvis til -s på et adjektiv som allerede slutter på -e.",
+          "examples": [
+            "chicos inteligentes → intelligente gutter",
+            "casas grandes → store hus"
+          ]
+        },
+        {
+          "title": "Finn substantivet først",
+          "text": "Se først om substantivet er entall eller flertall. Ikke lag en egen hunkjønnsform som inteligenta eller granda.",
+          "examples": [
+            "El profesor es inteligente.",
+            "Las casas son grandes."
+          ]
+        }
+      ],
+      "forms": [
+        {
+          "article": "inteligente",
+          "gender": "hankjønn eller hunkjønn",
+          "number": "entall"
+        },
+        {
+          "article": "inteligentes",
+          "gender": "hankjønn eller hunkjønn",
+          "number": "flertall"
+        }
+      ],
+      "examples": [
+        {
+          "es": "El profesor es inteligente.",
+          "no": "Læreren er intelligent."
+        },
+        {
+          "es": "La profesora es inteligente.",
+          "no": "Læreren er intelligent."
+        },
+        {
+          "es": "Los chicos son inteligentes.",
+          "no": "Guttene er intelligente."
+        },
+        {
+          "es": "Las chicas son inteligentes.",
+          "no": "Jentene er intelligente."
+        }
+      ],
+      "tip": "-e endrer ikke kjønn. I flertall får adjektivet vanligvis -s.",
+      "shortHint": "Se på tallet: inteligente eller inteligentes.",
+      "skillIds": [
+        "a1.adjectives.common_gender"
+      ],
+      "practice": {
+        "topicId": "adjectives",
+        "label": "Øv på adjektiv på -e"
+      },
+      "transferExercises": [
+        {
+          "id": "a1.adjectives.common_gender.transfer.profesor",
+          "skillId": "a1.adjectives.common_gender",
+          "sentence": "El profesor es ___",
+          "no": "Læreren er intelligent.",
+          "answer": "Inteligente",
+          "options": [
+            "Inteligente",
+            "Inteligentes"
+          ],
+          "hint": "profesor er entall"
+        },
+        {
+          "id": "a1.adjectives.common_gender.transfer.profesora",
+          "skillId": "a1.adjectives.common_gender",
+          "sentence": "La profesora es ___",
+          "no": "Læreren er intelligent.",
+          "answer": "Inteligente",
+          "options": [
+            "Inteligente",
+            "Inteligentes"
+          ],
+          "hint": "profesora er entall"
+        },
+        {
+          "id": "a1.adjectives.common_gender.transfer.chicos",
+          "skillId": "a1.adjectives.common_gender",
+          "sentence": "Los chicos son ___",
+          "no": "Guttene er intelligente.",
+          "answer": "Inteligentes",
+          "options": [
+            "Inteligente",
+            "Inteligentes"
+          ],
+          "hint": "chicos er flertall"
+        },
+        {
+          "id": "a1.adjectives.common_gender.transfer.casas",
+          "skillId": "a1.adjectives.common_gender",
+          "sentence": "Las casas son ___",
+          "no": "Husene er store.",
+          "answer": "Grandes",
+          "options": [
+            "Grande",
+            "Grandes"
+          ],
+          "hint": "casas er flertall"
+        },
+        {
+          "id": "a1.adjectives.common_gender.transfer.libros",
+          "skillId": "a1.adjectives.common_gender",
+          "sentence": "Los libros son ___",
+          "no": "Bøkene er interessante.",
+          "answer": "Interesantes",
+          "options": [
+            "Interesante",
+            "Interesantes"
+          ],
+          "hint": "libros er flertall"
+        }
+      ],
+      "recommendedNext": null,
+      "relatedLessonIds": [
+        "a1.adjectives.regular_o"
+      ]
+    },
+    {
+      "id": "a1.ser.identity",
+      "level": "A1",
+      "category": "Setninger og uttrykk",
+      "title": "Ser: hvem du er og hvor du kommer fra",
+      "status": "published",
+      "reviewedBy": null,
+      "reviewedAt": null,
+      "learningGoal": "Jeg kan bruke riktig form av ser når jeg forteller hvem noen er, hva de jobber med eller hvor de kommer fra.",
+      "explanation": "Ser bruker vi når vi identifiserer personer, forteller om yrke eller sier hvor noen kommer fra.",
+      "theorySections": [
+        {
+          "title": "Formene i presens",
+          "text": "Med yo bruker du soy, med tú eres, med él, ella og usted es, med nosotros somos og med ellos, ellas og ustedes son.",
+          "examples": [
+            "Yo soy de Noruega.",
+            "Mi padre es profesor.",
+            "Nosotros somos estudiantes."
+          ]
+        },
+        {
+          "title": "Identitet og yrke",
+          "text": "Bruk ser når du sier hvem noen er eller hvilket yrke de har. I en enkel yrkesbeskrivelse står yrket vanligvis uten un eller una.",
+          "examples": [
+            "Ella es Ana.",
+            "Mi madre es profesora."
+          ]
+        },
+        {
+          "title": "Opprinnelse",
+          "text": "Bruk ser de for å si hvor noen kommer fra.",
+          "examples": [
+            "Soy de Oslo.",
+            "Mis amigos son de México."
+          ]
+        }
+      ],
+      "forms": [
+        {
+          "article": "soy",
+          "gender": "yo",
+          "number": "entall"
+        },
+        {
+          "article": "eres",
+          "gender": "tú",
+          "number": "entall"
+        },
+        {
+          "article": "es",
+          "gender": "él/ella/usted",
+          "number": "entall"
+        },
+        {
+          "article": "somos",
+          "gender": "nosotros",
+          "number": "flertall"
+        },
+        {
+          "article": "son",
+          "gender": "ellos/ellas/ustedes",
+          "number": "flertall"
+        }
+      ],
+      "examples": [
+        {
+          "es": "Yo soy de Noruega.",
+          "no": "Jeg er fra Norge."
+        },
+        {
+          "es": "Mi padre es profesor.",
+          "no": "Faren min er lærer."
+        },
+        {
+          "es": "Nosotros somos estudiantes.",
+          "no": "Vi er elever."
+        },
+        {
+          "es": "Ellos son muy simpáticos.",
+          "no": "De er veldig hyggelige."
+        }
+      ],
+      "tip": "Ikke bruk estar bare fordi norsk bruker «er». Tenk først: identitet, yrke eller opprinnelse? Da er ser ofte riktig.",
+      "shortHint": "Identitet, yrke og opprinnelse: ser.",
+      "skillIds": [
+        "a1.ser.identity"
+      ],
+      "practice": {
+        "topicId": "serEstar",
+        "label": "Øv på ser for identitet",
+        "options": [
+          "Soy",
+          "Eres",
+          "Es",
+          "Somos",
+          "Son"
+        ]
+      },
+      "transferExercises": [
+        {
+          "id": "a1.ser.identity.transfer.ana",
+          "skillId": "a1.ser.identity",
+          "sentence": "Ella ___ Ana",
+          "no": "Hun er Ana.",
+          "answer": "Es",
+          "options": [
+            "Soy",
+            "Eres",
+            "Es",
+            "Son"
+          ],
+          "hint": "ella er tredje person entall"
+        },
+        {
+          "id": "a1.ser.identity.transfer.medico",
+          "skillId": "a1.ser.identity",
+          "sentence": "Mi hermano ___ médico",
+          "no": "Broren min er lege.",
+          "answer": "Es",
+          "options": [
+            "Soy",
+            "Eres",
+            "Es",
+            "Somos"
+          ],
+          "hint": "mi hermano er én person"
+        },
+        {
+          "id": "a1.ser.identity.transfer.nosotros",
+          "skillId": "a1.ser.identity",
+          "sentence": "Nosotros ___ de Oslo",
+          "no": "Vi er fra Oslo.",
+          "answer": "Somos",
+          "options": [
+            "Es",
+            "Somos",
+            "Son",
+            "Eres"
+          ],
+          "hint": "nosotros er flertall"
+        },
+        {
+          "id": "a1.ser.identity.transfer.tu",
+          "skillId": "a1.ser.identity",
+          "sentence": "Tú ___ estudiante",
+          "no": "Du er elev.",
+          "answer": "Eres",
+          "options": [
+            "Soy",
+            "Eres",
+            "Es",
+            "Son"
+          ],
+          "hint": "tú får eres"
+        },
+        {
+          "id": "a1.ser.identity.transfer.amigos",
+          "skillId": "a1.ser.identity",
+          "sentence": "Mis amigos ___ de México",
+          "no": "Vennene mine er fra Mexico.",
+          "answer": "Son",
+          "options": [
+            "Es",
+            "Somos",
+            "Son",
+            "Eres"
+          ],
+          "hint": "mis amigos er flertall"
+        }
+      ],
+      "recommendedNext": "a1.estar.location",
+      "relatedLessonIds": [
+        "a1.estar.location"
+      ]
+    },
+    {
+      "id": "a1.estar.location",
+      "level": "A1",
+      "category": "Setninger og uttrykk",
+      "title": "Estar: hvor noen eller noe er",
+      "status": "published",
+      "reviewedBy": null,
+      "reviewedAt": null,
+      "learningGoal": "Jeg kan bruke riktig form av estar når jeg forteller hvor en person eller ting befinner seg.",
+      "explanation": "Bruk estar når du forteller hvor en person eller ting er. Formen må passe med hvem eller hva du snakker om.",
+      "theorySections": [
+        {
+          "title": "Formene i presens",
+          "text": "Med yo bruker du estoy, med tú estás, med él, ella og usted está, med nosotros estamos og med ellos, ellas og ustedes están.",
+          "examples": [
+            "Estoy en casa.",
+            "Mi madre está en la cocina.",
+            "Mis amigos están en la escuela."
+          ]
+        },
+        {
+          "title": "Én eller flere",
+          "text": "Se på personen eller tingen som befinner seg et sted. Entall gir está, mens flertall gir están.",
+          "examples": [
+            "El libro está en la mesa.",
+            "Los niños están en el parque."
+          ]
+        },
+        {
+          "title": "Ikke bland med ser",
+          "text": "Når du forteller hvor noen eller noe er, bruker du estar. Det gjelder også steder som er faste, for eksempel en skole eller en by.",
+          "examples": [
+            "¿Dónde está el baño?",
+            "La escuela está en Oslo."
+          ]
+        }
+      ],
+      "forms": [
+        {
+          "article": "estoy",
+          "gender": "yo",
+          "number": "entall"
+        },
+        {
+          "article": "estás",
+          "gender": "tú",
+          "number": "entall"
+        },
+        {
+          "article": "está",
+          "gender": "él/ella/usted",
+          "number": "entall"
+        },
+        {
+          "article": "estamos",
+          "gender": "nosotros",
+          "number": "flertall"
+        },
+        {
+          "article": "están",
+          "gender": "ellos/ellas/ustedes",
+          "number": "flertall"
+        }
+      ],
+      "examples": [
+        {
+          "es": "Mi madre está en la cocina.",
+          "no": "Moren min er på kjøkkenet."
+        },
+        {
+          "es": "¿Dónde está el baño?",
+          "no": "Hvor er badet?"
+        },
+        {
+          "es": "Los niños están en el parque.",
+          "no": "Barna er i parken."
+        },
+        {
+          "es": "El libro está en la mesa.",
+          "no": "Boka er på bordet."
+        }
+      ],
+      "tip": "Bruk estar når du forteller hvor en person eller ting befinner seg. Se etter entall eller flertall før du velger está eller están.",
+      "shortHint": "Sted: estar. Én: está. Flere: están.",
+      "skillIds": [
+        "a1.estar.location"
+      ],
+      "practice": {
+        "topicId": "serEstar",
+        "label": "Øv på estar for plassering",
+        "options": [
+          "Estoy",
+          "Estás",
+          "Está",
+          "Estamos",
+          "Están"
+        ]
+      },
+      "transferExercises": [
+        {
+          "id": "a1.estar.location.transfer.libro",
+          "skillId": "a1.estar.location",
+          "sentence": "El libro ___ en la mochila",
+          "no": "Boka er i sekken.",
+          "answer": "Está",
+          "options": [
+            "Estoy",
+            "Está",
+            "Estamos",
+            "Están"
+          ],
+          "hint": "el libro er entall"
+        },
+        {
+          "id": "a1.estar.location.transfer.ana",
+          "skillId": "a1.estar.location",
+          "sentence": "Ana ___ en casa",
+          "no": "Ana er hjemme.",
+          "answer": "Está",
+          "options": [
+            "Estás",
+            "Está",
+            "Estamos",
+            "Están"
+          ],
+          "hint": "Ana er én person"
+        },
+        {
+          "id": "a1.estar.location.transfer.nosotros",
+          "skillId": "a1.estar.location",
+          "sentence": "Nosotros ___ en el aula",
+          "no": "Vi er i klasserommet.",
+          "answer": "Estamos",
+          "options": [
+            "Estoy",
+            "Está",
+            "Estamos",
+            "Están"
+          ],
+          "hint": "nosotros er flertall"
+        },
+        {
+          "id": "a1.estar.location.transfer.amigos",
+          "skillId": "a1.estar.location",
+          "sentence": "Mis amigos ___ en la escuela",
+          "no": "Vennene mine er på skolen.",
+          "answer": "Están",
+          "options": [
+            "Está",
+            "Estamos",
+            "Están",
+            "Estás"
+          ],
+          "hint": "mis amigos er flertall"
+        },
+        {
+          "id": "a1.estar.location.transfer.llaves",
+          "skillId": "a1.estar.location",
+          "sentence": "Las llaves ___ en la mochila",
+          "no": "Nøklene er i sekken.",
+          "answer": "Están",
+          "options": [
+            "Está",
+            "Están",
+            "Estoy",
+            "Estamos"
+          ],
+          "hint": "las llaves er flertall"
+        }
+      ],
+      "recommendedNext": null,
+      "relatedLessonIds": [
+        "a1.ser.identity"
+      ]
+    },
+    {
+      "id": "a1.hay_estar.contrast",
+      "level": "A1",
+      "category": "Setninger og uttrykk",
+      "title": "Hay eller está/están?",
+      "status": "published",
+      "reviewedBy": null,
+      "reviewedAt": null,
+      "learningGoal": "Jeg kan skille mellom å si at noe finnes og å si hvor en bestemt ting er.",
+      "explanation": "Hay betyr at noe finnes eller finnes et sted. Estar bruker vi når vi allerede snakker om en bestemt person eller ting og forteller hvor den er.",
+      "theorySections": [
+        {
+          "title": "Hay introduserer noe",
+          "text": "Bruk hay når du forteller at én eller flere ting finnes. Etter hay kan du bruke en ubestemt form eller et tall.",
+          "examples": [
+            "Hay un libro en la mesa.",
+            "Hay dos ventanas en el aula."
+          ]
+        },
+        {
+          "title": "Estar lokaliserer noe bestemt",
+          "text": "Når du snakker om boka, vinduene eller apoteket som allerede er kjent, bruker du está eller están for å si hvor de er.",
+          "examples": [
+            "El libro está en la mesa.",
+            "Las ventanas están al lado de la puerta."
+          ]
+        },
+        {
+          "title": "Et nyttig par",
+          "text": "Se forskjellen i to setninger med samme sted: først sier du at noe finnes, og deretter forteller du hvor den bestemte tingen er.",
+          "examples": [
+            "Hay una silla aquí.",
+            "La silla está junto a la mesa."
+          ]
+        }
+      ],
+      "forms": [
+        {
+          "article": "hay",
+          "gender": "finnes én eller flere",
+          "number": "alle tall"
+        },
+        {
+          "article": "está",
+          "gender": "bestemt ting/person",
+          "number": "entall"
+        },
+        {
+          "article": "están",
+          "gender": "bestemte ting/personer",
+          "number": "flertall"
+        }
+      ],
+      "examples": [
+        {
+          "es": "Hay un libro en la mesa.",
+          "no": "Det er en bok på bordet."
+        },
+        {
+          "es": "El libro está en la mesa.",
+          "no": "Boka er på bordet."
+        },
+        {
+          "es": "Hay dos ventanas en el aula.",
+          "no": "Det er to vinduer i klasserommet."
+        },
+        {
+          "es": "Las ventanas están al lado de la puerta.",
+          "no": "Vinduene er ved siden av døra."
+        }
+      ],
+      "tip": "Tenk «finnes det?» når du velger hay, og «hvor er den/det?» når du velger está eller están.",
+      "shortHint": "Hay introduserer; está/están plasserer.",
+      "skillIds": [
+        "a1.hay_estar.contrast"
+      ],
+      "practice": {
+        "topicId": "hayEstar",
+        "label": "Øv på hay og estar",
+        "options": [
+          "Hay",
+          "Está",
+          "Están"
+        ]
+      },
+      "transferExercises": [
+        {
+          "id": "a1.hay_estar.contrast.transfer.parque",
+          "skillId": "a1.hay_estar.contrast",
+          "sentence": "___ un parque cerca",
+          "no": "Det er en park i nærheten.",
+          "answer": "Hay",
+          "options": [
+            "Hay",
+            "Está",
+            "Están"
+          ],
+          "hint": "Du introduserer en park."
+        },
+        {
+          "id": "a1.hay_estar.contrast.transfer.parque2",
+          "skillId": "a1.hay_estar.contrast",
+          "sentence": "El parque ___ cerca",
+          "no": "Parken er i nærheten.",
+          "answer": "Está",
+          "options": [
+            "Hay",
+            "Está",
+            "Están"
+          ],
+          "hint": "Parken er bestemt."
+        },
+        {
+          "id": "a1.hay_estar.contrast.transfer.mesas",
+          "skillId": "a1.hay_estar.contrast",
+          "sentence": "___ tres mesas en el aula",
+          "no": "Det er tre bord i klasserommet.",
+          "answer": "Hay",
+          "options": [
+            "Hay",
+            "Está",
+            "Están"
+          ],
+          "hint": "Du sier at tre bord finnes."
+        },
+        {
+          "id": "a1.hay_estar.contrast.transfer.mesas2",
+          "skillId": "a1.hay_estar.contrast",
+          "sentence": "Las mesas ___ en el aula",
+          "no": "Bordene er i klasserommet.",
+          "answer": "Están",
+          "options": [
+            "Hay",
+            "Está",
+            "Están"
+          ],
+          "hint": "Bordene er bestemte og i flertall."
+        },
+        {
+          "id": "a1.hay_estar.contrast.transfer.cafe",
+          "skillId": "a1.hay_estar.contrast",
+          "sentence": "___ un café en la plaza",
+          "no": "Det er en kafé på torget.",
+          "answer": "Hay",
+          "options": [
+            "Hay",
+            "Está",
+            "Están"
+          ],
+          "hint": "Du introduserer en kafé."
+        }
+      ],
+      "recommendedNext": "a1.estar.location",
+      "relatedLessonIds": [
+        "a1.estar.location"
+      ]
+    },
+    {
+      "id": "a1.patterns.productive",
+      "level": "A1",
+      "category": "Setninger og uttrykk",
+      "title": "Produktive mønstre: bygg setninger",
+      "status": "published",
+      "reviewedBy": null,
+      "reviewedAt": null,
+      "learningGoal": "Jeg kan hente fram en fast verbfrase og sette den sammen med naturlige avslutninger.",
+      "explanation": "I stedet for å pugge hele setninger utenat, kan du lære noen faste verbfraser som du kan kombinere med mange ulike ord. Fire av de viktigste er tengo, quiero, me gusta og voy a.",
+      "theorySections": [
+        {
+          "title": "Tengo: tilstand, alder og eie",
+          "text": "Bruk tengo når du forteller om alder (tengo quince años), tilstander (tengo hambre, tengo frío) eller ting du har (tengo un perro). Husk at hvis du må gjøre noe, sier du tengo que + infinitiv.",
+          "examples": [
+            "Tengo hambre. → Jeg er sulten.",
+            "Tengo quince años. → Jeg er femten år.",
+            "Tengo que estudiar. → Jeg må øve."
+          ]
+        },
+        {
+          "title": "Quiero: ønsker og vilje",
+          "text": "Quiero betyr «jeg vil ha» foran et substantiv (quiero agua), og «jeg vil» foran et verb i infinitiv (quiero comer, quiero descansar).",
+          "examples": [
+            "Quiero agua. → Jeg vil ha vann.",
+            "Quiero comer. → Jeg vil spise.",
+            "Quiero hablar español. → Jeg vil snakke spansk."
+          ]
+        },
+        {
+          "title": "Me gusta: ting og aktiviteter du liker",
+          "text": "Me gusta betyr «jeg liker». Foran et verb i infinitiv betyr det at du liker å gjøre noe (me gusta bailar). Foran et substantiv i entall bruker du bestemt artikkel (me gusta la música).",
+          "examples": [
+            "Me gusta bailar. → Jeg liker å danse.",
+            "Me gusta la música. → Jeg liker musikk.",
+            "Me gusta leer. → Jeg liker å lese."
+          ]
+        },
+        {
+          "title": "Voy a: nær framtid",
+          "text": "Når du skal fortelle hva du skal gjøre snart, bruker du voy a + infinitiv. Det tilsvarer «jeg skal» på norsk.",
+          "examples": [
+            "Voy a dormir. → Jeg skal sove.",
+            "Voy a estudiar. → Jeg skal studere.",
+            "Voy a ver una película. → Jeg skal se en film."
+          ]
+        }
+      ],
+      "forms": [
+        {
+          "article": "tengo",
+          "gender": "tilstand / alder / eie",
+          "number": "hambre, 15 años, un perro"
+        },
+        {
+          "article": "quiero",
+          "gender": "ønsker (+ inf / subst)",
+          "number": "comer, descansar, agua"
+        },
+        {
+          "article": "me gusta",
+          "gender": "liker (+ inf / entall)",
+          "number": "bailar, leer, la música"
+        },
+        {
+          "article": "voy a",
+          "gender": "framtid (+ inf)",
+          "number": "dormir, estudiar, jugar"
+        }
+      ],
+      "examples": [
+        {
+          "es": "Tengo hambre.",
+          "no": "Jeg er sulten."
+        },
+        {
+          "es": "Quiero descansar.",
+          "no": "Jeg vil hvile."
+        },
+        {
+          "es": "Me gusta la música.",
+          "no": "Jeg liker musikk."
+        },
+        {
+          "es": "Voy a dormir.",
+          "no": "Jeg skal sove."
+        }
+      ],
+      "tip": "Tenk på hva du vil uttrykke: tilstand/alder (tengo), ønske (quiero), preferanse (me gusta) eller planer (voy a).",
+      "shortHint": "tengo = tilstand/alder; quiero = ønske; me gusta = like; voy a = skal.",
+      "skillIds": [
+        "a0.patterns.tengo",
+        "a1.patterns.quiero",
+        "a1.patterns.me_gusta",
+        "a1.patterns.voy_a"
+      ],
+      "practice": {
+        "topicId": "patterns",
+        "label": "Øv på uttrykksmønstre"
+      },
+      "transferExercises": [
+        {
+          "id": "a1.patterns.productive.transfer.tengo_hambre",
+          "skillId": "a0.patterns.tengo",
+          "sentence": "___ hambre",
+          "no": "Jeg er sulten.",
+          "answer": "Tengo",
+          "options": [
+            "Tengo",
+            "Soy",
+            "Estoy",
+            "Hago"
+          ],
+          "hint": "På spansk bruker vi tengo for sult."
+        },
+        {
+          "id": "a1.patterns.productive.transfer.quiero_descansar",
+          "skillId": "a1.patterns.quiero",
+          "sentence": "___ descansar",
+          "no": "Jeg vil hvile.",
+          "answer": "Quiero",
+          "options": [
+            "Quiero",
+            "Voy a",
+            "Me gusta",
+            "Tengo"
+          ],
+          "hint": "Quiero uttrykker hva du vil."
+        },
+        {
+          "id": "a1.patterns.productive.transfer.gusta_bailar",
+          "skillId": "a1.patterns.me_gusta",
+          "sentence": "___ bailar",
+          "no": "Jeg liker å danse.",
+          "answer": "Me gusta",
+          "options": [
+            "Me gusta",
+            "Quiero",
+            "Voy a",
+            "Tengo"
+          ],
+          "hint": "Me gusta betyr «jeg liker»."
+        },
+        {
+          "id": "a1.patterns.productive.transfer.voy_dormir",
+          "skillId": "a1.patterns.voy_a",
+          "sentence": "___ dormir",
+          "no": "Jeg skal sove.",
+          "answer": "Voy a",
+          "options": [
+            "Voy a",
+            "Quiero",
+            "Me gusta",
+            "Tengo"
+          ],
+          "hint": "Voy a uttrykker hva du skal gjøre."
+        },
+        {
+          "id": "a1.patterns.productive.transfer.tengo_que",
+          "skillId": "a0.patterns.tengo",
+          "sentence": "___ que estudiar",
+          "no": "Jeg må øve.",
+          "answer": "Tengo",
+          "options": [
+            "Tengo",
+            "Soy",
+            "Estoy",
+            "Hago"
+          ],
+          "hint": "Tengo que betyr «jeg må»."
+        },
+        {
+          "id": "a1.patterns.productive.transfer.quiero_agua",
+          "skillId": "a1.patterns.quiero",
+          "sentence": "Quiero ___",
+          "no": "Jeg vil ha vann.",
+          "answer": "agua",
+          "options": [
+            "agua",
+            "hambre",
+            "quince años",
+            "frío"
+          ],
+          "hint": "Quiero + substantiv betyr «jeg vil ha»."
+        }
+      ],
+      "recommendedNext": "a1.ser.identity",
+      "relatedLessonIds": [
+        "a1.ser.identity",
+        "a1.estar.location"
+      ]
+    }
+  ]
+}

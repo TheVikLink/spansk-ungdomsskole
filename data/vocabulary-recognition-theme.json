@@ -1,0 +1,900 @@
+{
+  "schemaVersion": 1,
+  "id": "wordkeys-recognizable",
+  "title": "Spansk du kjenner igjen",
+  "descriptionNb": "Se hvor mye spansk du allerede kan forstå! Mange spanske ord ligner på ord du kjenner fra norsk eller engelsk. Gjett betydningen og oppdag forbindelsen.",
+  "sourceNote": "Metodeinspirasjon: Margarita Madrigal, Madrigal’s Magic Key to Spanish, forord og leksjon 1–5. Selvstendig ordutvalg; internasjonale ord er ikke nødvendigvis av latinsk opprinnelse.",
+  "reviewNote": "Alle 87 ord, betydningsbroer og fasiter er gjennomgått av kodeagenten 27. oktober 2026. Flertydige betydninger og kjønnsformer er kontrollert mot målrettede ordbokskilder. Uavhengig spansklærervurdering er ikke dokumentert.",
+  "members": [
+    {
+      "vocabularyId": "vocab-0523",
+      "bridgeNb": "hotell",
+      "bridgeEn": "hotel",
+      "noteNb": "",
+      "reviewStatus": "agent-reviewed"
+    },
+    {
+      "vocabularyId": "vocab-0524",
+      "bridgeNb": "restaurant",
+      "bridgeEn": "restaurant",
+      "noteNb": "",
+      "reviewStatus": "agent-reviewed"
+    },
+    {
+      "vocabularyId": "vocab-0525",
+      "bridgeNb": "musikk",
+      "bridgeEn": "music",
+      "noteNb": "",
+      "reviewStatus": "agent-reviewed"
+    },
+    {
+      "vocabularyId": "vocab-0526",
+      "bridgeNb": "piano",
+      "bridgeEn": "piano",
+      "noteNb": "",
+      "reviewStatus": "agent-reviewed"
+    },
+    {
+      "vocabularyId": "vocab-0527",
+      "bridgeNb": "gitar",
+      "bridgeEn": "guitar",
+      "noteNb": "",
+      "reviewStatus": "agent-reviewed"
+    },
+    {
+      "vocabularyId": "vocab-0528",
+      "bridgeNb": "radio",
+      "bridgeEn": "radio",
+      "noteNb": "Om et radioapparat brukes både la radio og el radio. Her viser vi la radio. Om radiokringkasting bruker vi la radio.",
+      "reviewStatus": "agent-reviewed"
+    },
+    {
+      "vocabularyId": "vocab-0529",
+      "bridgeNb": "telefon",
+      "bridgeEn": "telephone",
+      "noteNb": "",
+      "reviewStatus": "agent-reviewed"
+    },
+    {
+      "vocabularyId": "vocab-0475",
+      "bridgeNb": "tomat",
+      "bridgeEn": "tomato",
+      "noteNb": "",
+      "reviewStatus": "agent-reviewed"
+    },
+    {
+      "vocabularyId": "vocab-0492",
+      "bridgeNb": "pasta",
+      "bridgeEn": "pasta",
+      "noteNb": "",
+      "reviewStatus": "agent-reviewed"
+    },
+    {
+      "vocabularyId": "vocab-0530",
+      "bridgeNb": "normal",
+      "bridgeEn": "normal",
+      "noteNb": "",
+      "reviewStatus": "agent-reviewed"
+    },
+    {
+      "vocabularyId": "vocab-0531",
+      "bridgeNb": "",
+      "bridgeEn": "hospital",
+      "noteNb": "",
+      "reviewStatus": "agent-reviewed"
+    },
+    {
+      "vocabularyId": "vocab-0532",
+      "bridgeNb": "museum",
+      "bridgeEn": "museum",
+      "noteNb": "",
+      "reviewStatus": "agent-reviewed"
+    },
+    {
+      "vocabularyId": "vocab-0533",
+      "bridgeNb": "teater",
+      "bridgeEn": "theatre",
+      "noteNb": "",
+      "reviewStatus": "agent-reviewed"
+    },
+    {
+      "vocabularyId": "vocab-0534",
+      "bridgeNb": "kino",
+      "bridgeEn": "cinema",
+      "noteNb": "",
+      "reviewStatus": "agent-reviewed"
+    },
+    {
+      "vocabularyId": "vocab-0535",
+      "bridgeNb": "televisjon",
+      "bridgeEn": "television",
+      "noteNb": "",
+      "reviewStatus": "agent-reviewed"
+    },
+    {
+      "vocabularyId": "vocab-0536",
+      "bridgeNb": "foto",
+      "bridgeEn": "photo",
+      "noteNb": "Foto er kort for fotografía. Ordet er hunkjønn: la foto.",
+      "reviewStatus": "agent-reviewed"
+    },
+    {
+      "vocabularyId": "vocab-0537",
+      "bridgeNb": "sjokolade",
+      "bridgeEn": "chocolate",
+      "noteNb": "",
+      "reviewStatus": "agent-reviewed"
+    },
+    {
+      "vocabularyId": "vocab-0473",
+      "bridgeNb": "limonade",
+      "bridgeEn": "lemon",
+      "noteNb": "Lemon er det engelske ordet for sitron. Limonade hjelper deg å se forbindelsen, men limón betyr selve frukten.",
+      "reviewStatus": "agent-reviewed"
+    },
+    {
+      "vocabularyId": "vocab-0471",
+      "bridgeNb": "melon",
+      "bridgeEn": "melon",
+      "noteNb": "",
+      "reviewStatus": "agent-reviewed"
+    },
+    {
+      "vocabularyId": "vocab-0538",
+      "bridgeNb": "pizza",
+      "bridgeEn": "pizza",
+      "noteNb": "",
+      "reviewStatus": "agent-reviewed"
+    },
+    {
+      "vocabularyId": "vocab-0501",
+      "bridgeNb": "yoghurt",
+      "bridgeEn": "yogurt",
+      "noteNb": "",
+      "reviewStatus": "agent-reviewed"
+    },
+    {
+      "vocabularyId": "vocab-0539",
+      "bridgeNb": "kaffe",
+      "bridgeEn": "coffee",
+      "noteNb": "",
+      "reviewStatus": "agent-reviewed"
+    },
+    {
+      "vocabularyId": "vocab-0540",
+      "bridgeNb": "te",
+      "bridgeEn": "tea",
+      "noteNb": "",
+      "reviewStatus": "agent-reviewed"
+    },
+    {
+      "vocabularyId": "vocab-0541",
+      "bridgeNb": "taxi",
+      "bridgeEn": "taxi",
+      "noteNb": "",
+      "reviewStatus": "agent-reviewed"
+    },
+    {
+      "vocabularyId": "vocab-0542",
+      "bridgeNb": "buss",
+      "bridgeEn": "bus",
+      "noteNb": "",
+      "reviewStatus": "agent-reviewed"
+    },
+    {
+      "vocabularyId": "vocab-0543",
+      "bridgeNb": "",
+      "bridgeEn": "train",
+      "noteNb": "",
+      "reviewStatus": "agent-reviewed"
+    },
+    {
+      "vocabularyId": "vocab-0544",
+      "bridgeNb": "metro",
+      "bridgeEn": "metro",
+      "noteNb": "Her betyr metro T-bane. Det samme ordet kan også bety meter.",
+      "reviewStatus": "agent-reviewed"
+    },
+    {
+      "vocabularyId": "vocab-0545",
+      "bridgeNb": "",
+      "bridgeEn": "bicycle",
+      "noteNb": "",
+      "reviewStatus": "agent-reviewed"
+    },
+    {
+      "vocabularyId": "vocab-0546",
+      "bridgeNb": "",
+      "bridgeEn": "airport",
+      "noteNb": "",
+      "reviewStatus": "agent-reviewed"
+    },
+    {
+      "vocabularyId": "vocab-0547",
+      "bridgeNb": "turist",
+      "bridgeEn": "tourist",
+      "noteNb": "Turista har samme form om en mann og en kvinne: el turista og la turista.",
+      "reviewStatus": "agent-reviewed"
+    },
+    {
+      "vocabularyId": "vocab-0548",
+      "bridgeNb": "artist",
+      "bridgeEn": "artist",
+      "noteNb": "Artista kan være en kunstner eller en utøvende artist. Norsk artist er ofte snevrere. La artista brukes om en kvinne.",
+      "reviewStatus": "agent-reviewed"
+    },
+    {
+      "vocabularyId": "vocab-0549",
+      "bridgeNb": "",
+      "bridgeEn": "actor",
+      "noteNb": "Her betyr actor skuespiller, slik som engelsk actor. Hunkjønnsformen er actriz. Norsk aktør kan ha en annen betydning.",
+      "reviewStatus": "agent-reviewed"
+    },
+    {
+      "vocabularyId": "vocab-0550",
+      "bridgeNb": "doktor",
+      "bridgeEn": "doctor",
+      "noteNb": "Doctor brukes blant annet om en lege og om en person med doktorgrad. Her bruker vi lege-betydningen. Hunkjønnsformen er doctora.",
+      "reviewStatus": "agent-reviewed"
+    },
+    {
+      "vocabularyId": "vocab-0238",
+      "bridgeNb": "",
+      "bridgeEn": "dentist",
+      "noteNb": "",
+      "reviewStatus": "agent-reviewed"
+    },
+    {
+      "vocabularyId": "vocab-0246",
+      "bridgeNb": "professor",
+      "bridgeEn": "professor",
+      "noteNb": "Profesor betyr lærer. Norsk professor er en bestemt akademisk stilling; likheten er en ledetråd, ikke en nøyaktig oversettelse. Hunkjønnsformen er profesora.",
+      "reviewStatus": "agent-reviewed"
+    },
+    {
+      "vocabularyId": "vocab-0551",
+      "bridgeNb": "student",
+      "bridgeEn": "student",
+      "noteNb": "Estudiante betyr elev eller student, både på skolen og ved et universitet. Det heter el estudiante og la estudiante; selve ordet er likt.",
+      "reviewStatus": "agent-reviewed"
+    },
+    {
+      "vocabularyId": "vocab-0552",
+      "bridgeNb": "",
+      "bridgeEn": "animal",
+      "noteNb": "",
+      "reviewStatus": "agent-reviewed"
+    },
+    {
+      "vocabularyId": "vocab-0553",
+      "bridgeNb": "elefant",
+      "bridgeEn": "elephant",
+      "noteNb": "",
+      "reviewStatus": "agent-reviewed"
+    },
+    {
+      "vocabularyId": "vocab-0554",
+      "bridgeNb": "",
+      "bridgeEn": "lion",
+      "noteNb": "",
+      "reviewStatus": "agent-reviewed"
+    },
+    {
+      "vocabularyId": "vocab-0555",
+      "bridgeNb": "tiger",
+      "bridgeEn": "tiger",
+      "noteNb": "",
+      "reviewStatus": "agent-reviewed"
+    },
+    {
+      "vocabularyId": "vocab-0556",
+      "bridgeNb": "gorilla",
+      "bridgeEn": "gorilla",
+      "noteNb": "",
+      "reviewStatus": "agent-reviewed"
+    },
+    {
+      "vocabularyId": "vocab-0557",
+      "bridgeNb": "familie",
+      "bridgeEn": "family",
+      "noteNb": "",
+      "reviewStatus": "agent-reviewed"
+    },
+    {
+      "vocabularyId": "vocab-0318",
+      "bridgeNb": "klasse",
+      "bridgeEn": "class",
+      "noteNb": "Clase kan bety både skoletime og klasse. Betydningen avhenger av sammenhengen.",
+      "reviewStatus": "agent-reviewed"
+    },
+    {
+      "vocabularyId": "vocab-0321",
+      "bridgeNb": "",
+      "bridgeEn": "map",
+      "noteNb": "",
+      "reviewStatus": "agent-reviewed"
+    },
+    {
+      "vocabularyId": "vocab-0558",
+      "bridgeNb": "problem",
+      "bridgeEn": "problem",
+      "noteNb": "Problema er hankjønn selv om ordet slutter på a: el problema.",
+      "reviewStatus": "agent-reviewed"
+    },
+    {
+      "vocabularyId": "vocab-0559",
+      "bridgeNb": "system",
+      "bridgeEn": "system",
+      "noteNb": "Sistema er hankjønn: el sistema.",
+      "reviewStatus": "agent-reviewed"
+    },
+    {
+      "vocabularyId": "vocab-0560",
+      "bridgeNb": "program",
+      "bridgeEn": "programme",
+      "noteNb": "Programa er hankjønn: el programa.",
+      "reviewStatus": "agent-reviewed"
+    },
+    {
+      "vocabularyId": "vocab-0561",
+      "bridgeNb": "informasjon",
+      "bridgeEn": "information",
+      "noteNb": "",
+      "reviewStatus": "agent-reviewed"
+    },
+    {
+      "vocabularyId": "vocab-0562",
+      "bridgeNb": "tradisjon",
+      "bridgeEn": "tradition",
+      "noteNb": "",
+      "reviewStatus": "agent-reviewed"
+    },
+    {
+      "vocabularyId": "vocab-0563",
+      "bridgeNb": "situasjon",
+      "bridgeEn": "situation",
+      "noteNb": "",
+      "reviewStatus": "agent-reviewed"
+    },
+    {
+      "vocabularyId": "vocab-0564",
+      "bridgeNb": "konversasjon",
+      "bridgeEn": "conversation",
+      "noteNb": "",
+      "reviewStatus": "agent-reviewed"
+    },
+    {
+      "vocabularyId": "vocab-0565",
+      "bridgeNb": "invitasjon",
+      "bridgeEn": "invitation",
+      "noteNb": "",
+      "reviewStatus": "agent-reviewed"
+    },
+    {
+      "vocabularyId": "vocab-0566",
+      "bridgeNb": "organisasjon",
+      "bridgeEn": "organisation",
+      "noteNb": "",
+      "reviewStatus": "agent-reviewed"
+    },
+    {
+      "vocabularyId": "vocab-0567",
+      "bridgeNb": "aktivitet",
+      "bridgeEn": "activity",
+      "noteNb": "",
+      "reviewStatus": "agent-reviewed"
+    },
+    {
+      "vocabularyId": "vocab-0568",
+      "bridgeNb": "universitet",
+      "bridgeEn": "university",
+      "noteNb": "",
+      "reviewStatus": "agent-reviewed"
+    },
+    {
+      "vocabularyId": "vocab-0569",
+      "bridgeNb": "populær",
+      "bridgeEn": "popular",
+      "noteNb": "",
+      "reviewStatus": "agent-reviewed"
+    },
+    {
+      "vocabularyId": "vocab-0570",
+      "bridgeNb": "",
+      "bridgeEn": "important",
+      "noteNb": "",
+      "reviewStatus": "agent-reviewed"
+    },
+    {
+      "vocabularyId": "vocab-0571",
+      "bridgeNb": "interessant",
+      "bridgeEn": "interesting",
+      "noteNb": "",
+      "reviewStatus": "agent-reviewed"
+    },
+    {
+      "vocabularyId": "vocab-0164",
+      "bridgeNb": "intelligent",
+      "bridgeEn": "intelligent",
+      "noteNb": "",
+      "reviewStatus": "agent-reviewed"
+    },
+    {
+      "vocabularyId": "vocab-0572",
+      "bridgeNb": "",
+      "bridgeEn": "different",
+      "noteNb": "",
+      "reviewStatus": "agent-reviewed"
+    },
+    {
+      "vocabularyId": "vocab-0573",
+      "bridgeNb": "naturlig",
+      "bridgeEn": "natural",
+      "noteNb": "",
+      "reviewStatus": "agent-reviewed"
+    },
+    {
+      "vocabularyId": "vocab-0574",
+      "bridgeNb": "internasjonal",
+      "bridgeEn": "international",
+      "noteNb": "",
+      "reviewStatus": "agent-reviewed"
+    },
+    {
+      "vocabularyId": "vocab-0575",
+      "bridgeNb": "sosial",
+      "bridgeEn": "social",
+      "noteNb": "Social betyr her sosial eller samfunnsmessig, som i redes sociales (sosiale medier). Om en person som liker å være sammen med andre, bruker vi sociable.",
+      "reviewStatus": "agent-reviewed"
+    },
+    {
+      "vocabularyId": "vocab-0576",
+      "bridgeNb": "kulturell",
+      "bridgeEn": "cultural",
+      "noteNb": "",
+      "reviewStatus": "agent-reviewed"
+    },
+    {
+      "vocabularyId": "vocab-0577",
+      "bridgeNb": "musikalsk",
+      "bridgeEn": "musical",
+      "noteNb": "Musical betyr her som gjelder musikk: un instrumento musical er et musikkinstrument. For å si at noen har musikktalent, kan du bruke tiene talento para la música.",
+      "reviewStatus": "agent-reviewed"
+    },
+    {
+      "vocabularyId": "vocab-0578",
+      "bridgeNb": "",
+      "bridgeEn": "possible",
+      "noteNb": "",
+      "reviewStatus": "agent-reviewed"
+    },
+    {
+      "vocabularyId": "vocab-0579",
+      "bridgeNb": "",
+      "bridgeEn": "impossible",
+      "noteNb": "",
+      "reviewStatus": "agent-reviewed"
+    },
+    {
+      "vocabularyId": "vocab-0580",
+      "bridgeNb": "",
+      "bridgeEn": "terrible",
+      "noteNb": "",
+      "reviewStatus": "agent-reviewed"
+    },
+    {
+      "vocabularyId": "vocab-0581",
+      "bridgeNb": "horribel",
+      "bridgeEn": "horrible",
+      "noteNb": "Horrible betyr her grusom eller forferdelig, som i norsk horribel. Vi øver på at noe er fælt, ikke på at en person er ondskapsfull.",
+      "reviewStatus": "agent-reviewed"
+    },
+    {
+      "vocabularyId": "vocab-0582",
+      "bridgeNb": "elegant",
+      "bridgeEn": "elegant",
+      "noteNb": "",
+      "reviewStatus": "agent-reviewed"
+    },
+    {
+      "vocabularyId": "vocab-0583",
+      "bridgeNb": "moderne",
+      "bridgeEn": "modern",
+      "noteNb": "Adjektivet bøyes etter substantivet: el hotel moderno (det moderne hotellet), la radio moderna (den moderne radioen).",
+      "reviewStatus": "agent-reviewed"
+    },
+    {
+      "vocabularyId": "vocab-0584",
+      "bridgeNb": "fantastisk",
+      "bridgeEn": "fantastic",
+      "noteNb": "Fantástico blir fantástica i hunkjønn.",
+      "reviewStatus": "agent-reviewed"
+    },
+    {
+      "vocabularyId": "vocab-0585",
+      "bridgeNb": "romantisk",
+      "bridgeEn": "romantic",
+      "noteNb": "Romántico blir romántica i hunkjønn.",
+      "reviewStatus": "agent-reviewed"
+    },
+    {
+      "vocabularyId": "vocab-0586",
+      "bridgeNb": "praktisk",
+      "bridgeEn": "practical",
+      "noteNb": "Práctico blir práctica i hunkjønn.",
+      "reviewStatus": "agent-reviewed"
+    },
+    {
+      "vocabularyId": "vocab-0587",
+      "bridgeNb": "optimistisk",
+      "bridgeEn": "optimistic",
+      "noteNb": "Optimista kan være et adjektiv eller en person. Her øver du på adjektivet optimistisk; formen er lik for begge kjønn.",
+      "reviewStatus": "agent-reviewed"
+    },
+    {
+      "vocabularyId": "vocab-0588",
+      "bridgeNb": "pessimistisk",
+      "bridgeEn": "pessimistic",
+      "noteNb": "Her øver du på adjektivet pessimistisk. Formen pesimista er lik for begge kjønn.",
+      "reviewStatus": "agent-reviewed"
+    },
+    {
+      "vocabularyId": "vocab-0589",
+      "bridgeNb": "sjenerøs",
+      "bridgeEn": "generous",
+      "noteNb": "Generoso blir generosa i hunkjønn.",
+      "reviewStatus": "agent-reviewed"
+    },
+    {
+      "vocabularyId": "vocab-0590",
+      "bridgeNb": "",
+      "bridgeEn": "curious",
+      "noteNb": "Her betyr curioso nysgjerrig. Hunkjønnsformen er curiosa.",
+      "reviewStatus": "agent-reviewed"
+    },
+    {
+      "vocabularyId": "vocab-0591",
+      "bridgeNb": "",
+      "bridgeEn": "famous",
+      "noteNb": "Famoso blir famosa i hunkjønn.",
+      "reviewStatus": "agent-reviewed"
+    },
+    {
+      "vocabularyId": "vocab-0252",
+      "bridgeNb": "golf",
+      "bridgeEn": "golf",
+      "noteNb": "",
+      "reviewStatus": "agent-reviewed"
+    },
+    {
+      "vocabularyId": "vocab-0258",
+      "bridgeNb": "tennis",
+      "bridgeEn": "tennis",
+      "noteNb": "",
+      "reviewStatus": "agent-reviewed"
+    },
+    {
+      "vocabularyId": "vocab-0359",
+      "bridgeNb": "sofa",
+      "bridgeEn": "sofa",
+      "noteNb": "",
+      "reviewStatus": "agent-reviewed"
+    },
+    {
+      "vocabularyId": "vocab-0363",
+      "bridgeNb": "poster",
+      "bridgeEn": "poster",
+      "noteNb": "",
+      "reviewStatus": "agent-reviewed"
+    },
+    {
+      "vocabularyId": "vocab-0372",
+      "bridgeNb": "lampe",
+      "bridgeEn": "lamp",
+      "noteNb": "",
+      "reviewStatus": "agent-reviewed"
+    },
+    {
+      "vocabularyId": "vocab-0464",
+      "bridgeNb": "frukt",
+      "bridgeEn": "fruit",
+      "noteNb": "",
+      "reviewStatus": "agent-reviewed"
+    },
+    {
+      "vocabularyId": "vocab-0497",
+      "bridgeNb": "salt",
+      "bridgeEn": "salt",
+      "noteNb": "",
+      "reviewStatus": "agent-reviewed"
+    },
+    {
+      "vocabularyId": "vocab-0510",
+      "bridgeNb": "supermarked",
+      "bridgeEn": "supermarket",
+      "noteNb": "",
+      "reviewStatus": "agent-reviewed"
+    }
+  ],
+  "starterIds": [
+    "vocab-0523",
+    "vocab-0524",
+    "vocab-0525",
+    "vocab-0526",
+    "vocab-0527",
+    "vocab-0530",
+    "vocab-0569",
+    "vocab-0561",
+    "vocab-0562",
+    "vocab-0547",
+    "vocab-0528",
+    "vocab-0529",
+    "vocab-0475",
+    "vocab-0492",
+    "vocab-0538",
+    "vocab-0541",
+    "vocab-0553",
+    "vocab-0531"
+  ],
+  "sentences": [
+    {
+      "id": "sentence-01",
+      "promptNb": "Hotellet er populært.",
+      "tokens": [
+        "El",
+        "hotel",
+        "es",
+        "popular"
+      ],
+      "wordIds": [
+        "vocab-0523",
+        "vocab-0569"
+      ],
+      "explanationNb": "Es betyr er. Popular har samme form i hankjønn og hunkjønn.",
+      "mode": "tiles"
+    },
+    {
+      "id": "sentence-02",
+      "promptNb": "Pizzaen er ikke populær.",
+      "tokens": [
+        "La",
+        "pizza",
+        "no",
+        "es",
+        "popular"
+      ],
+      "wordIds": [
+        "vocab-0538",
+        "vocab-0569"
+      ],
+      "explanationNb": "No står rett foran es: no es betyr er ikke.",
+      "mode": "tiles"
+    },
+    {
+      "id": "sentence-03",
+      "promptNb": "Sykehuset er ikke et hotell.",
+      "tokens": [
+        "El",
+        "hospital",
+        "no",
+        "es",
+        "un",
+        "hotel"
+      ],
+      "wordIds": [
+        "vocab-0531",
+        "vocab-0523"
+      ],
+      "explanationNb": "El hospital er sykehuset. Et hotell heter un hotel: hotel er hankjønn.",
+      "mode": "tiles"
+    },
+    {
+      "id": "sentence-04",
+      "promptNb": "Radioen er ikke en telefon.",
+      "tokens": [
+        "La",
+        "radio",
+        "no",
+        "es",
+        "un",
+        "teléfono"
+      ],
+      "wordIds": [
+        "vocab-0528",
+        "vocab-0529"
+      ],
+      "explanationNb": "No es betyr er ikke. En telefon heter un teléfono; husk aksenten i teléfono.",
+      "mode": "tiles"
+    },
+    {
+      "id": "sentence-05",
+      "promptNb": "Tradisjonen er populær.",
+      "tokens": [
+        "La",
+        "tradición",
+        "es",
+        "popular"
+      ],
+      "wordIds": [
+        "vocab-0562",
+        "vocab-0569"
+      ],
+      "explanationNb": "La tradición er hunkjønn. Popular får ingen ekstra a, og tradición har aksent på ó.",
+      "mode": "typed"
+    },
+    {
+      "id": "sentence-06",
+      "promptNb": "Restauranten er ikke populær.",
+      "tokens": [
+        "El",
+        "restaurante",
+        "no",
+        "es",
+        "popular"
+      ],
+      "wordIds": [
+        "vocab-0524",
+        "vocab-0569"
+      ],
+      "explanationNb": "Negasjonen no plasseres foran verbet: no es.",
+      "mode": "typed"
+    },
+    {
+      "id": "sentence-07",
+      "promptNb": "Gitaren er ikke et piano.",
+      "tokens": [
+        "La",
+        "guitarra",
+        "no",
+        "es",
+        "un",
+        "piano"
+      ],
+      "wordIds": [
+        "vocab-0527",
+        "vocab-0526"
+      ],
+      "explanationNb": "La guitarra er gitaren; un piano er et piano. No es betyr er ikke.",
+      "mode": "typed"
+    },
+    {
+      "id": "sentence-08",
+      "promptNb": "Tomaten er ikke en pizza.",
+      "tokens": [
+        "El",
+        "tomate",
+        "no",
+        "es",
+        "una",
+        "pizza"
+      ],
+      "wordIds": [
+        "vocab-0475",
+        "vocab-0538"
+      ],
+      "explanationNb": "Pizza er hunkjønn, så det heter una pizza. Tomat heter el tomate.",
+      "mode": "typed"
+    }
+  ],
+  "families": [
+    {
+      "id": "family-sjon",
+      "title": "Norsk -sjon → spansk -ción",
+      "introNb": "Flere ord i denne samlingen har norsk -sjon og spansk -ción. Sammenlign hele ordet, ikke bare slutten. Aksenten i -ción viser trykk på siste stavelse.",
+      "cautionNb": "Det finnes andre skrivemåter: televisjon blir televisión med s. Ikke oversett alle -sjon-ord ved å bytte endelsen.",
+      "examples": [
+        {
+          "vocabularyId": "vocab-0561",
+          "language": "nb"
+        },
+        {
+          "vocabularyId": "vocab-0562",
+          "language": "nb"
+        }
+      ],
+      "probeId": "vocab-0563"
+    },
+    {
+      "id": "family-ista",
+      "title": "Norsk -ist → spansk -ista",
+      "introNb": "Turist og artist kan hjelpe deg å kjenne igjen turista og artista. Om personer har ord på -ista ofte samme form med el og la: el turista / la turista.",
+      "cautionNb": "Artista omfatter både kunstner og utøvende artist. Lik form betyr ikke alltid helt lik betydning. Noen flere forbindelser blir tydelige via engelsk.",
+      "examples": [
+        {
+          "vocabularyId": "vocab-0547",
+          "language": "nb"
+        },
+        {
+          "vocabularyId": "vocab-0548",
+          "language": "nb"
+        }
+      ],
+      "probeId": "vocab-0238"
+    },
+    {
+      "id": "family-el-al",
+      "title": "Ord på -el og -al som ligner",
+      "introNb": "Se på hotell/hotel og normal/normal. Slike ord kan gi rask gjenkjenning. Hotell mister én l på spansk. Lær uttalen og artikkelen sammen med ordet.",
+      "cautionNb": "Endelsen alene gir ingen sikker betydning eller grammatisk kjønn. Noen forbindelser går via engelsk; engelske eksempler merkes tydelig.",
+      "examples": [
+        {
+          "vocabularyId": "vocab-0523",
+          "language": "nb"
+        },
+        {
+          "vocabularyId": "vocab-0530",
+          "language": "nb"
+        }
+      ],
+      "probeId": "vocab-0531"
+    },
+    {
+      "id": "family-al",
+      "title": "Norsk -ell, -lig og -al → spansk -al",
+      "introNb": "I noen ord gir norsk -ell eller -lig et spor til spansk -al. Andre har -al i begge språk. Kulturell/cultural og naturlig/natural viser to slike forbindelser.",
+      "cautionNb": "Dette gjelder utvalgte ord, ikke alle ord med disse endelsene. Sammenlign stavemåten og kontroller betydningen før du bruker et nytt ord.",
+      "examples": [
+        {
+          "vocabularyId": "vocab-0576",
+          "language": "nb"
+        },
+        {
+          "vocabularyId": "vocab-0573",
+          "language": "nb"
+        }
+      ],
+      "probeId": "vocab-0574"
+    },
+    {
+      "id": "family-ante-ente",
+      "title": "-ant/-ent → -ante/-ente",
+      "introNb": "Noen adjektiv får en ekstra e i den spanske formen. Norsk interessant blir spansk interesante; norsk intelligent blir spansk inteligente. Engelsk kan hjelpe med flere av ordene.",
+      "cautionNb": "Hele stammen må også kontrolleres: interessant har dobbelt s på norsk, mens interesante har én s. Slutten er en ledetråd, ikke en automatisk regel.",
+      "examples": [
+        {
+          "vocabularyId": "vocab-0571",
+          "language": "nb"
+        },
+        {
+          "vocabularyId": "vocab-0164",
+          "language": "nb"
+        }
+      ],
+      "probeId": "vocab-0570"
+    },
+    {
+      "id": "family-ico",
+      "title": "Norsk -isk → spansk -ico/-ica",
+      "introNb": "Fantastisk og romantisk ligner på fantástico og romántico. Disse adjektivene har -o i hankjønn og -a i hunkjønn. Behold aksenten: fantástico / fantástica.",
+      "cautionNb": "Ikke alle norske -isk-ord følger dette mønsteret. Lær hele ordet, trykket og hvordan adjektivet passer til substantivet.",
+      "examples": [
+        {
+          "vocabularyId": "vocab-0584",
+          "language": "nb"
+        },
+        {
+          "vocabularyId": "vocab-0585",
+          "language": "nb"
+        }
+      ],
+      "probeId": "vocab-0586"
+    },
+    {
+      "id": "family-ble",
+      "title": "Engelsk -ble → spansk -ble",
+      "introNb": "Hvis du kjenner engelske ord som possible og impossible, kan du se likheten med posible og imposible. Her bruker vi engelsk som bro og viser den norske betydningen.",
+      "cautionNb": "Dette er ikke en norsk endelsesregel. Stavemåten kan endres: possible har dobbelt s på engelsk, mens posible har én s på spansk.",
+      "examples": [
+        {
+          "vocabularyId": "vocab-0578",
+          "language": "en"
+        },
+        {
+          "vocabularyId": "vocab-0579",
+          "language": "en"
+        }
+      ],
+      "probeId": "vocab-0581"
+    }
+  ]
+}

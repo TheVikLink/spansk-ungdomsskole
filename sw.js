@@ -1,5 +1,5 @@
 // Generated build identifier; run npm run build:app after changing app assets.
-const APP_BUILD = '6a2eabb16cf21610';
+const APP_BUILD = 'b39c6140acd2a112';
 const CACHE_NAME = `spansk123-shell-${APP_BUILD}`;
 const AUDIO_CACHE = 'spansk123-audio-v1';
 const APP_SHELL = ['./', './index.html', './dist/tailwind.css', './manifest.webmanifest'];
@@ -17,6 +17,9 @@ self.addEventListener('install', event => {
 self.addEventListener('activate', event => {
   event.waitUntil((async () => {
     const audioCache = await caches.open(AUDIO_CACHE);
+    for (const request of await audioCache.keys()) {
+      if (request.url.startsWith(absolute('audio/uttale/refold-v1/')) && /_letter\.mp3$/.test(new URL(request.url).pathname)) await audioCache.delete(request);
+    }
     for (const key of await caches.keys()) {
       if (key === CACHE_NAME || key === AUDIO_CACHE) continue;
       if (!key.startsWith('spansk123-shell-') && !/^spansk123-v\d+$/.test(key)) continue;
@@ -66,7 +69,11 @@ async function audioResponse(request) {
 self.addEventListener('fetch', event => {
   const request = event.request;
   if (request.method !== 'GET' || !request.url.startsWith(self.registration.scope)) return;
-  if (request.url.startsWith(absolute('audio/diktat/')) || request.url.startsWith(absolute('audio/lyttehistorier/'))) {
+  const pathname = new URL(request.url).pathname;
+  // Authenticated school routes and licensed lesson packs are always network-only.
+  // Never let the public offline app cache, replay, or intercept paywall redirects.
+  if (pathname === '/school' || pathname.startsWith('/school/') || pathname === '/undervisning' || pathname.startsWith('/undervisning/') || pathname.startsWith('/api/') || pathname.startsWith('/auth/')) return;
+  if (request.url.startsWith(absolute('audio/diktat/')) || request.url.startsWith(absolute('audio/lyttehistorier/')) || request.url.startsWith(absolute('audio/uttale/refold-v1/'))) {
     event.respondWith(audioResponse(request));
     return;
   }

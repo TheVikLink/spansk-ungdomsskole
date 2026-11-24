@@ -1,0 +1,442 @@
+{
+  "version": 1,
+  "stories": [
+    {
+      "id": "leo-sevilla",
+      "title": "En lørdag i Sevilla",
+      "level": "A1",
+      "region": "Spania",
+      "place": "Sevilla",
+      "theme": "Hverdagsliv og fritid",
+      "durationSeconds": 68.14,
+      "intro": "Leo forteller om en hel lørdag i Sevilla.",
+      "audioDir": "lyttehistorier",
+      "audioExt": "wav",
+      "fullAudio": "Leo-Sevilla.wav",
+      "transcript": "Hola, soy Leo y vivo en Sevilla. Hoy es sábado y hace buen tiempo. Por la mañana, desayuno pan, fruta y yogur con mi madre. Después, preparo mi mochila y voy en bicicleta al parque. En el parque hay muchos árboles, flores y un pequeño lago. Veo a mi amiga Marta cerca de una fuente. Ella tiene una pelota amarilla. Jugamos al fútbol durante un rato y hablamos de la escuela. Luego, nos sentamos en un banco y bebemos agua. Antes de volver a casa, compramos un helado de chocolate y caminamos despacio por la plaza. Al mediodía, mi padre prepara arroz y ensalada para toda la familia. Comemos juntos en la cocina y contamos cosas divertidas. Por la tarde, leo un cómic, escucho música y ordeno mi habitación. También riego las plantas del balcón y preparo la ropa para el lunes. Estoy cansado, pero contento. Me gusta mucho el sábado.",
+      "translation": "Hei, jeg heter Leo og bor i Sevilla. I dag er det lørdag og fint vær. Om morgenen spiser jeg brød, frukt og yoghurt med moren min. Etterpå pakker jeg sekken og sykler til parken. I parken er det mange trær, blomster og en liten innsjø. Jeg ser venninnen min Marta ved en fontene. Hun har en gul ball. Vi spiller fotball en stund og snakker om skolen. Så setter vi oss på en benk og drikker vann. Før vi går hjem, kjøper vi en sjokoladeis og går sakte gjennom torget. Ved lunsjtider lager faren min ris og salat til hele familien. Vi spiser sammen på kjøkkenet og forteller morsomme ting. Om ettermiddagen leser jeg en tegneserie, hører på musikk og rydder rommet mitt. Jeg vanner også plantene på balkongen og legger frem klær til mandag. Jeg er trøtt, men glad. Jeg liker lørdagen veldig godt.",
+      "questions": [
+        {
+          "id": "leo-main",
+          "prompt": "Hva gjør Leo denne lørdagen?",
+          "options": [
+            {
+              "id": "day",
+              "text": "Han sykler til parken, møter Marta, spiller fotball og kjøper is."
+            },
+            {
+              "id": "market",
+              "text": "Han går til markedet, kjøper frukt og leser en bok."
+            },
+            {
+              "id": "beach",
+              "text": "Han tar bussen til stranden og svømmer med faren sin."
+            },
+            {
+              "id": "home",
+              "text": "Han blir hjemme, ser på film og lager middag alene."
+            }
+          ],
+          "correctOptionId": "day",
+          "explanation": "Leo sykler til parken, møter Marta, spiller fotball og kjøper is før han drar hjem."
+        },
+        {
+          "id": "leo-detail",
+          "prompt": "Hva har Marta med seg til parken?",
+          "options": [
+            {
+              "id": "yellow-ball",
+              "text": "En gul ball."
+            },
+            {
+              "id": "red-ball",
+              "text": "En rød ball."
+            },
+            {
+              "id": "yellow-bag",
+              "text": "En gul veske."
+            },
+            {
+              "id": "blue-bike",
+              "text": "En blå sykkel."
+            }
+          ],
+          "correctOptionId": "yellow-ball",
+          "explanation": "Marta har en gul ball."
+        },
+        {
+          "id": "leo-before-home",
+          "prompt": "Hva gjør Leo og Marta før de går hjem?",
+          "options": [
+            {
+              "id": "ice",
+              "text": "De kjøper en sjokoladeis."
+            },
+            {
+              "id": "lunch",
+              "text": "De spiser ris og salat."
+            },
+            {
+              "id": "comic",
+              "text": "De leser en tegneserie på benken."
+            },
+            {
+              "id": "bus",
+              "text": "De tar bussen til skolen."
+            }
+          ],
+          "correctOptionId": "ice",
+          "explanation": "Før Leo kommer hjem, kjøper han og Marta en sjokoladeis."
+        }
+      ]
+    },
+    {
+      "id": "carmen-madrid-a0",
+      "title": "Carmen finner veien",
+      "level": "A0",
+      "region": "Spania",
+      "place": "Madrid",
+      "theme": "By og skole",
+      "durationSeconds": 35.6,
+      "intro": "Carmen spør om veien til et museum i Madrid.",
+      "fullAudio": "Hola soy Carmen .wav",
+      "transcript": "Hola, soy Carmen. Estoy en Madrid con mi clase. Después de comer, queremos ir al museo. Mi amiga Julia tiene un mapa, pero no encuentra la calle. Preguntamos a un señor: «¿Dónde está el museo?». Él señala una calle pequeña y dice: «Está cerca del parque». Caminamos cinco minutos y vemos la entrada. El museo es grande y tiene una puerta azul. La profesora dice que tenemos veinte minutos para mirar una exposición de fotos. Estoy un poco cansada, pero muy contenta.",
+      "translation": "Hei, jeg heter Carmen. Jeg er i Madrid med klassen min. Etter at vi har spist, vil vi gå til museet. Venninnen min Julia har et kart, men finner ikke gaten. Vi spør en mann: «Hvor er museet?». Han peker på en liten gate og sier: «Det er nær parken». Vi går i fem minutter og ser inngangen. Museet er stort og har en blå dør. Læreren sier at vi har tjue minutter til å se på en fotoutstilling. Jeg er litt trøtt, men veldig glad.",
+      "questions": [
+        {
+          "id": "carmen-with",
+          "prompt": "Hvem er Carmen sammen med?",
+          "options": [
+            {
+              "id": "class",
+              "text": "Klassen sin."
+            },
+            {
+              "id": "family",
+              "text": "Familien sin."
+            },
+            {
+              "id": "football-team",
+              "text": "Et fotballag."
+            },
+            {
+              "id": "neighbors",
+              "text": "Naboene sine."
+            }
+          ],
+          "correctOptionId": "class",
+          "explanation": "Carmen er i Madrid con mi clase, med klassen sin."
+        },
+        {
+          "id": "carmen-help",
+          "prompt": "Hvem hjelper Carmen og Julia?",
+          "options": [
+            {
+              "id": "man",
+              "text": "En mann på gaten."
+            },
+            {
+              "id": "teacher",
+              "text": "Læreren."
+            },
+            {
+              "id": "museum-guide",
+              "text": "En guide på museet."
+            },
+            {
+              "id": "bus-driver",
+              "text": "En bussjåfør."
+            }
+          ],
+          "correctOptionId": "man",
+          "explanation": "De spør en mann om veien til museet."
+        },
+        {
+          "id": "carmen-exhibition",
+          "prompt": "Hva skal klassen se på museet?",
+          "options": [
+            {
+              "id": "photos",
+              "text": "En fotoutstilling."
+            },
+            {
+              "id": "animals",
+              "text": "En utstilling om dyr."
+            },
+            {
+              "id": "football",
+              "text": "En fotballkamp."
+            },
+            {
+              "id": "food",
+              "text": "En matutstilling."
+            }
+          ],
+          "correctOptionId": "photos",
+          "explanation": "Læreren gir dem tid til å se una exposición de fotos."
+        }
+      ]
+    },
+    {
+      "id": "mateo-puebla-a0",
+      "title": "Mateo og den gule bussen",
+      "level": "A0",
+      "region": "Mexico",
+      "place": "Puebla",
+      "theme": "By og transport",
+      "durationSeconds": 38.85,
+      "intro": "Mateo forteller om en tur til sentrum i Puebla.",
+      "fullAudio": "Me llamo Mateo y viv.wav",
+      "transcript": "Me llamo Mateo y vivo en Puebla. Esta mañana voy al centro con mi primo Nico. Queremos comprar un regalo para nuestra abuela. En la parada hay mucha gente y un autobús amarillo llega muy rápido. Nico mira el número y dice: «No es nuestro autobús». Esperamos unos minutos más. Mientras esperamos, una señora vende zumo de naranja. Compramos un vaso para compartir. Por fin llega el autobús número doce. Nos sentamos junto a la ventana y vemos una plaza con flores. Nico recuerda que el regalo tiene que ser pequeño porque volvemos a casa a pie.",
+      "translation": "Jeg heter Mateo og bor i Puebla. I morges skal jeg til sentrum med fetteren min Nico. Vi vil kjøpe en gave til bestemoren vår. På holdeplassen er det mange mennesker, og en gul buss kommer veldig fort. Nico ser på nummeret og sier: «Det er ikke vår buss». Vi venter noen minutter til. Mens vi venter, selger en dame appelsinjuice. Vi kjøper ett glass som vi deler. Endelig kommer buss nummer tolv. Vi setter oss ved vinduet og ser et torg med blomster. Nico husker at gaven må være liten fordi vi går hjem.",
+      "questions": [
+        {
+          "id": "mateo-goal",
+          "prompt": "Hva vil Mateo og Nico kjøpe?",
+          "options": [
+            {
+              "id": "gift",
+              "text": "En gave til bestemoren."
+            },
+            {
+              "id": "tickets",
+              "text": "To bussbilletter."
+            },
+            {
+              "id": "lunch",
+              "text": "Lunsj til klassen."
+            },
+            {
+              "id": "flowers",
+              "text": "Blomster til læreren."
+            }
+          ],
+          "correctOptionId": "gift",
+          "explanation": "De vil kjøpe un regalo para nuestra abuela."
+        },
+        {
+          "id": "mateo-waits",
+          "prompt": "Hva kjøper de mens de venter?",
+          "options": [
+            {
+              "id": "juice",
+              "text": "Et glass appelsinjuice."
+            },
+            {
+              "id": "icecream",
+              "text": "En is."
+            },
+            {
+              "id": "map",
+              "text": "Et kart."
+            },
+            {
+              "id": "book",
+              "text": "En bok."
+            }
+          ],
+          "correctOptionId": "juice",
+          "explanation": "En dame selger zumo de naranja, og de deler et glass."
+        },
+        {
+          "id": "mateo-bus",
+          "prompt": "Hvilken buss tar de?",
+          "options": [
+            {
+              "id": "twelve",
+              "text": "Buss nummer tolv."
+            },
+            {
+              "id": "yellow",
+              "text": "Den første gule bussen."
+            },
+            {
+              "id": "five",
+              "text": "Buss nummer fem."
+            },
+            {
+              "id": "none",
+              "text": "De tar ingen buss."
+            }
+          ],
+          "correctOptionId": "twelve",
+          "explanation": "Etter å ha ventet kommer autobús número doce."
+        }
+      ]
+    },
+    {
+      "id": "ines-valparaiso-a1",
+      "title": "En uventet ettermiddag i Valparaíso",
+      "level": "A1",
+      "region": "Sør-Amerika",
+      "place": "Valparaíso",
+      "theme": "Byliv og kunst",
+      "durationSeconds": 30.9,
+      "intro": "Inés møter en gatekunstner på vei hjem i Valparaíso.",
+      "fullAudio": "Hola soy Inés.mp3",
+      "transcript": "Hola, soy Inés y vivo en Valparaíso, en Chile. En mi ciudad hay casas de muchos colores. Hoy estoy en la biblioteca. Leo un libro sobre animales. Después, quiero ir al puerto, pero el ascensor está cerrado. Por eso voy a pie. En una calle veo a un artista. Pinta un gato azul con una bicicleta en una pared. Una chica mira el dibujo y habla conmigo. Se llama Ana. A las cinco bebemos agua en una pequeña cafetería. Después vuelvo a casa en autobús. Estoy contenta porque tengo una nueva amiga.",
+      "translation": "Hei, jeg heter Inés og bor i Valparaíso i Chile. I byen min er det hus i mange farger. I dag er jeg på biblioteket. Jeg leser en bok om dyr. Etterpå vil jeg gå til havnen, men heisen er stengt. Derfor går jeg til fots. I en gate ser jeg en kunstner. Han maler en blå katt med en sykkel på en vegg. En jente ser på tegningen og snakker med meg. Hun heter Ana. Klokken fem drikker vi vann på en liten kafé. Etterpå tar jeg bussen hjem. Jeg er glad fordi jeg har en ny venninne.",
+      "questions": [
+        {
+          "id": "ines-change",
+          "prompt": "Hvorfor går Inés til fots til havnen?",
+          "options": [
+            {
+              "id": "lift-closed",
+              "text": "Heisen er stengt."
+            },
+            {
+              "id": "no-bus",
+              "text": "Det går ingen buss."
+            },
+            {
+              "id": "no-money",
+              "text": "Hun har ikke penger til buss."
+            },
+            {
+              "id": "with-sister",
+              "text": "Hun vil gå sammen med søsteren sin."
+            }
+          ],
+          "correctOptionId": "lift-closed",
+          "explanation": "Heisen er stengt: «el ascensor está cerrado». Derfor går Inés til fots."
+        },
+        {
+          "id": "ines-mural",
+          "prompt": "Hva maler kunstneren?",
+          "options": [
+            {
+              "id": "blue-cat",
+              "text": "En blå katt med en sykkel."
+            },
+            {
+              "id": "yellow-bus",
+              "text": "En gul buss."
+            },
+            {
+              "id": "volcano",
+              "text": "En vulkan."
+            },
+            {
+              "id": "football-team",
+              "text": "Et fotballag."
+            }
+          ],
+          "correctOptionId": "blue-cat",
+          "explanation": "Kunstneren maler en blå katt med en sykkel: «un gato azul con una bicicleta»."
+        },
+        {
+          "id": "ines-ending",
+          "prompt": "Hvorfor er Inés glad til slutt?",
+          "options": [
+            {
+              "id": "happy",
+              "text": "Hun har en ny venninne."
+            },
+            {
+              "id": "gift",
+              "text": "Hun får en ny sykkel."
+            },
+            {
+              "id": "book",
+              "text": "Hun kjøper en bok om dyr."
+            },
+            {
+              "id": "lift",
+              "text": "Heisen er åpen igjen."
+            }
+          ],
+          "correctOptionId": "happy",
+          "explanation": "Inés er glad fordi hun har en ny venninne: «tengo una nueva amiga»."
+        }
+      ]
+    },
+    {
+      "id": "diego-cartagena-a1",
+      "title": "Diego hjelper på stranden",
+      "level": "A1",
+      "region": "Sør-Amerika",
+      "place": "Cartagena",
+      "theme": "Strand og miljø",
+      "durationSeconds": 32.124,
+      "intro": "Diego forteller om en søndag i Cartagena.",
+      "fullAudio": "Diego de Cartagena.mp3",
+      "transcript": "Hola, me llamo Diego y vivo en Cartagena, en Colombia. Hoy es domingo y voy a la playa con mi hermana. Nuestra escuela organiza una limpieza de la playa. Mi hermana lleva dos bolsas y unos guantes. En la playa hay muchas personas. Nosotros recogemos botellas de plástico. Otros chicos recogen papel. Un profesor dice: «El plástico es peligroso para las tortugas. No es comida». Trabajamos una hora. Después, la playa está limpia. La escuela nos da fruta y agua. Al final, vuelvo a casa con mi hermana. Estoy cansado, pero contento. Me gusta ayudar a los animales.",
+      "translation": "Hei, jeg heter Diego og bor i Cartagena i Colombia. I dag er det søndag, og jeg går til stranden med søsteren min. Skolen vår arrangerer strandrydding. Søsteren min har med to poser og hansker. På stranden er det mange mennesker. Vi plukker opp plastflasker. Andre ungdommer plukker opp papir. En lærer sier: «Plast er farlig for skilpadder. Det er ikke mat». Vi arbeider i en time. Etterpå er stranden ren. Skolen gir oss frukt og vann. Til slutt går jeg hjem med søsteren min. Jeg er trøtt, men glad. Jeg liker å hjelpe dyrene.",
+      "questions": [
+        {
+          "id": "diego-why",
+          "prompt": "Hvorfor drar Diego til stranden?",
+          "options": [
+            {
+              "id": "cleanup",
+              "text": "Skolen arrangerer strandrydding."
+            },
+            {
+              "id": "swimming",
+              "text": "Han skal bade med venner."
+            },
+            {
+              "id": "football",
+              "text": "Han skal spille fotball."
+            },
+            {
+              "id": "fishing",
+              "text": "Han skal fiske med familien."
+            }
+          ],
+          "correctOptionId": "cleanup",
+          "explanation": "Skolen arrangerer strandrydding: «Nuestra escuela organiza una limpieza de la playa»."
+        },
+        {
+          "id": "diego-turtles",
+          "prompt": "Hva sier læreren om plast?",
+          "options": [
+            {
+              "id": "plastic",
+              "text": "Det er farlig for skilpadder."
+            },
+            {
+              "id": "food",
+              "text": "Det er mat for skilpadder."
+            },
+            {
+              "id": "sand",
+              "text": "Det blir til sand."
+            },
+            {
+              "id": "clean",
+              "text": "Det gjør stranden ren."
+            }
+          ],
+          "correctOptionId": "plastic",
+          "explanation": "Læreren sier at plast er farlig for skilpadder: «El plástico es peligroso para las tortugas»."
+        },
+        {
+          "id": "diego-feeling",
+          "prompt": "Hvordan føler Diego seg hjemme?",
+          "options": [
+            {
+              "id": "proud",
+              "text": "Trøtt, men glad."
+            },
+            {
+              "id": "angry",
+              "text": "Sint og skuffet."
+            },
+            {
+              "id": "cold",
+              "text": "Kald og våt."
+            },
+            {
+              "id": "hungry",
+              "text": "Sulten og redd."
+            }
+          ],
+          "correctOptionId": "proud",
+          "explanation": "Diego er trøtt, men glad: «Estoy cansado, pero contento»."
+        }
+      ]
+    }
+  ]
+}

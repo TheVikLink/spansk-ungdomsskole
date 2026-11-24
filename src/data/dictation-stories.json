@@ -1,0 +1,302 @@
+{
+  "version": 1,
+  "stories": [
+    {
+      "id": "madrid-plaza",
+      "title": "En morgen i Madrid",
+      "level": "A0",
+      "region": "Spania",
+      "place": "Madrid",
+      "theme": "Byliv",
+      "intro": "Ana går til torget en solrik morgen.",
+      "hints": [
+        "la plaza = torget"
+      ],
+      "audioDir": "Ana vive en Madrid",
+      "audioExt": "wav",
+      "fullAudio": "Ana vive en Madrid full.m4a",
+      "segments": [
+        [
+          "Ana vive en Madrid.",
+          "Ana vive en Madrid 1"
+        ],
+        [
+          "Por la mañana, sale de casa.",
+          "Ana vive en Madrid 2"
+        ],
+        [
+          "Camina hasta la plaza.",
+          "Ana vive en Madrid 3"
+        ],
+        [
+          "Hay muchas personas.",
+          "Ana vive en Madrid 4"
+        ],
+        [
+          "Ana compra pan.",
+          "Ana vive en Madrid 5"
+        ],
+        [
+          "Después, ve un perro pequeño.",
+          "Ana vive en Madrid 6"
+        ],
+        [
+          "El perro tiene una pelota roja.",
+          "Ana vive en Madrid 7"
+        ],
+        [
+          "Ana vuelve a casa contenta.",
+          "Ana vive en Madrid 8"
+        ]
+      ]
+    },
+    {
+      "id": "oaxaca-mercado",
+      "title": "Markedet i Oaxaca",
+      "level": "A0",
+      "region": "Mexico",
+      "place": "Oaxaca",
+      "theme": "Mat og marked",
+      "intro": "Luis besøker et fargerikt marked.",
+      "hints": [
+        "el mercado = marked"
+      ],
+      "audioDir": "Luis está en Oaxaca",
+      "audioExt": "wav",
+      "fullAudio": "Luis está en Oaxaca .wav",
+      "segments": [
+        [
+          "Luis está en Oaxaca.",
+          "Luis está en Oaxaca 1"
+        ],
+        [
+          "Visita un mercado grande.",
+          "Luis está en Oaxaca 2"
+        ],
+        [
+          "Hay frutas de muchos colores.",
+          "Luis está en Oaxaca 3"
+        ],
+        [
+          "Luis compra dos mangos.",
+          "Luis está en Oaxaca 4"
+        ],
+        [
+          "La vendedora sonríe.",
+          "Luis está en Oaxaca 5"
+        ],
+        [
+          "También compra una botella de agua.",
+          "Luis está en Oaxaca 6"
+        ],
+        [
+          "El mercado tiene música.",
+          "Luis está en Oaxaca 7"
+        ],
+        [
+          "Luis vuelve feliz a casa.",
+          "Luis está en Oaxaca 8"
+        ]
+      ]
+    },
+    {
+      "id": "antigua-volcan",
+      "title": "Utsikten i Antigua",
+      "level": "A1",
+      "region": "Mellom-Amerika",
+      "place": "Antigua Guatemala",
+      "theme": "Natur og utsikt",
+      "intro": "Sofía ser en vulkan fra byen.",
+      "hints": [
+        "el volcán = vulkan"
+      ],
+      "audioDir": "Sofía vive en antigua Guatemala",
+      "audioExt": "wav",
+      "fullAudio": "Sofía vive en antigua Guatemala.wav",
+      "segments": [
+        [
+          "Sofía vive en Antigua Guatemala.",
+          "Sofía vive en antigua Guatemala 1.wav"
+        ],
+        [
+          "Por la tarde, camina con su hermano.",
+          "Sofía vive en anrtigua Guatemala 2.wav"
+        ],
+        [
+          "Las calles son bonitas.",
+          "Sofía vive en anrtigua Guatemala 3.wav"
+        ],
+        [
+          "Desde la plaza, ven un volcán.",
+          "Sofía vive en anrtigua Guatemala 4.wav"
+        ],
+        [
+          "El volcán está detrás de las casas.",
+          "Sofía vive en anrtigua Guatemala 5.wav"
+        ],
+        [
+          "El cielo es azul y claro.",
+          "Sofía vive en anrtigua Guatemala 6.wav"
+        ],
+        [
+          "Sofía hace una foto.",
+          "Sofía vive en anrtigua Guatemala 7.wav"
+        ],
+        [
+          "Después, toma un chocolate caliente.",
+          "Sofía vive en anrtigua Guatemala 8.wav"
+        ]
+      ]
+    },
+    {
+      "id": "buenosaires-biblioteca",
+      "title": "Biblioteket i Buenos Aires",
+      "level": "A1",
+      "region": "Sør-Amerika",
+      "place": "Buenos Aires",
+      "theme": "Bøker og fritid",
+      "intro": "Tomás finner en spennende bok.",
+      "hints": [
+        "la biblioteca = bibliotek"
+      ],
+      "audioDir": "Tomás vive en Buenos Aires",
+      "audioExt": "wav",
+      "fullAudio": "Tomás vive en Buenos Aires .wav",
+      "segments": [
+        [
+          "Tomás vive en Buenos Aires.",
+          "Tomás vive en Buenos Aires 1.wav"
+        ],
+        [
+          "Le gusta leer en la biblioteca.",
+          "Tomás vive en Buenos Aires 2.wav"
+        ],
+        [
+          "Un sábado, busca un libro nuevo.",
+          "Tomás vive en Buenos Aires 3.wav"
+        ],
+        [
+          "El libro habla de animales.",
+          "Tomás vive en Buenos Aires 4.wav"
+        ],
+        [
+          "Tomás se sienta cerca de la ventana.",
+          "Tomás vive en Buenos Aires 5.wav"
+        ],
+        [
+          "Lee durante una hora.",
+          "Tomás vive en Buenos Aires 6.wav"
+        ],
+        [
+          "Después, escribe una nota.",
+          "Tomás vive en Buenos Aires 7.wav"
+        ],
+        [
+          "Vuelve a casa en autobús.",
+          "Tomás vive en Buenos Aires 8.wav"
+        ]
+      ]
+    },
+    {
+      "id": "barcelona-bici",
+      "title": "En sykkeltur i Barcelona",
+      "level": "A1+",
+      "region": "Spania",
+      "place": "Barcelona",
+      "theme": "By og transport",
+      "intro": "Nora sykler langs havet.",
+      "hints": [
+        "la bicicleta = sykkel"
+      ],
+      "audioDir": "Nora pasa una semana",
+      "audioExt": "wav",
+      "fullAudio": "Nora pasa una semana.wav",
+      "segments": [
+        [
+          "Nora pasa una semana en Barcelona.",
+          "Nora pasa una semana 1.wav"
+        ],
+        [
+          "Cada mañana, monta en bicicleta.",
+          "Nora pasa una semana 2.wav"
+        ],
+        [
+          "Pedalea cerca del mar.",
+          "Nora pasa una semana 3.wav"
+        ],
+        [
+          "El aire es fresco y limpio.",
+          "Nora pasa una semana 4.wav"
+        ],
+        [
+          "Un día, encuentra un parque tranquilo.",
+          "Nora pasa una semana 5.wav"
+        ],
+        [
+          "Se sienta bajo un árbol.",
+          "Nora pasa una semana 6.wav"
+        ],
+        [
+          "Escucha a los pájaros.",
+          "Nora pasa una semana 7.wav"
+        ],
+        [
+          "Por la tarde, vuelve al hotel.",
+          "Nora pasa una semana 8.wav"
+        ]
+      ]
+    }
+  ],
+  "translations": {
+    "madrid-plaza": [
+      "Ana bor i Madrid.",
+      "Om morgenen går hun hjemmefra.",
+      "Hun går til torget.",
+      "Det er mange mennesker der.",
+      "Ana kjøper brød.",
+      "Etterpå ser hun en liten hund.",
+      "Hunden har en rød ball.",
+      "Ana går fornøyd hjem."
+    ],
+    "oaxaca-mercado": [
+      "Luis er i Oaxaca.",
+      "Han besøker et stort marked.",
+      "Det er frukt i mange farger.",
+      "Luis kjøper to mangoer.",
+      "Selgeren smiler.",
+      "Han kjøper også en flaske vann.",
+      "Det er musikk på markedet.",
+      "Luis går glad hjem."
+    ],
+    "antigua-volcan": [
+      "Sofía bor i Antigua Guatemala.",
+      "Om ettermiddagen går hun med broren sin.",
+      "Gatene er fine.",
+      "Fra torget ser de en vulkan.",
+      "Vulkanen er bak husene.",
+      "Himmelen er blå og klar.",
+      "Sofía tar et bilde.",
+      "Etterpå drikker hun varm sjokolade."
+    ],
+    "buenosaires-biblioteca": [
+      "Tomás bor i Buenos Aires.",
+      "Han liker å lese på biblioteket.",
+      "En lørdag leter han etter en ny bok.",
+      "Boken handler om dyr.",
+      "Tomás setter seg nær vinduet.",
+      "Han leser i en time.",
+      "Etterpå skriver han en lapp.",
+      "Han tar bussen hjem."
+    ],
+    "barcelona-bici": [
+      "Nora er en uke i Barcelona.",
+      "Hver morgen sykler hun.",
+      "Hun sykler nær havet.",
+      "Luften er frisk og ren.",
+      "En dag finner hun en rolig park.",
+      "Hun setter seg under et tre.",
+      "Hun lytter til fuglene.",
+      "Om ettermiddagen sykler hun tilbake til hotellet."
+    ]
+  }
+}

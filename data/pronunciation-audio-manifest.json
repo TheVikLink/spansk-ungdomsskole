@@ -1,0 +1,378 @@
+{
+  "schemaVersion": 1,
+  "sourceArchiveSha256": "d67fa8c7937f6f7f0a02f4054ebdd61749c13a68583a7356dc054d960d152c97",
+  "files": [
+    {
+      "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_1_sentence.mp3",
+      "sha256": "69b060526ef2e1d72d022f30e35fa5244d87e36637b57387a2933699dd65fee5",
+      "bytes": 27818,
+      "seconds": 1.771043
+    },
+    {
+      "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_1_word.mp3",
+      "sha256": "e338fc544f0266e47f11330e1a73f9724e3baca2949e18f746116b8917df5717",
+      "bytes": 12485,
+      "seconds": 0.790839
+    },
+    {
+      "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_2_sentence.mp3",
+      "sha256": "a0cc2893aee798fc9648bcd1ec0f96fd942d68ca4add592f17bd14899bea3f9e",
+      "bytes": 28128,
+      "seconds": 1.826735
+    },
+    {
+      "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_2_word.mp3",
+      "sha256": "bc635d2233a4c0cd693b33137805bbc965767c3f0450b9d8f200414437f535f6",
+      "bytes": 11755,
+      "seconds": 0.735147
+    },
+    {
+      "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_3_sentence.mp3",
+      "sha256": "76752ff53c20f908a6f109d2a456b05c48c61dd0fed14a1381078da370ce2fbe",
+      "bytes": 31209,
+      "seconds": 1.904694
+    },
+    {
+      "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_3_word.mp3",
+      "sha256": "8b5f9504453adc680188d488034a5f8a0cca1743dab8be48b5c07ced1d21e73b",
+      "bytes": 12383,
+      "seconds": 0.779705
+    },
+    {
+      "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_4_sentence.mp3",
+      "sha256": "faaf214e1c42169fdb7a44c57997029bf23e0a0976a8987c14d044a4f54dbd06",
+      "bytes": 23281,
+      "seconds": 1.358912
+    },
+    {
+      "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_4_word.mp3",
+      "sha256": "2604cd98012459768bc76bd98cd6ba3e785c1c5426cb97b94cf30414e868755f",
+      "bytes": 13375,
+      "seconds": 0.779705
+    },
+    {
+      "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_5_sentence.mp3",
+      "sha256": "87ac6c2a7fb24aedc4e8f346aa052fbdb64d4a8dbde60ac6f56ed153ec240b34",
+      "bytes": 32646,
+      "seconds": 2.0
+    },
+    {
+      "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_5_word.mp3",
+      "sha256": "d5d1e0f88976e999c7896a2873d6e3995dca9262ec567aa833648926b446c457",
+      "bytes": 17051,
+      "seconds": 1.0
+    },
+    {
+      "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_6_sentence.mp3",
+      "sha256": "0b227d15efe5fdfd370a3b1349b58cd5759a2baf9438be2f58f4e11cd6b0717f",
+      "bytes": 32976,
+      "seconds": 1.85
+    },
+    {
+      "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_6_word.mp3",
+      "sha256": "738f2fe227f0eb22f6570f08a0e12049c1b24cee0ab154c8806a61e3541705e3",
+      "bytes": 25804,
+      "seconds": 1.45
+    },
+    {
+      "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_7_sentence.mp3",
+      "sha256": "49090948f08deabc14e7928dfa3c8def349f06177efd5e13b8781e8371e5c386",
+      "bytes": 40499,
+      "seconds": 2.4
+    },
+    {
+      "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_7_word.mp3",
+      "sha256": "56d0e29caa70d77dfb8f702e7247724a449d0836313c6328a39078839bb833ca",
+      "bytes": 24236,
+      "seconds": 1.4
+    },
+    {
+      "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_8_sentence.mp3",
+      "sha256": "e95c1e1cbfd2f14f2b470db2d7c3c6b6ce13a7fbebaa8e4258a261e085b0aed2",
+      "bytes": 33682,
+      "seconds": 2.0
+    },
+    {
+      "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_8_word.mp3",
+      "sha256": "3b6a06291871fadba7688bc163ce65b723864e09f38bc6719b7a3f0520be9fc0",
+      "bytes": 21731,
+      "seconds": 1.3
+    },
+    {
+      "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_9_sentence.mp3",
+      "sha256": "70fa0f4c9b0b9bc6c409b5128f3051f94705f9341562fb26f47472b81f294180",
+      "bytes": 34419,
+      "seconds": 2.10517
+    },
+    {
+      "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_9_word.mp3",
+      "sha256": "7c10737dd8a453053737db5089dfa56992a11b21cd88ed840f23f42f17de6aff",
+      "bytes": 28863,
+      "seconds": 1.904694
+    },
+    {
+      "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_10_sentence.mp3",
+      "sha256": "11200f09a41c0076de86fa8c93b0b4c1c5c9f20471e746b25b1657a8dcbfae8e",
+      "bytes": 37681,
+      "seconds": 2.25
+    },
+    {
+      "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_10_word.mp3",
+      "sha256": "a6779b069d89d8ed2bf43b4d4ddbf9ad983b111475bce44cc3fbd04b952c6adb",
+      "bytes": 19486,
+      "seconds": 1.1
+    },
+    {
+      "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_11_sentence.mp3",
+      "sha256": "337bd905060fc85d4dbe14c59b1e43e6853cdafba75f69e4d209448ab2df3345",
+      "bytes": 32613,
+      "seconds": 1.95
+    },
+    {
+      "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_11_word.mp3",
+      "sha256": "45c211abac8e22053a02dd1f5e908f10de8b88eae2c7b2a289703a1767e3fb1d",
+      "bytes": 15360,
+      "seconds": 0.95
+    },
+    {
+      "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_12_sentence.mp3",
+      "sha256": "623011a647d81aca9dc6506b16c296353e16cbee1c7f03f3c366e2f6186dc423",
+      "bytes": 40032,
+      "seconds": 2.3
+    },
+    {
+      "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_12_word.mp3",
+      "sha256": "4f8cdf866835f56a764ac89d5ee677868c817935f3f0e80da1035dc1a0311bda",
+      "bytes": 17603,
+      "seconds": 1.0
+    },
+    {
+      "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_13_sentence.mp3",
+      "sha256": "400965251bc7ec43db058be6053a7e8f18740c4f01ef0587c31bceb537f48522",
+      "bytes": 32046,
+      "seconds": 1.8
+    },
+    {
+      "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_13_word.mp3",
+      "sha256": "e9edbdad81537b3ecda52e7666a26df9d18ff894125458c53efddc0201679b83",
+      "bytes": 15623,
+      "seconds": 0.9
+    },
+    {
+      "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_14_sentence.mp3",
+      "sha256": "600fe19dc24513f8a57e8c93d7696e2633e766548a5ad23fe24bb35bfff6ad78",
+      "bytes": 39561,
+      "seconds": 2.25
+    },
+    {
+      "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_14_word.mp3",
+      "sha256": "5ae695684942b23c30a1f8ea21c3c7ff743bcebf4ffd436aced50f9df5b13417",
+      "bytes": 16927,
+      "seconds": 0.9
+    },
+    {
+      "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_15_sentence.mp3",
+      "sha256": "11de1a81949f0667dea4d91bb0c29d6e1f8a7b0d5ee5e5f48a1f1106a6783c81",
+      "bytes": 31410,
+      "seconds": 1.9
+    },
+    {
+      "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_15_word.mp3",
+      "sha256": "74eca299c5cefae75b5347f56a32e052efa64dac6d382cc3ea151f889e55560e",
+      "bytes": 24995,
+      "seconds": 1.45
+    },
+    {
+      "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_16_sentence.mp3",
+      "sha256": "9b924052f08a5b70a5552134ae65736829d81ebb43758b505c7fedae32f11f1a",
+      "bytes": 35304,
+      "seconds": 2.207687
+    },
+    {
+      "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_16_word.mp3",
+      "sha256": "931bbd8b76b60fd4820fbafbdb3196980444812ab5001ceaa94670652f00608c",
+      "bytes": 27716,
+      "seconds": 1.815578
+    },
+    {
+      "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_17_sentence.mp3",
+      "sha256": "165f1469f64f60425dac9d7d264333fff13289dd6db5e4ead7cc2c8b8176c03e",
+      "bytes": 42853,
+      "seconds": 2.45
+    },
+    {
+      "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_17_word.mp3",
+      "sha256": "1977396531deafa125ab3dfa8ce337bcaf241216d4215de59220097f63210ac1",
+      "bytes": 14108,
+      "seconds": 0.8
+    },
+    {
+      "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_18_sentence.mp3",
+      "sha256": "f1d0fb7a180e6d8e5a36b0e624da659407ed176f40993924c4f54f2b5060b241",
+      "bytes": 34805,
+      "seconds": 2.0
+    },
+    {
+      "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_18_word.mp3",
+      "sha256": "f71fff232581ccfc5c78870ec608441c6fb2f70ca50792ce351d928c331cc75c",
+      "bytes": 15937,
+      "seconds": 0.85
+    },
+    {
+      "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_19_sentence.mp3",
+      "sha256": "7c4d18c8b28ecd89f7adb5d9bc1bc6605d10f25c99783c391736547e1ffb46ac",
+      "bytes": 34129,
+      "seconds": 1.85
+    },
+    {
+      "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_19_word.mp3",
+      "sha256": "db06a01f9f428d5e2167b98acab93d2bfb983ff4c397553bd835c5a6f973901f",
+      "bytes": 28102,
+      "seconds": 1.55
+    },
+    {
+      "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_20_sentence.mp3",
+      "sha256": "f32294639a09a0d262066e794d8ca14eefb6a44c2af0d8415aac6700a1b0274f",
+      "bytes": 36420,
+      "seconds": 2.315828
+    },
+    {
+      "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_20_word.mp3",
+      "sha256": "259d949c5d7412e333f38ed5c28ec55fc8a313d437cb3cc18cdb6851564f2109",
+      "bytes": 22366,
+      "seconds": 1.448005
+    },
+    {
+      "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_21_sentence.mp3",
+      "sha256": "da2e234ecb3293fc16b57c7b1f88accbdb08805a4c86b75a05303023f58ac1c8",
+      "bytes": 30147,
+      "seconds": 1.8
+    },
+    {
+      "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_21_word.mp3",
+      "sha256": "921cc2f98ad284b305bd040bf693db1cf47dbeb9c9a60931ad9a07e0425b9b57",
+      "bytes": 17394,
+      "seconds": 1.0
+    },
+    {
+      "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_22_sentence.mp3",
+      "sha256": "a8bae4739073400d888584bef58131d24918126a6f49c617924e9f44c20aa8af",
+      "bytes": 38953,
+      "seconds": 2.25
+    },
+    {
+      "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_22_word.mp3",
+      "sha256": "43c6aab330a6f23269caeed4869338db9b20ec2fb3dcf57128b89e04ec893918",
+      "bytes": 28398,
+      "seconds": 1.65
+    },
+    {
+      "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_23_sentence.mp3",
+      "sha256": "ce0e3dadc5ae5c08419badac10129ea35d0bede42e5ab5c72e0a0ab9290eca05",
+      "bytes": 27199,
+      "seconds": 1.5
+    },
+    {
+      "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_23_word.mp3",
+      "sha256": "6b8a0795b3843c2f766068f9fb3d375c2a667c2a6d2e715543e5f45c7929bdad",
+      "bytes": 16902,
+      "seconds": 0.95
+    },
+    {
+      "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_24_sentence.mp3",
+      "sha256": "5d97404028a1e329911e9fd8b2417e1e8f34980a62f3c80bb4c942772552ce5b",
+      "bytes": 30878,
+      "seconds": 1.85
+    },
+    {
+      "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_24_word.mp3",
+      "sha256": "78e91d104c460c6c39d3d9cfdff783474b2aa4d228c48cf4fe95863f3dbee4a2",
+      "bytes": 16089,
+      "seconds": 0.95
+    },
+    {
+      "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_25_sentence.mp3",
+      "sha256": "6d5df801b6fb8d976e962ef8e42c157aa934b6a55086452105949482a2f10681",
+      "bytes": 29943,
+      "seconds": 1.7
+    },
+    {
+      "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_25_word.mp3",
+      "sha256": "1bfa29f2db586d51e0e7a37541ec41e2266d2167aae4f6e2adba99eb21a99c06",
+      "bytes": 16977,
+      "seconds": 1.0
+    },
+    {
+      "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_26_sentence.mp3",
+      "sha256": "925b0669cdde0ed5542a3542e0d0fcb135af9087c4eb098a5ab02e5fb59afcec",
+      "bytes": 32349,
+      "seconds": 1.8
+    },
+    {
+      "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_26_word.mp3",
+      "sha256": "97833d29cce5462beb0c1c983c21cecada2fba14ffacf1a59beb23823bbc1613",
+      "bytes": 18494,
+      "seconds": 0.95
+    },
+    {
+      "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_27_sentence.mp3",
+      "sha256": "a7bf839f68b9e4e59d08e1fa809f0367f7533e1114a9c9e782765fac9fa438ca",
+      "bytes": 41907,
+      "seconds": 2.2
+    },
+    {
+      "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_27_word.mp3",
+      "sha256": "3388f7e89056dac84d923bcc8106d64a64c94b67bc481744f6d1c5f28dc55b65",
+      "bytes": 33421,
+      "seconds": 1.8
+    },
+    {
+      "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_28_sentence.mp3",
+      "sha256": "53d4857f34ba62bd46e42538c8dcbb199a2199643cdf182279c388c9a178a907",
+      "bytes": 35902,
+      "seconds": 2.0
+    },
+    {
+      "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_28_word.mp3",
+      "sha256": "9e00c6be7d03a976a2599e61ac5fff9c775279cbeefd8f8769084c3df00ca874",
+      "bytes": 16562,
+      "seconds": 0.85
+    },
+    {
+      "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_29_sentence.mp3",
+      "sha256": "c9047aa3ccacf860260d45af6b93a93618bea987fd1c6db4e9670651f7493e72",
+      "bytes": 52409,
+      "seconds": 3.15
+    },
+    {
+      "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_29_word.mp3",
+      "sha256": "9bad3774475a342bbd5124a7a3544b30984411a50c9179f14b4ba001074f0527",
+      "bytes": 25203,
+      "seconds": 1.45
+    },
+    {
+      "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_30_sentence.mp3",
+      "sha256": "13991ea6499f89e3fd32db07ed797c4c96e1ae105bfbb1266342178c18bce5b5",
+      "bytes": 34340,
+      "seconds": 1.95
+    },
+    {
+      "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_30_word.mp3",
+      "sha256": "7c6f72c1f806a32e63ec65087ed48e652eb47bd5cb15f43ea9459d08f29059d6",
+      "bytes": 15568,
+      "seconds": 0.9
+    },
+    {
+      "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_31_sentence.mp3",
+      "sha256": "fc90aa45cbc583d25aefb3a03398a316161c10c900bb159772d0c87028d578e2",
+      "bytes": 58670,
+      "seconds": 3.45
+    },
+    {
+      "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_31_word.mp3",
+      "sha256": "ebc5820239904126d535596c88bc403d15bb96fdce3f29d77fefc996e4843465",
+      "bytes": 33686,
+      "seconds": 1.8
+    }
+  ]
+}
