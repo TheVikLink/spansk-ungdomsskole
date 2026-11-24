@@ -140,7 +140,7 @@ test.describe('student learning flow audit', () => {
       document.getElementById('homePage').classList.remove('hidden');
       renderHomePage();
       const before = {
-        text: document.getElementById('homeQuizStreak').textContent,
+        weeklyGoal: document.getElementById('homeQuizWeeklyGoal').textContent,
         button: document.getElementById('homeStartMixedQuizBtn').textContent
       };
       completeQuizForToday(new Date());
@@ -148,18 +148,18 @@ test.describe('student learning flow audit', () => {
       return {
         before,
         after: {
-          text: document.getElementById('homeQuizStreak').textContent,
+          weeklyGoal: document.getElementById('homeQuizWeeklyGoal').textContent,
           title: document.getElementById('homeQuizTitle').textContent,
           button: document.getElementById('homeStartMixedQuizBtn').textContent
         }
       };
     });
 
-    expect(result.before.text).toContain('Ingen registrert øving i dag ennå.');
+    expect(result.before.weeklyGoal).toContain('0 av 4 øvingsdager');
     expect(result.before.button).toContain('Start dagens quiz');
     expect(result.after.title).toContain('Ta en ny quiz');
     expect(result.after.button).toContain('Ta en ny quiz');
-    expect(result.after.text).toContain('1 quiz i dag');
+    expect(result.after.weeklyGoal).toContain('1 av 4 øvingsdager');
   });
 
   test('starts new-word practice when the new-word mode is selected', async ({ page }) => {
@@ -213,7 +213,7 @@ test.describe('student learning flow audit', () => {
       showPage('brainmap');
     });
 
-    await expect(page.locator('.brainmap-legend')).toContainText('Gull = svært sterk');
+    await expect(page.locator('.brainmap-legend')).toContainText('Mørkegrønn = sitter svært godt');
     const firstNode = page.locator('.brainmap-node-gray').first();
     await expect(firstNode).toContainText('Ikke startet');
     await expect(firstNode).not.toContainText('/ 5');

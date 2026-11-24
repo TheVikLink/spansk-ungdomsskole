@@ -42,13 +42,13 @@ test.describe('visual frontend audit fixes', () => {
     expect(Number(sectionHeading)).toBe(600);
   });
 
-  test('uses consistent primary actions and gives home mode cards a button affordance', async ({ page }) => {
+  test('uses consistent primary actions and gives secondary feed actions a button affordance', async ({ page }) => {
     await page.goto(appUrl);
     const welcomePrimary = await page.locator('.login-btn-primary').evaluate(element => getComputedStyle(element).backgroundColor);
 
     await openReturningStudent(page, 'home');
     const homePrimary = await page.locator('#homeStartMixedQuizBtn').evaluate(element => getComputedStyle(element).backgroundColor);
-    const cardStyle = await page.locator('.home-manual-action').first().evaluate(element => {
+    const cardStyle = await page.locator('#homeLearningFeed .btn-outline').first().evaluate(element => {
       const styles = getComputedStyle(element);
       return { borderStyle: styles.borderStyle, borderColor: styles.borderColor };
     });
@@ -59,7 +59,7 @@ test.describe('visual frontend audit fixes', () => {
     expect(homePrimary).toBe(welcomePrimary);
     expect(homePrimary).toBe(vocabPrimary);
     expect(cardStyle.borderStyle).toBe('solid');
-    expect(cardStyle.borderColor).toBe('rgb(229, 231, 235)');
+    expect(cardStyle.borderColor).toBe('rgb(209, 213, 219)');
   });
 
   test('keeps welcome support text in a compact size rhythm', async ({ page }) => {

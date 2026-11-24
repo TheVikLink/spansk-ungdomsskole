@@ -26,8 +26,8 @@ for (const width of [1440, 390]) {
     await showResult(page);
     const stars = page.locator('.quiz-skill-star');
     await expect(stars).toHaveCount(4);
-    await expect(stars.locator('.quiz-star-topic')).toHaveText(['el / la', 'gustar · entall', 'los / las', 'hay / estar']);
-    await expect(stars.locator('.quiz-star-tier-label')).toHaveText(Array(4).fill('Sølv · 80 %'));
+    await expect(stars.locator('.quiz-star-topic')).toHaveText(['el / la', 'gustar i entall', 'los / las', 'hay / estar']);
+    await expect(stars.locator('.quiz-star-tier-label')).toHaveText(Array(4).fill('Sølv – 80 %'));
     await expect(page.locator('.quiz-badge-awards')).not.toContainText('Gode svar på øvde oppgaver:');
     await expect(stars.first().locator('svg')).toBeVisible();
     const streak = page.locator('#mixedQuizStreakSummary');

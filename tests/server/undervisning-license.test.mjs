@@ -1,0 +1,226 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import express from 'express';
+import { createServer } from 'node:http';
+import { mkdtemp, mkdir, readFile, readdir, rm, writeFile } from 'node:fs/promises';
+import os from 'node:os';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import {
+  FREE_SAMPLE_LESSON_IDS,
+  createSchoolLicenseCode,
+  isFreeLessonId,
+  verifySchoolLicenseCode,
+} from '../../src/domain/school-license.js';
+import { createUndervisningRouter } from '../../server/undervisning-access.js';
+import { buildVercelPublic } from '../../scripts/build-vercel-public.mjs';
+
+const projectRoot = fileURLToPath(new URL('../../', import.meta.url));
+const TEST_SECRET = 'test-signing-secret-at-least-32-chars-long';
+
+async function withRouterServer(options, run) {
+  const app = express();
+  app.use(createUndervisningRouter({ projectRoot, getSecret: () => TEST_SECRET, cookieSecure: false, enforcePaywall: true, ...options }));
+  const server = createServer(app);
+  await new Promise((resolve) => server.listen(0, '127.0.0.1', resolve));
+  try {
+    const address = server.address();
+    await run(`http://127.0.0.1:${address.port}`);
+  } finally {
+    await new Promise((resolve, reject) => server.close((error) => error ? reject(error) : resolve()));
+  }
+}
+
+test('createSchoolLicenseCode and verifySchoolLicenseCode validate signatures, plans, and expiry', () => {
+  assert.deepEqual(FREE_SAMPLE_LESSON_IDS, ['wordkeys-recognizable', 'hilsener', 'tall']);
+  assert.equal(isFreeLessonId('tall'), true);
+  assert.equal(isFreeLessonId('familie'), false);
+
+  const code = createSchoolLicenseCode({
+    school: 'Fjell ungdomsskole',
+    plan: 'undervisningspakke',
+    expiresAt: '2027-08-31',
+    licenseId: 'lic-demo-01',
+  }, TEST_SECRET);
+
+  const ok = verifySchoolLicenseCode(code, TEST_SECRET, new Date('2026-11-24T12:00:00Z'));
+  assert.equal(ok.valid, true);
+  assert.deepEqual(ok.license, {
+    id: 'lic-demo-01',
+    plan: 'undervisningspakke',
+    school: 'Fjell ungdomsskole',
+    expiresAt: '2027-08-31',
+  });
+
+  // Tampered payload
+  const [prefix, payloadB64, sigB64] = code.split('.');
+  const tamperedPayload = Buffer.from(JSON.stringify({
+    v: 1, id: 'lic-demo-01', plan: 'kommunepakke', school: 'Gratis skole', exp: '2099-12-31',
+  }), 'utf8').toString('base64url');
+  assert.equal(verifySchoolLicenseCode(`${prefix}.${tamperedPayload}.${sigB64}`, TEST_SECRET).valid, false);
+
+  // Wrong secret
+  assert.equal(verifySchoolLicenseCode(code, 'another-completely-different-secret-key').valid, false);
+
+  // Expired
+  const expired = verifySchoolLicenseCode(code, TEST_SECRET, new Date('2027-09-01T00:00:00Z'));
+  assert.deepEqual(expired, { valid: false, reason: 'expired' });
+
+  // Malformed
+  assert.deepEqual(verifySchoolLicenseCode('not-a-code', TEST_SECRET), { valid: false, reason: 'malformed' });
+});
+
+test('createUndervisningRouter allows free sample lessons and locks paid lessons until license activation', async () => {
+  await withRouterServer({}, async (origin) => {
+    // Free sample lesson HTML + PDF work without license
+    for (const freeId of FREE_SAMPLE_LESSON_IDS) {
+      const htmlRes = await fetch(`${origin}/undervisning/${freeId}/index.html`);
+      assert.equal(htmlRes.status, 200, `${freeId} HTML should be free`);
+      const pdfRes = await fetch(`${origin}/undervisning/${freeId}/partnerkort.pdf`);
+      assert.equal(pdfRes.status, 200, `${freeId} PDF should be free`);
+    }
+
+    // Paid lesson HTML redirects to portal; PDF/MP3 return 402
+    const lockedHtml = await fetch(`${origin}/undervisning/familie/index.html`, { redirect: 'manual' });
+    assert.equal(lockedHtml.status, 302);
+    assert.equal(lockedHtml.headers.get('location'), '/undervisning/?las=familie');
+
+    const lockedNoSlash = await fetch(`${origin}/undervisning/familie`, { redirect: 'manual' });
+    assert.equal(lockedNoSlash.status, 302);
+    assert.equal(lockedNoSlash.headers.get('location'), '/undervisning/?las=familie');
+
+    const lockedPdf = await fetch(`${origin}/undervisning/familie/partnerkort.pdf`);
+    assert.equal(lockedPdf.status, 402);
+
+    const lockedMp3 = await fetch(`${origin}/undervisning/familie/familie.mp3`);
+    assert.equal(lockedMp3.status, 402);
+
+    // Path traversal or unknown files return 404
+    assert.equal((await fetch(`${origin}/undervisning/..%2Fpackage.json`)).status, 404);
+    assert.equal((await fetch(`${origin}/undervisning/familie/secret.env`)).status, 404);
+
+    // Invalid and expired codes are rejected
+    const badActivate = await fetch(`${origin}/api/license/activate`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ code: 'SP123.bad.sig' }),
+    });
+    assert.equal(badActivate.status, 400);
+
+    const expiredCode = createSchoolLicenseCode({
+      school: 'Gammel skole',
+      expiresAt: '2025-01-01',
+    }, TEST_SECRET);
+    const expActivate = await fetch(`${origin}/api/license/activate`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ code: expiredCode }),
+    });
+    assert.equal(expActivate.status, 400);
+    assert.match((await expActivate.json()).error, /utløpt/u);
+
+    // Valid activation sets HttpOnly cookie and unlocks paid lessons
+    const validCode = createSchoolLicenseCode({
+      school: 'Nordstrand ungdomsskole',
+      expiresAt: '2027-08-31',
+    }, TEST_SECRET);
+    const okActivate = await fetch(`${origin}/api/license/activate`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ code: validCode }),
+    });
+    assert.equal(okActivate.status, 200);
+    const body = await okActivate.json();
+    assert.equal(body.active, true);
+    assert.equal(body.school, 'Nordstrand ungdomsskole');
+    const setCookie = okActivate.headers.get('set-cookie');
+    assert.ok(setCookie?.includes('HttpOnly'));
+    const cookieHeader = setCookie.split(';')[0];
+
+    const statusRes = await fetch(`${origin}/api/license/status`, { headers: { Cookie: cookieHeader } });
+    assert.equal(statusRes.status, 200);
+    assert.equal((await statusRes.json()).school, 'Nordstrand ungdomsskole');
+
+    const unlockedHtml = await fetch(`${origin}/undervisning/familie/index.html`, { headers: { Cookie: cookieHeader } });
+    assert.equal(unlockedHtml.status, 200);
+    const unlockedPdf = await fetch(`${origin}/undervisning/familie/partnerkort.pdf`, { headers: { Cookie: cookieHeader } });
+    assert.equal(unlockedPdf.status, 200);
+    assert.equal(Buffer.from(await unlockedPdf.arrayBuffer()).subarray(0, 5).toString(), '%PDF-');
+
+    // Trailing slash redirect preserves relative paths when licensed
+    const unlockedNoSlash = await fetch(`${origin}/undervisning/familie`, {
+      redirect: 'manual',
+      headers: { Cookie: cookieHeader },
+    });
+    assert.equal(unlockedNoSlash.status, 302);
+    assert.equal(unlockedNoSlash.headers.get('location'), '/undervisning/familie/');
+
+    // Deactivate clears access
+    const deactivate = await fetch(`${origin}/api/license/deactivate`, {
+      method: 'POST',
+      headers: { Cookie: cookieHeader },
+    });
+    assert.equal(deactivate.status, 200);
+    assert.ok(deactivate.headers.get('set-cookie')?.includes('Max-Age=0'));
+  });
+});
+
+test('buildVercelPublic stages only top-level portal assets and free sample lessons into public CDN', async () => {
+  const root = await mkdtemp(path.join(os.tmpdir(), 'spansk-vercel-undervisning-'));
+  const output = path.join(root, 'public');
+  const put = async (relative, text = relative) => {
+    const target = path.join(root, relative);
+    await mkdir(path.dirname(target), { recursive: true });
+    await writeFile(target, text);
+  };
+  try {
+    await Promise.all([
+      put('index.html', '<h1>App</h1>'),
+      put('manifest.webmanifest', '{}'),
+      put('sw.js', 'self.test = true;'),
+      put('dist/tailwind.css', 'body{}'),
+      put('audio/test.mp3', 'audio'),
+      put('server/public/school.js', 'school'),
+      put('server/public/school.css', 'css'),
+      put('server/content-media/abc.wav', 'wav'),
+      put('undervisning/index.html', 'portal'),
+      put('undervisning/time.css', 'css'),
+      put('undervisning/writing.js', 'js'),
+      put('undervisning/pakke.js', 'pakke'),
+      put('undervisning/tall/index.html', 'free'),
+      put('undervisning/hilsener/partnerkort.pdf', '%PDF-'),
+      put('undervisning/wordkeys-recognizable/index.html', 'free'),
+      put('undervisning/familie/index.html', 'paid'),
+      put('undervisning/familie/partnerkort.pdf', '%PDF-paid'),
+    ]);
+
+    await buildVercelPublic({ rootDir: root, outputDir: output });
+    const listFiles = async (dir, prefix = '') => {
+      const entries = await readdir(dir, { withFileTypes: true });
+      const nested = await Promise.all(entries.map((entry) => (
+        entry.isDirectory()
+          ? listFiles(path.join(dir, entry.name), `${prefix}${entry.name}/`)
+          : [`${prefix}${entry.name}`]
+      )));
+      return nested.flat();
+    };
+    const undervisningFiles = (await listFiles(path.join(output, 'undervisning'))).sort();
+    assert.deepEqual(undervisningFiles, [
+      'hilsener/partnerkort.pdf',
+      'index.html',
+      'pakke.js',
+      'tall/index.html',
+      'time.css',
+      'wordkeys-recognizable/index.html',
+      'writing.js',
+    ]);
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});
+
+test('service worker bypasses /undervisning routes so paywall redirects stay network-only', async () => {
+  const swText = await readFile(path.join(projectRoot, 'sw.js'), 'utf8');
+  assert.match(swText, /pathname\s*===\s*'\/undervisning'/u);
+  assert.match(swText, /pathname\.startsWith\('\/undervisning\/'\)/u);
+});

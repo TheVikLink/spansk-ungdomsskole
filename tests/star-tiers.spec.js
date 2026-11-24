@@ -137,7 +137,7 @@ for (const width of [1440, 390]) test(`all four star materials and their scale a
     mixedQuizState.quiz.items = Array.from({ length: 10 }, () => ({})); finishMixedQuiz();
   });
   const stars = page.locator('#mixedQuizQuestion .quiz-skill-star');
-  await expect(stars.locator('.quiz-star-tier-label')).toHaveText(['Bronse · 50 %', 'Sølv · 75 %', 'Gull · 90 %', 'Diamant · 100 %']);
+  await expect(stars.locator('.quiz-star-tier-label')).toHaveText(['Bronse – 50 %', 'Sølv – 75 %', 'Gull – 90 %', 'Diamant – 100 %']);
   const fills = await stars.locator('summary > svg').evaluateAll(elements => elements.map(el => getComputedStyle(el).fill));
   expect(new Set(fills).size).toBe(4);
   await expect(stars.last().locator('.star-facet-light')).toBeVisible();

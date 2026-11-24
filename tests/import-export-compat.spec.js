@@ -282,6 +282,27 @@ test.describe('progress import/export compatibility', () => {
     expect(results.storedCards).toBeNull();
   });
 
+  test('local JSON import limit accepts the boundary and rejects only larger files', async ({ page }) => {
+    await page.goto(appUrl);
+    const results = await page.evaluate(() => ({
+      maximum: localJsonImportSizeError({ size: 5 * 1024 * 1024 }),
+      aboveMaximum: localJsonImportSizeError({ size: 5 * 1024 * 1024 + 1 })
+    }));
+    expect(results).toEqual({ maximum: null, aboveMaximum: 'Filen er for stor. Velg en JSON-fil på maks 5 MB.' });
+  });
+
+  test('rejects an oversized progress import before reading or overwriting local progress', async ({ page }) => {
+    await page.goto(appUrl);
+    await page.evaluate(() => localStorage.setItem('spansk123Data_v4', JSON.stringify([{ id: 'keep', no: 'hola', es: 'hola' }])));
+    const chooserPromise = page.waitForEvent('filechooser');
+    await page.evaluate(() => importProgressFile());
+    const chooser = await chooserPromise;
+    await chooser.setFiles({ name: 'for-stor.json', mimeType: 'application/json', buffer: Buffer.alloc(5 * 1024 * 1024 + 1, 0x20) });
+
+    await expect(page.locator('.toast')).toContainText('Filen er for stor');
+    expect(await page.evaluate(() => JSON.parse(localStorage.getItem('spansk123Data_v4')))).toEqual([{ id: 'keep', no: 'hola', es: 'hola' }]);
+  });
+
   test('rejects null progress payloads without throwing', async ({ page }) => {
     await page.goto(appUrl);
 

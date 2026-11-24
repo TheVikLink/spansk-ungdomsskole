@@ -517,3 +517,44 @@ test.describe('adaptive mixed quiz v1', () => {
     await expect(page.getByRole('button', { name: 'Neste' })).toBeVisible();
   });
 });
+
+test('daily quiz reserves three slots for due Norwegian-to-Spanish mistakes', async ({ page }) => {
+  await page.clock.setFixedTime(new Date('2026-08-12T12:00:00Z'));
+  await page.goto(appUrl);
+
+  const items = await page.evaluate(() => {
+    studentName = 'Testelev';
+    showMainApp();
+    const candidates = cards.slice(0, 7).map(card => String(card.id));
+    let progress = loadLearningProgress();
+    candidates.forEach((targetId, index) => {
+      progress = updateLearningProgress({
+        progress,
+        targetType: 'word',
+        targetId,
+        direction: index === 4 ? 'esToNo' : 'noToEs',
+        resultKind: index === 6 ? 'correct' : 'wrong',
+        nowIso: index === 5 ? '2026-08-12T11:00:00Z' : '2026-08-11T12:00:00Z'
+      });
+    });
+    saveLearningProgress(progress);
+    startDailyQuizFromHome();
+    return {
+      count: mixedQuizState.quiz.items.length,
+      repeat: mixedQuizState.quiz.items.filter(item => item.selectionBucket === 'vocabulary-retry')
+        .map(({ targetId, direction, responseMode }) => ({ targetId, direction, responseMode })),
+      eligible: candidates.slice(0, 4),
+      eligibleInQuiz: mixedQuizState.quiz.items.filter(item =>
+        item.direction === 'noToEs' && candidates.slice(0, 4).includes(item.targetId)).length
+    };
+  });
+
+  expect(items.count).toBe(10);
+  expect(items.repeat).toHaveLength(3);
+  expect(items.eligibleInQuiz).toBe(3);
+  expect(new Set(items.repeat.map(item => item.targetId)).size).toBe(3);
+  for (const item of items.repeat) {
+    expect(items.eligible).toContain(item.targetId);
+    expect(item).toMatchObject({ direction: 'noToEs', responseMode: 'typed' });
+  }
+});

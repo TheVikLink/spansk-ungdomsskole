@@ -32,15 +32,15 @@ test.describe('PWA and UI smoke checks', () => {
     await expect.poll(() => page.evaluate(() => Boolean(navigator.serviceWorker.controller))).toBe(true);
     await page.evaluate(() => {
       localStorage.clear();
-      studentName = 'Elev offline';
-      showMainApp();
+      localStorage.setItem('spansk123_studentName', 'Elev offline');
     });
-    await expect(page.locator('#homeOfflineHint')).toContainText('Diktatlyd må lastes ned separat');
 
     await context.setOffline(true);
     await page.reload();
-    await expect(page.locator('#welcomeScreen')).toBeVisible();
-    await expect(page.locator('body')).toContainText('Spansk på 1-2-3');
+    await expect(page.locator('#homeWeekActivity')).toBeVisible();
+    await expect(page.locator('#homeLearningFeed')).toBeVisible();
+    await page.locator('#homeStartMixedQuizBtn').click();
+    await expect(page.locator('#mixedQuizStudy')).toBeVisible();
   });
 
   test('core classroom views render on mobile without horizontal overflow', async ({ page }) => {

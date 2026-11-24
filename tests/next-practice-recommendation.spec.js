@@ -41,12 +41,16 @@ test.describe('next practice recommendation', () => {
       }));
       studentName = 'Elev anbefaling';
       showMainApp();
-      showPage('home');
+      cards[0].noEs = { ...cards[0].noEs, repetitions: 1, nextReview: '2020-01-01T00:00:00Z' };
+      renderHomePage();
     });
 
-    await expect(page.locator('#homeVocabularyReview')).toContainText('Repeter gloser');
-    await expect(page.locator('#homeVocabularyReviewCount')).toHaveText('0 ord klare for repetisjon');
-    await expect(page.getByRole('button', { name: 'Start repetisjon', exact: true })).toBeDisabled();
-    await expect(page.getByRole('button', { name: 'Start anbefalt øving' })).toHaveCount(0);
+    const feed = page.locator('#homeLearningFeed');
+    await expect(feed.locator('article').first()).toContainText('Dagens quiz');
+    const review = feed.locator('article').filter({ has: page.getByRole('heading', { name: 'Repeter 1 ord' }) });
+    await expect(review.getByRole('button', { name: 'Start økten' })).toBeEnabled();
+    await review.getByRole('button', { name: 'Start økten' }).click();
+    await expect(page.locator('#vocabStudy')).toBeVisible();
+    expect(await page.evaluate(() => currentVocabMode)).toBe('review');
   });
 });

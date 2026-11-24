@@ -207,6 +207,22 @@ test.describe('teacher assignment packages', () => {
     await expect(page.locator('#homeworkSummary')).toContainText('3 påkrevd');
   });
 
+  test('rejects oversized assignment JSON before parsing or storing it', async ({ page }) => {
+    await page.goto(appUrl);
+    await page.fill('#studentNameInput', 'Syntetisk elev');
+    await page.locator('.login-btn-primary').click();
+    await page.click('#navHomework');
+    await page.setInputFiles('#assignmentFileInput', {
+      name: 'for-stor.json',
+      mimeType: 'application/json',
+      buffer: Buffer.alloc(5 * 1024 * 1024 + 1, 0x20)
+    });
+
+    await expect(page.locator('#assignmentImportStatus')).toContainText('Filen er for stor');
+    await expect(page.locator('#activeAssignmentPanel')).not.toContainText('for-stor');
+    expect(await page.evaluate(() => localStorage.getItem('spansk123_activeAssignment'))).toBeNull();
+  });
+
   test('builds a printable weekly report for the active assignment', async ({ page }) => {
     await page.goto(appUrl);
 

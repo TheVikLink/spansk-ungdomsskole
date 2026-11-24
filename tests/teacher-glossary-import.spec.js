@@ -5,6 +5,17 @@ import { pathToFileURL } from 'node:url';
 const appUrl = pathToFileURL(path.resolve('index.html')).toString();
 
 test.describe('teacher glossary import validation', () => {
+  test('rejects an oversized local teacher glossary before reading it', async ({ page }) => {
+    await page.goto(appUrl);
+    const chooserPromise = page.waitForEvent('filechooser');
+    await page.evaluate(() => importTeacherWords());
+    const chooser = await chooserPromise;
+    await chooser.setFiles({ name: 'for-stor.json', mimeType: 'application/json', buffer: Buffer.alloc(5 * 1024 * 1024 + 1, 0x20) });
+
+    await expect(page.locator('.toast')).toContainText('Filen er for stor');
+    expect(await page.evaluate(() => localStorage.getItem('spansk123Data_v4'))).toBeNull();
+  });
+
   test('normalizes supported teacher glossary formats and reports row-level problems', async ({ page }) => {
     await page.goto(appUrl);
 

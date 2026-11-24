@@ -59,6 +59,7 @@ function fixture(run) {
   const directory = mkdtempSync(path.join(tmpdir(), 'spansk-vocabulary-authority-'));
   try {
     mkdirSync(path.join(directory, 'data'));
+    writeFileSync(path.join(directory, 'data/vocabulary-recognition-theme.json'), readFileSync('data/vocabulary-recognition-theme.json'));
     writeFileSync(path.join(directory, 'index.html'), html);
     writeFileSync(path.join(directory, 'data/vocabulary-canonical-review.json'), JSON.stringify(review));
     writeFileSync(path.join(directory, 'data/vocabulary-canonical.json'), JSON.stringify(review));

@@ -232,3 +232,48 @@ test.describe('local quiz streaks', () => {
     expect(result.dailyQuizCounts).toEqual({ '2026-08-10': 5, '2026-08-11': 1 });
   });
 });
+
+for (const width of [390, 1440]) {
+  test(`shows the four-day quiz goal on start and results at ${width}px`, async ({ page }) => {
+    await page.setViewportSize({ width, height: 900 });
+    await page.clock.setFixedTime(new Date('2026-08-13T12:00:00Z'));
+    await page.goto(appUrl);
+
+    await page.evaluate(() => {
+      studentName = 'Testelev';
+      localStorage.setItem('spansk123_studentName', studentName);
+      showMainApp();
+      for (const date of ['2026-08-09', '2026-08-10', '2026-08-10', '2026-08-11', '2026-08-12']) {
+        saveQuizStats(completeQuizStatsForDate(loadQuizStats(), date));
+      }
+      renderHomePage();
+    });
+    await expect(page.locator('#homeQuizWeeklyGoal')).toHaveText('Ukemål: 3 av 4 øvingsdager');
+    await expect(page.locator('#homeQuizWeeklyGoal .quiz-weekly-goal-marker')).toHaveCount(4);
+    await expect(page.locator('#homeQuizWeeklyGoal .quiz-weekly-goal-marker.is-filled')).toHaveCount(3);
+    await expect(page.locator('#homeQuizWeeklyGoal .quiz-weekly-goal-marker').first()).toBeVisible();
+    await expect(page.locator('#homeQuizWeeklyGoal .quiz-weekly-goal-marker').last()).toBeVisible();
+
+    await page.locator('#homeStartMixedQuizBtn').click();
+    await page.evaluate(() => {
+      mixedQuizState.answered = mixedQuizState.quiz.items.length - 1;
+      finishMixedQuiz();
+    });
+    await expect(page.locator('#mixedQuizWeeklyGoal')).toHaveText('Ukemål: 3 av 4 øvingsdager');
+    await expect(page.locator('#mixedQuizWeeklyGoal .quiz-weekly-goal-marker.is-filled')).toHaveCount(3);
+
+    await page.locator('.mixed-quiz-result-actions-top button').first().click();
+    await page.evaluate(() => {
+      mixedQuizState.answered = mixedQuizState.quiz.items.length;
+      finishMixedQuiz();
+    });
+    await expect(page.locator('#mixedQuizWeeklyGoal')).toHaveText('Ukemål nådd: 4 av 4 øvingsdager');
+    await expect(page.locator('#mixedQuizWeeklyGoal .quiz-weekly-goal-marker.is-filled')).toHaveCount(4);
+
+    await page.clock.setFixedTime(new Date('2026-08-17T12:00:00Z'));
+    await page.reload();
+    await expect(page.locator('#homeQuizWeeklyGoal')).toHaveText('Ukemål: 0 av 4 øvingsdager');
+    await expect(page.locator('#homeQuizWeeklyGoal .quiz-weekly-goal-marker')).toHaveCount(4);
+    await expect(page.locator('#homeQuizWeeklyGoal .quiz-weekly-goal-marker.is-filled')).toHaveCount(0);
+  });
+}

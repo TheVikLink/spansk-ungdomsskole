@@ -14,6 +14,11 @@ test.describe('privacy wording and local backup reminder', () => {
     await expect(page.locator('.login-hint').first()).toContainText('lokale oppsummeringen');
     await expect(page.locator('#welcomeForm')).toContainText('nettleserdata slettes');
     await expect(page.locator('#welcomeForm')).toContainText('Importer fremgang fra fil');
+
+    // One-tap start works without forcing the student to invent a code first
+    await page.locator('.login-btn-primary').click();
+    await expect(page.locator('#mainApp')).toBeVisible();
+    await expect(page.locator('#userName')).toHaveText('Elev');
   });
 
   test('shows backup status and updates when a recent export is recorded', async ({ page }) => {

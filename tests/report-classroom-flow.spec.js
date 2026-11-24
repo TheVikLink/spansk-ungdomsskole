@@ -4,13 +4,13 @@ import { pathToFileURL } from 'node:url';
 const appUrl = pathToFileURL(path.resolve('index.html')).toString();
 
 for (const width of [390, 1440]) {
-  test(`F13: first action starts the level test at ${width}px`, async ({ page }) => {
+  test(`F13: first action starts the daily mixed quiz at ${width}px`, async ({ page }) => {
     await page.setViewportSize({ width, height: 900 }); await page.goto(appUrl);
     await page.locator('#studentNameInput').fill('Test'); await page.locator('.login-btn-primary').click();
-    await expect(page.locator('#homeStartMixedQuizBtn')).toBeEnabled();
-    await page.locator('#homeStartMixedQuizBtn').click();
-    expect(await page.evaluate(() => loadDiagnosisState().status)).toBe('in_progress');
-    await expect(page.locator('#diagnosisPanel')).toBeVisible();
+    await expect(page.locator('#homeStartMixedQuizBtn')).toHaveText('Start dagens quiz');
+    await page.evaluate(() => startDailyQuizFromHome());
+    await expect(page.locator('#mixedQuizStudy')).toBeVisible();
+    expect(await page.evaluate(() => loadDiagnosisState().status)).toBe('not_started');
   });
 }
 
@@ -33,8 +33,8 @@ test('F14/F15: a first-day grammar answer is acknowledged and can be shown local
   const wrong = await page.evaluate(() => grammarExercises[0].options.find(value => value !== grammarExercises[0].answer));
   await page.locator('.grammar-option').getByText(wrong, { exact: true }).click();
   await page.evaluate(() => { endGrammarSession(); showPage('home'); });
-  await expect(page.locator('#homeQuizStreak')).not.toContainText('ikke øvd');
-  await expect(page.locator('#homeQuizStreak')).toContainText('grammatikk');
+  await expect(page.locator('#homeQuizWeeklyGoal')).toContainText('1 av 4 øvingsdager');
+  await expect(page.locator('#homeFeedWeeklyXp')).toContainText('0 XP');
   await page.locator('#navHomework').click();
   await page.getByRole('button', { name: 'Vis dagens oppsummering', exact: true }).click();
   await expect(page.locator('#weeklyReportPrintRoot')).toContainText('Dagens oppsummering');

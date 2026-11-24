@@ -99,7 +99,7 @@ test('F08/F17: local identity and separate backup contents are explained where u
   await expect(page.locator('#welcomeForm')).toContainText('Elevkoden gjenoppretter ikke data');
   await boot(page);
   await page.evaluate(() => showPage('homework'));
-  await expect(page.locator('#homeworkPage')).toContainText('svarene fra nivåtesten');
+  await expect(page.locator('#homeworkPage')).toContainText('Filen inneholder elevkode/kallenavn, øvingshistorikk og aktiv leksepakke');
   await expect(page.locator('#feedbackBackupNotice')).toContainText('Eksporter dem separat');
   await page.evaluate(() => showFeedbackDialog({ prompt: 'Test', studentAnswer: 'a', expectedAnswer: 'b', itemRef: 'test', source: 'test' }));
   await expect(page.getByRole('dialog')).toContainText('Ingen mottar det automatisk');

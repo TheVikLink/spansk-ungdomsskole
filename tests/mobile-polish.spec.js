@@ -96,14 +96,16 @@ test('keeps secondary mobile navigation behind an expandable control', async ({ 
   await expect(page.locator('#navHomework')).toBeVisible();
 });
 
-test('explains what each start activity is for at 390px', async ({ page }) => {
+test('explains recommended practice at 390px', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto(appUrl);
   await page.locator('#studentNameInput').fill('Test');
   await page.locator('.login-btn-primary').click();
 
-  await expect(page.locator('[data-home-activity="brainmap"]')).toContainText('Se hva du bør øve mer på');
-  await expect(page.locator('[data-home-activity="dictation"]')).toContainText('Lytt og svar på spørsmål');
+  const feed = page.locator('#homeLearningFeed');
+  await expect(feed.locator('article').first()).toContainText('Ti korte spørsmål fra ordforråd, grammatikk og verb.');
+  await expect(feed.locator('article').filter({ hasText: 'Lytt etter detaljer' }).first()).toContainText(/Opptil \d+ XP/);
+  await expect(page.getByRole('navigation').getByRole('link', { name: 'Undervisningstimer' })).toBeVisible();
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
 });
 

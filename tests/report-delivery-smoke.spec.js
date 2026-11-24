@@ -25,10 +25,10 @@ test('real download and file import in a clean profile preserve activity and ver
     await expect(recovered.locator('#mainApp')).toBeVisible();
     expect(await recovered.evaluate(()=>practiceHistory)).toEqual(expected.history);
     expect(await recovered.evaluate(()=>loadLearningProgress().skillProgress)).toEqual(expected.progress.skillProgress);
-    await recovered.locator('#navHome').click();await expect(recovered.locator('#homeQuizStreak')).toContainText('1 besvarte oppgaver');
+    await recovered.locator('#navHome').click();await expect(recovered.locator('#homeQuizWeeklyGoal')).toContainText('1 av 4 øvingsdager');
     await recovered.screenshot({path:testInfo.outputPath('final-home-desktop.png'),fullPage:true});
     await recovered.setViewportSize({width:390,height:844});
-    await expect(recovered.locator('#homeVocabularyReview')).toBeVisible();
+    await expect(recovered.locator('#homeLearningFeed')).toBeVisible();
     expect(await recovered.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
     await recovered.screenshot({path:testInfo.outputPath('final-home-mobile.png'),fullPage:true});
   } finally {await clean.close();}

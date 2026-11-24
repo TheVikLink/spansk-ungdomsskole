@@ -26,7 +26,7 @@ test('F15: repeated single form cannot award a broad verb badge; varied forms su
   expect(result.repeated?.attempts).toBe(6);
   expect(result.repeated.verbForms).toEqual(['hablar:0']);
   expect(result.prematureBadge).toBe(false);
-  expect(['green','gold']).not.toContain(result.status);
+  expect(['green', 'dark-green']).not.toContain(result.status);
   expect(result.varied.verbForms).toHaveLength(6);
   expect(result.badges.some(b => b.skillId===skill)).toBe(true);
   await page.reload();
@@ -59,9 +59,9 @@ test('F15: future forms do not increase present skill; guidance names the learni
   const result=await page.evaluate(() => {
     showPage('verbs'); selectedVerbs=new Set(['hablar']);selectedTense='futuro';startVerbSession();
     const input=document.getElementById('verbInput');input.value=input.dataset.expected;checkVerbAnswer();
-    return {progress:loadLearningProgress(), recommendation:getNextPracticeRecommendation([{targetId:'a1.verbs.regular_ar.present',itemType:'skill',skillKind:'verb',prompt:'yo + hablar',attempts:3,strength:0}]),streak:formatQuizStreakSummary()};
+    return {progress:loadLearningProgress(), recommendation:getNextPracticeRecommendation([{targetId:'a1.verbs.regular_ar.present',itemType:'skill',skillKind:'verb',prompt:'yo + hablar',attempts:3,strength:0}]),weeklyGoal:renderQuizWeeklyGoal(loadQuizStats())};
   });
   expect(result.progress.skillProgress[skill]).toBeUndefined();
   expect(result.recommendation.label).toContain('regelrette -ar-verb');
-  expect(result.streak).not.toContain('/5');
+  expect(result.weeklyGoal).toContain('0 av 4 øvingsdager');
 });

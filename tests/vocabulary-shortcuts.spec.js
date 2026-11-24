@@ -14,7 +14,8 @@ async function startReview(page) {
     });
     renderHomePage();
   });
-  await page.getByRole('button', { name: 'Start repetisjon', exact: true }).click();
+  const review = page.locator('#homeLearningFeed article').filter({ has: page.getByRole('heading', { name: 'Repeter 3 ord' }) });
+  await review.getByRole('button', { name: 'Start økten', exact: true }).click();
   await expect(page.locator('#vocabStudy')).toBeVisible();
   await page.evaluate(() => {
     // Review normally mixes shuffled flip and typed cards. These tests exercise
