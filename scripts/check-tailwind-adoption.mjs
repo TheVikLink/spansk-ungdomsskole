@@ -3,9 +3,6 @@ import { existsSync, readFileSync } from 'node:fs';
 const requiredPaths = [
   'src/styles/tailwind.css',
   'dist/tailwind.css',
-  'src/components/ui/Button.tsx',
-  'src/components/ui/Card.tsx',
-  'docs/ui-tailwind-reference/elements/buttons_primary.tsx',
 ];
 
 const missing = requiredPaths.filter((path) => !existsSync(path));

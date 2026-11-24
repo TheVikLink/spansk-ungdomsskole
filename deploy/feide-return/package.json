@@ -1,0 +1,8 @@
+{
+  "name": "spansk123-feide-return",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": "22.x"
+  }
+}
