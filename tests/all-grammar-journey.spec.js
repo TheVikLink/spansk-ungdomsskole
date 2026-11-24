@@ -85,7 +85,7 @@ test('elev fullfører alle grammatikkleksjoner og mestrer hvert tema over flere 
       for (let round = 0; round < 4; round++) {
         await lessonLinks.filter({ has: page.getByText(lesson.title, { exact: true }) }).click();
         await expect(page.locator('#grammarLessonTitle')).toHaveText(lesson.title);
-        await page.locator('.grammar-lesson-actions button').click();
+        await page.locator('.grammar-lesson-actions button').first().click();
         const answered = await finishSession(page, [...topic.exercises, ...transfer]);
         for (const key of answered) seen.add(topic.id + '\n' + key);
         for (const ex of transfer) expect(answered).toContain(ex.sentence + '\n' + ex.no);

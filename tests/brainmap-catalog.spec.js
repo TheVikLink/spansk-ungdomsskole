@@ -28,7 +28,7 @@ for (const width of [1280, 390]) {
       await page.keyboard.press('Enter');
       if (route.kind === 'lesson') {
         await expect(page.locator('#grammarLessonPage')).toBeVisible();
-        await page.locator('.grammar-lesson-actions button').click();
+        await page.locator('.grammar-lesson-actions button').first().click();
       } else {
         await page.getByRole('button', { name: '▶️ Start øvelser', exact: true }).click();
       }
@@ -68,7 +68,7 @@ test.describe('A0-A1 Brainmap catalog', () => {
       startBrainmapSkillPractice('a0.articles.indefinite_plural');
     });
     await expect(page.locator('#grammarLessonPage')).toBeVisible();
-    await expect(page.locator('.grammar-lesson-actions button')).toBeVisible();
+    await expect(page.locator('.grammar-lesson-actions button').first()).toBeVisible();
   });
 
   test('every ready route has real practice for its declared target', async ({ page }) => {

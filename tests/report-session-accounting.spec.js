@@ -132,7 +132,7 @@ test('F07: package minutes exclude past and independent practice and all grammar
   for (const topic of ['articles', 'gustar']) {
     await page.evaluate(() => showPage('homework'));
     await grammarButtons.nth(topic === 'articles' ? 0 : 1).click();
-    if (await page.locator('.grammar-lesson-actions button').isVisible()) await page.locator('.grammar-lesson-actions button').click();
+    if (await page.locator('.grammar-lesson-actions button').first().isVisible()) await page.locator('.grammar-lesson-actions button').first().click();
     else if (await page.getByRole('button', { name: '▶️ Start øvelser', exact: true }).isVisible()) await page.getByRole('button', { name: '▶️ Start øvelser', exact: true }).click();
     expect(await page.evaluate(() => currentGrammarTopic.id)).toBe(topic);
     await page.evaluate(() => { grammarSessionStartTime = new Date(Date.now() - 120000); });

@@ -173,6 +173,9 @@ for (const browserOffline of [true, false]) {
           return { status: response.status, size: (await response.arrayBuffer()).byteLength };
         });
         expect(range).toEqual({ status: 206, size: 100 });
+        await page.locator('#listeningStoryStartBtn').click();
+        await page.locator('#listeningQuestionAudio').evaluate(audio => audio.play());
+        await expect.poll(() => page.locator('#listeningQuestionAudio').evaluate(audio => audio.currentTime)).toBeGreaterThan(0);
         await page.evaluate(() => endListeningStory());
       });
     }
