@@ -1,0 +1,17 @@
+
+> spansk-ungdomsskole@0.1.0 build:app
+> npm run sync:vocabulary && npm run build:css && node scripts/build-offline.mjs
+
+
+> spansk-ungdomsskole@0.1.0 sync:vocabulary
+> node scripts/sync-vocabulary.mjs
+
+Synchronized 522 vocabulary entries from data/vocabulary-canonical-review.json.
+
+> spansk-ungdomsskole@0.1.0 build:css
+> npx @tailwindcss/cli -i ./src/styles/tailwind.css -o ./dist/tailwind.css --minify
+
+≈ tailwindcss v4.3.0
+
+Done in 508ms
+Offline build f90265858275c468

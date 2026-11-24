@@ -1,0 +1,47 @@
+Sendt: 5. oktober 2026 kl. 10:51 norsk tid, etter produkteiers eksplisitte «Send».
+Fra: Ole Henrik Vik <olevik91@gmail.com>
+Til: kontakt@sak.sikt.no (sakens Reply-To), som oppfølging i sak #553065
+Emne: Re: [sikt.no #553065] Spansk123 (tjeneste-ID 2198569) – avklaring av OIDC-test og registrering
+Gmail-melding: 1a10b42a4ba4dad9; tråd: 1a0fbb821d42a660. Sendt-status, mottaker, svarreferanse og vedlegg er lest tilbake og kontrollert.
+Vedlegg: spansk123-feide-400-2026-10-05.png (rent feilbilde, uten nettleserfaner eller autorisasjonsadresse).
+
+Hei,
+
+Vi tester nå Spansk123 med Feides syntetiske testbrukere, men innloggingen stopper på auth.dataporten.no før testbrukerinnlogging og retur til appen.
+
+Feilen er:
+400 / Bad Request
+Bad login_hint or account chooser reponse type: other
+
+Feilen ble observert gjennom vanlig innlogging 5. oktober 2026 omkring kl. 08:14–08:16 norsk tid, og produkteier har sendt skjermbilde av samme feilmelding kl. 08:33. Vi har ikke fastslått årsaken.
+
+Vi har deretter gjennomført en ekstra kontroll av appkode, registrering og offentlige Feide-metadata, og fanget redirect-kjeden ved et nytt ordinært forsøk omkring kl. 08:52 norsk tid. Ingen klientinnstillinger eller autorisasjonsparametere er manuelt endret.
+
+Produkteier gjenskapte også samme feil i Chrome inkognito kl. 10:39. Skjermbildet bekrefter inkognitomodus og identisk feilmelding. Produkteier har bekreftet at forsøket startet fra https://app.spansk123.no/school med ny innlogging fra appen, etter påkrevd Vercel-innlogging for å åpne staging. En tidligere Feide-feiladresse ble ikke kopiert. Startmåten er bekreftet av produkteier; vi har ikke et separat nettverksspor fra inkognitoforsøket.
+
+Tjeneste: Spansk123, tjeneste-ID 2198569, Oversikt AS (930687758).
+Konfigurasjon: Preview / staging, portal-ID 3102.
+Client ID: 929d975f-553c-4cef-a19c-52aafa5684da.
+Innloggingsside: https://app.spansk123.no/school
+Redirect URI: https://app.spansk123.no/auth/callback
+Post-logout URI: https://app.spansk123.no/auth/logout/callback
+
+Portalen er kontrollert: konfidensiell OIDC-klient, Feides testbrukere er aktivert, tjenesteleverandør-brukere/eduGAIN/OpenIdP er deaktivert. «Krev alltid brukerinteraksjon» er ikke valgt. Navn (userinfo-name) med begrunnelse er lagret. Ingen vertsorganisasjon har aktiveringstilgang.
+
+Nettverksobservasjonen viser:
+1. Appens /auth/login svarer HTTP 303 til Feides /oauth/authorization med korrekt client ID og eksakt redirect URI, response_type=code, response_mode=form_post, scope «openid userinfo-name», PKCE S256, state og nonce. Forespørselen har ikke login_hint, authselection, login_started, prompt eller acr_values.
+2. Feides /oauth/authorization svarer HTTP 302 til /accountchooser med returnTo og clientid.
+3. Feides /accountchooser svarer HTTP 302 tilbake til /oauth/authorization og legger til login_started og authselection=other|feidetest. Ingen interaktiv kontovelger vises i dette forsøket.
+4. Feides /oauth/authorization svarer da HTTP 400 med feilen over.
+
+Det sanitiserte sporet inneholder disse dokumentnavigasjonene og sluttstatusen, ikke en komplett nettverkslogg. Vi deler ikke den komplette forespørselsadressen, returnTo, headere, cookies eller verdiene til state/nonce/PKCE.
+
+Fersk kontroll av https://auth.dataporten.no/.well-known/openid-configuration oppgir code, form_post, S256 og client_secret_basic som støttet. Feides detaljdokumentasjon beskriver at autoriserte attributtgruppenavn kan brukes som scopes, og userinfo-name er lagret på tjenesten. En lokal kontroll av forespørselsbygging mot ekte offentlig discovery samt 10 målrettede konfigurasjons-/OIDC-tester bestod. Dette er ikke verifikasjon av ekte login eller tokenutveksling.
+
+Kan dere kontrollere testbrukerinnloggingen for denne klienten og forklare hvorfor kontovelgerens eget valg «other|feidetest» avvises? Kan dette oppstå ved automatisk valg når Feide-testbrukere er eneste tilgjengelige innloggingsmetode? En ny flyt fra appen i inkognito gir samme feil, noe som taler mot et husket valg fra det vanlige nettleservinduet. Er det en manglende registreringsforutsetning eller en annen innstilling vi må rette? Vi ønsker en støttet innloggingsflyt uten manuelle endringer av autorisasjonsforespørselen.
+
+Vedlagt skjermbilde viser bare feilsiden. Vi bruker ingen ekte elevdata. Callback, navneutlevering og utlogging er ikke verifisert ennå.
+
+Vennlig hilsen
+Ole Henrik Vik
+Oversikt AS

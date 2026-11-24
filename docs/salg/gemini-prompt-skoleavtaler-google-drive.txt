@@ -1,0 +1,31 @@
+Klargjør Google-dokumenter for første betalende skole i Spansk på 1-2-3. Bruk Gemini 3.8 Flash i Antigravity CLI (agy). Dette er en dokumentoverføring, ikke sending, signering eller elevaktivering.
+
+Autoritative lokale kilder (les nyeste hele filer):
+/Users/olehenrikvik/spansk-ungdomsskole/docs/feide/skoleavtale.md
+/Users/olehenrikvik/spansk-ungdomsskole/docs/feide/databehandleravtale.md
+/Users/olehenrikvik/spansk-ungdomsskole/docs/feide/salgsavslutning.md
+/Users/olehenrikvik/spansk-ungdomsskole/docs/feide/pilotskole/pilotpolicy-og-kontakter.md
+/Users/olehenrikvik/spansk-ungdomsskole/docs/feide/leverandorvedlegg/README.md
+/Users/olehenrikvik/spansk-ungdomsskole/docs/feide/leverandor-og-fristbilag.md
+/Users/olehenrikvik/spansk-ungdomsskole/docs/salg/forste-skolepakke.md
+
+Målmappe: finn den entydige eksisterende Google Drive-mappen «Spansk nettside». Hvis flere mapper passer, be brukeren identifisere riktig mappe før lagring. Behold eksisterende deling og ikke del eller send til andre.
+
+Opprett følgende dokumenter i denne mappen, eller oppdater det ene entydige dokumentet med samme formål etter å ha lest det først:
+1. «Skoleavtale – Spansk på 1-2-3 – utkast» fra skoleavtale.md.
+2. «Databehandleravtale – Spansk på 1-2-3 – utkast» fra databehandleravtale.md, inkludert alle bilag A–D.
+3. «Første skoleleveranse – salg og avklaringer» fra salgsavslutning.md, policy-/kontaktarket, leverandørvedleggets README og leverandor-og-fristbilag.md. Skill tydelig kildene med overskrifter.
+4. «Første skolepakke – demo og tilbudsgrunnlag» fra forste-skolepakke.md.
+
+Ikke importer eldre Word-/Drive-eksporter, utløpte oktoberworkerpakker, gamle to-klasseprisforslag eller tidligere 30-/90-dagers backup-/journalmål som dagens vedtak. Lokale kilder over er fasit. Behold alle begrensninger: inntil seks klasser, pris4995som konkret forslag, støtte hverdager/to arbeidsdager, hendelsestelefon oppgis privat, ingen navngitt reserve, skoleeiers instruks og faktisk aktivering gjenstår. Ikke hent kontaktfilen .env.school-operations-contacts eller andre hemmeligheter.
+
+Overfør hele innholdet, tabeller, kundespesifikke felter, versjonsdatoer og klikkbare offentlige lenker. Ikke presenter lokale absolutte filstier som offentlig tilgjengelige vedlegg. Hvis et lokalt vedlegg mangler i Drive, oppgi det som manglende vedlegg uten å finne på en URL. Behold eksisterende kommentarer, tillegg og sharing settings som ikke omfattes av oppdateringen. Avklar innholdskonflikt fremfor å slette uvedkommende innhold. Ikke påstå signering, juridisk godkjenning, publisering eller produksjonsdrift.
+
+Les hvert lagret dokument tilbake. Kontroller faktisk målmappe, tittel, alle bilag, tabellrader, seks klasser, prisstatus, 30-dagersforslaget og skillet mellom aktive data og backup/journal. Returner de faktiske dokumentlenkene, om hvert dokument ble opprettet eller oppdatert, og eventuelle mangler. Ingen Drive-oppdatering er bekreftet før denne kontrollen er utført.
+
+Bruk gjeldende 12.november-status: ordinær staging-Feide uten cookieinngrep er prøvd, globaljobb aktiv, ny skoleworker bare klargjort. Kopi-/journalfrister, faktisk kontotilknytning og kundens instruks skal ikke fylles med antakelser. Ikke overfør gamle obligatoriske pilot-/to-klassekrav.
+
+Ytterligere nyeste lokale salgskilder:
+/Users/olehenrikvik/spansk-ungdomsskole/docs/salg/tilbud-forste-skole.md
+/Users/olehenrikvik/spansk-ungdomsskole/docs/salg/demo-for-kundemote.md
+Tilbudet kan opprettes/oppdateres som «Tilbud – første skole – Spansk på 1-2-3 – utkast» i samme mappe. Demomanuset er internt og skal ikke flettes inn i kundens tilbud. Bevar eksisterende deling; opprett ingen bredere tilgang. Returner faktisk dokumentlink og kontrollert innhold, ikke en påstand om utsending eller godkjenning.

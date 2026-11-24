@@ -1,0 +1,54 @@
+import { test, expect } from '@playwright/test';
+import { startStaticAppServer } from './helpers/static-app-server.js';
+
+let server;
+test.beforeAll(async () => { server = await startStaticAppServer(); });
+test.afterAll(async () => server.close());
+
+async function enter(page) {
+  await page.goto(server.url);
+  await page.evaluate(() => { studentName = 'Uavhengig kontroll'; showMainApp(); showPage('homework'); });
+}
+
+test('R1: feedback counts all reused Bindeord cards from an actual teacher download', async ({ page, browser }) => {
+  await enter(page);
+  await page.locator('#assignmentBuilder > summary').click();
+  await page.getByLabel(/Bindeord \(/).check();
+  const pending = page.waitForEvent('download');
+  await page.getByRole('button', { name: 'Last ned leksepakke', exact: true }).click();
+  const download = await pending;
+  const chunks=[];
+  for await(const chunk of await download.createReadStream()) chunks.push(chunk);
+  const buffer=Buffer.concat(chunks);
+  const assignment=JSON.parse(buffer.toString('utf8'));
+  expect(assignment.vocabulary).toHaveLength(22);
+  const context=await browser.newContext({ viewport: { width: 390, height: 844 } });
+  try {
+    const pupil=await context.newPage();
+    await enter(pupil);
+    const before=await pupil.evaluate(() => ({ count: cards.length, existing: cards.filter(card => card.category==='bindeord').length }));
+    expect(before.existing).toBe(22);
+    await pupil.locator('#assignmentFileInput').setInputFiles({ name: 'bindeord.json', mimeType: 'application/json', buffer });
+    const after=await pupil.evaluate(() => ({ count: cards.length, available: resolveAssignmentVocabularyCards().length }));
+    console.log('ACTUAL_BINDEORD_IMPORT',JSON.stringify({before,after,message:await pupil.locator('#assignmentImportStatus').textContent()}));
+    await pupil.screenshot({ path: '/private/tmp/spansk123-review-bindeord-import.png', fullPage: true });
+    await expect(pupil.locator('#assignmentImportStatus')).toContainText('22 gloser finnes allerede i ordlisten');
+  } finally { await context.close(); }
+});
+
+test('R2: each new builder error meets normal-text contrast minimum', async ({ page }) => {
+  await enter(page);
+  await page.locator('#assignmentBuilder > summary').click();
+  await page.locator('#builderVocabMinutes').fill('10');
+  await page.getByRole('button', { name: 'Last ned leksepakke', exact: true }).click();
+  const contrast=await page.locator('#builderVocabError').evaluate(element => {
+    const canvas=document.createElement('canvas'); canvas.width=canvas.height=1;
+    const ctx=canvas.getContext('2d');
+    const rgb=color=>{ ctx.clearRect(0,0,1,1);ctx.fillStyle=color;ctx.fillRect(0,0,1,1);return [...ctx.getImageData(0,0,1,1).data].slice(0,3); };
+    const luminance=color=>rgb(color).map(v=>v/255).map(v=>v<=.04045?v/12.92:((v+.055)/1.055)**2.4).reduce((sum,v,i)=>sum+v*[.2126,.7152,.0722][i],0);
+    const foreground=luminance(getComputedStyle(element).color);
+    const background=luminance(getComputedStyle(document.getElementById('assignmentBuilder')).backgroundColor);
+    return (Math.max(foreground,background)+.05)/(Math.min(foreground,background)+.05);
+  });
+  expect(contrast).toBeGreaterThanOrEqual(4.5);
+});

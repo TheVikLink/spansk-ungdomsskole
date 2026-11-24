@@ -1,15 +1,39 @@
 # 🇪🇸 Spansk på 1-2-3
 
-En gratis, interaktiv læringsapp for spansk på ungdomsskolenivå (A0-A1 CEFR). Bygget for norske elever og kan brukes uten innlogging.
+Besøksstatistikk og offentlig Vercel-overgang er [beskrevet her](docs/besoksstatistikk.md). Integrasjonen er standard av og er ennå ikke aktivert på den offentlige siden.
+
+En interaktiv læringsapp for **hele ungdomsskolen og spansk nivå I i videregående**. Dagens grunnapp er gratis og kan brukes uten innlogging. Innhold velges etter tema og forkunnskaper; de eksisterende A0–A1-merkene beskriver oppgavenes nivå og betyr ikke at produktet er avgrenset til ett klassetrinn eller dekker hele læreplanen.
+
+Produktretningen er **Feide-innlogging, enkel digital leksetildeling og lærerens oversikt over elevfremgang i ordforråd, grammatikk, verbbøying og lytting**. Målet er enklere tildeling og oppfølging uten utskrift og filutdeling. Feide-tjenesten er registrert, og ekstern Feide-innlogging, roller og lekseflyt er dokumentert prøvd med testkontoer i beskyttet staging. Dette er ikke ordinær skoleproduksjon eller godkjenning for elevdata. Drift/gjenoppretting, avtaler, skoleeiergodkjenning og faglig/utstyrsmessig prøve gjenstår. Se [pilotstatus og leveransekandidat](docs/feide/pilotskole/pilotstatus.md), [Feide-underlaget](docs/feide/README.md) og [salgsplanen](thoughts/shared/plans/2026-09-28_go-to-market-og-salg.md).
 
 **[🚀 Prøv appen](https://theviklink.github.io/spansk-ungdomsskole/)**
 
-Status 23. september 2026: bygg-, innholds- og Node-kontroller består; nettleserkontrollen er blokkert av oppstartstillatelsen i agentmiljøet. Se [gjeldende verifikasjon og avgrensning](docs/release-verification-2026-09-23.md) for bevis og gjenstående kontroll. Faglig lærerkontroll, fysisk skoleutstyr og moderert elevpilot gjenstår. Arbeidskopiens siste endringer er ikke bekreftet publisert.
+Prioritet 9. november 2026: første skoleleveranse. Nye funksjoner og innholdspakker er fryst som prioritering; eksisterende lokal øving og eksport/import beholdes. [Demo, lærersidetekst og tilbudsgrunnlag](docs/salg/forste-skolepakke.md) er klargjort lokalt. [Pilotstatus](docs/feide/pilotskole/pilotstatus.md) skiller historiske testbevis fra fersk kontroll. Arbeidskopien er ikke bekreftet publisert eller godkjent for elevbruk.
 
 ## ✨ Funksjoner
 
+### 🔑 Spansk du kjenner igjen
+
+Åpne **Gloser → Spansk du kjenner igjen → Utforsk temaet**. Samlingen har 87 ord med forbindelser til norsk og/eller engelsk, og et startutvalg på 18 ord. «Oppdag ordene» gir ti korte oppgaver fra spansk til norsk: eleven prøver før betydningen og forbindelsen vises. Hint er valgfrie, og riktige svar med støtte oppsummeres separat. Runden lagrer ikke svar og endrer ikke repetisjonsplanen eller stjernene.
+
+Temaet har en lærerveiledning til første spansktime: **Gjett betydningen → finn likheten → lag en setning**. Hele ordlisten kan åpnes underveis. Samlingen omfatter internasjonale ord med ulik opprinnelse; alle omtales ikke som latinske, og gjenkjenning regnes ikke som ferdig innlært ordforråd.
+
+«Øv på startutvalget» og «Øv på hele samlingen» bruker vanlig gloseøving og samme fremgang som ordenes ordinære kategorier. Ingen doble standardkort, ny innlogging, lydgenerering eller eksterne tjenester er lagt til. Temaet er innebygd i appen og fungerer fra den lagrede appen uten nett.
+
+Standardord og fasit vedlikeholdes i `data/vocabulary-canonical-review.json`; temamedlemskap, startrekkefølge og betydningsbroer ligger i `data/vocabulary-recognition-theme.json`. `npm run build:app` bygger begge inn i appen, og `npm run check:vocabulary` kontrollerer synkronisering og referanser. Ordutvalget er gjennomgått av kodeagenten; uavhengig spansklærervurdering er ikke dokumentert. Metodeinspirasjon: Margarita Madrigal, *Madrigal’s Magic Key to Spanish*, forord og leksjon 1–5; forklaringer og ordutvalg er utformet selvstendig.
+
+Temaet har også **Bygg setninger**: åtte setninger med **es / no es** og ord fra startutvalget. De fire første bygges med ordbrikker, de fire siste skrives. Småordene el/la/un/una forklares før start. Valgfri støtte gir ordbrikkene tilbake og telles separat.
+
+**Oppdag ordfamilier** gir sju korte sider med eksempler, forbehold og ett annet prøveord: -sjon/-ción, -ist/-ista, -el/-al, -ell/-lig/-al, -ant/-ent mot -ante/-ente, -isk mot -ico/-ica, og en uttrykkelig engelsk -ble-bro. Sidene kan brukes som elevgjennomgang eller presentasjon på storskjerm. Menyen og forrige/neste lar læreren velge rekkefølge. Prøveord er valgfrie; oppsummeringen viser bare besvarte ord og skiller støtte fra svar uten støtte. Likhetsmønstre presenteres som ledetråder, aldri som en automatisk oversettelsesregel.
+
+Begge aktivitetene fungerer offline og holder runde, støtte og resultat i minnet. Ingen elevsvar eller nye fremgangsfelt lagres. Avbrudd går gjennom det vanlige navigasjonsvernet. Setninger og familier vedlikeholdes i temakilden og kontrolleres under bygging; oppgavene lager ikke vilkårlige kombinasjoner.
+
+Den faglige agentgjennomgangen 27. oktober 2026, med kildegrunnlag, rettinger og vurdering av alle 87 ord, finnes i [gjennomgangsrapporten](docs/madrigal-faglig-gjennomgang-2026-10-27.md).
+
+Setningsbygging, ordfamilier og regresjonstester for lokal overlapping er beskrevet i [verifikasjonen 28. oktober](docs/recognition-learning-verification-2026-10-28.md).
+
 ### 📚 Gloselæring
-- **Over 500 gloser** på ungdomsskolenivå
+- **Over 500 gloser** for grunnleggende spansk og repetisjon
 - Repetisjon over tid med SM-2-algoritmen
 - Lær begge veier: Norsk → Spansk og Spansk → Norsk
 - Kategorisert etter tema (familie, mat, dyr, farger, osv.)
@@ -39,7 +63,7 @@ Status 23. september 2026: bygg-, innholds- og Node-kontroller består; nettlese
 ### 🧠 Brainmap
 - Visuell oversikt over A0- og A1-mikroskills og ordforråd
 - Mikroskills er gruppert etter nivå og språkområde
-- Fargekoding: grå (ikke startet), rød (trenger øving), gul (på vei), grønn/gull (gode/sterke svar på øvde oppgaver)
+- Fargekoding: grå (ikke startet), rød (trenger øving), gul (på vei), grønn (sitter godt) og mørkegrønn (sitter svært godt)
 - Ferdigheter uten ferdig øvingsrute vises åpent som planlagt innhold og skjules ikke som om de var mestret
 - Katalogen har 64 ferdigheter: 37 med relevant øvingsrute og 27 planlagte. Dette er ikke et komplett A0–A1-kurs.
 - Eksisterende lokal progresjon og eksport/import beholdes når Brainmap-katalogen utvides
@@ -50,6 +74,11 @@ Status 23. september 2026: bygg-, innholds- og Node-kontroller består; nettlese
 - Standardmål: øv to dager per uke; dagens oppsummering er tilgjengelig fra første dag
 - Læreren kan lage og dele en lokal leksepakke med gloser, verbgrupper, flere grammatikktemaer og tidsmål
 
+### 🏫 Skolemodus (lokal prototype)
+- Syntetisk OIDC-testinnlogging, klasseinvitasjon, lekser og læreroversikt for ordforråd, grammatikk, verb og lytting.
+- Krever lokal PostgreSQL og lokal testidentitetstilbyder. Dette er ikke ekte Feide-test, produksjonstilbud eller godkjenning fra Sikt/skoleeier.
+- Se [lokal oppstart og verifikasjonsstatus](docs/feide/README.md). Ikke bruk ekte elevdata.
+
 ## 🔒 Personvern
 
 - **Ingen data sendes til skyen i standardoppsettet** - all fremgang lagres lokalt i nettleseren
@@ -57,7 +86,7 @@ Status 23. september 2026: bygg-, innholds- og Node-kontroller består; nettlese
 - Elevene kan eksportere/importere fremgang som JSON-fil
 - Ukeslekse viser en lokal oppsummering som kan skrives ut eller lagres som PDF. Det finnes ingen ekstern innlevering i pilotversjonen.
 - Elever blir ikke lagt inn i en felles klasse, og standardversjonen har ingen sentral lærerinnboks.
-- Personvernoppsettet er laget for en lokal pilot. Feide, skolekontoer og eventuell sentral datalagring krever en egen data- og personvernmodell.
+- No-login-modusen lagrer fremgang lokalt. Skolemodus-prototypen har egen sentral datamodell og må ikke brukes med ekte elevdata før gjenstående avtaler, tilgangstester, sletting/restore og skoleeiers vurderinger er ferdige. Se [statusen for Feide-underlaget](docs/feide/README.md).
 
 ### Lokal fremgang, avbrudd og sikkerhetskopi
 
@@ -68,6 +97,10 @@ Besvarte gloser, verb, grammatikk og quizoppgaver lagres fortløpende. Ved omlas
 Historikken bruker fortsatt `spansk123_practiceHistory` og fremgangseksport `spansk123_export_v1`. Nye poster har valgfrie lokale økt- og pakkereferanser (`sessionId`, `assignmentId`) og status (`inProgress`, `interrupted`), i tillegg til eksisterende dato, aktivitet, antall, riktige svar og tid. Referansene hindrer dobbeltelling og skiller leksepakker; de identifiserer ikke elever og sendes ikke ut. Ingen nye fritekstsvar eller lydopptak legges til historikken. Økten dateres på første besvarte oppgave etter lokal kalender. Historikken beholder de siste 30 dagene ved ny registrering; den samlede læringsfremgangen beholdes. Eksport/import og «Slett all data» omfatter disse feltene.
 
 Pakkens tidsmål teller bare økter startet med pakkens egne knapper, fra importdatoen. Ukens pakkedager telles separat fra all øving. Rapporten viser pakkens egne antall ved siden av den generelle oversikten. Eldre historikk uten pakketilknytning beholdes som generell øving. Tid er medgått økttid og kan inkludere pauser; den dokumenterer ikke konsentrasjon. Null svar gir ingen øvingstid. Hver nylaget leksepakke har egen ID; ny import av samme fil beholder tilknytningen.
+
+### Lokal filimport og eksport
+
+Den lokale filvelgeren foreslår JSON-filer med `.json`-endelse for fremgang, leksepakke og lærergloser; dette er en nettleserhjelp, ikke en sikkerhetsgrense. Innholdet må parses som JSON og bestå importfunksjonens strukturkontroller. Hver fil kan være maksimalt 5 MiB; større filer avvises før innlesing og JSON-parsing. Arkivfiler pakkes ikke ut. Importen skjer i nettleseren, og filinnholdet sendes ikke til en server. Eksportfiler lages lokalt av appen. Klasseoversiktens nedlastingsnavn bygges fra klassenavnet etter at tegn utenfor bokstaver, tall og bindestrek er erstattet; elevens dataeksport får et fast navn. Ingen brukeropplastede filer serveres videre eller skannes av antivirus i denne versjonen.
 
 ### 📢 Tilbakemeldinger på oppgaver
 
@@ -86,9 +119,9 @@ Elever kan melde inn når de mener et svar er feilvurdert ved å klikke «Jeg me
 Målet for første pilot er å gi spansklærere et lavterskel supplement til undervisningen uten innlogging, elevkontoer eller sentral datalagring.
 
 - Gratis pilot i 2-4 uker for utvalgte lærere/skoler
-- Foreslått tidlig skolelisens etter pilot: 3 000-4 000 kr per skole per år
+- Pris for skoleproduktet med Feide, digitale lekser og læreroppfølging fastsettes etter kostnadsberegning og samtaler med kjøpere; det tidligere prisforslaget er ikke et vedtatt tilbud for denne utvidelsen
 - Best egnet for gloser, repetisjon, verb, grammatikk og korte øvingsøkter i eller mellom timer
-- Feide, lærerinnlogging og skole-/kommuneadministrasjon vurderes som en senere fase etter egen personvern- og datamodell
+- Feide, digital leksetildeling og lærerens fremgangsoversikt er neste planlagte produktleveranse. Arbeidet følger den dokumenterte data-/personvernmodellen før kontoer eller sentral lagring tas i bruk.
 
 Begynn med faglig lærerkontroll og en kort demonstrasjon eller liten, moderert prøve. Se [PILOT.md](PILOT.md) for ett konkret 20-minutters opplegg, reserveplan og spørsmål før eventuell selvstendig helklassebruk. Ingen slik elevpilot er gjennomført som del av den tekniske rettingen.
 
@@ -100,6 +133,16 @@ Før en demonstrasjon kontrollerer læreren valgt innhold og versjonsmerket. Den
 
 Standardversjonen har ikke en felles klasse som elevene blir meldt inn i. Hvis en lærer vil bruke egne gloser, deler læreren en JSON-fil basert på `eksempel-gloser-laerer.json`, og eleven importerer filen lokalt i appen.
 
+### Valgfrie tema til tekster
+
+[Undervisningstimer](undervisning/index.html) samler 45-minuttersopplegg for standardkategoriene og kultursettene. Hver time har en avgrenset gloseøkt, skriveoppgaver, innlesingsmanus med fasit og et A4-ark med partnerkort A og B. Legg et godkjent opptak i temamappen med MP3-navnet i manuset. Standardglosene deler elevens eksisterende repetisjonsplan. Bygg sidene med `node scripts/build-lesson-plans.mjs` og oppdater PDF-ene etter kortendringer med `node scripts/print-lesson-cards.mjs`.
+
+[På markedet i Oaxaca](docs/kultur/un-dia-en-mexico/markedstime.html) er en 45-minutters undervisningstime med ti gloser, setningsskriving, lyttemanus og utskrivbare A/B-kort.
+
+Den lokale [kulturoversikten](docs/kultur/index.html) samler [julepakken Spania–Chile](docs/kultur/jul-spania-chile/README.md) og [seks Mundo AM-opplegg](docs/kultur/mundo-am/README.md) om Copán Ruinas, Cartagena, Oaxaca, Valencia, Cusco og Bata. Oppleggene kombinerer lesing høyt, muntlig oversettelse i par, oversettelser direkte i teksten, bildeord, oppgaver og gloseøving. Knappen «Lær …glosene» åpner pakkens eget sett i hovedappen. Settene finnes også under Gloser → kategorier → Valgfrie tema fra tekster.
+
+Eksisterende ord gjenbruker samme kort og fasit. Nye temaord opprettes først når eleven velger temaet, og velges separat fra standardutvalget. Temaøving bruker vanlig lokal fremgang og uendret eksport/import. Leseoppslagene hjelper med oversettelse; hvert øvingssett har ti nøkkelord. Separate elev- og lærer-PDF-er har papirordlister og fasit. Oppleggene er lokale arbeidsutkast, og inngår ennå ikke i den publiserte Vercel-pakken.
+
 ### 2. Deploy
 
 Kjør `npm run build:app` og `npm run check:offline-build` før levering. Publiser `index.html`, `dist/tailwind.css`, `sw.js`, `manifest.webmanifest`, `PILOT.md` og de tilhørende `audio/diktat/`- og `audio/lyttehistorier/`-mappene sammen på GitHub Pages, Netlify eller skolens HTTPS-server. Bare HTML-filen er ikke tilstrekkelig. Bevar relative stier, aksenter og mellomrom i lydfilnavn. Lokal åpning av HTML-filen fungerer med CSS- og lydmappene ved siden av, men installasjon og nettleserens offline-cache krever HTTPS eller localhost.
@@ -108,7 +151,7 @@ Byggkommandoen gir HTML og service worker samme innholdsstyrte versjon. Etter op
 
 ### Lyd uten nett
 
-All lyd skal være ferdige opptak som produkteieren har laget og levert. Appen bruker aldri tekst-til-tale, verken fra nettleseren, operativsystemet eller en skytjeneste. Manglende eller uspillbar lyd i lytte- og diktatøvelser gir en tydelig beskjed, ikke syntetisk erstatningslyd. Gloser og blandet quiz har foreløpig ikke egne opptak og viser verken lydknapper eller en fast melding om manglende lyd.
+All modelllyd skal være ferdige opptak som produkteieren har levert og har bruksrett til. Valgfri midlertidig elevlyd i uttaleskolen følger den avgrensede modellen nedenfor. Appen bruker aldri tekst-til-tale, verken fra nettleseren, operativsystemet eller en skytjeneste. Manglende eller uspillbar lyd i lytte- og diktatøvelser gir en tydelig beskjed, ikke syntetisk erstatningslyd. Gloser og blandet quiz har foreløpig ikke egne opptak og viser verken lydknapper eller en fast melding om manglende lyd.
 
 Appskallet lagres separat fra lyd. Åpne en historie i Lytteøvelser på nett og velg «Last ned lyd til bruk uten nett». Vent på bekreftelsen om at hele historien er lastet ned. Test deretter uten nett på samme enhet. Deler som mangler eller en avbrutt nedlasting gir en tydelig beskjed; Start/Sjekk svar venter på tilgjengelig lyd. Nettleseren kan slette cache ved plassmangel, så sjekk før timen.
 
@@ -119,6 +162,20 @@ Lyttehistorier er en egen innholdstype, adskilt fra diktat, med egne manus og ly
 Hver historie har tre lokale flervalgsoppgaver med blandet rekkefølge på svaralternativene. Eleven må starte avspillingen og svare på alle spørsmålene før spansk transkripsjon eller norsk oversettelse kan åpnes. Eleven kan spille historien flere ganger før spørsmålene; appen kontrollerer ikke at hele opptaket er hørt. Svar, resultat og lydbruk ligger bare i minnet og lagres ikke i fremgang, eksport eller historikk. Last ned en tilgjengelig historie på nett før den skal brukes uten nett.
 
 Nivåmerkene er foreløpige, ikke en lærergodkjenning. Før lyd brukes med elever må en spansklærer lytte til de valgte opptakene på skoleutstyret, sammenligne dem med manus og kontrollere uttale, pauser, tempo og spørsmål. Full lydgodkjenning omfatter alle fem lyttehistorier og fem diktater; den første artikkelpiloten i PILOT.md trenger ikke lyd. Carmen er den korte A0-historien, men også hun og Mateo kan kreve støtte. Inés og Diego bruker nå presens og enklere setninger; de nye MP3-opptakene er teknisk spillbare, men må kontrolleres mot manus og vurderes for klassen. Beregnet tempo på omtrent 179 og 183 ord per minutt gjør dette særlig viktig. Teknisk kontroll av filkobling og avspilling dokumenterer ikke at opptaket følger manuset. Se [gjeldende releaseverifikasjon](docs/release-verification-2026-09-23.md), [historisk lytteaudit](thoughts/shared/plans/2026-09-15_listening-release-audit-report.md) og Beads `spansk-ungdomsskole-4or0` for den åpne lærerkontrollen.
+
+### Uttaleskolen
+
+Den lokale uttaleskolen finnes på Start og under Flere områder → Uttale. Ti temaer samler 31 lydkort og 62 Refold-opptak, brukt med tillatelse. Eleven gjør korte økter på omtrent 5–8 minutter: les høyt, hør modellene direkte og prøv igjen. Forklaring, ord og setning er samlet på ett lydkort, med Forrige/Neste og ingen vokalgjetting eller flervalgsprøve. Temaet kan deles som en direkte lekseadresse med `#uttale/vokaler` eller via «Lenke til temaet». Dette er lokal øving; ingen ny Feide-tildeling eller lærerinnsending er lagt til. «Finn en lyd» gir samme innhold uten fremgangsregistrering.
+
+Valgfritt **midlertidig egenopptak** er med i første versjon. Eleven starter selv og gir mikrofontillatelse. Maks 15 sekunder / 1 MB; mikrofonspor stoppes før avspilling. Ett opptak holdes midlertidig i nettleseren, uten opplasting, varig lagring, nedlasting, transkripsjon eller uttalescore. Nytt opptak, neste steg, avslutning, skjult fane, innstillinger og reset fjerner lydreferansen. Nettleseren/operativsystemet styrer eget midlertidig minne. Hele øvingen kan gjøres uten mikrofon.
+
+Bare «øvd»-metadata lagres i `spansk123_pronunciation_v1`: skjemaversjon, katalogversjon, kort-ID/innholdsversjon og seneste lokale øvingsdato. Ingen elevlyd eller råsvar følger med. Metadata inngår i `spansk123_export_v1` som valgfritt `pronunciation`-felt. Eldre filer bevares; ukjent/ugyldig uttalefelt avvises uten overskriving og med beskjed om å beholde originalfilen. Ved reeksport gjennom en eldre app kan uttaledelen gå tapt. Maks 64 KiB, 155 oppføringer og fem innholdsversjoner per kort. Ukjent skjema lagres aldri som råbackup. «Slett bare uttaleøving» og vanlig nullstilling fjerner metadata.
+
+De separate bokstavopptakene er tatt ut av apppakken etter eiers ønske. Uttalen vises med ord og setninger, uten lydskrift. Kildekartleggingen dokumenterer fortsatt originalpakken. En meny over alle lydene nederst åpner øving på den valgte lyden. Valgfritt opptaksfelt rulles automatisk inn i visningen når det åpnes.
+
+«Last ned hele uttaleskolen» lagrer ca. 1,7 MB modelllyd under `audio/uttale/refold-v1/`. Vent på 62 av 62 før offline-bruk. `npm run sync:pronunciation` bygger inn katalog og de nye avgrensede modulene fra `src/pronunciation-*.js` i HTML; rediger disse kildene, ikke den genererte blokken. `npm run check:pronunciation` kontrollerer lydhash, full dekning, quizfri katalog, markeringer og samsvar med appen. Ingen nye avhengigheter eller talesyntese.
+
+Se [lærerveiledningen](docs/uttale/laererveiledning.md), [rettighetene](docs/uttale/refold-rettigheter.md) og [faglig status](docs/uttale/faglig-gjennomgang.md). Teknisk avspilling er kontrollert; ordrett menneskelig gjennomlytting, fysisk skoleutstyr og klasseprøve gjenstår før elevpilot. Nytt innhold er ikke publisert av denne lokale implementeringen.
 
 ## 📚 Innhold og rettigheter
 
@@ -231,3 +288,5 @@ Lingo Links tilbyr fire starttemaer, lærerens valg av fire temaer eller bare ti
 ### Samlet verifikasjon
 
 `npm run build:app` bygger CSS og felles versjonsmerke. `npm run test:all` kontrollerer innhold, kataloger, leksjoner og offline-bygg og kjører alle lokale nettleserregresjoner, inkludert `report-*.spec.js`. De tre manuelle auditopptakene/deploy-probene kjøres separat; offentlig versjon testes først etter autorisert publisering.
+
+Kjør `npm run test:elevreiser` for å følge syntetiske elever gjennom standardgloser, gloser fra kulturtekstene, grammatikk og verbbøying i Chromium. Gloseelevene kommer tilbake på simulerte øvingsdager. Testene tar flere minutter og inngår også i `npm run test:browser`.

@@ -10,11 +10,9 @@ Ikke utled at dagens Feide, sentrale lekser, læreroversikt, nye innholdspakker 
 
 ## Google Drive Document Workflow
 
-- When creating or updating Google Drive documents, prepare a copy-and-paste prompt for the user to run with Gemini 3.8 Flash in Antigravity CLI (`agy`). The user runs that prompt; Codex prepares the content and handoff.
-- Do not create or update Drive documents directly from Codex unless the user explicitly changes this preference. Keep the current approval policy unchanged.
-- Finish the requested content locally first. Include the absolute source path, destination folder, document title, create-versus-update instructions, and verification steps in the prompt.
-- Tell Gemini to preserve unrelated content and sharing settings, verify the saved document and folder, and return the actual document link. Distinguish prepared local content from a confirmed Drive update.
-- Use the newest local source as authoritative; identify older exports that should not be imported. Do not generate an extra Word file solely as an intermediate unless needed or requested.
+- Deliver documents directly as native Google Docs in the existing project folder structure. The verified [Spansk nettside folder](https://drive.google.com/drive/folders/1k3tAOUgt22FRmUhf3fINiYQWLg6pFtkY) contains the listening and dictation materials.
+- Check the destination and existing documents first. Update the intended document in place when one exists. Preserve unrelated content and sharing settings.
+- Verify the native document, destination and content after saving. Return the Google Docs link.
 
 ## Content audits and student feedback
 

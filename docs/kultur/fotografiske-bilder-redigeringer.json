@@ -1,0 +1,8 @@
+[
+  {
+    "id": "espana",
+    "mode": "precise-object-edit",
+    "prompt": "Edit target: the attached local generated photograph-like Valencia café image. Change ONLY the notebook at lower left: remove every handwritten mark and all pseudo-writing, leaving natural blank off-white ruled paper with the pen still resting there. Preserve the entire rest of the photograph exactly: horchata glass, three fartons, bicycle, orange branch, bridge and park, their placement and subdued photographic lighting/texture. Do not add any lettering, numbers, labels or watermark. Keep landscape aspect ratio and opaque background.",
+    "reference": "/Users/olehenrikvik/.codex/generated_images/01a10ba0-1388-7141-9be5-d89d9fa8a60e/exec-5946d344-93ee-4bf2-9d58-88f528cae330.png"
+  }
+]

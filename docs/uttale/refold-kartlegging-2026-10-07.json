@@ -1,0 +1,1893 @@
+{
+  "purpose": "Kildekartlegging for plan, ikke godkjent runtime-innhold eller elevdata",
+  "checkedOn": "2026-10-07",
+  "source": {
+    "title": "Spanish Phonetic Writing System - Free Refold Deck",
+    "ankiWebUrl": "https://ankiweb.net/shared/info/1195472731",
+    "archiveSha256": "d67fa8c7937f6f7f0a02f4054ebdd61749c13a68583a7356dc054d960d152c97",
+    "archiveBytes": 5018774,
+    "collection": "collection.anki21"
+  },
+  "counts": {
+    "sourceNotes": 94,
+    "learningNotes": 93,
+    "emptyNonLearningNotes": 1,
+    "themes": 31,
+    "audioFiles": 93,
+    "fontFilesExcluded": 5,
+    "audioBytes": 2413389,
+    "audioSeconds": 140.23
+  },
+  "verification": {
+    "completeAudioReferences": true,
+    "threeLearningNotesPerTheme": true,
+    "sameContentAcrossThreeNoteVariants": true,
+    "allAudioDecodedWithoutErrors": true,
+    "method": "ZIP/SQLite read-only source content; ffprobe metadata; ffmpeg -v error -i FILE -f null - for each MP3",
+    "humanListeningOrTranscriptApproval": false
+  },
+  "themes": [
+    {
+      "sourceIndex": 1,
+      "original": {
+        "Sound": "/a/",
+        "Spellings": "a",
+        "Example Word": "casa",
+        "Word Translation": "home",
+        "Example Sentence": "Ana lava la taza en casa.",
+        "Sentence Translation": "Ana washes the cup at home.",
+        "Notes": "",
+        "word_audio": "[sound:ESPhoneticWritingSystem_1_word.mp3]",
+        "sentence_audio": "[sound:ESPhoneticWritingSystem_1_sentence.mp3]",
+        "letter_audio": "[sound:ESPhoneticWritingSystem_1_letter.mp3]"
+      }
+    },
+    {
+      "sourceIndex": 2,
+      "original": {
+        "Sound": "/e/",
+        "Spellings": "e",
+        "Example Word": "mesa",
+        "Word Translation": "table",
+        "Example Sentence": "El bebé bebe té en la mesa.",
+        "Sentence Translation": "The baby drinks tea at the table.",
+        "Notes": "",
+        "word_audio": "[sound:ESPhoneticWritingSystem_2_word.mp3]",
+        "sentence_audio": "[sound:ESPhoneticWritingSystem_2_sentence.mp3]",
+        "letter_audio": "[sound:ESPhoneticWritingSystem_2_letter.mp3]"
+      }
+    },
+    {
+      "sourceIndex": 3,
+      "original": {
+        "Sound": "/i/",
+        "Spellings": "i",
+        "Example Word": "silla",
+        "Word Translation": "chair",
+        "Example Sentence": "Inés insiste en ir a la silla.",
+        "Sentence Translation": "Inés insists on going to the chair.",
+        "Notes": "",
+        "word_audio": "[sound:ESPhoneticWritingSystem_3_word.mp3]",
+        "sentence_audio": "[sound:ESPhoneticWritingSystem_3_sentence.mp3]",
+        "letter_audio": "[sound:ESPhoneticWritingSystem_3_letter.mp3]"
+      }
+    },
+    {
+      "sourceIndex": 4,
+      "original": {
+        "Sound": "/o/",
+        "Spellings": "o",
+        "Example Word": "sol",
+        "Word Translation": "sun",
+        "Example Sentence": "El sol puso tos",
+        "Sentence Translation": "The sun coughed.",
+        "Notes": "",
+        "word_audio": "[sound:ESPhoneticWritingSystem_4_word.mp3]",
+        "sentence_audio": "[sound:ESPhoneticWritingSystem_4_sentence.mp3]",
+        "letter_audio": "[sound:ESPhoneticWritingSystem_4_letter.mp3]"
+      }
+    },
+    {
+      "sourceIndex": 5,
+      "original": {
+        "Sound": "/u/",
+        "Spellings": "u",
+        "Example Word": "uno",
+        "Word Translation": "one",
+        "Example Sentence": "Uso una urna azul.",
+        "Sentence Translation": "I use a blue urn.",
+        "Notes": "",
+        "word_audio": "[sound:ESPhoneticWritingSystem_5_word.mp3]",
+        "sentence_audio": "[sound:ESPhoneticWritingSystem_5_sentence.mp3]",
+        "letter_audio": "[sound:ESPhoneticWritingSystem_5_letter.mp3]"
+      }
+    },
+    {
+      "sourceIndex": 6,
+      "original": {
+        "Sound": "/ai/",
+        "Spellings": "ai, ay",
+        "Example Word": "aire, hay",
+        "Word Translation": "air, there is",
+        "Example Sentence": "Hay aire fresco afuera.",
+        "Sentence Translation": "There is fresh air outside.",
+        "Notes": "",
+        "word_audio": "[sound:ESPhoneticWritingSystem_6_word.mp3]",
+        "sentence_audio": "[sound:ESPhoneticWritingSystem_6_sentence.mp3]",
+        "letter_audio": "[sound:ESPhoneticWritingSystem_6_letter.mp3]"
+      }
+    },
+    {
+      "sourceIndex": 7,
+      "original": {
+        "Sound": "/ei/",
+        "Spellings": "ei, ey",
+        "Example Word": "rey, seis",
+        "Word Translation": "king, six",
+        "Example Sentence": "El rey ve seis peces en el río.",
+        "Sentence Translation": "The king sees six fish in the river.",
+        "Notes": "",
+        "word_audio": "[sound:ESPhoneticWritingSystem_7_word.mp3]",
+        "sentence_audio": "[sound:ESPhoneticWritingSystem_7_sentence.mp3]",
+        "letter_audio": "[sound:ESPhoneticWritingSystem_7_letter.mp3]"
+      }
+    },
+    {
+      "sourceIndex": 8,
+      "original": {
+        "Sound": "/oi/",
+        "Spellings": "oi, oy",
+        "Example Word": "oigo, hoy",
+        "Word Translation": "I hear, today",
+        "Example Sentence": "Hoy oigo la voz de un niño.",
+        "Sentence Translation": "Today I hear the voice of a child.",
+        "Notes": "",
+        "word_audio": "[sound:ESPhoneticWritingSystem_8_word.mp3]",
+        "sentence_audio": "[sound:ESPhoneticWritingSystem_8_sentence.mp3]",
+        "letter_audio": "[sound:ESPhoneticWritingSystem_8_letter.mp3]"
+      }
+    },
+    {
+      "sourceIndex": 9,
+      "original": {
+        "Sound": "/au/",
+        "Spellings": "au, ao",
+        "Example Word": "auto, causa, cacao",
+        "Word Translation": "car, cause, cocoa",
+        "Example Sentence": "El auto causó un derrame de cacao.",
+        "Sentence Translation": "The car caused a cocoa spill.",
+        "Notes": "",
+        "word_audio": "[sound:ESPhoneticWritingSystem_9_word.mp3]",
+        "sentence_audio": "[sound:ESPhoneticWritingSystem_9_sentence.mp3]",
+        "letter_audio": "[sound:ESPhoneticWritingSystem_9_letter.mp3]"
+      }
+    },
+    {
+      "sourceIndex": 10,
+      "original": {
+        "Sound": "/eu/",
+        "Spellings": "eu",
+        "Example Word": "Europa",
+        "Word Translation": "europe",
+        "Example Sentence": "Europa es un continente diverso.",
+        "Sentence Translation": "Europe is a diverse continent.",
+        "Notes": "",
+        "word_audio": "[sound:ESPhoneticWritingSystem_10_word.mp3]",
+        "sentence_audio": "[sound:ESPhoneticWritingSystem_10_sentence.mp3]",
+        "letter_audio": "[sound:ESPhoneticWritingSystem_10_letter.mp3]"
+      }
+    },
+    {
+      "sourceIndex": 11,
+      "original": {
+        "Sound": "/iu/",
+        "Spellings": "iu",
+        "Example Word": "viuda",
+        "Word Translation": "widow",
+        "Example Sentence": "La viuda vive en el pueblo.",
+        "Sentence Translation": "The widow lives in the town.",
+        "Notes": "",
+        "word_audio": "[sound:ESPhoneticWritingSystem_11_word.mp3]",
+        "sentence_audio": "[sound:ESPhoneticWritingSystem_11_sentence.mp3]",
+        "letter_audio": "[sound:ESPhoneticWritingSystem_11_letter.mp3]"
+      }
+    },
+    {
+      "sourceIndex": 12,
+      "original": {
+        "Sound": "/ui/",
+        "Spellings": "ui",
+        "Example Word": "ruido",
+        "Word Translation": "noise",
+        "Example Sentence": "El ruido sigue siendo un misterio.",
+        "Sentence Translation": "The noise remains a mystery.",
+        "Notes": "",
+        "word_audio": "[sound:ESPhoneticWritingSystem_12_word.mp3]",
+        "sentence_audio": "[sound:ESPhoneticWritingSystem_12_sentence.mp3]",
+        "letter_audio": "[sound:ESPhoneticWritingSystem_12_letter.mp3]"
+      }
+    },
+    {
+      "sourceIndex": 13,
+      "original": {
+        "Sound": "/ue/",
+        "Spellings": "ue",
+        "Example Word": "huevo",
+        "Word Translation": "egg",
+        "Example Sentence": "El huevo está sobre la mesa.",
+        "Sentence Translation": "The egg is on the table.",
+        "Notes": "",
+        "word_audio": "[sound:ESPhoneticWritingSystem_13_word.mp3]",
+        "sentence_audio": "[sound:ESPhoneticWritingSystem_13_sentence.mp3]",
+        "letter_audio": "[sound:ESPhoneticWritingSystem_13_letter.mp3]"
+      }
+    },
+    {
+      "sourceIndex": 14,
+      "original": {
+        "Sound": "/uo/",
+        "Spellings": "uo",
+        "Example Word": "cuota",
+        "Word Translation": "share, fee",
+        "Example Sentence": "La cuota del club es razonable.",
+        "Sentence Translation": "The club fee is reasonable.",
+        "Notes": "",
+        "word_audio": "[sound:ESPhoneticWritingSystem_14_word.mp3]",
+        "sentence_audio": "[sound:ESPhoneticWritingSystem_14_sentence.mp3]",
+        "letter_audio": "[sound:ESPhoneticWritingSystem_14_letter.mp3]"
+      }
+    },
+    {
+      "sourceIndex": 15,
+      "original": {
+        "Sound": "/b/",
+        "Spellings": "b, v",
+        "Example Word": "bebé, vaso",
+        "Word Translation": "baby, glass",
+        "Example Sentence": "El bebé bebe en el vaso.",
+        "Sentence Translation": "The baby drinks from the glass.",
+        "Notes": "The sounds for &quot;b&quot; and &quot;v&quot; are the same in Spanish. At the start of a word they both sound like &quot;b&quot;, and in the middle of a word they sound a bit like &quot;v&quot;.",
+        "word_audio": "[sound:ESPhoneticWritingSystem_15_word.mp3]",
+        "sentence_audio": "[sound:ESPhoneticWritingSystem_15_sentence.mp3]",
+        "letter_audio": "[sound:ESPhoneticWritingSystem_15_letter.mp3]"
+      }
+    },
+    {
+      "sourceIndex": 16,
+      "original": {
+        "Sound": "/k/",
+        "Spellings": "c (before a, o, u), qu (before e, i), k",
+        "Example Word": "casa, queso, kilo",
+        "Word Translation": "house, cheese, kilo",
+        "Example Sentence": "Carlos compra un kilo de queso en la casa.",
+        "Sentence Translation": "Carlos buys a kilo of cheese at home.",
+        "Notes": "The letter &quot;c&quot; is pronounced as [k] before &quot;a&quot;, &quot;o&quot;, &quot;u&quot;; &quot;qu&quot; is used before &quot;e&quot;, &quot;i&quot; to maintain the [k] sound. The letter &quot;k&quot; is rare, used mainly in foreign words.",
+        "word_audio": "[sound:ESPhoneticWritingSystem_16_word.mp3]",
+        "sentence_audio": "[sound:ESPhoneticWritingSystem_16_sentence.mp3]",
+        "letter_audio": "[sound:ESPhoneticWritingSystem_16_letter.mp3]"
+      }
+    },
+    {
+      "sourceIndex": 17,
+      "original": {
+        "Sound": "/d/",
+        "Spellings": "d",
+        "Example Word": "dedo",
+        "Word Translation": "finger",
+        "Example Sentence": "David da dulces a Dora con el dedo.",
+        "Sentence Translation": "David gives candies to Dora with his finger.",
+        "Notes": "",
+        "word_audio": "[sound:ESPhoneticWritingSystem_17_word.mp3]",
+        "sentence_audio": "[sound:ESPhoneticWritingSystem_17_sentence.mp3]",
+        "letter_audio": "[sound:ESPhoneticWritingSystem_17_letter.mp3]"
+      }
+    },
+    {
+      "sourceIndex": 18,
+      "original": {
+        "Sound": "/f/",
+        "Spellings": "f",
+        "Example Word": "foto",
+        "Word Translation": "photo",
+        "Example Sentence": "Felipe fotografía flores.",
+        "Sentence Translation": "Felipe photographs flowers.",
+        "Notes": "",
+        "word_audio": "[sound:ESPhoneticWritingSystem_18_word.mp3]",
+        "sentence_audio": "[sound:ESPhoneticWritingSystem_18_sentence.mp3]",
+        "letter_audio": "[sound:ESPhoneticWritingSystem_18_letter.mp3]"
+      }
+    },
+    {
+      "sourceIndex": 19,
+      "original": {
+        "Sound": "/g/",
+        "Spellings": "g (before a, o, u), gu (before e, i)",
+        "Example Word": "gato, guerra",
+        "Word Translation": "cat, war",
+        "Example Sentence": "El gato sigue al guerrero.",
+        "Sentence Translation": "The cat follows the warrior.",
+        "Notes": "The letter &quot;g&quot; is pronounced as [g] before &quot;a&quot;, &quot;o&quot;, &quot;u&quot;; &quot;gu&quot; is used before &quot;e&quot;, &quot;i&quot; to maintain the [g] sound. The &quot;ü&quot; is used in &quot;güe&quot;, &quot;güi&quot; to denote a hard &quot;g&quot; sound before &quot;e&quot; or &quot;i&quot;, as in &quot;pingüino&quot;.",
+        "word_audio": "[sound:ESPhoneticWritingSystem_19_word.mp3]",
+        "sentence_audio": "[sound:ESPhoneticWritingSystem_19_sentence.mp3]",
+        "letter_audio": "[sound:ESPhoneticWritingSystem_19_letter.mp3]"
+      }
+    },
+    {
+      "sourceIndex": 20,
+      "original": {
+        "Sound": "/x/",
+        "Spellings": "j, g (before e, i)",
+        "Example Word": "jirafa, gente",
+        "Word Translation": "giraffe, people",
+        "Example Sentence": "La jirafa juega con gente generosa.",
+        "Sentence Translation": "The giraffe plays with generous people.",
+        "Notes": "",
+        "word_audio": "[sound:ESPhoneticWritingSystem_20_word.mp3]",
+        "sentence_audio": "[sound:ESPhoneticWritingSystem_20_sentence.mp3]",
+        "letter_audio": "[sound:ESPhoneticWritingSystem_20_letter.mp3]"
+      }
+    },
+    {
+      "sourceIndex": 21,
+      "original": {
+        "Sound": "/l/",
+        "Spellings": "l",
+        "Example Word": "luna",
+        "Word Translation": "moon",
+        "Example Sentence": "Lola lleva la luna.",
+        "Sentence Translation": "Lola carries the moon.",
+        "Notes": "",
+        "word_audio": "[sound:ESPhoneticWritingSystem_21_word.mp3]",
+        "sentence_audio": "[sound:ESPhoneticWritingSystem_21_sentence.mp3]",
+        "letter_audio": "[sound:ESPhoneticWritingSystem_21_letter.mp3]"
+      }
+    },
+    {
+      "sourceIndex": 22,
+      "original": {
+        "Sound": "ʝ ",
+        "Spellings": "ll, y",
+        "Example Word": "yema, llave",
+        "Word Translation": "key",
+        "Example Sentence": "La llave está en la calle con la yema.",
+        "Sentence Translation": "The key is on the street with the yolk.",
+        "Notes": "The &quot;y&quot; sound in Spanish is similar to the English &quot;y&quot; and the English &quot;dg&quot; sound like in &quot;judge&quot;. Some speakers distinguish &quot;ll&quot; and &quot;y&quot;, most do not.",
+        "word_audio": "[sound:ESPhoneticWritingSystem_22_word.mp3]",
+        "sentence_audio": "[sound:ESPhoneticWritingSystem_22_sentence.mp3]",
+        "letter_audio": "[sound:ESPhoneticWritingSystem_22_letter.mp3]"
+      }
+    },
+    {
+      "sourceIndex": 23,
+      "original": {
+        "Sound": "/m/",
+        "Spellings": "m",
+        "Example Word": "mamá",
+        "Word Translation": "mother",
+        "Example Sentence": "Mi mamá me ama.",
+        "Sentence Translation": "My mom loves me.",
+        "Notes": "",
+        "word_audio": "[sound:ESPhoneticWritingSystem_23_word.mp3]",
+        "sentence_audio": "[sound:ESPhoneticWritingSystem_23_sentence.mp3]",
+        "letter_audio": "[sound:ESPhoneticWritingSystem_23_letter.mp3]"
+      }
+    },
+    {
+      "sourceIndex": 24,
+      "original": {
+        "Sound": "/n/",
+        "Spellings": "n",
+        "Example Word": "nido",
+        "Word Translation": "nest",
+        "Example Sentence": "Nina tiene un nido.",
+        "Sentence Translation": "Nina has a nest.",
+        "Notes": "",
+        "word_audio": "[sound:ESPhoneticWritingSystem_24_word.mp3]",
+        "sentence_audio": "[sound:ESPhoneticWritingSystem_24_sentence.mp3]",
+        "letter_audio": "[sound:ESPhoneticWritingSystem_24_letter.mp3]"
+      }
+    },
+    {
+      "sourceIndex": 25,
+      "original": {
+        "Sound": "/ɲ/",
+        "Spellings": "ñ",
+        "Example Word": "niño",
+        "Word Translation": "child",
+        "Example Sentence": "El niño come piña.",
+        "Sentence Translation": "The child eats pineapple.",
+        "Notes": "This sound is similar to the &quot;ny&quot; in &quot;canyon&quot;.",
+        "word_audio": "[sound:ESPhoneticWritingSystem_25_word.mp3]",
+        "sentence_audio": "[sound:ESPhoneticWritingSystem_25_sentence.mp3]",
+        "letter_audio": "[sound:ESPhoneticWritingSystem_25_letter.mp3]"
+      }
+    },
+    {
+      "sourceIndex": 26,
+      "original": {
+        "Sound": "/p/",
+        "Spellings": "p",
+        "Example Word": "papel",
+        "Word Translation": "paper",
+        "Example Sentence": "Pedro pinta un papel.",
+        "Sentence Translation": "Pedro paints a role.",
+        "Notes": "",
+        "word_audio": "[sound:ESPhoneticWritingSystem_26_word.mp3]",
+        "sentence_audio": "[sound:ESPhoneticWritingSystem_26_sentence.mp3]",
+        "letter_audio": "[sound:ESPhoneticWritingSystem_26_letter.mp3]"
+      }
+    },
+    {
+      "sourceIndex": 27,
+      "original": {
+        "Sound": "/r/",
+        "Spellings": "rr, r (at the start of a syllable)",
+        "Example Word": "carro, raro",
+        "Word Translation": "car, rare",
+        "Example Sentence": "El perro raro corre rápido.",
+        "Sentence Translation": "The weird dog runs fast.",
+        "Notes": "The &quot;trilled&quot; r is made by repeatedly tapping your tongue to the roof of your mouth. It SHOULD sound like a motorboat.",
+        "word_audio": "[sound:ESPhoneticWritingSystem_27_word.mp3]",
+        "sentence_audio": "[sound:ESPhoneticWritingSystem_27_sentence.mp3]",
+        "letter_audio": "[sound:ESPhoneticWritingSystem_27_letter.mp3]"
+      }
+    },
+    {
+      "sourceIndex": 28,
+      "original": {
+        "Sound": "/ɾ/",
+        "Spellings": "r",
+        "Example Word": "caro",
+        "Word Translation": "expensive",
+        "Example Sentence": "Marta parte la carta cara",
+        "Sentence Translation": "Marta divides the dear letter.",
+        "Notes": "The &quot;tapped&quot; r is made by tapping the tip of your tongue to the roof of your mouth a single time. It should NOT sound like a motor boat.",
+        "word_audio": "[sound:ESPhoneticWritingSystem_28_word.mp3]",
+        "sentence_audio": "[sound:ESPhoneticWritingSystem_28_sentence.mp3]",
+        "letter_audio": "[sound:ESPhoneticWritingSystem_28_letter.mp3]"
+      }
+    },
+    {
+      "sourceIndex": 29,
+      "original": {
+        "Sound": "/s/",
+        "Spellings": "s, c (before e, i), z (everywhere but Spain)",
+        "Example Word": "casa, cine",
+        "Word Translation": "house, cinema",
+        "Example Sentence": "Susana cose en casa con una taza del cine.",
+        "Sentence Translation": "Susana sews at home with the cinema&#x27;s cup.",
+        "Notes": "",
+        "word_audio": "[sound:ESPhoneticWritingSystem_29_word.mp3]",
+        "sentence_audio": "[sound:ESPhoneticWritingSystem_29_sentence.mp3]",
+        "letter_audio": "[sound:ESPhoneticWritingSystem_29_letter.mp3]"
+      }
+    },
+    {
+      "sourceIndex": 30,
+      "original": {
+        "Sound": "/t/",
+        "Spellings": "t",
+        "Example Word": "taza",
+        "Word Translation": "cup",
+        "Example Sentence": "Tomás toma té en la taza.",
+        "Sentence Translation": "Tomás drinks tea in the cup.",
+        "Notes": "",
+        "word_audio": "[sound:ESPhoneticWritingSystem_30_word.mp3]",
+        "sentence_audio": "[sound:ESPhoneticWritingSystem_30_sentence.mp3]",
+        "letter_audio": "[sound:ESPhoneticWritingSystem_30_letter.mp3]"
+      }
+    },
+    {
+      "sourceIndex": 31,
+      "original": {
+        "Sound": "/θ/",
+        "Spellings": "c (before e, i), z",
+        "Example Word": "cero, zapato",
+        "Word Translation": "zero, shoe",
+        "Example Sentence": "En Zaragoza, el cero se pronuncia diferente.",
+        "Sentence Translation": "In Zaragoza, zero is pronounced differently.",
+        "Notes": "This sound is specific to Spain and occurs before &quot;e&quot; and &quot;i&quot; for &quot;c&quot;, and all positions for &quot;z&quot;. In Latin America, these are pronounced as /s/.",
+        "word_audio": "[sound:ESPhoneticWritingSystem_31_word.mp3]",
+        "sentence_audio": "[sound:ESPhoneticWritingSystem_31_sentence.mp3]",
+        "letter_audio": "[sound:ESPhoneticWritingSystem_31_letter.mp3]"
+      }
+    }
+  ],
+  "audio": [
+    {
+      "file": "ESPhoneticWritingSystem_1_letter.mp3",
+      "bytes": 14101,
+      "sha256": "a75dae0e93bc11aa7e8e2983dbb326387b1d08258ce954a83355c42e7b69fd8d",
+      "duration": 0.8,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 1
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_1_sentence.mp3",
+      "bytes": 27818,
+      "sha256": "69b060526ef2e1d72d022f30e35fa5244d87e36637b57387a2933699dd65fee5",
+      "duration": 1.771043,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 2
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_1_word.mp3",
+      "bytes": 12485,
+      "sha256": "e338fc544f0266e47f11330e1a73f9724e3baca2949e18f746116b8917df5717",
+      "duration": 0.790839,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 2
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_2_letter.mp3",
+      "bytes": 13894,
+      "sha256": "b653e0e76793a4a3499ab3a4bddb9db2eff0b0a65bf78a3fd6f111d44a638ea2",
+      "duration": 0.8,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 1
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_2_sentence.mp3",
+      "bytes": 28128,
+      "sha256": "a0cc2893aee798fc9648bcd1ec0f96fd942d68ca4add592f17bd14899bea3f9e",
+      "duration": 1.826735,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 2
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_2_word.mp3",
+      "bytes": 11755,
+      "sha256": "bc635d2233a4c0cd693b33137805bbc965767c3f0450b9d8f200414437f535f6",
+      "duration": 0.735147,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 2
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_3_letter.mp3",
+      "bytes": 27041,
+      "sha256": "09312b5a45dd83bce3657afa3bec88e31431a9aff4661ed2a8c9765a36eb945a",
+      "duration": 1.55,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 1
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_3_sentence.mp3",
+      "bytes": 31209,
+      "sha256": "76752ff53c20f908a6f109d2a456b05c48c61dd0fed14a1381078da370ce2fbe",
+      "duration": 1.904694,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 2
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_3_word.mp3",
+      "bytes": 12383,
+      "sha256": "8b5f9504453adc680188d488034a5f8a0cca1743dab8be48b5c07ced1d21e73b",
+      "duration": 0.779705,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 2
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_4_letter.mp3",
+      "bytes": 14311,
+      "sha256": "7dd427a6c70bade2ced9536ca18bd272b85bef3f62b412cb8c36f7b85ab39638",
+      "duration": 0.8,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 1
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_4_sentence.mp3",
+      "bytes": 23281,
+      "sha256": "faaf214e1c42169fdb7a44c57997029bf23e0a0976a8987c14d044a4f54dbd06",
+      "duration": 1.358912,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 2
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_4_word.mp3",
+      "bytes": 13375,
+      "sha256": "2604cd98012459768bc76bd98cd6ba3e785c1c5426cb97b94cf30414e868755f",
+      "duration": 0.779705,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 2
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_5_letter.mp3",
+      "bytes": 14571,
+      "sha256": "7ea59ce6f545fe32d8a7db6385d776a7ebd3f6a1bf3d80648eca8a043cd15370",
+      "duration": 0.85,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 1
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_5_sentence.mp3",
+      "bytes": 32646,
+      "sha256": "87ac6c2a7fb24aedc4e8f346aa052fbdb64d4a8dbde60ac6f56ed153ec240b34",
+      "duration": 2.0,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 1
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_5_word.mp3",
+      "bytes": 17051,
+      "sha256": "d5d1e0f88976e999c7896a2873d6e3995dca9262ec567aa833648926b446c457",
+      "duration": 1.0,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 1
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_6_letter.mp3",
+      "bytes": 38890,
+      "sha256": "e0d77138caaa760ef7953bc2fc6e4a8373fc80e63d2f1a5437222ef62834779d",
+      "duration": 2.1,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 1
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_6_sentence.mp3",
+      "bytes": 32976,
+      "sha256": "0b227d15efe5fdfd370a3b1349b58cd5759a2baf9438be2f58f4e11cd6b0717f",
+      "duration": 1.85,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 1
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_6_word.mp3",
+      "bytes": 25804,
+      "sha256": "738f2fe227f0eb22f6570f08a0e12049c1b24cee0ab154c8806a61e3541705e3",
+      "duration": 1.45,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 1
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_7_letter.mp3",
+      "bytes": 39568,
+      "sha256": "77472a330fd5a0abc503e2e05e97e586884a6f5923bb6d68a2bdb8f014f94272",
+      "duration": 2.2,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 1
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_7_sentence.mp3",
+      "bytes": 40499,
+      "sha256": "49090948f08deabc14e7928dfa3c8def349f06177efd5e13b8781e8371e5c386",
+      "duration": 2.4,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 1
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_7_word.mp3",
+      "bytes": 24236,
+      "sha256": "56d0e29caa70d77dfb8f702e7247724a449d0836313c6328a39078839bb833ca",
+      "duration": 1.4,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 1
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_8_letter.mp3",
+      "bytes": 42016,
+      "sha256": "c8c8a8831cedf800628dc7ce7b1061fe414cb6cd6b6d68d396a7aab5c3b90e58",
+      "duration": 2.35,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 1
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_8_sentence.mp3",
+      "bytes": 33682,
+      "sha256": "e95c1e1cbfd2f14f2b470db2d7c3c6b6ce13a7fbebaa8e4258a261e085b0aed2",
+      "duration": 2.0,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 1
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_8_word.mp3",
+      "bytes": 21731,
+      "sha256": "3b6a06291871fadba7688bc163ce65b723864e09f38bc6719b7a3f0520be9fc0",
+      "duration": 1.3,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 1
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_9_letter.mp3",
+      "bytes": 26283,
+      "sha256": "e900434908a8c78358157fbdb688c72b39d0420badc54ea22d4522acf4cb7866",
+      "duration": 1.685034,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 2
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_9_sentence.mp3",
+      "bytes": 34419,
+      "sha256": "70fa0f4c9b0b9bc6c409b5128f3051f94705f9341562fb26f47472b81f294180",
+      "duration": 2.10517,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 2
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_9_word.mp3",
+      "bytes": 28863,
+      "sha256": "7c10737dd8a453053737db5089dfa56992a11b21cd88ed840f23f42f17de6aff",
+      "duration": 1.904694,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 2
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_10_letter.mp3",
+      "bytes": 19476,
+      "sha256": "6bf7750df24f27c4efbfcc861620ada3a1d3018470654cd7275e5b6f9db69df1",
+      "duration": 1.150454,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 1
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_10_sentence.mp3",
+      "bytes": 37681,
+      "sha256": "11200f09a41c0076de86fa8c93b0b4c1c5c9f20471e746b25b1657a8dcbfae8e",
+      "duration": 2.25,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 1
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_10_word.mp3",
+      "bytes": 19486,
+      "sha256": "a6779b069d89d8ed2bf43b4d4ddbf9ad983b111475bce44cc3fbd04b952c6adb",
+      "duration": 1.1,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 1
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_11_letter.mp3",
+      "bytes": 18745,
+      "sha256": "2db9a21f87c141ebbd69f8e0b30aba21490c73c037b3790f2dd1785ab10b5f6b",
+      "duration": 1.1,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 1
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_11_sentence.mp3",
+      "bytes": 32613,
+      "sha256": "337bd905060fc85d4dbe14c59b1e43e6853cdafba75f69e4d209448ab2df3345",
+      "duration": 1.95,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 1
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_11_word.mp3",
+      "bytes": 15360,
+      "sha256": "45c211abac8e22053a02dd1f5e908f10de8b88eae2c7b2a289703a1767e3fb1d",
+      "duration": 0.95,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 1
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_12_letter.mp3",
+      "bytes": 19370,
+      "sha256": "5a8837bc080aee14f9ca8cc5d96cb8adf9414e03f785669d48ad7dc1d43c784a",
+      "duration": 1.150454,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 1
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_12_sentence.mp3",
+      "bytes": 40032,
+      "sha256": "623011a647d81aca9dc6506b16c296353e16cbee1c7f03f3c366e2f6186dc423",
+      "duration": 2.3,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 1
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_12_word.mp3",
+      "bytes": 17603,
+      "sha256": "4f8cdf866835f56a764ac89d5ee677868c817935f3f0e80da1035dc1a0311bda",
+      "duration": 1.0,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 1
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_13_letter.mp3",
+      "bytes": 19161,
+      "sha256": "cb3cd6d6b94f8fddee1bf1d0cddb7dfbd0b56caf8d510e7895eb0298b30e5ec7",
+      "duration": 1.150454,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 1
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_13_sentence.mp3",
+      "bytes": 32046,
+      "sha256": "400965251bc7ec43db058be6053a7e8f18740c4f01ef0587c31bceb537f48522",
+      "duration": 1.8,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 1
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_13_word.mp3",
+      "bytes": 15623,
+      "sha256": "e9edbdad81537b3ecda52e7666a26df9d18ff894125458c53efddc0201679b83",
+      "duration": 0.9,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 1
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_14_letter.mp3",
+      "bytes": 21975,
+      "sha256": "2afdd68087e8a074f3c7e30a213df13caa41e104500b6d7e48fd6adad2219dae",
+      "duration": 1.35,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 1
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_14_sentence.mp3",
+      "bytes": 39561,
+      "sha256": "600fe19dc24513f8a57e8c93d7696e2633e766548a5ad23fe24bb35bfff6ad78",
+      "duration": 2.25,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 1
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_14_word.mp3",
+      "bytes": 16927,
+      "sha256": "5ae695684942b23c30a1f8ea21c3c7ff743bcebf4ffd436aced50f9df5b13417",
+      "duration": 0.9,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 1
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_15_letter.mp3",
+      "bytes": 23701,
+      "sha256": "24394ea183360faf15d8ae0ae8246b356b000208edaff63d67052ee50aa864d6",
+      "duration": 1.4,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 1
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_15_sentence.mp3",
+      "bytes": 31410,
+      "sha256": "11de1a81949f0667dea4d91bb0c29d6e1f8a7b0d5ee5e5f48a1f1106a6783c81",
+      "duration": 1.9,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 1
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_15_word.mp3",
+      "bytes": 24995,
+      "sha256": "74eca299c5cefae75b5347f56a32e052efa64dac6d382cc3ea151f889e55560e",
+      "duration": 1.45,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 1
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_16_letter.mp3",
+      "bytes": 41136,
+      "sha256": "7230b95a23bee279a8072193966a053410f528ea4d8d3359f602965278caa179",
+      "duration": 2.4,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 1
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_16_sentence.mp3",
+      "bytes": 35304,
+      "sha256": "9b924052f08a5b70a5552134ae65736829d81ebb43758b505c7fedae32f11f1a",
+      "duration": 2.207687,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 2
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_16_word.mp3",
+      "bytes": 27716,
+      "sha256": "931bbd8b76b60fd4820fbafbdb3196980444812ab5001ceaa94670652f00608c",
+      "duration": 1.815578,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 2
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_17_letter.mp3",
+      "bytes": 14310,
+      "sha256": "80c7c1ea709ae24498618873a987f5f30002ef93f58ef1bb454cab84594c0782",
+      "duration": 0.8,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 1
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_17_sentence.mp3",
+      "bytes": 42853,
+      "sha256": "165f1469f64f60425dac9d7d264333fff13289dd6db5e4ead7cc2c8b8176c03e",
+      "duration": 2.45,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 1
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_17_word.mp3",
+      "bytes": 14108,
+      "sha256": "1977396531deafa125ab3dfa8ce337bcaf241216d4215de59220097f63210ac1",
+      "duration": 0.8,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 1
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_18_letter.mp3",
+      "bytes": 15718,
+      "sha256": "0781cb426af8aa6f049ae0c0de6b562d70d38b7383b6c1431cf743ef1c415190",
+      "duration": 0.9,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 1
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_18_sentence.mp3",
+      "bytes": 34805,
+      "sha256": "f1d0fb7a180e6d8e5a36b0e624da659407ed176f40993924c4f54f2b5060b241",
+      "duration": 2.0,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 1
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_18_word.mp3",
+      "bytes": 15937,
+      "sha256": "f71fff232581ccfc5c78870ec608441c6fb2f70ca50792ce351d928c331cc75c",
+      "duration": 0.85,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 1
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_19_letter.mp3",
+      "bytes": 13180,
+      "sha256": "18ecb0d9662b21bb719e4eb6bc9ebeffdedfe14bc84dff4fcdbfaf51e4b75ed0",
+      "duration": 0.75,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 1
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_19_sentence.mp3",
+      "bytes": 34129,
+      "sha256": "7c4d18c8b28ecd89f7adb5d9bc1bc6605d10f25c99783c391736547e1ffb46ac",
+      "duration": 1.85,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 1
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_19_word.mp3",
+      "bytes": 28102,
+      "sha256": "db06a01f9f428d5e2167b98acab93d2bfb983ff4c397553bd835c5a6f973901f",
+      "duration": 1.55,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 1
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_20_letter.mp3",
+      "bytes": 21332,
+      "sha256": "3290f8607df15cdc11fd397d1bbd65833b1f5185cf0d09e133518611e28df575",
+      "duration": 1.25,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 1
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_20_sentence.mp3",
+      "bytes": 36420,
+      "sha256": "f32294639a09a0d262066e794d8ca14eefb6a44c2af0d8415aac6700a1b0274f",
+      "duration": 2.315828,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 2
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_20_word.mp3",
+      "bytes": 22366,
+      "sha256": "259d949c5d7412e333f38ed5c28ec55fc8a313d437cb3cc18cdb6851564f2109",
+      "duration": 1.448005,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 2
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_21_letter.mp3",
+      "bytes": 15773,
+      "sha256": "bef729d87e939d28cb01326038472cbb493d85256213091c8b0cf7e9983683bd",
+      "duration": 0.9,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 1
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_21_sentence.mp3",
+      "bytes": 30147,
+      "sha256": "da2e234ecb3293fc16b57c7b1f88accbdb08805a4c86b75a05303023f58ac1c8",
+      "duration": 1.8,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 1
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_21_word.mp3",
+      "bytes": 17394,
+      "sha256": "921cc2f98ad284b305bd040bf693db1cf47dbeb9c9a60931ad9a07e0425b9b57",
+      "duration": 1.0,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 1
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_22_letter.mp3",
+      "bytes": 36543,
+      "sha256": "9a6601853d31670d2382d715b8359fceaabc10a6a27a3b4dece1125a05be720b",
+      "duration": 2.05,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 1
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_22_sentence.mp3",
+      "bytes": 38953,
+      "sha256": "a8bae4739073400d888584bef58131d24918126a6f49c617924e9f44c20aa8af",
+      "duration": 2.25,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 1
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_22_word.mp3",
+      "bytes": 28398,
+      "sha256": "43c6aab330a6f23269caeed4869338db9b20ec2fb3dcf57128b89e04ec893918",
+      "duration": 1.65,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 1
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_23_letter.mp3",
+      "bytes": 14207,
+      "sha256": "9158a331745b5998b4456e840106122ce7ea340309b7df7d043970e65419f63b",
+      "duration": 0.8,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 1
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_23_sentence.mp3",
+      "bytes": 27199,
+      "sha256": "ce0e3dadc5ae5c08419badac10129ea35d0bede42e5ab5c72e0a0ab9290eca05",
+      "duration": 1.5,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 1
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_23_word.mp3",
+      "bytes": 16902,
+      "sha256": "6b8a0795b3843c2f766068f9fb3d375c2a667c2a6d2e715543e5f45c7929bdad",
+      "duration": 0.95,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 1
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_24_letter.mp3",
+      "bytes": 14936,
+      "sha256": "22df8c1cb6516e3e3c923deea0b5ae77990db56391ae7007504d259dd3b2c77a",
+      "duration": 0.85,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 1
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_24_sentence.mp3",
+      "bytes": 30878,
+      "sha256": "5d97404028a1e329911e9fd8b2417e1e8f34980a62f3c80bb4c942772552ce5b",
+      "duration": 1.85,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 1
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_24_word.mp3",
+      "bytes": 16089,
+      "sha256": "78e91d104c460c6c39d3d9cfdff783474b2aa4d228c48cf4fe95863f3dbee4a2",
+      "duration": 0.95,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 1
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_25_letter.mp3",
+      "bytes": 15669,
+      "sha256": "1371b535f2d855bba329c29bba1bd6e5765fbfe5ca7131c306aa08d9bc564c4e",
+      "duration": 0.9,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 1
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_25_sentence.mp3",
+      "bytes": 29943,
+      "sha256": "6d5df801b6fb8d976e962ef8e42c157aa934b6a55086452105949482a2f10681",
+      "duration": 1.7,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 1
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_25_word.mp3",
+      "bytes": 16977,
+      "sha256": "1bfa29f2db586d51e0e7a37541ec41e2266d2167aae4f6e2adba99eb21a99c06",
+      "duration": 1.0,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 1
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_26_letter.mp3",
+      "bytes": 14575,
+      "sha256": "41902b031a1ed75226ea73ab0de2362f5133f93df8fdf9d656fc651bd04ce322",
+      "duration": 0.75,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 1
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_26_sentence.mp3",
+      "bytes": 32349,
+      "sha256": "925b0669cdde0ed5542a3542e0d0fcb135af9087c4eb098a5ab02e5fb59afcec",
+      "duration": 1.8,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 1
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_26_word.mp3",
+      "bytes": 18494,
+      "sha256": "97833d29cce5462beb0c1c983c21cecada2fba14ffacf1a59beb23823bbc1613",
+      "duration": 0.95,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 1
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_27_letter.mp3",
+      "bytes": 29601,
+      "sha256": "dca81d5f39b622f2ce587bbcdfd6dd5341d9bad1d7666e917a63a9cfd7451577",
+      "duration": 1.7,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 1
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_27_sentence.mp3",
+      "bytes": 41907,
+      "sha256": "a7bf839f68b9e4e59d08e1fa809f0367f7533e1114a9c9e782765fac9fa438ca",
+      "duration": 2.2,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 1
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_27_word.mp3",
+      "bytes": 33421,
+      "sha256": "3388f7e89056dac84d923bcc8106d64a64c94b67bc481744f6d1c5f28dc55b65",
+      "duration": 1.8,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 1
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_28_letter.mp3",
+      "bytes": 15563,
+      "sha256": "384d8f1cea8ff4ce14b59bb17ec20adefce4f7fce446a40f4efd417c0d1992c3",
+      "duration": 0.85,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 1
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_28_sentence.mp3",
+      "bytes": 35902,
+      "sha256": "53d4857f34ba62bd46e42538c8dcbb199a2199643cdf182279c388c9a178a907",
+      "duration": 2.0,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 1
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_28_word.mp3",
+      "bytes": 16562,
+      "sha256": "9e00c6be7d03a976a2599e61ac5fff9c775279cbeefd8f8769084c3df00ca874",
+      "duration": 0.85,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 1
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_29_letter.mp3",
+      "bytes": 35518,
+      "sha256": "e63ddcecf105464cda6d5a1b2e734161b6d03f8ca2aa63a9dd3a977c6a5fdf56",
+      "duration": 2.1,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 1
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_29_sentence.mp3",
+      "bytes": 52409,
+      "sha256": "c9047aa3ccacf860260d45af6b93a93618bea987fd1c6db4e9670651f7493e72",
+      "duration": 3.15,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 1
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_29_word.mp3",
+      "bytes": 25203,
+      "sha256": "9bad3774475a342bbd5124a7a3544b30984411a50c9179f14b4ba001074f0527",
+      "duration": 1.45,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 1
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_30_letter.mp3",
+      "bytes": 13112,
+      "sha256": "d6180b98062265b6e12ebc0aa779f0e49c0b09f3a8e173dc6a38e51b802d8a66",
+      "duration": 0.75,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 1
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_30_sentence.mp3",
+      "bytes": 34340,
+      "sha256": "13991ea6499f89e3fd32db07ed797c4c96e1ae105bfbb1266342178c18bce5b5",
+      "duration": 1.95,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 1
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_30_word.mp3",
+      "bytes": 15568,
+      "sha256": "7c6f72c1f806a32e63ec65087ed48e652eb47bd5cb15f43ea9459d08f29059d6",
+      "duration": 0.9,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 1
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_31_letter.mp3",
+      "bytes": 30304,
+      "sha256": "2ed2076053ff9f9e5ee739580c9e38fd5f1b75d3c186662bcd16b5b07305038b",
+      "duration": 1.7,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 1
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_31_sentence.mp3",
+      "bytes": 58670,
+      "sha256": "fc90aa45cbc583d25aefb3a03398a316161c10c900bb159772d0c87028d578e2",
+      "duration": 3.45,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 1
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    },
+    {
+      "file": "ESPhoneticWritingSystem_31_word.mp3",
+      "bytes": 33686,
+      "sha256": "ebc5820239904126d535596c88bc403d15bb96fdce3f29d77fefc996e4843465",
+      "duration": 1.8,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 1
+        }
+      ],
+      "decodeOk": true,
+      "decodeStderr": ""
+    }
+  ]
+}

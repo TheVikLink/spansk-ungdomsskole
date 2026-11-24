@@ -1,0 +1,15 @@
+# Lesende restorekostnadshistorikk — ya9r.7
+
+Eierbestilling: avklar historiske og samlede restorekostnader innen eksisterende USD10 før avgift, oppdater startgrunnlaget. Ingen ressurs, rolle, tilgangsmint, kildehandling eller fase. Ingen gjenoppretting/APIkall mot slettet mål. Bare eksisterende faktura-/Usage/Billingtilgang i OversiktAS/xgdvhggnihuzlnwlnjpq og lokale saniterte historiske kvitteringer. Ikke berør separat Vercelbudsjett eller andre prosjekter.
+
+MCP har kun get_cost(månedstilbud), ikke faktisk historiskfakturering. Gmail filtreres på Supabase faktura/billing i aktuellmåned;4Octfaktura kan ikke dekke19–20Octressurs uten uttrykkeliglinjeevidens. Dashboard observert sign-in; be om manuell innlogging for lesing av Usage/Billing, ingen credentialsuthenting eller nyinnlogging viaCLI. En eventuell UIavlesning bruker bareorgbruk/fakturalinjer for relevantperiode/prosjekt eller orgsum som dokumentert konservativøvregrense. Unngå lagring av kort/adresse/fakturalenketokens og unødvendige andreprosjektdata. Ingen skjulte/udokumenterte APIer eller nettlesercookies.
+
+Uavhengig arbeid: reviderte offentlige pris- og avrundingsregler, tidligere faktiskopprettelse/endeligfravær, kildeproveniens på kvitteringene. Beregn med Decimal, hold føravgift og ekskluder faste eksisterende abonnementer/andreprosjekter. Ingen fratrekk av kreditter for å skjule worst-case. Gammelt mål: providerstamp19Oct11:30:41Z tilbekreftetborte20Oct12:18:01Z er et dokumentert observasjonsintervall, ikke eksakt faktura eller generell kostnadsøvregrense. Clock-houravrunding kan gi26timer i dette intervallet, ikke ukritisk25. Ukjentegress/addons/manglendeinvoice kan ikke settes0.
+
+Nytt siste mål: max24tliv og konservativ25fakturertetimer Micro.01344, gp3<=8GB/defaultIOPS/throughput, ingenaddons/oppgradering, egress max1GB bare et eksplisitt scenario (ikke alleredeenforcedhardcap). Beregn1USDreserve og historiskfaktiskbeløp eller gjennomgåttbegrunnetøvregrense. Startkostnadsportpass først når alleposter/verifikasjon/avviksmargin dokumentert og samlet<=10; ved manglende tilgang leveresberegningsgrunnlag/inertdraft men ya9r.7forblir åpen med eksaktmanglendeuserdata. Ingen nygenerellbudsjettgodkjenning.
+
+Slutt uavhengig evidensreview av aritmetikk/kvoter/avrunding/ukjentegrense og oppdatert INERTmandat. Bevar historiske kvitteringer. Start og andre provider-/API-/kildevindugaterforblirfalse/null. Ikke kjør tidligere restoretester. Journalfør eksakt evidens i output/restore-cost-2026-10-23, Beads og lokalsync. Ingen push/deploy/mail eller ekstern endring.
+
+## Målt resultat23. oktober
+
+Eier meldte manuell innlogging ferdig. Autentisert org Billing/Usage er lest: eksakt gammelt mål26Microtimer/USD0,35 i kommende4Oct–4Novfaktura, orgoverforbruk0. Dette erstatter innloggingsblokkeringen og foreløpig ukjent historikk, men ikke endelig fakturaoppgjør. Lokal dokumentasjon i output/restore-cost-2026-10-23 avstemmer samlet betinget planleggingsbeløpUSD1,8102 inkludertUSD1reserve, oppavrundetUSD1,82. Ny egress/config/admissionkostnadsport er fortsatt ikke håndhevet/pass; ingen start. Ingen ekstern endring.

@@ -1,6 +1,12 @@
 node_modules/
+.vercel
+/public/
 output/
 test-results/
+.env*
+!.env.example
+*.pem
+*.key
 
 # System and editor metadata
 .DS_Store
@@ -9,6 +15,9 @@ test-results/
 
 # Build and test artifacts
 .playwright-cli/
+.playwright-mcp/
+.worktrees/
+tmp/
 playwright-report/
 blob-report/
 

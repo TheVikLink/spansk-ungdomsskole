@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Frequently Asked Questions - Healthchecks.io</title>
+    
+
+
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link rel="icon" type="image/svg+xml" href="/static/img/favicon.svg">
+    
+    
+    <link rel="stylesheet" href="/static/CACHE/css/output.d0341f9981f4.css" type="text/css">
+</head>
+<body class="page-docs">
+    
+    
+
+    <nav class="navbar navbar-default">
+        <div class="container">
+        <div class="navbar-header">
+            <button
+                type="button"
+                class="navbar-toggle collapsed"
+                data-toggle="collapse"
+                data-target="#navbar"
+                aria-expanded="false"
+                aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            
+            <a id="base-url" class="navbar-brand" href="/">
+                <img
+                    id="logo"
+                    height="50"
+                    
+                    src="/static/img/logo-rounded-ua2.svg"
+                    
+                    alt="Healthchecks.io">
+            </a>
+            
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            
+
+            <ul id="global-links" class="nav navbar-nav navbar-right">
+                
+                <li >
+                    
+                    <a href="/pricing/">Pricing</a>
+                    
+                </li>
+                
+
+                <li  class="active" >
+                    <a href="/docs/">Docs</a>
+                </li>
+
+                <li>
+                    <a href="https://blog.healthchecks.io/">Blog</a>
+                </li>
+
+                <li >
+                    <a href="/about/">About</a>
+                </li>
+
+                
+                <li>
+                    <a href="/accounts/login/">Log In</a>
+                </li>
+                
+
+                
+            </ul>
+        </div>
+
+        </div>
+    </nav>
+
+    
+    <div class="container">
+        
+<div class="row">
+    <div class="col-sm-3">
+
+    <div id="docs-search-form">
+        <input
+            id="docs-search"
+            type="text"
+            name="q"
+            class="form-control input-sm"
+            placeholder="Search docs&hellip;"
+            autocomplete="off">
+    </div>
+    <div id="search-results"></div>
+    <ul id="docs-nav" class="docs-nav">
+        <li class="nav-header">Healthchecks.io</li>
+        <li >
+            <a href="/docs/">Introduction</a>
+        </li>
+        <li>
+    <a href="/docs/configuring_checks/">Configuring checks</a>
+</li>
+        <li>
+    <a href="/docs/configuring_notifications/">Configuring notifications</a>
+</li>
+        <li>
+    <a href="/docs/projects_teams/">Projects and teams</a>
+</li>
+        <li>
+    <a href="/docs/badges/">Badges</a>
+</li>
+        <li  class="active">
+            <a href="/faq/">FAQ</a>
+        </li>
+
+        <li class="nav-header">API</li>
+        <li>
+    <a href="/docs/http_api/">Pinging API</a>
+</li>
+        <li>
+    <a href="/docs/api/">Management API</a>
+</li>
+        <li>
+    <a href="/docs/slug_urls/">Slug URLs</a>
+</li>
+
+        <li class="nav-header">Guides</li>
+        <li>
+    <a href="/docs/monitoring_cron_jobs/">Monitoring cron jobs</a>
+</li>
+        <li>
+    <a href="/docs/monitoring_systemd_tasks/">Monitoring Systemd tasks</a>
+</li>
+        <li>
+    <a href="/docs/signaling_failures/">Signaling failures</a>
+</li>
+        <li>
+    <a href="/docs/measuring_script_run_time/">Measuring script run time</a>
+</li>
+        <li>
+    <a href="/docs/attaching_logs/">Attaching logs</a>
+</li>
+        <li>
+    <a href="/docs/cloning_checks/">Cloning checks</a>
+</li>
+        <li>
+    <a href="/docs/autoprovisioning/">Auto provisioning</a>
+</li>
+        <li>
+    <a href="/docs/configuring_prometheus/">Configuring Prometheus</a>
+</li>
+
+        <li class="nav-header">Pinging Examples</li>
+        <li>
+    <a href="/docs/reliability_tips/">Reliability tips</a>
+</li>
+        <li>
+    <a href="/docs/bash/">Shell scripts</a>
+</li>
+        <li>
+    <a href="/docs/arduino/">Arduino</a>
+</li>
+        <li>
+    <a href="/docs/network_routers/">Network Routers</a>
+</li>
+        <li>
+    <a href="/docs/csharp/">C#</a>
+</li>
+        <li>
+    <a href="/docs/email/">Email</a>
+</li>
+        <li>
+    <a href="/docs/github_actions/">GitHub Actions</a>
+</li>
+        <li>
+    <a href="/docs/go/">Go</a>
+</li>
+        <li>
+    <a href="/docs/javascript/">Javascript</a>
+</li>
+        <li>
+    <a href="/docs/php/">PHP</a>
+</li>
+        <li>
+    <a href="/docs/powershell/">PowerShell</a>
+</li>
+        <li>
+    <a href="/docs/python/">Python</a>
+</li>
+        <li>
+    <a href="/docs/ruby/">Ruby</a>
+</li>
+
+        <li class="nav-header">Developer Tools</li>
+        <li>
+    <a href="/docs/resources/">Third-party resources</a>
+</li>
+
+        <li class="nav-header">Self-hosted</li>
+        <li>
+    <a href="/docs/self_hosted/">Overview</a>
+</li>
+        <li>
+    <a href="/docs/self_hosted_configuration/">Configuration</a>
+</li>
+        <li>
+    <a href="/docs/self_hosted_docker/">Running with Docker</a>
+</li>
+
+        <li class="nav-header">Reference</li>
+        <li><a href="/docs/cron/">Cron syntax cheatsheet</a></li>
+        <li>
+    <a href="/docs/healthchecks_sentry_comparison/">Compared to Sentry</a>
+</li>
+        <li>
+    <a href="/docs/healthchecks_cronitor_comparison/">Compared to Cronitor</a>
+</li>
+    </ul>
+
+    </div>
+    <div class="col-sm-9">
+        <div class="docs-content docs-faq"><h1>Frequently Asked Questions</h1>
+<ul id="toc">
+    <li>
+        General
+        <ul>
+            <li><a href="#what-is-healthchecks-io">What is Healthchecks.io?</a></li>
+            <li><a href="#reliability">How reliable is Healthchecks.io?</a></li>
+            <li><a href="#who-runs-healthchecks-io">Who runs Healthchecks.io?</a></li>
+            <li><a href="#free-for-open-source">Does Healthchecks.io offer discounts for nonprofits or open-source projects?</a></li>
+            <li><a href="#self-hosting">Can I self-host this service?</a></li>
+            <li><a href="#cronitor">Should I use Healthchecks.io or Cronitor?</a></li>
+        </ul>
+    </li>
+    <li>
+        Authentication
+        <ul>
+            <li><a href="#authentication">What authentication mechanisms does Healthchecks.io support?</a></li>
+            <li><a href="#reset-password">I have lost my password, how can I reset it?</a></li>
+            <li><a href="#changing-email">Can I change the email address of my Healthchecks.io account?</a></li>
+        </ul>
+    </li>
+    <li>
+        Accounts and Billing
+        <ul>
+            <li><a href="#ordering">What is the ordering process? Can we get a quote?</a></li>
+            <li><a href="#payment-methods">Can we pay via bank transfer?</a></li>
+            <li><a href="#vendor-information">We need you to fill our vendor onboarding form, can you do that?</a></li>
+            <li><a href="#hobbyist-commercial">Is commercial use of the free Hobbyist plan permitted?</a></li>
+            <li><a href="#multiple-accounts">Can I use multiple accounts on Healthchecks.io?</a></li>
+            <li><a href="#expired-card">What happens if my payment method expires?</a></li>
+            <li><a href="#resellers">We are a software reseller, can we purchase on behalf of our client?</a></li>
+            <li><a href="#transfer-paid-account">I'm leaving the company, how can I transfer my paid account to a colleague?</a></li>
+            <li><a href="#inactive-accounts">I received an "Inactive Account Notification" email. What is that about?</a></li>
+        </ul>
+    </li>
+    <li>
+        Using Healthchecks.io
+        <ul>
+            <li><a href="#timezones">Why am I receiving alerts a few hours before/after the scheduled time?</a></li>
+            <li><a href="#repeated-notifications">If a check is down, I want to keep getting notified until it goes back up. Is that possible?</a></li>
+            <li><a href="#errors-timeouts">Requests to hc-ping.com are intermittently failing with 5xx errors or timeouts. What should I do?</a></li>
+            <li><a href="#team-access">Can I send notifications to more than one person?</a></li>
+            <li><a href="#ip-addresses">Is there a complete and up-to-date list of ping endpoint (hc-ping.com) IP addresses?</a></li>
+            <li><a href="#hchk-io">What is the difference between hchk.io and hc-ping.com in ping URLs?</a></li>
+        </ul>
+    </li>
+    <li>
+        Security
+        <ul>
+            <li><a href="#bug-bounty">Do you have a bug bounty program?</a></li>
+            <li><a href="#pentests">Can you share any formal Penetration Test Reports?</a></li>
+            <li><a href="#encryption">What are your data encryption practices for data at rest and in transit?</a></li>
+            <li><a href="#data-residency">Where is data stored, and how it aligns with applicable data protection laws?</a></li>
+            <li><a href="#dpa">Can you share your Data Processing Agreement (DPA)?</a></li>
+            <li><a href="#certifications">Do you have compliance certifications or attestations, such as ISO 27001 or SOC 2?</a></li>
+            <li><a href="#data-breach">What are your policies and procedures for handling data breaches?</a></li>
+            <li><a href="#sla">Do you offer Service Level Agreements (SLAs)?</a></li>
+        </ul>
+    </li>
+</ul>
+
+<h2>General</h2>
+<h3 id="what-is-healthchecks-io">What is Healthchecks.io?</h3>
+<p>Healthchecks.io is a service for monitoring regularly running tasks such as
+cron jobs. It uses the <a href="https://en.wikipedia.org/wiki/Dead_man%27s_switch">Dead man's switch</a>
+technique: the monitored system must "check in" with Healthchecks.io at regular,
+configurable time intervals. As soon as Healthchecks.io sees a missed check-in, it
+sends you an alert.</p>
+<p>This method of monitoring is also known as "heartbeat monitoring":
+the monitored system sends regular heartbeat signals. Healthchecks.io monitors the
+heartbeats and notifies you when they don't arrive on schedule.</p>
+<h3 id="reliability">How reliable is Healthchecks.io?</h3>
+<p>Healthchecks.io runs on Hetzner bare metal servers, with healthy excess capacity to
+handle traffic spikes (which cron jobs with common schedules are prone to create).</p>
+<p>Our <strong>app servers</strong> are load-balanced, and unhealthy servers are excluded from load
+balancing automatically.</p>
+<p>Our <strong>load balancer servers</strong> are monitored, and unhealthy load balancers are removed from
+DNS rotation automatically.</p>
+<p>Our <strong>PostgreSQL database</strong> has a hot standby, as well as daily encrypted backups
+to AWS S3. The database fail-over is handled manually. The ops team consists of
+a single person, so <strong>multi-hour or even multi-day outages are possible.</strong></p>
+<p>In cases of service disruptions, we post status updates to:</p>
+<ul>
+<li>Our status page: <a href="https://status.healthchecks.io/en/">status.healthchecks.io</a>.</li>
+<li>Our Mastodon account: <a href="https://fosstodon.org/@healthchecks_io">@healthchecks_io@fosstodon.org</a>.</li>
+</ul>
+<h3 id="who-runs-healthchecks-io">Who runs Healthchecks.io?</h3>
+<p>Healthchecks.io is a product of SIA Monkey See Monkey Do, currently
+a one-man software and consulting company. The one man is
+Pēteris Caune, a long time Python developer from Valmiera, Latvia.
+<a href="https://toot.lv/@cuu508">Mastodon</a>,
+<a href="https://github.com/cuu508">GitHub</a>.</p>
+<h3 id="free-for-open-source">Does Healthchecks.io offer discounts for nonprofits or open-source projects?</h3>
+<p>Yes! We offer the Business plan free of charge for nonprofits and open-source projects.
+Please <a href="mailto:&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#104;&#101;&#97;&#108;&#116;&#104;&#99;&#104;&#101;&#99;&#107;&#115;&#46;&#105;&#111;">contact us</a> to get set up.</p>
+<h3 id="self-hosting">Can I self-host this service?</h3>
+<p>Yes! The Healthchecks.io code base is BSD licensed and is developed in
+the open <a href="https://github.com/healthchecks/healthchecks/">on GitHub</a>.
+Self-hosting is a good option if you need to extend the project
+with custom features, if you must run everything in-house for
+compliance  reasons, or if you want to learn about developing and
+deploying Django  web applications. Please note that maintaining
+a production-grade monitoring service is not a fire-and-forget task,
+and in many cases, the hosted option will be more reliable and
+cost-effective.</p>
+<h3 id="cronitor">Should I use Healthchecks.io or Cronitor?</h3>
+<p>It depends :-). To help you decide, we have prepared a
+<a href="/docs/healthchecks_cronitor_comparison/">Healthchecks.io vs Cronitor comparison table</a>.</p>
+<h2>Authentication</h2>
+<h3 id="authentication">What authentication mechanisms does Healthchecks.io support?</h3>
+<p>Healthchecks.io supports signing in via <strong>one-time email link</strong> (you enter your email
+address in the sign-in form, you receive a link in email, you click the link which
+signs you in) and traditional sign-in with <strong>email and and password</strong>.</p>
+<p>You can optionally secure your Healthchecks.io account with two factor authentication.
+Healthchecks.io supports:</p>
+<ul>
+<li>WebAuthn security keys (you can register multiple keys).</li>
+<li>TOTP (time-based codes, supported by Google Authenticator, Aegis, 2FAS, others).</li>
+</ul>
+<h3 id="reset-password">I have lost my password, how can I reset it?</h3>
+<p>If you have lost or forgotten your password, please do the following:</p>
+<ul>
+<li>Go to the <a href="/accounts/login/">Sign-In page</a></li>
+<li>Use the "Email Me a Link" method to sign in. You will receive a one-time sign-in
+  link in your email.</li>
+<li>Once in your account, go to <strong>Account Settings</strong> › <strong>Set Password</strong> to set a
+  new password.</li>
+</ul>
+<p>Please contact us at <a href="mailto:&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#104;&#101;&#97;&#108;&#116;&#104;&#99;&#104;&#101;&#99;&#107;&#115;&#46;&#105;&#111;">&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#104;&#101;&#97;&#108;&#116;&#104;&#99;&#104;&#101;&#99;&#107;&#115;&#46;&#105;&#111;</a>
+in case you need assistance!</p>
+<h3 id="changing-email">Can I change the email address of my Healthchecks.io account?</h3>
+<p>Yes, you can change the account owner's email address: go to
+<strong>Account Settings</strong> &rsaquo; <strong>Email and Password</strong>.
+Note that the "new" email address must be available (i.e., have no
+registered Healthchecks.io account yet).</p>
+<h2>Accounts and Billing</h2>
+<h3 id="ordering">What is the ordering process? Can we get a quote?</h3>
+<p>The ordering on Healthchecks.io is fully self-service – after register for an account
+on Healthchecks.io, navigate to <strong>Account Settings › Billing</strong>, select a plan, and enter
+your payment details. Your payment method will get charged, and a recurring
+subscription will be set up. Every time your payment method is charged you will
+receive a PDF invoice in email.</p>
+<p>We do not provide custom quotes–our pricing is same for all customers, and is available
+on <a href="/pricing/">our public pricing page</a>.</p>
+<h3 id="payment-methods">Can we pay via bank transfer?</h3>
+<p>We do not accept payments via bank transfer.</p>
+<p>We accept card payments (Visa, Master Card, American Express) and PayPal.</p>
+<h3 id="vendor-information">We need you to fill our vendor onboarding form, can you do that?</h3>
+<p>We will not enroll in vendor management platforms and will not fill out
+onboarding forms or questionnaires, but we are happy to provide any needed information
+here on the website. Our vendor information:</p>
+<ul>
+<li>Legal name of organization: SIA Monkey See Monkey Do</li>
+<li>Tax ID: LV44103100701</li>
+<li>Address: Matīsa iela 61A - 20, Rīga, LV-1009, Latvia</li>
+<li>Point of contact: Pēteris Caune, &#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#104;&#101;&#97;&#108;&#116;&#104;&#99;&#104;&#101;&#99;&#107;&#115;&#46;&#105;&#111;, +371-26395493</li>
+<li>Bank information for payments: we do not accept payments by bank transfer</li>
+</ul>
+<p>Any additional details as well as our W-8BEN-E form are available upon request
+via email.</p>
+<h3 id="hobbyist-commercial">Is commercial use of the free Hobbyist plan permitted?</h3>
+<p>The Hobbyist and Supporter plans are intended for individuals who want to monitor
+their personal infrastructure. We do tolerate companies using it commercially but
+expect them to eventually upgrade to the Business or Business Plus plan.</p>
+<h3 id="multiple-accounts">Can I use multiple accounts on Healthchecks.io?</h3>
+<p>Please do not use multiple accounts to get around the limits of the
+Hobbyist and Supporter plans. This will be considered abuse. You will be asked to reduce
+the number of checks or to upgrade to a plan with a higher check limit. In case of no
+action, eventually, your accounts will be deleted.</p>
+<p>Special cases:</p>
+<ul>
+<li><strong>You can use multiple accounts for organizational purposes</strong> (for example, to keep
+  staging and production environments as separated as possible) as long as the total
+  number of checks across your accounts stays below your billing plan's limit. For
+  example, you can have two Hobbyist accounts with 10 checks in each.</li>
+<li><strong>You can have separate accounts for separate legal entities</strong> with separate limits.
+  For example, you can have a Hobbyist account with 20 checks for monitoring your
+  personal stuff and another Hobbyist account with 20 checks for monitoring your
+  company infrastructure. Likewise, if you are <strong>employed by two
+  companies</strong>, you can create a separate account for each company and use it to its full
+  limit. However, suppose two employees from the same company create Hobbyist accounts
+  for work use. In that case, the total number of checks among their accounts
+  <strong>should not exceed 20 since both accounts are ultimately used for the benefit of a
+  single legal entity</strong> (the employing company). <br>
+  A note for consulting agencies and contractors: a consulting agency or a freelance
+  contractor setting up Healthchecks.io accounts on behalf of their customers still
+  counts as the owner of these accounts, unless they transfer the ownership of the
+  accounts to their clients.</li>
+</ul>
+<p>If you are looking to consolidate multiple accounts into one, Healthchecks.io
+has tools to help you:</p>
+<ul>
+<li>You can <a href="/docs/projects_teams/#transferring-checks">transfer individual checks between projects</a> (the ping URL is preserved).</li>
+<li>You can <a href="/docs/projects_teams/#transferring-projects">transfer entire projects between accounts</a>.</li>
+</ul>
+<h3 id="expired-card">What happens if my payment method expires?</h3>
+<p>Healthchecks.io will retry charging your payment method and send weekly
+notifications to the account owner's email address about the billing problem.
+If your subscription remains past due for more than 60 days, Healthchecks.io will
+cancel your subscription and switch your billing plan to Hobbyist.</p>
+<p>If an account is on the Hobbyist plan but exceeds the Hobbyist plan's limits,
+Healthchecks.io will send weekly emails to the account's owner asking to either reduce
+the number of checks in the account or upgrade to a paid plan. In case of no action,
+eventually, Healthchecks.io will delete the account.</p>
+<p>To avoid billing-related disruption to the service:</p>
+<ul>
+<li>Make sure your account is <strong>always set up with a valid payment method</strong>.</li>
+<li>Make sure <strong>the account owner's email address is working</strong> and is being monitored.</li>
+</ul>
+<h3 id="resellers">We are a software reseller, can we purchase on behalf of our client?</h3>
+<p>Healthchecks.io does not have any special accommodations for software reseller
+use cases, and so handling these use cases may be awkward.</p>
+<p>If a reseller registers an account, sets up a paid plan, then hands off the account to
+their client (by changing the account's email address to client's email address) then:</p>
+<ul>
+<li>The client will be able to see the resellers' billing details.</li>
+<li>The reseller will lose access to billing details (and will not be able to update an
+  expiring card, for example).</li>
+</ul>
+<h3 id="transfer-paid-account">I'm leaving the company, how can I transfer my paid account to a colleague?</h3>
+<p>Let's say Alice (alice@example.org) is leaving the company and wants to hand their
+paid account over to their colleague, Bob (bob@example.org). There are two options:</p>
+<p><strong>Option 1:</strong> by changing the email address of the account. Alice logs into their
+Healthchecks.io account, navigates to the <strong>Account Settings</strong> page and uses the
+"Change Email" function. For this to work, the new email address must be
+available (i.e., there must not be an account already registered to bob@example.org).
+If Bob already has an account registered to bob@example.org, this account
+needs to be closed beforehand to free up the email address. Alternatively, consider
+using a shared email address (something like ops@example.org) to hold the account.</p>
+<p><strong>Option 2:</strong> by setting up a paid subscription for Bob's account,
+transferring the project(s), then cancelling the subscription on Alice's account:</p>
+<ul>
+<li>Bob upgrades their account to a paid plan so it has enough quota to hold the checks.</li>
+<li>For each project in Alice's account, Alice uses the <a href="https://healthchecks.io/docs/projects_teams/#transferring-projects">Transfer Project</a>
+  function and selects Bob as the new owner.</li>
+<li>For each project, Bob receives an email message and confirms the ownership change.</li>
+<li>Alice cancels the paid subscription on their account.</li>
+<li>Optionally, Alice can request a partial refund for the remaining time in
+  their cancelled subscription. Write an email to
+  <a href="mailto:&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#104;&#101;&#97;&#108;&#116;&#104;&#99;&#104;&#101;&#99;&#107;&#115;&#46;&#105;&#111;">&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#104;&#101;&#97;&#108;&#116;&#104;&#99;&#104;&#101;&#99;&#107;&#115;&#46;&#105;&#111;</a> to request the refund.</li>
+</ul>
+<h3 id="inactive-accounts">I received an "Inactive Account Notification" email. What is that about?</h3>
+<p>Healthchecks.io sends an email with a subject "Inactive Account Notification"
+when an account has been inactive (no log-ins, no activity in logged-in sessions)
+for over a year. The email asks to log in to prevent the account from being deleted
+after 30 days.</p>
+<p>There are many cases where somebody signs up for an account, uses it for a while,
+then abandons it and does not intend to ever use it again. They also sometimes
+have some forgotten system still sending pings to Healthchecks.io. We are deleting such
+accounts after a period of inactivity for a couple of reasons:</p>
+<ul>
+<li>Data retention: we must not and do not want to hold on to personal data indefinitely.</li>
+<li>Efficiency: keeping the abandoned accounts around increases our storage and compute
+  costs, and adds operational complexity.</li>
+</ul>
+<p>Before deleting an inactive account, we send an email notification to give still active
+users a chance to log in and reset the inactivity timer.</p>
+<h2>Using Healthchecks.io</h2>
+<h3 id="timezones">Why am I receiving alerts a few hours before/after the scheduled time?</h3>
+<p>Look up what timezone your server is using. Make sure that your checks
+on Healthchecks.io are configured with the same timezone. This is important
+because if Healthchecks.io is configured to expect pings at, say, 4:00,
+it also needs to know the time zone – is it 4:00 in <code>Europe/Riga</code> or 4:00 
+in <code>America/Toronto</code>? The time zone on the client system must match the time zone that 
+is  configured for the check on Healthchecks.io, otherwise Healthchecks.io will 
+expect pings at the wrong times. </p>
+<p>If you have recently changed the server's timezone, but have not restarted
+the cron daemon afterward, it might still be using the old timezone.
+Restart the cron daemon.</p>
+<p>Also, check if your server's clock shows correct and accurate time.</p>
+<h3 id="repeated-notifications">If a check is down, I want to keep getting notified until it goes back up. Is this possible?</h3>
+<p>The Healthchecks.io alerts are "one-shot". However, some integrations
+can be configured to re-send or escalate alerts until you acknowledge
+them. If you are integrating Healthchecks with an incident management
+system (PagerDuty, VictorOps, OpsGenie, PagerTree), check the
+available settings there. If you are using the Pushover integration,
+you can configure it to use the "Emergency" priority. Pushover repeats
+emergency notifications every 5 minutes until they are acknowledged.</p>
+<p>Healthchecks also has optional periodic email reminders.
+In <strong>Account Settings</strong> &rsaquo; <strong>Email Reports</strong>,
+you can choose to receive daily or hourly email reminders as long as
+there are any checks down. Healthchecks.io will send these notifications
+for all projects you have access to: the projects you own and the projects
+you have been invited to.</p>
+<h3 id="errors-timeouts">Requests to hc-ping.com are intermittently failing with 5xx errors or timeouts. What should I do?</h3>
+<p>If you notice reliability issues or unexpected HTTP status codes from
+the ping endpoints, please <a href="mailto:&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#104;&#101;&#97;&#108;&#116;&#104;&#99;&#104;&#101;&#99;&#107;&#115;&#46;&#105;&#111;">report the issue to us</a>.
+Include as much of the below diagnostic information as is feasible:</p>
+<ul>
+<li>Details about the issue you are seeing: any error messages,
+  how frequently it is happening, whether you can reproduce the issue
+  from different machines.</li>
+<li>Details about the affected host: its IP address, whether it is behind
+  any firewalls, the ISP or cloud provider used.</li>
+<li>The output of <code>curl -vvv {your-ping-url}</code>.</li>
+</ul>
+<h3 id="team-access">Can I send notifications to more than one person?</h3>
+<p>You can add set up multiple email addresses to receive notifications
+in the <strong>Integrations</strong> page. For example, you can add the
+email address of your ticketing system, so a new ticket gets created when
+a check goes down.</p>
+<p>You can also invite your team members to your projects
+in <strong>Settings</strong> &rsaquo; <strong>Team Access</strong>. In addition
+to receiving notifications, invited team members will be able to access
+your account, see the list of checks, inspect ping logs, set up
+additional notification methods etc. They will not be able to access
+your account's billing settings.</p>
+<h3 id="ip-addresses">Is there a complete and up-to-date list of ping endpoint (hc-ping.com) IP addresses?</h3>
+<p>Yes, we publish the current IP addresses as plain text files here:</p>
+<p><a href="https://healthchecks.io/ipv4.txt">https://healthchecks.io/ipv4.txt</a></p>
+<p><a href="https://healthchecks.io/ipv6.txt">https://healthchecks.io/ipv6.txt</a></p>
+<p>In case of planned upgrades, before adding new IP addresses to DNS rotation we will
+update the above files and notify account owners via email <strong>at least a week in
+advance</strong>. In case of outages, if we lose access to current IPs, we may
+introduce new IPs without advance notice.</p>
+<p>Note: these are the IP addresses that the hc-ping.com domain can resolve
+to when clients make HTTP requests to ping endpoints. Healthchecks.io uses
+<strong>a different set of IP addresses for making outbound HTTP requests</strong> (for example,
+when using webhook integrations). These IP addresses are currently not published.</p>
+<h3 id="hchk-io">What is the difference between hchk.io and hc-ping.com in ping URLs?</h3>
+<p><strong>hc-ping.com</strong> and <strong>hchk.io</strong> are the hostnames we use for ping URLs.
+Healthchecks.io originally used the hchk.io hostname only. In June 2018, due to .io TLD
+stability concerns, we registered hc-ping.com and started to use it in the website UI,
+in the pinging examples, in the documentation, etc.</p>
+<p>From functional perspective, the hc-ping.com and hchk.io hostnames are
+interchangeable. You can replace "hchk.io" with "hc-ping.com" in any ping URL
+and it will work the same.</p>
+<p>hc-ping.com is the preferred hostname for ping URLs, but the hchk.io-based URLs still
+work and can be used. If the usage of the hchk.io hostname drops to a very low level,
+we may decide to decommission this domain. In that case, we will notify any affected
+users at least one year in advance.</p>
+<h2 id="security">Security</h2>
+<h3 id="bug-bounty">Do you have a bug bounty program?</h3>
+<p>We do not have a bug bounty program, and do not pay bounties for reported
+bugs, but will be very grateful if you report any discovered security issues to
+<a href="mailto:&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#104;&#101;&#97;&#108;&#116;&#104;&#99;&#104;&#101;&#99;&#107;&#115;&#46;&#105;&#111;">&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#104;&#101;&#97;&#108;&#116;&#104;&#99;&#104;&#101;&#99;&#107;&#115;&#46;&#105;&#111;</a>.</p>
+<h3 id="pentests">Can you share any formal Penetration Test Reports?</h3>
+<p>We have not performed any formal penetration tests.</p>
+<h3 id="encryption">What are your data encryption practices for data at rest and in transit?</h3>
+<ul>
+<li>Data is encrypted in transit from clients to servers (HTTPS), and internally between
+  our servers (Wireguard).</li>
+<li>Data is not encrypted at rest on the database servers. Our databases run on
+  Hetzner's bare-metal servers, Hetzner is
+  <a href="https://www.hetzner.com/unternehmen/zertifizierung">ISO 27001 certified hosting provider</a>.</li>
+<li>Database backups are encrypted with gpg. Our subprocessors do not have access to the
+  encryption key and cannot decrypt the backups.</li>
+</ul>
+<h3 id="data-residency">Where is data stored, and how it aligns with applicable data protection laws?</h3>
+<p>We process and store data on Hetzner servers located in Germany.</p>
+<p>SIA Monkey See Monkey Do, the company running Healthchecks.io, is registered in Latvia. GDPR applies to us.</p>
+<h3 id="dpa">Can you share your Data Processing Agreement (DPA)?</h3>
+<p>Data Processing Agreement is a contract between a controller and a processor.
+As a controller, we have DPAs with our processors, but we do not sign DPAs with our
+customers.</p>
+<p>Here are the types of personal data we process:</p>
+<ul>
+<li>Basic account information: email address, password, timezone.</li>
+<li>Billing information.</li>
+<li>Credentials for notification services (for example, a phone number to send
+  SMS notifications to).</li>
+<li>Automatically collected log information such as IP addresses when browsers access our
+  website.</li>
+</ul>
+<p>All of the above information is about our customers, not our customers' customers.
+Hence our role in terms of GDPR is a controller, not a processor.</p>
+<p>Note: customers can include arbitrary data in API requests to our services. They could
+technically include personal data, including personal data of their own customers, in
+these requests. They service is not intended to be used this way. Do not send personal
+data in API requests.</p>
+<p>Documentation regarding data privacy:</p>
+<ul>
+<li><a href="/privacy/">Our Privacy Policy</a>, includes data retention
+   policy, sub-processor list.</li>
+<li><a href="/legal/data_breach_policy/">Our Data Breach Policy</a></li>
+</ul>
+<h3 id="certifications">Do you have compliance certifications or attestations, such as ISO 27001 or SOC 2?</h3>
+<p>We have no compliance certifications or attestations.</p>
+<h3 id="data-breach">What are your policies and procedures for handling data breaches?</h3>
+<p>See our <a href="https://healthchecks.io/legal/data_breach_policy/">Data Breach Policy here</a>.</p>
+<h3 id="sla">Do you offer Service Level Agreements (SLAs)?</h3>
+<p>We do not offer to sign SLAs.</p></div>
+    </div>
+</div>
+
+    </div>
+    
+
+    <footer class="footer">
+        <div class="container">
+            <ul>
+                <li class="hidden-xs">&copy; 2015-2026 SIA Monkey See Monkey Do</li>
+                <li><a href="/terms/">Terms</a></li>
+                <li><a href="/privacy/">Privacy</a></li>
+                
+                <li><a href="/pricing/">Pricing</a></li>
+                
+                <li><a href="/faq/">FAQ</a></li>
+                <li><a href="/docs/api/">API</a></li>
+                <li><a href="https://blog.healthchecks.io">Blog</a></li>
+                <li class="hidden-xs"><a href="/about/">Contact</a></li>
+                <li><a href="https://status.healthchecks.io/">Status</a></li>
+            </ul>
+        </div>
+    </footer>
+    
+    
+
+    
+
+    
+    <script src="/static/CACHE/js/output.5485f1af1898.js"></script>
+    
+
+    
+<script src="/static/CACHE/js/output.9132cc09a9a1.js"></script>
+
+</body>
+</html>

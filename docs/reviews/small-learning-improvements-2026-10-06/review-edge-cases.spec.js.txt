@@ -1,0 +1,95 @@
+import { test, expect } from '@playwright/test';
+import { startStaticAppServer } from './helpers/static-app-server.js';
+
+let server;
+test.beforeAll(async () => { server = await startStaticAppServer(); });
+test.afterAll(async () => server.close());
+
+async function enter(page, area = 'homework') {
+  await page.goto(server.url);
+  await page.evaluate(area => { studentName = 'Uavhengig kontroll'; showMainApp(); showPage(area); }, area);
+}
+
+test('inspect standard-category handoffs including alternatives and normalized row whitespace', async ({ page }) => {
+  await enter(page);
+  const results = await page.evaluate(() => {
+    const snapshot = JSON.stringify(cards);
+    const categories = Object.keys(getCategories());
+    return categories.map(category => {
+      cards = JSON.parse(snapshot);
+      activeAssignment = null;
+      const assignment = buildTeacherAssignmentPackage({ assignmentTitle: category, vocabularyCategories: [category] });
+      const result = importAssignmentPackage(assignment);
+      return { category, packageWords: assignment.vocabulary.length, importedWords: result.importedWords, resolved: resolveAssignmentVocabularyCards().length, feedback: getAssignmentImportFeedback(result) };
+    }).filter(result => result.importedWords || result.packageWords !== result.resolved);
+  });
+  console.log('STANDARD_CATEGORY_HANDOFF_ANOMALIES', JSON.stringify(results));
+});
+
+test('inspect new imports with omitted categories and slash alternatives', async ({ page }) => {
+  await enter(page);
+  const results = await page.evaluate(() => {
+    return [
+      { name: 'category missing', vocabulary: [{ norsk: 'egen kontroll', spansk: 'control propio' }] },
+      { name: 'category whitespace', vocabulary: [{ norsk: 'egen kontroll 2', spansk: 'control propio 2', category: '  Tema A  ' }] },
+      { name: 'slash alternatives', vocabulary: [{ norsk: 'å gå / å dra', spansk: 'ir', category: 'review-custom' }] }
+    ].map(({ name, vocabulary }) => {
+      const result = importAssignmentPackage({ schemaVersion: 'assignment-v1', id: name, assignmentTitle: name, vocabulary });
+      return { name, imported: result.importedWords, resolved: resolveAssignmentVocabularyCards().length, feedback: getAssignmentImportFeedback(result) };
+    });
+  });
+  console.log('CUSTOM_HANDOFF_RESULTS', JSON.stringify(results));
+});
+
+test('listen during questions then cancel and accept a top-nav exit', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await enter(page, 'dictation');
+  await page.evaluate(() => startListeningStory('carmen-madrid-a0'));
+  await page.locator('#listeningStoryAudio').evaluate(audio => audio.play());
+  await page.locator('#listeningStoryStartBtn').click();
+  await page.locator('input[name=listeningStoryAnswer]').first().check();
+  await page.locator('#listeningQuestionAudio').evaluate(audio => audio.play());
+  const before = await page.evaluate(() => { window.previousReviewAudio = document.getElementById('listeningQuestionAudio'); return listeningState.selectedOptionId; });
+  page.once('dialog', dialog => dialog.dismiss());
+  await page.locator('#navHome').click();
+  expect(await page.evaluate(() => listeningState.selectedOptionId)).toBe(before);
+  expect(await page.evaluate(() => window.previousReviewAudio.paused)).toBe(false);
+  page.once('dialog', dialog => dialog.accept());
+  await page.locator('#navHome').click();
+  expect(await page.evaluate(() => window.previousReviewAudio.paused)).toBe(true);
+  expect(await page.evaluate(() => listeningState)).toBeNull();
+});
+
+test('handoff instructions match multiple grammar buttons and absent clipboard API works', async ({ page }) => {
+  await enter(page);
+  const instructions = await page.evaluate(() => {
+    const assignment = buildTeacherAssignmentPackage({ assignmentTitle: 'To grammatikktemaer', grammarTopics: ['articles', 'gustar'] });
+    importAssignmentPackage(assignment); renderHomeworkPage();
+    const text = getAssignmentPupilInstructions(assignment);
+    document.getElementById('assignmentPupilInstructions').value = text;
+    document.getElementById('assignmentPupilHandoff').hidden = false;
+    document.getElementById('assignmentBuilder').open = true;
+    Object.defineProperty(navigator, 'clipboard', { configurable: true, value: undefined });
+    return text;
+  });
+  for (const name of await page.locator('#activeAssignmentPanel button').allTextContents()) expect(instructions).toContain(name);
+  await page.getByRole('button', { name: 'Kopier elevinstruksen', exact: true }).click();
+  await expect(page.locator('#assignmentInstructionsStatus')).toContainText('kopier den manuelt');
+});
+
+test('inspect computed colors of the new builder validation message', async ({ page }) => {
+  await enter(page);
+  await page.locator('#assignmentBuilder > summary').click();
+  await page.locator('#builderVocabMinutes').fill('10');
+  await page.getByRole('button', { name: 'Last ned leksepakke', exact: true }).click();
+  const colors = await page.locator('#builderVocabError').evaluate(element => {
+    const style = getComputedStyle(element);
+    const backgrounds=[];
+    for(let current=element; current; current=current.parentElement) backgrounds.push({ tag: current.tagName, class: current.className, color: getComputedStyle(current).backgroundColor });
+    const canvas=document.createElement('canvas'); canvas.width=canvas.height=1;
+    const context=canvas.getContext('2d'); context.fillStyle=style.color; context.fillRect(0,0,1,1);
+    return { color: style.color, rgb: [...context.getImageData(0,0,1,1).data], font: style.fontSize, backgrounds };
+  });
+  console.log('BUILDER_ERROR_COLORS', JSON.stringify(colors));
+  await page.screenshot({ path: '/private/tmp/spansk123-review-builder-errors.png', fullPage: true });
+});

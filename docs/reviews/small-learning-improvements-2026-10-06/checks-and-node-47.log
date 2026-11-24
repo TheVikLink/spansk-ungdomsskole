@@ -1,0 +1,102 @@
+
+> spansk-ungdomsskole@0.1.0 test:all
+> npm run check:vocabulary && npm run check:content && npm run check:content-accuracy && npm run check:grammar-lessons && npm run check:diagnosis-catalog && node --test tests/*.test.mjs && npm run check:learning-catalog && npm run check:tailwind && npm run check:offline-build && npm run test:browser
+
+
+> spansk-ungdomsskole@0.1.0 check:vocabulary
+> node scripts/sync-vocabulary.mjs --check
+
+Verified 522 vocabulary entries from data/vocabulary-canonical-review.json.
+
+> spansk-ungdomsskole@0.1.0 check:content
+> node scripts/check-content-quality.mjs
+
+Content quality check passed (16 corrections protected).
+
+> spansk-ungdomsskole@0.1.0 check:content-accuracy
+> node scripts/check-content-accuracy.mjs
+
+Expert review not performed: translation idiomaticity, distractor validity in context.
+Scope: targeted Norwegian-context n-for-ñ checks; corpus checks measure consistency, not independent semantic correctness.
+Content accuracy check passed (16 checks: 13 mechanical + 3 corpus-consistency, 522 glossary items, 135 grammar exercises, 34 verbs, 28 puzzles).
+
+> spansk-ungdomsskole@0.1.0 check:grammar-lessons
+> node scripts/check-grammar-lessons.mjs
+
+Grammar lesson catalog OK: 8 lessons, 8 published
+
+> spansk-ungdomsskole@0.1.0 check:diagnosis-catalog
+> node scripts/check-diagnosis-catalog.mjs
+
+Diagnosis catalog check passed (12 questions).
+✔ Shift plus held question/exclamation keys inserts inverted punctuation (8.637209ms)
+✔ a quick punctuation press stays ordinary even when Shift is released first (2.427834ms)
+✔ long press preserves the caret after following letters and scrolls to the visible end (5.193167ms)
+✔ blur cancels a pending conversion and modifiers/read-only fields are untouched (8.62475ms)
+✔ holding a shifted letter preserves normal uppercase and editing in the middle retains its caret (2.425708ms)
+✔ every listening and dictation URL matches an exact tracked filename on case-sensitive systems (48.203167ms)
+✔ the real audit rejects missing ñ in a known Norwegian meaning context (121.028208ms)
+✔ known ñ forms are accepted, including punctuation, uppercase and decomposed Unicode (1.08175ms)
+✔ context distinguishes genuine n words and names from missing ñ (0.206333ms)
+✔ all documented meaning families catch targeted mutations, not general n replacement (0.373ms)
+✔ a green corpus-backed audit still discloses that expert review did not run (101.839375ms)
+✔ builds stable IDs from the complete glossary pair and direction (3.010584ms)
+✔ normalization is deterministic but does not erase ñ or accents (0.123ms)
+✔ approved candidates require a concrete pair and preserve canonical answers (37.084625ms)
+✔ report output is byte-stable and includes rejected false positives (1.744417ms)
+✔ automatically approves only independent, unambiguous semantic evidence (0.172708ms)
+✔ adapts supported source snapshots and rejects unknown sources (0.416ms)
+✔ merges generated alternatives without removing existing answers (0.338375ms)
+✔ preserves existing canonical metadata during regeneration (0.085417ms)
+✔ weak single-source candidates never auto-approve risky examples (0.070375ms)
+✔ does not generate alternatives for an ambiguous glossary key (0.170709ms)
+✔ adapts Ordbank Bokmål lemma data as lexical evidence, not translation evidence (0.147375ms)
+✔ parses Norsk ordvev words and wordsenses into synset evidence (0.200708ms)
+✔ indexes Ordvev senses by normalized Norwegian lemma (0.081584ms)
+✔ adapts Wiktionary translations as non-automatic candidate evidence (0.116042ms)
+✔ augments a Cygnet candidate with independent Ordvev lexical support (0.128208ms)
+✔ recording feedback has explicit vocabulary answer coverage (5.049625ms)
+✔ extracts cross-lingual candidates only when Norwegian and Spanish share synset and POS (124.771708ms)
+✔ extracts the diagnosis catalog from the bounded inline data block (2.156333ms)
+✔ rejects executable content in the diagnosis catalog block (0.44625ms)
+✔ home review counts words once across directions and uses the actual review queue (7.696584ms)
+✔ the existing apply command reads review edits and removals instead of the stale canonical copy (121.346042ms)
+✔ every standard card uses exactly its reviewed answers in both directions (139.172875ms)
+✔ the level test and mixed-quiz catalog use reviewed answers for their vocabulary questions (10.979583ms)
+✔ vocabulary answer labels and feedback always show an accepted reviewed answer (131.564625ms)
+✔ standard card backs resolve stale labels by ID and preserve the exact reviewed answer (13.0745ms)
+✔ confirmed historical country and number cards migrate without losing progress or changing custom words (54.331334ms)
+✔ ambiguous greeting hints distinguish the answer words and ignore identical answers (15.598833ms)
+✔ number select options use close reviewed numbers in both directions and vary the correct position (27.623917ms)
+✔ select options exclude accepted alternatives and unrelated categories; sparse pools use recall (14.029125ms)
+✔ removed standard cards leave practice but survive reload and the existing backup payload (20.711958ms)
+✔ later review removals, renames and reinstatements preserve stable card progress across backup import (48.651625ms)
+✔ custom words never inherit an unrelated standard answer through the Norwegian prompt (12.281458ms)
+✔ real quiz candidates retain every reviewed answer, including both ways to say voy a hablar (74.2925ms)
+✔ check mode detects stale derived files without overwriting them, and synchronization is idempotent (452.783834ms)
+✔ invalid review data cannot partially overwrite either output (436.855875ms)
+✔ review shortcuts require a revealed answer before choosing Bra or Igjen (3.374334ms)
+ℹ tests 47
+ℹ suites 0
+ℹ pass 47
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1878.287834
+
+> spansk-ungdomsskole@0.1.0 check:learning-catalog
+> node scripts/check-learning-catalog.mjs
+
+Learning catalog check passed (64 skills, 4 words, 12 diagnosis questions).
+
+> spansk-ungdomsskole@0.1.0 check:tailwind
+> node scripts/check-tailwind-adoption.mjs
+
+Tailwind adoption checks passed
+
+> spansk-ungdomsskole@0.1.0 check:offline-build
+> node scripts/build-offline.mjs --check
+
+Offline build f90265858275c468 matches app assets.
+

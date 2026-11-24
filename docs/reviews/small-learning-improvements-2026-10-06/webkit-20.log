@@ -1,0 +1,29 @@
+
+Running 20 tests using 1 worker
+
+(node:59690) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:59690) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [webkit] › tests/small-learning-improvements.spec.js:28:1 › builder starts with explicit empty choices and keeps teacher choices when reopened (2.0s)
+  ✓   2 [webkit] › tests/small-learning-improvements.spec.js:40:3 › builder exports and pupil imports vocabulary with zero or explicit targets (1.6s)
+  ✓   3 [webkit] › tests/small-learning-improvements.spec.js:40:3 › builder exports and pupil imports verbs with zero or explicit targets (1.6s)
+  ✓   4 [webkit] › tests/small-learning-improvements.spec.js:40:3 › builder exports and pupil imports grammar with zero or explicit targets (1.5s)
+  ✓   5 [webkit] › tests/small-learning-improvements.spec.js:40:3 › builder exports and pupil imports vocabulary+verbs+grammar with zero or explicit targets (1.8s)
+  ✓   6 [webkit] › tests/small-learning-improvements.spec.js:77:1 › builder announces section errors and focuses the missing choice without rewriting targets (1.3s)
+  ✓   7 [webkit] › tests/small-learning-improvements.spec.js:94:3 › listening replays without losing answers and stops on navigation at 390px (2.9s)
+  ✓   8 [webkit] › tests/small-learning-improvements.spec.js:94:3 › listening replays without losing answers and stops on navigation at 1280px (2.2s)
+  ✓   9 [webkit] › tests/small-learning-improvements.spec.js:129:1 › question-phase unavailable audio announces failure without resetting a submitted answer (1.2s)
+  ✓  10 [webkit] › tests/small-learning-improvements.spec.js:151:3 › grammar introduction and bottom actions start identical focused practice at 390px (899ms)
+  ✓  11 [webkit] › tests/small-learning-improvements.spec.js:151:3 › grammar introduction and bottom actions start identical focused practice at 1280px (764ms)
+  ✓  12 [webkit] › tests/small-learning-improvements.spec.js:176:1 › all pronoun meanings support three tenses without changing conjugation or grading (1.0s)
+  ✓  13 [webkit] › tests/small-learning-improvements.spec.js:211:5 › truthful next review dates › Start shows actual availability at after midnight, preserving imported progress (615ms)
+  ✓  14 [webkit] › tests/small-learning-improvements.spec.js:211:5 › truthful next review dates › Start shows actual availability at exact midnight, preserving imported progress (728ms)
+  ✓  15 [webkit] › tests/small-learning-improvements.spec.js:211:5 › truthful next review dates › Start shows actual availability at spring DST, preserving imported progress (489ms)
+  ✓  16 [webkit] › tests/small-learning-improvements.spec.js:211:5 › truthful next review dates › Start shows actual availability at autumn DST, preserving imported progress (495ms)
+  ✓  17 [webkit] › tests/small-learning-improvements.spec.js:237:3 › truthful next review dates › fresh, error-only and malformed review dates get honest distinct guidance (589ms)
+  ✓  18 [webkit] › tests/small-learning-improvements.spec.js:267:3 › homework import explains existing words and repeated imports preserve progress (543ms)
+  ✓  19 [webkit] › tests/small-learning-improvements.spec.js:267:3 › homework import explains new words and repeated imports preserve progress (698ms)
+  ✓  20 [webkit] › tests/small-learning-improvements.spec.js:267:3 › homework import explains mixed words and repeated imports preserve progress (639ms)
+
+  20 passed (30.3s)

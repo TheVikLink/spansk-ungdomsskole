@@ -1,0 +1,67 @@
+[
+  {
+    "file": "supabase-dpa-2026-08-01.html",
+    "source": "https://supabase.com/legal/customer-resources/data-processing-addendum",
+    "retrievedDate": "2026-11-09",
+    "retrieved": true,
+    "sha256": "dde0ba532d9967990194eee42c7a72df090b82a5895c39ba94d5bd63a8b7bfc1",
+    "bytes": 121678,
+    "accountAcceptanceVerified": false
+  },
+  {
+    "file": "supabase-underdatabehandlere-2026-10-12.pdf",
+    "source": "https://supabase.com/legal/subprocessor-list/October-12-2026.pdf",
+    "retrievedDate": "2026-11-09",
+    "retrieved": true,
+    "sha256": "a93d6e9a72b27f4e628a9674973dda319ecb712ab5328915747eb2e80d338e3d",
+    "bytes": 66727,
+    "accountAcceptanceVerified": false
+  },
+  {
+    "file": "vercel-dpa-2026-03-17.html",
+    "source": "https://vercel.com/legal/dpa",
+    "retrievedDate": "2026-11-09",
+    "retrieved": true,
+    "sha256": "554ad0513c69baaa6b08ed254dc2502f74f98a43684d53c82d4f66f43ae30b37",
+    "bytes": 803649,
+    "accountAcceptanceVerified": false
+  },
+  {
+    "file": "vercel-trust-center-2026-11-09.html",
+    "source": "https://security.vercel.com/",
+    "retrievedDate": "2026-11-09",
+    "retrieved": true,
+    "sha256": "a24470e358053fa0107e9a05d21cbe1a6f809af0842b8b1bff40eedc1cece03b",
+    "bytes": 584471,
+    "accountAcceptanceVerified": false
+  },
+  {
+    "file": "healthchecks-personvern-2026-11-09.html",
+    "source": "https://healthchecks.io/privacy/",
+    "retrievedDate": "2026-11-09",
+    "retrieved": true,
+    "sha256": "0393c1cee2e4a1862b53d8d236af720b9452241d115d7d242c2c2795a382b283",
+    "bytes": 17940,
+    "accountAcceptanceVerified": false
+  },
+  {
+    "file": "healthchecks-faq-2026-11-09.html",
+    "source": "https://healthchecks.io/docs/faq/",
+    "retrievedDate": "2026-11-09",
+    "retrieved": true,
+    "sha256": "d0d01f68a1dbcc738e9fc80df71f2344eb2976877f185523715c32202a8879d0",
+    "bytes": 33279,
+    "accountAcceptanceVerified": false
+  },
+  {
+    "file": "vercel-underdatabehandlere-avskrift-2026-11-09.csv",
+    "source": "https://security.vercel.com/?itemName=legal&itemUid=e3fae2ca-94a9-416b-b577-5c90e382df57",
+    "retrievedDate": "2026-11-09",
+    "retrieved": true,
+    "method": "Transcription of 28 rows in rendered public table; not vendor CSV download",
+    "displayedLastUpdated": "8/21/26",
+    "sha256": "7f6faf727113cc46bd9a7410a6b126f9aa10326cd6cc9acc041bc2479c0adc2c",
+    "bytes": 1774,
+    "accountAcceptanceVerified": false
+  }
+]

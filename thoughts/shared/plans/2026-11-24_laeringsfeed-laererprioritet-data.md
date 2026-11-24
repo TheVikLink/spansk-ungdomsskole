@@ -1,0 +1,11 @@
+# Personvern og samtidighet for lærerprioritert øving
+
+Tilhører [planen for læringsfeeden](2026-11-24_laeringsfeed-som-startside.md).
+
+Prioriteten legger ett valgfritt utløpstidspunkt på en publisert klasseoppgave. Formålet er å løfte oppgaven fram i den timen læreren velger. Klassen og mottakerne følger oppgaven som allerede er opprettet. Elevens personlige anbefalinger, frie øving og lokale fremgang behandles på enheten. API-et bruker eksisterende, minimerte oppgaveresultater til å fjerne kortet når den aktuelle eleven har fullført.
+
+Aktive lærere for klassen kan endre prioriteten etter vanlig økt- og CSRF-kontroll. Elever får tidspunktet gjennom eksisterende tilgang til sin tildelte oppgave. Det vises fram til utløp, senest 24 timer etter at det ble satt. Ved fjerning, erstatning eller stenging slettes verdien. Et utløpt tidspunkt slutter umiddelbart å være tilgjengelig i API-et. Verdien kan ligge på oppgaven til neste endring eller ordinær sletting av oppgaven. Ingen historikk over prioriteringer lagres. Skolens elevuttrekk omfatter egne resultater etter eksisterende regler, mens utløpstidspunktet er metadata som læreren velger felles for klassen. Elevsletting følger eksisterende prosess for resultat og mottakertilknytning.
+
+Ved to samtidige lærerprioriteringer i samme klasse låses klasseraden før oppgaven endres. Hele erstatningen skjer i én transaksjon, og en unik indeks begrenser lagringen til ett tidspunkt per klasse. En samtidig avslutning av oppgaven skal enten stenge en allerede festet oppgave og slette verdien, eller gjøre festing utilgjengelig. En ugyldig eller utilgjengelig ny oppgave skal la den eksisterende prioriteten stå.
+
+Verifiser at en elev utenfor klassen ikke får oppgaven eller tidspunktet. Prøv også gjenbruk av en gammel økt etter tilbakekall. Bekreft at to forskjellige elever i klassen kan få hvert sitt resultat etter at én elev fullfører, og at utløp eller fjerning lar leksefristen og ordinær tilgang gjelde videre. Bruk syntetiske data ved migrerings- og tilgangstesting. Migreringen legger til en valgfri kolonne og en indeks. For å rulle tilbake appen kan forrige versjon kjøres med de ekstra databasefeltene. Ved eventuell fjerning av skjemaendringen må ingen ny versjon bruke kolonnen.

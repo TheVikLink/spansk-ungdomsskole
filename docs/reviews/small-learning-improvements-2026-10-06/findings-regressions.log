@@ -1,0 +1,67 @@
+
+Running 2 tests using 1 worker
+
+(node:60613) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:60613) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+ACTUAL_BINDEORD_IMPORT {"before":{"count":522,"existing":22},"after":{"count":527,"available":22},"message":"Leksepakken \"Ukeslekse i spansk\" er importert. 22 gloser i leksepakken er klare. 5 nye gloser lagt til. 17 gloser finnes allerede i ordlisten og brukes i leksen."}
+  ✘  1 [chromium] › tests/review-findings.spec.js:13:1 › R1: feedback counts all reused Bindeord cards from an actual teacher download (6.0s)
+(node:60723) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:60723) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  2 [chromium] › tests/review-findings.spec.js:39:1 › R2: each new builder error meets normal-text contrast minimum (508ms)
+
+
+  1) [chromium] › tests/review-findings.spec.js:13:1 › R1: feedback counts all reused Bindeord cards from an actual teacher download 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoContainText[2m([22m[32mexpected[39m[2m)[22m failed
+
+    Locator: locator('#assignmentImportStatus')
+    Expected substring: [32m"[7m22[27m gloser finnes allerede i ordlisten"[39m
+    Received string:    [31m"[7mLeksepakken \"Ukeslekse i spansk\" er importert. 22 gloser i leksepakken er klare. 5 nye gloser lagt til. 17[27m gloser finnes allerede i ordlisten[7m og brukes i leksen.[27m"[39m
+    Timeout: 5000ms
+
+    Call log:
+    [2m  - Expect "toContainText" with timeout 5000ms[22m
+    [2m  - waiting for locator('#assignmentImportStatus')[22m
+    [2m    14 × locator resolved to <p role="status" aria-atomic="true" id="assignmentImportStatus" class="homework-hint text-emerald-500">Leksepakken "Ukeslekse i spansk" er importert. 22…</p>[22m
+    [2m       - unexpected value "Leksepakken "Ukeslekse i spansk" er importert. 22 gloser i leksepakken er klare. 5 nye gloser lagt til. 17 gloser finnes allerede i ordlisten og brukes i leksen."[22m
+
+
+      33 |     console.log('ACTUAL_BINDEORD_IMPORT',JSON.stringify({before,after,message:await pupil.locator('#assignmentImportStatus').textContent()}));
+      34 |     await pupil.screenshot({ path: '/private/tmp/spansk123-review-bindeord-import.png', fullPage: true });
+    > 35 |     await expect(pupil.locator('#assignmentImportStatus')).toContainText('22 gloser finnes allerede i ordlisten');
+         |                                                            ^
+      36 |   } finally { await context.close(); }
+      37 | });
+      38 |
+        at /private/tmp/spansk123-review.zLbNpM/tests/review-findings.spec.js:35:60
+
+    Error Context: ../spansk123-review-findings-results/tests-review-findings-R1-f-38f95--an-actual-teacher-download-chromium/error-context.md
+
+    Error Context: ../spansk123-review-findings-results/tests-review-findings-R1-f-38f95--an-actual-teacher-download-chromium/error-context.md
+
+  2) [chromium] › tests/review-findings.spec.js:39:1 › R2: each new builder error meets normal-text contrast minimum 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBeGreaterThanOrEqual[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected: >= [32m4.5[39m
+    Received:    [31m2.04294088673836[39m
+
+      51 |     return (Math.max(foreground,background)+.05)/(Math.min(foreground,background)+.05);
+      52 |   });
+    > 53 |   expect(contrast).toBeGreaterThanOrEqual(4.5);
+         |                    ^
+      54 | });
+      55 |
+        at /private/tmp/spansk123-review.zLbNpM/tests/review-findings.spec.js:53:20
+
+    Error Context: ../spansk123-review-findings-results/tests-review-findings-R2-e-70f50-ormal-text-contrast-minimum-chromium/error-context.md
+
+    Error Context: ../spansk123-review-findings-results/tests-review-findings-R2-e-70f50-ormal-text-contrast-minimum-chromium/error-context.md
+
+  2 failed
+    [chromium] › tests/review-findings.spec.js:13:1 › R1: feedback counts all reused Bindeord cards from an actual teacher download 
+    [chromium] › tests/review-findings.spec.js:39:1 › R2: each new builder error meets normal-text contrast minimum 
