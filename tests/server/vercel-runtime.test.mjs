@@ -2,7 +2,9 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import express from 'express';
 import { createServer } from 'node:http';
-import { mkdtemp, mkdir, readFile, readdir, rm, writeFile } from 'node:fs/promises';
+import { copyFile, mkdtemp, mkdir, readFile, readdir, rm, symlink, writeFile } from 'node:fs/promises';
+import { spawnSync } from 'node:child_process';
+import { fileURLToPath } from 'node:url';
 import os from 'node:os';
 import path from 'node:path';
 
@@ -157,5 +159,37 @@ test('Vercel public build stages only the explicit public assets and keeps priva
     assert.equal(await readFile(path.join(output, 'index.html'), 'utf8'), '<h1>Local app</h1>');
   } finally {
     await rm(root, { recursive: true, force: true });
+  }
+});
+
+test('build-culture-preview skips docs/kultur previews on Vercel when docs/ is excluded, while --check still enforces docs/', async () => {
+  const repoRoot = fileURLToPath(new URL('../../', import.meta.url));
+  const scriptPath = path.join(repoRoot, 'scripts/build-culture-preview.mjs');
+  const tempDir = await mkdtemp(path.join(os.tmpdir(), 'spansk-vercel-culture-'));
+  try {
+    await Promise.all([
+      symlink(path.join(repoRoot, 'data'), path.join(tempDir, 'data')),
+      symlink(path.join(repoRoot, 'images'), path.join(tempDir, 'images')),
+      copyFile(path.join(repoRoot, 'index.html'), path.join(tempDir, 'index.html')),
+    ]);
+
+    const vercelBuild = spawnSync(process.execPath, [scriptPath], {
+      cwd: tempDir,
+      env: { ...process.env, VERCEL: '1' },
+      encoding: 'utf8',
+    });
+    assert.equal(vercelBuild.status, 0, vercelBuild.stderr);
+    assert.match(vercelBuild.stdout, /docs\/kultur previews skipped/u);
+    const entries = await readdir(tempDir);
+    assert.equal(entries.includes('docs'), false, 'docs/ must not be created when skipped on Vercel');
+
+    const checkRun = spawnSync(process.execPath, [scriptPath, '--check'], {
+      cwd: tempDir,
+      env: { ...process.env, VERCEL: '1' },
+      encoding: 'utf8',
+    });
+    assert.notEqual(checkRun.status, 0, '--check must fail when docs/kultur/ is missing');
+  } finally {
+    await rm(tempDir, { recursive: true, force: true });
   }
 });

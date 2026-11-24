@@ -3,10 +3,15 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createHash } from 'node:crypto';
 
-const previewAssetVersion = createHash('sha256')
-  .update(readFileSync('docs/kultur/jul-spania-chile/preview.css'))
-  .update(readFileSync('docs/kultur/jul-spania-chile/preview.js'))
-  .digest('hex').slice(0, 12);
+let cachedPreviewAssetVersion = null;
+function getPreviewAssetVersion() {
+  if (cachedPreviewAssetVersion) return cachedPreviewAssetVersion;
+  cachedPreviewAssetVersion = createHash('sha256')
+    .update(readFileSync('docs/kultur/jul-spania-chile/preview.css'))
+    .update(readFileSync('docs/kultur/jul-spania-chile/preview.js'))
+    .digest('hex').slice(0, 12);
+  return cachedPreviewAssetVersion;
+}
 
 const esc = value => String(value).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const check = (value, message) => { if (!value) throw new Error(message); };
@@ -188,22 +193,27 @@ export function renderCulturePreview(pack, role = 'student') {
     <section class="activity" id="word-recall"><h2 id="word-recall-title" tabindex="-1">${esc(pack.recall.title || 'Juleord du kan bruke videre')}</h2><div class="culture-screen-only"><p>Øv på de ti ordene fra teksten. Prøv å huske svaret før du snur kortet.</p><a class="button learn-vocabulary" href="../../../index.html#gloser/${pack.id}">${esc(pack.recall.buttonLabel || 'Lær juleglosene')}</a><p class="return-note">Valgfritt glosesett: ${esc(pack.title)}. ${esc(pack.recall.returnMessage)}</p><details class="recall-words"><summary>Se de ti ordene</summary>${wordTable(pack.vocabulary)}</details></div><div class="culture-print-only"><p>${esc(pack.recall.instruction)}</p>${wordTable(pack.vocabulary)}</div></section>
     ` : renderTeacher(pack);
   return `<!doctype html>
-<html lang="nb"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(pack.title)}${student ? '' : ' – lærerveiledning'}</title><meta name="referrer" content="no-referrer"><link rel="stylesheet" href="${assets}preview.css?v=${previewAssetVersion}"></head>
+<html lang="nb"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(pack.title)}${student ? '' : ' – lærerveiledning'}</title><meta name="referrer" content="no-referrer"><link rel="stylesheet" href="${assets}preview.css?v=${getPreviewAssetVersion()}"></head>
 <body><a class="skip-link" href="#main">Hopp til innhold</a><header class="top-bar"><div class="brand-links"><a class="brand" href="../../../index.html">Spansk på 1-2-3</a><a class="culture-brand" href="../index.html">Kultur</a></div><nav aria-label="Pakken"><a href="${student ? 'laerer.html' : 'index.html'}">${student ? 'Lærerveiledning' : 'Elevøkten'}</a><button type="button" class="quiet-button" data-print>Skriv ut</button></nav></header>
 <main id="main"><header class="lesson-header"><p class="draft-label">Arbeidsutkast til lærervurdering</p><p class="eyebrow">${pack.durationMinutes} minutter – les, oversett og sammenlign</p><h1>${esc(pack.title)}${student ? '' : '<span class="teacher-subtitle">Lærerveiledning og fasit</span>'}</h1><p class="subtitle">${esc(pack.subtitle)}</p><div class="lesson-links"><a href="../index.html">Alle kulturopplegg</a><a class="start-reading" href="${student ? '#' + pack.countries[0].id + '-title' : 'index.html'}">${student ? 'Start lesingen' : 'Åpne elevøkten'}</a><a href="../../../output/pdf/${pack.id}-${student ? 'elev' : 'laererveiledning'}.pdf">${student ? 'Elevark som PDF' : 'Lærerveiledning som PDF'}</a></div></header>
 ${student ? renderLessonContents(pack) + renderReadingLinks(pack) : ''}
 ${content}
 ${student ? '<aside id="reading-translation" class="reading-translation" lang="nb" aria-label="Oversettelse" hidden><div><strong data-reading-spanish lang="es"></strong><p id="reading-translation-text" role="status" aria-live="polite"></p></div><button type="button" class="quiet-button" data-close-translation aria-label="Lukk oversettelsen">Lukk</button></aside>' : ''}
 <footer id="sources"><h2>Kilder og innholdsstatus</h2><ul>${pack.sources.map(source => `<li><a href="${esc(source.url)}" rel="noreferrer">${esc(source.title)}</a></li>`).join('')}</ul><p>Originale, tilpassede tekster. Kilder kontrollert ${esc(pack.review.checkedSourcesOn)}. Språk-, bilde- og nivåvurdering hos lærer gjenstår.</p><p>Du leser og svarer lokalt. Prøven lagrer eller sender ikke svarene dine.</p></footer></main>
-${student ? `<script type="application/json" id="picture-terms">${termsJson}</script>` : ''}<script src="${assets}preview.js?v=${previewAssetVersion}" defer></script></body></html>
+${student ? `<script type="application/json" id="picture-terms">${termsJson}</script>` : ''}<script src="${assets}preview.js?v=${getPreviewAssetVersion()}" defer></script></body></html>
 `;
 }
 
 export function renderCultureCatalog(catalog) {
-  return `<!doctype html><html lang="nb"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="no-referrer"><title>Mundo AM – Kulturopplegg</title><link rel="stylesheet" href="jul-spania-chile/preview.css?v=${previewAssetVersion}"></head><body><a class="skip-link" href="#main">Hopp til innhold</a><header class="top-bar"><div class="brand-links"><a class="brand" href="../../index.html">Spansk på 1-2-3</a><a class="culture-brand" href="index.html" aria-current="page">Kultur</a></div></header><main id="main"><header class="lesson-header catalog-header"><p class="eyebrow">Les, forstå og bruk språket</p><h1>Mundo AM</h1><p class="subtitle">En dag. Et sted. En ny historie.</p><p>Kulturopplegg med tekst, bilder, oppgaver og lærerveiledning. Velg et land eller et tema, og øv videre på ordene fra teksten.</p></header><section class="culture-grid" aria-label="Kulturopplegg">${catalog.packages.map(pack => `<article class="culture-card"><a class="culture-cover" href="${pack.id}/index.html" tabindex="-1" aria-hidden="true"><img src="../../${esc(pack.countries[0].visual.path)}" alt="" width="${pack.countries[0].visual.width}" height="${pack.countries[0].visual.height}" loading="lazy"></a><div class="culture-card-body"><p class="eyebrow">${esc(pack.countries.map(country => country.name).join(', '))} – ${pack.durationMinutes} min</p>${pack.status === 'draft' ? '<p class="catalog-status">Arbeidsutkast til lærervurdering</p>' : ''}<h2><a href="${pack.id}/index.html">${esc(pack.title)}</a></h2><p>${esc(pack.summary || pack.subtitle)}</p><p class="catalog-meta"><strong>Forkunnskaper:</strong> ${esc(pack.catalogPrerequisites)}</p><p class="catalog-meta"><strong>Arbeidsform:</strong> Lesing og samtale i par</p><div class="lesson-links"><a href="${pack.id}/index.html">Åpne elevøkten</a><a href="${pack.id}/laerer.html">Lærerveiledning</a></div></div></article>`).join('')}</section><footer><p>Les høyt, oversett i par og utforsk kultur sammen. Hvert opplegg har et valgfritt glosesett og egne papirark.</p><p>Lokale arbeidsutkast. Faktakilder og innholdsstatus finner du i hvert opplegg.</p></footer></main></body></html>`;
+  return `<!doctype html><html lang="nb"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="no-referrer"><title>Mundo AM – Kulturopplegg</title><link rel="stylesheet" href="jul-spania-chile/preview.css?v=${getPreviewAssetVersion()}"></head><body><a class="skip-link" href="#main">Hopp til innhold</a><header class="top-bar"><div class="brand-links"><a class="brand" href="../../index.html">Spansk på 1-2-3</a><a class="culture-brand" href="index.html" aria-current="page">Kultur</a></div></header><main id="main"><header class="lesson-header catalog-header"><p class="eyebrow">Les, forstå og bruk språket</p><h1>Mundo AM</h1><p class="subtitle">En dag. Et sted. En ny historie.</p><p>Kulturopplegg med tekst, bilder, oppgaver og lærerveiledning. Velg et land eller et tema, og øv videre på ordene fra teksten.</p></header><section class="culture-grid" aria-label="Kulturopplegg">${catalog.packages.map(pack => `<article class="culture-card"><a class="culture-cover" href="${pack.id}/index.html" tabindex="-1" aria-hidden="true"><img src="../../${esc(pack.countries[0].visual.path)}" alt="" width="${pack.countries[0].visual.width}" height="${pack.countries[0].visual.height}" loading="lazy"></a><div class="culture-card-body"><p class="eyebrow">${esc(pack.countries.map(country => country.name).join(', '))} – ${pack.durationMinutes} min</p>${pack.status === 'draft' ? '<p class="catalog-status">Arbeidsutkast til lærervurdering</p>' : ''}<h2><a href="${pack.id}/index.html">${esc(pack.title)}</a></h2><p>${esc(pack.summary || pack.subtitle)}</p><p class="catalog-meta"><strong>Forkunnskaper:</strong> ${esc(pack.catalogPrerequisites)}</p><p class="catalog-meta"><strong>Arbeidsform:</strong> Lesing og samtale i par</p><div class="lesson-links"><a href="${pack.id}/index.html">Åpne elevøkten</a><a href="${pack.id}/laerer.html">Lærerveiledning</a></div></div></article>`).join('')}</section><footer><p>Les høyt, oversett i par og utforsk kultur sammen. Hvert opplegg har et valgfritt glosesett og egne papirark.</p><p>Lokale arbeidsutkast. Faktakilder og innholdsstatus finner du i hvert opplegg.</p></footer></main></body></html>`;
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+  const checkOnly = process.argv.includes('--check');
+  const skipDocsPreviews = !checkOnly && (
+    process.argv.includes('--app-only')
+    || (Boolean(process.env.VERCEL) && !existsSync('docs/kultur/jul-spania-chile/preview.css'))
+  );
   const catalog = JSON.parse(readFileSync('data/culture-packages.json', 'utf8'));
   const review = JSON.parse(readFileSync('data/vocabulary-canonical-review.json', 'utf8'));
   validateCulturePackages(catalog, review);
@@ -214,20 +224,24 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
   const block = `// BEGIN GENERATED CULTURE VOCABULARY\n        const cultureVocabularySets = ${JSON.stringify(sets).replace(/</g, '\\u003c')};\n        // END GENERATED CULTURE VOCABULARY`;
   const updatedApp = app.replace(/\/\/ BEGIN GENERATED CULTURE VOCABULARY[\s\S]*?\/\/ END GENERATED CULTURE VOCABULARY/, block);
   check(app.includes('// BEGIN GENERATED CULTURE VOCABULARY'), 'Mangler appens kulturordblokk');
-  if (process.argv.includes('--check')) check(app === updatedApp, 'Kulturord i appen: byggavvik');
+  if (checkOnly) check(app === updatedApp, 'Kulturord i appen: byggavvik');
   else if (app !== updatedApp) writeFileSync('index.html', updatedApp);
-  for (const pack of catalog.packages) {
-    const out = `docs/kultur/${pack.id}`; mkdirSync(out, { recursive: true });
-    for (const [file, role] of [['index.html', 'student'], ['laerer.html', 'teacher']]) {
-      const target = `${out}/${file}`;
-      const html = renderCulturePreview(pack, role);
-      if (process.argv.includes('--check')) check(existsSync(target) && readFileSync(target, 'utf8') === html, `${target}: byggavvik`);
-      else writeFileSync(target, html);
+  if (skipDocsPreviews) {
+    console.log('Culture vocabulary synced (app-only; docs/kultur previews skipped).');
+  } else {
+    for (const pack of catalog.packages) {
+      const out = `docs/kultur/${pack.id}`; mkdirSync(out, { recursive: true });
+      for (const [file, role] of [['index.html', 'student'], ['laerer.html', 'teacher']]) {
+        const target = `${out}/${file}`;
+        const html = renderCulturePreview(pack, role);
+        if (checkOnly) check(existsSync(target) && readFileSync(target, 'utf8') === html, `${target}: byggavvik`);
+        else writeFileSync(target, html);
+      }
     }
+    const catalogTarget = 'docs/kultur/index.html';
+    const catalogHtml = renderCultureCatalog(catalog);
+    if (checkOnly) check(existsSync(catalogTarget) && readFileSync(catalogTarget, 'utf8') === catalogHtml, `${catalogTarget}: byggavvik`);
+    else writeFileSync(catalogTarget, catalogHtml);
+    console.log('Culture draft and preview: OK');
   }
-  const catalogTarget = 'docs/kultur/index.html';
-  const catalogHtml = renderCultureCatalog(catalog);
-  if (process.argv.includes('--check')) check(existsSync(catalogTarget) && readFileSync(catalogTarget, 'utf8') === catalogHtml, `${catalogTarget}: byggavvik`);
-  else writeFileSync(catalogTarget, catalogHtml);
-  console.log('Culture draft and preview: OK');
 }
