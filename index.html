@@ -7,7 +7,7 @@
     <meta name="theme-color" content="#dc2626">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Crect width='192' height='192' rx='36' fill='%23dc2626'/%3E%3Ctext x='96' y='122' text-anchor='middle' font-size='96'%3E🇪🇸%3C/text%3E%3C/svg%3E">
     <link rel="manifest" href="./manifest.webmanifest">
-    <meta name="app-build" content="a6e5ee98dc7a6384">
+    <meta name="app-build" content="35fb981e0016c334">
     <link href="./dist/tailwind.css" rel="stylesheet">
 </head>
 <body>
@@ -65,7 +65,7 @@
                         <button class="nav-link" onclick="showPage('grammar')" id="navGrammar">📖 Grammatikk</button>
                         <button class="nav-link" onclick="showPage('games')" id="navGames">🎮 Spill</button>
                         <button class="nav-link" onclick="showPage('dictation')" id="navDictation">🎧 Lytteøvelser</button>
-                        <button class="nav-link" onclick="showPage('pronunciation')" id="navPronunciation">Uttale</button>
+                        <button class="nav-link" onclick="showPage('pronunciation')" id="navPronunciation"><span aria-hidden="true">🔊</span> Uttale</button>
                         <button class="nav-link homework-nav" onclick="showPage('homework')" id="navHomework">📝 Lekse</button>
                     </div>
                 </details>
@@ -4058,9 +4058,9 @@ const pronunciationManifest = {"schemaVersion":1,"sourceArchiveSha256":"d67fa8c7
                 <audio id="dictationSegmentAudio" controls autoplay preload="metadata" ${location.protocol.startsWith('http') ? 'crossorigin="anonymous"' : ''} src="${dictationAudioUrl(story, filename)}" aria-label="Spill av segment" onloadedmetadata="dictationAudioReady()" onerror="showDictationAudioError()"></audio>
                 ${dictationAudioErrorMarkup()}<p id="dictationAudioStatus" role="status">Laster lyd …</p>
                 <label for="dictationSpeed">Tempo</label><input id="dictationSpeed" type="range" min="0.8" max="1.2" step="0.1" value="1" oninput="setDictationSpeed(this.value)"><span id="dictationSpeedValue">1,0×</span>
-                <label for="dictationAnswer">Skriv det du hører</label><textarea id="dictationAnswer" rows="3" autocomplete="off">${escapeHtml(answer)}</textarea>
+                <label for="dictationAnswer">Skriv det du hører</label><textarea id="dictationAnswer" rows="3" autocomplete="off" aria-describedby="dictationAccentHint">${escapeHtml(answer)}</textarea>
+                ${renderAccentHint('dictationAccentHint', 'Du kan også holde inne n for ñ eller bruke knappene under.')}
                 <div class="dictation-accent-buttons" aria-label="Aksentknapper">${['á','é','í','ó','ú','ü','ñ','¿','¡'].map(c => `<button type="button" aria-label="Sett inn ${c}" onclick="insertDictationAccent('${c}')">${c}</button>`).join('')}</div>
-                <p class="dictation-accent-help">Du kan bruke aksentknappene eller holde inne en vokal eller n på tastaturet.</p>
                 <div id="dictationSolution" class="dictation-solution hidden" aria-live="polite"></div>
                 <div id="dictationControls"><button id="dictationCheckBtn" class="btn btn-primary" disabled onclick="submitDictationAnswer()">Sjekk svar</button></div>`;
             const input = document.getElementById('dictationAnswer');
@@ -18794,7 +18794,8 @@ const pronunciationManifest = {"schemaVersion":1,"sourceArchiveSha256":"d67fa8c7
                 const diagnosisOptions = getDiagnosisOptions(question);
                 const answerControls = question.responseMode === 'typed'
                     ? `
-                        <input id="diagnosisAnswerInput" class="add-word-input" autocomplete="off" placeholder="Skriv svaret" onkeydown="if (event.key === 'Enter') { event.preventDefault(); submitDiagnosisTypedAnswer(); }">
+                        <input id="diagnosisAnswerInput" class="add-word-input" autocomplete="off" placeholder="Skriv svaret" aria-describedby="diagnosisAnswerAccentHint" onkeydown="if (event.key === 'Enter') { event.preventDefault(); submitDiagnosisTypedAnswer(); }">
+                        ${renderAccentHint('diagnosisAnswerAccentHint')}
                         <button class="btn btn-primary" onclick="submitDiagnosisTypedAnswer()">Svar</button>
                     `
                     : `
@@ -25307,7 +25308,9 @@ const pronunciationManifest = {"schemaVersion":1,"sourceArchiveSha256":"d67fa8c7
                 ? `<div class="mixed-quiz-options">${choices.map(option => `<button type="button" class="btn btn-outline" data-mixed-answer="${escapeHtml(option.label)}">${escapeHtml(option.label)}</button>`).join('')}</div>`
                 : item.responseMode === 'select'
                     ? `<label class="mixed-quiz-select-label" for="mixedQuizSelect">Velg svar</label><select id="mixedQuizSelect" class="mixed-quiz-select"><option value="">Velg et svar …</option>${getSelectOptions(item).map(option => `<option value="${escapeHtml(option.label)}">${escapeHtml(option.label)}</option>`).join('')}</select><div class="button-group"><button type="button" class="btn btn-primary" onclick="submitMixedQuizSelectAnswer()">Sjekk svar</button></div>`
-                    : `<input id="mixedQuizAnswerInput" class="conjugation-input" autocomplete="off" placeholder="Skriv svaret" onkeydown="if(event.key === 'Enter') { event.preventDefault(); event.stopPropagation(); submitMixedQuizTypedAnswer(); }"><div class="button-group"><button type="button" class="btn btn-primary" onclick="submitMixedQuizTypedAnswer()">Sjekk svar</button></div>`;
+                    : `<input id="mixedQuizAnswerInput" class="conjugation-input" autocomplete="off" placeholder="Skriv svaret" aria-describedby="mixedQuizAnswerAccentHint" onkeydown="if(event.key === 'Enter') { event.preventDefault(); event.stopPropagation(); submitMixedQuizTypedAnswer(); }">
+                        ${renderAccentHint('mixedQuizAnswerAccentHint')}
+                        <div class="button-group"><button type="button" class="btn btn-primary" onclick="submitMixedQuizTypedAnswer()">Sjekk svar</button></div>`;
             container.innerHTML = `
                 <div class="mixed-quiz-question" data-response-mode="${item.responseMode}" data-accepted-answer="${escapeHtml(getDiagnosisAnswerValue(item.acceptedAnswers[0]))}">
                     <div class="mixed-quiz-type">${mixedQuizTypeLabel(item)} <span class="mixed-quiz-mode-pill ${item.scaffoldedAfterError ? 'badge-retry' : ''}">${getMixedQuizModeLabel(item)}</span></div>
@@ -25927,7 +25930,8 @@ const pronunciationManifest = {"schemaVersion":1,"sourceArchiveSha256":"d67fa8c7
                     <p class="recognition-prompt" lang="es">${escapeHtml(card.es)}</p>
                     <form id="recognitionAnswerForm" onsubmit="event.preventDefault(); submitRecognitionAnswer();">
                         <label for="recognitionAnswerInput">Skriv betydningen på norsk</label>
-                        <input id="recognitionAnswerInput" class="conjugation-input" autocomplete="off" autocapitalize="off" required>
+                        <input id="recognitionAnswerInput" class="conjugation-input" autocomplete="off" autocapitalize="off" aria-describedby="recognitionAnswerAccentHint" required>
+                        ${renderAccentHint('recognitionAnswerAccentHint')}
                         <div class="recognition-actions"><button type="submit" class="btn btn-primary" id="recognitionCheckBtn">Sjekk svaret</button><button type="button" class="btn btn-secondary" id="recognitionSkipBtn" onclick="submitRecognitionAnswer(true)">Jeg vet ikke ennå</button></div>
                     </form>
                     <button type="button" class="btn btn-outline" id="recognitionHintBtn" onclick="showRecognitionHint()">Vis et spor</button>
@@ -26058,7 +26062,10 @@ const pronunciationManifest = {"schemaVersion":1,"sourceArchiveSha256":"d67fa8c7
                     <p class="recognition-prompt" id="recognitionLearningPrompt">${escapeHtml(item.promptNb)}</p>
                     <p>${useTiles ? 'Velg ordene i riktig rekkefølge. Trykk på et valgt ord for å fjerne det.' : 'Skriv på spansk. Husk no hvis setningen skal bety er ikke. Punktum er valgfritt.'}</p>
                     <form onsubmit="event.preventDefault(); submitRecognitionLearning();"><fieldset id="recognitionLearningControls" aria-label="Svar på setningen">
-                    ${useTiles ? '<div id="recognitionBuiltSentence" class="recognition-built" aria-label="Setningen din" aria-live="polite"></div><div id="recognitionTokenBank" class="recognition-tokens" aria-label="Tilgjengelige ord"></div><div class="recognition-actions"><button type="button" id="recognitionUndoBtn" class="btn btn-outline" onclick="undoRecognitionToken()">Angre siste ord</button><button type="button" id="recognitionResetBtn" class="btn btn-outline" onclick="resetRecognitionTokens()">Tøm setningen</button></div>' : '<label for="recognitionLearningInput">Setningen på spansk</label><input id="recognitionLearningInput" class="conjugation-input" autocomplete="off" autocapitalize="off" spellcheck="false" required>'}
+                    ${useTiles ? '<div id="recognitionBuiltSentence" class="recognition-built" aria-label="Setningen din" aria-live="polite"></div><div id="recognitionTokenBank" class="recognition-tokens" aria-label="Tilgjengelige ord"></div><div class="recognition-actions"><button type="button" id="recognitionUndoBtn" class="btn btn-outline" onclick="undoRecognitionToken()">Angre siste ord</button><button type="button" id="recognitionResetBtn" class="btn btn-outline" onclick="resetRecognitionTokens()">Tøm setningen</button></div>' : `
+                        <label for="recognitionLearningInput">Setningen på spansk</label>
+                        <input id="recognitionLearningInput" class="conjugation-input" autocomplete="off" autocapitalize="off" spellcheck="false" aria-describedby="recognitionLearningAccentHint" required>
+                        ${renderAccentHint('recognitionLearningAccentHint')}`}
                     <div class="recognition-actions"><button type="submit" id="recognitionLearningCheckBtn" class="btn btn-primary">Sjekk setningen</button><button type="button" id="recognitionLearningSkipBtn" class="btn btn-secondary" onclick="submitRecognitionLearning(true)">Jeg vet ikke ennå</button><button type="button" id="recognitionLearningHintBtn" class="btn btn-outline" onclick="showRecognitionLearningHint()" ${state.helped ? 'disabled' : ''}>Vis støtte</button></div>
                     <p id="recognitionLearningHint" aria-live="polite">${state.helped ? 'Du bruker støtte. Riktige svar med støtte telles separat.' : ''}</p></fieldset></form>
                     <p id="recognitionLearningStatus" role="status"></p><div id="recognitionLearningFeedback" aria-live="polite"></div>`;
@@ -26177,7 +26184,8 @@ const pronunciationManifest = {"schemaVersion":1,"sourceArchiveSha256":"d67fa8c7
                 }).join('')}</ul>
                 <div class="recognition-box"><h3>Pass på</h3><p>${escapeHtml(family.cautionNb)}</p></div>
                 <div class="recognition-box"><h3>Prøv et annet ord fra familien</h3><p id="recognitionLearningPrompt" class="recognition-prompt" lang="es">${escapeHtml(probe.es)}</p>
-                <form onsubmit="event.preventDefault(); submitRecognitionLearning();"><fieldset id="recognitionLearningControls" aria-label="Svar på prøveordet"><label for="recognitionLearningInput">Hva betyr ordet på norsk?</label><input id="recognitionLearningInput" class="conjugation-input" autocomplete="off" required>
+                <form onsubmit="event.preventDefault(); submitRecognitionLearning();"><fieldset id="recognitionLearningControls" aria-label="Svar på prøveordet"><label for="recognitionLearningInput">Hva betyr ordet på norsk?</label><input id="recognitionLearningInput" class="conjugation-input" autocomplete="off" aria-describedby="recognitionLearningAccentHint" required>
+                ${renderAccentHint('recognitionLearningAccentHint')}
                 <div class="recognition-actions"><button type="submit" id="recognitionLearningCheckBtn" class="btn btn-primary">Sjekk svaret</button><button type="button" id="recognitionLearningSkipBtn" class="btn btn-secondary" onclick="submitRecognitionLearning(true)">Jeg vet ikke ennå</button><button type="button" id="recognitionLearningHintBtn" class="btn btn-outline" onclick="showRecognitionLearningHint()">Vis et spor</button></div><div id="recognitionLearningHint" aria-live="polite"></div></fieldset></form>
                 <div id="recognitionLearningFeedback" aria-live="polite"></div></div>
                 <div class="recognition-actions"><button type="button" id="recognitionFamilyPrevBtn" class="btn btn-outline" onclick="navigateRecognitionFamily(${state.index - 1})" ${state.index === 0 ? 'disabled' : ''}>Forrige familie</button><button type="button" id="recognitionFamilyNextBtn" class="btn btn-secondary" onclick="navigateRecognitionFamily(${state.index + 1})">${state.index + 1 === state.items.length ? 'Se oppsummering' : 'Neste familie'}</button></div>`;
@@ -26966,7 +26974,8 @@ Vil du øve på ${pronoun} likevel?`
                         <div class="card-word">${front}</div>
                         ${getVocabularyFrontHint(item) ? `<div class="card-hint">${getVocabularyFrontHint(item)}</div>` : ''}
                         <div class="mt-4">
-                            <input type="text" class="conjugation-input" id="typedVocabInput" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Skriv svaret">
+                            <input type="text" class="conjugation-input" id="typedVocabInput" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Skriv svaret" aria-describedby="typedVocabAccentHint">
+                            ${renderAccentHint('typedVocabAccentHint')}
                             <div class="conjugation-feedback" id="typedVocabFeedback"></div>
                         </div>
                         <span class="card-category">${getCategoryEmoji(card.category)} ${capitalizeFirst(card.category)}</span>
@@ -28120,11 +28129,11 @@ Vil du øve på ${pronoun} likevel?`
 
                     <div class="conjugation-input-container">
                         <input type="text" class="conjugation-input" id="verbInput"
-                               placeholder="Skriv svaret..." autocomplete="off" autofocus>
+                               placeholder="Skriv svaret..." autocomplete="off" aria-describedby="verbAccentHint" autofocus>
                     </div>
-                    <div class="accent-hint">💡 Hold inne a/e/i/o/u/n for aksent, eller ?/! for ¿/¡</div>
+                    ${renderAccentHint('verbAccentHint', 'Hold også inne n for ñ, ? for ¿ eller ! for ¡.')}
                     ${needsSupport && verbOptions.length > 0 ? `
-                        <div class="verb-scaffolding-container">
+                        <div id="verbAnswerOptions" class="verb-scaffolding-container">
                             <span class="verb-scaffolding-badge">💡 Støtte: Velg eller skriv</span>
                             <div class="verb-options-row">
                                 ${verbOptions.map(opt => `<button type="button" class="btn btn-sm btn-outline verb-choice-btn" onclick="selectVerbOption('${escapeHtml(opt)}')">${escapeHtml(opt)}</button>`).join('')}
@@ -28139,7 +28148,7 @@ Vil du øve på ${pronoun} likevel?`
                     <div class="conjugation-feedback" id="verbFeedback"></div>
                     <p id="verbHint" aria-live="polite" hidden></p>
 
-                    <div class="button-group">
+                    <div id="verbAnswerActions" class="button-group">
                         <button class="btn btn-primary" onclick="checkVerbAnswer()">✓ Sjekk svar</button>
                         <button class="btn btn-outline" onclick="showVerbHint()">💡 Hint</button>
                     </div>
@@ -28163,6 +28172,10 @@ Vil du øve på ${pronoun} likevel?`
 
             verbAnswerPending = true;
             verbStats.answered = (verbStats.answered || 0) + 1;
+            input.readOnly = true;
+            document.getElementById('verbAnswerActions').remove();
+            document.getElementById('verbAnswerOptions')?.remove();
+            document.getElementById('verbHint').hidden = true;
 
             if (evaluation.resultKind === 'correct') {
                 feedback.innerHTML = '✓ Riktig!<div class="button-group"><button data-feedback-next class="btn btn-primary btn-sm mt-4" onclick="advanceVerbExercise()">Neste</button></div>';
@@ -28198,6 +28211,7 @@ Vil du øve på ${pronoun} likevel?`
                     document.getElementById('verbHint').hidden
             }));
             checkpointPracticeSession('verbs', verbStats.answered, verbStats.correct, verbSessionStartTime);
+            feedback.querySelector('[data-feedback-next]').focus();
         }
 
         function advanceVerbExercise() {
@@ -28813,6 +28827,10 @@ Vil du øve på ${pronoun} likevel?`
             'A': 'Á', 'E': 'É', 'I': 'Í', 'O': 'Ó', 'U': 'Ú', 'N': 'Ñ',
             '?': '¿', '!': '¡'
         };
+
+        function renderAccentHint(id, extra = '') {
+            return `<p id="${id}" class="accent-hint">Hold inne en vokal på tastaturet for å få aksent, for eksempel a → á.${extra ? ` ${extra}` : ''}</p>`;
+        }
 
         function setupAccentInput(inputElement) {
             if (!inputElement || inputElement.dataset.accentInputReady === 'true') return;
@@ -29887,7 +29905,9 @@ Vil du øve på ${pronoun} likevel?`
                 ? `<div class="grammar-options">${shuffledOptions.map(opt => `<button class="grammar-option" onclick="selectGrammarAnswer('${opt}', this)">${opt}</button>`).join('')}</div>`
                 : responseMode === 'select'
                     ? `<label class="grammar-select-label" for="grammarSelect">Velg svar</label><select id="grammarSelect" class="grammar-select"><option value="">Velg et svar …</option>${shuffledOptions.map(opt => `<option value="${escapeHtml(opt)}">${escapeHtml(opt)}</option>`).join('')}</select><button class="btn btn-primary" id="grammarSubmitBtn" onclick="submitGrammarSelectAnswer()">Sjekk svar</button>`
-                    : `<label class="grammar-input-label" for="grammarAnswerInput">Skriv svaret</label><input id="grammarAnswerInput" class="conjugation-input" autocomplete="off" onkeydown="if(event.key === 'Enter') { event.preventDefault(); submitGrammarTypedAnswer(); }"><button class="btn btn-primary" id="grammarSubmitBtn" onclick="submitGrammarTypedAnswer()">Sjekk svar</button>`;
+                    : `<label class="grammar-input-label" for="grammarAnswerInput">Skriv svaret</label><input id="grammarAnswerInput" class="conjugation-input" autocomplete="off" aria-describedby="grammarAnswerAccentHint" onkeydown="if(event.key === 'Enter') { event.preventDefault(); submitGrammarTypedAnswer(); }">
+                        ${renderAccentHint('grammarAnswerAccentHint')}
+                        <button class="btn btn-primary" id="grammarSubmitBtn" onclick="submitGrammarTypedAnswer()">Sjekk svar</button>`;
 
             document.getElementById('grammarExerciseArea').innerHTML = `
                 <div class="grammar-exercise">
@@ -30411,7 +30431,10 @@ Vil du øve på ${pronoun} likevel?`
             const root = document.getElementById('lingoLinksRecall');
             lingoLinksState.recallCards = lingoLinksState.groups.slice(0, 2).map(group => lingoLinksState.cards.find(card => card.id === group.cards[0])).filter(card => card && (card.no || card.norsk));
             if (!lingoLinksState.recallCards.length) { root.textContent = 'Forklar to av ordene til en medelev.'; return; }
-            root.innerHTML = `<h3>Hva husker du uten brettet?</h3><p>Skriv de to ordene på spansk før du sjekker. Dette er en etteroppgave, ikke en mestringstest.</p>${lingoLinksState.recallCards.map((card,index) => `<label class="block mt-3" for="llRecall${index}">${escapeHtml(card.no || card.norsk)}</label><input class="conjugation-input" id="llRecall${index}" autocomplete="off">`).join('')}<button class="btn btn-primary mt-3" onclick="checkLingoLinksRecall()">Sjekk de to ordene</button><p id="lingoLinksRecallFeedback" aria-live="polite"></p>`;
+            root.innerHTML = `<h3>Hva husker du uten brettet?</h3><p>Skriv de to ordene på spansk før du sjekker. Dette er en etteroppgave, ikke en mestringstest.</p>
+                ${renderAccentHint('llRecallAccentHint')}
+                ${lingoLinksState.recallCards.map((card, index) => `<label class="block mt-3" for="llRecall${index}">${escapeHtml(card.no || card.norsk)}</label><input class="conjugation-input" id="llRecall${index}" autocomplete="off" aria-describedby="llRecallAccentHint">`).join('')}
+                <button class="btn btn-primary mt-3" onclick="checkLingoLinksRecall()">Sjekk de to ordene</button><p id="lingoLinksRecallFeedback" aria-live="polite"></p>`;
             root.querySelectorAll('input').forEach(setupAccentInput);
         }
 

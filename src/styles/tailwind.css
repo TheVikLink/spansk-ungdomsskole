@@ -1554,13 +1554,6 @@ select:focus-visible,
     border-color: var(--primary);
 }
 
-.dictation-accent-help {
-    max-width: 360px;
-    margin: -6px 0 16px;
-    color: var(--gray-600);
-    font-size: 13px;
-}
-
 .dictation-accent-buttons button:focus-visible {
     outline: 3px solid rgba(99, 102, 241, 0.28);
     outline-offset: 2px;
@@ -2699,10 +2692,10 @@ select {
 .rating-good { background: var(--success); color: white; }
 
 .accent-hint {
-    font-size: 11px;
-    color: var(--gray-500);
-    text-align: center;
-    margin-top: 8px;
+    margin: 6px 0 8px;
+    color: var(--gray-600);
+    font-size: 0.875rem;
+    line-height: 1.4;
 }
 
 /* ==================== */

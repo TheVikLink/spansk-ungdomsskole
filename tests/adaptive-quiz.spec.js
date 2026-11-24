@@ -469,6 +469,9 @@ test.describe('adaptive mixed quiz v1', () => {
   test('uses the Spanish accent helper in mixed quiz text answers', async ({ page }) => {
     await page.goto(appUrl);
     await page.evaluate(() => {
+      studentName = 'Elev';
+      showMainApp();
+      showPage('vocab');
       mixedQuizState = {
         quiz: { items: [{ prompt: 'Skriv et ord', itemType: 'vocabulary', responseMode: 'typed', acceptedAnswers: [{ value: 'qué' }] }] },
         index: 0, answered: 0, correct: 0, startedAt: new Date(), results: []
@@ -478,10 +481,15 @@ test.describe('adaptive mixed quiz v1', () => {
     });
 
     const input = page.locator('#mixedQuizAnswerInput');
+    await expect(input).toHaveAccessibleDescription(/Hold inne en vokal.*a → á/);
+    await expect(page.locator('#mixedQuizAnswerAccentHint')).toBeVisible();
     await page.evaluate(() => document.getElementById('mixedQuizAnswerInput').dispatchEvent(new KeyboardEvent('keydown', { key: 'e', bubbles: true })));
     await page.waitForTimeout(450);
     await page.evaluate(() => document.getElementById('mixedQuizAnswerInput').dispatchEvent(new KeyboardEvent('keyup', { key: 'e', bubbles: true })));
     await expect(input).toHaveValue('é');
+    await page.setViewportSize({ width: 390, height: 844 });
+    await expect(page.locator('#mixedQuizAnswerAccentHint')).toBeVisible();
+    expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(390);
   });
 
   test('labels a wrong mixed-quiz answer explicitly', async ({ page }) => {

@@ -22,12 +22,19 @@ async function openPractice(page, kind) {
 
 for (const kind of ['verb', 'grammar']) {
   for (const correct of [true, false]) {
-    test(`F01: ${kind} keeps feedback and Next after a ${correct ? 'correct' : 'wrong'} answer and repeated hints`, async ({ page }) => {
+    test(`F01: ${kind} keeps feedback and Next after a ${correct ? 'correct' : 'wrong'} answer`, async ({ page }) => {
+      if (!correct) await page.setViewportSize({ width: 390, height: 844 });
       await openPractice(page, kind);
+      const area = page.locator(`#${kind}ExerciseArea`);
+      const hintButton = area.getByRole('button', { name: /Hint|Vis hint/ });
+      const checkButton = area.getByRole('button', { name: 'Sjekk svar' });
       if (kind === 'verb') {
+        await hintButton.click();
+        await expect(area.locator('#verbHint')).toBeVisible();
+        await expect(area.locator('.verb-choice-btn').first()).toBeVisible();
         const answer = await page.locator('#verbInput').getAttribute('data-expected');
         await page.locator('#verbInput').fill(correct ? answer : 'feil');
-        await page.locator('#verbExerciseArea').getByRole('button', { name: 'Sjekk svar' }).click();
+        await checkButton.click();
       } else {
         const answer = await page.evaluate(correct => {
           const exercise = grammarExercises[grammarCurrentIndex];
@@ -38,12 +45,30 @@ for (const kind of ['verb', 'grammar']) {
       const feedback = page.locator(`#${kind}Feedback`);
       const before = await feedback.textContent();
       const counts = await page.evaluate(() => ({ verb: { ...verbStats }, grammar: { ...grammarStats }, answers: grammarSession?.answers.length || 0 }));
-      await page.locator(`#${kind}ExerciseArea`).getByRole('button', { name: /Hint|Vis hint/ }).click();
-      await page.locator(`#${kind}ExerciseArea`).getByRole('button', { name: /Hint|Vis hint/ }).click();
+      const next = feedback.locator('[data-feedback-next]');
+      if (kind === 'verb') {
+        await expect(checkButton).toBeHidden();
+        await expect(hintButton).toBeHidden();
+        await expect(area.locator('#verbHint')).toBeHidden();
+        await expect(area.locator('.verb-choice-btn').first()).toBeHidden();
+        await expect(page.locator('#verbInput')).not.toBeEditable();
+        await expect(feedback).toContainText(correct ? '✓ Riktig!' : '✗ Riktig svar:');
+        await expect(next).toBeFocused();
+      } else {
+        await hintButton.click();
+        await hintButton.click();
+      }
       await expect(feedback).toContainText(before.trim());
-      await expect(feedback.locator('[data-feedback-next]')).toBeVisible();
+      await expect(next).toBeVisible();
       expect(await page.evaluate(() => ({ verb: { ...verbStats }, grammar: { ...grammarStats }, answers: grammarSession?.answers.length || 0 }))).toEqual(counts);
-      await feedback.locator('[data-feedback-next]').click();
+      if (kind === 'verb') {
+        await page.keyboard.press('Enter');
+        await expect(checkButton).toBeVisible();
+        await expect(hintButton).toBeVisible();
+        await expect(page.locator('#verbInput')).toBeEditable();
+      } else {
+        await next.click();
+      }
       await expect(page.locator(`#${kind}Counter`)).toContainText('2 /');
     });
   }

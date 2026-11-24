@@ -242,6 +242,8 @@ test.describe('lyttehistorier og fortellingsbasert diktat', () => {
     await page.locator('#dictationStoryList').getByRole('button', { name: 'Start diktat' }).first().click();
     await page.getByRole('button', { name: 'Start øvelsen' }).click();
     await expect(page.locator('.dictation-hints')).toHaveText('');
+    await expect(page.locator('#dictationAnswer')).toHaveAccessibleDescription(/Hold inne en vokal.*a → á/);
+    await expect(page.locator('#dictationAccentHint')).toBeVisible();
     await expect(page.getByRole('button', { name: 'Sett inn á' })).toBeVisible();
     await page.getByRole('button', { name: 'Sett inn á' }).click();
     await expect(page.locator('#dictationAnswer')).toHaveValue('á');
