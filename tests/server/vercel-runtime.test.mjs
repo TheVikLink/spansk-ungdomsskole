@@ -44,7 +44,9 @@ async function withServer(app, run) {
     const address = server.address();
     await run(`http://127.0.0.1:${address.port}`);
   } finally {
-    await new Promise((resolve, reject) => server.close((error) => error ? reject(error) : resolve()));
+    const closing = new Promise((resolve, reject) => server.close((error) => error ? reject(error) : resolve()));
+    server.closeAllConnections?.();
+    await closing;
   }
 }
 
@@ -192,4 +194,47 @@ test('build-culture-preview skips docs/kultur previews on Vercel when docs/ is e
   } finally {
     await rm(tempDir, { recursive: true, force: true });
   }
+});
+
+test('Vercel Express adapter serves allowlisted public student assets without loading the school database and keeps private files isolated', async () => {
+  const { createLazyFunctionApp } = await import('../../server/vercel-app.js');
+  let initializeCount = 0;
+  const runtime = express();
+  runtime.use((_req, res) => res.status(404).json({ error: 'Not found in school runtime' }));
+  const app = createLazyFunctionApp(async () => {
+    initializeCount += 1;
+    return { app: runtime };
+  });
+
+  await withServer(app, async (origin) => {
+    const publicAssets = [
+      ['/index.html', 'public, max-age=0, must-revalidate'],
+      ['/dist/tailwind.css', 'public, max-age=0, must-revalidate'],
+      ['/sw.js', 'public, max-age=0, must-revalidate'],
+      ['/manifest.webmanifest', 'public, max-age=0, must-revalidate'],
+      ['/school.js', 'public, max-age=0, must-revalidate'],
+      ['/school.css', 'public, max-age=0, must-revalidate'],
+      ['/audio/uttale/refold-v1/ESPhoneticWritingSystem_1_word.mp3', 'public, max-age=86400, immutable'],
+    ];
+
+    for (const [assetPath, expectedCacheControl] of publicAssets) {
+      const response = await fetch(`${origin}${assetPath}`);
+      assert.equal(response.status, 200, `expected 200 for ${assetPath}`);
+      assert.equal(response.headers.get('cache-control'), expectedCacheControl, `expected Cache-Control for ${assetPath}`);
+      await response.arrayBuffer();
+    }
+    assert.equal(initializeCount, 0, 'serving allowlisted public assets must not initialize the school runtime');
+
+    const missingAudio = await fetch(`${origin}/audio/does-not-exist.mp3`);
+    assert.equal(missingAudio.status, 404);
+    await missingAudio.arrayBuffer();
+    assert.equal(initializeCount, 0, 'missing audio must return 404 without initializing the school runtime');
+
+    for (const privatePath of ['/server/public/school.html', '/server/content-catalog.json']) {
+      const response = await fetch(`${origin}${privatePath}`);
+      assert.equal(response.status, 404, `expected private path ${privatePath} to fall through to runtime 404`);
+      assert.deepEqual(await response.json(), { error: 'Not found in school runtime' });
+    }
+    assert.equal(initializeCount, 1);
+  });
 });

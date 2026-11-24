@@ -29,7 +29,6 @@ output/
 .playwright-mcp/
 .worktrees/
 tmp/
-/public/
 scripts/audit-sources/ordvev-index.json
 q
 *.pdf
