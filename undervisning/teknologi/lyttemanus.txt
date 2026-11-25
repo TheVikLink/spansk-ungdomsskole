@@ -3,9 +3,10 @@ Velg hvordan du vil få nyheten
 Lydfil: teknologi.mp3
 To stemmer. Rolig tempo med korte pauser. Les bare replikkene.
 
-A: ¿Dónde puedo escuchar el partido?
-B: En la radio, a las seis.
-A: ¿Puedo verlo en la televisión?
-B: Sí, a las seis también.
-A: ¿Y la foto del equipo?
-B: Está en mi teléfono.
+A: ¡Hola! Hoy juega nuestro equipo. ¿Dónde puedo escuchar el partido?
+B: Si estás en el autobús, puedes escuchar el partido en la radio a las seis.
+A: Prefiero verlo en casa. ¿Lo dan por televisión?
+B: Sí, empieza a las seis en la televisión. ¿Te mandaron el cartel del partido?
+A: No todavía. ¿Lo tienes tú?
+B: Sí, tengo la foto del equipo en mi teléfono. Ahora te la envío.
+A: ¡Perfecto, gracias! Nos escribimos después del partido.

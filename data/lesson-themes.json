@@ -236,23 +236,26 @@
       ]
     ],
     "script": [
-      "Mi bandera tiene dos colores.",
-      "¿Es azul y blanca?",
-      "No, es verde y blanca. Tiene una estrella negra en el centro.",
-      "Entonces tiene tres colores."
+      "Adivina qué bandera tengo en mi dibujo.",
+      "A ver... ¿tiene dos o tres colores?",
+      "Tiene tres colores. Es verde y blanca, con una figura en el centro.",
+      "¿Qué figura es? ¿Una luna roja o un círculo amarillo?",
+      "No, tiene una estrella negra en el centro.",
+      "¡Ah, ya sé cuál es! ¿Es la bandera nueva para el proyecto de clase?",
+      "¡Exacto! Muy bien."
     ],
     "questions": [
       [
-        "Hvilken farge gjetter partneren som ikke er på flagget?",
-        "Blå."
+        "Hvor mange farger har flagget?",
+        "Tre."
       ],
       [
-        "Hvilken figur er i midten?",
-        "En stjerne."
+        "Hvilke to farger nevner eleven først?",
+        "Grønt og hvitt."
       ],
       [
-        "Hvilken farge har figuren?",
-        "Svart."
+        "Hvilken figur og farge er i midten?",
+        "En svart stjerne."
       ]
     ],
     "cards": [
@@ -599,23 +602,26 @@
       ]
     ],
     "script": [
-      "Busco un jersey rojo.",
-      "Aquí hay un jersey azul y una chaqueta roja.",
-      "Mi jersey tiene una estrella blanca.",
-      "Entonces es este. Aquí tienes."
+      "Hola, perdona. Ayer olvidé mi jersey rojo aquí en la escuela.",
+      "Vamos a mirar. Aquí tengo una chaqueta roja y un jersey azul.",
+      "No, mi jersey es rojo y tiene una estrella blanca delante.",
+      "Ah, espera... ¡mira aquí abajo! ¿Es este jersey rojo con una estrella blanca?",
+      "¡Sí, exactamente ese es el mío!",
+      "Aquí tienes. También encontramos una bufanda gris ayer, ¿es tuya?",
+      "No, la mía es azul. ¡Muchas gracias por el jersey!"
     ],
     "questions": [
       [
-        "Hva leter personen etter?",
+        "Hvilket plagg leter eleven etter?",
         "En rød genser."
       ],
       [
-        "Hvilket annet rødt plagg ligger på kontoret?",
-        "En jakke."
+        "Hvilken detalj er på genseren?",
+        "En hvit stjerne foran."
       ],
       [
-        "Hva gjør genseren lett å kjenne igjen?",
-        "En hvit stjerne."
+        "Hvilken farge har skjerfet til eleven?",
+        "Blått."
       ]
     ],
     "cards": [
@@ -1167,25 +1173,26 @@
       ]
     ],
     "script": [
-      "¿Dónde está el sofá?",
-      "Al lado de la mesa.",
-      "¿Y la lámpara?",
-      "Está en el escritorio.",
-      "¿Está la cama al lado del armario?",
-      "Sí, la cama está allí."
+      "¡Por fin tenemos las llaves de la habitación nueva! ¿Dónde ponemos el sofá?",
+      "Podemos poner el sofá al lado de la mesa, cerca de la ventana.",
+      "Me parece muy bien. ¿Y dónde dejamos la lámpara grande?",
+      "La lámpara va encima del escritorio para estudiar mejor.",
+      "Buena idea. ¿Cabe la cama al lado del armario?",
+      "Sí, acabo de medir el espacio y la cama cabe justo allí.",
+      "¡Perfecto! Así queda sitio para caminar por el centro."
     ],
     "questions": [
       [
-        "Hva står ved bordet?",
+        "Hva setter de ved siden av bordet og vinduet?",
         "Sofaen."
       ],
       [
-        "Hva står på skrivebordet?",
-        "Lampen."
+        "Hvor skal den store lampen stå?",
+        "Oppå skrivebordet."
       ],
       [
-        "Hva står ved skapet?",
-        "Sengen."
+        "Hvorfor vet B at sengen får plass ved siden av skapet?",
+        "B har akkurat målt plassen."
       ]
     ],
     "cards": [
@@ -1751,25 +1758,26 @@
       ]
     ],
     "script": [
-      "¿Dónde puedo escuchar el partido?",
-      "En la radio, a las seis.",
-      "¿Puedo verlo en la televisión?",
-      "Sí, a las seis también.",
-      "¿Y la foto del equipo?",
-      "Está en mi teléfono."
+      "¡Hola! Hoy juega nuestro equipo. ¿Dónde puedo escuchar el partido?",
+      "Si estás en el autobús, puedes escuchar el partido en la radio a las seis.",
+      "Prefiero verlo en casa. ¿Lo dan por televisión?",
+      "Sí, empieza a las seis en la televisión. ¿Te mandaron el cartel del partido?",
+      "No todavía. ¿Lo tienes tú?",
+      "Sí, tengo la foto del equipo en mi teléfono. Ahora te la envío.",
+      "¡Perfecto, gracias! Nos escribimos después del partido."
     ],
     "questions": [
       [
-        "Hva vil personen lytte til?",
-        "En kamp."
+        "Hvor kan man følge kampen hvis man sitter på bussen?",
+        "På radio."
       ],
       [
-        "Når vises den på TV?",
+        "Når begynner kampen på TV?",
         "Klokka seks."
       ],
       [
-        "Hvor er lagbildet?",
-        "På telefonen."
+        "Hva skal B sende til A på telefonen?",
+        "Lagbildet."
       ]
     ],
     "cards": [
@@ -1857,25 +1865,26 @@
       ]
     ],
     "script": [
-      "¿Buscas al actor?",
-      "No, busco a la artista.",
-      "Está en el museo con un turista.",
-      "¿Y el actor?",
-      "Está en el teatro. Tengo una foto.",
-      "Gracias. Primero voy al museo."
+      "¡Hola, Sofía! ¿Sabes dónde está el actor del proyecto de teatro?",
+      "Creo que está en el teatro ensayando. ¿Por qué lo buscas?",
+      "En realidad hoy busco a la artista para hablar de los carteles.",
+      "¡Ah! La artista no está en el teatro. Está en el museo con un turista.",
+      "¿Sabes cómo puedo reconocerla en el museo?",
+      "Sí, aquí tengo una foto suya en el teléfono. Mira.",
+      "¡Genial! Primero voy al museo entonces. Muchas gracias."
     ],
     "questions": [
       [
-        "Hvem leter personen etter?",
-        "Kunstneren."
-      ],
-      [
-        "Hvem er sammen med kunstneren?",
-        "En turist."
-      ],
-      [
         "Hvor er skuespilleren?",
         "På teateret."
+      ],
+      [
+        "Hvem leter personen egentlig etter, og hvorfor?",
+        "Kunstneren, for å snakke om plakatene."
+      ],
+      [
+        "Hva viser Sofía på telefonen så vennen kan kjenne igjen kunstneren?",
+        "Et bilde av henne."
       ]
     ],
     "cards": [

@@ -3,7 +3,10 @@ Finn det riktige flagget
 Lydfil: farger.mp3
 To stemmer. Rolig tempo med korte pauser. Les bare replikkene.
 
-A: Mi bandera tiene dos colores.
-B: ¿Es azul y blanca?
-A: No, es verde y blanca. Tiene una estrella negra en el centro.
-B: Entonces tiene tres colores.
+A: Adivina qué bandera tengo en mi dibujo.
+B: A ver... ¿tiene dos o tres colores?
+A: Tiene tres colores. Es verde y blanca, con una figura en el centro.
+B: ¿Qué figura es? ¿Una luna roja o un círculo amarillo?
+A: No, tiene una estrella negra en el centro.
+B: ¡Ah, ya sé cuál es! ¿Es la bandera nueva para el proyecto de clase?
+A: ¡Exacto! Muy bien.

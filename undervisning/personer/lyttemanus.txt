@@ -3,9 +3,10 @@ Hvem skal vi møte?
 Lydfil: personer.mp3
 To stemmer. Rolig tempo med korte pauser. Les bare replikkene.
 
-A: ¿Buscas al actor?
-B: No, busco a la artista.
-A: Está en el museo con un turista.
-B: ¿Y el actor?
-A: Está en el teatro. Tengo una foto.
-B: Gracias. Primero voy al museo.
+A: ¡Hola, Sofía! ¿Sabes dónde está el actor del proyecto de teatro?
+B: Creo que está en el teatro ensayando. ¿Por qué lo buscas?
+A: En realidad hoy busco a la artista para hablar de los carteles.
+B: ¡Ah! La artista no está en el teatro. Está en el museo con un turista.
+A: ¿Sabes cómo puedo reconocerla en el museo?
+B: Sí, aquí tengo una foto suya en el teléfono. Mira.
+A: ¡Genial! Primero voy al museo entonces. Muchas gracias.

@@ -3,9 +3,10 @@ Innred rommet sammen
 Lydfil: mobler.mp3
 To stemmer. Rolig tempo med korte pauser. Les bare replikkene.
 
-A: ¿Dónde está el sofá?
-B: Al lado de la mesa.
-A: ¿Y la lámpara?
-B: Está en el escritorio.
-A: ¿Está la cama al lado del armario?
-B: Sí, la cama está allí.
+A: ¡Por fin tenemos las llaves de la habitación nueva! ¿Dónde ponemos el sofá?
+B: Podemos poner el sofá al lado de la mesa, cerca de la ventana.
+A: Me parece muy bien. ¿Y dónde dejamos la lámpara grande?
+B: La lámpara va encima del escritorio para estudiar mejor.
+A: Buena idea. ¿Cabe la cama al lado del armario?
+B: Sí, acabo de medir el espacio y la cama cabe justo allí.
+A: ¡Perfecto! Así queda sitio para caminar por el centro.

@@ -3,7 +3,10 @@ På hittegodskontoret
 Lydfil: klaer.mp3
 To stemmer. Rolig tempo med korte pauser. Les bare replikkene.
 
-A: Busco un jersey rojo.
-B: Aquí hay un jersey azul y una chaqueta roja.
-A: Mi jersey tiene una estrella blanca.
-B: Entonces es este. Aquí tienes.
+A: Hola, perdona. Ayer olvidé mi jersey rojo aquí en la escuela.
+B: Vamos a mirar. Aquí tengo una chaqueta roja y un jersey azul.
+A: No, mi jersey es rojo y tiene una estrella blanca delante.
+B: Ah, espera... ¡mira aquí abajo! ¿Es este jersey rojo con una estrella blanca?
+A: ¡Sí, exactamente ese es el mío!
+B: Aquí tienes. También encontramos una bufanda gris ayer, ¿es tuya?
+A: No, la mía es azul. ¡Muchas gracias por el jersey!
