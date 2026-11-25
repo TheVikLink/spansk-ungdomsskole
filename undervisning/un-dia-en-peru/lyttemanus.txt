@@ -3,7 +3,10 @@ Handle til et måltid i Cusco
 Lydfil: un-dia-en-peru.mp3
 To stemmer. Rolig tempo med korte pauser. Les bare replikkene.
 
-A: ¿Qué vamos a cocinar hoy?
-B: Papas con maíz.
-A: Tengo maíz. ¿Necesitamos muchas papas?
-B: Sí. Lleva la bolsa grande al mercado.
+A: ¿Qué vamos a cocinar hoy para la cena en Cusco?
+B: Quiero preparar papas con maíz y queso fresco.
+A: ¡Suena delicioso! ¿Qué ingredientes tenemos ya en la cocina?
+B: Ya tengo bastante maíz y un poco de queso, pero faltan papas.
+A: ¿Necesitamos muchas papas para toda la familia?
+B: Sí, somos seis personas. Lleva la bolsa grande al mercado de San Pedro.
+A: De acuerdo, voy ahora mismo y regreso en veinte minutos.

@@ -341,23 +341,26 @@
       ]
     ],
     "script": [
-      "¿Vienes a casa en Nochebuena?",
-      "Sí. ¿A qué hora cenamos?",
-      "A las ocho. En Navidad comemos con los abuelos.",
-      "Perfecto, nos vemos el día veinticuatro."
+      "¡Hola, Clara! ¿Qué planes tienes para las fiestas de diciembre?",
+      "El veinticuatro, en Nochebuena, ceno en casa con mis padres y mi hermano.",
+      "Qué bonito. ¿Y el día veinticinco en Navidad?",
+      "El día de Navidad vamos a comer con los abuelos a las dos de la tarde.",
+      "¿Y celebráis la Nochevieja en casa también?",
+      "No, esa noche vamos a la plaza con amigos. ¿Te vienes con nosotros el treinta y uno?",
+      "¡Sí, me encantaría! Nos vemos en la plaza."
     ],
     "questions": [
       [
-        "Til hvilken kveld blir gjesten invitert?",
-        "Julaften."
+        "Hvem feirer Clara julaften (Nochebuena, 24. desember) med?",
+        "Foreldrene og broren sin."
       ],
       [
-        "Når er middagen?",
-        "Klokka åtte."
+        "Når spiser familien med besteforeldrene på juledagen (Navidad, 25. desember)?",
+        "Klokka to på ettermiddagen."
       ],
       [
-        "Hvem skal de spise med i julen?",
-        "Besteforeldrene."
+        "Hvor og med hvem skal de feire nyttårsaften (Nochevieja)?",
+        "På torget med venner."
       ]
     ],
     "cards": [
@@ -913,23 +916,26 @@
       ]
     ],
     "script": [
-      "¿Qué haces en casa cada semana?",
-      "Lavo los platos y arreglo mi habitación.",
-      "¿Quién hace las compras?",
-      "Mi padre. Yo paso la aspiradora el sábado."
+      "Oye, esta semana tenemos muchas tareas en casa. ¿Cómo nos organizamos?",
+      "Yo lavo los platos después de cenar todos los días y arreglo mi habitación.",
+      "Vale, entonces yo puedo lavar la ropa los miércoles.",
+      "¡Qué bien! ¿Y quién pasa la aspiradora en el salón el sábado?",
+      "Puedo hacerlo yo por la mañana, antes del partido.",
+      "Genial, y yo hago las compras en el mercado el viernes por la tarde.",
+      "Trato hecho. Así terminamos pronto el fin de semana."
     ],
     "questions": [
       [
-        "Hvilke to faste oppgaver nevnes først?",
-        "Vaske opp og rydde rommet."
+        "Hvilke to oppgaver tar B seg av i ukedagene?",
+        "Vaske opp etter middag og rydde rommet sitt."
       ],
       [
-        "Hvem handler?",
-        "Faren."
+        "Når støvsuger A stua?",
+        "Lørdag morgen (før kampen)."
       ],
       [
-        "Når støvsuger personen?",
-        "På lørdag."
+        "Hvem handler, og når gjør personen det?",
+        "B handler på fredag ettermiddag."
       ]
     ],
     "cards": [

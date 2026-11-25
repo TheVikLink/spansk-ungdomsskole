@@ -3,7 +3,10 @@ Pakk til en dag i Copán
 Lydfil: un-dia-en-honduras.mp3
 To stemmer. Rolig tempo med korte pauser. Les bare replikkene.
 
-A: ¿Qué llevas en la mochila?
-B: Un cuaderno. Quiero dibujar en la plaza.
-A: ¿Y dónde vamos a desayunar?
-B: En casa de mi abuela. Tiene queso y frijoles.
+A: ¿Ya tienes lista la mochila para nuestra excursión a Copán Ruinas?
+B: Casi lista. Llevo un cuaderno y un lápiz porque quiero dibujar en la plaza.
+A: ¡Qué buena idea! Yo también llevo agua y una gorra para el sol.
+B: ¿A qué hora salimos hacia el parque?
+A: Primero pasamos a desayunar a las ocho en casa de mi abuela.
+B: ¡Qué rico! ¿Qué prepara tu abuela para desayunar?
+A: Siempre tiene queso fresco, frijoles y tortillas calientes.

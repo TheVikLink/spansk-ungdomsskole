@@ -61,23 +61,26 @@
       ]
     ],
     "script": [
-      "¿Qué llevas en la mochila?",
-      "Un cuaderno. Quiero dibujar en la plaza.",
-      "¿Y dónde vamos a desayunar?",
-      "En casa de mi abuela. Tiene queso y frijoles."
+      "¿Ya tienes lista la mochila para nuestra excursión a Copán Ruinas?",
+      "Casi lista. Llevo un cuaderno y un lápiz porque quiero dibujar en la plaza.",
+      "¡Qué buena idea! Yo también llevo agua y una gorra para el sol.",
+      "¿A qué hora salimos hacia el parque?",
+      "Primero pasamos a desayunar a las ocho en casa de mi abuela.",
+      "¡Qué rico! ¿Qué prepara tu abuela para desayunar?",
+      "Siempre tiene queso fresco, frijoles y tortillas calientes."
     ],
     "questions": [
       [
-        "Hva er i sekken?",
-        "En skrivebok."
+        "Hva tar B med i sekken for å tegne på torget?",
+        "En skrivebok og en blyant."
       ],
       [
-        "Hvor skal de tegne?",
-        "På torget."
+        "Hva har A pakket mot sola og tørsten?",
+        "Vann og en caps/lue."
       ],
       [
-        "Hvilke to matvarer har bestemoren?",
-        "Ost og bønner."
+        "Hvor og når spiser de frokost først, og hva serveres?",
+        "Klokka åtte hos bestemoren, med fersk ost, bønner og varme tortillas."
       ]
     ],
     "cards": [
@@ -104,23 +107,26 @@
       ]
     ],
     "script": [
-      "¿Vamos a la playa esta mañana?",
-      "Sí. Hay basura cerca del mar.",
-      "Tengo guantes. ¿Tienes una bolsa?",
-      "Sí, una bolsa grande para las botellas."
+      "¡Buenos días! Hoy vamos en grupo a limpiar la playa de Cartagena.",
+      "Sí, vi muchas botellas de plástico cerca del mar ayer.",
+      "¿Trajiste guantes para no cortarte con nada?",
+      "Sí, tengo dos pares de guantes en mi mochila. ¿Y tú tienes bolsas?",
+      "Claro, traigo una bolsa grande para las botellas y otra para la basura pequeña.",
+      "Perfecto. Después de limpiar podemos comer arroz con pescado juntos.",
+      "¡Buenísima idea! Empezamos por la zona cerca de los árboles."
     ],
     "questions": [
       [
-        "Når vil de gå til stranden?",
-        "I formiddag."
+        "Hvorfor vil de rydde stranda i Cartagena i dag?",
+        "De så mange plastflasker nær sjøen i går."
       ],
       [
-        "Hva finnes nær sjøen?",
-        "Søppel."
+        "Hva har B med i sekken, og hva har A med?",
+        "B har to par hansker, og A har to poser."
       ],
       [
-        "Hva vil de legge i den store posen?",
-        "Flaskene."
+        "Hva vil de spise sammen etterpå?",
+        "Ris med fisk."
       ]
     ],
     "cards": [
@@ -237,23 +243,26 @@
       ]
     ],
     "script": [
-      "¿Qué vamos a cocinar hoy?",
-      "Papas con maíz.",
-      "Tengo maíz. ¿Necesitamos muchas papas?",
-      "Sí. Lleva la bolsa grande al mercado."
+      "¿Qué vamos a cocinar hoy para la cena en Cusco?",
+      "Quiero preparar papas con maíz y queso fresco.",
+      "¡Suena delicioso! ¿Qué ingredientes tenemos ya en la cocina?",
+      "Ya tengo bastante maíz y un poco de queso, pero faltan papas.",
+      "¿Necesitamos muchas papas para toda la familia?",
+      "Sí, somos seis personas. Lleva la bolsa grande al mercado de San Pedro.",
+      "De acuerdo, voy ahora mismo y regreso en veinte minutos."
     ],
     "questions": [
       [
-        "Hva skal de lage?",
-        "Poteter med mais."
+        "Hvilken rett vil de lage til middag?",
+        "Poteter med mais og fersk ost."
       ],
       [
-        "Hva har de allerede?",
-        "Mais."
+        "Hva mangler de på kjøkkenet?",
+        "Poteter."
       ],
       [
-        "Hvilken pose skal de ta?",
-        "Den store."
+        "Hvorfor må A ta med den store posen til markedet?",
+        "De er seks personer."
       ]
     ],
     "cards": [
@@ -280,23 +289,26 @@
       ]
     ],
     "script": [
-      "¿Tienes un lápiz para dibujar?",
-      "Sí. También tengo un cuaderno.",
-      "¿Qué quieres dibujar?",
-      "Una barca bajo el cielo azul. Después quiero compartir mi historia."
+      "Hola, Mateo. Hoy en clase de arte en Bata vamos a dibujar algo del mar.",
+      "¡Qué bien! ¿Tienes un lápiz extra para prestarme?",
+      "Sí, toma este lápiz y una hoja de mi cuaderno.",
+      "Muchas gracias. ¿Qué vas a dibujar tú en tu hoja?",
+      "Voy a dibujar una barca azul en la playa bajo las palmeras.",
+      "Qué bonito. ¿Y luego tenemos que contar una historia sobre el dibujo?",
+      "Sí, en grupos pequeños compartimos nuestra historia en español."
     ],
     "questions": [
       [
-        "Hva har personen i tillegg til en blyant?",
-        "En skrivebok."
+        "Hva låner A bort til Mateo?",
+        "En blyant og et ark fra skriveboken."
       ],
       [
-        "Hva vil personen tegne?",
-        "En båt."
+        "Hva skal A tegne?",
+        "En blå båt på stranda under palmene."
       ],
       [
-        "Hva vil personen dele etterpå?",
-        "Historien sin."
+        "Hva skal elevene gjøre med tegningene etterpå?",
+        "Dele en historie om tegningen på spansk i små grupper."
       ]
     ],
     "cards": [

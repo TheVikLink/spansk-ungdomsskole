@@ -3,7 +3,10 @@ Velg riktig invitasjon
 Lydfil: hoytider.mp3
 To stemmer. Rolig tempo med korte pauser. Les bare replikkene.
 
-A: ¿Vienes a casa en Nochebuena?
-B: Sí. ¿A qué hora cenamos?
-A: A las ocho. En Navidad comemos con los abuelos.
-B: Perfecto, nos vemos el día veinticuatro.
+A: ¡Hola, Clara! ¿Qué planes tienes para las fiestas de diciembre?
+B: El veinticuatro, en Nochebuena, ceno en casa con mis padres y mi hermano.
+A: Qué bonito. ¿Y el día veinticinco en Navidad?
+B: El día de Navidad vamos a comer con los abuelos a las dos de la tarde.
+A: ¿Y celebráis la Nochevieja en casa también?
+B: No, esa noche vamos a la plaza con amigos. ¿Te vienes con nosotros el treinta y uno?
+A: ¡Sí, me encantaría! Nos vemos en la plaza.
