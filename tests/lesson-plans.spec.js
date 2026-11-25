@@ -93,8 +93,16 @@ test('lærer åpner timekatalogen og eleven bruker riktig glosesett, skriving, l
     for (const [, example] of lesson.writing) await expect(page.getByText(example, { exact: true })).toBeVisible();
 
     await expect(page.locator('[data-listening] textarea')).toHaveCount(lesson.questions.length);
+    const audioEl = page.locator('audio');
+    await expect(page.locator('[data-audio-speed] button[data-rate="1"]')).toHaveAttribute('aria-pressed', 'true');
+    await page.locator('[data-audio-speed] button[data-rate="0.75"]').click();
+    await expect(page.locator('[data-audio-speed] button[data-rate="0.75"]')).toHaveAttribute('aria-pressed', 'true');
+    expect(await audioEl.evaluate(el => el.playbackRate)).toBe(0.75);
+    await page.locator('[data-audio-speed] button[data-rate="0.5"]').click();
+    expect(await audioEl.evaluate(el => el.playbackRate)).toBe(0.5);
+
     await page.route('**/*.mp3', route => route.fulfill({ status: 404, body: '' }));
-    await page.locator('audio').click({ position: { x: 18, y: 26 } });
+    await page.reload();
     await expect(page.getByRole('status')).toContainText('Opptaket kan ikke spilles av');
   } finally {
     await server.close();

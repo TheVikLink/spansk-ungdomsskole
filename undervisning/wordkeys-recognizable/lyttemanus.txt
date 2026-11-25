@@ -3,9 +3,10 @@ Finn riktig sted for musikken
 Lydfil: wordkeys-recognizable.mp3
 To stemmer. Rolig tempo med korte pauser. Les bare replikkene.
 
-A: ¿Hay música en el hotel?
-B: Sí, una turista toca el piano a las cinco.
-A: ¿Y en el restaurante?
-B: Allí hay música de guitarra a las siete.
-A: Prefiero la guitarra. ¿Vamos juntos?
-B: Sí, nos vemos en el restaurante.
+A: ¡Hola! Soy turista aquí. ¿Sabes si hay música en el hotel esta noche?
+B: Sí, en el hotel hay música de piano a las cinco de la tarde.
+A: Ah, qué bien. ¿Y conoces algún restaurante popular cerca de aquí?
+B: Claro, el restaurante La Plaza es muy popular. Allí tocan la guitarra a las siete.
+A: Me encanta la guitarra. ¿Está lejos del hotel?
+B: No, está a cinco minutos a pie. Te va a gustar mucho.
+A: ¡Perfecto! Muchas gracias.

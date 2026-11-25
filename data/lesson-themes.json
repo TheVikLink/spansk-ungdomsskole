@@ -26,23 +26,26 @@
       ]
     ],
     "script": [
-      "¿Cuántas entradas quieres?",
-      "Dos para el sábado y cuatro para el domingo.",
-      "¿Seis en total?",
-      "Sí, seis. Vamos con dos amigos el domingo."
+      "¡Hola, buenas tardes! ¿Quedan entradas para el concierto del sábado?",
+      "Sí, todavía tenemos algunas. ¿Cuántas entradas quieres?",
+      "Necesito dos para el sábado y cuatro para el domingo.",
+      "A ver... dos para el sábado y cuatro para el domingo. Son seis entradas en total.",
+      "Sí, seis. El domingo voy con tres amigos del instituto.",
+      "Perfecto, aquí tienes las seis entradas. El concierto empieza a las siete.",
+      "¡Genial! Muchas gracias."
     ],
     "questions": [
       [
-        "Hvor mange billetter gjelder lørdag?",
-        "To."
+        "Hvor mange billetter kjøper kunden til lørdag og søndag?",
+        "To til lørdag og fire til søndag (seks til sammen)."
       ],
       [
-        "Hvor mange gjelder søndag?",
-        "Fire."
+        "Hvem skal kunden dra sammen med på søndag?",
+        "Tre venner fra skolen."
       ],
       [
-        "Hvor mange venner blir med på søndag?",
-        "To."
+        "Når begynner konserten?",
+        "Klokka sju."
       ]
     ],
     "cards": [
@@ -126,23 +129,27 @@
       ]
     ],
     "script": [
-      "¡Buenos días! Soy Leo, tu nuevo vecino.",
-      "Hola, Leo. Soy Ana. Vivo en el número tres.",
-      "Gracias, Ana. ¿Nos vemos esta noche?",
-      "Sí, a las ocho. ¡Adiós!"
+      "¡Buenos días! Perdona, soy Leo, tu nuevo vecino.",
+      "¡Hola, Leo! Bienvenido. Soy Ana, vivo en el número tres.",
+      "Mucho gusto, Ana. Yo vivo en el número cinco. ¿Sabes dónde está el supermercado?",
+      "Sí, está muy cerca, al final de la calle. Abre hasta las nueve de la noche.",
+      "¡Qué bien! Muchas gracias por tu ayuda.",
+      "De nada, Leo. Si necesitas algo, llama a mi puerta.",
+      "Gracias, Ana. ¡Adiós!",
+      "¡Adiós! Que tengas un buen día."
     ],
     "questions": [
       [
-        "Hva heter den nye naboen?",
-        "Leo."
+        "Hvilket nummer bor Leo i?",
+        "Fem."
       ],
       [
-        "Hvilket nummer bor Ana i?",
-        "Tre."
+        "Hvor ligger supermarkedet?",
+        "Nederst i gata / veldig nærme."
       ],
       [
-        "Når skal de ses igjen?",
-        "Klokka åtte i kveld."
+        "Hvor lenge er supermarkedet åpent?",
+        "Til klokka ni om kvelden."
       ]
     ],
     "cards": [
@@ -1296,7 +1303,7 @@
   },
   {
     "category": "fremtid",
-    "title": "Finn en ledig dag",
+    "title": "Helgeplaner med venner",
     "ids": [
       "vocab-0405",
       "vocab-0406",
@@ -2010,25 +2017,26 @@
       ]
     ],
     "script": [
-      "¿Hay música en el hotel?",
-      "Sí, una turista toca el piano a las cinco.",
-      "¿Y en el restaurante?",
-      "Allí hay música de guitarra a las siete.",
-      "Prefiero la guitarra. ¿Vamos juntos?",
-      "Sí, nos vemos en el restaurante."
+      "¡Hola! Soy turista aquí. ¿Sabes si hay música en el hotel esta noche?",
+      "Sí, en el hotel hay música de piano a las cinco de la tarde.",
+      "Ah, qué bien. ¿Y conoces algún restaurante popular cerca de aquí?",
+      "Claro, el restaurante La Plaza es muy popular. Allí tocan la guitarra a las siete.",
+      "Me encanta la guitarra. ¿Está lejos del hotel?",
+      "No, está a cinco minutos a pie. Te va a gustar mucho.",
+      "¡Perfecto! Muchas gracias."
     ],
     "questions": [
       [
-        "Hvem spiller piano?",
-        "En turist."
+        "Når er det pianomusikk på hotellet?",
+        "Klokka fem på ettermiddagen."
       ],
       [
-        "Hvor kan de høre gitar?",
-        "På restauranten."
+        "Hva heter restauranten, og hva slags musikk spilles der?",
+        "La Plaza, og det spilles gitar."
       ],
       [
-        "Når begynner gitarmusikken?",
-        "Klokka sju."
+        "Hvor langt er det å gå fra hotellet til restauranten?",
+        "Fem minutter."
       ]
     ],
     "cards": [

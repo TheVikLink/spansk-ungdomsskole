@@ -259,6 +259,37 @@ audio {
   width: min(100%, 24rem);
 }
 
+.audio-speed {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.45rem;
+  margin: 0.5rem 0 1rem;
+}
+
+.audio-speed-label {
+  font-size: 0.92rem;
+  color: var(--ink-muted);
+}
+
+.speed-btn {
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.speed-btn[aria-pressed="true"] {
+  background: var(--ink);
+  color: #fff;
+  border-color: var(--ink);
+}
+
 .catalog {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
@@ -425,7 +456,8 @@ audio {
   nav,
   .no-print,
   .teacher-toolbar,
-  .accent-bar {
+  .accent-bar,
+  .audio-speed {
     display: none;
   }
 

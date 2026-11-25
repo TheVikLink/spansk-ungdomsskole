@@ -41,6 +41,7 @@ function document(title, css, body) {
 const list = items => '<ol>' + items.map(item => `<li>${escape(item)}</li>`).join('') + '</ol>';
 const writeLines = '<div class="write-line" aria-hidden="true"></div><div class="write-line" aria-hidden="true"></div>';
 const nav = '<nav><a href="../index.html">Alle undervisningstimer</a></nav>';
+const audioSpeedControls = '<div class="audio-speed" role="group" aria-label="Avspillingshastighet" data-audio-speed><span class="audio-speed-label">Hastighet:</span><button type="button" class="speed-btn" data-rate="1" aria-pressed="true">1x (normal)</button><button type="button" class="speed-btn" data-rate="0.75" aria-pressed="false">0,75x</button><button type="button" class="speed-btn" data-rate="0.5" aria-pressed="false">0,5x</button></div>';
 
 function verifyCoverage(expected, actual) {
   if (expected.size !== actual.length || actual.some(key => !expected.has(key)) || new Set(actual).size !== actual.length) {
@@ -124,6 +125,7 @@ ${studentWriting}
 <section data-listening><h2>3. Lytteøvelse (7 min)</h2><p>Lytt først etter hva samtalen handler om. Lytt en gang til og skriv svarene under.</p>
 <audio controls preload="metadata" aria-label="Lytt til samtalen" src="${audio}" onerror="this.hidden=true;this.nextElementSibling.textContent='Opptaket kan ikke spilles av. Læreren leser samtalen to ganger.'"></audio>
 <p role="status">Spill av opptaket eller lytt når læreren spiller av i klasserommet.</p>
+${audioSpeedControls}
 ${studentListening}
 </section>
 <section><h2>4. Snakk i par (15 min)</h2><p>Du får Samtalekort A eller Samtalekort B av læreren. Hold kortet skjult for partneren din, still spørsmål på spansk og lytt til svaret. Bytt roller når dere er ferdige.</p></section>
@@ -155,7 +157,8 @@ ${list(lesson.writing.map(([prompt]) => prompt))}
 <section><h2>3. Lytteøvelse (7 min)</h2><p>Spill av lytteøvelsen høyt for klassen to ganger. Elevene svarer i skriveboksene på elevsiden eller på utskrevet <a href="arbeidsark.pdf">elevark (PDF)</a>.</p>
 ${list(lesson.questions.map(([question]) => question))}
 <audio controls preload="metadata" aria-label="Lytt til samtalen" src="${audio}" onerror="this.hidden=true;this.nextElementSibling.textContent='Opptaket kan ikke spilles av. Les lyttemanuset høyt to ganger.'"></audio>
-<p role="status">Klar for avspilling i klasserommet.</p></section>
+<p role="status">Klar for avspilling i klasserommet.</p>
+${audioSpeedControls}</section>
 <section><h2>4. Snakk i par (15 min)</h2><p><a href="partnerkort.pdf">Skriv ut partnerkortene (A4)</a> eller <a href="partnerkort.html">åpne kortene i nettleseren</a>. Bruk ett ark per par og klipp mellom A og B, slik at hver elev bare ser sitt eget kort.</p></section>
 <section><h2>5. Hent fram ordene igjen (5 min)</h2><p>Legg bort kortene. Elevene sier én ny setning med to av ordene og lar partneren stille et spørsmål. Neste øvingsdag bruker de «Repeter gloser» på Start med samme profil når kortene forfaller.</p></section>
 <details><summary>For læreren: manus, fasit og forberedelse</summary><p>Skriv ut partnerkortene før timen (og elevarket hvis klassen jobber på papir). Elevsiden inneholder ikke denne seksjonen, ikke lyttemanuset og ikke partnerkortene.</p>

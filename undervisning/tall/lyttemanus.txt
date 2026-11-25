@@ -3,7 +3,10 @@ Hvor mange billetter?
 Lydfil: tall.mp3
 To stemmer. Rolig tempo med korte pauser. Les bare replikkene.
 
-A: ¿Cuántas entradas quieres?
-B: Dos para el sábado y cuatro para el domingo.
-A: ¿Seis en total?
-B: Sí, seis. Vamos con dos amigos el domingo.
+A: ¡Hola, buenas tardes! ¿Quedan entradas para el concierto del sábado?
+B: Sí, todavía tenemos algunas. ¿Cuántas entradas quieres?
+A: Necesito dos para el sábado y cuatro para el domingo.
+B: A ver... dos para el sábado y cuatro para el domingo. Son seis entradas en total.
+A: Sí, seis. El domingo voy con tres amigos del instituto.
+B: Perfecto, aquí tienes las seis entradas. El concierto empieza a las siete.
+A: ¡Genial! Muchas gracias.

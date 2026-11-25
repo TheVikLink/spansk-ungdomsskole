@@ -130,3 +130,19 @@ if (accentBar && allTextareas.length) {
     accentBar.append(btn);
   }
 }
+
+const audio = document.querySelector('audio');
+const speedGroup = document.querySelector('[data-audio-speed]');
+if (audio && speedGroup) {
+  const speedButtons = [...speedGroup.querySelectorAll('button[data-rate]')];
+  for (const btn of speedButtons) {
+    btn.addEventListener('click', () => {
+      const rate = Number(btn.dataset.rate) || 1;
+      audio.playbackRate = rate;
+      audio.defaultPlaybackRate = rate;
+      for (const candidate of speedButtons) {
+        candidate.setAttribute('aria-pressed', candidate === btn ? 'true' : 'false');
+      }
+    });
+  }
+}
