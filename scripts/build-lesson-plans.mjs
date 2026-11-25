@@ -290,7 +290,7 @@ save('index.html', document('Undervisningstimer i spansk', 'time.css', `<nav><a 
 </ul>
 <p><strong>Pris: 3 490 kr per skole per år</strong> (inntil 6 klasser, bestilles enkelt på skolens budsjett). Vil skolen også ha Feide-lekser og læreroversikt? Se <a href="../school">Skolepakke med Feide (4 995 kr første år)</a>.</p>
 <div class="package-actions">
-<a class="btn-primary" href="mailto:olevik91@gmail.com?subject=${orderSubject}&amp;body=${orderBody}">Bestill skolekode til din skole</a>
+<a class="btn-primary" href="mailto:ole@spansk123.no?subject=${orderSubject}&amp;body=${orderBody}">Bestill skolekode til din skole</a>
 <a class="btn-secondary" href="wordkeys-recognizable/index.html">Prøv gratis time nå</a>
 </div>
 </section>

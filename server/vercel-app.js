@@ -9,7 +9,7 @@ import { createUndervisningRouter } from './undervisning-access.js';
 const projectRoot = fileURLToPath(new URL('../', import.meta.url));
 const PUBLIC_HTML_CSP = "default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; media-src 'self' blob:; connect-src 'self'; manifest-src 'self'; worker-src 'self'; base-uri 'none'; form-action 'self'; frame-ancestors 'none'; object-src 'none'";
 const SCHOOL_INFO_CSP = "default-src 'none'; style-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'";
-const SCHOOL_INFO_MAILTO = 'mailto:olevik91@gmail.com?subject=Bestilling%20eller%20demo%3A%20Skolepakke%20med%20Feide%20(Spansk%20p%C3%A5%201-2-3)&body=Hei%20Ole%20Henrik%2C%0A%0ASkolen%20eller%20kommunen%20v%C3%A5r%20%C3%B8nsker%20en%2015-minutters%20demo%20eller%20DBA-pakke%20for%20Skolepakke%20med%20Feide.%0A%0ASkole%20eller%20kommune%3A%0AKontaktperson%3A%0A%C3%98nsket%20tidspunkt%3A';
+const SCHOOL_INFO_MAILTO = 'mailto:ole@spansk123.no?subject=Bestilling%20eller%20demo%3A%20Skolepakke%20med%20Feide%20(Spansk%20p%C3%A5%201-2-3)&body=Hei%20Ole%20Henrik%2C%0A%0ASkolen%20eller%20kommunen%20v%C3%A5r%20%C3%B8nsker%20en%2015-minutters%20demo%20eller%20DBA-pakke%20for%20Skolepakke%20med%20Feide.%0A%0ASkole%20eller%20kommune%3A%0AKontaktperson%3A%0A%C3%98nsket%20tidspunkt%3A';
 const SCHOOL_INFO_HTML = `<!doctype html>
 <html lang="nb">
 <head>

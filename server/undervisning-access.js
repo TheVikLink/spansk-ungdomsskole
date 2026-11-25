@@ -106,7 +106,7 @@ export function createUndervisningRouter({
     const verified = verifySchoolLicenseCode(code, secret);
     if (!verified.valid) {
       const errorMessage = verified.reason === 'expired'
-        ? 'Skolekoden er utløpt. Kontakt olevik91@gmail.com for fornyelse.'
+        ? 'Skolekoden er utløpt. Kontakt ole@spansk123.no for fornyelse.'
         : 'Ugyldig skolekode. Kontroller at hele koden ble limt inn riktig.';
       return res.status(400).json({ error: errorMessage });
     }

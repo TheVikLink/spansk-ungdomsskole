@@ -291,7 +291,7 @@ test('Vercel Express adapter serves Norwegian Feide school info page on GET /sch
       assert.match(response.headers.get('content-security-policy') || '', /style-src 'self'/u);
       const html = await response.text();
       assert.match(html, /Skolepakke med Feide/u);
-      assert.match(html, /mailto:olevik91@gmail\.com/u);
+      assert.match(html, /mailto:ole@spansk123\.no/u);
       assert.equal(html.includes('\u00b7'), false, 'school info HTML must not contain middle dot U+00B7');
       assert.equal(html.includes('<script>'), false, 'query parameters must never be reflected into HTML');
     }
