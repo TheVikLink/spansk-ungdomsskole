@@ -71,6 +71,22 @@ test('lærer åpner timekatalogen og eleven bruker riktig glosesett, skriving, l
     await page.locator('[data-accent-bar] button', { hasText: 'á' }).click();
     await expect(firstWriting).toHaveValue('á');
 
+    // Keyboard long press inserts accented letters and inverted punctuation; quick press stays plain
+    await firstWriting.fill('');
+    await page.keyboard.down('a');
+    await page.waitForTimeout(450);
+    await page.keyboard.up('a');
+    await page.keyboard.press('e');
+    await page.keyboard.down('Shift');
+    await page.keyboard.down('?');
+    await page.waitForTimeout(450);
+    await page.keyboard.up('?');
+    await page.keyboard.down('!');
+    await page.waitForTimeout(450);
+    await page.keyboard.up('!');
+    await page.keyboard.up('Shift');
+    await expect(firstWriting).toHaveValue('áe¿¡');
+
     await expect(page.getByText('Sammenlign etter at du har skrevet', { exact: true })).toBeHidden();
     for (const [prompt, example] of lesson.writing) await page.getByLabel(prompt).fill(example);
     await page.getByText('Sammenlign etter at du har skrevet', { exact: true }).click();

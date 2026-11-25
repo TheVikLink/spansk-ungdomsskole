@@ -117,6 +117,7 @@ ${script}
 <p lang="es">${vocabulary.map(escape).join(', ')}.</p>
 <p><a target="_blank" rel="noopener" href="../../index.html#${escape(route)}">Åpne glosene</a> i en ny fane. Prøv å si svaret før du snur kortet. Gå tilbake hit når økten er ferdig.</p></section>
 <section data-writing><h2>2. Skriv på spansk (8 min)</h2><p>Prøv alle tre før du åpner eksemplene.</p>
+<p class="accent-hint">Tips: Hold inne a, e, i, o, u, n eller ? og ! på tastaturet for spanske tegn, eller klikk på knappene under.</p>
 <div class="accent-bar" role="group" aria-label="Spanske tegn" data-accent-bar></div>
 ${studentWriting}
 <details hidden><summary>Sammenlign etter at du har skrevet</summary><div lang="es">${examplesList}</div><p>Andre forståelige formuleringer er også mulige.</p></details></section>

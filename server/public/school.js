@@ -12,6 +12,75 @@ const schoolAssignmentsHref = '/school?view=assignments';
 const practiceHref = '/?school=start';
 let priorityMount = null;
 
+const ACCENT_MAP = {
+  a: 'á', e: 'é', i: 'í', o: 'ó', u: 'ú', n: 'ñ',
+  A: 'Á', E: 'É', I: 'Í', O: 'Ó', U: 'Ú', N: 'Ñ',
+  '?': '¿', '!': '¡',
+};
+
+function insertCharacter(input, char) {
+  const start = input.selectionStart ?? input.value.length;
+  const end = input.selectionEnd ?? start;
+  input.setRangeText(char, start, end, 'end');
+  if (input.selectionEnd === input.value.length) input.scrollLeft = input.scrollWidth;
+  input.dispatchEvent(new Event('input', { bubbles: true }));
+}
+
+function setupAccentInput(inputElement) {
+  if (!inputElement || inputElement.dataset.accentInputReady === 'true') return;
+  inputElement.dataset.accentInputReady = 'true';
+  const longPressTimers = new Map();
+  const canHandle = (e) => !inputElement.disabled && !inputElement.readOnly && !e.isComposing && !e.ctrlKey && !e.metaKey && !e.altKey;
+  inputElement.addEventListener('keypress', (e) => {
+    if (ACCENT_MAP[e.key] && canHandle(e)) {
+      e.preventDefault();
+      e.stopImmediatePropagation();
+    }
+  }, true);
+  inputElement.addEventListener('keydown', (e) => {
+    const key = e.key;
+    const physicalKey = e.code || key;
+    if (!ACCENT_MAP[key] || !canHandle(e)) return;
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    if (e.repeat) return;
+    if (longPressTimers.has(physicalKey)) {
+      clearTimeout(longPressTimers.get(physicalKey));
+      longPressTimers.delete(physicalKey);
+    }
+    const start = inputElement.selectionStart ?? inputElement.value.length;
+    const plainCharacter = e.shiftKey ? key.toUpperCase() : key;
+    insertCharacter(inputElement, plainCharacter);
+    const insertedPosition = start + 1;
+    const timer = setTimeout(() => {
+      const insertedChar = inputElement.value.charAt(insertedPosition - 1);
+      if ((!e.shiftKey || key === '?' || key === '!') && insertedChar === plainCharacter && !inputElement.disabled && !inputElement.readOnly) {
+        const selectionStart = inputElement.selectionStart;
+        const selectionEnd = inputElement.selectionEnd;
+        inputElement.setRangeText(ACCENT_MAP[key], insertedPosition - 1, insertedPosition, 'preserve');
+        inputElement.selectionStart = selectionStart;
+        inputElement.selectionEnd = selectionEnd;
+        if (inputElement.selectionEnd === inputElement.value.length) inputElement.scrollLeft = inputElement.scrollWidth;
+        inputElement.dispatchEvent(new Event('input', { bubbles: true }));
+      }
+      longPressTimers.delete(physicalKey);
+    }, 400);
+    longPressTimers.set(physicalKey, timer);
+  }, true);
+  inputElement.addEventListener('keyup', (e) => {
+    const physicalKey = e.code || e.key;
+    if (!longPressTimers.has(physicalKey)) return;
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    clearTimeout(longPressTimers.get(physicalKey));
+    longPressTimers.delete(physicalKey);
+  }, true);
+  inputElement.addEventListener('blur', () => {
+    for (const timer of longPressTimers.values()) clearTimeout(timer);
+    longPressTimers.clear();
+  });
+}
+
 function schoolFeedRequest(path, signal) {
   return fetch(path, { credentials: 'same-origin', cache: 'no-store', headers: { Accept: 'application/json' }, signal });
 }
@@ -864,6 +933,7 @@ async function openAssignment(item, fromPractice = false) {
       value: typedText,
       disabled: Boolean(pendingSubmission),
     });
+    setupAccentInput(textInput);
     textInput.addEventListener('input', () => {
       typedText = textInput.value;
       submit.disabled = !typedText.trim();
@@ -881,7 +951,8 @@ async function openAssignment(item, fromPractice = false) {
         submit.disabled = !typedText.trim();
       }, 'secondary'));
     }
-    textWrap.append(field('Skriv svaret på spansk', textInput), accentRow);
+    const accentHint = node('p', 'Hold inne a, e, i, o, u, n eller ? og ! på tastaturet for spanske tegn, eller klikk på knappene over.', { className: 'hint' });
+    textWrap.append(field('Skriv svaret på spansk', textInput), accentRow, accentHint);
     textWrap.hidden = !typingMode;
     fieldset.hidden = typingMode;
 
