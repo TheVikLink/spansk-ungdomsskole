@@ -9,8 +9,11 @@ import { fileURLToPath } from 'node:url';
 import {
   FREE_SAMPLE_LESSON_IDS,
   createSchoolLicenseCode,
+  createStudentLessonToken,
   isFreeLessonId,
+  studentLessonCookieName,
   verifySchoolLicenseCode,
+  verifyStudentLessonToken,
 } from '../../src/domain/school-license.js';
 import { createUndervisningRouter } from '../../server/undervisning-access.js';
 import { buildVercelPublic } from '../../scripts/build-vercel-public.mjs';
@@ -187,6 +190,7 @@ test('buildVercelPublic stages only top-level portal assets and free sample less
       put('undervisning/time.css', 'css'),
       put('undervisning/writing.js', 'js'),
       put('undervisning/pakke.js', 'pakke'),
+      put('undervisning/teacher.js', 'teacher'),
       put('undervisning/tall/index.html', 'free'),
       put('undervisning/hilsener/partnerkort.pdf', '%PDF-'),
       put('undervisning/wordkeys-recognizable/index.html', 'free'),
@@ -210,6 +214,7 @@ test('buildVercelPublic stages only top-level portal assets and free sample less
       'index.html',
       'pakke.js',
       'tall/index.html',
+      'teacher.js',
       'time.css',
       'wordkeys-recognizable/index.html',
       'writing.js',
@@ -223,4 +228,71 @@ test('service worker bypasses /undervisning routes so paywall redirects stay net
   const swText = await readFile(path.join(projectRoot, 'sw.js'), 'utf8');
   assert.match(swText, /pathname\s*===\s*'\/undervisning'/u);
   assert.match(swText, /pathname\.startsWith\('\/undervisning\/'\)/u);
+});
+
+test('createStudentLessonToken and /api/license/student-link scope student access without exposing teacher keys or partner cards', async () => {
+  assert.equal(studentLessonCookieName(true), '__Secure-spansk123_elev');
+  assert.equal(studentLessonCookieName(false), 'spansk123_elev_dev');
+
+  const token = createStudentLessonToken({ lessonId: 'familie', expiresAt: '2027-08-31' }, TEST_SECRET);
+  assert.deepEqual(
+    verifyStudentLessonToken(token, 'familie', TEST_SECRET, new Date('2026-11-25T08:00:00Z')),
+    { valid: true, lessonId: 'familie', expiresAt: '2027-08-31' },
+  );
+  assert.equal(verifyStudentLessonToken(token, 'dyr', TEST_SECRET, new Date('2026-11-25T08:00:00Z')).valid, false);
+  assert.equal(verifyStudentLessonToken(token, 'familie', TEST_SECRET, new Date('2027-09-01T00:00:00Z')).reason, 'expired');
+
+  await withRouterServer({}, async (origin) => {
+    const unauthLink = await fetch(`${origin}/api/license/student-link`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ lessonId: 'familie' }),
+    });
+    assert.equal(unauthLink.status, 401);
+
+    const freeLink = await fetch(`${origin}/api/license/student-link`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ lessonId: 'tall' }),
+    });
+    assert.equal(freeLink.status, 200);
+    assert.deepEqual(await freeLink.json(), { url: '/undervisning/tall/elev.html', free: true });
+
+    const validCode = createSchoolLicenseCode({ school: 'Solli skole', expiresAt: '2027-08-31' }, TEST_SECRET);
+    const act = await fetch(`${origin}/api/license/activate`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ code: validCode }),
+    });
+    assert.equal(act.status, 200);
+    const teacherCookie = act.headers.get('set-cookie').split(';')[0];
+
+    const linkRes = await fetch(`${origin}/api/license/student-link`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Cookie: teacherCookie },
+      body: JSON.stringify({ lessonId: 'familie' }),
+    });
+    assert.equal(linkRes.status, 200);
+    const linkData = await linkRes.json();
+    assert.equal(linkData.free, false);
+    assert.match(linkData.url, /^\/undervisning\/familie\/elev\.html\?elev=SP123E\./u);
+
+    // Student opens shared link in a fresh browser without teacher cookie
+    const studentPage = await fetch(`${origin}${linkData.url}`);
+    assert.equal(studentPage.status, 200);
+    const studentHtml = await studentPage.text();
+    assert.match(studentHtml, /Elevside/u);
+    assert.equal(studentHtml.includes('For læreren'), false);
+    const setStudentCookie = studentPage.headers.get('set-cookie');
+    assert.ok(setStudentCookie?.includes('Path=/undervisning/familie/'));
+    const studentCookie = setStudentCookie.split(';')[0];
+
+    // Student can load MP3 for that lesson, but CANNOT open teacher page, fasit, script, PDFs, or another lesson
+    assert.equal((await fetch(`${origin}/undervisning/familie/familie.mp3`, { headers: { Cookie: studentCookie } })).status, 200);
+    assert.equal((await fetch(`${origin}/undervisning/familie/index.html`, { redirect: 'manual', headers: { Cookie: studentCookie } })).status, 302);
+    assert.equal((await fetch(`${origin}/undervisning/familie/lyttemanus.txt`, { headers: { Cookie: studentCookie } })).status, 402);
+    assert.equal((await fetch(`${origin}/undervisning/familie/partnerkort.pdf`, { headers: { Cookie: studentCookie } })).status, 402);
+    assert.equal((await fetch(`${origin}/undervisning/familie/arbeidsark.pdf`, { headers: { Cookie: studentCookie } })).status, 402);
+    assert.equal((await fetch(`${origin}/undervisning/dyr/elev.html`, { redirect: 'manual', headers: { Cookie: studentCookie } })).status, 302);
+  });
 });

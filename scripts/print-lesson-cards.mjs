@@ -31,8 +31,22 @@ try {
     } finally {
       await rm(temporary, { force: true });
     }
+
+    await page.goto(pathToFileURL(path.join(folder, 'arbeidsark.html')).href);
+    const worksheetHeading = (await page.locator('.worksheet h1').textContent() || '').trim();
+    if (!worksheetHeading) {
+      throw new Error('Mangler elevark-overskrift i ' + directory);
+    }
+    const worksheetPdf = await page.pdf({ format: 'A4', preferCSSPageSize: true, printBackground: true });
+    const worksheetTmp = path.join(folder, '.arbeidsark-' + randomUUID() + '.tmp');
+    try {
+      await writeFile(worksheetTmp, worksheetPdf);
+      await rename(worksheetTmp, path.join(folder, 'arbeidsark.pdf'));
+    } finally {
+      await rm(worksheetTmp, { force: true });
+    }
   }
-  console.log('Skrev partnerkort for ' + directories.length + ' undervisningstimer.');
+  console.log('Skrev partnerkort og elevark (PDF) for ' + directories.length + ' undervisningstimer.');
 } finally {
   await browser.close();
 }

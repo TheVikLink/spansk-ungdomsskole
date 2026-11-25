@@ -90,7 +90,7 @@ function renderLicensePanel(state, initialMessage = '', isError = false) {
     const title = document.createElement('h2');
     title.textContent = `Aktiv skolelisens: ${state.school}`;
     const info = document.createElement('p');
-    info.textContent = `Alle 46 undervisningstimer, 46 lydspor og utskrivbare A/B-kort er låst opp på denne enheten til og med ${state.expiresAt}.`;
+    info.textContent = `Alle 46 undervisningstimer, 46 lytteøvelser, elevark og utskrivbare A/B-kort er låst opp på denne enheten til og med ${state.expiresAt}.`;
     const btn = document.createElement('button');
     btn.type = 'button';
     btn.className = 'btn-secondary';
@@ -110,7 +110,7 @@ function renderLicensePanel(state, initialMessage = '', isError = false) {
   const title = document.createElement('h2');
   title.textContent = 'Har skolen allerede kjøpt Undervisningspakken?';
   const desc = document.createElement('p');
-  desc.textContent = 'Lim inn skolens kode (starter med SP123.) for å låse opp alle 46 timer, PDF-kort og lydfiler. Ingen elevkontoer eller persondata kreves.';
+  desc.textContent = 'Lim inn skolens kode (starter med SP123.) for å låse opp alle 46 timer, elevark, lytteøvelser og A/B-kort. Ingen elevkontoer eller persondata kreves.';
   const form = document.createElement('form');
   form.className = 'license-form';
   const label = document.createElement('label');

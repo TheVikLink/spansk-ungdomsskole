@@ -28,6 +28,7 @@ test('Vercel config uses root Express discovery and sets the static output and f
     '/undervisning/pakke.js',
     '/undervisning/time.css',
     '/undervisning/writing.js',
+    '/undervisning/teacher.js',
   ]) {
     assert.equal(
       cacheHeadersBySource.get(source),

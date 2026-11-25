@@ -36,6 +36,8 @@ for (const viewport of [
       await page.goto(`${server.url}/undervisning/`);
 
       await expect(page.getByRole('heading', { name: 'Undervisningstimer i spansk' })).toBeVisible();
+      await expect(page.locator('.catalog-section h2').first()).toHaveText('Gratis prøvetimer');
+      await expect(page.locator('.catalog-section').first().locator('li[data-lesson-id]')).toHaveCount(3);
       await expect(page.locator('.catalog li[data-lesson-id]')).toHaveCount(46);
 
       // Zero horizontal overflow

@@ -21,6 +21,7 @@ test('lærer åpner timekatalogen og eleven bruker riktig glosesett, skriving, l
     await expect(lessonNavigation).toBeVisible();
     await lessonNavigation.click();
     await expect(page.getByRole('heading', { name: 'Undervisningstimer i spansk' })).toBeVisible();
+    await expect(page.locator('.catalog-section h2').first()).toHaveText('Gratis prøvetimer');
     const links = page.locator('.catalog a');
     await expect(links).toHaveCount(lessons.length);
     const addresses = await links.evaluateAll(elements => elements.map(link => link.href));
@@ -42,21 +43,43 @@ test('lærer åpner timekatalogen og eleven bruker riktig glosesett, skriving, l
     expect(queue).toEqual(lesson.ids.flatMap(id => [id + '/es-no', id + '/no-es']).sort());
     await vocab.close();
 
+    const worksheetLink = page.getByRole('link', { name: /Skriv ut elevark/ }).first();
+    const worksheetPdf = await page.request.get(await worksheetLink.evaluate(link => link.href));
+    expect(worksheetPdf.status()).toBe(200);
+    expect((await worksheetPdf.body()).subarray(0, 5).toString()).toBe('%PDF-');
+
+    const printLink = page.getByRole('link', { name: /Skriv ut partnerkortene/ }).first();
+    const pdf = await page.request.get(await printLink.evaluate(link => link.href));
+    expect(pdf.status()).toBe(200);
+    expect((await pdf.body()).subarray(0, 5).toString()).toBe('%PDF-');
+    const teacherDetails = page.locator('details', { hasText: 'For læreren: manus, fasit og forberedelse' });
+    await expect(teacherDetails).not.toContainText('Legg ferdig opptak i samme mappe');
+    await teacherDetails.locator('summary').click();
+    const schoolLink = page.getByRole('link', { name: 'Gi temaet som digital skolelekse (Feide)' });
+    await expect(schoolLink).toHaveAttribute('href', `/school?activity=${encodeURIComponent('vocabulary.tall.v1')}&title=${encodeURIComponent(lesson.title)}`);
+
+    // Student page separates answers, transcript, and A/B cards, and provides web inputs + accents
+    await page.getByRole('link', { name: 'Åpne elevsiden' }).click();
+    await expect(page).toHaveURL(/\/undervisning\/tall\/elev\.html$/);
+    await expect(page.getByText('For læreren: manus, fasit og forberedelse')).toHaveCount(0);
+    await expect(page.locator('a[href*="partnerkort"], a[href*="lyttemanus"]')).toHaveCount(0);
+    await expect(page.locator('main')).not.toContainText('Det du skriver blir i denne fanen');
+    await expect(page.locator('main')).not.toContainText('svar på papir');
+
+    const firstWriting = page.getByLabel(lesson.writing[0][0]);
+    await firstWriting.focus();
+    await page.locator('[data-accent-bar] button', { hasText: 'á' }).click();
+    await expect(firstWriting).toHaveValue('á');
+
     await expect(page.getByText('Sammenlign etter at du har skrevet', { exact: true })).toBeHidden();
     for (const [prompt, example] of lesson.writing) await page.getByLabel(prompt).fill(example);
     await page.getByText('Sammenlign etter at du har skrevet', { exact: true }).click();
     for (const [, example] of lesson.writing) await expect(page.getByText(example, { exact: true })).toBeVisible();
 
+    await expect(page.locator('[data-listening] textarea')).toHaveCount(lesson.questions.length);
     await page.route('**/*.mp3', route => route.fulfill({ status: 404, body: '' }));
     await page.locator('audio').click({ position: { x: 18, y: 26 } });
     await expect(page.getByRole('status')).toContainText('Opptaket kan ikke spilles av');
-    const printLink = page.getByRole('link', { name: /Skriv ut partnerkortene/ });
-    const pdf = await page.request.get(await printLink.evaluate(link => link.href));
-    expect(pdf.status()).toBe(200);
-    expect((await pdf.body()).subarray(0, 5).toString()).toBe('%PDF-');
-    await page.locator('details', { hasText: 'For læreren: manus, fasit og forberedelse' }).locator('summary').click();
-    const schoolLink = page.getByRole('link', { name: 'Gi temaet som digital skolelekse (Feide)' });
-    await expect(schoolLink).toHaveAttribute('href', `/school?activity=${encodeURIComponent('vocabulary.tall.v1')}&title=${encodeURIComponent(lesson.title)}`);
   } finally {
     await server.close();
   }

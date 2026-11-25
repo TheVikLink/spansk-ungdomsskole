@@ -39,6 +39,7 @@ function document(title, css, body) {
 }
 
 const list = items => '<ol>' + items.map(item => `<li>${escape(item)}</li>`).join('') + '</ol>';
+const writeLines = '<div class="write-line" aria-hidden="true"></div><div class="write-line" aria-hidden="true"></div>';
 const nav = '<nav><a href="../index.html">Alle undervisningstimer</a></nav>';
 
 function verifyCoverage(expected, actual) {
@@ -62,8 +63,11 @@ function vocabularyFor(lesson) {
   return entries.map(word => word.spansk);
 }
 
-const overview = [[], []];
+const freeLessons = [];
+const paidThemes = [];
+const paidCulture = [];
 const directories = new Set();
+
 for (const lesson of [...themes, ...culture]) {
   const id = lesson.pack || lesson.theme || slug(lesson.category);
   const vocabulary = vocabularyFor(lesson);
@@ -74,7 +78,9 @@ for (const lesson of [...themes, ...culture]) {
     throw Error('Ufullstendig undervisningstime: ' + id);
   }
 
+  const free = isFreeLessonId(id);
   const title = escape(lesson.title);
+  const goal = escape(lesson.goal);
   const audio = lesson.pack === 'un-dia-en-mexico' ? 'marked-oaxaca.mp3' : id + '.mp3';
   const script = lesson.script.map((line, i) => (i % 2 ? 'B: ' : 'A: ') + line).join('\n');
   save(id + '/lyttemanus.txt', `${lesson.title}
@@ -88,55 +94,112 @@ ${script}
   const cards = lesson.cards.map((instructions, i) => `<article><small>Samtalekort ${i ? 'B' : 'A'}</small><h2>${title}</h2><p>${escape(instructions)}</p><p>Hold kortet skjult. Spør på spansk og lytt til svaret. Bytt på å spørre.</p></article>`).join('');
   save(id + '/partnerkort.html', document(lesson.title, '../time.css', nav + '<div class="pair">' + cards + '</div>'));
 
+  const worksheetWriting = lesson.writing.map(([prompt]) => `<li><p>${escape(prompt)}</p>${writeLines}</li>`).join('');
+  const worksheetListening = lesson.questions.map(([question]) => `<li><p>${escape(question)}</p>${writeLines}</li>`).join('');
+  const worksheetBody = `<nav class="no-print"><a href="index.html">Tilbake til lærersiden</a></nav>
+<article class="worksheet">
+<header class="worksheet-head"><div class="worksheet-meta"><span>Navn: ___________________________</span><span>Dato: ______________</span></div><p>Spansk A1 / Elevark</p><h1>${title}</h1><p>${goal}</p></header>
+<section><h2>1. Gloser for timen</h2><p lang="es">${vocabulary.map(escape).join(', ')}.</p></section>
+<section><h2>2. Skriv på spansk</h2><ol class="worksheet-list">${worksheetWriting}</ol></section>
+<section><h2>3. Lytteøvelse</h2><p>Lytt to ganger og skriv svarene på linjene.</p><ol class="worksheet-list">${worksheetListening}</ol></section>
+<p class="worksheet-foot">4. Snakk i par: Læreren deler ut Samtalekort A og B.</p>
+</article>`;
+  save(id + '/arbeidsark.html', document(`${lesson.title} (Elevark)`, '../time.css', worksheetBody));
+
   const route = lesson.pack ? 'gloser/' + lesson.pack : 'time/' + lesson.ids.join(',');
-  const writing = lesson.writing.map(([prompt]) => `<label>${escape(prompt)}<textarea rows="2" lang="es" autocomplete="off"></textarea></label>`).join('\n');
-  const schoolActivityId = lesson.category ? `vocabulary.${id}.v1` : 'vocabulary.all.v1';
-  const body = `${nav}
-<header><p>Spansk A1 / 45 minutter</p><h1>${title}</h1><p>${escape(lesson.goal)}</p></header>
+  const examplesList = list(lesson.writing.map(([, example]) => example));
+  const studentWriting = lesson.writing.map(([prompt]) => `<label>${escape(prompt)}<textarea rows="2" lang="es" autocomplete="off"></textarea></label>`).join('\n');
+  const studentListening = lesson.questions.map(([question], i) => `<label>${i + 1}. ${escape(question)}<textarea rows="2" autocomplete="off"></textarea></label>`).join('\n');
+
+  const studentBody = `<nav><a href="../../index.html">Til øvingsappen</a></nav>
+<header><p>Elevside / Spansk A1 / 45 minutter</p><h1>${title}</h1><p>${goal}</p></header>
 <section><h2>1. Øv på glosene (10 min)</h2>
 <p lang="es">${vocabulary.map(escape).join(', ')}.</p>
 <p><a target="_blank" rel="noopener" href="../../index.html#${escape(route)}">Åpne glosene</a> i en ny fane. Prøv å si svaret før du snur kortet. Gå tilbake hit når økten er ferdig.</p></section>
-<section data-writing><h2>2. Skriv på spansk (8 min)</h2><p>Prøv alle tre før du åpner eksemplene. Det du skriver blir i denne fanen.</p>
-${writing}
-<details hidden><summary>Sammenlign etter at du har skrevet</summary><div lang="es">${list(lesson.writing.map(([, example]) => example))}</div><p>Andre forståelige formuleringer er også mulige.</p></details></section>
-<section><h2>3. Lytt to ganger (7 min)</h2><p>Lytt først etter hva samtalen handler om. Lytt så etter detaljene og svar på papir.</p>
-${list(lesson.questions.map(([question]) => question))}
-<audio controls preload="none" aria-label="Lytt til samtalen" src="${audio}" onerror="this.hidden=true;this.nextElementSibling.textContent='Opptaket kan ikke spilles av. Læreren leser manuset to ganger.'"></audio>
-<p role="status">Læreren kan lese samtalen høyt.</p></section>
-<section><h2>4. Snakk i par (15 min)</h2><p><a href="partnerkort.pdf">Skriv ut partnerkortene (A4)</a> eller <a href="partnerkort.html">åpne kortene i nettleseren</a>. Bruk ett ark per par og klipp mellom A og B. Gjennomfør begge rollene. Gjenta med en ny partner og mindre støtte.</p></section>
+<section data-writing><h2>2. Skriv på spansk (8 min)</h2><p>Prøv alle tre før du åpner eksemplene.</p>
+<div class="accent-bar" role="group" aria-label="Spanske tegn" data-accent-bar></div>
+${studentWriting}
+<details hidden><summary>Sammenlign etter at du har skrevet</summary><div lang="es">${examplesList}</div><p>Andre forståelige formuleringer er også mulige.</p></details></section>
+<section data-listening><h2>3. Lytteøvelse (7 min)</h2><p>Lytt først etter hva samtalen handler om. Lytt en gang til og skriv svarene under.</p>
+<audio controls preload="metadata" aria-label="Lytt til samtalen" src="${audio}" onerror="this.hidden=true;this.nextElementSibling.textContent='Opptaket kan ikke spilles av. Læreren leser samtalen to ganger.'"></audio>
+<p role="status">Spill av opptaket eller lytt når læreren spiller av i klasserommet.</p>
+${studentListening}
+</section>
+<section><h2>4. Snakk i par (15 min)</h2><p>Du får Samtalekort A eller Samtalekort B av læreren. Hold kortet skjult for partneren din, still spørsmål på spansk og lytt til svaret. Bytt roller når dere er ferdige.</p></section>
 <section><h2>5. Hent fram ordene igjen (5 min)</h2><p>Legg bort kortene. Si én ny setning med to av ordene. La partneren stille et spørsmål. Neste øvingsdag bruker dere «Repeter gloser» på Start med samme profil når kortene forfaller.</p></section>
-<details><summary>For læreren: manus, fasit og forberedelse</summary><p>Skriv ut kortene før timen. Ved første lytting holder elevene manuset lukket.</p>
-<p><a href="lyttemanus.txt">Åpne manus til innlesing</a>. Legg ferdig opptak i samme mappe som timen med filnavnet <code>${audio}</code>.</p>
+<script src="../writing.js" defer></script>`;
+  save(id + '/elev.html', document(`${lesson.title} (Elevside)`, '../time.css', studentBody));
+
+  const schoolActivityId = lesson.category ? `vocabulary.${id}.v1` : 'vocabulary.all.v1';
+  const teacherNav = '<nav><a href="../index.html">Alle undervisningstimer</a><a href="elev.html">Åpne elevsiden</a></nav>';
+  const teacherBody = `${teacherNav}
+<header><p>Lærerside / Spansk A1 / 45 minutter</p><h1>${title}</h1><p>${goal}</p></header>
+<section class="teacher-toolbar" aria-labelledby="teacherToolsTitle">
+<h2 id="teacherToolsTitle">Del og skriv ut til klassen</h2>
+<p>Del elevsiden for digital øving uten fasit og uten partnerkort, eller skriv ut elevark og samtalekort på papir.</p>
+<div class="package-actions">
+<button type="button" class="btn-primary" data-copy-student-link data-lesson-id="${id}" data-free="${free ? 'true' : 'false'}">Kopier elevlenke (uten fasit)</button>
+<a class="btn-secondary" href="elev.html">Forhåndsvis elevside</a>
+<a class="btn-secondary" href="arbeidsark.pdf">Skriv ut elevark (PDF)</a>
+<a class="btn-secondary" href="partnerkort.pdf">Skriv ut partnerkortene (A4)</a>
+</div>
+<p class="toolbar-status" role="status" data-student-link-status></p>
+</section>
+<section><h2>1. Øv på glosene (10 min)</h2>
+<p lang="es">${vocabulary.map(escape).join(', ')}.</p>
+<p><a target="_blank" rel="noopener" href="../../index.html#${escape(route)}">Åpne glosene</a> i en ny fane. Elevene prøver å si svaret før de snur kortet.</p></section>
+<section><h2>2. Skriv på spansk (8 min)</h2><p>Elevene skriver svarene i skriveboksene på elevsiden eller på utskrevet elevark før de sammenligner med eksemplene.</p>
+${list(lesson.writing.map(([prompt]) => prompt))}
+<details><summary>Eksempelsvar</summary><div lang="es">${examplesList}</div><p>Andre forståelige formuleringer er også mulige.</p></details></section>
+<section><h2>3. Lytteøvelse (7 min)</h2><p>Spill av lytteøvelsen høyt for klassen to ganger. Elevene svarer i skriveboksene på elevsiden eller på utskrevet <a href="arbeidsark.pdf">elevark (PDF)</a>.</p>
+${list(lesson.questions.map(([question]) => question))}
+<audio controls preload="metadata" aria-label="Lytt til samtalen" src="${audio}" onerror="this.hidden=true;this.nextElementSibling.textContent='Opptaket kan ikke spilles av. Les lyttemanuset høyt to ganger.'"></audio>
+<p role="status">Klar for avspilling i klasserommet.</p></section>
+<section><h2>4. Snakk i par (15 min)</h2><p><a href="partnerkort.pdf">Skriv ut partnerkortene (A4)</a> eller <a href="partnerkort.html">åpne kortene i nettleseren</a>. Bruk ett ark per par og klipp mellom A og B, slik at hver elev bare ser sitt eget kort.</p></section>
+<section><h2>5. Hent fram ordene igjen (5 min)</h2><p>Legg bort kortene. Elevene sier én ny setning med to av ordene og lar partneren stille et spørsmål. Neste øvingsdag bruker de «Repeter gloser» på Start med samme profil når kortene forfaller.</p></section>
+<details><summary>For læreren: manus, fasit og forberedelse</summary><p>Skriv ut partnerkortene før timen (og elevarket hvis klassen jobber på papir). Elevsiden inneholder ikke denne seksjonen, ikke lyttemanuset og ikke partnerkortene.</p>
+<p><a href="lyttemanus.txt">Åpne lyttemanus</a></p>
 <p><a href="/school?activity=${encodeURIComponent(schoolActivityId)}&amp;title=${encodeURIComponent(lesson.title)}">Gi temaet som digital skolelekse (Feide)</a>.</p>
+<h3>Fasit til lytteøvelsen</h3>
 ${list(lesson.questions.map(([, answer]) => answer))}
 <p>Lytt etter om begge kan stille et spørsmål, forstå partnerens svar og bruke opplysningen til å løse oppgaven.</p></details>
-<script src="../writing.js" defer></script>`;
-  save(id + '/index.html', document(lesson.title, '../time.css', body));
+<script src="../teacher.js" defer></script>`;
+  save(id + '/index.html', document(lesson.title, '../time.css', teacherBody));
+
   const topic = lesson.category || packs.get(lesson.pack)?.title || recognition.title;
   const group = lesson.pack ? 'culture' : 'theme';
-  overview[lesson.pack ? 1 : 0].push({ id, title, topic, group, free: isFreeLessonId(id) });
+  const entry = { id, title, topic, group, free };
+  if (free) freeLessons.push(entry);
+  else if (lesson.pack) paidCulture.push(entry);
+  else paidThemes.push(entry);
 }
 
-const sections = overview.map((group, i) => {
-  group.sort((a, b) => a.topic.localeCompare(b.topic, 'nb'));
-  const links = group.map(({ id, title, topic, group: groupKind, free }) => {
+const renderCatalogSection = (heading, entries) => {
+  entries.sort((a, b) => a.topic.localeCompare(b.topic, 'nb'));
+  const links = entries.map(({ id, title, topic, group: groupKind, free }) => {
     const badgeClass = free ? 'lesson-badge badge-free' : 'lesson-badge badge-paid';
     const badgeLabel = free ? 'Gratis prøve' : 'Undervisningspakken';
     return `<li data-lesson-id="${id}" data-group="${groupKind}" data-free="${free ? 'true' : 'false'}"><a href="${id}/index.html"><span class="card-top"><small>${escape(topic)}</small><span class="${badgeClass}">${badgeLabel}</span></span><strong>${title}</strong></a></li>`;
   }).join('\n');
-  const heading = i ? 'Kultur og hverdagsliv' : 'Glosetemaer';
   return `<section class="catalog-section"><h2>${heading}</h2><ul class="catalog">${links}</ul></section>`;
-});
+};
+
+const sections = [
+  renderCatalogSection('Gratis prøvetimer', freeLessons),
+  renderCatalogSection('Glosetemaer', paidThemes),
+  renderCatalogSection('Kultur og hverdagsliv', paidCulture),
+];
+
 const orderSubject = encodeURIComponent('Bestilling eller demo: Undervisningspakken i Spansk på 1-2-3');
 const orderBody = encodeURIComponent('Hei Ole Henrik,\n\nSkolen vår vil gjerne bestille eller se en kort demo av Undervisningspakken (3 490 kr per skole per år).\n\nSkolenavn:\nKontaktperson:\nAntall spanskgrupper:');
 save('index.html', document('Undervisningstimer i spansk', 'time.css', `<nav><a href="../index.html">Til øvingsappen</a><a href="../school">Skolemodus med Feide</a></nav>
-<header><h1>Undervisningstimer i spansk</h1><p>46 ferdige 45-minutters opplegg med gloseøkt, skriving, lydopptak og utskrivbare samtalekort (A/B). Laget for ungdomsskolen og spansk nivå I i videregående.</p></header>
+<header><h1>Undervisningstimer i spansk</h1><p>46 ferdige 45-minutters opplegg med gloseøkt, skriving, lytteøvelse, utskrivbart elevark (PDF) og samtalekort (A/B). Laget for ungdomsskolen og spansk nivå I i videregående.</p></header>
 <section class="package-hero" aria-labelledby="packageTitle">
 <h2 id="packageTitle">Undervisningspakken – klar til bruk i klasserommet uten elevkontoer</h2>
 <ul class="package-highlights">
-<li>46 komplette 45-minutters timer</li>
-<li>46 ferdige A4-samtalekort (PDF)</li>
-<li>46 innspilte lyttemanus (MP3)</li>
+<li>46 komplette 45-minutters timer (egen lærerside og elevside)</li>
+<li>46 ferdige lytteøvelser</li>
+<li>46 utskrivbare elevark og A4-samtalekort (PDF)</li>
 <li>Null elevdata i skyen – ingen ventetid på kommunal DBA</li>
 </ul>
 <p><strong>Pris: 3 490 kr per skole per år</strong> (inntil 6 klasser, bestilles enkelt på skolens budsjett). Vil skolen også ha Feide-lekser og læreroversikt? Se <a href="../school">Skolepakke med Feide (4 995 kr første år)</a>.</p>

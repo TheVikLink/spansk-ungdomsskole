@@ -5,14 +5,17 @@ import path from 'node:path';
 import { createRateLimit } from './rate-limit.js';
 import {
   FREE_SAMPLE_LESSON_IDS,
+  createStudentLessonToken,
   isFreeLessonId,
   licenseCookieName,
+  studentLessonCookieName,
   verifySchoolLicenseCode,
+  verifyStudentLessonToken,
 } from '../src/domain/school-license.js';
 
 const LESSON_ID_PATTERN = /^[a-z0-9-]+$/u;
-const ASSET_PATTERN = /^(?:index\.html|partnerkort\.html|partnerkort\.pdf|lyttemanus\.txt|[a-z0-9-]+\.mp3)$/u;
-const TOP_LEVEL_FILES = new Set(['index.html', 'time.css', 'writing.js', 'pakke.js']);
+const ASSET_PATTERN = /^(?:index\.html|elev\.html|arbeidsark\.html|arbeidsark\.pdf|partnerkort\.html|partnerkort\.pdf|lyttemanus\.txt|[a-z0-9-]+\.mp3)$/u;
+const TOP_LEVEL_FILES = new Set(['index.html', 'time.css', 'writing.js', 'pakke.js', 'teacher.js']);
 
 function parseCookies(req) {
   const result = {};
@@ -33,10 +36,10 @@ function setSecurityHeaders(res) {
   res.setHeader('X-Frame-Options', 'DENY');
 }
 
-function buildCookieHeader(name, value, { maxAgeSeconds, secure }) {
+function buildCookieHeader(name, value, { maxAgeSeconds, secure, path: cookiePath = '/' }) {
   const parts = [
     `${name}=${encodeURIComponent(value)}`,
-    'Path=/',
+    `Path=${cookiePath}`,
     `Max-Age=${maxAgeSeconds}`,
     'SameSite=Lax',
     'HttpOnly',
@@ -55,6 +58,7 @@ export function createUndervisningRouter({
   const rootDir = path.resolve(projectRoot);
   const undervisningDir = path.resolve(rootDir, 'undervisning');
   const cookieName = licenseCookieName(cookieSecure);
+  const studentCookieName = studentLessonCookieName(cookieSecure);
   const activateLimiter = createRateLimit({ windowMs: 60_000, limit: 30, scope: 'ip', maxBuckets: 2_000 });
   const jsonParser = express.json({ limit: '2kb', strict: true });
   const conditionalJson = (req, res, next) => (req.body !== undefined ? next() : jsonParser(req, res, next));
@@ -124,6 +128,40 @@ export function createUndervisningRouter({
     return res.json({ active: false });
   });
 
+  router.post('/api/license/student-link', activateLimiter, conditionalJson, async (req, res) => {
+    setSecurityHeaders(res);
+    res.setHeader('Cache-Control', 'no-store, private');
+    const lessonId = typeof req.body?.lessonId === 'string' ? req.body.lessonId.trim() : '';
+    if (!LESSON_ID_PATTERN.test(lessonId)) {
+      return res.status(404).json({ error: 'Fant ikke undervisningstimen.' });
+    }
+    const elevPath = path.resolve(undervisningDir, lessonId, 'elev.html');
+    if (!elevPath.startsWith(undervisningDir + path.sep)) {
+      return res.status(404).json({ error: 'Fant ikke undervisningstimen.' });
+    }
+    try {
+      await access(elevPath, constants.R_OK);
+    } catch {
+      return res.status(404).json({ error: 'Fant ikke undervisningstimen.' });
+    }
+    if (!enforcePaywall || isFreeLessonId(lessonId)) {
+      return res.json({ url: `/undervisning/${lessonId}/elev.html`, free: true });
+    }
+    const verified = readLicense(req);
+    if (!verified.valid) {
+      return res.status(401).json({ error: 'Aktiver skolekode på /undervisning/ først.' });
+    }
+    const secret = readSecret();
+    const sevenDaysAhead = new Date(Date.now() + 7 * 86_400_000).toISOString().slice(0, 10);
+    const expiresAt = verified.license.expiresAt < sevenDaysAhead ? verified.license.expiresAt : sevenDaysAhead;
+    const token = createStudentLessonToken({ lessonId, expiresAt }, secret);
+    return res.json({
+      url: `/undervisning/${lessonId}/elev.html?elev=${encodeURIComponent(token)}`,
+      expiresAt,
+      free: false,
+    });
+  });
+
   router.get('/undervisning', (req, res, next) => {
     if (req.path !== '/undervisning') return next();
     setSecurityHeaders(res);
@@ -181,7 +219,35 @@ export function createUndervisningRouter({
     }
 
     const free = isFreeLessonId(segment);
-    const allowed = !enforcePaywall || free || readLicense(req).valid;
+    const hasTeacherAccess = !enforcePaywall || free || readLicense(req).valid;
+    const isStudentAsset = asset === 'elev.html' || asset.endsWith('.mp3');
+    let hasStudentAccess = false;
+
+    if (!hasTeacherAccess && isStudentAsset) {
+      const secret = readSecret();
+      const queryToken = asset === 'elev.html' && typeof req.query?.elev === 'string' ? req.query.elev.trim() : '';
+      if (queryToken) {
+        const verifiedStudent = verifyStudentLessonToken(queryToken, segment, secret);
+        if (verifiedStudent.valid) {
+          const expiryEndMs = Date.parse(`${verifiedStudent.expiresAt}T23:59:59.000Z`);
+          const remainingSeconds = Math.floor((expiryEndMs - Date.now()) / 1000);
+          const maxAgeSeconds = Math.max(60, Math.min(7 * 86_400, remainingSeconds));
+          res.append('Set-Cookie', buildCookieHeader(studentCookieName, queryToken, {
+            maxAgeSeconds,
+            secure: cookieSecure,
+            path: `/undervisning/${segment}/`,
+          }));
+          hasStudentAccess = true;
+        }
+      } else {
+        const cookieToken = parseCookies(req)[studentCookieName];
+        if (cookieToken && verifyStudentLessonToken(cookieToken, segment, secret).valid) {
+          hasStudentAccess = true;
+        }
+      }
+    }
+
+    const allowed = hasTeacherAccess || hasStudentAccess;
 
     if (!allowed) {
       res.setHeader('Cache-Control', 'no-store, private');

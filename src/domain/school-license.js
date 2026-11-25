@@ -18,8 +18,11 @@ export const ALLOWED_PLANS = Object.freeze([
 ]);
 
 const LICENSE_PREFIX = 'SP123';
+const STUDENT_LESSON_PREFIX = 'SP123E';
 const HMAC_DOMAIN = 'spansk123-license:v1:';
+const STUDENT_HMAC_DOMAIN = 'spansk123-student-lesson:v1:';
 const DATE_PATTERN = /^\d{4}-\d{2}-\d{2}$/u;
+const LESSON_ID_PATTERN = /^[a-z0-9-]+$/u;
 
 export function isFreeLessonId(lessonId) {
   return FREE_SAMPLE_LESSON_IDS.includes(lessonId);
@@ -29,15 +32,20 @@ export function licenseCookieName(secure) {
   return secure ? '__Host-spansk123_license' : 'spansk123_license_dev';
 }
 
+export function studentLessonCookieName(secure) {
+  // Uses __Secure- instead of __Host- because student cookies are scoped to Path=/undervisning/<lessonId>/.
+  return secure ? '__Secure-spansk123_elev' : 'spansk123_elev_dev';
+}
+
 function assertValidSecret(secret) {
   if (typeof secret !== 'string' || secret.length < 16) {
     throw new Error('License signing secret must be at least 16 characters');
   }
 }
 
-function signPayload(payloadB64, secret) {
+function signPayload(payloadB64, secret, domain = HMAC_DOMAIN) {
   return createHmac('sha256', secret)
-    .update(`${HMAC_DOMAIN}${payloadB64}`)
+    .update(`${domain}${payloadB64}`)
     .digest()
     .subarray(0, 16)
     .toString('base64url');
@@ -136,5 +144,72 @@ export function verifySchoolLicenseCode(code, secret, now = new Date()) {
       school: payload.school.trim(),
       expiresAt: payload.exp,
     },
+  };
+}
+
+export function createStudentLessonToken({
+  lessonId,
+  expiresAt,
+}, secret) {
+  assertValidSecret(secret);
+  const trimmedLessonId = typeof lessonId === 'string' ? lessonId.trim() : '';
+  if (!LESSON_ID_PATTERN.test(trimmedLessonId)) {
+    throw new Error('Invalid lessonId for student token');
+  }
+  if (typeof expiresAt !== 'string' || !isValidCalendarDate(expiresAt)) {
+    throw new Error('expiresAt must be a valid YYYY-MM-DD date');
+  }
+  const payload = {
+    v: 1,
+    lessonId: trimmedLessonId,
+    exp: expiresAt,
+  };
+  const payloadB64 = Buffer.from(JSON.stringify(payload), 'utf8').toString('base64url');
+  const sigB64 = signPayload(payloadB64, secret, STUDENT_HMAC_DOMAIN);
+  return `${STUDENT_LESSON_PREFIX}.${payloadB64}.${sigB64}`;
+}
+
+export function verifyStudentLessonToken(token, expectedLessonId, secret, now = new Date()) {
+  if (typeof secret !== 'string' || secret.length < 16) {
+    return { valid: false, reason: 'unconfigured' };
+  }
+  if (typeof token !== 'string' || typeof expectedLessonId !== 'string' || !LESSON_ID_PATTERN.test(expectedLessonId)) {
+    return { valid: false, reason: 'malformed' };
+  }
+  const parts = token.trim().split('.');
+  if (parts.length !== 3 || parts[0] !== STUDENT_LESSON_PREFIX || !parts[1] || !parts[2]) {
+    return { valid: false, reason: 'malformed' };
+  }
+  const [, payloadB64, sigB64] = parts;
+  const expectedSig = Buffer.from(signPayload(payloadB64, secret, STUDENT_HMAC_DOMAIN), 'base64url');
+  let providedSig;
+  try {
+    providedSig = Buffer.from(sigB64, 'base64url');
+  } catch {
+    return { valid: false, reason: 'malformed' };
+  }
+  if (providedSig.length !== expectedSig.length || !timingSafeEqual(providedSig, expectedSig)) {
+    return { valid: false, reason: 'invalid_signature' };
+  }
+  let payload;
+  try {
+    payload = JSON.parse(Buffer.from(payloadB64, 'base64url').toString('utf8'));
+  } catch {
+    return { valid: false, reason: 'malformed' };
+  }
+  if (!payload || typeof payload !== 'object' || Array.isArray(payload)
+      || payload.v !== 1
+      || payload.lessonId !== expectedLessonId
+      || typeof payload.exp !== 'string' || !isValidCalendarDate(payload.exp)) {
+    return { valid: false, reason: 'malformed' };
+  }
+  const todayUtc = now.toISOString().slice(0, 10);
+  if (payload.exp < todayUtc) {
+    return { valid: false, reason: 'expired' };
+  }
+  return {
+    valid: true,
+    lessonId: payload.lessonId,
+    expiresAt: payload.exp,
   };
 }
