@@ -1,5 +1,5 @@
 // Generated build identifier; run npm run build:app after changing app assets.
-const APP_BUILD = '35fb981e0016c334';
+const APP_BUILD = '54561693f55982e6';
 const CACHE_NAME = `spansk123-shell-${APP_BUILD}`;
 const AUDIO_CACHE = 'spansk123-audio-v1';
 const APP_SHELL = ['./', './index.html', './dist/tailwind.css', './manifest.webmanifest'];
@@ -80,7 +80,7 @@ self.addEventListener('fetch', event => {
   event.respondWith((async () => {
     const cache = await caches.open(CACHE_NAME);
     const cached = await cache.match(request, { ignoreSearch: true });
-    if (cached) return cached;
+    if (cached && !(request.mode === 'navigate' && cached.redirected)) return cached;
     try { return await fetch(request); }
     catch {
       if (request.mode === 'navigate') return await cache.match(absolute('./index.html'));

@@ -14,12 +14,7 @@ export function createLazyFunctionApp(loadRuntime) {
   app.disable('x-powered-by');
   let runtimePromise;
 
-  app.get('/', (_req, res) => {
-    res.setHeader('Cache-Control', 'public, max-age=0, must-revalidate');
-    return res.redirect(302, '/index.html');
-  });
-
-  app.get('/index.html', (_req, res) => {
+  app.get(['/', '/index.html'], (_req, res) => {
     res.setHeader('Cache-Control', 'public, max-age=0, must-revalidate');
     res.setHeader('X-Content-Type-Options', 'nosniff');
     res.setHeader('Referrer-Policy', 'same-origin');

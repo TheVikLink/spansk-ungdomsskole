@@ -63,9 +63,13 @@ test('Vercel Express adapter lazily initializes the runtime once and reuses it f
 
   await withServer(app, async (origin) => {
     const home = await fetch(origin, { redirect: 'manual' });
-    assert.equal(home.status, 302);
-    assert.equal(home.headers.get('location'), '/index.html');
+    assert.equal(home.status, 200);
     assert.equal(home.headers.get('cache-control'), 'public, max-age=0, must-revalidate');
+    assert.equal(home.headers.get('x-content-type-options'), 'nosniff');
+    assert.equal(home.headers.get('referrer-policy'), 'same-origin');
+    assert.match(home.headers.get('content-security-policy') || '', /default-src 'none'/u);
+    assert.match(home.headers.get('content-type') || '', /^text\/html/u);
+    assert.match(await home.text(), /Spansk på 1-2-3/u);
     assert.equal(initializeCount, 0, 'the no-login homepage must not require the school database');
     const responses = await Promise.all([fetch(`${origin}/healthz`), fetch(`${origin}/healthz`), fetch(`${origin}/healthz`)]);
     assert.deepEqual(responses.map((response) => response.status), [200, 200, 200]);
@@ -208,6 +212,7 @@ test('Vercel Express adapter serves allowlisted public student assets without lo
 
   await withServer(app, async (origin) => {
     const publicAssets = [
+      ['/', 'public, max-age=0, must-revalidate'],
       ['/index.html', 'public, max-age=0, must-revalidate'],
       ['/dist/tailwind.css', 'public, max-age=0, must-revalidate'],
       ['/sw.js', 'public, max-age=0, must-revalidate'],
@@ -218,7 +223,7 @@ test('Vercel Express adapter serves allowlisted public student assets without lo
     ];
 
     for (const [assetPath, expectedCacheControl] of publicAssets) {
-      const response = await fetch(`${origin}${assetPath}`);
+      const response = await fetch(`${origin}${assetPath}`, { redirect: 'manual' });
       assert.equal(response.status, 200, `expected 200 for ${assetPath}`);
       assert.equal(response.headers.get('cache-control'), expectedCacheControl, `expected Cache-Control for ${assetPath}`);
       await response.arrayBuffer();
@@ -237,4 +242,13 @@ test('Vercel Express adapter serves allowlisted public student assets without lo
     }
     assert.equal(initializeCount, 1);
   });
+});
+
+test('service worker never fulfills navigate requests with a cached redirected response', async () => {
+  const swSource = await readFile(new URL('../../sw.js', import.meta.url), 'utf8');
+  assert.match(
+    swSource,
+    /if\s*\(\s*cached\s*&&\s*!\(\s*request\.mode\s*===\s*['"]navigate['"]\s*&&\s*cached\.redirected\s*\)\s*\)\s*return\s+cached;/u,
+    'expected sw.js to guard against returning cached redirected responses on navigate requests',
+  );
 });
