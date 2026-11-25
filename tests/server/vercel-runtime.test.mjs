@@ -252,3 +252,62 @@ test('service worker never fulfills navigate requests with a cached redirected r
     'expected sw.js to guard against returning cached redirected responses on navigate requests',
   );
 });
+
+test('Vercel Express adapter serves Norwegian Feide school info page on GET /school when school runtime config is missing', async (t) => {
+  const { createLazyFunctionApp } = await import('../../server/vercel-app.js');
+  const { loadConfig } = await import('../../server/config.js');
+  const log = t.mock.method(console, 'error', () => {});
+  const app = createLazyFunctionApp(async () => {
+    loadConfig({});
+  });
+
+  await withServer(app, async (origin) => {
+    for (const targetPath of [
+      '/school',
+      '/school/',
+      '/school?activity=vocabulary.tall.v1&title=%3Cscript%3Ealert(1)%3C%2Fscript%3E',
+    ]) {
+      const response = await fetch(`${origin}${targetPath}`);
+      assert.equal(response.status, 200, `expected 200 HTML info page on ${targetPath}`);
+      assert.match(response.headers.get('content-type') || '', /^text\/html/u);
+      assert.equal(response.headers.get('cache-control'), 'no-store');
+      assert.equal(response.headers.get('x-content-type-options'), 'nosniff');
+      assert.equal(response.headers.get('referrer-policy'), 'same-origin');
+      assert.equal(response.headers.get('x-frame-options'), 'DENY');
+      assert.match(response.headers.get('content-security-policy') || '', /style-src 'self'/u);
+      const html = await response.text();
+      assert.match(html, /Skolepakke med Feide/u);
+      assert.match(html, /mailto:olevik91@gmail\.com/u);
+      assert.equal(html.includes('\u00b7'), false, 'school info HTML must not contain middle dot U+00B7');
+      assert.equal(html.includes('<script>'), false, 'query parameters must never be reflected into HTML');
+    }
+
+    const health = await fetch(`${origin}/healthz`);
+    assert.equal(health.status, 503);
+    assert.deepEqual(await health.json(), { error: 'Tjenesten er midlertidig utilgjengelig' });
+    assert.equal(log.mock.calls[0]?.arguments?.[0], 'School runtime initialization failed: CONFIG_MISSING_OIDC_ISSUER');
+  });
+});
+
+test('Vercel Express adapter keeps 503 on GET /school for non-config runtime failures and serves real runtime when configured', async (t) => {
+  const { createLazyFunctionApp } = await import('../../server/vercel-app.js');
+  t.mock.method(console, 'error', () => {});
+
+  const failingApp = createLazyFunctionApp(async () => {
+    throw new Error('postgres://private-secret');
+  });
+  await withServer(failingApp, async (origin) => {
+    const response = await fetch(`${origin}/school`);
+    assert.equal(response.status, 503);
+    assert.deepEqual(await response.json(), { error: 'Tjenesten er midlertidig utilgjengelig' });
+  });
+
+  const runtime = express();
+  runtime.get('/school', (_req, res) => res.status(200).type('html').send('<h1>Ekstern Feide-innlogging</h1>'));
+  const configuredApp = createLazyFunctionApp(async () => ({ app: runtime }));
+  await withServer(configuredApp, async (origin) => {
+    const response = await fetch(`${origin}/school`);
+    assert.equal(response.status, 200);
+    assert.equal(await response.text(), '<h1>Ekstern Feide-innlogging</h1>');
+  });
+});
