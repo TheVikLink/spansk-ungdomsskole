@@ -129,15 +129,21 @@ verifyCoverage(new Set([...words.values()].map(word => word.kategori)), themes.f
 verifyCoverage(new Set(packs.keys()), culture.map(l => l.pack));
 verifyCoverage(new Set([recognition.id]), themes.filter(l => l.theme).map(l => l.theme));
 
-function vocabularyFor(lesson) {
-  if (lesson.pack) return packs.get(lesson.pack).vocabulary.map(word => word.es);
+function vocabularyPairsFor(lesson) {
+  if (lesson.pack) return packs.get(lesson.pack).vocabulary.map(word => ({ es: word.es, nb: word.no }));
   const entries = lesson.ids.map(id => words.get(id));
   if (entries.includes(undefined) || new Set(lesson.ids).size !== entries.length
       || (lesson.category && !entries.some(word => word.kategori === lesson.category))
       || (lesson.theme && !lesson.ids.every(id => recognition.starterIds.includes(id)))) {
     throw Error('Ugyldige glose-ID-er for ' + lesson.title);
   }
-  return entries.map(word => word.spansk);
+  return entries.map(word => ({ es: word.spansk, nb: word.norsk.replace(/\s*\([a-z]\)$/u, '') }));
+}
+
+function formatTopicLabel(topic) {
+  if (topic === 'Kapittel 8: Tareas de casa') return 'Ukens husarbeid';
+  if (topic === 'familie-setninger') return 'Familie (setninger)';
+  return topic ? topic[0].toLocaleUpperCase('nb') + topic.slice(1) : topic;
 }
 
 const freeLessons = [];
@@ -147,7 +153,8 @@ const directories = new Set();
 
 for (const lesson of [...themes, ...culture]) {
   const id = lesson.pack || lesson.theme || slug(lesson.category);
-  const vocabulary = vocabularyFor(lesson);
+  const vocabularyPairs = vocabularyPairsFor(lesson);
+  const vocabulary = vocabularyPairs.map(word => word.es);
   if (directories.has(id)) throw Error('Duplikat: ' + id);
   directories.add(id);
   if (vocabulary.length < 5 || vocabulary.length > 10 || lesson.script.length < 4
@@ -175,7 +182,7 @@ ${script}
   const worksheetBody = `<nav class="no-print"><a href="index.html">Tilbake til lærersiden</a></nav>
 <article class="worksheet">
 <header class="worksheet-head"><div class="worksheet-meta"><span>Navn: ___________________________</span><span>Dato: ______________</span></div><p>Spansk A1 / Elevark</p><h1>${title}</h1><p>${goal}</p></header>
-<section><h2>1. Gloser for timen</h2><p lang="es">${vocabulary.map(escape).join(', ')}.</p></section>
+<section><h2>1. Gloser for timen</h2><ul class="worksheet-vocab">${vocabularyPairs.map(({ es, nb }) => `<li><strong lang="es">${escape(es)}</strong> – ${escape(nb)}</li>`).join('')}</ul></section>
 <section><h2>2. Skriv på spansk</h2><ol class="worksheet-list">${worksheetWriting}</ol></section>
 <section><h2>3. Lytteøvelse</h2><p>Lytt to ganger og skriv svarene på linjene.</p><ol class="worksheet-list">${worksheetListening}</ol></section>
 <p class="worksheet-foot">4. Snakk i par: Læreren deler ut Samtalekort A og B.</p>
@@ -204,7 +211,7 @@ ${audioSpeedControls}
 ${studentListening}
 </section>
 <section><h2>4. Snakk i par (15 min)</h2><p>Du får Samtalekort A eller Samtalekort B av læreren. Hold kortet skjult for partneren din, still spørsmål på spansk og lytt til svaret. Bytt roller når dere er ferdige.</p></section>
-<section><h2>5. Hent fram ordene igjen (5 min)</h2><p>Legg bort kortene. Si én ny setning med to av ordene. La partneren stille et spørsmål. Neste øvingsdag bruker dere «Repeter gloser» på Start med samme profil når kortene forfaller.</p></section>
+<section><h2>5. Hent fram ordene igjen (5 min)</h2><p>Legg bort kortene. Si én ny setning med to av ordene. La partneren stille et spørsmål. Neste øvingsdag bruker dere «Repeter gloser» på Start med samme profil når ordene er klare for repetisjon.</p></section>
 <script src="../writing.js" defer></script>`;
   save(id + '/elev.html', document(`${lesson.title} (Elevside)`, '../time.css', studentBody));
 
@@ -235,7 +242,7 @@ ${list(lesson.questions.map(([question]) => question))}
 <p role="status">Klar for avspilling i klasserommet.</p>
 ${audioSpeedControls}</section>
 <section><h2>4. Snakk i par (15 min)</h2><p><a href="partnerkort.pdf">Skriv ut partnerkortene (A4)</a> eller <a href="partnerkort.html">åpne kortene i nettleseren</a>. Bruk ett ark per par og klipp mellom A og B, slik at hver elev bare ser sitt eget kort.</p></section>
-<section><h2>5. Hent fram ordene igjen (5 min)</h2><p>Legg bort kortene. Elevene sier én ny setning med to av ordene og lar partneren stille et spørsmål. Neste øvingsdag bruker de «Repeter gloser» på Start med samme profil når kortene forfaller.</p></section>
+<section><h2>5. Hent fram ordene igjen (5 min)</h2><p>Legg bort kortene. Elevene sier én ny setning med to av ordene og lar partneren stille et spørsmål. Neste øvingsdag bruker de «Repeter gloser» på Start med samme profil når ordene er klare for repetisjon.</p></section>
 <details><summary>For læreren: manus, fasit og forberedelse</summary><p>Skriv ut partnerkortene før timen (og elevarket hvis klassen jobber på papir). Elevsiden inneholder ikke denne seksjonen, ikke lyttemanuset og ikke partnerkortene.</p>
 <p><a href="lyttemanus.txt">Åpne lyttemanus</a></p>
 <p><a href="/school?activity=${encodeURIComponent(schoolActivityId)}&amp;title=${encodeURIComponent(lesson.title)}">Gi temaet som digital skolelekse (Feide)</a>.</p>
@@ -245,7 +252,7 @@ ${list(lesson.questions.map(([, answer]) => answer))}
 <script src="../teacher.js" defer></script>`;
   save(id + '/index.html', document(lesson.title, '../time.css', teacherBody));
 
-  const topic = lesson.category || packs.get(lesson.pack)?.title || recognition.title;
+  const topic = formatTopicLabel(lesson.category || packs.get(lesson.pack)?.title || recognition.title);
   const group = lesson.pack ? 'culture' : 'theme';
   const entry = { id, title, topic, group, free };
   if (free) freeLessons.push(entry);
@@ -272,13 +279,13 @@ const sections = [
 const orderSubject = encodeURIComponent('Bestilling eller demo: Undervisningspakken i Spansk på 1-2-3');
 const orderBody = encodeURIComponent('Hei Ole Henrik,\n\nSkolen vår vil gjerne bestille eller se en kort demo av Undervisningspakken (3 490 kr per skole per år).\n\nSkolenavn:\nKontaktperson:\nAntall spanskgrupper:');
 save('index.html', document('Undervisningstimer i spansk', 'time.css', `<nav><a href="../index.html">Til øvingsappen</a><a href="../school">Skolemodus med Feide</a></nav>
-<header><h1>Undervisningstimer i spansk</h1><p>46 ferdige 45-minutters opplegg med gloseøkt, skriving, lytteøvelse, utskrivbart elevark (PDF) og samtalekort (A/B). Laget for ungdomsskolen og spansk nivå I i videregående.</p></header>
+<header><h1>Undervisningstimer i spansk</h1><p>46 ferdige 45-minutters opplegg med gloseøkt, skriving, lytteøvelse, utskrivbart elevark (PDF) og A4-samtalekort med informasjonskløft. Laget for ungdomsskolen og spansk nivå I i videregående.</p></header>
 <section class="package-hero" aria-labelledby="packageTitle">
 <h2 id="packageTitle">Undervisningspakken – klar til bruk i klasserommet uten elevkontoer</h2>
 <ul class="package-highlights">
 <li>46 komplette 45-minutters timer (egen lærerside og elevside)</li>
-<li>46 ferdige lytteøvelser</li>
-<li>46 utskrivbare elevark og A4-samtalekort (PDF)</li>
+<li>46 naturlige lyttedialoger med ulike spanske aksenter og 1x / 0,75x / 0,5x hastighet</li>
+<li>46 utskrivbare elevark og A4-samtalekort med informasjonskløft-tabeller (PDF)</li>
 <li>Null elevdata i skyen – ingen ventetid på kommunal DBA</li>
 </ul>
 <p><strong>Pris: 3 490 kr per skole per år</strong> (inntil 6 klasser, bestilles enkelt på skolens budsjett). Vil skolen også ha Feide-lekser og læreroversikt? Se <a href="../school">Skolepakke med Feide (4 995 kr første år)</a>.</p>

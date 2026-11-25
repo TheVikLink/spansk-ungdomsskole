@@ -411,6 +411,19 @@ audio {
   font-size: 0.95rem;
 }
 
+.worksheet-vocab {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: 0.25rem 1.2rem;
+  list-style: none;
+  margin: 0.45rem 0 0;
+  padding: 0.55rem 0.75rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 0.45rem;
+  font-size: 0.94rem;
+}
+
 .worksheet-list {
   padding-left: 1.25rem;
 }
@@ -583,19 +596,66 @@ audio {
     display: none;
   }
 
+  .worksheet {
+    font-size: 9.8pt;
+    line-height: 1.3;
+  }
+
+  .worksheet-head {
+    padding-bottom: 2.5mm;
+    margin-bottom: 2.5mm;
+  }
+
+  .worksheet-head p {
+    margin: 1mm 0 0;
+  }
+
+  .worksheet-meta {
+    margin-bottom: 2mm;
+    font-size: 9pt;
+  }
+
   .worksheet h1 {
-    font-size: 18pt;
-    margin-bottom: 0.35rem;
+    font-size: 16pt;
+    margin: 1mm 0;
   }
 
   .worksheet h2 {
-    margin-top: 1.1rem;
-    font-size: 13pt;
+    margin: 3.5mm 0 1.2mm;
+    font-size: 11.5pt;
+  }
+
+  .worksheet-vocab {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.8mm 5mm;
+    padding: 2mm 3mm;
+    margin-top: 1.5mm;
+    font-size: 8.7pt;
+    line-height: 1.25;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .worksheet-list {
+    margin: 1.5mm 0 0;
   }
 
   .worksheet-list li {
-    margin-bottom: 0.65rem;
+    margin-bottom: 2.2mm;
     break-inside: avoid;
+  }
+
+  .worksheet-list li p {
+    margin: 0 0 0.8mm;
+  }
+
+  .write-line {
+    height: 5.8mm;
+  }
+
+  .worksheet-foot {
+    margin-top: 3mm;
+    font-size: 9.5pt;
   }
 
   .pair article {
