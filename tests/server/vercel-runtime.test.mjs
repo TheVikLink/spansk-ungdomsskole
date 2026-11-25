@@ -38,6 +38,19 @@ test('Vercel config uses root Express discovery and sets the static output and f
   }
 });
 
+test('.vercelignore excludes stray PDFs while keeping undervisning partnerkort.pdf and arbeidsark.pdf', async () => {
+  const lines = (await readFile(new URL('../../.vercelignore', import.meta.url), 'utf8'))
+    .split(/\r?\n/u)
+    .map((line) => line.trim());
+  const pdfRuleIndex = lines.indexOf('*.pdf');
+  const partnerkortIndex = lines.indexOf('!undervisning/*/partnerkort.pdf');
+  const arbeidsarkIndex = lines.indexOf('!undervisning/*/arbeidsark.pdf');
+
+  assert.notEqual(pdfRuleIndex, -1, 'expected .vercelignore to exclude *.pdf');
+  assert.ok(partnerkortIndex > pdfRuleIndex, 'expected !undervisning/*/partnerkort.pdf after *.pdf');
+  assert.ok(arbeidsarkIndex > pdfRuleIndex, 'expected !undervisning/*/arbeidsark.pdf after *.pdf');
+});
+
 async function withServer(app, run) {
   const server = createServer(app);
   await new Promise((resolve) => server.listen(0, '127.0.0.1', resolve));

@@ -33,6 +33,7 @@ scripts/audit-sources/ordvev-index.json
 q
 *.pdf
 !undervisning/*/partnerkort.pdf
+!undervisning/*/arbeidsark.pdf
 *.mp4
 *.mov
 *.dmg
