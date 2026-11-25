@@ -73,6 +73,36 @@ test('createSchoolLicenseCode and verifySchoolLicenseCode validate signatures, p
   assert.deepEqual(verifySchoolLicenseCode('not-a-code', TEST_SECRET), { valid: false, reason: 'malformed' });
 });
 
+test('time-limited demo code SPANSK2026 unlocks Undervisningspakken through 2026-12-31 and expires afterward', async () => {
+  const promoOk = verifySchoolLicenseCode('spansk2026', TEST_SECRET, new Date('2026-12-31T23:59:59Z'));
+  assert.deepEqual(promoOk, {
+    valid: true,
+    license: {
+      id: 'demo-spansk2026',
+      plan: 'undervisningspakke',
+      school: 'Prøvetilgang (Spansk på 1-2-3)',
+      expiresAt: '2026-12-31',
+    },
+  });
+  assert.deepEqual(verifySchoolLicenseCode('SPANSK2026', TEST_SECRET, new Date('2027-01-01T00:00:00Z')), {
+    valid: false,
+    reason: 'expired',
+  });
+
+  await withRouterServer({}, async (origin) => {
+    const activateRes = await fetch(`${origin}/api/license/activate`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ code: 'SPANSK2026' }),
+    });
+    assert.equal(activateRes.status, 200);
+    const cookie = activateRes.headers.get('set-cookie').split(';')[0];
+    assert.equal((await fetch(`${origin}/undervisning/familie/index.html`, { headers: { Cookie: cookie } })).status, 200);
+    assert.equal((await fetch(`${origin}/undervisning/familie/arbeidsark.pdf`, { headers: { Cookie: cookie } })).status, 200);
+    assert.equal((await fetch(`${origin}/undervisning/familie/partnerkort.pdf`, { headers: { Cookie: cookie } })).status, 200);
+  });
+});
+
 test('createUndervisningRouter allows free sample lessons and locks paid lessons until license activation', async () => {
   await withRouterServer({}, async (origin) => {
     // Free sample lesson HTML + PDF work without license

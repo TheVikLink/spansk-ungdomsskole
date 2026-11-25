@@ -24,6 +24,15 @@ const STUDENT_HMAC_DOMAIN = 'spansk123-student-lesson:v1:';
 const DATE_PATTERN = /^\d{4}-\d{2}-\d{2}$/u;
 const LESSON_ID_PATTERN = /^[a-z0-9-]+$/u;
 
+const PROMO_DEMO_CODES = Object.freeze({
+  SPANSK2026: Object.freeze({
+    id: 'demo-spansk2026',
+    plan: 'undervisningspakke',
+    school: 'Prøvetilgang (Spansk på 1-2-3)',
+    expiresAt: '2026-12-31',
+  }),
+});
+
 export function isFreeLessonId(lessonId) {
   return FREE_SAMPLE_LESSON_IDS.includes(lessonId);
 }
@@ -98,6 +107,18 @@ export function verifySchoolLicenseCode(code, secret, now = new Date()) {
     return { valid: false, reason: 'malformed' };
   }
   const trimmed = code.trim();
+  const promoKey = trimmed.toUpperCase();
+  if (Object.hasOwn(PROMO_DEMO_CODES, promoKey)) {
+    const promo = PROMO_DEMO_CODES[promoKey];
+    const todayUtc = now.toISOString().slice(0, 10);
+    if (promo.expiresAt < todayUtc) {
+      return { valid: false, reason: 'expired' };
+    }
+    return {
+      valid: true,
+      license: { ...promo },
+    };
+  }
   const parts = trimmed.split('.');
   if (parts.length !== 3 || parts[0] !== LICENSE_PREFIX || !parts[1] || !parts[2]) {
     return { valid: false, reason: 'malformed' };

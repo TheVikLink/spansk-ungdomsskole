@@ -110,7 +110,7 @@ function renderLicensePanel(state, initialMessage = '', isError = false) {
   const title = document.createElement('h2');
   title.textContent = 'Har skolen allerede kjøpt Undervisningspakken?';
   const desc = document.createElement('p');
-  desc.textContent = 'Lim inn skolens kode (starter med SP123.) for å låse opp alle 46 timer, elevark, lytteøvelser og A/B-kort. Ingen elevkontoer eller persondata kreves.';
+  desc.textContent = 'Skriv inn skolekode eller demokode for å låse opp alle 46 timer, elevark, lytteøvelser og A/B-kort. Ingen elevkontoer eller persondata kreves.';
   const form = document.createElement('form');
   form.className = 'license-form';
   const label = document.createElement('label');
@@ -120,7 +120,7 @@ function renderLicensePanel(state, initialMessage = '', isError = false) {
   const input = document.createElement('input');
   input.id = 'licenseCodeInput';
   input.type = 'text';
-  input.placeholder = 'SP123....';
+  input.placeholder = 'Skolekode eller demokode';
   input.autocomplete = 'off';
   input.required = true;
   const submit = document.createElement('button');
