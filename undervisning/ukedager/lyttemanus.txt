@@ -3,7 +3,10 @@ Finn en ledig dag
 Lydfil: ukedager.mp3
 To stemmer. Rolig tempo med korte pauser. Les bare replikkene.
 
-A: ¿Puedes venir el lunes?
-B: No. El martes tampoco puedo. ¿Y el jueves?
-A: El jueves sí, pero solo por la tarde.
-B: Perfecto. Nos vemos el jueves por la tarde.
+A: ¡Hola, Marcos! Tenemos que terminar el póster de español esta semana. ¿Puedes venir el lunes?
+B: El lunes no puedo porque tengo entrenamiento de fútbol.
+A: ¿Y el martes después de clase?
+B: El martes tampoco puedo, tengo clase de guitarra.
+A: Vaya semana tan ocupada. ¿Qué tal el jueves?
+B: El jueves sí estoy libre, pero solo por la tarde.
+A: ¡Perfecto! Nos vemos en la biblioteca el jueves por la tarde.

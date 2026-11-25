@@ -3,7 +3,10 @@ Få dagen i riktig rekkefølge
 Lydfil: tidsuttrykk.mp3
 To stemmer. Rolig tempo med korte pauser. Les bare replikkene.
 
-A: ¿Qué haces mañana por la mañana?
-B: Voy a clase. Por la tarde juego al tenis.
-A: ¿Antes o después de comer?
-B: Después. Antes de comer hago los deberes.
+A: Oye, ¿qué planes tienes para mañana? Quería ver si podemos estudiar juntos.
+B: Mañana por la mañana tengo clase hasta la una.
+A: ¿Y qué haces por la tarde?
+B: Por la tarde juego al tenis con mi equipo en el polideportivo.
+A: ¿Juegas antes o después de comer?
+B: Después de comer, a las cuatro. Antes de comer hago los deberes en casa.
+A: Vale, entonces podemos repasar juntos antes de tu partido, a las tres.

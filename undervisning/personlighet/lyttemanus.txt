@@ -3,7 +3,10 @@ Velg en makker til oppdraget
 Lydfil: personlighet.mp3
 To stemmer. Rolig tempo med korte pauser. Les bare replikkene.
 
-A: Necesitamos a una persona para explicar el juego.
-B: Leo es paciente y muy simpático.
-A: ¿Y Sara?
-B: Es responsable, pero hoy no está aquí. Vamos con Leo.
+A: Necesitamos a alguien del grupo para explicar las reglas del juego a los más pequeños.
+B: ¿Qué te parece Leo? Es muy paciente y siempre es simpático.
+A: Sí, Leo explica muy bien y no se pone nervioso.
+B: ¿Y Sara? Ella también es muy responsable y ordenada.
+A: Es verdad, pero Sara está enferma hoy y no vino a clase.
+B: Entonces vamos a pedirle ayuda a Leo ahora en el recreo.
+A: ¡Genial! Seguro que dice que sí.

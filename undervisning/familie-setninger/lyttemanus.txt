@@ -3,7 +3,10 @@ Lag en fiktiv familieprofil
 Lydfil: familie-setninger.mp3
 To stemmer. Rolig tempo med korte pauser. Les bare replikkene.
 
-A: ¿Con quién vives, Lola?
-B: Vivo con mi madre y mi hermano.
-A: ¿Cómo se llama tu hermano?
-B: Se llama Pablo y tiene ocho años.
+A: Hola, Lola. Para el ejercicio de hoy tengo que entrevistarte sobre tu familia.
+B: ¡Claro! Pregunta lo que quieras.
+A: ¿Con quién vives en casa?
+B: Vivo con mi madre, mi hermano pequeño y nuestro perro.
+A: ¿Cómo se llama tu hermano y cuántos años tiene?
+B: Se llama Pablo y tiene ocho años. Le encanta el fútbol.
+A: ¡Qué simpático! Gracias, Lola. Ahora te toca a ti entrevistarme.

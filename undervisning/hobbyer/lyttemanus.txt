@@ -3,7 +3,10 @@ Finn noe dere kan gjøre sammen
 Lydfil: hobbyer.mp3
 To stemmer. Rolig tempo med korte pauser. Les bare replikkene.
 
-A: ¿Quieres jugar al tenis?
-B: Hoy no. Prefiero montar en bici.
-A: Mi bici está en casa. ¿Damos un paseo?
-B: ¡Vale! Después podemos escuchar música.
+A: Oye, hace muy buen tiempo. ¿Quieres jugar al tenis esta tarde?
+B: Hoy no me apetece jugar al tenis. Prefiero montar en bici por el parque.
+A: Uy, qué pena: mi bici está en casa y tiene una rueda rota.
+B: Ah, no pasa nada. ¿Entonces damos un paseo hasta el río?
+A: ¡Sí, buena idea! Podemos llevar los auriculares o un altavoz pequeño.
+B: ¡Vale! Después del paseo nos sentamos a escuchar música.
+A: Trato hecho. Salgo en diez minutos.

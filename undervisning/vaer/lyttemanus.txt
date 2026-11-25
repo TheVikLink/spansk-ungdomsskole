@@ -3,7 +3,10 @@ Velg turdag
 Lydfil: vaer.mp3
 To stemmer. Rolig tempo med korte pauser. Les bare replikkene.
 
-A: ¿Vamos al parque hoy?
-B: Hoy llueve y hace frío.
-A: ¿Y mañana?
-B: Mañana hace sol. Podemos ir en bici.
+A: Oye, ¿vamos al parque esta tarde después de clase?
+B: Mejor no. Mira por la ventana: hoy llueve mucho y hace frío.
+A: Es verdad, y también hace bastante viento.
+B: ¿Has mirado el tiempo para mañana?
+A: Sí, mañana hace sol y no hace nada de viento.
+B: ¡Qué bien! Entonces mañana podemos ir al parque en bici.
+A: Perfecto. Nos vemos a las cuatro delante de mi casa.

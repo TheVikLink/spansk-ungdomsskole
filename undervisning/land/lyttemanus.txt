@@ -3,7 +3,10 @@ Finn reisemålet
 Lydfil: land.mp3
 To stemmer. Rolig tempo med korte pauser. Les bare replikkene.
 
-A: ¿Vas a Italia en verano?
-B: No, voy a Francia con mi hermana.
-A: ¿Y después?
-B: Vamos a España. Mi hermana quiere visitar Madrid.
+A: ¡Hola, Lucas! ¿Vas a viajar a Italia este verano?
+B: No, este año voy a Francia en tren con mi hermana.
+A: ¡Qué divertido! ¿Cuántos días vais a estar en Francia?
+B: Solo cuatro días, en el sur. Después seguimos hacia España.
+A: ¿Y qué ciudad de España queréis visitar?
+B: Mi hermana quiere visitar Madrid para ver el Museo del Prado.
+A: ¡Qué buen viaje! Me mandas fotos desde Madrid.

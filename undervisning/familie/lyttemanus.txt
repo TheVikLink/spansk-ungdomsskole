@@ -3,7 +3,10 @@ Hvem kommer på besøk?
 Lydfil: familie.mp3
 To stemmer. Rolig tempo med korte pauser. Les bare replikkene.
 
-A: ¿Quién viene el domingo?
-B: Vienen mi abuela y mi primo Luis.
-A: ¿Y tu hermana?
-B: No, va a casa de mi tía.
+A: ¡Hola, Diego! ¿Viene mucha familia a tu casa este domingo?
+B: Sí, vienen a comer mi abuela y mi primo Luis.
+A: ¡Qué bien! ¿Tu primo Luis vive cerca de aquí?
+B: No, vive en otra ciudad, así que estamos muy contentos de verlo.
+A: ¿Y tu hermana también come con vosotros?
+B: No, el domingo ella va a casa de mi tía para estudiar juntas.
+A: Bueno, pues que disfrutéis mucho la comida del domingo.

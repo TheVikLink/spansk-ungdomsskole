@@ -18,23 +18,26 @@
       ]
     ],
     "script": [
-      "¿Dónde vamos a cenar en Nochebuena?",
-      "En casa de mi abuela, con la familia.",
-      "¿A qué hora cenamos?",
-      "A las nueve. A medianoche abrimos los regalos."
+      "¡Hola, Sofía! Ya falta poco para Nochebuena. ¿Dónde vais a cenar este año?",
+      "Vamos a cenar en casa de mi abuela con toda la familia.",
+      "¡Qué alegría! ¿A qué hora empieza la cena?",
+      "Empezamos a las nueve de la noche y comemos pescado y turrón.",
+      "¿Y llevas algún regalo especial para tu hermana?",
+      "Sí, tengo un libro de música para ella. A medianoche abrimos los regalos juntos.",
+      "¡Qué plan tan bonito! ¡Feliz Navidad para toda tu familia!"
     ],
     "questions": [
       [
-        "Hos hvem skal de spise?",
-        "Hos bestemoren."
+        "Hvor og med hvem skal Sofía feire julaften?",
+        "Hos bestemoren med hele familien."
       ],
       [
-        "Når spiser de?",
-        "Klokka ni."
+        "Når begynner middagen, og hva spiser de?",
+        "Klokka ni om kvelden; fisk og turrón."
       ],
       [
-        "Hva gjør de ved midnatt?",
-        "Åpner gavene."
+        "Hva har Sofía i gave til søsteren, og når åpner de gavene?",
+        "En musikkbok; de åpner gavene ved midnatt."
       ]
     ],
     "cards": [

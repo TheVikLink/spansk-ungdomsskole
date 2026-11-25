@@ -3,7 +3,10 @@ Klassens bursdagskalender
 Lydfil: bursdag.mp3
 To stemmer. Rolig tempo med korte pauser. Les bare replikkene.
 
-A: ¿Cuándo es tu cumpleaños, Alba?
-B: Es el siete de julio. ¿Y el de Marius?
-A: El veintiséis de junio.
-B: Entonces en junio celebramos el cumpleaños de Marius.
+A: ¡Hola, Alba! Estoy haciendo el calendario de cumpleaños de la clase.
+B: ¡Qué buena idea! Mi cumpleaños es el siete de julio.
+A: Perfecto, lo apunto ahora mismo. ¿Sabes cuándo es el de Marius?
+B: Sí, Marius cumple años el veintiséis de junio.
+A: Entonces tenemos dos fiestas seguidas antes de las vacaciones.
+B: Sí, en junio celebramos el cumpleaños de Marius y en julio el mío.
+A: ¡Genial! Vamos a traer pastel para los dos.

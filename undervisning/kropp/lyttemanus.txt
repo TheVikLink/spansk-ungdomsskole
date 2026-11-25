@@ -3,8 +3,10 @@ Tegn en robot fra beskrivelsen
 Lydfil: kropp.mp3
 To stemmer. Rolig tempo med korte pauser. Les bare replikkene.
 
-A: Mi robot tiene una cabeza y tres ojos.
-B: ¿Tiene boca?
-A: Sí, tiene una boca muy pequeña.
-B: ¿Y los pies?
-A: Tiene dos pies grandes.
+A: Escucha bien para dibujar mi robot inventado. Tiene una cabeza cuadrada y tres ojos.
+B: Un momento... una cabeza cuadrada y tres ojos. ¿Tiene boca?
+A: Sí, tiene una boca muy pequeña debajo de los ojos.
+B: ¡Qué gracioso! ¿Y cuántas manos tiene?
+A: Tiene cuatro manos largas para recoger libros rápido.
+B: ¿Y los pies? Para terminar el dibujo.
+A: Tiene dos pies enormes para no caerse nunca.

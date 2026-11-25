@@ -79,23 +79,26 @@
       ]
     ],
     "script": [
-      "¿Cuándo es tu cumpleaños, Alba?",
-      "Es el siete de julio. ¿Y el de Marius?",
-      "El veintiséis de junio.",
-      "Entonces en junio celebramos el cumpleaños de Marius."
+      "¡Hola, Alba! Estoy haciendo el calendario de cumpleaños de la clase.",
+      "¡Qué buena idea! Mi cumpleaños es el siete de julio.",
+      "Perfecto, lo apunto ahora mismo. ¿Sabes cuándo es el de Marius?",
+      "Sí, Marius cumple años el veintiséis de junio.",
+      "Entonces tenemos dos fiestas seguidas antes de las vacaciones.",
+      "Sí, en junio celebramos el cumpleaños de Marius y en julio el mío.",
+      "¡Genial! Vamos a traer pastel para los dos."
     ],
     "questions": [
       [
-        "Når har Alba bursdag?",
-        "7. juli."
+        "Hva lager A?",
+        "Bursdagskalender for klassen."
       ],
       [
-        "Når har Marius bursdag?",
-        "26. juni."
+        "Når har Alba og Marius bursdag?",
+        "Alba 7. juli og Marius 26. juni."
       ],
       [
-        "Hvem feirer de i juni?",
-        "Marius."
+        "Hva foreslår A å ta med til feiringene?",
+        "Kake."
       ]
     ],
     "cards": [
@@ -185,23 +188,26 @@
       ]
     ],
     "script": [
-      "¿Vas a Italia en verano?",
-      "No, voy a Francia con mi hermana.",
-      "¿Y después?",
-      "Vamos a España. Mi hermana quiere visitar Madrid."
+      "¡Hola, Lucas! ¿Vas a viajar a Italia este verano?",
+      "No, este año voy a Francia en tren con mi hermana.",
+      "¡Qué divertido! ¿Cuántos días vais a estar en Francia?",
+      "Solo cuatro días, en el sur. Después seguimos hacia España.",
+      "¿Y qué ciudad de España queréis visitar?",
+      "Mi hermana quiere visitar Madrid para ver el Museo del Prado.",
+      "¡Qué buen viaje! Me mandas fotos desde Madrid."
     ],
     "questions": [
       [
-        "Hvor reiser de først?",
-        "Frankrike."
+        "Hvor reiser de først, og hvordan kommer de seg dit?",
+        "Til Frankrike med tog."
       ],
       [
-        "Hvem reiser sammen med den som svarer?",
-        "Søsteren."
+        "Hvor mange dager skal de være i Frankrike?",
+        "Fire dager."
       ],
       [
-        "Hvilken by vil søsteren besøke?",
-        "Madrid."
+        "Hvilken by i Spania vil søsteren besøke, og hvorfor?",
+        "Madrid, for å se Pradomuseet."
       ]
     ],
     "cards": [
@@ -291,23 +297,26 @@
       ]
     ],
     "script": [
-      "¿Vamos al parque hoy?",
-      "Hoy llueve y hace frío.",
-      "¿Y mañana?",
-      "Mañana hace sol. Podemos ir en bici."
+      "Oye, ¿vamos al parque esta tarde después de clase?",
+      "Mejor no. Mira por la ventana: hoy llueve mucho y hace frío.",
+      "Es verdad, y también hace bastante viento.",
+      "¿Has mirado el tiempo para mañana?",
+      "Sí, mañana hace sol y no hace nada de viento.",
+      "¡Qué bien! Entonces mañana podemos ir al parque en bici.",
+      "Perfecto. Nos vemos a las cuatro delante de mi casa."
     ],
     "questions": [
       [
-        "Hvordan er været i dag? Nevn to ting.",
-        "Det regner og er kaldt."
+        "Hvordan er været i dag? Nevn tre ting.",
+        "Det regner mye, er kaldt og blåser ganske mye."
       ],
       [
-        "Hvordan er været i morgen?",
-        "Det er sol."
+        "Hvordan blir været i morgen?",
+        "Sol og ingen vind."
       ],
       [
-        "Hvordan foreslår de å reise?",
-        "På sykkel."
+        "Når og hvor møtes de i morgen?",
+        "Klokka fire foran huset til A."
       ]
     ],
     "cards": [
@@ -396,23 +405,26 @@
       ]
     ],
     "script": [
-      "¿Tu personaje es alto?",
-      "No, es bajo y tiene el pelo largo.",
-      "¿Lleva gafas?",
-      "Sí, y tiene los ojos marrones."
+      "Ya elegí mi personaje secreto para el juego. Puedes empezar a preguntar.",
+      "Vale. ¿Tu personaje es alto o bajo?",
+      "Es bajo y tiene el pelo muy largo.",
+      "¿De qué color tiene los ojos?",
+      "Tiene los ojos marrones y siempre sonríe.",
+      "Una pregunta más: ¿lleva gafas?",
+      "Sí, lleva gafas redondas. ¿Ya sabes quién es?"
     ],
     "questions": [
       [
-        "Er figuren høy eller lav?",
-        "Lav."
+        "Er figuren høy eller lav, og hvordan er håret?",
+        "Lav, med veldig langt hår."
       ],
       [
-        "Hvordan er håret?",
-        "Langt."
+        "Hvilken øyenfarge har figuren?",
+        "Brune øyne."
       ],
       [
-        "Hvilke to detaljer får du vite til slutt?",
-        "Briller og brune øyne."
+        "Hva slags briller bruker figuren?",
+        "Runde briller."
       ]
     ],
     "cards": [
@@ -448,23 +460,26 @@
       ]
     ],
     "script": [
-      "Necesitamos a una persona para explicar el juego.",
-      "Leo es paciente y muy simpático.",
-      "¿Y Sara?",
-      "Es responsable, pero hoy no está aquí. Vamos con Leo."
+      "Necesitamos a alguien del grupo para explicar las reglas del juego a los más pequeños.",
+      "¿Qué te parece Leo? Es muy paciente y siempre es simpático.",
+      "Sí, Leo explica muy bien y no se pone nervioso.",
+      "¿Y Sara? Ella también es muy responsable y ordenada.",
+      "Es verdad, pero Sara está enferma hoy y no vino a clase.",
+      "Entonces vamos a pedirle ayuda a Leo ahora en el recreo.",
+      "¡Genial! Seguro que dice que sí."
     ],
     "questions": [
       [
-        "Hva trenger de hjelp til?",
-        "Å forklare spillet."
+        "Hva trenger gruppa hjelp til?",
+        "Å forklare reglene i spillet for de yngste."
       ],
       [
-        "Hvilke to egenskaper har Leo?",
-        "Tålmodig og hyggelig."
+        "Hvilke to egenskaper nevnes om Leo?",
+        "Veldig tålmodig og hyggelig."
       ],
       [
-        "Hvorfor kan de ikke velge Sara?",
-        "Hun er borte i dag."
+        "Hvorfor kan de ikke velge Sara i dag?",
+        "Hun er syk og er ikke på skolen i dag."
       ]
     ],
     "cards": [
@@ -501,23 +516,26 @@
       ]
     ],
     "script": [
-      "¿Quién viene el domingo?",
-      "Vienen mi abuela y mi primo Luis.",
-      "¿Y tu hermana?",
-      "No, va a casa de mi tía."
+      "¡Hola, Diego! ¿Viene mucha familia a tu casa este domingo?",
+      "Sí, vienen a comer mi abuela y mi primo Luis.",
+      "¡Qué bien! ¿Tu primo Luis vive cerca de aquí?",
+      "No, vive en otra ciudad, así que estamos muy contentos de verlo.",
+      "¿Y tu hermana también come con vosotros?",
+      "No, el domingo ella va a casa de mi tía para estudiar juntas.",
+      "Bueno, pues que disfrutéis mucho la comida del domingo."
     ],
     "questions": [
       [
-        "Hvilken dag gjelder besøket?",
-        "Søndag."
-      ],
-      [
-        "Hvilke to personer kommer?",
+        "Hvilke to familiemedlemmer kommer til middag på søndag?",
         "Bestemoren og fetteren Luis."
       ],
       [
-        "Hvor drar søsteren?",
-        "Til tanten."
+        "Hvor bor fetteren Luis?",
+        "I en annen by."
+      ],
+      [
+        "Hvor skal søsteren på søndag, og hvorfor?",
+        "Til tanten for å øve/studere sammen."
       ]
     ],
     "cards": [
@@ -553,23 +571,26 @@
       ]
     ],
     "script": [
-      "¿Con quién vives, Lola?",
-      "Vivo con mi madre y mi hermano.",
-      "¿Cómo se llama tu hermano?",
-      "Se llama Pablo y tiene ocho años."
+      "Hola, Lola. Para el ejercicio de hoy tengo que entrevistarte sobre tu familia.",
+      "¡Claro! Pregunta lo que quieras.",
+      "¿Con quién vives en casa?",
+      "Vivo con mi madre, mi hermano pequeño y nuestro perro.",
+      "¿Cómo se llama tu hermano y cuántos años tiene?",
+      "Se llama Pablo y tiene ocho años. Le encanta el fútbol.",
+      "¡Qué simpático! Gracias, Lola. Ahora te toca a ti entrevistarme."
     ],
     "questions": [
       [
-        "Hvem bor Lola med?",
-        "Mor og bror."
+        "Hvem bor Lola sammen med?",
+        "Moren sin, lillebroren og hunden deres."
       ],
       [
-        "Hva heter broren?",
-        "Pablo."
+        "Hva heter broren, og hvor gammel er han?",
+        "Pablo, åtte år."
       ],
       [
-        "Hvor gammel er han?",
-        "Åtte år."
+        "Hva liker broren veldig godt?",
+        "Fotball."
       ]
     ],
     "cards": [
@@ -660,23 +681,26 @@
       ]
     ],
     "script": [
-      "¿En qué trabajas, Julia?",
-      "Soy veterinaria y trabajo en una clínica.",
-      "¿Y tu hermano?",
-      "Es cocinero. Trabaja en un hotel."
+      "¡Hola, Julia! Gracias por venir al día de las profesiones en nuestro instituto.",
+      "Es un placer estar aquí con vosotros.",
+      "Cuéntanos, ¿en qué trabajas exactamente?",
+      "Soy veterinaria y trabajo en una clínica de animales en el centro.",
+      "¡Qué interesante! ¿Y alguien más de tu familia trabaja cerca?",
+      "Sí, mi hermano es cocinero y trabaja en el restaurante de un hotel.",
+      "¡Qué pareja tan variada! Muchas gracias por tu tiempo, Julia."
     ],
     "questions": [
       [
-        "Hva er yrket til Julia?",
-        "Veterinær."
+        "Hva er yrket til Julia, og hvor jobber hun?",
+        "Veterinær på en dyreklinikk i sentrum."
       ],
       [
-        "Hvor jobber hun?",
-        "På en klinikk."
+        "Hva jobber broren til Julia som?",
+        "Kokk."
       ],
       [
-        "Hva gjør broren, og hvor jobber han?",
-        "Han er kokk på et hotell."
+        "Hvor jobber broren?",
+        "I restauranten på et hotell."
       ]
     ],
     "cards": [
@@ -711,23 +735,26 @@
       ]
     ],
     "script": [
-      "¿Quieres jugar al tenis?",
-      "Hoy no. Prefiero montar en bici.",
-      "Mi bici está en casa. ¿Damos un paseo?",
-      "¡Vale! Después podemos escuchar música."
+      "Oye, hace muy buen tiempo. ¿Quieres jugar al tenis esta tarde?",
+      "Hoy no me apetece jugar al tenis. Prefiero montar en bici por el parque.",
+      "Uy, qué pena: mi bici está en casa y tiene una rueda rota.",
+      "Ah, no pasa nada. ¿Entonces damos un paseo hasta el río?",
+      "¡Sí, buena idea! Podemos llevar los auriculares o un altavoz pequeño.",
+      "¡Vale! Después del paseo nos sentamos a escuchar música.",
+      "Trato hecho. Salgo en diez minutos."
     ],
     "questions": [
       [
-        "Hva foreslås først?",
-        "Å spille tennis."
+        "Hva foreslår A først, og hva foretrekker B?",
+        "A foreslår tennis, B foretrekker å sykle."
       ],
       [
-        "Hvor er sykkelen til den som foreslår en gåtur?",
-        "Hjemme."
+        "Hvorfor kan de ikke sykle sammen i dag?",
+        "Sykkelen til A er hjemme og har et ødelagt hjul."
       ],
       [
-        "Hva vil de gjøre etter turen?",
-        "Høre på musikk."
+        "Hva avtaler de å gjøre i stedet?",
+        "Gå tur til elva og høre på musikk etterpå."
       ]
     ],
     "cards": [
@@ -763,23 +790,26 @@
       ]
     ],
     "script": [
-      "¿A qué hora vas a comer?",
-      "A la una. Termino a la una y media.",
-      "Hay un tren a la una y cuarto y otro a las dos.",
-      "Entonces voy a tomar el tren de las dos."
+      "Perdona, ¿a qué hora vas a comer hoy en el comedor?",
+      "Voy a comer a la una en punto. Normalmente termino a la una y media.",
+      "Entonces tenemos que mirar bien los horarios del tren para ir al museo.",
+      "¿A qué hora salen los trenes después del mediodía?",
+      "Hay un tren a la una y cuarto y el siguiente sale a las dos.",
+      "A la una y cuarto todavía estoy comiendo. Voy a tomar el tren de las dos.",
+      "Perfecto, nos vemos en la estación a las dos menos diez."
     ],
     "questions": [
       [
-        "Når begynner lunsjen?",
-        "Klokka ett."
+        "Når begynner og slutter lunsjen til B?",
+        "Fra klokka ett til halv to."
       ],
       [
-        "Når er lunsjen ferdig?",
-        "Halv to."
+        "Hvilke to togavganger nevner A?",
+        "Kvart over ett og klokka to."
       ],
       [
-        "Hvilket tog velger personen?",
-        "Toget klokka to."
+        "Hvilket tog velger B, og når møtes de på stasjonen?",
+        "Toget klokka to; de møtes ti på to."
       ]
     ],
     "cards": [
@@ -815,23 +845,26 @@
       ]
     ],
     "script": [
-      "¿Qué haces mañana por la mañana?",
-      "Voy a clase. Por la tarde juego al tenis.",
-      "¿Antes o después de comer?",
-      "Después. Antes de comer hago los deberes."
+      "Oye, ¿qué planes tienes para mañana? Quería ver si podemos estudiar juntos.",
+      "Mañana por la mañana tengo clase hasta la una.",
+      "¿Y qué haces por la tarde?",
+      "Por la tarde juego al tenis con mi equipo en el polideportivo.",
+      "¿Juegas antes o después de comer?",
+      "Después de comer, a las cuatro. Antes de comer hago los deberes en casa.",
+      "Vale, entonces podemos repasar juntos antes de tu partido, a las tres."
     ],
     "questions": [
       [
-        "Hva skjer om morgenen?",
-        "Skole."
+        "Hva gjør B i morgen formiddag, og når er det ferdig?",
+        "Har undervisning til klokka ett."
       ],
       [
-        "Hvilken aktivitet gjør personen etter måltidet?",
-        "Spiller tennis."
+        "Hva gjør B før og etter maten?",
+        "Før maten: lekser hjemme. Etter maten: spiller tennis klokka fire."
       ],
       [
-        "Hva gjør personen før måltidet?",
-        "Lekser."
+        "Når foreslår A at de skal øve sammen?",
+        "Klokka tre, før kampen."
       ]
     ],
     "cards": [
@@ -865,23 +898,26 @@
       ]
     ],
     "script": [
-      "¿Puedes venir el lunes?",
-      "No. El martes tampoco puedo. ¿Y el jueves?",
-      "El jueves sí, pero solo por la tarde.",
-      "Perfecto. Nos vemos el jueves por la tarde."
+      "¡Hola, Marcos! Tenemos que terminar el póster de español esta semana. ¿Puedes venir el lunes?",
+      "El lunes no puedo porque tengo entrenamiento de fútbol.",
+      "¿Y el martes después de clase?",
+      "El martes tampoco puedo, tengo clase de guitarra.",
+      "Vaya semana tan ocupada. ¿Qué tal el jueves?",
+      "El jueves sí estoy libre, pero solo por la tarde.",
+      "¡Perfecto! Nos vemos en la biblioteca el jueves por la tarde."
     ],
     "questions": [
       [
-        "Hvilken dag foreslås først?",
-        "Mandag."
+        "Hva skal de jobbe med sammen denne uka?",
+        "Gjøre ferdig spanskplakaten."
       ],
       [
-        "Hvilken annen dag kan personen heller ikke?",
-        "Tirsdag."
+        "Hvorfor kan ikke Marcos på mandag og tirsdag?",
+        "Mandag: fotballtrening. Tirsdag: gitartime."
       ],
       [
-        "Når blir avtalen?",
-        "Torsdag ettermiddag."
+        "Når og hvor blir de enige om å møtes?",
+        "Torsdag ettermiddag på biblioteket."
       ]
     ],
     "cards": [
@@ -969,24 +1005,26 @@
       ]
     ],
     "script": [
-      "Mi robot tiene una cabeza y tres ojos.",
-      "¿Tiene boca?",
-      "Sí, tiene una boca muy pequeña.",
-      "¿Y los pies?",
-      "Tiene dos pies grandes."
+      "Escucha bien para dibujar mi robot inventado. Tiene una cabeza cuadrada y tres ojos.",
+      "Un momento... una cabeza cuadrada y tres ojos. ¿Tiene boca?",
+      "Sí, tiene una boca muy pequeña debajo de los ojos.",
+      "¡Qué gracioso! ¿Y cuántas manos tiene?",
+      "Tiene cuatro manos largas para recoger libros rápido.",
+      "¿Y los pies? Para terminar el dibujo.",
+      "Tiene dos pies enormes para no caerse nunca."
     ],
     "questions": [
       [
-        "Hvor mange øyne har roboten?",
-        "Tre."
+        "Hvordan er hodet og hvor mange øyne har roboten?",
+        "Firkantet hode og tre øyne."
       ],
       [
-        "Hvordan er munnen?",
-        "Veldig liten."
+        "Hvor mange hender har den, og hva bruker den dem til?",
+        "Fire lange hender til å plukke opp bøker raskt."
       ],
       [
-        "Hva får du vite om føttene?",
-        "To store føtter."
+        "Hvordan er munnen og føttene?",
+        "Veldig liten munn og to enorme føtter."
       ]
     ],
     "cards": [

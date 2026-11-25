@@ -3,7 +3,10 @@ Rekk toget etter lunsj
 Lydfil: klokka.mp3
 To stemmer. Rolig tempo med korte pauser. Les bare replikkene.
 
-A: ¿A qué hora vas a comer?
-B: A la una. Termino a la una y media.
-A: Hay un tren a la una y cuarto y otro a las dos.
-B: Entonces voy a tomar el tren de las dos.
+A: Perdona, ¿a qué hora vas a comer hoy en el comedor?
+B: Voy a comer a la una en punto. Normalmente termino a la una y media.
+A: Entonces tenemos que mirar bien los horarios del tren para ir al museo.
+B: ¿A qué hora salen los trenes después del mediodía?
+A: Hay un tren a la una y cuarto y el siguiente sale a las dos.
+B: A la una y cuarto todavía estoy comiendo. Voy a tomar el tren de las dos.
+A: Perfecto, nos vemos en la estación a las dos menos diez.

@@ -3,7 +3,10 @@ Hvem er figuren?
 Lydfil: utseende.mp3
 To stemmer. Rolig tempo med korte pauser. Les bare replikkene.
 
-A: ¿Tu personaje es alto?
-B: No, es bajo y tiene el pelo largo.
-A: ¿Lleva gafas?
-B: Sí, y tiene los ojos marrones.
+A: Ya elegí mi personaje secreto para el juego. Puedes empezar a preguntar.
+B: Vale. ¿Tu personaje es alto o bajo?
+A: Es bajo y tiene el pelo muy largo.
+B: ¿De qué color tiene los ojos?
+A: Tiene los ojos marrones y siempre sonríe.
+B: Una pregunta más: ¿lleva gafas?
+A: Sí, lleva gafas redondas. ¿Ya sabes quién es?
