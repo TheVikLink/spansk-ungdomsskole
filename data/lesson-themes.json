@@ -21,8 +21,8 @@
         "Somos cinco personas."
       ],
       [
-        "Spør om det er seks plasser.",
-        "¿Hay seis plazas?"
+        "Spør om det er seks billetter.",
+        "¿Hay seis entradas?"
       ]
     ],
     "script": [
@@ -49,9 +49,64 @@
       ]
     ],
     "cards": [
-      "Du bestiller tre billetter til fredag og to til lørdag. Spør om det er plass. Bytt så til billettselger. På søndag har du fem ledige plasser, på mandag sju. Be kunden bekrefte antallet.",
-      "Du selger billetter. Du har to plasser fredag og åtte lørdag. Hjelp kunden å finne en løsning. Bytt så til kunde. Dere er seks som vil dra sammen søndag eller mandag."
+      "Du bestiller fire billetter til fredag og to til lørdag. Spør om det er nok billetter. Bytt så til billettselger. På søndag har du fem ledige billetter, på mandag sju. Be kunden bekrefte antallet.",
+      "Du selger billetter. Du har tre billetter fredag og åtte lørdag. Hjelp kunden å finne en løsning. Bytt så til kunde. Dere er seks som vil dra sammen søndag eller mandag."
     ],
+    "infoGap": {
+      "introA": "Du vil kjøpe billetter til fredag og lørdag, og selger billetter til søndag og mandag. Hold kortet skjult, spør på spansk og fyll inn de tomme rutene.",
+      "introB": "Du selger billetter til fredag og lørdag, og vil kjøpe billetter til søndag og mandag. Hold kortet skjult, spør på spansk og fyll inn de tomme rutene.",
+      "headers": [
+        "Dag",
+        "Ønsker",
+        "Ledige billetter"
+      ],
+      "rows": [
+        [
+          "Fredag (viernes)",
+          {
+            "A": "4 billetter"
+          },
+          {
+            "B": "3 billetter"
+          }
+        ],
+        [
+          "Lørdag (sábado)",
+          {
+            "A": "2 billetter"
+          },
+          {
+            "B": "8 billetter"
+          }
+        ],
+        [
+          "Søndag (domingo)",
+          {
+            "B": "6 billetter"
+          },
+          {
+            "A": "5 billetter"
+          }
+        ],
+        [
+          "Mandag (lunes)",
+          {
+            "B": "6 billetter"
+          },
+          {
+            "A": "7 billetter"
+          }
+        ]
+      ],
+      "phrases": [
+        "¿Hay cuatro entradas para el viernes?",
+        "¿Cuántas entradas hay para el ...?",
+        "Sí, hay ocho entradas. / No, solo hay tres.",
+        "Dos entradas, por favor."
+      ],
+      "goalA": "Hvilke to dager har nok ledige billetter? Sammenlign tabellene.",
+      "goalB": "Hvilke to dager har nok ledige billetter? Sammenlign tabellene."
+    },
     "goal": "Bestill billetter og kontroller antallet."
   },
   {
@@ -105,7 +160,62 @@
       "Du er Nora. Bursdagen din er 8. juni, og Leo har bursdag 7. juli. Spør når Dani og Eva har bursdag. Skriv ned hvem som kan feire i samme måned.",
       "Du er Dani. Bursdagen din er 26. juni, og Eva har bursdag 2. juli. Svar Nora og spør om Nora og Leo. Bli enige om én juni-gruppe og én juli-gruppe."
     ],
-    "goal": "Spør etter en fødselsdato og avtal når dere skal feire."
+    "goal": "Spør etter en fødselsdato og avtal når dere skal feire.",
+    "infoGap": {
+      "introA": "Du kjenner bursdagene til Nora og Leo. Hold kortet skjult, spør partneren på spansk om Dani og Eva, og fyll inn de tomme rutene.",
+      "introB": "Du kjenner bursdagene til Dani og Eva. Hold kortet skjult, spør partneren på spansk om Nora og Leo, og fyll inn de tomme rutene.",
+      "headers": [
+        "Navn",
+        "Dato",
+        "Ønsker seg"
+      ],
+      "rows": [
+        [
+          "Nora",
+          {
+            "A": "8. juni (ocho de junio)"
+          },
+          {
+            "A": "un libro"
+          }
+        ],
+        [
+          "Dani",
+          {
+            "B": "26. juni (veintiséis de junio)"
+          },
+          {
+            "B": "una pelota"
+          }
+        ],
+        [
+          "Leo",
+          {
+            "A": "7. juli (siete de julio)"
+          },
+          {
+            "A": "una guitarra"
+          }
+        ],
+        [
+          "Eva",
+          {
+            "B": "2. juli (dos de julio)"
+          },
+          {
+            "B": "música"
+          }
+        ]
+      ],
+      "phrases": [
+        "¿Cuándo es el cumpleaños de ...?",
+        "Es el ... de junio / julio.",
+        "¿Qué quiere ...? — Quiere ...",
+        "¡Feliz cumpleaños!"
+      ],
+      "goalA": "Hvem kan feire bursdag i samme måned? Sammenlign tabellene.",
+      "goalB": "Hvem kan feire bursdag i samme måned? Sammenlign tabellene."
+    }
   },
   {
     "category": "hilsener",
@@ -159,6 +269,75 @@
       "Først møter du en ny nabo om morgenen. Du heter Luz og bor i nummer fem. Hils og finn naboens navn og nummer. I neste runde er det kveld. Svar at biblioteket stenger klokka ni.",
       "Først er du naboen Tomás i nummer to. Svar og spør tilbake. I neste runde møter du Luz om kvelden. Spør når biblioteket stenger, takk for svaret og ta farvel."
     ],
+    "infoGap": {
+      "introA": "Velg riktig hilsen etter tidspunktet på dagen. Hold kortet skjult, spør partneren på spansk og fyll inn de to tomme radene.",
+      "introB": "Velg riktig hilsen etter tidspunktet på dagen. Hold kortet skjult, spør partneren på spansk og fyll inn de to tomme radene.",
+      "headers": [
+        "Tidspunkt",
+        "Navn",
+        "Husnummer",
+        "Sted i nærheten"
+      ],
+      "rows": [
+        [
+          "Morgen (kl. 08)",
+          {
+            "A": "Luz"
+          },
+          {
+            "A": "Nr. 5"
+          },
+          {
+            "A": "el café"
+          }
+        ],
+        [
+          "Morgen (kl. 09)",
+          {
+            "B": "Tomás"
+          },
+          {
+            "B": "Nr. 2"
+          },
+          {
+            "B": "el supermercado"
+          }
+        ],
+        [
+          "Kveld (kl. 20)",
+          {
+            "A": "Ana"
+          },
+          {
+            "A": "Nr. 3"
+          },
+          {
+            "A": "el parque"
+          }
+        ],
+        [
+          "Kveld (kl. 21)",
+          {
+            "B": "Leo"
+          },
+          {
+            "B": "Nr. 6"
+          },
+          {
+            "B": "el hotel"
+          }
+        ]
+      ],
+      "phrases": [
+        "¡Buenos días! / ¡Buenas noches!",
+        "¿Cómo te llamas? — Me llamo ...",
+        "¿En qué número vives? — Vivo en el número ...",
+        "¿Qué hay cerca? — Está ...",
+        "Muchas gracias. — De nada. ¡Adiós!"
+      ],
+      "goalA": "Hvem bor i det høyeste husnummeret? Sammenlign tabellene.",
+      "goalB": "Hvem bor i det høyeste husnummeret? Sammenlign tabellene."
+    },
     "goal": "Velg en hilsen som passer, og finn ut hvem du møter."
   },
   {
@@ -214,7 +393,75 @@
       "Du kjenner første del av ruta. Fra Norge reiser gruppen til Sverige, så til Tyskland. Fortell B dette og spør om de siste to landene. Les tilbake hele ruta.",
       "Du kjenner siste del av ruta. Etter Tyskland reiser gruppen til Frankrike og Spania. Spør A hvor reisen begynner og hvilket land som kommer før Tyskland. Kontroller ruta sammen."
     ],
-    "goal": "Fortell hvor en reise starter, og spør hvor den ender."
+    "goal": "Fortell hvor en reise starter, og spør hvor den ender.",
+    "infoGap": {
+      "introA": "Du kjenner etappe 1 og 3 av reisen. Hold kortet skjult, spør partneren på spansk om de andre etappene og fyll inn de tomme rutene.",
+      "introB": "Du kjenner etappe 2 og 4 av reisen. Hold kortet skjult, spør partneren på spansk om de andre etappene og fyll inn de tomme rutene.",
+      "headers": [
+        "Etappe",
+        "Fra land",
+        "Til land",
+        "Transport"
+      ],
+      "rows": [
+        [
+          "Etappe 1",
+          {
+            "A": "Noruega"
+          },
+          {
+            "A": "Suecia"
+          },
+          {
+            "A": "en tren"
+          }
+        ],
+        [
+          "Etappe 2",
+          {
+            "B": "Suecia"
+          },
+          {
+            "B": "Alemania"
+          },
+          {
+            "B": "en autobús"
+          }
+        ],
+        [
+          "Etappe 3",
+          {
+            "A": "Alemania"
+          },
+          {
+            "A": "Francia"
+          },
+          {
+            "A": "en tren"
+          }
+        ],
+        [
+          "Etappe 4",
+          {
+            "B": "Francia"
+          },
+          {
+            "B": "España"
+          },
+          {
+            "B": "en avión"
+          }
+        ]
+      ],
+      "phrases": [
+        "¿De dónde sale el grupo?",
+        "Sale de ... y va a ...",
+        "¿Adónde va en la etapa ...?",
+        "¿Cómo viaja? — Viaja en ..."
+      ],
+      "goalA": "Hvilket land starter og slutter reisen i? Sammenlign tabellene.",
+      "goalB": "Hvilket land starter og slutter reisen i? Sammenlign tabellene."
+    }
   },
   {
     "category": "farger",
@@ -268,7 +515,75 @@
       "Tegn et hemmelig flagg med en rød stripe øverst og en gul sirkel i midten. Beskriv det. Når B beskriver sitt flagg, tegner du det du hører. Sammenlign til slutt.",
       "Tegn flagget A beskriver. Lag så ditt hemmelige flagg med en blå stripe nederst og en grønn sirkel i midten. Beskriv det uten å vise det."
     ],
-    "goal": "Beskriv farger og plassering slik at en annen kan finne riktig flagg."
+    "goal": "Beskriv farger og plassering slik at en annen kan finne riktig flagg.",
+    "infoGap": {
+      "introA": "Du kjenner Flagg 1 og Flagg 3. Hold kortet skjult, spør partneren på spansk om de andre flaggene og fyll inn fargene.",
+      "introB": "Du kjenner Flagg 2 og Flagg 4. Hold kortet skjult, spør partneren på spansk om de andre flaggene og fyll inn fargene.",
+      "headers": [
+        "Flagg",
+        "Øverst",
+        "I midten",
+        "Nederst"
+      ],
+      "rows": [
+        [
+          "Flagg 1",
+          {
+            "A": "rojo"
+          },
+          {
+            "A": "amarillo"
+          },
+          {
+            "A": "rojo"
+          }
+        ],
+        [
+          "Flagg 2",
+          {
+            "B": "azul"
+          },
+          {
+            "B": "blanco"
+          },
+          {
+            "B": "verde"
+          }
+        ],
+        [
+          "Flagg 3",
+          {
+            "A": "negro"
+          },
+          {
+            "A": "amarillo"
+          },
+          {
+            "A": "verde"
+          }
+        ],
+        [
+          "Flagg 4",
+          {
+            "B": "blanco"
+          },
+          {
+            "B": "azul"
+          },
+          {
+            "B": "negro"
+          }
+        ]
+      ],
+      "phrases": [
+        "¿Qué color hay arriba en la bandera ...?",
+        "¿Qué color hay en el centro / abajo?",
+        "Arriba es rojo / azul / blanco.",
+        "En el centro hay amarillo."
+      ],
+      "goalA": "Hvilke to flagg har fargen gul (amarillo)? Sammenlign tabellene.",
+      "goalB": "Hvilke to flagg har fargen gul (amarillo)? Sammenlign tabellene."
+    }
   },
   {
     "category": "vær",
@@ -323,7 +638,62 @@
       "Du kjenner lørdagsværet. Ved sjøen blåser det, i parken regner det. Spør om søndagen. Dere vil sykle i sol og lite vind. Velg sted og dag.",
       "Du kjenner søndagsværet. Ved sjøen blåser det fortsatt, men i parken er det sol og vindstille. Spør om lørdagen og forklar valget deres."
     ],
-    "goal": "Forstå en enkel værmelding og velg en dag til en aktivitet."
+    "goal": "Forstå en enkel værmelding og velg en dag til en aktivitet.",
+    "infoGap": {
+      "introA": "Du har værmeldingen for lørdag. Hold kortet skjult, spør partneren på spansk om søndagen og fyll inn de tomme rutene.",
+      "introB": "Du har værmeldingen for søndag. Hold kortet skjult, spør partneren på spansk om lørdagen og fyll inn de tomme rutene.",
+      "headers": [
+        "Dag og sted",
+        "Vær",
+        "Temperatur"
+      ],
+      "rows": [
+        [
+          "Lørdag ved sjøen",
+          {
+            "A": "Hace viento"
+          },
+          {
+            "A": "Hace frío"
+          }
+        ],
+        [
+          "Lørdag i parken",
+          {
+            "A": "Llueve"
+          },
+          {
+            "A": "Está nublado"
+          }
+        ],
+        [
+          "Søndag ved sjøen",
+          {
+            "B": "Hace viento"
+          },
+          {
+            "B": "Hace sol"
+          }
+        ],
+        [
+          "Søndag i parken",
+          {
+            "B": "Hace sol (sin viento)"
+          },
+          {
+            "B": "Hace buen tiempo"
+          }
+        ]
+      ],
+      "phrases": [
+        "¿Qué tiempo hace el sábado / domingo?",
+        "En la costa hace viento.",
+        "En el parque llueve / hace sol.",
+        "¿Hace buen tiempo?"
+      ],
+      "goalA": "Når og hvor bør dere sykle for å få sol og lite vind? Sammenlign tabellene.",
+      "goalB": "Når og hvor bør dere sykle for å få sol og lite vind? Sammenlign tabellene."
+    }
   },
   {
     "category": "høytider",
@@ -376,7 +746,62 @@
       "Du inviterer til julaften hjemme klokka sju og nyttårsaften på torget klokka ni. Finn ut hvilken invitasjon B kan ta imot. Spør deretter om tid og sted for bursdagen til B.",
       "Du kan komme nyttårsaften, men besøker familien på julaften. Finn tid og sted for besøket. Bytt rolle og inviter A til bursdag på kafeen klokka fem."
     ],
-    "goal": "Forstå hvilken feiring en invitasjon gjelder og avtale når dere møtes."
+    "goal": "Forstå hvilken feiring en invitasjon gjelder og avtale når dere møtes.",
+    "infoGap": {
+      "introA": "Du har opplysningene for rad 1 og 3. Hold kortet skjult, spør partneren på spansk om de andre feiringene og fyll inn tabellen.",
+      "introB": "Du har opplysningene for rad 2 og 4. Hold kortet skjult, spør partneren på spansk om de andre feiringene og fyll inn tabellen.",
+      "headers": [
+        "Feiring",
+        "Sted",
+        "Klokkeslett"
+      ],
+      "rows": [
+        [
+          "La Nochebuena",
+          {
+            "A": "En casa"
+          },
+          {
+            "A": "19.00 (las siete)"
+          }
+        ],
+        [
+          "La Navidad",
+          {
+            "B": "En casa de la abuela"
+          },
+          {
+            "B": "14.00 (las dos)"
+          }
+        ],
+        [
+          "La Nochevieja",
+          {
+            "A": "En la plaza"
+          },
+          {
+            "A": "21.00 (las nueve)"
+          }
+        ],
+        [
+          "El Cumpleaños",
+          {
+            "B": "En el café"
+          },
+          {
+            "B": "17.00 (las cinco)"
+          }
+        ]
+      ],
+      "phrases": [
+        "¿Dónde es la fiesta de ...?",
+        "¿A qué hora empieza?",
+        "Es en casa / en la plaza / en el café.",
+        "Empieza a las ..."
+      ],
+      "goalA": "Hvilken feiring begynner tidligst, og hvilken er på torget? Sammenlign tabellene.",
+      "goalB": "Hvilken feiring begynner tidligst, og hvilken er på torget? Sammenlign tabellene."
+    }
   },
   {
     "category": "utseende",
@@ -431,7 +856,75 @@
       "Beskriv figur A uten å vise kortet. Figuren er høy, har kort krøllete hår og briller. Be om å få se tegningen etterpå. Bytt rolle og tegn figuren B beskriver.",
       "Tegn A sin figur. Spør hvis du mangler en detalj. Beskriv så figur B. Figuren er lav, har langt hår, brune øyne og ingen briller."
     ],
-    "goal": "Beskriv en oppdiktet figur slik at partneren kan tegne den."
+    "goal": "Beskriv en oppdiktet figur slik at partneren kan tegne den.",
+    "infoGap": {
+      "introA": "Du kjenner Figur 1 og Figur 3. Hold kortet skjult, spør partneren på spansk om Figur 2 og Figur 4, og fyll inn tabellen.",
+      "introB": "Du kjenner Figur 2 og Figur 4. Hold kortet skjult, spør partneren på spansk om Figur 1 og Figur 3, og fyll inn tabellen.",
+      "headers": [
+        "Figur",
+        "Høyde",
+        "Hår",
+        "Detalj"
+      ],
+      "rows": [
+        [
+          "Figur 1",
+          {
+            "A": "alto"
+          },
+          {
+            "A": "pelo corto y rizado"
+          },
+          {
+            "A": "lleva gafas"
+          }
+        ],
+        [
+          "Figur 2",
+          {
+            "B": "bajo"
+          },
+          {
+            "B": "pelo largo"
+          },
+          {
+            "B": "ojos marrones, sin gafas"
+          }
+        ],
+        [
+          "Figur 3",
+          {
+            "A": "bajo"
+          },
+          {
+            "A": "pelo corto"
+          },
+          {
+            "A": "ojos marrones, gafas"
+          }
+        ],
+        [
+          "Figur 4",
+          {
+            "B": "alto"
+          },
+          {
+            "B": "pelo rizado"
+          },
+          {
+            "B": "sin gafas"
+          }
+        ]
+      ],
+      "phrases": [
+        "¿Cómo es la figura ...?",
+        "¿Es alto o bajo?",
+        "Tiene el pelo corto / largo / rizado.",
+        "¿Lleva gafas? — Sí / No, tiene ojos marrones."
+      ],
+      "goalA": "Hvilken figur er høy og bruker briller (gafas)? Sammenlign tabellene.",
+      "goalB": "Hvilken figur er høy og bruker briller (gafas)? Sammenlign tabellene."
+    }
   },
   {
     "category": "personlighet",
@@ -486,7 +979,62 @@
       "Du kjenner fiktive Leo og Ana. Leo er tålmodig og pratsom. Ana er ryddig og sjenert. B trenger en som kan forklare en lek. Beskriv begge. Spør så om B sine kandidater til å holde orden på kortene.",
       "Spør hvem som kan forklare en lek. Velg én av A sine kandidater. Hos deg er Noa ryddig og ansvarsfull, og Eva morsom og pratsom. Beskriv dem når A skal velge en som kan holde orden på kortene."
     ],
-    "goal": "Spør om egenskaper og velg en fiktiv person til en oppgave."
+    "goal": "Spør om egenskaper og velg en fiktiv person til en oppgave.",
+    "infoGap": {
+      "introA": "Du kjenner egenskapene til Leo og Ana. Hold kortet skjult, spør partneren på spansk om Noa og Eva, og fyll inn de tomme rutene.",
+      "introB": "Du kjenner egenskapene til Noa og Eva. Hold kortet skjult, spør partneren på spansk om Leo og Ana, og fyll inn de tomme rutene.",
+      "headers": [
+        "Person",
+        "Egenskap 1",
+        "Egenskap 2"
+      ],
+      "rows": [
+        [
+          "Leo",
+          {
+            "A": "paciente"
+          },
+          {
+            "A": "hablador"
+          }
+        ],
+        [
+          "Ana",
+          {
+            "A": "ordenado / ordenada"
+          },
+          {
+            "A": "tímido / tímida"
+          }
+        ],
+        [
+          "Noa",
+          {
+            "B": "ordenado"
+          },
+          {
+            "B": "responsable"
+          }
+        ],
+        [
+          "Eva",
+          {
+            "B": "gracioso / graciosa"
+          },
+          {
+            "B": "simpático / simpática"
+          }
+        ]
+      ],
+      "phrases": [
+        "¿Cómo es ...?",
+        "Es paciente y hablador.",
+        "¿Quién es responsable y ordenado?",
+        "Es tímida / graciosa / simpática."
+      ],
+      "goalA": "Hvem passer best til å forklare en lek, og hvem passer til å holde orden på kortene? Sammenlign tabellene.",
+      "goalB": "Hvem passer best til å forklare en lek, og hvem passer til å holde orden på kortene? Sammenlign tabellene."
+    }
   },
   {
     "category": "familie",
@@ -542,7 +1090,62 @@
       "Din fiktive familie får besøk. På lørdag kommer fetteren din og bestemoren din. Søsteren din kommer søndag. Fortell B hvem som kommer hver dag. Finn ut hvem som kommer fra B sin familie.",
       "Fra din fiktive familie kommer tanten og onkelen lørdag, mens bestefaren kommer søndag. Spør om A sin familie og lag en gjesteliste sammen, én dag om gangen."
     ],
-    "goal": "Spør hvem som kommer og lag en felles gjesteliste."
+    "goal": "Spør hvem som kommer og lag en felles gjesteliste.",
+    "infoGap": {
+      "introA": "Du vet hvem som kommer på formiddagen. Hold kortet skjult, spør partneren på spansk om kveldene og fyll inn tabellen.",
+      "introB": "Du vet hvem som kommer på kvelden. Hold kortet skjult, spør partneren på spansk om formiddagene og fyll inn tabellen.",
+      "headers": [
+        "Tidspunkt",
+        "Gjest 1",
+        "Gjest 2"
+      ],
+      "rows": [
+        [
+          "Lørdag formiddag",
+          {
+            "A": "el primo"
+          },
+          {
+            "A": "la abuela"
+          }
+        ],
+        [
+          "Lørdag kveld",
+          {
+            "B": "la tía"
+          },
+          {
+            "B": "el tío"
+          }
+        ],
+        [
+          "Søndag formiddag",
+          {
+            "A": "la hermana"
+          },
+          {
+            "A": "el hermano"
+          }
+        ],
+        [
+          "Søndag kveld",
+          {
+            "B": "el abuelo"
+          },
+          {
+            "B": "la prima"
+          }
+        ]
+      ],
+      "phrases": [
+        "¿Quién viene el sábado por la mañana?",
+        "¿Quién viene el domingo por la tarde?",
+        "Viene mi primo / mi abuela.",
+        "Vienen mi tía y mi tío."
+      ],
+      "goalA": "Hvor mange gjester kommer på lørdag til sammen? Sammenlign tabellene.",
+      "goalB": "Hvor mange gjester kommer på lørdag til sammen? Sammenlign tabellene."
+    }
   },
   {
     "category": "familie-setninger",
@@ -597,7 +1200,75 @@
       "Spill rollen som Alex. Du bor med faren din og broren din, som heter Nico og er ni år. Finn tilsvarende tre opplysninger om B sin rolle. Presenter B sin familie.",
       "Spill rollen som Sol. Du bor med moren din og broren din, som heter Teo og er elleve år. Finn ut hvem Alex bor med, og få navn og alder på broren. Presenter Alex sin familie."
     ],
-    "goal": "Spør om en fiktiv familie og presenter den for en annen."
+    "goal": "Spør om en fiktiv familie og presenter den for en annen.",
+    "infoGap": {
+      "introA": "Du har familieprofilen til Alex og Hugo. Hold kortet skjult, spør partneren på spansk om Sol og Maya, og fyll inn tabellen.",
+      "introB": "Du har familieprofilen til Sol og Maya. Hold kortet skjult, spør partneren på spansk om Alex og Hugo, og fyll inn tabellen.",
+      "headers": [
+        "Person",
+        "Bor med",
+        "Søsken (navn)",
+        "Alder"
+      ],
+      "rows": [
+        [
+          "Alex",
+          {
+            "A": "padre y hermano"
+          },
+          {
+            "A": "Nico"
+          },
+          {
+            "A": "9 años"
+          }
+        ],
+        [
+          "Sol",
+          {
+            "B": "madre y hermano"
+          },
+          {
+            "B": "Teo"
+          },
+          {
+            "B": "11 años"
+          }
+        ],
+        [
+          "Hugo",
+          {
+            "A": "madre y hermana"
+          },
+          {
+            "A": "Alma"
+          },
+          {
+            "A": "7 años"
+          }
+        ],
+        [
+          "Maya",
+          {
+            "B": "padre y hermana"
+          },
+          {
+            "B": "Lucía"
+          },
+          {
+            "B": "14 años"
+          }
+        ]
+      ],
+      "phrases": [
+        "¿Con quién vives?",
+        "Vivo con mi madre / padre y mi hermano.",
+        "¿Cómo se llama tu hermano / hermana?",
+        "¿Cuántos años tiene? — Tiene ... años."
+      ],
+      "goalA": "Hvem har det eldste søskenet? Sammenlign tabellene.",
+      "goalB": "Hvem har det eldste søskenet? Sammenlign tabellene."
+    }
   },
   {
     "category": "klær",
@@ -652,7 +1323,62 @@
       "Du har mistet en grønn jakke og et gult skjerf. Spør på kontoret og finn ut hva som er funnet. Bytt rolle. På ditt kontor ligger en grå lue og en svart T-skjorte.",
       "På kontoret ditt ligger en grønn jakke og et blått skjerf. Finn ut hva A skal ha. Bytt rolle. Du har mistet en svart T-skjorte og en blå lue. Spør hva som er funnet."
     ],
-    "goal": "Beskriv et mistet plagg og finn ut om det er levert inn."
+    "goal": "Beskriv et mistet plagg og finn ut om det er levert inn.",
+    "infoGap": {
+      "introA": "Du har listen over hva du har mistet (kolonne 1) og hva som er funnet hos deg. Spør partneren på spansk og fyll inn resten.",
+      "introB": "Du har listen over hva som er funnet hos deg og hva du selv har mistet. Spør partneren på spansk og fyll inn resten.",
+      "headers": [
+        "Plagg",
+        "Mistet (beskrivelse)",
+        "Funnet på kontoret"
+      ],
+      "rows": [
+        [
+          "la chaqueta",
+          {
+            "A": "verde"
+          },
+          {
+            "B": "verde"
+          }
+        ],
+        [
+          "la bufanda",
+          {
+            "A": "amarilla"
+          },
+          {
+            "B": "azul"
+          }
+        ],
+        [
+          "la camiseta",
+          {
+            "B": "negra"
+          },
+          {
+            "A": "negra"
+          }
+        ],
+        [
+          "el gorro",
+          {
+            "B": "azul"
+          },
+          {
+            "A": "gris"
+          }
+        ]
+      ],
+      "phrases": [
+        "¿De qué color es tu chaqueta / bufanda?",
+        "¿Qué ropa han encontrado?",
+        "Es verde / negra / azul / gris.",
+        "Sí, es mi chaqueta. / No, mi gorro es azul."
+      ],
+      "goalA": "Hvilke to plagg matcher helt og kan leveres tilbake? Sammenlign tabellene.",
+      "goalB": "Hvilke to plagg matcher helt og kan leveres tilbake? Sammenlign tabellene."
+    }
   },
   {
     "category": "yrker",
@@ -707,7 +1433,62 @@
       "Spill først en kokk på en skole. Svar på spørsmål, og røp arbeidsstedet først når B spør. Intervju så B. Finn ut hvem av dere som kan hjelpe en syk katt, og hvem som kan lage lunsj.",
       "Intervju A om yrke og arbeidssted. Spill så en veterinær på en dyreklinikk. Svar på spørsmål og bli enige om hvem som kan hjelpe med lunsj og hvem som kan hjelpe katten."
     ],
-    "goal": "Spør om yrke og arbeidssted og finn rett person."
+    "goal": "Spør om yrke og arbeidssted og finn rett person.",
+    "infoGap": {
+      "introA": "Du intervjuer om yrker. Du kjenner Sara og Lucía. Spør partneren på spansk om Omar og Diego, og fyll inn tabellen.",
+      "introB": "Du intervjuer om yrker. Du kjenner Omar og Diego. Spør partneren på spansk om Sara og Lucía, og fyll inn tabellen.",
+      "headers": [
+        "Navn",
+        "Yrke",
+        "Arbeidssted"
+      ],
+      "rows": [
+        [
+          "Sara",
+          {
+            "A": "cocinera"
+          },
+          {
+            "A": "en una escuela"
+          }
+        ],
+        [
+          "Omar",
+          {
+            "B": "veterinario"
+          },
+          {
+            "B": "en una clínica de animales"
+          }
+        ],
+        [
+          "Lucía",
+          {
+            "A": "dentista"
+          },
+          {
+            "A": "en un centro de salud"
+          }
+        ],
+        [
+          "Diego",
+          {
+            "B": "profesor"
+          },
+          {
+            "B": "en un instituto"
+          }
+        ]
+      ],
+      "phrases": [
+        "¿En qué trabaja ...?",
+        "Es cocinera / veterinario / dentista / profesor.",
+        "¿Dónde trabaja?",
+        "Trabaja en una escuela / un instituto."
+      ],
+      "goalA": "Hvem kan hjelpe en syk katt, og hvem kan lage lunsj på skolen? Sammenlign tabellene.",
+      "goalB": "Hvem kan hjelpe en syk katt, og hvem kan lage lunsj på skolen? Sammenlign tabellene."
+    }
   },
   {
     "category": "hobbyer",
@@ -761,7 +1542,62 @@
       "Lørdag kan du sykle eller gå tur. Søndag kan du spille gitar eller høre på musikk. Finn én felles aktivitet for hver dag uten å vise lista.",
       "Lørdag kan du spille tennis eller gå tur. Søndag kan du høre på musikk eller spille piano. Spør A om begge dagene og bekreft planene sammen."
     ],
-    "goal": "Fortell hva du liker og avtal én felles aktivitet."
+    "goal": "Fortell hva du liker og avtal én felles aktivitet.",
+    "infoGap": {
+      "introA": "Du har dine egne helgeønsker. Hold kortet skjult, spør hva partneren vil gjøre på spansk og fyll inn kolonnen til partneren.",
+      "introB": "Du har dine egne helgeønsker. Hold kortet skjult, spør hva partneren vil gjøre på spansk og fyll inn kolonnen til partneren.",
+      "headers": [
+        "Tidspunkt",
+        "Elev A vil",
+        "Elev B vil"
+      ],
+      "rows": [
+        [
+          "Lørdag formiddag",
+          {
+            "A": "montar en bici"
+          },
+          {
+            "B": "jugar al tenis"
+          }
+        ],
+        [
+          "Lørdag ettermiddag",
+          {
+            "A": "dar un paseo"
+          },
+          {
+            "B": "dar un paseo"
+          }
+        ],
+        [
+          "Søndag formiddag",
+          {
+            "A": "tocar la guitarra"
+          },
+          {
+            "B": "tocar el piano"
+          }
+        ],
+        [
+          "Søndag kveld",
+          {
+            "A": "escuchar música"
+          },
+          {
+            "B": "escuchar música"
+          }
+        ]
+      ],
+      "phrases": [
+        "¿Qué te gusta hacer el sábado / domingo?",
+        "Me gusta dar un paseo / montar en bici.",
+        "¿Quieres escuchar música o tocar la guitarra?",
+        "¡Sí, vamos a ...!"
+      ],
+      "goalA": "Hvilke to aktiviteter vil dere begge gjøre? Sammenlign tabellene.",
+      "goalB": "Hvilke to aktiviteter vil dere begge gjøre? Sammenlign tabellene."
+    }
   },
   {
     "category": "klokka",
@@ -816,7 +1652,51 @@
       "Du spiser fra 13.00 til 13.30. Spør B når togene går og velg første mulige avgang etter lunsj. Når B spør om returen, oppgi 16.30 og 17.00.",
       "Togene går klokka 13.15 og 14.00. Hjelp A å velge. På returen er du klar klokka 16.45. Spør A om avgangene og velg toget du rekker."
     ],
-    "goal": "Spør om klokkeslett og velg en avgang du rekker."
+    "goal": "Spør om klokkeslett og velg en avgang du rekker.",
+    "infoGap": {
+      "introA": "Du kjenner pausetidene (kolonne 2) og returavgangene. Spør partneren om avgangstidene ut og når B er klar til retur.",
+      "introB": "Du kjenner utreiseavgangene og når du er klar til retur. Spør partneren når lunsjen slutter og om returavgangene.",
+      "headers": [
+        "Reise",
+        "Klar fra klokka",
+        "Tog 1",
+        "Tog 2"
+      ],
+      "rows": [
+        [
+          "Utreise (ida)",
+          {
+            "A": "13.30 (la una y media)"
+          },
+          {
+            "B": "13.15 (y cuarto)"
+          },
+          {
+            "B": "14.00 (las dos)"
+          }
+        ],
+        [
+          "Retur (vuelta)",
+          {
+            "B": "16.45 (las cinco menos cuarto)"
+          },
+          {
+            "A": "16.30 (cuatro y media)"
+          },
+          {
+            "A": "17.00 (en punto)"
+          }
+        ]
+      ],
+      "phrases": [
+        "¿A qué hora vas a comer / estás listo?",
+        "¿A qué hora sale el tren?",
+        "El tren sale a la una y cuarto / a las dos.",
+        "Son las cinco en punto."
+      ],
+      "goalA": "Hvilke to tog rekker dere? Sammenlign tabellene.",
+      "goalB": "Hvilke to tog rekker dere? Sammenlign tabellene."
+    }
   },
   {
     "category": "tidsuttrykk",
@@ -871,7 +1751,62 @@
       "Du kjenner starten av turdagen. Om morgenen tar gruppen buss. Før lunsj besøker den et marked. Spør B om resten. Lag en plan i riktig rekkefølge.",
       "Du kjenner slutten av turdagen. Etter lunsj går gruppen til parken. Om kvelden spiller den kort. Spør A om starten og les tilbake hele dagen."
     ],
-    "goal": "Finn ut hva som skjer før og etter et måltid."
+    "goal": "Finn ut hva som skjer før og etter et måltid.",
+    "infoGap": {
+      "introA": "Du kjenner første del av turdagen. Hold kortet skjult, spør partneren på spansk om ettermiddagen og kvelden og fyll inn.",
+      "introB": "Du kjenner siste del av turdagen. Hold kortet skjult, spør partneren på spansk om morgenen og tiden før lunsj og fyll inn.",
+      "headers": [
+        "Tidspunkt",
+        "Aktivitet",
+        "Sted"
+      ],
+      "rows": [
+        [
+          "Por la mañana",
+          {
+            "A": "tomar el autobús"
+          },
+          {
+            "A": "desde la escuela"
+          }
+        ],
+        [
+          "Antes del almuerzo",
+          {
+            "A": "visitar el mercado"
+          },
+          {
+            "A": "en el centro"
+          }
+        ],
+        [
+          "Después del almuerzo",
+          {
+            "B": "dar un paseo"
+          },
+          {
+            "B": "en el parque"
+          }
+        ],
+        [
+          "Esta noche",
+          {
+            "B": "jugar a las cartas"
+          },
+          {
+            "B": "en el hotel"
+          }
+        ]
+      ],
+      "phrases": [
+        "¿Qué hacemos por la mañana / esta noche?",
+        "¿Qué pasa antes / después del almuerzo?",
+        "Vamos al mercado / al parque.",
+        "Mañana descansamos."
+      ],
+      "goalA": "Les opp hele turdagen i riktig rekkefølge fra morgen til kveld. Sammenlign tabellene.",
+      "goalB": "Les opp hele turdagen i riktig rekkefølge fra morgen til kveld. Sammenlign tabellene."
+    }
   },
   {
     "category": "ukedager",
@@ -924,7 +1859,62 @@
       "Denne uken kan du tirsdag og torsdag. Neste uke kan du mandag og fredag. Spør B om denne uken først. Finn én felles dag for hver uke.",
       "Denne uken kan du onsdag og torsdag. Neste uke kan du tirsdag og fredag. Svar og spør om neste uke. Si begge avtalene høyt til slutt."
     ],
-    "goal": "Spør hvilke dager noen kan, og gjør en avtale."
+    "goal": "Spør hvilke dager noen kan, og gjør en avtale.",
+    "infoGap": {
+      "introA": "Du vet når du selv er ledig (kolonne 2). Hold kortet skjult, spør partneren om dagene på spansk og fyll inn kolonne 3.",
+      "introB": "Du vet når du selv er ledig (kolonne 3). Hold kortet skjult, spør partneren om dagene på spansk og fyll inn kolonne 2.",
+      "headers": [
+        "Ukedag",
+        "Elev A",
+        "Elev B"
+      ],
+      "rows": [
+        [
+          "El martes (tirsdag)",
+          {
+            "A": "Ledig"
+          },
+          {
+            "B": "Opptatt"
+          }
+        ],
+        [
+          "El miércoles (onsdag)",
+          {
+            "A": "Opptatt"
+          },
+          {
+            "B": "Ledig"
+          }
+        ],
+        [
+          "El jueves (torsdag)",
+          {
+            "A": "Ledig"
+          },
+          {
+            "B": "Ledig"
+          }
+        ],
+        [
+          "El viernes (fredag)",
+          {
+            "A": "Ledig"
+          },
+          {
+            "B": "Ledig"
+          }
+        ]
+      ],
+      "phrases": [
+        "¿Puedes el martes / el miércoles?",
+        "¿Qué día estás libre?",
+        "El jueves y el viernes estoy libre.",
+        "No, el miércoles no puedo."
+      ],
+      "goalA": "Hvilke to dager er dere begge ledige denne uken? Sammenlign tabellene.",
+      "goalB": "Hvilke to dager er dere begge ledige denne uken? Sammenlign tabellene."
+    }
   },
   {
     "category": "Kapittel 8: Tareas de casa",
@@ -978,7 +1968,62 @@
       "Dere skal fordele oppvask, klesvask og støvsuging. Du kan vaske opp og støvsuge, men har bare tid til én oppgave. Spør hva B kan, og finn en løsning.",
       "Du kan vaske klær og støvsuge, men kan ikke vaske opp. Spør hva A kan gjøre. Fordel alle tre oppgavene og fortell hvem som gjør hva denne uken."
     ],
-    "goal": "Avtal hvem som gjør hvilke oppgaver denne uken."
+    "goal": "Avtal hvem som gjør hvilke oppgaver denne uken.",
+    "infoGap": {
+      "introA": "Du vet hvilke oppgaver du kan ta denne uken. Spør partneren på spansk hva hun eller han kan gjøre, og fyll inn siste kolonne.",
+      "introB": "Du vet hvilke oppgaver du kan ta denne uken. Spør partneren på spansk hva hun eller han kan gjøre, og fyll inn kolonne 2.",
+      "headers": [
+        "Oppgave",
+        "Elev A",
+        "Elev B"
+      ],
+      "rows": [
+        [
+          "lavar los platos",
+          {
+            "A": "Kan"
+          },
+          {
+            "B": "Kan ikke"
+          }
+        ],
+        [
+          "lavar la ropa",
+          {
+            "A": "Kan ikke"
+          },
+          {
+            "B": "Kan"
+          }
+        ],
+        [
+          "pasar la aspiradora",
+          {
+            "A": "Kan"
+          },
+          {
+            "B": "Kan"
+          }
+        ],
+        [
+          "arreglar la habitación",
+          {
+            "A": "Hver sin"
+          },
+          {
+            "B": "Hver sin"
+          }
+        ]
+      ],
+      "phrases": [
+        "¿Puedes lavar los platos cada semana?",
+        "Sí, puedo pasar la aspiradora.",
+        "No, no puedo lavar la ropa.",
+        "Yo arreglo mi habitación."
+      ],
+      "goalA": "Fordel oppgavene rettferdig så både oppvask, klesvask og støvsuging blir gjort. Sammenlign tabellene.",
+      "goalB": "Fordel oppgavene rettferdig så både oppvask, klesvask og støvsuging blir gjort. Sammenlign tabellene."
+    }
   },
   {
     "category": "kropp",
@@ -1031,7 +2076,62 @@
       "Robot A har ett hode, to munner, tre hender og én fot. Beskriv den slik at B kan tegne. Spør så om robot B og tegn den. Sammenlign etterpå.",
       "Tegn robot A og be om oppklaring ved behov. Robot B har to hoder, ett øye på hvert hode, én hånd og tre føtter. Beskriv den for A uten å vise tegningen."
     ],
-    "goal": "Forstå og gi en enkel beskrivelse av en fantasifigur."
+    "goal": "Forstå og gi en enkel beskrivelse av en fantasifigur.",
+    "infoGap": {
+      "introA": "Du har tegningen av Robot A. Hold kortet skjult, spør partneren på spansk om antall kroppsdeler på Robot B og fyll inn.",
+      "introB": "Du har tegningen av Robot B. Hold kortet skjult, spør partneren på spansk om antall kroppsdeler på Robot A og fyll inn.",
+      "headers": [
+        "Kroppsdel",
+        "Robot A",
+        "Robot B"
+      ],
+      "rows": [
+        [
+          "la cabeza (hode)",
+          {
+            "A": "1"
+          },
+          {
+            "B": "2"
+          }
+        ],
+        [
+          "el ojo (øye)",
+          {
+            "A": "3"
+          },
+          {
+            "B": "2"
+          }
+        ],
+        [
+          "la boca (munn)",
+          {
+            "A": "2"
+          },
+          {
+            "B": "1"
+          }
+        ],
+        [
+          "la mano y el pie",
+          {
+            "A": "3 hender, 1 fot"
+          },
+          {
+            "B": "1 hånd, 3 føtter"
+          }
+        ]
+      ],
+      "phrases": [
+        "¿Cuántas cabezas tiene tu robot?",
+        "¿Cuántos ojos / cuántas bocas tiene?",
+        "Tiene una cabeza / dos manos / tres pies.",
+        "¿Es grande o pequeño?"
+      ],
+      "goalA": "Tegn roboten til partneren bak på arket. Hvilken robot har flest deler? Sammenlign tabellene.",
+      "goalB": "Tegn roboten til partneren bak på arket. Hvilken robot har flest deler? Sammenlign tabellene."
+    }
   },
   {
     "category": "skole",
@@ -1084,7 +2184,62 @@
       "Du har bok, to viskelær og to penner. Finn ut hvem som kan låne deg en blyant. Svar så på partnerens spørsmål og tilby det du har to av.",
       "Du har bok, to blyanter og pennal. Svar først på hva du kan låne bort. Spør så om et viskelær og en penn. Gjenta avtalen."
     ],
-    "goal": "Du kan spørre etter skolesaker og avtale hvem som tar dem med."
+    "goal": "Du kan spørre etter skolesaker og avtale hvem som tar dem med.",
+    "infoGap": {
+      "introA": "Du vet hva som ligger i sekken din. Hold kortet skjult, spør partneren på spansk om hva hun eller han har, og fyll inn.",
+      "introB": "Du vet hva som ligger i sekken din. Hold kortet skjult, spør partneren på spansk om hva hun eller han har, og fyll inn.",
+      "headers": [
+        "Skolesak",
+        "I sekken til A",
+        "I sekken til B"
+      ],
+      "rows": [
+        [
+          "el libro",
+          {
+            "A": "1"
+          },
+          {
+            "B": "1"
+          }
+        ],
+        [
+          "el lápiz",
+          {
+            "A": "0 (mangler)"
+          },
+          {
+            "B": "2"
+          }
+        ],
+        [
+          "el bolígrafo",
+          {
+            "A": "2"
+          },
+          {
+            "B": "0 (mangler)"
+          }
+        ],
+        [
+          "la goma y el estuche",
+          {
+            "A": "2 viskelær, 0 pennal"
+          },
+          {
+            "B": "0 viskelær, 1 pennal"
+          }
+        ]
+      ],
+      "phrases": [
+        "¿Tienes un lápiz en tu mochila?",
+        "¿Tienes un bolígrafo o una goma?",
+        "Sí, tengo dos. / No, no tengo.",
+        "Aquí tienes. — Muchas gracias."
+      ],
+      "goalA": "Hva må du låne av B, og hva kan du låne bort til B? Sammenlign tabellene.",
+      "goalB": "Hva må du låne av A, og hva kan du låne bort til A? Sammenlign tabellene."
+    }
   },
   {
     "category": "fag",
@@ -1136,7 +2291,62 @@
       "Din skole har engelsk og matematikk mandag, historie og naturfag tirsdag. Finn dagen du kan besøke B for å delta i kroppsøving. Gi deretter B informasjon om din skole.",
       "Din skole har historie mandag og kroppsøving onsdag. Svar på As spørsmål. Du ønsker å besøke A for å ha naturfag. Finn dagen og gjenta fag og dag."
     ],
-    "goal": "Du kan spørre om fag og bruke svaret til å velge en skoledag."
+    "goal": "Du kan spørre om fag og bruke svaret til å velge en skoledag.",
+    "infoGap": {
+      "introA": "Du har timeplanen for Skole A. Hold kortet skjult, spør partneren på spansk om fagene på Skole B og fyll inn.",
+      "introB": "Du har timeplanen for Skole B. Hold kortet skjult, spør partneren på spansk om fagene på Skole A og fyll inn.",
+      "headers": [
+        "Dag",
+        "Skole A",
+        "Skole B"
+      ],
+      "rows": [
+        [
+          "El lunes",
+          {
+            "A": "el inglés"
+          },
+          {
+            "B": "la historia"
+          }
+        ],
+        [
+          "El martes",
+          {
+            "A": "las ciencias naturales"
+          },
+          {
+            "B": "las matemáticas"
+          }
+        ],
+        [
+          "El miércoles",
+          {
+            "A": "las matemáticas"
+          },
+          {
+            "B": "la educación física"
+          }
+        ],
+        [
+          "El jueves",
+          {
+            "A": "la historia"
+          },
+          {
+            "B": "el inglés"
+          }
+        ]
+      ],
+      "phrases": [
+        "¿Qué asignatura tenéis el lunes / miércoles?",
+        "¿Cuándo tenéis educación física?",
+        "Tenemos ciencias naturales el martes.",
+        "¡Qué bien! Nos vemos el ..."
+      ],
+      "goalA": "A vil delta i kroppsøving hos B, og B vil delta i naturfag hos A. Hvilke dager besøker dere hverandre? Sammenlign tabellene.",
+      "goalB": "A vil delta i kroppsøving hos B, og B vil delta i naturfag hos A. Hvilke dager besøker dere hverandre? Sammenlign tabellene."
+    }
   },
   {
     "category": "hjem",
@@ -1189,7 +2399,62 @@
       "Du vet at nøkkelen er i spisestuen, ved døra. Svar på Bs spørsmål om den. Finn så sekken ved å spørre om rom og plassering.",
       "Du kjenner sekkens plassering på kjøkkenet, ved vinduet. Spør først etter nøkkelen. Hjelp så A med å finne sekken og be A gjenta stedet."
     ],
-    "goal": "Du kan beskrive rom og gi en medelev nok informasjon til å finne en ting."
+    "goal": "Du kan beskrive rom og gi en medelev nok informasjon til å finne en ting.",
+    "infoGap": {
+      "introA": "Du vet hvor nøkkelen og boken ligger. Hold kortet skjult, spør partneren på spansk om sekken og jakken og fyll inn tabellen.",
+      "introB": "Du vet hvor sekken og jakken ligger. Hold kortet skjult, spør partneren på spansk om nøkkelen og boken og fyll inn tabellen.",
+      "headers": [
+        "Ting",
+        "Rom",
+        "Plassering"
+      ],
+      "rows": [
+        [
+          "La llave (nøkkelen)",
+          {
+            "A": "el comedor"
+          },
+          {
+            "A": "al lado de la puerta"
+          }
+        ],
+        [
+          "La mochila (sekken)",
+          {
+            "B": "la cocina"
+          },
+          {
+            "B": "al lado de la ventana"
+          }
+        ],
+        [
+          "El libro (boken)",
+          {
+            "A": "el pasillo"
+          },
+          {
+            "A": "en la mesa"
+          }
+        ],
+        [
+          "La chaqueta (jakken)",
+          {
+            "B": "el baño"
+          },
+          {
+            "B": "detrás de la puerta"
+          }
+        ]
+      ],
+      "phrases": [
+        "¿Dónde está la mochila / la llave?",
+        "¿En qué habitación está?",
+        "Está en el comedor / en la cocina.",
+        "Está al lado de la puerta / la ventana."
+      ],
+      "goalA": "Hvilke to ting ligger i eller rett ved en dør (puerta)? Sammenlign tabellene.",
+      "goalB": "Hvilke to ting ligger i eller rett ved en dør (puerta)? Sammenlign tabellene."
+    }
   },
   {
     "category": "møbler",
@@ -1243,7 +2508,62 @@
       "Din halvdel av tegningen har en sofa til venstre for bordet og en lampe på bordet. Beskriv dette uten å vise tegningen. Be så B plassere sengen, skapet og skrivebordet på din skisse.",
       "Tegn møblene som A beskriver. På din halvdel står sengen til høyre for skapet og skrivebordet foran sengen. Gi A opplysningene én om gangen og sammenlign skissene til slutt."
     ],
-    "goal": "Du kan beskrive hvor møbler står, slik at en annen kan tegne rommet."
+    "goal": "Du kan beskrive hvor møbler står, slik at en annen kan tegne rommet.",
+    "infoGap": {
+      "introA": "Du vet hvor sofaen og lampen står. Spør partneren på spansk om de andre møblene og fyll inn de tomme rutene.",
+      "introB": "Du vet hvor sengen og skrivebordet står. Spør partneren på spansk om de andre møblene og fyll inn de tomme rutene.",
+      "headers": [
+        "Møbel",
+        "Plassering",
+        "Farge"
+      ],
+      "rows": [
+        [
+          "El sofá",
+          {
+            "A": "a la izquierda de la mesa"
+          },
+          {
+            "A": "verde"
+          }
+        ],
+        [
+          "La lámpara",
+          {
+            "A": "encima de la mesa"
+          },
+          {
+            "A": "amarilla"
+          }
+        ],
+        [
+          "La cama",
+          {
+            "B": "a la derecha del armario"
+          },
+          {
+            "B": "azul"
+          }
+        ],
+        [
+          "El escritorio",
+          {
+            "B": "delante de la ventana"
+          },
+          {
+            "B": "blanco"
+          }
+        ]
+      ],
+      "phrases": [
+        "¿Dónde está la cama / el sofá?",
+        "Está encima de la mesa / delante de ...",
+        "¿De qué color es?",
+        "Es verde / azul / amarillo / blanco."
+      ],
+      "goalA": "Hvilke to møbler står i nærheten av bordet (la mesa)? Sammenlign tabellene.",
+      "goalB": "Hvilke to møbler står i nærheten av bordet (la mesa)? Sammenlign tabellene."
+    }
   },
   {
     "category": "gustar",
@@ -1297,7 +2617,62 @@
       "Du liker sport og misliker musikkbøker. På din bokhylle er det bøker om dyr og sport. Finn ut hva B liker, og foreslå en bok. Når B foreslår noe til deg, svar om det passer.",
       "Du liker dyr og misliker sportsbøker. På din bokhylle er det bøker om sport og musikk. Svar først på As spørsmål. Spør så A om smak og foreslå en bok til A."
     ],
-    "goal": "Du kan spørre hva noen liker og bruke svaret til å velge bok."
+    "goal": "Du kan spørre hva noen liker og bruke svaret til å velge bok.",
+    "infoGap": {
+      "introA": "Du vet hva du liker (kolonne 2). Hold kortet skjult, spør partneren på spansk om hennes eller hans boksmak og fyll inn kolonne 3.",
+      "introB": "Du vet hva du liker (kolonne 3). Hold kortet skjult, spør partneren på spansk om hennes eller hans boksmak og fyll inn kolonne 2.",
+      "headers": [
+        "Boktema",
+        "Elev A",
+        "Elev B"
+      ],
+      "rows": [
+        [
+          "Deportes (sport)",
+          {
+            "A": "Me encanta"
+          },
+          {
+            "B": "No me gusta"
+          }
+        ],
+        [
+          "Animales (dyr)",
+          {
+            "A": "Me gusta"
+          },
+          {
+            "B": "Me encanta"
+          }
+        ],
+        [
+          "Música (musikk)",
+          {
+            "A": "No me gusta"
+          },
+          {
+            "B": "Me gusta"
+          }
+        ],
+        [
+          "Viajes (reise)",
+          {
+            "A": "Me gusta este libro"
+          },
+          {
+            "B": "Me gustan estos libros"
+          }
+        ]
+      ],
+      "phrases": [
+        "¿Te gustan los libros de deportes / animales?",
+        "Sí, me encanta este libro.",
+        "No, no me gusta la música.",
+        "¿Qué tema prefieres?"
+      ],
+      "goalA": "Hvilket tema elsker dere begge eller liker begge? Velg en gavebok til hverandre. Sammenlign tabellene.",
+      "goalB": "Hvilket tema elsker dere begge eller liker begge? Velg en gavebok til hverandre. Sammenlign tabellene."
+    }
   },
   {
     "category": "rutiner",
@@ -1350,7 +2725,62 @@
       "Du står opp 07.00, dusjer 07.15 og går til skolen 08.00. Foreslå 07.15 eller 07.30 som felles frokosttid. Finn ut hva B gjør da. Fortell deretter når du går hjemmefra.",
       "Du står opp 07.10 og kler på deg 07.15. Du kan spise 07.30. Svar på As forslag. Spør så når A går til skolen, og bli enige om når dere møtes."
     ],
-    "goal": "Du kan fortelle om morgenrutiner og avtale når dere kan spise sammen."
+    "goal": "Du kan fortelle om morgenrutiner og avtale når dere kan spise sammen.",
+    "infoGap": {
+      "introA": "Du har din egen morgenplan. Hold kortet skjult, spør partneren på spansk om når hun eller han gjør ting og fyll inn siste kolonne.",
+      "introB": "Du har din egen morgenplan. Hold kortet skjult, spør partneren på spansk om når han eller hun gjør ting og fyll inn kolonne 2.",
+      "headers": [
+        "Klokkeslett",
+        "Elev A",
+        "Elev B"
+      ],
+      "rows": [
+        [
+          "07.00",
+          {
+            "A": "Me despierto y me levanto"
+          },
+          {
+            "B": "Me despierto"
+          }
+        ],
+        [
+          "07.15",
+          {
+            "A": "Me ducho"
+          },
+          {
+            "B": "Me levanto y me visto"
+          }
+        ],
+        [
+          "07.30",
+          {
+            "A": "Desayuno"
+          },
+          {
+            "B": "Desayuno"
+          }
+        ],
+        [
+          "08.00",
+          {
+            "A": "Voy a la escuela"
+          },
+          {
+            "B": "Voy a la escuela"
+          }
+        ]
+      ],
+      "phrases": [
+        "¿A qué hora te despiertas / te levantas?",
+        "¿A qué hora desayunas?",
+        "Me ducho a las siete y cuarto.",
+        "Voy a la escuela a las ocho."
+      ],
+      "goalA": "Når passer det at dere spiser frokost og går til skolen sammen? Sammenlign tabellene.",
+      "goalB": "Når passer det at dere spiser frokost og går til skolen sammen? Sammenlign tabellene."
+    }
   },
   {
     "category": "fremtid",
@@ -1402,7 +2832,62 @@
       "Det er torsdag. I dag skal du besøke bestemor. Fredag kan du gå på kino etter klokka fem. Lørdag kan du ikke. Spør når B kan gå på kino. Forklar så hva du skal ellers.",
       "Det er torsdag. Du skal være med venner i dag og lørdag. Fredag kan du gå på kino klokka seks. Svar på As spørsmål. Spør så hva A skal i dag. Bekreft dag og tid for kinoen."
     ],
-    "goal": "Du kan spørre om planer og avtale en aktivitet."
+    "goal": "Du kan spørre om planer og avtale en aktivitet.",
+    "infoGap": {
+      "introA": "Du har din egen helgeplan. Hold kortet skjult, spør partneren på spansk om hennes eller hans planer og fyll inn kolonne 3.",
+      "introB": "Du har din egen helgeplan. Hold kortet skjult, spør partneren på spansk om hennes eller hans planer og fyll inn kolonne 2.",
+      "headers": [
+        "Dag",
+        "Plan A",
+        "Plan B"
+      ],
+      "rows": [
+        [
+          "Jueves (i dag)",
+          {
+            "A": "Voy a visitar a mi abuela"
+          },
+          {
+            "B": "Voy a estar con mis amigos"
+          }
+        ],
+        [
+          "Viernes (kl. 18)",
+          {
+            "A": "Libre para ir al cine"
+          },
+          {
+            "B": "Libre para ir al cine"
+          }
+        ],
+        [
+          "Sábado",
+          {
+            "A": "No puedo salir"
+          },
+          {
+            "B": "Voy a hacer deporte"
+          }
+        ],
+        [
+          "Domingo",
+          {
+            "A": "Voy a leer en casa"
+          },
+          {
+            "B": "Voy a visitar a mi abuela"
+          }
+        ]
+      ],
+      "phrases": [
+        "¿Qué vas a hacer hoy / mañana?",
+        "Voy a estar con mis amigos.",
+        "Voy a visitar a mi abuela.",
+        "¿Vamos al cine el viernes a las seis?"
+      ],
+      "goalA": "Hvilken dag og tid kan dere gå på kino sammen? Sammenlign tabellene.",
+      "goalB": "Hvilken dag og tid kan dere gå på kino sammen? Sammenlign tabellene."
+    }
   },
   {
     "category": "verb",
@@ -1455,7 +2940,75 @@
       "Du vil danse og synge. Du har et rom der man kan lese eller skrive. Spør hva som er mulig i Bs rom. Foreslå én aktivitet der, og fortell deretter B om ditt rom.",
       "Du vil skrive og trene. Du har et rom der man kan danse eller høre på musikk. Fortell A hva dere kan gjøre der. Finn så en aktivitet du liker i As rom. Oppsummer programmet."
     ],
-    "goal": "Du kan spørre hva folk vil gjøre og foreslå et program med to aktiviteter."
+    "goal": "Du kan spørre hva folk vil gjøre og foreslå et program med to aktiviteter.",
+    "infoGap": {
+      "introA": "Du vet hva som skjer i Rom 1 og Rom 3. Hold kortet skjult, spør partneren om Rom 2 og Rom 4 og fyll inn.",
+      "introB": "Du vet hva som skjer i Rom 2 og Rom 4. Hold kortet skjult, spør partneren om Rom 1 og Rom 3 og fyll inn.",
+      "headers": [
+        "Rom",
+        "Aktivitet 1",
+        "Aktivitet 2",
+        "Klokkeslett"
+      ],
+      "rows": [
+        [
+          "Rom 1",
+          {
+            "A": "leer"
+          },
+          {
+            "A": "escribir"
+          },
+          {
+            "A": "17.00"
+          }
+        ],
+        [
+          "Rom 2",
+          {
+            "B": "bailar"
+          },
+          {
+            "B": "escuchar música"
+          },
+          {
+            "B": "18.00"
+          }
+        ],
+        [
+          "Rom 3",
+          {
+            "A": "entrenar"
+          },
+          {
+            "A": "hablar español"
+          },
+          {
+            "A": "19.00"
+          }
+        ],
+        [
+          "Rom 4",
+          {
+            "B": "cantar"
+          },
+          {
+            "B": "tocar la guitarra"
+          },
+          {
+            "B": "20.00"
+          }
+        ]
+      ],
+      "phrases": [
+        "¿Qué podemos hacer en la sala ...?",
+        "¿A qué hora podemos bailar / cantar?",
+        "Aquí podemos leer y escribir.",
+        "Me gusta entrenar a las siete."
+      ],
+      "goalA": "Velg to aktiviteter til klubbkvelden deres i rekkefølge. Sammenlign tabellene.",
+      "goalB": "Velg to aktiviteter til klubbkvelden deres i rekkefølge. Sammenlign tabellene."
+    }
   },
   {
     "category": "bindeord",
@@ -1508,7 +3061,62 @@
       "Du vet at kinoen er stengt og at parken er åpen. Spør først B om været før dere velger park eller kafé. Gi en grunn med «porque». Svar så på Bs spørsmål om kinoen.",
       "Du vet at det er sol i dag og regn i morgen. Hør på As alternativer, og fortell om været. Spør deretter hvorfor kino ikke er mulig. Gjenta planen med «pero» eller «por eso»."
     ],
-    "goal": "Du kan knytte sammen forslag, alternativer og en enkel begrunnelse."
+    "goal": "Du kan knytte sammen forslag, alternativer og en enkel begrunnelse.",
+    "infoGap": {
+      "introA": "Du vet hvilke steder som er åpne eller stengt (kolonne 2). Spør partneren på spansk om været og ekstra info i siste kolonne.",
+      "introB": "Du vet hvordan været er og én ekstra grunn (kolonne 3). Spør partneren på spansk om stedene er åpne eller stengt.",
+      "headers": [
+        "Sted",
+        "Status",
+        "Vær eller ekstra grunn"
+      ],
+      "rows": [
+        [
+          "El cine (kinoen)",
+          {
+            "A": "Cerrado (stengt)"
+          },
+          {
+            "B": "Hay buena película mañana"
+          }
+        ],
+        [
+          "El parque (parken)",
+          {
+            "A": "Abierto (åpen)"
+          },
+          {
+            "B": "Hace sol pero hace frío"
+          }
+        ],
+        [
+          "El café (kafeen)",
+          {
+            "A": "Abierto (åpen)"
+          },
+          {
+            "B": "Caliente y también tranquilo"
+          }
+        ],
+        [
+          "La biblioteca",
+          {
+            "A": "Cerrado hoy"
+          },
+          {
+            "B": "Abre el lunes"
+          }
+        ]
+      ],
+      "phrases": [
+        "¿Está abierto el cine o el parque?",
+        "El cine está cerrado, pero el café está abierto.",
+        "Vamos al café porque hace frío.",
+        "Por eso elegimos ..."
+      ],
+      "goalA": "Velg ett sted dere vil gå til i dag og begrunn det med «porque», «pero» og «por eso». Sammenlign tabellene.",
+      "goalB": "Velg ett sted dere vil gå til i dag og begrunn det med «porque», «pero» og «por eso». Sammenlign tabellene."
+    }
   },
   {
     "category": "husarbeid",
@@ -1561,7 +3169,62 @@
       "Oppgaver før besøket er å handle, vaske opp og støvsuge. Du kan handle og vaske opp, men har ingen støvsuger. Spør hva B kan gjøre. Svar så på Bs spørsmål om badet. Du kan vaske det etterpå.",
       "Du har støvsuger og vaskemaskin. Tilby hjelp der du kan. Spør så hvem som kan vaske badet. Avtal hvem som skal gjøre hva, og gjenta begge personenes oppgaver."
     ],
-    "goal": "Du kan avtale hvem som gjør husarbeidet."
+    "goal": "Du kan avtale hvem som gjør husarbeidet.",
+    "infoGap": {
+      "introA": "Du kjenner utstyret og tiden for oppgave 1 og 3. Spør partneren om oppgave 2 og 4 på spansk og fyll inn tabellen.",
+      "introB": "Du kjenner utstyret og tiden for oppgave 2 og 4. Spør partneren om oppgave 1 og 3 på spansk og fyll inn tabellen.",
+      "headers": [
+        "Oppgave",
+        "Når gjøres den",
+        "Hvem kan gjøre den"
+      ],
+      "rows": [
+        [
+          "hacer las compras",
+          {
+            "A": "før besøket (kl. 15)"
+          },
+          {
+            "A": "Elev A (har sekk)"
+          }
+        ],
+        [
+          "pasar la aspiradora",
+          {
+            "B": "kl. 16"
+          },
+          {
+            "B": "Elev B (har støvsuger)"
+          }
+        ],
+        [
+          "lavar los platos",
+          {
+            "A": "etter lunsj"
+          },
+          {
+            "A": "Elev A"
+          }
+        ],
+        [
+          "limpiar el cuarto de baño",
+          {
+            "B": "etterpå (kl. 17)"
+          },
+          {
+            "B": "Elev B"
+          }
+        ]
+      ],
+      "phrases": [
+        "¿Quién hace las compras?",
+        "¿Quién limpia el cuarto de baño?",
+        "Yo lavo los platos. ¿Y tú?",
+        "Puedo pasar la aspiradora a las cuatro."
+      ],
+      "goalA": "Lag en ferdig arbeidsplan så alt blir rent før gjestene kommer. Sammenlign tabellene.",
+      "goalB": "Lag en ferdig arbeidsplan så alt blir rent før gjestene kommer. Sammenlign tabellene."
+    }
   },
   {
     "category": "Mat og drikke",
@@ -1615,7 +3278,62 @@
       "Du har brød, to epler og melk. Spør B hvilke varer B har. Dere trenger brød, ost, frukt, vann og juice. Finn det som mangler. Svar deretter på hvor mye frukt du har.",
       "Du har ost og vann. Fortell hva du kan ta med når A spør. Spør så A om frukten, og avtal hvem som kjøper det dere mangler."
     ],
-    "goal": "Du kan finne ut hva dere har, og hva dere må kjøpe til en piknik."
+    "goal": "Du kan finne ut hva dere har, og hva dere må kjøpe til en piknik.",
+    "infoGap": {
+      "introA": "Du vet hva du har med til pikniken (kolonne 2). Spør partneren på spansk hva hun eller han har med og fyll inn siste kolonne.",
+      "introB": "Du vet hva du har med til pikniken (kolonne 3). Spør partneren på spansk hva hun eller han har med og fyll inn kolonne 2.",
+      "headers": [
+        "Mat eller drikke",
+        "Elev A har",
+        "Elev B har"
+      ],
+      "rows": [
+        [
+          "el pan og el queso",
+          {
+            "A": "dos panes"
+          },
+          {
+            "B": "un queso"
+          }
+        ],
+        [
+          "la fruta (manzanas)",
+          {
+            "A": "dos manzanas"
+          },
+          {
+            "B": "nada (0)"
+          }
+        ],
+        [
+          "la leche og el agua",
+          {
+            "A": "mucha leche"
+          },
+          {
+            "B": "agua fría"
+          }
+        ],
+        [
+          "el zumo (juice)",
+          {
+            "A": "nada (0)"
+          },
+          {
+            "B": "nada (0)"
+          }
+        ]
+      ],
+      "phrases": [
+        "¿Tienes pan o queso en la mochila?",
+        "¿Cuántas manzanas tienes?",
+        "Tengo agua, pero no tengo zumo.",
+        "Necesitamos comprar ..."
+      ],
+      "goalA": "Hva har dere nok av, og hvilken vare mangler dere begge og må kjøpe? Sammenlign tabellene.",
+      "goalB": "Hva har dere nok av, og hvilken vare mangler dere begge og må kjøpe? Sammenlign tabellene."
+    }
   },
   {
     "category": "tid",
@@ -1668,7 +3386,62 @@
       "Du vet at Leo akkurat har kommet tilbake fra skolen, og at han spiser lunsj nå. B vet hva han gjør i kveld og i morgen. Finn begge planene. Svar så på hva som akkurat har skjedd.",
       "Du vet at Leo spiser middag med faren i kveld og besøker bestemor i morgen. Svar på As spørsmål. Spør så hvor Leo kommer fra og hva han gjør nå. Fortell historien sammen i rekkefølge."
     ],
-    "goal": "Du kan skille mellom det som akkurat har skjedd, og det som skal skje senere."
+    "goal": "Du kan skille mellom det som akkurat har skjedd, og det som skal skje senere.",
+    "infoGap": {
+      "introA": "Du vet hva Leo akkurat har gjort og gjør midt på dagen. Spør partneren på spansk om kvelden og i morgen og fyll inn.",
+      "introB": "Du vet hva Leo gjør i kveld og i morgen. Spør partneren på spansk om hva som akkurat har skjedd og gjør seg ferdig.",
+      "headers": [
+        "Tid",
+        "Hva Leo gjør",
+        "Sted eller med hvem"
+      ],
+      "rows": [
+        [
+          "Akkurat nå",
+          {
+            "A": "Acaba de regresar"
+          },
+          {
+            "A": "de la escuela"
+          }
+        ],
+        [
+          "Kl. 13.00",
+          {
+            "A": "Almuerza (spiser lunsj)"
+          },
+          {
+            "A": "en casa"
+          }
+        ],
+        [
+          "I kveld",
+          {
+            "B": "Cena (spiser middag)"
+          },
+          {
+            "B": "con su padre"
+          }
+        ],
+        [
+          "I morgen",
+          {
+            "B": "Va a visitar"
+          },
+          {
+            "B": "a su abuela"
+          }
+        ]
+      ],
+      "phrases": [
+        "¿Qué acaba de hacer Leo?",
+        "¿Dónde almuerza hoy?",
+        "¿Con quién cena esta noche?",
+        "Mañana va a visitar a su abuela."
+      ],
+      "goalA": "Les opp hele statusmeldingen om dagen til Leo i riktig rekkefølge. Sammenlign tabellene.",
+      "goalB": "Les opp hele statusmeldingen om dagen til Leo i riktig rekkefølge. Sammenlign tabellene."
+    }
   },
   {
     "category": "reise",
@@ -1721,7 +3494,62 @@
       "Du skal fra hotellet til flyplassen innen 10.00. Du kjenner togtiden, med ankomst 10.15. Spør B om buss og metro. Fortell B når toget kommer fram, og velg ruten sammen.",
       "Bussen er framme 09.30, metroen 10.30. Svar på As spørsmål og spør så om fristen og toget. Oppsummer valget med transportmiddel og ankomsttid."
     ],
-    "goal": "Du kan spørre om transport og velge en reise som passer."
+    "goal": "Du kan spørre om transport og velge en reise som passer.",
+    "infoGap": {
+      "introA": "Du kjenner pris og tid for tog og taxi. Spør partneren på spansk om buss og metro fra hotellet til flyplassen.",
+      "introB": "Du kjenner pris og tid for buss og metro. Spør partneren på spansk om tog og taxi fra hotellet til flyplassen.",
+      "headers": [
+        "Transport",
+        "Ankomst på flyplassen",
+        "Pris"
+      ],
+      "rows": [
+        [
+          "El autobús",
+          {
+            "B": "09.30"
+          },
+          {
+            "B": "6 euros"
+          }
+        ],
+        [
+          "El tren",
+          {
+            "A": "10.15"
+          },
+          {
+            "A": "9 euros"
+          }
+        ],
+        [
+          "El metro",
+          {
+            "B": "10.30"
+          },
+          {
+            "B": "4 euros"
+          }
+        ],
+        [
+          "El taxi",
+          {
+            "A": "09.45"
+          },
+          {
+            "A": "35 euros"
+          }
+        ]
+      ],
+      "phrases": [
+        "¿A qué hora llega el autobús al aeropuerto?",
+        "¿Cuánto cuesta el metro / el taxi?",
+        "El autobús llega a las nueve y media.",
+        "Tenemos que llegar antes de las diez."
+      ],
+      "goalA": "Dere må være på flyplassen før 10.00. Hvilket rimelig transportmiddel velger dere? Sammenlign tabellene.",
+      "goalB": "Dere må være på flyplassen før 10.00. Hvilket rimelig transportmiddel velger dere? Sammenlign tabellene."
+    }
   },
   {
     "category": "kultur",
@@ -1774,7 +3602,62 @@
       "Du kan møtes etter klokka seks. Du kjenner programmet på museet med piano klokka fem. Spør B om musikk på teateret. Si hvilken konsert du rekker. Svar så på Bs spørsmål om museet.",
       "Du vet at teateret har gitar klokka sju, og at kinoen har film klokka åtte. Fortell A om de to alternativene. Spør så når det er piano på museet. Bli enige om et sted og tidspunkt."
     ],
-    "goal": "Du kan spørre om konserter og velge tid og sted."
+    "goal": "Du kan spørre om konserter og velge tid og sted.",
+    "infoGap": {
+      "introA": "Du har kulturprogrammet for museet og torget. Spør partneren på spansk om teateret og kinoen og fyll inn tabellen.",
+      "introB": "Du har kulturprogrammet for teateret og kinoen. Spør partneren på spansk om museet og torget og fyll inn tabellen.",
+      "headers": [
+        "Sted",
+        "Program",
+        "Klokkeslett"
+      ],
+      "rows": [
+        [
+          "El museo",
+          {
+            "A": "música de piano"
+          },
+          {
+            "A": "17.00"
+          }
+        ],
+        [
+          "El teatro",
+          {
+            "B": "música de guitarra"
+          },
+          {
+            "B": "19.00"
+          }
+        ],
+        [
+          "El cine",
+          {
+            "B": "película popular"
+          },
+          {
+            "B": "20.00"
+          }
+        ],
+        [
+          "La plaza",
+          {
+            "A": "concierto corto"
+          },
+          {
+            "A": "16.00"
+          }
+        ]
+      ],
+      "phrases": [
+        "¿Qué hay en el teatro / en el museo?",
+        "¿A qué hora empieza la guitarra / el piano?",
+        "A las siete de la tarde.",
+        "Vamos al ... después de las seis."
+      ],
+      "goalA": "Dere kan først etter kl. 18.00 og vil høre gitar. Hvor og når går dere? Sammenlign tabellene.",
+      "goalB": "Dere kan først etter kl. 18.00 og vil høre gitar. Hvor og når går dere? Sammenlign tabellene."
+    }
   },
   {
     "category": "teknologi",
@@ -1828,7 +3711,62 @@
       "Du har et bilde av laget på telefonen. Du vil høre kampen mens du er ute. Spør B hvor og når den sendes. Fortell så B hvor lagbildet er.",
       "Du vet at kampen sendes på radio klokka fem og på TV klokka sju. Svar på As spørsmål. Finn så ut hvor du kan se lagbildet. Bekreft forskjellen mellom bildet og sendingen."
     ],
-    "goal": "Du kan spørre hvor man kan høre eller se informasjon."
+    "goal": "Du kan spørre hvor man kan høre eller se informasjon.",
+    "infoGap": {
+      "introA": "Du har informasjonen for telefonen og nettavisen. Spør partneren på spansk om radio og TV og fyll inn de tomme rutene.",
+      "introB": "Du har informasjonen for radio og TV. Spør partneren på spansk om telefonen og nettavisen og fyll inn de tomme rutene.",
+      "headers": [
+        "Hva skjer",
+        "Hvor (medium)",
+        "Når eller hva du gjør"
+      ],
+      "rows": [
+        [
+          "Kampen direkte",
+          {
+            "B": "en la radio"
+          },
+          {
+            "B": "17.00 (escuchar)"
+          }
+        ],
+        [
+          "Kampen i opptak",
+          {
+            "B": "en la televisión"
+          },
+          {
+            "B": "19.00 (ver)"
+          }
+        ],
+        [
+          "Bildet av laget",
+          {
+            "A": "en el teléfono"
+          },
+          {
+            "A": "ver la foto"
+          }
+        ],
+        [
+          "Kort intervju",
+          {
+            "A": "en la radio"
+          },
+          {
+            "A": "20.00 (escuchar)"
+          }
+        ]
+      ],
+      "phrases": [
+        "¿Dónde puedo escuchar el partido?",
+        "¿A qué hora ponen el partido en la televisión?",
+        "Tengo la foto del equipo en mi teléfono.",
+        "A las cinco / siete."
+      ],
+      "goalA": "Du er ute kl. 17.00 og vil følge kampen. Hvilket medium bruker du? Sammenlign tabellene.",
+      "goalB": "Du er ute kl. 17.00 og vil følge kampen. Hvilket medium bruker du? Sammenlign tabellene."
+    }
   },
   {
     "category": "egenskaper",
@@ -1881,7 +3819,62 @@
       "Du leter etter en praktisk gave til en venn. På din hylle er det en elegant klokke og en interessant bok. Be B beskrive to gaver på sin hylle. Velg én, og forklar så B hvordan dine egne gaver er.",
       "På din hylle står en moderne og praktisk lampe og en populær musikkboks. Beskriv dem for A. Du vil selv gi bort noe å lese. Spør om tingene på As hylle og forklar valget ditt."
     ],
-    "goal": "Du kan sammenligne beskrivelser og velge en ting som passer en annen."
+    "goal": "Du kan sammenligne beskrivelser og velge en ting som passer en annen.",
+    "infoGap": {
+      "introA": "Du har to gaver på hylla (klokke og bok). Hold kortet skjult, spør partneren om tingene på hennes eller hans hylle.",
+      "introB": "Du har to gaver på hylla (lampe og musikkboks). Hold kortet skjult, spør partneren om tingene på hennes eller hans hylle.",
+      "headers": [
+        "Gave",
+        "Egenskap 1",
+        "Egenskap 2"
+      ],
+      "rows": [
+        [
+          "El reloj (klokke)",
+          {
+            "A": "elegante"
+          },
+          {
+            "A": "moderno"
+          }
+        ],
+        [
+          "El libro (bok)",
+          {
+            "A": "interesante"
+          },
+          {
+            "A": "para leer"
+          }
+        ],
+        [
+          "La lámpara (lampe)",
+          {
+            "B": "moderna"
+          },
+          {
+            "B": "práctica"
+          }
+        ],
+        [
+          "La caja musical",
+          {
+            "B": "popular"
+          },
+          {
+            "B": "musical"
+          }
+        ]
+      ],
+      "phrases": [
+        "¿Cómo es la lámpara / el reloj?",
+        "Es elegante, pero busco algo práctico.",
+        "¿Tienes un libro interesante?",
+        "Es muy popular y musical."
+      ],
+      "goalA": "Du trenger en praktisk gave, og B vil gi noe å lese. Hva velger hver av dere? Sammenlign tabellene.",
+      "goalB": "Du trenger en praktisk gave, og A vil gi en praktisk gave. Hva velger hver av dere? Sammenlign tabellene."
+    }
   },
   {
     "category": "personer",
@@ -1935,7 +3928,62 @@
       "Du har en beskjed til kunstneren, men vet bare at skuespilleren er på museet klokka fire. Be B om kunstnerens møtested og tid. Svar så på Bs spørsmål om skuespilleren.",
       "Du vet at kunstneren møter en turist ved teateret klokka tre. Gi A opplysningene. Du skal selv møte skuespilleren. Spør om tid og sted, og oppsummer begge avtalene."
     ],
-    "goal": "Du kan spørre etter en person og avtale et møtested."
+    "goal": "Du kan spørre etter en person og avtale et møtested.",
+    "infoGap": {
+      "introA": "Du vet hvor skuespilleren og læreren skal møtes. Spør partneren på spansk om kunstneren og turisten og fyll inn tabellen.",
+      "introB": "Du vet hvor kunstneren og turisten skal møtes. Spør partneren på spansk om skuespilleren og læreren og fyll inn tabellen.",
+      "headers": [
+        "Person",
+        "Møtested",
+        "Klokkeslett"
+      ],
+      "rows": [
+        [
+          "El actor (skuespiller)",
+          {
+            "A": "en el museo"
+          },
+          {
+            "A": "16.00 (las cuatro)"
+          }
+        ],
+        [
+          "El artista (kunstner)",
+          {
+            "B": "en el teatro"
+          },
+          {
+            "B": "15.00 (las tres)"
+          }
+        ],
+        [
+          "El turista (turist)",
+          {
+            "B": "en el hotel"
+          },
+          {
+            "B": "17.00 (las cinco)"
+          }
+        ],
+        [
+          "La profesora (lærer)",
+          {
+            "A": "en el café"
+          },
+          {
+            "A": "18.00 (las seis)"
+          }
+        ]
+      ],
+      "phrases": [
+        "¿Dónde está el artista / el actor?",
+        "¿A qué hora es la reunión?",
+        "Está en el teatro a las tres.",
+        "Nos vemos en el museo a las cuatro."
+      ],
+      "goalA": "Du har en beskjed til kunstneren, og B skal møte skuespilleren. Hvor og når går hver av dere? Sammenlign tabellene.",
+      "goalB": "Du har en beskjed til skuespilleren, og A skal møte kunstneren. Hvor og når går hver av dere? Sammenlign tabellene."
+    }
   },
   {
     "category": "dyr",
@@ -1987,7 +4035,62 @@
       "Tegn fire nummererte ruter. Din hemmelige informasjon er elefant i rute 1 og løve i rute 4. Spør B hvor tigeren og gorillaen er. Svar så på Bs spørsmål før dere sammenligner kart.",
       "Tegn fire nummererte ruter. Din hemmelige informasjon er tiger i rute 2 og gorilla i rute 3. Svar på As spørsmål. Spør så hvor elefanten og løven er, og les opp hele rekkefølgen."
     ],
-    "goal": "Du kan spørre etter dyr og plassere dem på et enkelt kart."
+    "goal": "Du kan spørre etter dyr og plassere dem på et enkelt kart.",
+    "infoGap": {
+      "introA": "Du kjenner dyrene i rute 1 og 4 på kartet. Spør partneren på spansk om hvilke dyr som er i rute 2 og 3.",
+      "introB": "Du kjenner dyrene i rute 2 og 3 på kartet. Spør partneren på spansk om hvilke dyr som er i rute 1 og 4.",
+      "headers": [
+        "Rute på kartet",
+        "Dyr",
+        "Kjennetegn"
+      ],
+      "rows": [
+        [
+          "Rute 1",
+          {
+            "A": "el elefante"
+          },
+          {
+            "A": "grande y gris"
+          }
+        ],
+        [
+          "Rute 2",
+          {
+            "B": "el tigre"
+          },
+          {
+            "B": "naranja y negro"
+          }
+        ],
+        [
+          "Rute 3",
+          {
+            "B": "el gorila"
+          },
+          {
+            "B": "negro y fuerte"
+          }
+        ],
+        [
+          "Rute 4",
+          {
+            "A": "el león"
+          },
+          {
+            "A": "amarillo"
+          }
+        ]
+      ],
+      "phrases": [
+        "¿Qué animal hay en el cuadro dos / tres?",
+        "¿De qué color es el animal?",
+        "En el cuadro uno está el elefante.",
+        "Es grande y gris / negro."
+      ],
+      "goalA": "Les opp alle fire dyrene i riktig rekkefølge fra rute 1 til rute 4. Sammenlign tabellene.",
+      "goalB": "Les opp alle fire dyrene i riktig rekkefølge fra rute 1 til rute 4. Sammenlign tabellene."
+    }
   },
   {
     "category": "ord og uttrykk",
@@ -2040,7 +4143,62 @@
       "Din invitasjon sier onsdag klokka seks i parken. B har programmet. Les opp invitasjonen og spør om det er et problem. Rett de to feilene, og les tilbake den nye teksten.",
       "Programmet ditt sier torsdag klokka fem i parken. Finn ut hva som står i As invitasjon før du røper programmet. Gi de to rettelsene og be A bekrefte dag og tid."
     ],
-    "goal": "Du kan be om informasjon og rette en opplysning i en invitasjon."
+    "goal": "Du kan be om informasjon og rette en opplysning i en invitasjon.",
+    "infoGap": {
+      "introA": "Du har invitasjonen (kolonne 2), som kan inneholde feil! Spør partneren om programmet og fyll inn hva som faktisk står der.",
+      "introB": "Du har det riktige programmet (kolonne 3). Spør partneren hva som står i invitasjonen og finn hvilke to feil som må rettes.",
+      "headers": [
+        "Opplysning",
+        "I invitasjonen (A)",
+        "I programmet (B)"
+      ],
+      "rows": [
+        [
+          "Aktivitet",
+          {
+            "A": "Conversación"
+          },
+          {
+            "B": "Conversación"
+          }
+        ],
+        [
+          "Dag",
+          {
+            "A": "El miércoles"
+          },
+          {
+            "B": "El jueves"
+          }
+        ],
+        [
+          "Klokkeslett",
+          {
+            "A": "18.00 (las seis)"
+          },
+          {
+            "B": "17.00 (las cinco)"
+          }
+        ],
+        [
+          "Sted",
+          {
+            "A": "En el parque"
+          },
+          {
+            "B": "En el parque"
+          }
+        ]
+      ],
+      "phrases": [
+        "Hay un problema con la invitación.",
+        "¿Qué actividad y qué día dice el programa?",
+        "¿Tienes más información?",
+        "La actividad es el jueves a las cinco."
+      ],
+      "goalA": "Hvilke to opplysninger i invitasjonen var feil og må rettes? Sammenlign tabellene.",
+      "goalB": "Hvilke to opplysninger i invitasjonen var feil og må rettes? Sammenlign tabellene."
+    }
   },
   {
     "theme": "wordkeys-recognizable",
@@ -2095,6 +4253,73 @@
     "cards": [
       "Du kjenner hotellprogrammet. Piano klokka fire og gitar klokka seks. Spør B om programmet på restauranten. Du kan gå klokka fem og vil høre piano. Finn et sted som passer. Hjelp så B med å velge.",
       "Du kjenner restaurantprogrammet. Piano klokka fem og gitar klokka åtte. Fortell A om ditt program. Spør A om hotellet. Du vil høre gitar før klokka sju. Avtal hvor dere går."
-    ]
+    ],
+    "infoGap": {
+      "introA": "Du har programmet for hotellene. Hold kortet skjult, spør partneren på spansk om restaurantene og fyll inn de tomme rutene.",
+      "introB": "Du har programmet for restaurantene. Hold kortet skjult, spør partneren på spansk om hotellene og fyll inn de tomme rutene.",
+      "headers": [
+        "Sted",
+        "Instrument",
+        "Klokkeslett",
+        "Populært?"
+      ],
+      "rows": [
+        [
+          "El hotel Sol",
+          {
+            "A": "el piano"
+          },
+          {
+            "A": "16.00 (las cuatro)"
+          },
+          {
+            "A": "Sí, muy popular"
+          }
+        ],
+        [
+          "El restaurante La Plaza",
+          {
+            "B": "la guitarra"
+          },
+          {
+            "B": "19.00 (las siete)"
+          },
+          {
+            "B": "Sí, muy popular"
+          }
+        ],
+        [
+          "El hotel Central",
+          {
+            "A": "la guitarra"
+          },
+          {
+            "A": "18.00 (las seis)"
+          },
+          {
+            "A": "No"
+          }
+        ],
+        [
+          "El restaurante Azul",
+          {
+            "B": "el piano"
+          },
+          {
+            "B": "17.00 (las cinco)"
+          },
+          {
+            "B": "Sí, popular"
+          }
+        ]
+      ],
+      "phrases": [
+        "¿Qué música hay en ...? — Hay música de piano / guitarra.",
+        "¿A qué hora es la música? — Es a las cuatro / cinco / seis / siete.",
+        "¿Es popular el hotel / el restaurante? — Sí, es popular. / No."
+      ],
+      "goalA": "Du er turist og vil høre piano kl. 17.00 på et populært sted. Hvor går du? Sammenlign tabellene.",
+      "goalB": "Du er turist og vil høre gitar kl. 18.00. Hvor går du? Sammenlign tabellene."
+    }
   }
 ]

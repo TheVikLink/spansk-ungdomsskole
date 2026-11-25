@@ -43,6 +43,82 @@ const writeLines = '<div class="write-line" aria-hidden="true"></div><div class=
 const nav = '<nav><a href="../index.html">Alle undervisningstimer</a></nav>';
 const audioSpeedControls = '<div class="audio-speed" role="group" aria-label="Avspillingshastighet" data-audio-speed><span class="audio-speed-label">Hastighet:</span><button type="button" class="speed-btn" data-rate="1" aria-pressed="true">1x (normal)</button><button type="button" class="speed-btn" data-rate="0.75" aria-pressed="false">0,75x</button><button type="button" class="speed-btn" data-rate="0.5" aria-pressed="false">0,5x</button></div>';
 
+function nonEmptyText(value) {
+  return typeof value === 'string' && value.trim().length > 0;
+}
+
+function renderPartnerCards(lesson, escapedTitle, id) {
+  const { infoGap } = lesson;
+  if (!infoGap) {
+    throw Error('Mangler infoGap for ' + id);
+  }
+
+  if (!Array.isArray(infoGap.headers) || infoGap.headers.length < 2 || infoGap.headers.length > 5
+      || !infoGap.headers.every(nonEmptyText)
+      || !Array.isArray(infoGap.rows) || infoGap.rows.length < 2 || infoGap.rows.length > 6
+      || !Array.isArray(infoGap.phrases) || infoGap.phrases.length === 0 || !infoGap.phrases.every(nonEmptyText)
+      || !nonEmptyText(infoGap.introA) || !nonEmptyText(infoGap.introB)) {
+    throw Error('Ugyldig infoGap-oppsett for ' + id);
+  }
+
+  const goalA = nonEmptyText(infoGap.goalA) ? infoGap.goalA : infoGap.goal;
+  const goalB = nonEmptyText(infoGap.goalB) ? infoGap.goalB : infoGap.goal;
+  if (!nonEmptyText(goalA) || !nonEmptyText(goalB)) {
+    throw Error('Mangler sluttmål i infoGap for ' + id);
+  }
+
+  let aOwn = 0;
+  let bOwn = 0;
+  for (const row of infoGap.rows) {
+    if (!Array.isArray(row) || row.length !== infoGap.headers.length) {
+      throw Error('Ugyldig radlengde i infoGap for ' + id);
+    }
+    for (const cell of row) {
+      if (nonEmptyText(cell)) continue;
+      if (cell && typeof cell === 'object' && !Array.isArray(cell)) {
+        const keys = Object.keys(cell);
+        if (keys.length === 1 && keys[0] === 'A' && nonEmptyText(cell.A)) {
+          aOwn += 1;
+          continue;
+        }
+        if (keys.length === 1 && keys[0] === 'B' && nonEmptyText(cell.B)) {
+          bOwn += 1;
+          continue;
+        }
+      }
+      throw Error('Ugyldig celle i infoGap for ' + id);
+    }
+  }
+  if (aOwn < 1 || bOwn < 1) {
+    throw Error('infoGap må ha hemmelig informasjon for både A og B i ' + id);
+  }
+
+  const headersHtml = infoGap.headers.map(h => `<th scope="col">${escape(h)}</th>`).join('');
+  const phrasesHtml = infoGap.phrases.map(p => `<li>${escape(p)}</li>`).join('');
+
+  const renderSide = side => {
+    const intro = side === 'A' ? infoGap.introA : infoGap.introB;
+    const goalText = side === 'A' ? goalA : goalB;
+    const rowsHtml = infoGap.rows.map(row => {
+      const cellsHtml = row.map((cell, colIndex) => {
+        if (typeof cell === 'string') {
+          return colIndex === 0 ? `<th scope="row">${escape(cell)}</th>` : `<td>${escape(cell)}</td>`;
+        }
+        const ownValue = cell[side];
+        if (ownValue !== undefined) {
+          return `<td class="gap-given">${escape(ownValue)}</td>`;
+        }
+        return '<td class="gap-blank" aria-label="Fyll inn svar fra partner"><span class="gap-write-line" aria-hidden="true"></span></td>';
+      }).join('');
+      return `<tr>${cellsHtml}</tr>`;
+    }).join('');
+
+    return `<article class="info-gap-card" data-side="${side}"><div class="card-head"><small>Samtalekort ${side}</small><h2>${escapedTitle}</h2></div><p class="card-intro">${escape(intro)}</p><table class="gap-table"><thead><tr>${headersHtml}</tr></thead><tbody>${rowsHtml}</tbody></table><div class="card-phrases"><strong>Hjelp på spansk:</strong><ul lang="es">${phrasesHtml}</ul></div><p class="card-goal"><strong>Til slutt:</strong> ${escape(goalText)}</p></article>`;
+  };
+
+  return `<div class="pair pair-infogap">${renderSide('A')}<div class="cut-line" aria-hidden="true"><span>Klipp langs linjen</span></div>${renderSide('B')}</div>`;
+}
+
 function verifyCoverage(expected, actual) {
   if (expected.size !== actual.length || actual.some(key => !expected.has(key)) || new Set(actual).size !== actual.length) {
     throw Error('Temaene i undervisningstimene avviker fra innholdskatalogen.');
@@ -92,8 +168,7 @@ To stemmer. Rolig tempo med korte pauser. Les bare replikkene.
 ${script}
 `);
 
-  const cards = lesson.cards.map((instructions, i) => `<article><small>Samtalekort ${i ? 'B' : 'A'}</small><h2>${title}</h2><p>${escape(instructions)}</p><p>Hold kortet skjult. Spør på spansk og lytt til svaret. Bytt på å spørre.</p></article>`).join('');
-  save(id + '/partnerkort.html', document(lesson.title, '../time.css', nav + '<div class="pair">' + cards + '</div>'));
+  save(id + '/partnerkort.html', document(lesson.title, '../time.css', nav + renderPartnerCards(lesson, title, id)));
 
   const worksheetWriting = lesson.writing.map(([prompt]) => `<li><p>${escape(prompt)}</p>${writeLines}</li>`).join('');
   const worksheetListening = lesson.questions.map(([question]) => `<li><p>${escape(question)}</p>${writeLines}</li>`).join('');

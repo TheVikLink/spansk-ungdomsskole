@@ -43,7 +43,62 @@
     "cards": [
       "Du er vert. Dere spiser hos bestemoren klokka åtte og åpner gaver ved midnatt. Partneren spør om planen. Finn deretter ut hva partneren tar med, og hvem som kommer.",
       "Du er gjest. Du kommer med søsteren din og tar med søtsaker. Finn ut hvor og når dere spiser, og når dere åpner gaver. Svar deretter på vertens spørsmål."
-    ]
+    ],
+    "infoGap": {
+      "introA": "Du er vert for julekvelden og kjenner tid og sted. Spør gjesten på spansk om hvem som kommer og hva de tar med.",
+      "introB": "Du er gjest på julekvelden og vet hvem du tar med. Spør verten på spansk om sted, tidspunkt og når gavene åpnes.",
+      "headers": [
+        "Punkt",
+        "Detalj",
+        "Tid eller ansvar"
+      ],
+      "rows": [
+        [
+          "Middag (cenar)",
+          {
+            "A": "En casa de la abuela"
+          },
+          {
+            "A": "20.00 (las ocho)"
+          }
+        ],
+        [
+          "Gjester (familia)",
+          {
+            "B": "Tú y tu hermana"
+          },
+          {
+            "B": "Llegan juntos"
+          }
+        ],
+        [
+          "Mat og søtsaker",
+          {
+            "A": "Pescado y turrón"
+          },
+          {
+            "B": "Dulces (søtsaker)"
+          }
+        ],
+        [
+          "Gaver (regalos)",
+          {
+            "A": "A medianoche"
+          },
+          {
+            "B": "Un libro de música"
+          }
+        ]
+      ],
+      "phrases": [
+        "¿Dónde vamos a cenar en Nochebuena?",
+        "¿A qué hora abrimos los regalos?",
+        "¿Quién viene y qué llevas?",
+        "Llevo dulces y un regalo. ¡Feliz Navidad!"
+      ],
+      "goalA": "Oppsummer hele planen for la Nochebuena fra middag til midnatt. Sammenlign tabellene.",
+      "goalB": "Oppsummer hele planen for la Nochebuena fra middag til midnatt. Sammenlign tabellene."
+    }
   },
   {
     "pack": "un-dia-en-honduras",
@@ -89,7 +144,62 @@
     "cards": [
       "Du pakker sekken med en skrivebok og en blyant. Du vil tegne en stein på torget. Spør B hvor og når dere skal spise frokost. Fortell B hva du har pakket og hva du vil tegne.",
       "Du har avtalt frokost hos bestemoren din klokka ni. Hun serverer ost og bønner. Spør A hva dere kan tegne, hvor dere skal tegne og hva som ligger i sekken. Fortell om frokosten."
-    ]
+    ],
+    "infoGap": {
+      "introA": "Du har pakket sekken og valgt tegnemotiv. Hold kortet skjult, spør partneren på spansk om frokosten og fyll inn tabellen.",
+      "introB": "Du har avtalt frokost hos bestemoren. Hold kortet skjult, spør partneren på spansk om sekken og tegningen og fyll inn tabellen.",
+      "headers": [
+        "Del av dagen",
+        "Sted eller sak",
+        "Detalj"
+      ],
+      "rows": [
+        [
+          "Frokost (desayunar)",
+          {
+            "B": "Casa de la abuela"
+          },
+          {
+            "B": "09.00 (las nueve)"
+          }
+        ],
+        [
+          "Frokostmat",
+          {
+            "B": "Frijoles y queso"
+          },
+          {
+            "B": "Con tortillas"
+          }
+        ],
+        [
+          "I sekken (mochila)",
+          {
+            "A": "Cuaderno y lápiz"
+          },
+          {
+            "A": "Agua y gorra"
+          }
+        ],
+        [
+          "På torget (la plaza)",
+          {
+            "A": "Visitar y dibujar"
+          },
+          {
+            "A": "Una piedra antigua"
+          }
+        ]
+      ],
+      "phrases": [
+        "¿Dónde y a qué hora desayunamos?",
+        "¿Qué prepara tu abuela?",
+        "¿Qué tienes en la mochila?",
+        "Vamos a dibujar una piedra en la plaza."
+      ],
+      "goalA": "Gjenfortell hele planen fra frokost til utflukten i Copán. Sammenlign tabellene.",
+      "goalB": "Gjenfortell hele planen fra frokost til utflukten i Copán. Sammenlign tabellene."
+    }
   },
   {
     "pack": "un-dia-en-colombia",
@@ -135,7 +245,62 @@
     "cards": [
       "Du har hansker og én tom flaske. Møt B på stranden klokka ti. Spør hva B har til flaskene og hva dere skal spise etterpå. Svar når B ber om tid og utstyr.",
       "Du har to poser og har med ris og fisk til lunsj. Finn ut når dere skal møtes, og hvem som har hansker. Fortell A hvor mange poser du har, og hva dere kan spise."
-    ]
+    ],
+    "infoGap": {
+      "introA": "Du vet møtetidspunktet og hvilket utstyr du har selv. Spør partneren på spansk om poser og lunsj og fyll inn tabellen.",
+      "introB": "Du vet hvor mange poser og hva slags lunsj du har med. Spør partneren på spansk om møtested, tid og hansker.",
+      "headers": [
+        "Punkt",
+        "Hva",
+        "Antall eller tid"
+      ],
+      "rows": [
+        [
+          "Møtested og tid",
+          {
+            "A": "En la playa"
+          },
+          {
+            "A": "10.00 (las diez)"
+          }
+        ],
+        [
+          "Utstyr fra A",
+          {
+            "A": "Guantes y botella"
+          },
+          {
+            "A": "Un par y 1 botella"
+          }
+        ],
+        [
+          "Utstyr fra B",
+          {
+            "B": "Bolsas para basura"
+          },
+          {
+            "B": "Dos bolsas"
+          }
+        ],
+        [
+          "Lunsj etterpå",
+          {
+            "B": "Arroz con pescado"
+          },
+          {
+            "B": "Cerca del mar"
+          }
+        ]
+      ],
+      "phrases": [
+        "¿Dónde y a qué hora nos encontramos?",
+        "¿Tienes guantes o bolsas?",
+        "Sí, tengo dos bolsas para recoger botellas.",
+        "¿Qué vamos a comer después?"
+      ],
+      "goalA": "Har dere alt som trengs for å rydde stranden og spise lunsj sammen? Sammenlign tabellene.",
+      "goalB": "Har dere alt som trengs for å rydde stranden og spise lunsj sammen? Sammenlign tabellene."
+    }
   },
   {
     "pack": "un-dia-en-mexico",
@@ -180,7 +345,62 @@
     "cards": [
       "Du har 30 pesos. Kjøp varm sjokolade og enten frukt eller mais hos B. Spør om prisene før du velger. Bytt rolle. Din bod selger én tomat for 6 pesos, varm sjokolade for 24 og ett eple for 9.",
       "Selg varm sjokolade for 18 pesos, en pose frukt for 15 og mais for 10. Gi bare prisene A ber om. Bytt rolle. Du har 28 pesos og vil kjøpe en tomat og enten varm sjokolade eller et eple."
-    ]
+    ],
+    "infoGap": {
+      "introA": "Du har prisene i Bod A (kolonne 2). Spør selgeren i Bod B på spansk om prisene hennes eller hans og fyll inn siste kolonne.",
+      "introB": "Du har prisene i Bod B (kolonne 3). Spør selgeren i Bod A på spansk om prisene hennes eller hans og fyll inn kolonne 2.",
+      "headers": [
+        "Vare på markedet",
+        "Bod A (pesos)",
+        "Bod B (pesos)"
+      ],
+      "rows": [
+        [
+          "Taza de chocolate caliente",
+          {
+            "A": "24 pesos"
+          },
+          {
+            "B": "18 pesos"
+          }
+        ],
+        [
+          "El maíz (mais)",
+          {
+            "A": "8 pesos"
+          },
+          {
+            "B": "10 pesos"
+          }
+        ],
+        [
+          "Una bolsa de fruta",
+          {
+            "A": "9 pesos"
+          },
+          {
+            "B": "15 pesos"
+          }
+        ],
+        [
+          "Un tomate",
+          {
+            "A": "6 pesos"
+          },
+          {
+            "B": "7 pesos"
+          }
+        ]
+      ],
+      "phrases": [
+        "¿Cuánto cuesta una taza de chocolate?",
+        "¿Cuál es el precio del maíz / tomate?",
+        "Cuesta dieciocho / veinticuatro pesos.",
+        "Quiero comprar fruta, por favor."
+      ],
+      "goalA": "Du har 30 pesos og vil kjøpe varm sjokolade og én pose frukt. Hvor handler du billigst? Sammenlign tabellene.",
+      "goalB": "Du har 30 pesos og vil kjøpe varm sjokolade og én pose frukt. Hvor handler du billigst? Sammenlign tabellene."
+    }
   },
   {
     "pack": "un-dia-en-espana",
@@ -225,7 +445,62 @@
     "cards": [
       "Du vet veien. Parken ligger nær brua, og dere møtes ved det store treet. Spør B hvordan B vil komme dit og hva B vil drikke. Forklar møtestedet.",
       "Du vil gå til fots og drikke et glass kald horchata etter turen. Spør A hvor parken ligger og hvilket tre dere møtes ved. Oppsummer planen."
-    ]
+    ],
+    "infoGap": {
+      "introA": "Du vet veien til parken og møtestedet. Spør partneren på spansk om hvordan hun eller han reiser og hva dere skal drikke.",
+      "introB": "Du vet hvordan du vil reise og hva du vil drikke. Spør partneren på spansk om veien og møtestedet i parken.",
+      "headers": [
+        "Punkt",
+        "Detalj",
+        "Ekstra opplysning"
+      ],
+      "rows": [
+        [
+          "Hvor er parken?",
+          {
+            "A": "Cerca del puente"
+          },
+          {
+            "A": "Al lado del río"
+          }
+        ],
+        [
+          "Møtested",
+          {
+            "A": "El árbol grande"
+          },
+          {
+            "A": "16.00 (las cuatro)"
+          }
+        ],
+        [
+          "Transport",
+          {
+            "B": "Caminar (til fots)"
+          },
+          {
+            "B": "En bicicleta tilbake"
+          }
+        ],
+        [
+          "Drikke etterpå",
+          {
+            "B": "Un vaso de horchata"
+          },
+          {
+            "B": "Muy fría"
+          }
+        ]
+      ],
+      "phrases": [
+        "¿Dónde está el parque? — Está cerca del puente.",
+        "¿En qué árbol quedamos?",
+        "¿Vas a caminar o en bicicleta?",
+        "Quiero un vaso de horchata fría."
+      ],
+      "goalA": "Oppsummer møtested, veibeskrivelse og drikke sammen på spansk. Sammenlign tabellene.",
+      "goalB": "Oppsummer møtested, veibeskrivelse og drikke sammen på spansk. Sammenlign tabellene."
+    }
   },
   {
     "pack": "un-dia-en-peru",
@@ -271,7 +546,62 @@
     "cards": [
       "Du har en liten pose mais og vil lære å lage poteter med mais. Spør hva B har og hvor dere kan lage maten. Fortell hvilken råvare du tar med.",
       "Du har fem store poteter og kan lage mat hjemme klokka fire. Spør hva A vil lage og hvilken råvare A tar med. Oppgi sted og tid."
-    ]
+    ],
+    "infoGap": {
+      "introA": "Du vet hvilken råvare du har med og hva du vil lære å lage. Spør partneren på spansk om den andre råvaren, sted og tid.",
+      "introB": "Du har poteter og vet hvor og når dere lager mat. Spør partneren på spansk om råvare og hva hun eller han vil lage.",
+      "headers": [
+        "Punkt",
+        "Detalj",
+        "Størrelse eller tid"
+      ],
+      "rows": [
+        [
+          "Råvare fra A",
+          {
+            "A": "Una bolsa de maíz"
+          },
+          {
+            "A": "Pequeña"
+          }
+        ],
+        [
+          "Råvare fra B",
+          {
+            "B": "Cinco papas"
+          },
+          {
+            "B": "Grandes"
+          }
+        ],
+        [
+          "Rett å lage",
+          {
+            "A": "Papas con maíz"
+          },
+          {
+            "B": "En casa"
+          }
+        ],
+        [
+          "Tidspunkt",
+          {
+            "B": "Por la tarde"
+          },
+          {
+            "B": "16.00 (las cuatro)"
+          }
+        ]
+      ],
+      "phrases": [
+        "¿Qué tienes en tu bolsa?",
+        "¿Qué quieres cocinar hoy?",
+        "¿Dónde y a qué hora cocinamos?",
+        "Cocino papas grandes en casa a las cuatro."
+      ],
+      "goalA": "Hvilken rett skal dere lage sammen i Cusco, og når begynner dere? Sammenlign tabellene.",
+      "goalB": "Hvilken rett skal dere lage sammen i Cusco, og når begynner dere? Sammenlign tabellene."
+    }
   },
   {
     "pack": "un-dia-en-guinea-ecuatorial",
@@ -317,6 +647,61 @@
     "cards": [
       "Du har en blyant og vil tegne et blad i skyggen. Spør om B har papir og hva historien til B handler om. Beskriv deretter ditt eget motiv.",
       "Du har en skrivebok og en historie om en blå båt. Finn ut hva A vil tegne og hvor. Tilby papir og fortell hva din historie handler om."
-    ]
+    ],
+    "infoGap": {
+      "introA": "Du vet hva du vil tegne og hvor dere bør sitte. Spør partneren på spansk om tegneutstyr og historien hun eller han har med.",
+      "introB": "Du har skriveboken og historien. Spør partneren på spansk om hva hun eller han vil tegne og hvor dere skal sitte.",
+      "headers": [
+        "Punkt",
+        "Hva",
+        "Detalj"
+      ],
+      "rows": [
+        [
+          "Tegneutstyr",
+          {
+            "B": "Un cuaderno"
+          },
+          {
+            "A": "Un lápiz"
+          }
+        ],
+        [
+          "Tegnemotiv",
+          {
+            "A": "Una hoja (et blad)"
+          },
+          {
+            "B": "Cerca del cielo"
+          }
+        ],
+        [
+          "Sted å sitte",
+          {
+            "A": "En la sombra"
+          },
+          {
+            "A": "Tranquilo"
+          }
+        ],
+        [
+          "Historie å dele",
+          {
+            "B": "Una barca azul"
+          },
+          {
+            "B": "Escuchar y compartir"
+          }
+        ]
+      ],
+      "phrases": [
+        "¿Tienes un cuaderno o un lápiz?",
+        "¿Qué quieres dibujar?",
+        "Dibujo una hoja en la sombra.",
+        "¿De qué trata tu historia? — De una barca azul."
+      ],
+      "goalA": "Oppsummer hva dere skal tegne i skyggen og hva historien handler om. Sammenlign tabellene.",
+      "goalB": "Oppsummer hva dere skal tegne i skyggen og hva historien handler om. Sammenlign tabellene."
+    }
   }
 ]

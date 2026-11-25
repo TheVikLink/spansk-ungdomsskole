@@ -151,3 +151,43 @@ test('temagloser bruker samme repetisjonsplan ved ekstraøving og neste besøk',
     await server.close();
   }
 });
+
+test('alle 46 timer har komplementære informasjonskløft-tabeller på samtalekort A og B', async ({ page }) => {
+  expect(lessons.length).toBe(46);
+  for (const entry of lessons) {
+    expect(Boolean(entry.infoGap), entry.title).toBe(true);
+  }
+  const server = await startStaticAppServer();
+  try {
+    for (const lessonId of ['tall', 'hilsener', 'wordkeys-recognizable', 'bursdag', 'klokka', 'un-dia-en-colombia']) {
+      await page.goto(`${server.url}undervisning/${lessonId}/partnerkort.html`);
+      const cardA = page.locator('.info-gap-card[data-side="A"]');
+      const cardB = page.locator('.info-gap-card[data-side="B"]');
+      await expect(cardA).toBeVisible();
+      await expect(cardB).toBeVisible();
+      for (const card of [cardA, cardB]) {
+        await expect(card.locator('.gap-table')).toBeVisible();
+        await expect(card.locator('.card-phrases')).toBeVisible();
+        await expect(card.locator('.card-goal')).toBeVisible();
+      }
+      const layout = await page.evaluate(() => {
+        const signature = selector => [...document.querySelectorAll(selector)]
+          .map(td => td.classList.contains('gap-blank') ? 'B' : (td.classList.contains('gap-given') ? 'G' : 'S'));
+        return {
+          a: signature('.info-gap-card[data-side="A"] .gap-table tbody td'),
+          b: signature('.info-gap-card[data-side="B"] .gap-table tbody td'),
+        };
+      });
+      expect(layout.a.length).toBeGreaterThan(0);
+      expect(layout.a.length).toBe(layout.b.length);
+      expect(layout.a.includes('G')).toBe(true);
+      expect(layout.a.includes('B')).toBe(true);
+      for (let i = 0; i < layout.a.length; i++) {
+        if (layout.a[i] === 'S') expect(layout.b[i]).toBe('S');
+        else expect(layout.b[i]).toBe(layout.a[i] === 'B' ? 'G' : 'B');
+      }
+    }
+  } finally {
+    await server.close();
+  }
+});
