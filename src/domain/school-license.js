@@ -9,6 +9,7 @@ export const FREE_SAMPLE_LESSON_IDS = Object.freeze([
   'wordkeys-recognizable',
   'hilsener',
   'tall',
+  'jul-spania-chile',
 ]);
 
 export const ALLOWED_PLANS = Object.freeze([

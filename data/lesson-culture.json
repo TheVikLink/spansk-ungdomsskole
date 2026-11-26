@@ -65,10 +65,10 @@
         [
           "Gjester (familia)",
           {
-            "B": "Tú y tu hermana"
+            "B": "Mi hermana y yo"
           },
           {
-            "B": "Llegan juntos"
+            "B": "Llegamos juntos"
           }
         ],
         [
@@ -91,10 +91,10 @@
         ]
       ],
       "phrases": [
-        "¿Dónde vamos a cenar en Nochebuena?",
-        "¿A qué hora abrimos los regalos?",
+        "¿Dónde y a qué hora cenamos en Nochebuena?",
+        "¿Qué comemos y cuándo abrimos los regalos?",
         "¿Quién viene y qué llevas?",
-        "Llevo dulces y un regalo. ¡Feliz Navidad!"
+        "Cenamos a las … / Llevo … ¡Feliz Navidad!"
       ],
       "goalA": "Oppsummer hele planen for la Nochebuena fra middag til midnatt. Sammenlign tabellene.",
       "goalB": "Oppsummer hele planen for la Nochebuena fra middag til midnatt. Sammenlign tabellene."

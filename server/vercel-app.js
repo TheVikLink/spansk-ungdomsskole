@@ -40,12 +40,12 @@ const SCHOOL_INFO_HTML = `<!doctype html>
       <p><strong>Pris: 4 995 kr første år</strong> (introduksjonspris for inntil 6 klasser, deretter 7 900 kr per år). Kommune- eller fylkespakke: <strong>19 900 kr per år</strong> for inntil 5 skoler. Vil dere starte i dag uten Feide og uten elevdata? Se <a href="/undervisning/">Undervisningspakken (3 490 kr per skole per år)</a>.</p>
       <div class="package-actions">
         <a class="btn-primary" href="${SCHOOL_INFO_MAILTO}">Bestill 15-minutters demo eller DBA-pakke</a>
-        <a class="btn-secondary" href="/undervisning/">Prøv 3 gratis undervisningstimer</a>
+        <a class="btn-secondary" href="/undervisning/">Prøv 4 gratis undervisningstimer</a>
       </div>
     </section>
     <section>
       <h2>Kom i gang i klasserommet i dag</h2>
-      <p>Elevene kan bruke <a href="/">øvingsappen uten innlogging</a> med en gang, og lærere kan åpne <a href="/undervisning/">tre komplette 45-minutters prøvetimer</a> med lydopptak og utskrivbare A/B-samtalekort.</p>
+      <p>Elevene kan bruke <a href="/">øvingsappen uten innlogging</a> med en gang, og lærere kan åpne <a href="/undervisning/">fire komplette 45-minutters prøvetimer</a> med lydopptak og utskrivbare A/B-samtalekort.</p>
     </section>
   </main>
 </body>

@@ -33,7 +33,7 @@ export async function buildVercelPublic({ rootDir = repositoryRoot, outputDir = 
     const rel = path.relative(undervisningRoot, entry);
     if (!rel) return true;
     const firstSegment = rel.split(path.sep)[0];
-    // Top-level files (index.html, time.css, writing.js, pakke.js) and the 3 free sample lessons
+    // Top-level files (index.html, time.css, writing.js, pakke.js) and the free sample lessons
     // are served from CDN; all paid lesson folders stay server-gated behind Express.
     if (!rel.includes(path.sep)) {
       if (/\.(?:html|css|js)$/u.test(firstSegment)) return true;

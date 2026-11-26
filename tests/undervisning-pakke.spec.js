@@ -37,16 +37,16 @@ for (const viewport of [
 
       await expect(page.getByRole('heading', { name: 'Undervisningstimer i spansk' })).toBeVisible();
       await expect(page.locator('.catalog-section h2').first()).toHaveText('Gratis prøvetimer');
-      await expect(page.locator('.catalog-section').first().locator('li[data-lesson-id]')).toHaveCount(3);
+      await expect(page.locator('.catalog-section').first().locator('li[data-lesson-id]')).toHaveCount(4);
       await expect(page.locator('.catalog li[data-lesson-id]')).toHaveCount(46);
 
       // Zero horizontal overflow
       const overflow = await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth + 1);
       expect(overflow).toBe(false);
 
-      // Filter to 3 free sample lessons
-      await page.getByRole('button', { name: 'Gratis prøvetimer (3)' }).click();
-      await expect(page.locator('.catalog li[data-lesson-id]:visible')).toHaveCount(3);
+      // Filter to 4 free sample lessons
+      await page.getByRole('button', { name: 'Gratis prøvetimer (4)' }).click();
+      await expect(page.locator('.catalog li[data-lesson-id]:visible')).toHaveCount(4);
 
       // Search filters cleanly
       await page.getByRole('button', { name: /Alle \(46\)/ }).click();
@@ -55,9 +55,11 @@ for (const viewport of [
       await expect(page.locator('.catalog li[data-lesson-id="tall"]')).toBeHidden();
       await page.locator('#lessonSearchInput').fill('');
 
-      // Free lesson opens directly without a code
+      // Free lessons open directly without a code
       await page.goto(`${server.url}/undervisning/tall/index.html`);
       await expect(page.getByRole('heading', { level: 1 })).toContainText('Hvor mange billetter?');
+      await page.goto(`${server.url}/undervisning/jul-spania-chile/index.html`);
+      await expect(page.getByRole('heading', { level: 1 })).toContainText('Planlegg julekvelden');
 
       // Paid lesson redirects back to portal with lock notice
       await page.goto(`${server.url}/undervisning/familie/index.html`);

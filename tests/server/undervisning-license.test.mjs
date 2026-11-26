@@ -35,8 +35,9 @@ async function withRouterServer(options, run) {
 }
 
 test('createSchoolLicenseCode and verifySchoolLicenseCode validate signatures, plans, and expiry', () => {
-  assert.deepEqual(FREE_SAMPLE_LESSON_IDS, ['wordkeys-recognizable', 'hilsener', 'tall']);
+  assert.deepEqual(FREE_SAMPLE_LESSON_IDS, ['wordkeys-recognizable', 'hilsener', 'tall', 'jul-spania-chile']);
   assert.equal(isFreeLessonId('tall'), true);
+  assert.equal(isFreeLessonId('jul-spania-chile'), true);
   assert.equal(isFreeLessonId('familie'), false);
 
   const code = createSchoolLicenseCode({
@@ -112,6 +113,21 @@ test('createUndervisningRouter allows free sample lessons and locks paid lessons
       const pdfRes = await fetch(`${origin}/undervisning/${freeId}/partnerkort.pdf`);
       assert.equal(pdfRes.status, 200, `${freeId} PDF should be free`);
     }
+
+    // Christmas sample lesson student page, worksheet PDF, audio, and student-link work without license
+    assert.equal((await fetch(`${origin}/undervisning/jul-spania-chile/elev.html`)).status, 200);
+    assert.equal((await fetch(`${origin}/undervisning/jul-spania-chile/arbeidsark.pdf`)).status, 200);
+    assert.equal((await fetch(`${origin}/undervisning/jul-spania-chile/jul-spania-chile.mp3`)).status, 200);
+    const freeStudentLink = await fetch(`${origin}/api/license/student-link`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ lessonId: 'jul-spania-chile' }),
+    });
+    assert.equal(freeStudentLink.status, 200);
+    assert.deepEqual(await freeStudentLink.json(), {
+      url: '/undervisning/jul-spania-chile/elev.html',
+      free: true,
+    });
 
     // Paid lesson HTML redirects to portal; PDF/MP3 return 402
     const lockedHtml = await fetch(`${origin}/undervisning/familie/index.html`, { redirect: 'manual' });
@@ -223,6 +239,7 @@ test('buildVercelPublic stages only top-level portal assets and free sample less
       put('undervisning/teacher.js', 'teacher'),
       put('undervisning/tall/index.html', 'free'),
       put('undervisning/hilsener/partnerkort.pdf', '%PDF-'),
+      put('undervisning/jul-spania-chile/index.html', 'free'),
       put('undervisning/wordkeys-recognizable/index.html', 'free'),
       put('undervisning/familie/index.html', 'paid'),
       put('undervisning/familie/partnerkort.pdf', '%PDF-paid'),
@@ -242,6 +259,7 @@ test('buildVercelPublic stages only top-level portal assets and free sample less
     assert.deepEqual(undervisningFiles, [
       'hilsener/partnerkort.pdf',
       'index.html',
+      'jul-spania-chile/index.html',
       'pakke.js',
       'tall/index.html',
       'teacher.js',

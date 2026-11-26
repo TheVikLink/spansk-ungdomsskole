@@ -77,7 +77,7 @@ function showLockedLessonBanner(lessonId) {
   const heading = document.createElement('strong');
   heading.textContent = `«${title}» inngår i Undervisningspakken.`;
   const copy = document.createElement('p');
-  copy.textContent = 'Skriv inn skolens lisenskode nedenfor for å åpne alle 46 timer og utskrivbare samtalekort, eller prøv de 3 gratis prøvetimene (Spansk du kjenner igjen, Hilsener og Tall).';
+  copy.textContent = 'Skriv inn skolens lisenskode nedenfor for å åpne alle 46 timer og utskrivbare samtalekort, eller prøv de 4 gratis prøvetimene (Spansk du kjenner igjen, Hilsener, Tall og Jul i Spania og Chile).';
   lockedNotice.append(heading, copy);
   lockedNotice.hidden = false;
 }

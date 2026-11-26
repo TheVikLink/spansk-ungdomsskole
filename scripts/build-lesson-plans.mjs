@@ -301,7 +301,7 @@ save('index.html', document('Undervisningstimer i spansk', 'time.css', `<nav><a 
 <input type="search" id="lessonSearchInput" placeholder="Søk etter tema, for eksempel familie, mat, klokka eller Colombia">
 <div class="filter-row" role="group" aria-label="Filtrer timer">
 <button type="button" class="filter-btn" data-filter="all" aria-pressed="true">Alle (${themes.length + culture.length})</button>
-<button type="button" class="filter-btn" data-filter="free" aria-pressed="false">Gratis prøvetimer (3)</button>
+<button type="button" class="filter-btn" data-filter="free" aria-pressed="false">Gratis prøvetimer (${freeLessons.length})</button>
 <button type="button" class="filter-btn" data-filter="theme" aria-pressed="false">Glosetemaer (${themes.length})</button>
 <button type="button" class="filter-btn" data-filter="culture" aria-pressed="false">Kultur og hverdagsliv (${culture.length})</button>
 </div>
