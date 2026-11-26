@@ -29,6 +29,7 @@ test('Vercel config uses root Express discovery and sets the static output and f
     '/undervisning/time.css',
     '/undervisning/writing.js',
     '/undervisning/teacher.js',
+    '/undervisning/analytics.js',
   ]) {
     assert.equal(
       cacheHeadersBySource.get(source),
@@ -237,6 +238,7 @@ test('Vercel Express adapter serves allowlisted public student assets without lo
       ['/manifest.webmanifest', 'public, max-age=0, must-revalidate'],
       ['/school.js', 'public, max-age=0, must-revalidate'],
       ['/school.css', 'public, max-age=0, must-revalidate'],
+      ['/besoksstatistikk.html', 'public, max-age=0, must-revalidate'],
       ['/favicon.ico', 'public, max-age=86400'],
       ['/audio/uttale/refold-v1/ESPhoneticWritingSystem_1_word.mp3', 'public, max-age=86400, immutable'],
     ];

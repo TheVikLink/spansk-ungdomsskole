@@ -132,6 +132,12 @@ function renderLicensePanel(state, initialMessage = '', isError = false) {
   status.setAttribute('role', 'status');
   status.textContent = initialMessage;
 
+  function trackLicenseActivation(data) {
+    if (typeof window.va !== 'function') return;
+    const type = typeof data?.id === 'string' && data.id.startsWith('demo-') ? 'demo' : 'school';
+    window.va('event', { name: 'license_activate', data: { type } });
+  }
+
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
     const code = input.value.trim();
@@ -156,6 +162,7 @@ function renderLicensePanel(state, initialMessage = '', isError = false) {
       if (lockedNotice) lockedNotice.hidden = true;
       updateCardBadges(true);
       renderLicensePanel(data);
+      trackLicenseActivation(data);
     } catch {
       status.className = 'license-status error';
       status.textContent = 'Fikk ikke kontakt med serveren. Prøv igjen.';
@@ -191,6 +198,7 @@ async function initLicensePortal() {
         if (lockedNotice) lockedNotice.hidden = true;
         updateCardBadges(true);
         renderLicensePanel(data);
+        trackLicenseActivation(data);
         return;
       }
       renderLicensePanel({ active: false }, data.error || 'Skolekoden i lenken var ugyldig eller utløpt.', true);

@@ -108,6 +108,16 @@ export function createLazyFunctionApp(loadRuntime) {
     return res.redirect(302, `/undervisning/${encodeURIComponent(packId)}/${targetFile}`);
   });
 
+  app.get('/besoksstatistikk.html', (_req, res) => {
+    res.setHeader('Cache-Control', 'public, max-age=0, must-revalidate');
+    res.setHeader('X-Content-Type-Options', 'nosniff');
+    res.setHeader('Referrer-Policy', 'no-referrer');
+    res.setHeader('X-Frame-Options', 'DENY');
+    return res.sendFile(path.join(projectRoot, 'src', 'visitor-analytics-privacy.html'), (error) => {
+      if (error && !res.headersSent) res.status(404).end();
+    });
+  });
+
   app.get('/googleda8e06f12dba466d.html', (_req, res) => {
     return res.sendFile(path.join(projectRoot, 'googleda8e06f12dba466d.html'), (error) => {
       if (error && !res.headersSent) res.status(404).end();

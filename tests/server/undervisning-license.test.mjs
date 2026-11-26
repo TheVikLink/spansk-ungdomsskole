@@ -243,6 +243,7 @@ test('buildVercelPublic stages only top-level portal assets and free sample less
       put('undervisning/writing.js', 'js'),
       put('undervisning/pakke.js', 'pakke'),
       put('undervisning/teacher.js', 'teacher'),
+      put('undervisning/analytics.js', 'analytics'),
       put('undervisning/tall/index.html', 'free'),
       put('undervisning/hilsener/partnerkort.pdf', '%PDF-'),
       put('undervisning/jul-spania-chile/index.html', 'free'),
@@ -263,6 +264,7 @@ test('buildVercelPublic stages only top-level portal assets and free sample less
     };
     const undervisningFiles = (await listFiles(path.join(output, 'undervisning'))).sort();
     assert.deepEqual(undervisningFiles, [
+      'analytics.js',
       'hilsener/partnerkort.pdf',
       'index.html',
       'jul-spania-chile/index.html',
@@ -282,6 +284,7 @@ test('service worker bypasses /undervisning routes so paywall redirects stay net
   const swText = await readFile(path.join(projectRoot, 'sw.js'), 'utf8');
   assert.match(swText, /pathname\s*===\s*'\/undervisning'/u);
   assert.match(swText, /pathname\.startsWith\('\/undervisning\/'\)/u);
+  assert.match(swText, /pathname\.startsWith\('\/_vercel\/'\)/u);
 });
 
 test('createStudentLessonToken and /api/license/student-link scope student access without exposing teacher keys or partner cards', async () => {

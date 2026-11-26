@@ -224,7 +224,8 @@ ${studentListening}
 </section>
 <section><h2>4. Snakk i par (15 min)</h2><p>Du får Samtalekort A eller Samtalekort B av læreren. Hold kortet skjult for partneren din, still spørsmål på spansk og lytt til svaret. Bytt roller når dere er ferdige.</p></section>
 <section><h2>5. Hent fram ordene igjen (5 min)</h2><p>Legg bort kortene. Si én ny setning med to av ordene. La partneren stille et spørsmål. Neste spansktime kan du åpne spansk123.no i samme nettleser og bruke «Repeter gloser» på Start – fremgangen lagres automatisk lokalt på enheten, uten konto.</p></section>
-<script src="../writing.js" defer></script>`;
+<script src="../writing.js" defer></script>
+<script src="../analytics.js" defer></script>`;
   save(id + '/elev.html', document(`${lesson.title} (Elevside)`, '../time.css', studentBody));
 
   const schoolActivityId = lesson.category ? `vocabulary.${id}.v1` : 'vocabulary.all.v1';
@@ -263,7 +264,8 @@ ${audioSpeedControls}</section>
 <h3>Fasit til lytteøvelsen</h3>
 ${list(lesson.questions.map(([, answer]) => answer))}
 <p>Lytt etter om begge kan stille et spørsmål, forstå partnerens svar og bruke opplysningen til å løse oppgaven.</p></details>
-<script src="../teacher.js" defer></script>`;
+<script src="../teacher.js" defer></script>
+<script src="../analytics.js" defer></script>`;
   save(id + '/index.html', document(lesson.title, '../time.css', teacherBody));
 
   const topic = formatTopicLabel(lesson.category || packs.get(lesson.pack)?.title || recognition.title);
@@ -322,4 +324,6 @@ save('index.html', document('Undervisningstimer i spansk', 'time.css', `<nav><a 
 <p id="catalogCount" class="catalog-count" aria-live="polite"></p>
 </section>
 ${sections.join('\n')}
+<footer class="portal-footer"><a href="/besoksstatistikk.html">Besøksstatistikk og personvern</a></footer>
+<script src="analytics.js" defer></script>
 <script src="pakke.js" defer></script>`));

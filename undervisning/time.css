@@ -591,6 +591,14 @@ audio {
   border-top: 1.5px dashed #6b7d74;
 }
 
+.portal-footer {
+  margin-top: 2.2rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.9rem;
+  color: var(--ink-muted);
+}
+
 @page {
   size: A4;
   margin: 14mm;
@@ -605,6 +613,7 @@ audio {
 
   nav,
   .no-print,
+  .portal-footer,
   .teacher-toolbar,
   .teacher-preview-banner,
   .accent-bar,

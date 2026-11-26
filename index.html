@@ -7,7 +7,7 @@
     <meta name="theme-color" content="#dc2626">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Crect width='192' height='192' rx='36' fill='%23dc2626'/%3E%3Ctext x='96' y='122' text-anchor='middle' font-size='96'%3E🇪🇸%3C/text%3E%3C/svg%3E">
     <link rel="manifest" href="./manifest.webmanifest">
-    <meta name="app-build" content="1fc5de514a9f7fd9">
+    <meta name="app-build" content="43079a96a4676f7e">
     <link href="./dist/tailwind.css" rel="stylesheet">
 </head>
 <body>
@@ -43,6 +43,9 @@
             </details>
             <p class="login-hint mt-3">
                 <a href="undervisning/index.html">Er du spansklærer? Se Undervisningspakken med 46 ferdige timer (3 gratis prøvetimer)</a>
+            </p>
+            <p class="login-hint mt-2">
+                <a href="/besoksstatistikk.html">Besøksstatistikk og personvern</a>
             </p>
         </div>
     </div>
@@ -31654,6 +31657,59 @@ Vil du øve på ${pronoun} likevel?`
                     }).catch(() => {});
                 }
             }
+        })();
+    </script>
+    <script>
+        (function () {
+            'use strict';
+            const ALLOWED_ORIGINS = new Set(['https://www.spansk123.no', 'https://spansk123.no']);
+            const BLOCKED_PREFIXES = ['/school', '/auth/', '/api/'];
+            const ALLOWED_EVENTS = new Set(['pdf_download', 'audio_play', 'license_activate']);
+
+            if (typeof window.va !== 'function') {
+                window.va = function () {
+                    (window.vaq = window.vaq || []).push(arguments);
+                };
+            }
+
+            window.va('beforeSend', function (event) {
+                if (!event || typeof event !== 'object') return null;
+                let cleanUrl;
+                try {
+                    const parsed = new URL(String(event.url || window.location.href), window.location.origin);
+                    const pathname = parsed.pathname || '/';
+                    if (BLOCKED_PREFIXES.some(function (prefix) { return pathname === prefix || pathname.startsWith(prefix); })) {
+                        return null;
+                    }
+                    cleanUrl = parsed.origin + pathname;
+                } catch {
+                    return null;
+                }
+                if (event.type === 'pageview') {
+                    return Object.assign({}, event, { url: cleanUrl });
+                }
+                if (event.type !== 'event' || !ALLOWED_EVENTS.has(event.name)) {
+                    return null;
+                }
+                return Object.assign({}, event, { url: cleanUrl });
+            });
+
+            try {
+                if (navigator.globalPrivacyControl === true || navigator.doNotTrack === '1') return;
+                if (navigator.onLine === false) return;
+                if (window.localStorage && window.localStorage.getItem('__va_attribution')) return;
+            } catch {
+                // Ignore storage access errors and continue origin check.
+            }
+
+            if (!ALLOWED_ORIGINS.has(window.location.origin) || window.location.protocol !== 'https:') return;
+            if (document.querySelector('script[src="/_vercel/insights/script.js"]')) return;
+
+            const script = document.createElement('script');
+            script.defer = true;
+            script.src = '/_vercel/insights/script.js';
+            script.referrerPolicy = 'no-referrer';
+            (document.head || document.body).appendChild(script);
         })();
     </script>
 </body>

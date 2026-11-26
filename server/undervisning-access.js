@@ -15,7 +15,7 @@ import {
 
 const LESSON_ID_PATTERN = /^[a-z0-9-]+$/u;
 const ASSET_PATTERN = /^(?:index\.html|elev\.html|arbeidsark\.html|arbeidsark\.pdf|partnerkort\.html|partnerkort\.pdf|partnerkort-a\.html|partnerkort-a\.pdf|partnerkort-b\.html|partnerkort-b\.pdf|lyttemanus\.txt|[a-z0-9-]+\.mp3)$/u;
-const TOP_LEVEL_FILES = new Set(['index.html', 'time.css', 'writing.js', 'pakke.js', 'teacher.js']);
+const TOP_LEVEL_FILES = new Set(['index.html', 'time.css', 'writing.js', 'pakke.js', 'teacher.js', 'analytics.js']);
 
 function parseCookies(req) {
   const result = {};
