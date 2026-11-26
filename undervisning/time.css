@@ -33,6 +33,21 @@ nav {
   margin-bottom: 1.5rem;
 }
 
+.teacher-back-link {
+  font-weight: 700;
+  color: var(--accent-dark);
+}
+
+.teacher-preview-banner {
+  margin: -0.75rem 0 1.25rem;
+  padding: 0.55rem 0.85rem;
+  background: var(--surface);
+  border-left: 3px solid var(--accent);
+  border-radius: 0.35rem;
+  font-size: 0.92rem;
+  color: var(--ink-muted);
+}
+
 header {
   border-bottom: 3px solid var(--accent);
   padding-bottom: 0.75rem;
@@ -591,6 +606,7 @@ audio {
   nav,
   .no-print,
   .teacher-toolbar,
+  .teacher-preview-banner,
   .accent-bar,
   .audio-speed {
     display: none;
@@ -755,5 +771,39 @@ audio {
   .pair-infogap .cut-line {
     height: 10mm;
     font-size: 7.5pt;
+  }
+
+  .pair-single .info-gap-card {
+    height: auto;
+    max-height: none;
+    padding: 8mm 9mm;
+    gap: 4mm;
+    justify-content: flex-start;
+  }
+
+  .pair-single .card-head h2 {
+    font-size: 16pt;
+  }
+
+  .pair-single .card-intro,
+  .pair-single .gap-table,
+  .pair-single .card-goal {
+    font-size: 11pt;
+    line-height: 1.4;
+  }
+
+  .pair-single .card-phrases {
+    font-size: 10.5pt;
+    line-height: 1.38;
+    padding: 3mm 4mm;
+  }
+
+  .pair-single .gap-table th,
+  .pair-single .gap-table td {
+    padding: 3mm 3.2mm;
+  }
+
+  .pair-single .gap-write-line {
+    min-height: 6.5mm;
   }
 }

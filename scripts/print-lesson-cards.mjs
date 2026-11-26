@@ -16,37 +16,48 @@ const browser = await chromium.launch();
 try {
   const page = await browser.newPage();
   await page.emulateMedia({ media: 'print' });
-  for (const directory of directories) {
-    const folder = path.join(root, directory);
-    await page.goto(pathToFileURL(path.join(folder, 'partnerkort.html')).href);
-    const labels = await page.locator('.pair article small').allTextContents();
-    if (labels.join('|') !== 'Samtalekort A|Samtalekort B') {
-      throw new Error('Mangler partnerkort A eller B i ' + directory);
-    }
+
+  const printHtmlToPdf = async (htmlName, pdfName, check) => {
+    await page.goto(pathToFileURL(path.join(folder, htmlName)).href);
+    await check();
     const pdf = await page.pdf({ format: 'A4', preferCSSPageSize: true, printBackground: true });
-    const temporary = path.join(folder, '.partnerkort-' + randomUUID() + '.tmp');
+    const temporary = path.join(folder, `.${pdfName}-${randomUUID()}.tmp`);
     try {
       await writeFile(temporary, pdf);
-      await rename(temporary, path.join(folder, 'partnerkort.pdf'));
+      await rename(temporary, path.join(folder, pdfName));
     } finally {
       await rm(temporary, { force: true });
     }
+  };
 
-    await page.goto(pathToFileURL(path.join(folder, 'arbeidsark.html')).href);
-    const worksheetHeading = (await page.locator('.worksheet h1').textContent() || '').trim();
-    if (!worksheetHeading) {
-      throw new Error('Mangler elevark-overskrift i ' + directory);
-    }
-    const worksheetPdf = await page.pdf({ format: 'A4', preferCSSPageSize: true, printBackground: true });
-    const worksheetTmp = path.join(folder, '.arbeidsark-' + randomUUID() + '.tmp');
-    try {
-      await writeFile(worksheetTmp, worksheetPdf);
-      await rename(worksheetTmp, path.join(folder, 'arbeidsark.pdf'));
-    } finally {
-      await rm(worksheetTmp, { force: true });
-    }
+  for (const directory of directories) {
+    var folder = path.join(root, directory);
+    await printHtmlToPdf('partnerkort.html', 'partnerkort.pdf', async () => {
+      const labels = await page.locator('.pair article small').allTextContents();
+      if (labels.join('|') !== 'Samtalekort A|Samtalekort B') {
+        throw new Error('Mangler partnerkort A eller B i ' + directory);
+      }
+    });
+    await printHtmlToPdf('partnerkort-a.html', 'partnerkort-a.pdf', async () => {
+      const labels = await page.locator('.pair article small').allTextContents();
+      if (labels.join('|') !== 'Samtalekort A') {
+        throw new Error('Mangler Samtalekort A i ' + directory);
+      }
+    });
+    await printHtmlToPdf('partnerkort-b.html', 'partnerkort-b.pdf', async () => {
+      const labels = await page.locator('.pair article small').allTextContents();
+      if (labels.join('|') !== 'Samtalekort B') {
+        throw new Error('Mangler Samtalekort B i ' + directory);
+      }
+    });
+    await printHtmlToPdf('arbeidsark.html', 'arbeidsark.pdf', async () => {
+      const worksheetHeading = (await page.locator('.worksheet h1').textContent() || '').trim();
+      if (!worksheetHeading) {
+        throw new Error('Mangler elevark-overskrift i ' + directory);
+      }
+    });
   }
-  console.log('Skrev partnerkort og elevark (PDF) for ' + directories.length + ' undervisningstimer.');
+  console.log('Skrev partnerkort (samlet, A, B) og elevark (PDF) for ' + directories.length + ' undervisningstimer.');
 } finally {
   await browser.close();
 }

@@ -52,6 +52,25 @@ test('lærer åpner timekatalogen og eleven bruker riktig glosesett, skriving, l
     const pdf = await page.request.get(await printLink.evaluate(link => link.href));
     expect(pdf.status()).toBe(200);
     expect((await pdf.body()).subarray(0, 5).toString()).toBe('%PDF-');
+
+    const cardALink = page.getByRole('link', { name: 'Samtalekort A (PDF)' }).first();
+    const cardAPdf = await page.request.get(await cardALink.evaluate(link => link.href));
+    expect(cardAPdf.status()).toBe(200);
+    expect((await cardAPdf.body()).subarray(0, 5).toString()).toBe('%PDF-');
+
+    const cardBLink = page.getByRole('link', { name: 'Samtalekort B (PDF)' }).first();
+    const cardBPdf = await page.request.get(await cardBLink.evaluate(link => link.href));
+    expect(cardBPdf.status()).toBe(200);
+    expect((await cardBPdf.body()).subarray(0, 5).toString()).toBe('%PDF-');
+
+    // Preview student page via toolbar shows teacher back-navigation
+    await page.getByRole('link', { name: 'Forhåndsvis elevside' }).click();
+    await expect(page).toHaveURL(/\/undervisning\/tall\/elev\.html$/);
+    const backLink = page.getByRole('link', { name: '← Tilbake til lærersiden' });
+    await expect(backLink).toBeVisible();
+    await backLink.click();
+    await expect(page).toHaveURL(/\/undervisning\/tall\/index\.html$/);
+
     const teacherDetails = page.locator('details', { hasText: 'For læreren: manus, fasit og forberedelse' });
     await expect(teacherDetails).not.toContainText('Legg ferdig opptak i samme mappe');
     await teacherDetails.locator('summary').click();
@@ -65,6 +84,15 @@ test('lærer åpner timekatalogen og eleven bruker riktig glosesett, skriving, l
     await expect(page.locator('a[href*="partnerkort"], a[href*="lyttemanus"]')).toHaveCount(0);
     await expect(page.locator('main')).not.toContainText('Det du skriver blir i denne fanen');
     await expect(page.locator('main')).not.toContainText('svar på papir');
+
+    // Direct student link without teacher referrer never exposes a link back to the teacher page
+    const studentPage = await page.context().newPage();
+    try {
+      await studentPage.goto(`${server.url}undervisning/tall/elev.html`);
+      await expect(studentPage.getByRole('link', { name: /Tilbake til lærersiden/ })).toHaveCount(0);
+    } finally {
+      await studentPage.close();
+    }
 
     const firstWriting = page.getByLabel(lesson.writing[0][0]);
     await firstWriting.focus();

@@ -1,8 +1,43 @@
 const params = new URLSearchParams(window.location.search);
-if (params.has('elev')) {
+const hasStudentToken = params.has('elev');
+const hasTeacherParam = params.get('laerer') === '1';
+
+function isSameLessonTeacherReferrer(referrer, loc) {
+  if (!referrer) return false;
+  try {
+    const refUrl = new URL(referrer);
+    if (refUrl.origin !== loc.origin) return false;
+    const dir = loc.pathname.replace(/elev\.html$/u, '');
+    return refUrl.pathname === dir || refUrl.pathname === `${dir}index.html`;
+  } catch {
+    return false;
+  }
+}
+
+const isTeacherPreview = !hasStudentToken && (hasTeacherParam || isSameLessonTeacherReferrer(document.referrer, window.location));
+
+if (hasStudentToken || hasTeacherParam) {
   params.delete('elev');
+  params.delete('laerer');
   const cleanQuery = params.toString();
   window.history.replaceState(null, '', `${window.location.pathname}${cleanQuery ? `?${cleanQuery}` : ''}${window.location.hash}`);
+}
+
+if (isTeacherPreview) {
+  const mainNav = document.querySelector('main > nav');
+  if (mainNav) {
+    const backLink = document.createElement('a');
+    backLink.className = 'teacher-back-link';
+    backLink.href = 'index.html';
+    backLink.textContent = '← Tilbake til lærersiden';
+    mainNav.prepend(backLink);
+
+    const banner = document.createElement('p');
+    banner.className = 'teacher-preview-banner';
+    banner.setAttribute('role', 'note');
+    banner.textContent = 'Lærerforhåndsvisning: Lenken tilbake til lærersiden vises bare for deg, ikke når elever åpner den delte elevlenken.';
+    mainNav.after(banner);
+  }
 }
 
 const accentMap = {

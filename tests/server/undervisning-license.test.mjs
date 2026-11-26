@@ -114,9 +114,11 @@ test('createUndervisningRouter allows free sample lessons and locks paid lessons
       assert.equal(pdfRes.status, 200, `${freeId} PDF should be free`);
     }
 
-    // Christmas sample lesson student page, worksheet PDF, audio, and student-link work without license
+    // Christmas sample lesson student page, worksheet PDF, A/B cards, audio, and student-link work without license
     assert.equal((await fetch(`${origin}/undervisning/jul-spania-chile/elev.html`)).status, 200);
     assert.equal((await fetch(`${origin}/undervisning/jul-spania-chile/arbeidsark.pdf`)).status, 200);
+    assert.equal((await fetch(`${origin}/undervisning/jul-spania-chile/partnerkort-a.pdf`)).status, 200);
+    assert.equal((await fetch(`${origin}/undervisning/jul-spania-chile/partnerkort-b.pdf`)).status, 200);
     assert.equal((await fetch(`${origin}/undervisning/jul-spania-chile/jul-spania-chile.mp3`)).status, 200);
     const freeStudentLink = await fetch(`${origin}/api/license/student-link`, {
       method: 'POST',
@@ -140,6 +142,8 @@ test('createUndervisningRouter allows free sample lessons and locks paid lessons
 
     const lockedPdf = await fetch(`${origin}/undervisning/familie/partnerkort.pdf`);
     assert.equal(lockedPdf.status, 402);
+    assert.equal((await fetch(`${origin}/undervisning/familie/partnerkort-a.pdf`)).status, 402);
+    assert.equal((await fetch(`${origin}/undervisning/familie/partnerkort-b.pdf`)).status, 402);
 
     const lockedMp3 = await fetch(`${origin}/undervisning/familie/familie.mp3`);
     assert.equal(lockedMp3.status, 402);
@@ -195,6 +199,8 @@ test('createUndervisningRouter allows free sample lessons and locks paid lessons
     const unlockedPdf = await fetch(`${origin}/undervisning/familie/partnerkort.pdf`, { headers: { Cookie: cookieHeader } });
     assert.equal(unlockedPdf.status, 200);
     assert.equal(Buffer.from(await unlockedPdf.arrayBuffer()).subarray(0, 5).toString(), '%PDF-');
+    assert.equal((await fetch(`${origin}/undervisning/familie/partnerkort-a.pdf`, { headers: { Cookie: cookieHeader } })).status, 200);
+    assert.equal((await fetch(`${origin}/undervisning/familie/partnerkort-b.pdf`, { headers: { Cookie: cookieHeader } })).status, 200);
 
     // Trailing slash redirect preserves relative paths when licensed
     const unlockedNoSlash = await fetch(`${origin}/undervisning/familie`, {
@@ -340,6 +346,8 @@ test('createStudentLessonToken and /api/license/student-link scope student acces
     assert.equal((await fetch(`${origin}/undervisning/familie/index.html`, { redirect: 'manual', headers: { Cookie: studentCookie } })).status, 302);
     assert.equal((await fetch(`${origin}/undervisning/familie/lyttemanus.txt`, { headers: { Cookie: studentCookie } })).status, 402);
     assert.equal((await fetch(`${origin}/undervisning/familie/partnerkort.pdf`, { headers: { Cookie: studentCookie } })).status, 402);
+    assert.equal((await fetch(`${origin}/undervisning/familie/partnerkort-a.pdf`, { headers: { Cookie: studentCookie } })).status, 402);
+    assert.equal((await fetch(`${origin}/undervisning/familie/partnerkort-b.pdf`, { headers: { Cookie: studentCookie } })).status, 402);
     assert.equal((await fetch(`${origin}/undervisning/familie/arbeidsark.pdf`, { headers: { Cookie: studentCookie } })).status, 402);
     assert.equal((await fetch(`${origin}/undervisning/dyr/elev.html`, { redirect: 'manual', headers: { Cookie: studentCookie } })).status, 302);
   });

@@ -49,7 +49,7 @@ function nonEmptyText(value) {
   return typeof value === 'string' && value.trim().length > 0;
 }
 
-function renderPartnerCards(lesson, escapedTitle, id) {
+function validateInfoGap(lesson, id) {
   const { infoGap } = lesson;
   if (!infoGap) {
     throw Error('Mangler infoGap for ' + id);
@@ -94,31 +94,37 @@ function renderPartnerCards(lesson, escapedTitle, id) {
   if (aOwn < 1 || bOwn < 1) {
     throw Error('infoGap må ha hemmelig informasjon for både A og B i ' + id);
   }
+  return infoGap;
+}
 
+function renderSinglePartnerCard(lesson, escapedTitle, side) {
+  const { infoGap } = lesson;
+  const goalA = nonEmptyText(infoGap.goalA) ? infoGap.goalA : infoGap.goal;
+  const goalB = nonEmptyText(infoGap.goalB) ? infoGap.goalB : infoGap.goal;
   const headersHtml = infoGap.headers.map(h => `<th scope="col">${escape(h)}</th>`).join('');
   const phrasesHtml = infoGap.phrases.map(p => `<li>${escape(p)}</li>`).join('');
-
-  const renderSide = side => {
-    const intro = side === 'A' ? infoGap.introA : infoGap.introB;
-    const goalText = side === 'A' ? goalA : goalB;
-    const rowsHtml = infoGap.rows.map(row => {
-      const cellsHtml = row.map((cell, colIndex) => {
-        if (typeof cell === 'string') {
-          return colIndex === 0 ? `<th scope="row">${escape(cell)}</th>` : `<td>${escape(cell)}</td>`;
-        }
-        const ownValue = cell[side];
-        if (ownValue !== undefined) {
-          return `<td class="gap-given">${escape(ownValue)}</td>`;
-        }
-        return '<td class="gap-blank" aria-label="Fyll inn svar fra partner"><span class="gap-write-line" aria-hidden="true"></span></td>';
-      }).join('');
-      return `<tr>${cellsHtml}</tr>`;
+  const intro = side === 'A' ? infoGap.introA : infoGap.introB;
+  const goalText = side === 'A' ? goalA : goalB;
+  const rowsHtml = infoGap.rows.map(row => {
+    const cellsHtml = row.map((cell, colIndex) => {
+      if (typeof cell === 'string') {
+        return colIndex === 0 ? `<th scope="row">${escape(cell)}</th>` : `<td>${escape(cell)}</td>`;
+      }
+      const ownValue = cell[side];
+      if (ownValue !== undefined) {
+        return `<td class="gap-given">${escape(ownValue)}</td>`;
+      }
+      return '<td class="gap-blank" aria-label="Fyll inn svar fra partner"><span class="gap-write-line" aria-hidden="true"></span></td>';
     }).join('');
+    return `<tr>${cellsHtml}</tr>`;
+  }).join('');
 
-    return `<article class="info-gap-card" data-side="${side}"><div class="card-head"><small>Samtalekort ${side}</small><h2>${escapedTitle}</h2></div><p class="card-intro">${escape(intro)}</p><table class="gap-table"><thead><tr>${headersHtml}</tr></thead><tbody>${rowsHtml}</tbody></table><div class="card-phrases"><strong>Hjelp på spansk:</strong><ul lang="es">${phrasesHtml}</ul></div><p class="card-goal"><strong>Til slutt:</strong> ${escape(goalText)}</p></article>`;
-  };
+  return `<article class="info-gap-card" data-side="${side}"><div class="card-head"><small>Samtalekort ${side}</small><h2>${escapedTitle}</h2></div><p class="card-intro">${escape(intro)}</p><table class="gap-table"><thead><tr>${headersHtml}</tr></thead><tbody>${rowsHtml}</tbody></table><div class="card-phrases"><strong>Hjelp på spansk:</strong><ul lang="es">${phrasesHtml}</ul></div><p class="card-goal"><strong>Til slutt:</strong> ${escape(goalText)}</p></article>`;
+}
 
-  return `<div class="pair pair-infogap">${renderSide('A')}<div class="cut-line" aria-hidden="true"><span>Klipp langs linjen</span></div>${renderSide('B')}</div>`;
+function renderPartnerCards(lesson, escapedTitle, id) {
+  validateInfoGap(lesson, id);
+  return `<div class="pair pair-infogap">${renderSinglePartnerCard(lesson, escapedTitle, 'A')}<div class="cut-line" aria-hidden="true"><span>Klipp langs linjen</span></div>${renderSinglePartnerCard(lesson, escapedTitle, 'B')}</div>`;
 }
 
 function verifyCoverage(expected, actual) {
@@ -178,6 +184,8 @@ ${script}
 `);
 
   save(id + '/partnerkort.html', document(lesson.title, '../time.css', nav + renderPartnerCards(lesson, title, id)));
+  save(id + '/partnerkort-a.html', document(`${lesson.title} – Samtalekort A`, '../time.css', nav + '<div class="pair pair-infogap pair-single">' + renderSinglePartnerCard(lesson, title, 'A') + '</div>'));
+  save(id + '/partnerkort-b.html', document(`${lesson.title} – Samtalekort B`, '../time.css', nav + '<div class="pair pair-infogap pair-single">' + renderSinglePartnerCard(lesson, title, 'B') + '</div>'));
 
   const worksheetWriting = lesson.writing.map(([prompt]) => `<li><p>${escape(prompt)}</p>${writeLines}</li>`).join('');
   const worksheetListening = lesson.questions.map(([question]) => `<li><p>${escape(question)}</p>${writeLines}</li>`).join('');
@@ -226,9 +234,11 @@ ${studentListening}
 <p>Del elevsiden for digital øving uten fasit og uten partnerkort, eller skriv ut elevark og samtalekort på papir.</p>
 <div class="package-actions">
 <button type="button" class="btn-primary" data-copy-student-link data-lesson-id="${id}" data-free="${free ? 'true' : 'false'}">Kopier elevlenke (uten fasit)</button>
-<a class="btn-secondary" href="elev.html">Forhåndsvis elevside</a>
+<a class="btn-secondary" href="elev.html?laerer=1">Forhåndsvis elevside</a>
 <a class="btn-secondary" href="arbeidsark.pdf">Skriv ut elevark (PDF)</a>
 <a class="btn-secondary" href="partnerkort.pdf">Skriv ut partnerkortene (A4)</a>
+<a class="btn-secondary" href="partnerkort-a.pdf">Samtalekort A (PDF)</a>
+<a class="btn-secondary" href="partnerkort-b.pdf">Samtalekort B (PDF)</a>
 </div>
 <p class="toolbar-status" role="status" data-student-link-status></p>
 </section>
@@ -243,7 +253,7 @@ ${list(lesson.questions.map(([question]) => question))}
 <audio controls preload="metadata" aria-label="Lytt til samtalen" src="${audio}" onerror="this.hidden=true;this.nextElementSibling.textContent='Opptaket kan ikke spilles av. Les lyttemanuset høyt to ganger.'"></audio>
 <p role="status">Klar for avspilling i klasserommet.</p>
 ${audioSpeedControls}</section>
-<section><h2>4. Snakk i par (15 min)</h2><p><a href="partnerkort.pdf">Skriv ut partnerkortene (A4)</a> eller <a href="partnerkort.html">åpne kortene i nettleseren</a>. Bruk ett ark per par og klipp mellom A og B, slik at hver elev bare ser sitt eget kort.</p></section>
+<section><h2>4. Snakk i par (15 min)</h2><p><a href="partnerkort.pdf">Skriv ut partnerkortene (A4)</a> for papirbruk (ett ark per par, klipp mellom A og B), eller del digitale enkeltkort i Classroom: <a href="partnerkort-a.pdf">Samtalekort A (PDF)</a> og <a href="partnerkort-b.pdf">Samtalekort B (PDF)</a> (<a href="partnerkort.html">vis begge i nettleseren</a>).</p></section>
 <section><h2>5. Hent fram ordene igjen (5 min)</h2><p>Legg bort kortene. Elevene sier én ny setning med to av ordene og lar partneren stille et spørsmål. Neste øvingsdag bruker de «Repeter gloser» på Start med samme profil når ordene er klare for repetisjon.</p></section>
 <details><summary>For læreren: manus, fasit og forberedelse</summary><p>Skriv ut partnerkortene før timen (og elevarket hvis klassen jobber på papir). Elevsiden inneholder ikke denne seksjonen, ikke lyttemanuset og ikke partnerkortene.</p>
 <p><a href="lyttemanus.txt">Åpne lyttemanus</a></p>

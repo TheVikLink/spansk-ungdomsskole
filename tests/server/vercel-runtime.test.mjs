@@ -38,16 +38,20 @@ test('Vercel config uses root Express discovery and sets the static output and f
   }
 });
 
-test('.vercelignore excludes stray PDFs while keeping undervisning partnerkort.pdf and arbeidsark.pdf', async () => {
+test('.vercelignore excludes stray PDFs while keeping undervisning partnerkort and arbeidsark PDFs', async () => {
   const lines = (await readFile(new URL('../../.vercelignore', import.meta.url), 'utf8'))
     .split(/\r?\n/u)
     .map((line) => line.trim());
   const pdfRuleIndex = lines.indexOf('*.pdf');
   const partnerkortIndex = lines.indexOf('!undervisning/*/partnerkort.pdf');
+  const partnerkortAIndex = lines.indexOf('!undervisning/*/partnerkort-a.pdf');
+  const partnerkortBIndex = lines.indexOf('!undervisning/*/partnerkort-b.pdf');
   const arbeidsarkIndex = lines.indexOf('!undervisning/*/arbeidsark.pdf');
 
   assert.notEqual(pdfRuleIndex, -1, 'expected .vercelignore to exclude *.pdf');
   assert.ok(partnerkortIndex > pdfRuleIndex, 'expected !undervisning/*/partnerkort.pdf after *.pdf');
+  assert.ok(partnerkortAIndex > pdfRuleIndex, 'expected !undervisning/*/partnerkort-a.pdf after *.pdf');
+  assert.ok(partnerkortBIndex > pdfRuleIndex, 'expected !undervisning/*/partnerkort-b.pdf after *.pdf');
   assert.ok(arbeidsarkIndex > pdfRuleIndex, 'expected !undervisning/*/arbeidsark.pdf after *.pdf');
 });
 
