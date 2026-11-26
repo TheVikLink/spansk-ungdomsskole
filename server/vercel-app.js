@@ -8,13 +8,17 @@ import { createUndervisningRouter } from './undervisning-access.js';
 
 const projectRoot = fileURLToPath(new URL('../', import.meta.url));
 const PUBLIC_HTML_CSP = "default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; media-src 'self' blob:; connect-src 'self'; manifest-src 'self'; worker-src 'self'; base-uri 'none'; form-action 'self'; frame-ancestors 'none'; object-src 'none'";
-const SCHOOL_INFO_CSP = "default-src 'none'; style-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'";
+const SCHOOL_INFO_CSP = "default-src 'none'; style-src 'self'; img-src 'self' data:; base-uri 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'";
+const FAVICON_SVG = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192"><rect width="192" height="192" rx="36" fill="#dc2626"/><text x="96" y="122" text-anchor="middle" font-size="96">🇪🇸</text></svg>';
+const FAVICON_LINK = '<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 192 192\'%3E%3Crect width=\'192\' height=\'192\' rx=\'36\' fill=\'%23dc2626\'/%3E%3Ctext x=\'96\' y=\'122\' text-anchor=\'middle\' font-size=\'96\'%3E%F0%9F%87%AA%F0%9F%87%B8%3C/text%3E%3C/svg%3E">';
 const SCHOOL_INFO_MAILTO = 'mailto:ole@spansk123.no?subject=Bestilling%20eller%20demo%3A%20Skolepakke%20med%20Feide%20(Spansk%20p%C3%A5%201-2-3)&body=Hei%20Ole%20Henrik%2C%0A%0ASkolen%20eller%20kommunen%20v%C3%A5r%20%C3%B8nsker%20en%2015-minutters%20demo%20eller%20DBA-pakke%20for%20Skolepakke%20med%20Feide.%0A%0ASkole%20eller%20kommune%3A%0AKontaktperson%3A%0A%C3%98nsket%20tidspunkt%3A';
 const SCHOOL_INFO_HTML = `<!doctype html>
 <html lang="nb">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#dc2626">
+  ${FAVICON_LINK}
   <title>Skolepakke med Feide | Spansk på 1-2-3</title>
   <link rel="stylesheet" href="/undervisning/time.css">
 </head>
@@ -87,6 +91,11 @@ export function createLazyFunctionApp(loadRuntime) {
   app.get('/school.css', (_req, res) => {
     res.setHeader('Cache-Control', 'public, max-age=0, must-revalidate');
     return res.type('css').sendFile(path.join(projectRoot, 'server/public/school.css'));
+  });
+
+  app.get('/favicon.ico', (_req, res) => {
+    res.setHeader('Cache-Control', 'public, max-age=86400');
+    return res.type('image/svg+xml').send(FAVICON_SVG);
   });
 
   app.get('/googleda8e06f12dba466d.html', (_req, res) => {

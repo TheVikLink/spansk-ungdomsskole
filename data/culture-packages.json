@@ -75,11 +75,11 @@
           "note": "Kvelden 24. desember."
         },
         {
-          "id": "verano",
-          "es": "el verano",
-          "no": "sommer",
-          "canonicalId": "vocab-0102",
-          "note": "Årstiden som nevnes i Chile-teksten."
+          "id": "invierno",
+          "es": "el invierno",
+          "no": "vinter",
+          "canonicalId": "vocab-0100",
+          "note": "Årstiden når julen feires i Spania og Norge."
         },
         {
           "id": "familia",

@@ -30,9 +30,11 @@ function slug(name) {
     .replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/-$/, '');
 }
 
+const FAVICON_LINK = '<meta name="theme-color" content="#dc2626"><link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 192 192\'%3E%3Crect width=\'192\' height=\'192\' rx=\'36\' fill=\'%23dc2626\'/%3E%3Ctext x=\'96\' y=\'122\' text-anchor=\'middle\' font-size=\'96\'%3E%F0%9F%87%AA%F0%9F%87%B8%3C/text%3E%3C/svg%3E">';
+
 function document(title, css, body) {
   return `<!doctype html>
-<html lang="nb"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<html lang="nb"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">${FAVICON_LINK}
 <title>${escape(title)}</title><link rel="stylesheet" href="${css}"></head>
 <body><main>${body}</main></body></html>
 `;

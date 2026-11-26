@@ -233,6 +233,7 @@ test('Vercel Express adapter serves allowlisted public student assets without lo
       ['/manifest.webmanifest', 'public, max-age=0, must-revalidate'],
       ['/school.js', 'public, max-age=0, must-revalidate'],
       ['/school.css', 'public, max-age=0, must-revalidate'],
+      ['/favicon.ico', 'public, max-age=86400'],
       ['/audio/uttale/refold-v1/ESPhoneticWritingSystem_1_word.mp3', 'public, max-age=86400, immutable'],
     ];
 
@@ -288,9 +289,10 @@ test('Vercel Express adapter serves Norwegian Feide school info page on GET /sch
       assert.equal(response.headers.get('x-content-type-options'), 'nosniff');
       assert.equal(response.headers.get('referrer-policy'), 'same-origin');
       assert.equal(response.headers.get('x-frame-options'), 'DENY');
-      assert.match(response.headers.get('content-security-policy') || '', /style-src 'self'/u);
+      assert.match(response.headers.get('content-security-policy') || '', /style-src 'self'; img-src 'self' data:/u);
       const html = await response.text();
       assert.match(html, /Skolepakke med Feide/u);
+      assert.match(html, /rel="icon"/u);
       assert.match(html, /mailto:ole@spansk123\.no/u);
       assert.equal(html.includes('\u00b7'), false, 'school info HTML must not contain middle dot U+00B7');
       assert.equal(html.includes('<script>'), false, 'query parameters must never be reflected into HTML');
