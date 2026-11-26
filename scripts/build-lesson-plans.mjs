@@ -200,6 +200,8 @@ ${script}
   save(id + '/arbeidsark.html', document(`${lesson.title} (Elevark)`, '../time.css', worksheetBody));
 
   const route = lesson.pack ? 'gloser/' + lesson.pack : 'time/' + lesson.ids.join(',');
+  const studentGlossHref = lesson.pack ? `../../index.html?fra=elev#${escape(route)}` : `../../index.html#${escape(route)}`;
+  const teacherGlossHref = lesson.pack ? `../../index.html?fra=undervisning#${escape(route)}` : `../../index.html#${escape(route)}`;
   const examplesList = list(lesson.writing.map(([, example]) => example));
   const studentWriting = lesson.writing.map(([prompt]) => `<label>${escape(prompt)}<textarea rows="2" lang="es" autocomplete="off"></textarea></label>`).join('\n');
   const studentListening = lesson.questions.map(([question], i) => `<label>${i + 1}. ${escape(question)}<textarea rows="2" autocomplete="off"></textarea></label>`).join('\n');
@@ -208,7 +210,7 @@ ${script}
 <header><p>Elevside / Spansk A1 / 45 minutter</p><h1>${title}</h1><p>${goal}</p></header>
 <section><h2>1. Øv på glosene (10 min)</h2>
 <p lang="es">${vocabulary.map(escape).join(', ')}.</p>
-<p><a target="_blank" rel="noopener" href="../../index.html#${escape(route)}">Åpne glosene</a> i en ny fane. Prøv å si svaret før du snur kortet. Gå tilbake hit når økten er ferdig.</p></section>
+<p><a target="_blank" rel="noopener" href="${studentGlossHref}">Åpne glosene</a> i en ny fane. Prøv å si svaret før du snur kortet. Gå tilbake hit når økten er ferdig.</p></section>
 <section data-writing><h2>2. Skriv på spansk (8 min)</h2><p>Prøv alle tre før du åpner eksemplene.</p>
 <p class="accent-hint">Tips: Hold inne a, e, i, o, u, n eller ? og ! på tastaturet for spanske tegn, eller klikk på knappene under.</p>
 <div class="accent-bar" role="group" aria-label="Spanske tegn" data-accent-bar></div>
@@ -221,7 +223,7 @@ ${audioSpeedControls}
 ${studentListening}
 </section>
 <section><h2>4. Snakk i par (15 min)</h2><p>Du får Samtalekort A eller Samtalekort B av læreren. Hold kortet skjult for partneren din, still spørsmål på spansk og lytt til svaret. Bytt roller når dere er ferdige.</p></section>
-<section><h2>5. Hent fram ordene igjen (5 min)</h2><p>Legg bort kortene. Si én ny setning med to av ordene. La partneren stille et spørsmål. Neste øvingsdag bruker dere «Repeter gloser» på Start med samme profil når ordene er klare for repetisjon.</p></section>
+<section><h2>5. Hent fram ordene igjen (5 min)</h2><p>Legg bort kortene. Si én ny setning med to av ordene. La partneren stille et spørsmål. Neste spansktime kan du åpne spansk123.no i samme nettleser og bruke «Repeter gloser» på Start – fremgangen lagres automatisk lokalt på enheten, uten konto.</p></section>
 <script src="../writing.js" defer></script>`;
   save(id + '/elev.html', document(`${lesson.title} (Elevside)`, '../time.css', studentBody));
 
@@ -244,7 +246,7 @@ ${studentListening}
 </section>
 <section><h2>1. Øv på glosene (10 min)</h2>
 <p lang="es">${vocabulary.map(escape).join(', ')}.</p>
-<p><a target="_blank" rel="noopener" href="../../index.html#${escape(route)}">Åpne glosene</a> i en ny fane. Elevene prøver å si svaret før de snur kortet.</p></section>
+<p><a target="_blank" rel="noopener" href="${teacherGlossHref}">Åpne glosene</a> i en ny fane. Elevene prøver å si svaret før de snur kortet.</p></section>
 <section><h2>2. Skriv på spansk (8 min)</h2><p>Elevene skriver svarene i skriveboksene på elevsiden eller på utskrevet elevark før de sammenligner med eksemplene.</p>
 ${list(lesson.writing.map(([prompt]) => prompt))}
 <details><summary>Eksempelsvar</summary><div lang="es">${examplesList}</div><p>Andre forståelige formuleringer er også mulige.</p></details></section>
@@ -254,7 +256,7 @@ ${list(lesson.questions.map(([question]) => question))}
 <p role="status">Klar for avspilling i klasserommet.</p>
 ${audioSpeedControls}</section>
 <section><h2>4. Snakk i par (15 min)</h2><p><a href="partnerkort.pdf">Skriv ut partnerkortene (A4)</a> for papirbruk (ett ark per par, klipp mellom A og B), eller del digitale enkeltkort i Classroom: <a href="partnerkort-a.pdf">Samtalekort A (PDF)</a> og <a href="partnerkort-b.pdf">Samtalekort B (PDF)</a> (<a href="partnerkort.html">vis begge i nettleseren</a>).</p></section>
-<section><h2>5. Hent fram ordene igjen (5 min)</h2><p>Legg bort kortene. Elevene sier én ny setning med to av ordene og lar partneren stille et spørsmål. Neste øvingsdag bruker de «Repeter gloser» på Start med samme profil når ordene er klare for repetisjon.</p></section>
+<section><h2>5. Hent fram ordene igjen (5 min)</h2><p>Legg bort kortene. Elevene sier én ny setning med to av ordene og lar partneren stille et spørsmål. Neste spansktime kan elevene åpne spansk123.no i samme nettleser og bruke «Repeter gloser» på Start – fremgangen lagres lokalt på elevens enhet, uten konto.</p></section>
 <details><summary>For læreren: manus, fasit og forberedelse</summary><p>Skriv ut partnerkortene før timen (og elevarket hvis klassen jobber på papir). Elevsiden inneholder ikke denne seksjonen, ikke lyttemanuset og ikke partnerkortene.</p>
 <p><a href="lyttemanus.txt">Åpne lyttemanus</a></p>
 <p><a href="/school?activity=${encodeURIComponent(schoolActivityId)}&amp;title=${encodeURIComponent(lesson.title)}">Gi temaet som digital skolelekse (Feide)</a>.</p>

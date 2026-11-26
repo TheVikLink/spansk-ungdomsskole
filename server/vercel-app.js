@@ -98,6 +98,16 @@ export function createLazyFunctionApp(loadRuntime) {
     return res.type('image/svg+xml').send(FAVICON_SVG);
   });
 
+  app.get('/docs/kultur/:packId/:page', (req, res) => {
+    const packId = req.params.packId;
+    const page = req.params.page;
+    if (!/^[a-z0-9-]+$/u.test(packId) || (page !== 'index.html' && page !== 'laerer.html')) {
+      return res.status(404).end();
+    }
+    const targetFile = page === 'laerer.html' ? 'index.html' : 'elev.html';
+    return res.redirect(302, `/undervisning/${encodeURIComponent(packId)}/${targetFile}`);
+  });
+
   app.get('/googleda8e06f12dba466d.html', (_req, res) => {
     return res.sendFile(path.join(projectRoot, 'googleda8e06f12dba466d.html'), (error) => {
       if (error && !res.headersSent) res.status(404).end();

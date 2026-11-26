@@ -7,7 +7,7 @@
     <meta name="theme-color" content="#dc2626">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Crect width='192' height='192' rx='36' fill='%23dc2626'/%3E%3Ctext x='96' y='122' text-anchor='middle' font-size='96'%3E🇪🇸%3C/text%3E%3C/svg%3E">
     <link rel="manifest" href="./manifest.webmanifest">
-    <meta name="app-build" content="0daa2207d7b09459">
+    <meta name="app-build" content="1fc5de514a9f7fd9">
     <link href="./dist/tailwind.css" rel="stylesheet">
 </head>
 <body>
@@ -26253,7 +26253,10 @@ const pronunciationManifest = {"schemaVersion":1,"sourceArchiveSha256":"d67fa8c7
 
         function clearCultureVocabularyContext() {
             if (currentCultureSetId && location.hash.startsWith('#gloser/')) {
-                history.replaceState(null, '', location.pathname + location.search);
+                const params = new URLSearchParams(location.search);
+                params.delete('fra');
+                const query = params.toString();
+                history.replaceState(null, '', location.pathname + (query ? `?${query}` : ''));
             }
             currentCultureSetId = null;
             for (const category of selectedCategories) if (category.startsWith('culture:')) selectedCategories.delete(category);
@@ -26263,6 +26266,17 @@ const pronunciationManifest = {"schemaVersion":1,"sourceArchiveSha256":"d67fa8c7
 
         function getCultureReadingHref(set) {
             return `docs/kultur/${set.id}/index.html#${set.readingAnchor}`;
+        }
+
+        function getCultureBackLink(set) {
+            const source = new URLSearchParams(location.search).get('fra');
+            if (source === 'elev') {
+                return { href: `undervisning/${set.id}/elev.html`, label: 'Tilbake til elevsiden' };
+            }
+            if (source === 'undervisning') {
+                return { href: `undervisning/${set.id}/index.html`, label: 'Tilbake til undervisningstimen' };
+            }
+            return { href: getCultureReadingHref(set), label: 'Tilbake til teksten' };
         }
 
         function renderCultureWelcomeContext() {
@@ -26277,9 +26291,10 @@ const pronunciationManifest = {"schemaVersion":1,"sourceArchiveSha256":"d67fa8c7
             title.textContent = `Du skal øve på de ${set.words.length} ordene fra «${set.title}».`;
             const explanation = document.createElement('p');
             explanation.textContent = 'Velg et kallenavn eller en elevkode. Profilen og fremgangen lagres i denne nettleseren. Du trenger ingen konto.';
+            const backLink = getCultureBackLink(set);
             const back = document.createElement('a');
-            back.href = getCultureReadingHref(set);
-            back.textContent = 'Tilbake til teksten';
+            back.href = backLink.href;
+            back.textContent = backLink.label;
             context.append(title, explanation, back);
         }
 
@@ -26302,7 +26317,8 @@ const pronunciationManifest = {"schemaVersion":1,"sourceArchiveSha256":"d67fa8c7
             selectedCategories.add(`culture:${setId}`);
             const context = document.getElementById('cultureVocabularyContext');
             context.hidden = false;
-            context.innerHTML = `<h3 class="font-semibold">${escapeHtml(set.title)}</h3><p>Valgfritt glosesett med ${set.words.length} ord</p><a href="${getCultureReadingHref(set)}" onclick="return leaveCultureVocabulary()">Tilbake til teksten</a>`;
+            const backLink = getCultureBackLink(set);
+            context.innerHTML = `<h3 class="font-semibold">${escapeHtml(set.title)}</h3><p>Valgfritt glosesett med ${set.words.length} ord</p><a href="${escapeHtml(backLink.href)}" onclick="return leaveCultureVocabulary()">${escapeHtml(backLink.label)}</a>`;
             populateCategories(); updateStats();
             return true;
         }

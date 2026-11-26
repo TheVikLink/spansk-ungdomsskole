@@ -254,6 +254,11 @@ test('Vercel Express adapter serves allowlisted public student assets without lo
     await missingAudio.arrayBuffer();
     assert.equal(initializeCount, 0, 'missing audio must return 404 without initializing the school runtime');
 
+    const cultureRedirect = await fetch(`${origin}/docs/kultur/jul-spania-chile/index.html`, { redirect: 'manual' });
+    assert.equal(cultureRedirect.status, 302);
+    assert.equal(cultureRedirect.headers.get('location'), '/undervisning/jul-spania-chile/elev.html');
+    assert.equal(initializeCount, 0, 'redirecting docs/kultur links must not initialize the school runtime');
+
     for (const privatePath of ['/server/public/school.html', '/server/content-catalog.json']) {
       const response = await fetch(`${origin}${privatePath}`);
       assert.equal(response.status, 404, `expected private path ${privatePath} to fall through to runtime 404`);

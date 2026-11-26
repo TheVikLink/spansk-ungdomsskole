@@ -90,6 +90,15 @@ test('lærer åpner timekatalogen og eleven bruker riktig glosesett, skriving, l
     try {
       await studentPage.goto(`${server.url}undervisning/tall/elev.html`);
       await expect(studentPage.getByRole('link', { name: /Tilbake til lærersiden/ })).toHaveCount(0);
+      await expect(studentPage.locator('main')).toContainText('uten konto');
+      await expect(studentPage.locator('main')).not.toContainText('med samme profil');
+
+      // Culture lesson links back from #gloser/jul-spania-chile to elev.html rather than excluded docs/kultur/
+      await studentPage.goto(`${server.url}undervisning/jul-spania-chile/elev.html`);
+      const julGlossLink = studentPage.getByRole('link', { name: 'Åpne glosene' });
+      await expect(julGlossLink).toHaveAttribute('href', '../../index.html?fra=elev#gloser/jul-spania-chile');
+      await studentPage.goto(`${server.url}index.html?fra=elev#gloser/jul-spania-chile`);
+      await expect(studentPage.locator('#cultureVocabularyContext').getByRole('link', { name: 'Tilbake til elevsiden' })).toHaveAttribute('href', 'undervisning/jul-spania-chile/elev.html');
     } finally {
       await studentPage.close();
     }
