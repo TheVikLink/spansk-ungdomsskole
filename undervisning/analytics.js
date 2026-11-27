@@ -39,33 +39,46 @@
     if (raw.type !== 'event') {
       return null;
     }
-    const eventName = typeof raw.name === 'string' ? raw.name : '';
+
+    const hasPayload = Boolean(raw.payload && typeof raw.payload === 'object');
+    const source = hasPayload ? raw.payload : raw;
+    const eventName = typeof source.name === 'string' ? source.name : '';
     if (!ALLOWED_EVENTS.has(eventName)) return null;
 
     const cleanUrl = sanitizeUrl(raw.url);
     if (!cleanUrl) return null;
 
-    const inputData = raw.data && typeof raw.data === 'object' ? raw.data : null;
+    const inputData = source.data && typeof source.data === 'object' ? source.data : null;
     if (!inputData) return null;
 
+    let cleanData = null;
     if (eventName === 'license_activate') {
       const type = inputData.type === 'demo' || inputData.type === 'school' ? inputData.type : null;
       if (!type) return null;
+      cleanData = { type };
+    } else {
+      const lesson = typeof inputData.lesson === 'string' && SLUG_RE.test(inputData.lesson) ? inputData.lesson : null;
+      const file = typeof inputData.file === 'string' && /^[a-z0-9.-]+$/u.test(inputData.file) ? inputData.file : null;
+      if (!lesson || !file) return null;
+      cleanData = { lesson, file };
+    }
+
+    if (hasPayload) {
       return {
         ...raw,
         url: cleanUrl,
-        data: { type },
+        payload: {
+          name: eventName,
+          data: cleanData,
+        },
       };
     }
-
-    const lesson = typeof inputData.lesson === 'string' && SLUG_RE.test(inputData.lesson) ? inputData.lesson : null;
-    const file = typeof inputData.file === 'string' && /^[a-z0-9.-]+$/u.test(inputData.file) ? inputData.file : null;
-    if (!lesson || !file) return null;
 
     return {
       ...raw,
       url: cleanUrl,
-      data: { lesson, file },
+      name: eventName,
+      data: cleanData,
     };
   }
 
@@ -73,6 +86,8 @@
     try {
       if (navigator.globalPrivacyControl === true || navigator.doNotTrack === '1') return true;
       if (navigator.onLine === false) return true;
+      // Intentional privacy guard (matching src/visitor-analytics.js and docs/besoksstatistikk.md):
+      // never attach a pre-existing Vercel attribution identity to anonymous counts.
       if (window.localStorage && window.localStorage.getItem('__va_attribution')) return true;
     } catch {
       return false;

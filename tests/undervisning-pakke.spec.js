@@ -128,17 +128,37 @@ test('Undervisningspakken analytics tracks anonymous pdf_download, audio_play, l
       });
       const blockedCustom = beforeSend({
         type: 'event',
-        name: 'student_answer',
         url: `${window.location.origin}/undervisning/tall/elev.html`,
-        data: { text: 'hemmelig' },
+        payload: {
+          name: 'student_answer',
+          data: { text: 'hemmelig' },
+        },
       });
-      const cleanEvent = beforeSend({
+      const cleanLicensePayloadEvent = beforeSend({
         type: 'event',
-        name: 'pdf_download',
-        url: `${window.location.origin}/undervisning/tall/index.html?kode=SP123-SECRET`,
-        data: { lesson: 'tall', file: 'partnerkort-a.pdf' },
+        url: `${window.location.origin}/undervisning/?kode=SPANSK2026`,
+        payload: {
+          name: 'license_activate',
+          data: { type: 'demo', extra: 'drop-me' },
+        },
       });
-      return { cleanPageview, blockedSchool, blockedCustom, cleanEvent };
+      const cleanPdfPayloadEvent = beforeSend({
+        type: 'event',
+        url: `${window.location.origin}/undervisning/tall/index.html?kode=SP123-SECRET`,
+        payload: {
+          name: 'pdf_download',
+          data: { lesson: 'tall', file: 'partnerkort-a.pdf', extra: 'drop-me' },
+        },
+      });
+      const cleanAudioPayloadEvent = beforeSend({
+        type: 'event',
+        url: `${window.location.origin}/undervisning/tall/elev.html?elev=secret`,
+        payload: {
+          name: 'audio_play',
+          data: { lesson: 'tall', file: 'dialog.mp3', extra: 'drop-me' },
+        },
+      });
+      return { cleanPageview, blockedSchool, blockedCustom, cleanLicensePayloadEvent, cleanPdfPayloadEvent, cleanAudioPayloadEvent };
     });
 
     expect(beforeSendCheck.missing).toBeFalsy();
@@ -147,11 +167,20 @@ test('Undervisningspakken analytics tracks anonymous pdf_download, audio_play, l
     expect(beforeSendCheck.cleanPageview?.url).not.toContain('#');
     expect(beforeSendCheck.blockedSchool).toBeNull();
     expect(beforeSendCheck.blockedCustom).toBeNull();
-    expect(beforeSendCheck.cleanEvent).toEqual({
+    expect(beforeSendCheck.cleanLicensePayloadEvent).toEqual({
       type: 'event',
-      name: 'pdf_download',
+      url: expect.stringMatching(/\/undervisning\/$/u),
+      payload: { name: 'license_activate', data: { type: 'demo' } },
+    });
+    expect(beforeSendCheck.cleanPdfPayloadEvent).toEqual({
+      type: 'event',
       url: expect.stringMatching(/\/undervisning\/tall\/index\.html$/u),
-      data: { lesson: 'tall', file: 'partnerkort-a.pdf' },
+      payload: { name: 'pdf_download', data: { lesson: 'tall', file: 'partnerkort-a.pdf' } },
+    });
+    expect(beforeSendCheck.cleanAudioPayloadEvent).toEqual({
+      type: 'event',
+      url: expect.stringMatching(/\/undervisning\/tall\/elev\.html$/u),
+      payload: { name: 'audio_play', data: { lesson: 'tall', file: 'dialog.mp3' } },
     });
 
     const [download] = await Promise.all([

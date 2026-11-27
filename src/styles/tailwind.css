@@ -5497,3 +5497,269 @@ body.modal-open {
     overflow-wrap: anywhere;
     white-space: normal;
 }
+
+.welcome-madrigal-card {
+    margin-top: 22px;
+    padding: 18px;
+    border-radius: 12px;
+    border: 1.5px solid #e0e7ff;
+    background: #f8fafc;
+    text-align: left;
+}
+
+.welcome-madrigal-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 6px;
+}
+
+.welcome-madrigal-head h2 {
+    margin: 0;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--gray-900);
+}
+
+.welcome-madrigal-step {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--primary-dark);
+    background: var(--primary-soft);
+    padding: 4px 10px;
+    border-radius: 999px;
+    white-space: nowrap;
+}
+
+.welcome-madrigal-subtitle,
+.welcome-madrigal-hint,
+.welcome-madrigal-result {
+    font-size: 14px;
+    color: var(--gray-700);
+    margin: 0 0 10px;
+}
+
+.welcome-madrigal-word {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--primary-dark);
+    margin: 6px 0 12px;
+}
+
+.welcome-madrigal-options {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+}
+
+.welcome-madrigal-option {
+    min-height: 44px;
+    padding: 10px 14px;
+    border-radius: 10px;
+    border: 1.5px solid var(--gray-300);
+    background: #ffffff;
+    color: var(--gray-900);
+    font-size: 15px;
+    font-weight: 600;
+    text-align: left;
+    cursor: pointer;
+    touch-action: manipulation;
+}
+
+.welcome-madrigal-option:hover:not(:disabled),
+.welcome-madrigal-option:focus-visible {
+    border-color: var(--primary);
+    background: var(--primary-soft);
+}
+
+.welcome-madrigal-option.is-correct {
+    border-color: #16a34a;
+    background: #ecfdf5;
+    color: #065f46;
+}
+
+.welcome-madrigal-option.is-wrong {
+    border-color: #dc2626;
+    background: #fef2f2;
+    color: #991b1b;
+}
+
+.welcome-madrigal-feedback {
+    margin-top: 12px;
+    padding: 12px;
+    border-radius: 10px;
+    font-size: 14px;
+    background: #ffffff;
+    border: 1px solid var(--gray-200);
+}
+
+.welcome-madrigal-feedback.is-correct {
+    background: #ecfdf5;
+    border-color: #a7f3d0;
+    color: #065f46;
+}
+
+.welcome-madrigal-feedback.is-hint {
+    background: #fffbeb;
+    border-color: #fcd34d;
+    color: #92400e;
+}
+
+.welcome-madrigal-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.setting-checkbox-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 14px;
+    color: var(--gray-800);
+    cursor: pointer;
+}
+
+.setting-checkbox-row input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    margin-top: 2px;
+    flex-shrink: 0;
+}
+
+.correct-audio-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.correct-audio-status {
+    font-size: 13px;
+    color: var(--gray-700);
+}
+
+.correct-audio-status.is-error {
+    color: #991b1b;
+    font-weight: 600;
+}
+
+.home-week-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+}
+
+.weekly-mastery-dialog {
+    max-width: 540px;
+}
+
+.weekly-mastery-card {
+    border: 2px solid var(--primary);
+    border-radius: 14px;
+    padding: 20px;
+    background: #ffffff;
+}
+
+.weekly-mastery-header {
+    text-align: center;
+    margin-bottom: 16px;
+}
+
+.weekly-mastery-brand {
+    margin: 0 0 4px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--primary-dark);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.weekly-mastery-header h2 {
+    margin: 0 0 4px;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--gray-900);
+}
+
+.weekly-mastery-meta {
+    margin: 0;
+    font-size: 14px;
+    color: var(--gray-700);
+}
+
+.weekly-mastery-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    margin-bottom: 14px;
+}
+
+.weekly-mastery-stat {
+    padding: 12px;
+    border-radius: 10px;
+    background: #f8fafc;
+    border: 1px solid var(--gray-200);
+    text-align: center;
+}
+
+.weekly-mastery-value {
+    display: block;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--primary-dark);
+}
+
+.weekly-mastery-label {
+    display: block;
+    font-size: 12px;
+    color: var(--gray-700);
+    margin-top: 2px;
+}
+
+.weekly-mastery-summary {
+    margin: 0 0 6px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--gray-900);
+    text-align: center;
+}
+
+.weekly-mastery-privacy {
+    margin: 0;
+    font-size: 12px;
+    color: var(--gray-600);
+    text-align: center;
+}
+
+@media (max-width: 480px) {
+    .weekly-mastery-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media print {
+    body:has(#weeklyMasteryCardPrintable) > #welcomeScreen,
+    body:has(#weeklyMasteryCardPrintable) > #mainApp,
+    .no-print {
+        display: none !important;
+    }
+
+    body:has(#weeklyMasteryCardPrintable) .weekly-mastery-modal {
+        position: static;
+        background: #ffffff;
+        padding: 0;
+        display: block;
+    }
+
+    body:has(#weeklyMasteryCardPrintable) .weekly-mastery-dialog {
+        box-shadow: none;
+        border: none;
+        padding: 0;
+        max-width: 100%;
+    }
+}

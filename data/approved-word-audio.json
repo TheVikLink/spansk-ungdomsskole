@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "note": "Godkjente statiske enkeltord-opptak (kun forhåndsgenererte eller eiergodkjente filer, aldri nettleser-TTS). Legg Luvvoice-MP3-filer i audio/ord/ og registrer dem her ved behov.",
+  "entries": [
+    { "word": "casa", "normalized": "casa", "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_1_word.mp3", "source": "refold-v1" },
+    { "word": "mesa", "normalized": "mesa", "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_2_word.mp3", "source": "refold-v1" },
+    { "word": "silla", "normalized": "silla", "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_3_word.mp3", "source": "refold-v1" },
+    { "word": "sol", "normalized": "sol", "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_4_word.mp3", "source": "refold-v1" },
+    { "word": "uno", "normalized": "uno", "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_5_word.mp3", "source": "refold-v1" },
+    { "word": "aire", "normalized": "aire", "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_6_word.mp3", "source": "refold-v1" },
+    { "word": "Europa", "normalized": "europa", "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_9_word.mp3", "source": "refold-v1" },
+    { "word": "viuda", "normalized": "viuda", "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_11_word.mp3", "source": "refold-v1" },
+    { "word": "ruido", "normalized": "ruido", "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_12_word.mp3", "source": "refold-v1" },
+    { "word": "huevo", "normalized": "huevo", "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_13_word.mp3", "source": "refold-v1" },
+    { "word": "cuota", "normalized": "cuota", "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_14_word.mp3", "source": "refold-v1" },
+    { "word": "dedo", "normalized": "dedo", "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_17_word.mp3", "source": "refold-v1" },
+    { "word": "foto", "normalized": "foto", "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_18_word.mp3", "source": "refold-v1" },
+    { "word": "luna", "normalized": "luna", "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_21_word.mp3", "source": "refold-v1" },
+    { "word": "mamá", "normalized": "mama", "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_23_word.mp3", "source": "refold-v1" },
+    { "word": "nido", "normalized": "nido", "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_24_word.mp3", "source": "refold-v1" },
+    { "word": "niño", "normalized": "nino", "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_25_word.mp3", "source": "refold-v1" },
+    { "word": "papel", "normalized": "papel", "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_26_word.mp3", "source": "refold-v1" },
+    { "word": "zapato", "normalized": "zapato", "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_31_word.mp3", "source": "refold-v1" }
+  ]
+}

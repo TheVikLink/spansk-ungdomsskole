@@ -21,7 +21,7 @@
     <meta name="theme-color" content="#dc2626">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Crect width='192' height='192' rx='36' fill='%23dc2626'/%3E%3Ctext x='96' y='122' text-anchor='middle' font-size='96'%3E🇪🇸%3C/text%3E%3C/svg%3E">
     <link rel="manifest" href="./manifest.webmanifest">
-    <meta name="app-build" content="1783d338a7d00dd7">
+    <meta name="app-build" content="b13c4a3fd9295983">
     <link href="./dist/tailwind.css" rel="stylesheet">
     <script type="application/ld+json">
     {
@@ -155,6 +155,7 @@
                 <a href="/school">Skolepakke med Feide</a> &nbsp;|&nbsp; <a href="/about">Om oss</a> &nbsp;|&nbsp; <a href="/contact">Kontakt</a> &nbsp;|&nbsp; <a href="/privacy">Personvern</a> &nbsp;|&nbsp; <a href="/besoksstatistikk.html">Besøksstatistikk</a>
             </p>
         </div>
+        <section id="welcomeMadrigalPreview" class="welcome-madrigal-card" aria-labelledby="welcomeMadrigalTitle"></section>
     </div>
 
     <div class="container hidden" id="mainApp">
@@ -17737,6 +17738,272 @@ const pronunciationManifest = {"schemaVersion":1,"sourceArchiveSha256":"d67fa8c7
         }
 
         // ============================================
+        // ROUTE HASHES, MADRIGAL PREVIEW & WORD AUDIO
+        // ============================================
+
+        const PAGE_TO_HASH = {
+            home: '#start',
+            vocab: '#gloser',
+            brainmap: '#kunnskapskart',
+            verbs: '#verb',
+            grammar: '#grammatikk',
+            games: '#spill',
+            dictation: '#lytting',
+            pronunciation: '#uttale',
+            homework: '#lekse'
+        };
+        const HASH_TO_PAGE = Object.fromEntries(Object.entries(PAGE_TO_HASH).map(([page, hash]) => [hash, page]));
+        let currentActivePage = 'home';
+        let suppressNextHashChangeTarget = null;
+
+        function pushPageHash(targetHash) {
+            if (!targetHash || location.hash.toLowerCase() === targetHash) return;
+            try {
+                window.history.pushState({ spanskHash: targetHash }, '', targetHash);
+                return;
+            } catch {
+                suppressNextHashChangeTarget = targetHash;
+                location.hash = targetHash;
+            }
+        }
+
+        function getPageFromLocationHash(hash = location.hash) {
+            return HASH_TO_PAGE[String(hash || '').trim().toLowerCase()] || null;
+        }
+
+        const WELCOME_MADRIGAL_ITEMS = [
+            {
+                spanish: 'la música',
+                options: ['musikk', 'museum', 'morgen'],
+                answer: 'musikk',
+                hint: 'Ligner på norsk «musikk» — aksenten over ú viser hvor trykket ligger.'
+            },
+            {
+                spanish: 'el hotel',
+                options: ['hotell', 'sykehus', 'hage'],
+                answer: 'hotell',
+                hint: 'H-en på spansk er alltid stum, men resten av ordet er nesten likt norsk.'
+            },
+            {
+                spanish: 'la información',
+                options: ['informasjon', 'invitasjon', 'instruksjon'],
+                answer: 'informasjon',
+                hint: 'Norske ord som slutter på -sjon heter ofte -ción på spansk.'
+            }
+        ];
+        let welcomeMadrigalState = { index: 0, answered: false, chosenIndex: null, score: 0, finished: false };
+
+        function renderWelcomeMadrigalPreview() {
+            const container = document.getElementById('welcomeMadrigalPreview');
+            if (!container) return;
+            if (welcomeMadrigalState.finished) {
+                container.innerHTML = `
+                    <div class="welcome-madrigal-head">
+                        <h2 id="welcomeMadrigalTitle">✨ Du kan allerede spansk!</h2>
+                        <span class="welcome-madrigal-step">Ferdig</span>
+                    </div>
+                    <p class="welcome-madrigal-result">Du klarte <strong>${welcomeMadrigalState.score} av ${WELCOME_MADRIGAL_ITEMS.length}</strong> ord uten å ha åpnet appen ennå.</p>
+                    <p class="welcome-madrigal-hint">Dette prinsippet kalles gjenkjennelige ord — et perfekt springbrett for videre øving.</p>
+                    <div class="welcome-madrigal-actions">
+                        <button type="button" class="btn btn-sm btn-primary" onclick="focusWelcomeNameInput()">Skriv inn navn og øv videre</button>
+                        <button type="button" class="btn btn-sm btn-outline" onclick="resetWelcomeMadrigal()">Prøv på nytt</button>
+                    </div>
+                `;
+                return;
+            }
+            const item = WELCOME_MADRIGAL_ITEMS[welcomeMadrigalState.index];
+            const isCorrect = welcomeMadrigalState.answered && item.options[welcomeMadrigalState.chosenIndex] === item.answer;
+            container.innerHTML = `
+                <div class="welcome-madrigal-head">
+                    <h2 id="welcomeMadrigalTitle">✨ Du kan allerede spansk!</h2>
+                    <span class="welcome-madrigal-step">Ord ${welcomeMadrigalState.index + 1} av ${WELCOME_MADRIGAL_ITEMS.length}</span>
+                </div>
+                <p class="welcome-madrigal-subtitle">Gjett hva dette spanske ordet betyr på norsk:</p>
+                <p class="welcome-madrigal-word" lang="es">${escapeHtml(item.spanish)}</p>
+                <div class="welcome-madrigal-options" role="group" aria-label="Svaralternativer for ${escapeHtml(item.spanish)}">
+                    ${item.options.map((option, idx) => {
+                        let cls = 'welcome-madrigal-option';
+                        if (welcomeMadrigalState.answered) {
+                            if (option === item.answer) cls += ' is-correct';
+                            else if (idx === welcomeMadrigalState.chosenIndex) cls += ' is-wrong';
+                        }
+                        return `<button type="button" class="${cls}" onclick="answerWelcomeMadrigal(${idx})"${welcomeMadrigalState.answered ? ' disabled' : ''}>${escapeHtml(option)}</button>`;
+                    }).join('')}
+                </div>
+                ${welcomeMadrigalState.answered ? `
+                    <div class="welcome-madrigal-feedback ${isCorrect ? 'is-correct' : 'is-hint'}" role="status">
+                        <p><strong>${isCorrect ? 'Riktig!' : `Riktig svar er «${escapeHtml(item.answer)}».`}</strong> ${escapeHtml(item.hint)}</p>
+                        <button type="button" class="btn btn-sm btn-primary mt-2" onclick="nextWelcomeMadrigal()">${welcomeMadrigalState.index + 1 >= WELCOME_MADRIGAL_ITEMS.length ? 'Se oppsummering' : 'Neste ord →'}</button>
+                    </div>
+                ` : ''}
+            `;
+        }
+
+        function answerWelcomeMadrigal(optionIndex) {
+            if (welcomeMadrigalState.answered || welcomeMadrigalState.finished) return;
+            const item = WELCOME_MADRIGAL_ITEMS[welcomeMadrigalState.index];
+            if (!item || optionIndex < 0 || optionIndex >= item.options.length) return;
+            welcomeMadrigalState.answered = true;
+            welcomeMadrigalState.chosenIndex = optionIndex;
+            if (item.options[optionIndex] === item.answer) {
+                welcomeMadrigalState.score += 1;
+            }
+            renderWelcomeMadrigalPreview();
+        }
+
+        function nextWelcomeMadrigal() {
+            if (welcomeMadrigalState.index + 1 >= WELCOME_MADRIGAL_ITEMS.length) {
+                welcomeMadrigalState.finished = true;
+            } else {
+                welcomeMadrigalState.index += 1;
+                welcomeMadrigalState.answered = false;
+                welcomeMadrigalState.chosenIndex = null;
+            }
+            renderWelcomeMadrigalPreview();
+        }
+
+        function resetWelcomeMadrigal() {
+            welcomeMadrigalState = { index: 0, answered: false, chosenIndex: null, score: 0, finished: false };
+            renderWelcomeMadrigalPreview();
+        }
+
+        function focusWelcomeNameInput() {
+            const input = document.getElementById('studentNameInput');
+            if (!input) return;
+            input.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            input.focus();
+        }
+
+        const CORRECT_ANSWER_AUDIO_KEY = 'spansk123_audioOnCorrect';
+        const APPROVED_WORD_AUDIO_OVERRIDES = {};
+        let approvedWordAudioMapCache = null;
+        let correctAnswerAudioEl = null;
+        let correctAnswerAudioToken = 0;
+
+        function isCorrectAnswerAudioEnabled() {
+            try {
+                return localStorage.getItem(CORRECT_ANSWER_AUDIO_KEY) === '1';
+            } catch {
+                return false;
+            }
+        }
+
+        function normalizeApprovedAudioLookup(value) {
+            return String(value || '')
+                .normalize('NFC')
+                .toLowerCase()
+                .replace(/^(?:el|la|los|las|un|una)\s+/i, '')
+                .replace(/[¡!¿?.,()]+/g, '')
+                .replace(/\s+/g, ' ')
+                .trim();
+        }
+
+        function getApprovedWordAudioMap() {
+            if (approvedWordAudioMapCache) return approvedWordAudioMapCache;
+            const map = new Map();
+            if (typeof pronunciationCatalog === 'object' && Array.isArray(pronunciationCatalog?.items)) {
+                for (const item of pronunciationCatalog.items) {
+                    const rawWord = String(item?.word || '').trim();
+                    const audioPath = typeof item?.audio?.word === 'string' ? item.audio.word : '';
+                    if (!rawWord || !audioPath || /[,/]/.test(rawWord)) continue;
+                    const key = normalizeApprovedAudioLookup(rawWord);
+                    if (key && !map.has(key)) {
+                        map.set(key, { word: rawWord, path: audioPath });
+                    }
+                }
+            }
+            for (const [key, entry] of Object.entries(APPROVED_WORD_AUDIO_OVERRIDES)) {
+                const normKey = normalizeApprovedAudioLookup(key);
+                if (normKey && entry?.path) map.set(normKey, { word: entry.word || key, path: entry.path });
+            }
+            approvedWordAudioMapCache = map;
+            return map;
+        }
+
+        function getApprovedWordAudio(spanishText) {
+            const key = normalizeApprovedAudioLookup(spanishText);
+            if (!key) return null;
+            return getApprovedWordAudioMap().get(key) || null;
+        }
+
+        function getApprovedWordAudioForList(values) {
+            if (!Array.isArray(values)) return null;
+            for (const value of values) {
+                const hit = getApprovedWordAudio(value);
+                if (hit) return hit;
+            }
+            return null;
+        }
+
+        function stopApprovedWordAudio() {
+            correctAnswerAudioToken += 1;
+            if (correctAnswerAudioEl) {
+                try {
+                    correctAnswerAudioEl.pause();
+                    correctAnswerAudioEl.currentTime = 0;
+                    correctAnswerAudioEl.onplaying = null;
+                    correctAnswerAudioEl.onended = null;
+                    correctAnswerAudioEl.onerror = null;
+                } catch {}
+            }
+        }
+
+        function playApprovedWordAudio(audioPath, statusEl = null) {
+            if (!audioPath) return;
+            stopApprovedWordAudio();
+            const token = ++correctAnswerAudioToken;
+            if (!correctAnswerAudioEl) {
+                correctAnswerAudioEl = document.createElement('audio');
+                correctAnswerAudioEl.preload = 'none';
+            }
+            const audio = correctAnswerAudioEl;
+            const setStatus = (msg, isError = false) => {
+                if (!statusEl || !statusEl.isConnected) return;
+                statusEl.textContent = msg;
+                statusEl.classList.toggle('is-error', Boolean(isError));
+            };
+            const onFailure = () => {
+                if (token !== correctAnswerAudioToken) return;
+                setStatus('Lydopptaket kunne ikke spilles av akkurat nå.', true);
+            };
+            audio.onplaying = () => {
+                if (token !== correctAnswerAudioToken) return;
+                setStatus('Spiller godkjent opptak.');
+            };
+            audio.onended = () => {
+                if (token !== correctAnswerAudioToken) return;
+                setStatus('');
+            };
+            audio.onerror = onFailure;
+            audio.src = audioPath;
+            setStatus('Laster lyd …');
+            try {
+                const promise = audio.play();
+                if (promise && typeof promise.catch === 'function') {
+                    promise.catch(onFailure);
+                }
+            } catch {
+                onFailure();
+            }
+        }
+
+        function renderApprovedAudioRowHtml(match) {
+            if (!match?.path) return '';
+            return `<div class="correct-audio-row"><button type="button" class="btn btn-sm btn-outline correct-audio-btn" data-approved-audio-path="${escapeHtml(match.path)}">🔊 Hør «${escapeHtml(match.word)}»</button><span class="correct-audio-status" aria-live="polite"></span></div>`;
+        }
+
+        function mountApprovedAudioControl(container, match, { autoPlay = false } = {}) {
+            if (!container || !match?.path) return;
+            const btn = container.querySelector('[data-approved-audio-path]');
+            const statusEl = container.querySelector('.correct-audio-status');
+            if (!btn) return;
+            btn.addEventListener('click', () => playApprovedWordAudio(btn.dataset.approvedAudioPath, statusEl));
+            if (autoPlay) {
+                playApprovedWordAudio(match.path, statusEl);
+            }
+        }
+
+        // ============================================
         // APP START FUNCTIONS
         // ============================================
 
@@ -17759,13 +18026,16 @@ const pronunciationManifest = {"schemaVersion":1,"sourceArchiveSha256":"d67fa8c7
             init();
             loadPracticeHistory();
             renderDiagnosisPanel();
-            showPage('home');
+            const initialHashPage = getPageFromLocationHash();
+            showPage(initialHashPage || 'home', initialHashPage ? { fromHash: true } : { skipHashUpdate: true });
             handleCultureVocabularyRoute();
             Pronunciation.route();
         }
 
         function showSettings() {
-            Pronunciation.clearRecording();            const modal = document.createElement('div');
+            Pronunciation.clearRecording();
+            stopApprovedWordAudio();
+            const modal = document.createElement('div');
             modal.className = 'settings-modal';
             modal.innerHTML = `
                 <div class="settings-modal-content">
@@ -17776,6 +18046,10 @@ const pronunciationManifest = {"schemaVersion":1,"sourceArchiveSha256":"d67fa8c7
                     <label for="settingsNameInput" class="mb-2 block text-gray-700">Fornavn eller elevkode:</label>
                     <input type="text" id="settingsNameInput" value="${escapeHtml(studentName).replaceAll('"', '&quot;')}" placeholder="Fornavn eller elevkode">
                     <p class="login-hint mt-2 text-xs">Lagres lokalt og står i oppsummeringer og fremgangsfiler. Koden er ikke en konto og gjenoppretter ikke slettede data. Bruk samme nettleser, eller importer sikkerhetskopien på en ny enhet.</p>
+                    <label class="setting-checkbox-row mt-4">
+                        <input type="checkbox" id="settingsAudioOnCorrect"${isCorrectAnswerAudioEnabled() ? ' checked' : ''}>
+                        <span>Spill av godkjent spansk lyd ved riktig svar (der opptak finnes)</span>
+                    </label>
                     <div class="button-group">
                         <button class="btn btn-primary" onclick="saveSettings()">Lagre</button>
                         <button class="btn btn-secondary" onclick="closeSettings()">Avbryt</button>
@@ -17836,6 +18110,10 @@ const pronunciationManifest = {"schemaVersion":1,"sourceArchiveSha256":"d67fa8c7
 
         function saveSettings() {
             Pronunciation.clearRecording();
+            const audioToggle = document.getElementById('settingsAudioOnCorrect');
+            if (audioToggle) {
+                localStorage.setItem(CORRECT_ANSWER_AUDIO_KEY, audioToggle.checked ? '1' : '0');
+            }
             const name = document.getElementById('settingsNameInput').value.trim();
             if (name) {
                 studentName = name;
@@ -17846,6 +18124,7 @@ const pronunciationManifest = {"schemaVersion":1,"sourceArchiveSha256":"d67fa8c7
         }
 
         function closeSettings() {
+            stopApprovedWordAudio();
             const modal = document.querySelector('.settings-modal');
             if (modal) {
                 const returnFocus = modal.returnFocus;
@@ -17879,6 +18158,7 @@ const pronunciationManifest = {"schemaVersion":1,"sourceArchiveSha256":"d67fa8c7
                 ACTIVE_ASSIGNMENT_KEY,
                 LAST_EXPORT_KEY,
                 'spansk123_oldImportDone',
+                CORRECT_ANSWER_AUDIO_KEY,
                 LEARNING_PROGRESS_KEY,
                 DIAGNOSIS_KEY,
                 LEGACY_DIAGNOSIS_KEY,
@@ -21105,7 +21385,10 @@ const pronunciationManifest = {"schemaVersion":1,"sourceArchiveSha256":"d67fa8c7
                             <h2 id="homeWeekTitle">Din fremgang denne uka</h2>
                             <p id="homeQuizWeeklyGoal">${renderQuizWeeklyGoal(quizStats, today)}</p>
                         </div>
-                        <p id="homeFeedWeeklyXp"><strong>${totalXp} XP</strong> denne uka</p>
+                        <div class="home-week-actions">
+                            <p id="homeFeedWeeklyXp"><strong>${totalXp} XP</strong> denne uka</p>
+                            <button type="button" class="btn btn-sm btn-outline no-print" id="openWeeklyMasteryCardBtn" onclick="openWeeklyMasteryCard()">🖨️ Ukens mestringskort</button>
+                        </div>
                     </div>
                     ${totalXp > 0
                         ? `<ol class="home-week-days" role="list" aria-label="XP per dag, mandag til søndag">
@@ -21119,6 +21402,73 @@ const pronunciationManifest = {"schemaVersion":1,"sourceArchiveSha256":"d67fa8c7
                         : '<p class="home-week-empty-note" id="homeWeekEmptyNote">Du har 0 XP så langt denne uka. Fullfør din første økt over for å starte rekka di.</p>'}
                 </section>
             `;
+        }
+
+        function openWeeklyMasteryCard() {
+            closeSettings();
+            const today = new Date();
+            const days = getHomeWeekDays(today);
+            const weekStart = days[0]?.date || today;
+            const weekEnd = days[6]?.date || today;
+            const firstDay = getLocalDateString(weekStart);
+            const lastDay = getLocalDateString(weekEnd);
+            const totalXp = days.reduce((sum, day) => sum + day.xp, 0);
+            const quizStats = loadQuizStats();
+            const practiceDaysThisWeek = new Set([
+                ...quizStats.completedDates.filter(date => date >= firstDay && date <= lastDay),
+                ...practiceHistory
+                    .filter(entry => !entry.inProgress && !entry.interrupted && entry.date >= firstDay && entry.date <= lastDay)
+                    .map(entry => entry.date)
+            ]).size;
+            const sessionsThisWeek = practiceHistory
+                .filter(entry => !entry.inProgress && entry.date >= firstDay && entry.date <= lastDay)
+                .reduce((sum, entry) => sum + (Number(entry.sessions) || 1), 0);
+            const masteredWords = cards.filter(card => card.noEs.repetitions >= 3 && card.esNo.repetitions >= 3).length;
+            const progress = loadLearningProgress();
+            const practicedSkills = Object.values(progress.skillProgress || {}).filter(cell => (cell?.attempts || 0) > 0).length;
+            const formatDay = new Intl.DateTimeFormat('nb-NO', { day: 'numeric', month: 'long' });
+            const rangeText = `${formatDay.format(weekStart)} til ${formatDay.format(weekEnd)}`;
+            const goalMet = practiceDaysThisWeek >= 4;
+
+            const modal = document.createElement('div');
+            modal.className = 'settings-modal weekly-mastery-modal';
+            modal.innerHTML = `
+                <div class="settings-modal-content weekly-mastery-dialog">
+                    <div id="weeklyMasteryCardPrintable" class="weekly-mastery-card">
+                        <div class="weekly-mastery-header">
+                            <p class="weekly-mastery-brand">🇪🇸 Spansk på 1-2-3</p>
+                            <h2 id="weeklyMasteryCardTitle">🏅 Ukens mestringskort</h2>
+                            <p class="weekly-mastery-meta">${escapeHtml(studentName || 'Elev')} (${escapeHtml(rangeText)})</p>
+                        </div>
+                        <div class="weekly-mastery-grid">
+                            <div class="weekly-mastery-stat">
+                                <span class="weekly-mastery-value">${totalXp} XP</span>
+                                <span class="weekly-mastery-label">Poeng denne uka</span>
+                            </div>
+                            <div class="weekly-mastery-stat">
+                                <span class="weekly-mastery-value">${Math.min(practiceDaysThisWeek, 4)} av 4</span>
+                                <span class="weekly-mastery-label">Øvingsdager denne uka</span>
+                            </div>
+                            <div class="weekly-mastery-stat">
+                                <span class="weekly-mastery-value">${sessionsThisWeek}</span>
+                                <span class="weekly-mastery-label">Fullførte økter denne uka</span>
+                            </div>
+                            <div class="weekly-mastery-stat">
+                                <span class="weekly-mastery-value">${masteredWords}</span>
+                                <span class="weekly-mastery-label">Mestrede gloser totalt (${practicedSkills} ferdigheter øvd)</span>
+                            </div>
+                        </div>
+                        <p class="weekly-mastery-summary">${goalMet ? 'Ukemålet er nådd! Imponerende innsats denne uka.' : totalXp > 0 ? 'Godt i gang denne uka. Hver kort økt bygger sterkere spansk.' : 'Klar for ukens første økt. Fem minutter er nok til å komme i gang.'}</p>
+                        <p class="weekly-mastery-privacy">Lokal oppsummering fra denne enheten. Ingen elevdata er sendt eller delt.</p>
+                    </div>
+                    <div class="button-group no-print mt-4">
+                        <button type="button" class="btn btn-primary" onclick="window.print()">🖨️ Skriv ut / lagre som PDF</button>
+                        <button type="button" class="btn btn-secondary" id="weeklyMasteryCloseBtn" onclick="closeSettings()">Lukk</button>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(modal);
+            setupSettingsModalAccessibility(modal, 'weeklyMasteryCardTitle', '#weeklyMasteryCloseBtn');
         }
 
         const homeRecommendationLimit = 15;
@@ -21249,7 +21599,7 @@ const pronunciationManifest = {"schemaVersion":1,"sourceArchiveSha256":"d67fa8c7
         }
 
         function startHomeVocabulary(pool) {
-            if (showPage('vocab') === false) return;
+            if (showPage('vocab', { skipHashUpdate: true }) === false) return;
             startVocabSession('home-new', pool, { newLimit: pool.length });
         }
 
@@ -21269,7 +21619,7 @@ const pronunciationManifest = {"schemaVersion":1,"sourceArchiveSha256":"d67fa8c7
                 reason: 'Disse ordene er klare for repetisjon.',
                 estimatedSeconds: getDueCards(reviewPool).length * 10,
                 start() {
-                    if (showPage('vocab') !== false) startVocabSession('review', reviewPool, { reviewLimit: reviewPool.length * 2 });
+                    if (showPage('vocab', { skipHashUpdate: true }) !== false) startVocabSession('review', reviewPool, { reviewLimit: reviewPool.length * 2 });
                 }
             });
             const verb = getRecommendedFeedVerbPractice(progress, today);
@@ -21294,7 +21644,7 @@ const pronunciationManifest = {"schemaVersion":1,"sourceArchiveSha256":"d67fa8c7
                     reason: goal.reason,
                     size, estimatedSeconds: size * 12,
                     start() {
-                        if (showPage('grammar') === false) return;
+                        if (showPage('grammar', { skipHashUpdate: true }) === false) return;
                         currentGrammarTopic = topic;
                         startGrammarExercises({ filterSkillIds: [goal.targetId], limit: 6 });
                     }
@@ -21308,7 +21658,7 @@ const pronunciationManifest = {"schemaVersion":1,"sourceArchiveSha256":"d67fa8c7
                         id: `listening:${story.id}`, area: 'listening', title: `Lytt til ${story.title}`,
                         reason: 'Lytt etter detaljer og svar på spørsmål.', size: story.questions.length,
                         estimatedSeconds: (Number(story.durationSeconds) || 0) + story.questions.length * 15,
-                        start() { if (showPage('dictation') !== false) startListeningStory(story.id); }
+                        start() { if (showPage('dictation', { skipHashUpdate: true }) !== false) startListeningStory(story.id); }
                     });
                 }
             }
@@ -21319,7 +21669,7 @@ const pronunciationManifest = {"schemaVersion":1,"sourceArchiveSha256":"d67fa8c7
                 reason: 'Bruk spansk til å fortelle hva du liker, har eller vil gjøre.', size: writingSize,
                 estimatedSeconds: writingSize * 25,
                 start() {
-                    if (showPage('grammar') !== false) startGrammarExercises({ lessonId: writing.id, limit: writingSize, typed: true });
+                    if (showPage('grammar', { skipHashUpdate: true }) !== false) startGrammarExercises({ lessonId: writing.id, limit: writingSize, typed: true });
                 }
             });
             const newWords = getHomeVocabularyRecommendations(cards, progress, today);
@@ -21463,7 +21813,7 @@ const pronunciationManifest = {"schemaVersion":1,"sourceArchiveSha256":"d67fa8c7
         }
 
         function startDailyQuizFromHome() {
-            if (showPage('vocab') === false) return;
+            if (showPage('vocab', { skipHashUpdate: true }) === false) return;
             startMixedQuizFromUi();
         }
 
@@ -21484,6 +21834,7 @@ const pronunciationManifest = {"schemaVersion":1,"sourceArchiveSha256":"d67fa8c7
 
         function abandonActiveSession() {
             if (!activeSessionType) return false;
+            stopApprovedWordAudio();
             if (activeSessionType === 'recognition' || activeSessionType === 'recognitionLearning') {
                 recognitionRound = null;
                 recognitionLearning = null;
@@ -21583,6 +21934,7 @@ const pronunciationManifest = {"schemaVersion":1,"sourceArchiveSha256":"d67fa8c7
                 abandonActiveSession();
             }
             activeHomeFeedCard = null;
+            stopApprovedWordAudio();
             if (page !== 'pronunciation') Pronunciation.close();
             document.getElementById('pronunciationPage').classList.add('hidden');
             if (page !== 'grammarLesson') grammarAssignmentId = null;
@@ -21678,6 +22030,15 @@ const pronunciationManifest = {"schemaVersion":1,"sourceArchiveSha256":"d67fa8c7
             }
             if (window.matchMedia('(max-width: 640px)').matches) {
                 document.querySelector('.nav-more')?.removeAttribute('open');
+            }
+            currentActivePage = page;
+            if (!options.fromHash && !options.skipHashUpdate && PAGE_TO_HASH[page]) {
+                const keepCultureSubRoute = page === 'vocab' && (/^#gloser\//i.test(location.hash) || /^#time\//i.test(location.hash));
+                const keepPronunciationSubRoute = page === 'pronunciation' && /^#uttale\//i.test(location.hash);
+                const targetHash = PAGE_TO_HASH[page];
+                if (!keepCultureSubRoute && !keepPronunciationSubRoute) {
+                    pushPageHash(targetHash);
+                }
             }
             syncPracticeSessionBodyClass();
         }
@@ -25865,8 +26226,9 @@ const pronunciationManifest = {"schemaVersion":1,"sourceArchiveSha256":"d67fa8c7
                         ? 'near-miss'
                         : 'incorrect';
                 feedback.className = `mixed-quiz-feedback ${feedbackClass}`;
+                const audioMatch = result.resultKind === 'correct' ? getApprovedWordAudioForList(acceptedValues) : null;
                 feedback.innerHTML = result.resultKind === 'correct'
-                    ? '✓ Riktig!'
+                    ? `✓ Riktig!${audioMatch ? renderApprovedAudioRowHtml(audioMatch) : ''}`
                     : result.resultKind === 'accent_or_case_variant'
                         ? `Nesten riktig — sjekk aksenten. Riktig svar er: <strong>${escapeHtml(formatMixedQuizCorrectAnswers(item))}</strong>`
                         : isTildeNearMiss
@@ -25876,6 +26238,9 @@ const pronunciationManifest = {"schemaVersion":1,"sourceArchiveSha256":"d67fa8c7
                                 : result.resultKind === 'near_miss'
                                     ? `Nesten — riktig svar er: <strong>${escapeHtml(formatMixedQuizCorrectAnswers(item))}</strong>`
                                     : `✗ Feil — riktig svar: <strong>${escapeHtml(formatMixedQuizCorrectAnswers(item))}</strong>`;
+                if (audioMatch) {
+                    mountApprovedAudioControl(feedback, audioMatch, { autoPlay: isCorrectAnswerAudioEnabled() });
+                }
                 feedback.insertAdjacentHTML('beforeend', `<div class="button-group"><button type="button" data-feedback-next class="btn btn-primary btn-sm mt-4" onclick="advanceMixedQuizQuestion()">${mixedQuizState.answered >= mixedQuizState.quiz.items.length ? 'Se resultat' : 'Neste'}</button></div>`);
                 if (result.resultKind !== 'correct') {
                     feedback.insertAdjacentHTML('beforeend', `<div class="mixed-quiz-scaffolding-note">💡 Neste gang får du litt ekstra hjelp med denne.</div>`);
@@ -27636,6 +28001,7 @@ Vil du øve på ${pronoun} likevel?`
             const intervals = [0, 1, 2, 3].map(q => SM2.getIntervalText(q, srData));
 
             const cardTypeLabel = isCustomStudySession ? 'Ekstraøving' : (isNew ? 'Nytt kort' : 'Repetisjon');
+            const flipAudioMatch = getApprovedWordAudio(card.es);
 
             document.getElementById('flashcardArea').innerHTML = `
                 <div class="flashcard">
@@ -27647,9 +28013,13 @@ Vil du øve på ${pronoun} likevel?`
                     </span>
                     <div class="card-word mb-2 text-lg text-gray-500">${front}</div>
                     <div class="card-answer">${back}</div>
+                    ${flipAudioMatch ? renderApprovedAudioRowHtml(flipAudioMatch) : ''}
                     <span class="card-category">${getCategoryEmoji(card.category)} ${capitalizeFirst(card.category)}</span>
                 </div>
             `;
+            if (flipAudioMatch) {
+                mountApprovedAudioControl(document.getElementById('flashcardArea'), flipAudioMatch, { autoPlay: false });
+            }
             document.getElementById('buttonArea').innerHTML = `
                 <div class="rating-buttons">
                     <button class="rating-btn rating-again" aria-keyshortcuts="2" onclick="rateCard(0)">😓 <span class="rating-label">Igjen</span><span class="interval">${intervals[0]}</span><span class="key">(2)</span></button>
@@ -27676,9 +28046,13 @@ Vil du øve på ${pronoun} likevel?`
             rateCard(evaluation.resultKind === 'correct' ? 2 : 0, false);
 
             if (evaluation.resultKind === 'correct') {
-                feedback.innerHTML = currentCard.scaffoldedAfterError
+                const audioMatch = getApprovedWordAudio(currentCard.card.es) || getApprovedWordAudioForList(acceptedList);
+                feedback.innerHTML = `${currentCard.scaffoldedAfterError
                     ? '<div class="grammar-feedback correct">✓ Riktig med støtte!</div>'
-                    : '<div class="grammar-feedback correct">✓ Riktig!</div>';
+                    : '<div class="grammar-feedback correct">✓ Riktig!</div>'}${audioMatch ? renderApprovedAudioRowHtml(audioMatch) : ''}`;
+                if (audioMatch) {
+                    mountApprovedAudioControl(feedback, audioMatch, { autoPlay: isCorrectAnswerAudioEnabled() });
+                }
                 document.getElementById('buttonArea').innerHTML = '<div class="button-group"><button data-feedback-next class="btn btn-primary" onclick="rateCard(2)">Neste kort</button></div>';
                 setTimeout(() => { if (!document.querySelector('.settings-modal')) document.querySelector('#buttonArea [data-feedback-next]')?.focus({ preventScroll: true }); }, 0);
                 return;
@@ -27717,9 +28091,13 @@ Vil du øve på ${pronoun} likevel?`
             const isCorrect = isTypedVocabAnswerCorrect(select.value, expected, getVocabularyAcceptedAnswers(currentCard.card, currentCard.direction, expected).map(item => item.value)).correct;
             select.disabled = true;
             rateCard(isCorrect ? 2 : 0, false);
+            const selectAudioMatch = isCorrect ? (getApprovedWordAudio(currentCard.card.es) || getApprovedWordAudio(expected)) : null;
             feedback.innerHTML = isCorrect
-                ? (currentCard.scaffoldedAfterError ? '<div class="grammar-feedback correct">✓ Riktig med støtte!</div>' : '<div class="grammar-feedback correct">✓ Riktig!</div>')
+                ? `${currentCard.scaffoldedAfterError ? '<div class="grammar-feedback correct">✓ Riktig med støtte!</div>' : '<div class="grammar-feedback correct">✓ Riktig!</div>'}${selectAudioMatch ? renderApprovedAudioRowHtml(selectAudioMatch) : ''}`
                 : `<div class="grammar-feedback incorrect">✗ Riktig svar: <strong>${escapeHtml(expected)}</strong></div>`;
+            if (selectAudioMatch) {
+                mountApprovedAudioControl(feedback, selectAudioMatch, { autoPlay: isCorrectAnswerAudioEnabled() });
+            }
             document.getElementById('buttonArea').innerHTML = `<div class="button-group"><button data-feedback-next class="btn btn-primary" onclick="rateCard(${isCorrect ? 2 : 0})">Neste kort</button></div>`;
         }
 
@@ -28581,7 +28959,7 @@ Vil du øve på ${pronoun} likevel?`
         }
 
         function startRecommendedFeedVerbPractice(recommendation = getRecommendedFeedVerbPractice()) {
-            if (showPage('verbs') === false) return false;
+            if (showPage('verbs', { skipHashUpdate: true }) === false) return false;
             selectedVerbs = new Set(recommendation.exercises.map(({ verb }) => verb.infinitive));
             selectedTense = recommendation.tense;
             startVerbSession({ exercises: recommendation.exercises, guidance: recommendation.reason, feedRecall: true });
@@ -32483,10 +32861,32 @@ Vil du øve på ${pronoun} likevel?`
                 });
             }
 
+            renderWelcomeMadrigalPreview();
             const savedName = localStorage.getItem('spansk123_studentName');
             window.addEventListener('hashchange', () => {
-                if (!document.getElementById('mainApp').classList.contains('hidden')) handleCultureVocabularyRoute();
-                else renderCultureWelcomeContext();
+                if (suppressNextHashChangeTarget && location.hash.toLowerCase() === suppressNextHashChangeTarget) {
+                    suppressNextHashChangeTarget = null;
+                    return;
+                }
+                suppressNextHashChangeTarget = null;
+                if (document.getElementById('mainApp').classList.contains('hidden')) {
+                    renderCultureWelcomeContext();
+                    return;
+                }
+                if (/^#(?:gloser|time)\//i.test(location.hash)) {
+                    handleCultureVocabularyRoute();
+                    return;
+                }
+                if (/^#uttale\//i.test(location.hash)) {
+                    Pronunciation.route();
+                    return;
+                }
+                const targetPage = getPageFromLocationHash();
+                if (targetPage && targetPage !== currentActivePage) {
+                    if (showPage(targetPage, { fromHash: true }) === false && PAGE_TO_HASH[currentActivePage]) {
+                        pushPageHash(PAGE_TO_HASH[currentActivePage]);
+                    }
+                }
             });
 
             if (savedName) {
@@ -32519,10 +32919,12 @@ Vil du øve på ${pronoun} likevel?`
 
             window.va('beforeSend', function (event) {
                 if (!event || typeof event !== 'object') return null;
-                let cleanUrl;
+                var SLUG_RE = /^[a-z0-9-]+$/u;
+                var FILE_RE = /^[a-z0-9.-]+$/u;
+                var cleanUrl;
                 try {
-                    const parsed = new URL(String(event.url || window.location.href), window.location.origin);
-                    const pathname = parsed.pathname || '/';
+                    var parsed = new URL(String(event.url || window.location.href), window.location.origin);
+                    var pathname = parsed.pathname || '/';
                     if (BLOCKED_PREFIXES.some(function (prefix) { return pathname === prefix || pathname.startsWith(prefix); })) {
                         return null;
                     }
@@ -32533,10 +32935,34 @@ Vil du øve på ${pronoun} likevel?`
                 if (event.type === 'pageview') {
                     return Object.assign({}, event, { url: cleanUrl });
                 }
-                if (event.type !== 'event' || !ALLOWED_EVENTS.has(event.name)) {
+                if (event.type !== 'event') {
                     return null;
                 }
-                return Object.assign({}, event, { url: cleanUrl });
+                var hasPayload = Boolean(event.payload && typeof event.payload === 'object');
+                var source = hasPayload ? event.payload : event;
+                var eventName = typeof source.name === 'string' ? source.name : '';
+                if (!ALLOWED_EVENTS.has(eventName)) {
+                    return null;
+                }
+                var inputData = source.data && typeof source.data === 'object' ? source.data : null;
+                if (!inputData) {
+                    return null;
+                }
+                var cleanData = null;
+                if (eventName === 'license_activate') {
+                    var licenseType = inputData.type === 'demo' || inputData.type === 'school' ? inputData.type : null;
+                    if (!licenseType) return null;
+                    cleanData = { type: licenseType };
+                } else {
+                    var lesson = typeof inputData.lesson === 'string' && SLUG_RE.test(inputData.lesson) ? inputData.lesson : null;
+                    var file = typeof inputData.file === 'string' && FILE_RE.test(inputData.file) ? inputData.file : null;
+                    if (!lesson || !file) return null;
+                    cleanData = { lesson: lesson, file: file };
+                }
+                if (hasPayload) {
+                    return Object.assign({}, event, { url: cleanUrl, payload: { name: eventName, data: cleanData } });
+                }
+                return Object.assign({}, event, { url: cleanUrl, name: eventName, data: cleanData });
             });
 
             try {
