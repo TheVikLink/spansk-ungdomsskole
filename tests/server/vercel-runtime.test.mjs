@@ -363,3 +363,167 @@ test('Vercel Express adapter keeps 503 on GET /school for non-config runtime fai
     assert.equal(await response.text(), '<h1>Ekstern Feide-innlogging</h1>');
   });
 });
+
+test('Vercel Express adapter supports Markdown content negotiation, agent-friendly 404s, discovery files, and trust anchors without loading the school runtime', async (t) => {
+  const { createLazyFunctionApp } = await import('../../server/vercel-app.js');
+  const { loadConfig } = await import('../../server/config.js');
+  const { prefersMarkdown } = await import('../../server/agent-readiness.js');
+  const { FREE_SAMPLE_LESSON_IDS } = await import('../../src/domain/school-license.js');
+
+  assert.equal(prefersMarkdown({ headers: { accept: 'text/markdown' } }), true);
+  assert.equal(prefersMarkdown({ headers: { accept: 'text/markdown, text/html;q=0.9' } }), true);
+  assert.equal(prefersMarkdown({ headers: { accept: 'text/html, text/markdown;q=0.5' } }), false);
+  assert.equal(prefersMarkdown({ headers: { accept: 'text/markdown;q=0' } }), false);
+  assert.equal(prefersMarkdown({ headers: { accept: '*/*' } }), false);
+  assert.equal(prefersMarkdown({ headers: {} }), false);
+
+  t.mock.method(console, 'error', () => {});
+  let initializeCount = 0;
+  const app = createLazyFunctionApp(async () => {
+    initializeCount += 1;
+    loadConfig({});
+  });
+
+  await withServer(app, async (origin) => {
+    // 1. Homepage Markdown negotiation & Vary: Accept
+    for (const target of ['/', '/index.html']) {
+      const mdRes = await fetch(`${origin}${target}`, { headers: { Accept: 'text/markdown' } });
+      assert.equal(mdRes.status, 200);
+      assert.match(mdRes.headers.get('content-type') || '', /^text\/markdown/u);
+      assert.match(mdRes.headers.get('vary') || '', /\bAccept\b/i);
+      const mdBody = await mdRes.text();
+      assert.match(mdBody, /^# Spansk på 1-2-3/u);
+      assert.match(mdBody, /\/llms\.txt/u);
+      assert.equal(mdBody.includes('\u00b7'), false);
+
+      const htmlRes = await fetch(`${origin}${target}`, { headers: { Accept: 'text/html' } });
+      assert.equal(htmlRes.status, 200);
+      assert.match(htmlRes.headers.get('content-type') || '', /^text\/html/u);
+      assert.match(htmlRes.headers.get('vary') || '', /\bAccept\b/i);
+      const htmlBody = await htmlRes.text();
+      assert.match(htmlBody, /<link rel="canonical" href="https:\/\/www\.spansk123\.no\/">/u);
+      assert.match(htmlBody, /<meta property="og:image" content="https:\/\/www\.spansk123\.no\/og-image\.png">/u);
+      assert.match(htmlBody, /<meta property="og:type" content="website">/u);
+      const ldMatch = htmlBody.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/u);
+      assert.ok(ldMatch, 'expected JSON-LD script block on homepage');
+      const ldJson = JSON.parse(ldMatch[1]);
+      const org = ldJson['@graph'].find((node) => node['@type'] === 'Organization');
+      const softApp = ldJson['@graph'].find((node) => node['@type'] === 'SoftwareApplication');
+      assert.ok(org?.contactPoint?.length > 0 && org.contactPoint[0].email === 'ole@spansk123.no');
+      assert.equal(org?.address?.['@type'], 'PostalAddress');
+      assert.equal(org?.address?.postalCode, '5151');
+      assert.equal(softApp?.name, 'Spansk på 1-2-3');
+    }
+
+    // 2. Discovery & media endpoints without initializing school runtime
+    const llmsRes = await fetch(`${origin}/llms.txt`);
+    assert.equal(llmsRes.status, 200);
+    const llmsBody = await llmsRes.text();
+    assert.match(llmsBody, /## When to use Spansk på 1-2-3/u);
+    assert.match(llmsBody, /https:\/\/www\.spansk123\.no/u);
+    assert.match(llmsBody, /ole@spansk123\.no/u);
+    assert.equal(llmsBody.includes('\u00b7'), false);
+
+    const sitemapRes = await fetch(`${origin}/sitemap.xml`);
+    assert.equal(sitemapRes.status, 200);
+    assert.match(sitemapRes.headers.get('content-type') || '', /application\/xml/u);
+    const sitemapBody = await sitemapRes.text();
+    assert.match(sitemapBody, /<urlset xmlns="http:\/\/www\.sitemaps\.org\/schemas\/sitemap\/0\.9">/u);
+    assert.match(sitemapBody, /<lastmod>\d{4}-\d{2}-\d{2}<\/lastmod>/u);
+    for (const expectedUrl of [
+      'https://www.spansk123.no/',
+      'https://www.spansk123.no/undervisning/',
+      'https://www.spansk123.no/school',
+      'https://www.spansk123.no/about',
+      'https://www.spansk123.no/contact',
+      'https://www.spansk123.no/privacy',
+      ...FREE_SAMPLE_LESSON_IDS.map((id) => `https://www.spansk123.no/undervisning/${id}/index.html`),
+    ]) {
+      assert.ok(sitemapBody.includes(`<loc>${expectedUrl}</loc>`), `expected ${expectedUrl} in sitemap.xml`);
+    }
+
+    const robotsRes = await fetch(`${origin}/robots.txt`);
+    assert.equal(robotsRes.status, 200);
+    const robotsBody = await robotsRes.text();
+    assert.match(robotsBody, /Sitemap: https:\/\/www\.spansk123\.no\/sitemap\.xml/u);
+    assert.match(robotsBody, /Disallow: \/api\//u);
+
+    const ogRes = await fetch(`${origin}/og-image.png`);
+    assert.equal(ogRes.status, 200);
+    assert.match(ogRes.headers.get('content-type') || '', /^image\/png/u);
+    const ogBuf = Buffer.from(await ogRes.arrayBuffer());
+    assert.deepEqual([...ogBuf.subarray(0, 4)], [0x89, 0x50, 0x4e, 0x47]);
+
+    // 3. Trust anchor pages (/about, /contact, /privacy)
+    for (const trustPath of ['/about', '/contact', '/privacy']) {
+      const htmlRes = await fetch(`${origin}${trustPath}`, { headers: { Accept: 'text/html' } });
+      assert.equal(htmlRes.status, 200, `expected 200 for ${trustPath}`);
+      assert.match(htmlRes.headers.get('content-type') || '', /^text\/html/u);
+      assert.match(htmlRes.headers.get('vary') || '', /\bAccept\b/i);
+      const html = await htmlRes.text();
+      assert.equal(html.includes('\u00b7'), false);
+      const stripped = html.replace(/<[^>]+>/gu, ' ').replace(/\s+/gu, ' ').trim();
+      assert.ok(stripped.length >= 500, `expected >= 500 chars on ${trustPath}, got ${stripped.length}`);
+
+      const mdRes = await fetch(`${origin}${trustPath}`, { headers: { Accept: 'text/markdown' } });
+      assert.equal(mdRes.status, 200);
+      assert.match(mdRes.headers.get('content-type') || '', /^text\/markdown/u);
+      assert.ok((await mdRes.text()).length >= 500);
+    }
+
+    assert.equal(initializeCount, 0, 'public discovery and trust-anchor routes must not initialize school runtime');
+
+    // 4. Agent-friendly 404s across Markdown, HTML, and JSON
+    const md404 = await fetch(`${origin}/__ora-404-probe-test`, { headers: { Accept: 'text/markdown' } });
+    assert.equal(md404.status, 404);
+    assert.match(md404.headers.get('content-type') || '', /^text\/markdown/u);
+    assert.match(md404.headers.get('vary') || '', /\bAccept\b/i);
+    const md404Body = await md404.text();
+    assert.ok(md404Body.length >= 20);
+    assert.match(md404Body, /\/llms\.txt/u);
+    assert.match(md404Body, /\/sitemap\.xml/u);
+    assert.equal(md404Body.includes('\u00b7'), false);
+
+    const html404 = await fetch(`${origin}/__ora-404-probe-test`, { headers: { Accept: 'text/html' } });
+    assert.equal(html404.status, 404);
+    assert.match(html404.headers.get('content-type') || '', /^text\/html/u);
+    assert.match(html404.headers.get('vary') || '', /\bAccept\b/i);
+
+    const json404 = await fetch(`${origin}/__ora-404-probe-test`, { headers: { Accept: 'application/json' } });
+    assert.equal(json404.status, 404);
+    assert.match(json404.headers.get('content-type') || '', /^application\/json/u);
+    assert.match(json404.headers.get('vary') || '', /\bAccept\b/i);
+  });
+});
+
+test('School Express app returns Markdown 404 for non-API routes when Accept: text/markdown is sent', async () => {
+  const { createSchoolApp } = await import('../../server/app.js');
+  const { loadConfig } = await import('../../server/config.js');
+  const config = loadConfig({
+    NODE_ENV: 'production', DATABASE_SSL: 'true',
+    DATABASE_URL: 'postgres://app:synthetic@db.example.test:5432/app',
+    SECURITY_JOURNAL_DATABASE_URL: 'postgres://journal:synthetic@journal.example.test:5432/journal',
+    PUBLIC_ORIGIN: 'https://app.example.test', OIDC_ISSUER: 'https://auth.dataporten.no',
+    OIDC_CLIENT_ID: 'synthetic-client', OIDC_CLIENT_SECRET: 'synthetic-production-client-secret',
+    SESSION_SECRET: 'synthetic-production-session-secret-123456',
+    FEIDE_ADMIN_REQUIRED_ACR: 'urn:synthetic:strong',
+  });
+  const pool = { async query() { throw new Error('unexpected query'); }, async connect() { throw new Error('unexpected connect'); } };
+  const { app } = createSchoolApp({ config, appPool: pool, journalPool: pool });
+
+  await withServer(app, async (origin) => {
+    const md404 = await fetch(`${origin}/__ora-404-probe-test`, {
+      headers: { Accept: 'text/markdown', 'x-forwarded-proto': 'https' },
+    });
+    assert.equal(md404.status, 404);
+    assert.match(md404.headers.get('content-type') || '', /^text\/markdown/u);
+    assert.match(md404.headers.get('vary') || '', /\bAccept\b/i);
+    assert.match(await md404.text(), /\/llms\.txt/u);
+
+    const api404 = await fetch(`${origin}/api/does-not-exist`, {
+      headers: { Accept: 'text/markdown', 'x-forwarded-proto': 'https' },
+    });
+    assert.equal(api404.status, 404);
+    assert.match(api404.headers.get('content-type') || '', /^application\/json/u);
+  });
+});

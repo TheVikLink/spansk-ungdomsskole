@@ -3,6 +3,12 @@ import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { getSchoolContentAudioPath } from './activity-catalog.js';
+import {
+  HOME_MARKDOWN,
+  attachAgentReadinessRoutes,
+  prefersMarkdown,
+  renderNotFoundMarkdown,
+} from './agent-readiness.js';
 import { createSchoolRuntime } from './runtime.js';
 import { startupFailureCode } from './startup-diagnostics.js';
 import { createUndervisningRouter } from './undervisning-access.js';
@@ -125,6 +131,9 @@ function renderSchoolInfoHtml(query) {
       <p>Elevene kan bruke <a href="/">øvingsappen uten innlogging</a> med en gang, og lærere kan åpne <a href="/undervisning/">fire komplette 45-minutters prøvetimer</a> med lydopptak og utskrivbare A/B-samtalekort.</p>
     </section>
     <footer class="portal-footer">
+      <a href="/about">Om oss</a> |
+      <a href="/contact">Kontakt</a> |
+      <a href="/privacy">Personvern</a> |
       <a href="/besoksstatistikk.html">Besøksstatistikk og personvern</a>
     </footer>
   </main>
@@ -161,6 +170,13 @@ const NOT_FOUND_HTML = `<!doctype html>
         <a class="btn-secondary" href="/school">Skolepakke med Feide</a>
       </div>
     </section>
+    <footer class="portal-footer">
+      <a href="/about">Om oss</a> |
+      <a href="/contact">Kontakt</a> |
+      <a href="/privacy">Personvern</a> |
+      <a href="/llms.txt">llms.txt</a> |
+      <a href="/sitemap.xml">sitemap.xml</a>
+    </footer>
   </main>
 </body>
 </html>`;
@@ -178,10 +194,14 @@ export function createLazyFunctionApp(loadRuntime) {
   app.disable('x-powered-by');
   let runtimePromise;
 
-  app.get(['/', '/index.html'], (_req, res) => {
+  app.get(['/', '/index.html'], (req, res) => {
+    res.vary('Accept');
     res.setHeader('Cache-Control', 'public, max-age=0, must-revalidate');
     res.setHeader('X-Content-Type-Options', 'nosniff');
     res.setHeader('Referrer-Policy', 'same-origin');
+    if (prefersMarkdown(req)) {
+      return res.status(200).type('text/markdown; charset=utf-8').send(HOME_MARKDOWN);
+    }
     res.setHeader('Content-Security-Policy', PUBLIC_HTML_CSP);
     return res.sendFile(path.join(projectRoot, 'index.html'));
   });
@@ -215,6 +235,8 @@ export function createLazyFunctionApp(loadRuntime) {
     res.setHeader('Cache-Control', 'public, max-age=86400');
     return res.type('image/svg+xml').send(FAVICON_SVG);
   });
+
+  attachAgentReadinessRoutes(app, { projectRoot, infoCsp: SCHOOL_INFO_CSP });
 
   app.get('/docs/kultur/:packId/:page', (req, res) => {
     const packId = req.params.packId;
@@ -304,6 +326,10 @@ export function createLazyFunctionApp(loadRuntime) {
             res.setHeader('X-Content-Type-Options', 'nosniff');
             res.setHeader('Referrer-Policy', 'same-origin');
             res.setHeader('X-Frame-Options', 'DENY');
+            res.vary('Accept');
+            if ((req.method === 'GET' || req.method === 'HEAD') && prefersMarkdown(req)) {
+              return res.status(404).type('text/markdown; charset=utf-8').send(renderNotFoundMarkdown(req.path));
+            }
             res.setHeader('Content-Security-Policy', SCHOOL_INFO_CSP);
             if (req.method === 'GET' && req.accepts(['html', 'json']) === 'html') {
               return res.status(404).type('html').send(NOT_FOUND_HTML);

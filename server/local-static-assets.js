@@ -2,6 +2,7 @@ import express from 'express';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 import { getSchoolContentAudioPath } from './activity-catalog.js';
+import { HOME_MARKDOWN, attachAgentReadinessRoutes, prefersMarkdown } from './agent-readiness.js';
 import { createUndervisningRouter } from './undervisning-access.js';
 
 const projectRoot = fileURLToPath(new URL('../', import.meta.url));
@@ -10,7 +11,11 @@ const schoolCss = fileURLToPath(new URL('./public/school.css', import.meta.url))
 
 export function attachLocalStaticAssets(app) {
   const sendPublicFile = (file) => (_req, res) => res.sendFile(path.join(projectRoot, file));
-  app.get(['/', '/index.html'], (_req, res, next) => {
+  app.get(['/', '/index.html'], (req, res, next) => {
+    res.vary('Accept');
+    if (prefersMarkdown(req)) {
+      return res.status(200).type('text/markdown; charset=utf-8').send(HOME_MARKDOWN);
+    }
     // The public practice document uses inline JavaScript, event handlers and styles.
     res.setHeader('Content-Security-Policy', "default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; media-src 'self' blob:; connect-src 'self'; manifest-src 'self'; worker-src 'self'; base-uri 'none'; form-action 'self'; frame-ancestors 'none'; object-src 'none'");
     next();
@@ -19,6 +24,10 @@ export function attachLocalStaticAssets(app) {
   app.get('/sw.js', (_req, res, next) => { res.type('application/javascript'); next(); }, sendPublicFile('sw.js'));
   app.get('/school.js', (_req, res) => res.type('js').sendFile(schoolJs));
   app.get('/school.css', (_req, res) => res.type('css').sendFile(schoolCss));
+  attachAgentReadinessRoutes(app, {
+    projectRoot,
+    infoCsp: "default-src 'none'; style-src 'self'; img-src 'self' data:; base-uri 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'",
+  });
   app.get('/audio/school-content/:filename', (req, res) => {
     const assetPath = getSchoolContentAudioPath(req.params.filename);
     if (!assetPath) return res.status(404).end();

@@ -2,6 +2,7 @@ import express from 'express';
 import { createHash, createHmac, randomBytes, randomUUID, timingSafeEqual } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { attachLocalStaticAssets } from './local-static-assets.js';
+import { prefersMarkdown, renderNotFoundMarkdown } from './agent-readiness.js';
 import { z } from 'zod';
 import { getActivity, listActivities, snapshotActivity, verifyActivitySnapshot, publicActivitySnapshot, evaluateSnapshot } from './activity-catalog.js';
 import { createOidcService } from './oidc-service.js';
@@ -883,7 +884,13 @@ export function createSchoolApp({ config, appPool, journalPool, serveLocalStatic
   });
 
   if (serveLocalStaticAssets) attachLocalStaticAssets(app);
-  app.use((_req, res) => res.status(404).json({ error: 'Fant ikke ressursen.' }));
+  app.use((req, res) => {
+    res.vary('Accept');
+    if ((req.method === 'GET' || req.method === 'HEAD') && !req.path.startsWith('/api/') && !req.path.startsWith('/auth/') && prefersMarkdown(req)) {
+      return res.status(404).type('text/markdown; charset=utf-8').send(renderNotFoundMarkdown(req.path));
+    }
+    return res.status(404).json({ error: 'Fant ikke ressursen.' });
+  });
 
   app.use((error, req, res, _next) => {
     if (res.headersSent) return;
