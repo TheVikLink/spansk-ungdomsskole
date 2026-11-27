@@ -1,6 +1,6 @@
 # Prosjektstatus – Spansk på 1-2-3
 
-Sist oppdatert: 24. november 2026  
+Sist oppdatert: 27. november 2026
 Kanonisk teknisk og operativ statusoversikt. Detaljerte oppgaver følges i Beads (`bd --no-daemon ready --json`).
 
 ## Aktivt mandat (24. november 2026)
@@ -23,7 +23,7 @@ Produkteieren har løftet funksjonsfrysen fra 9. november 2026 for å gjennomfø
 
 ## Hva som gjenstår før første kundeskole aktiveres med ekte elevdata (`rbec.4`)
 
-1. **Databaseoppgradering og varig jobbdrift (`ya9r`, `twkq`):** Oppgrader de to Supabase-stagingprosjektene fra PostgreSQL 17.6.1.171 til 17.12 etter verifisert logisk sikkerhetskopi (i tråd med Valg 2B-runbook i [`docs/feide/gjenoppretting-og-oppgradering.md`](feide/gjenoppretting-og-oppgradering.md)), og aktiver varig retensjonsworker.
+1. **Databaseoppgradering, produksjonsdatabaser og varig jobbdrift (`ya9r`, `twkq`):** Oppgrader de to Supabase-stagingprosjektene fra PostgreSQL 17.6.1.171 til 17.12 etter verifisert logisk sikkerhetskopi (i tråd med Valg 2B-runbook i [`docs/feide/gjenoppretting-og-oppgradering.md`](feide/gjenoppretting-og-oppgradering.md)), og aktiver varig retensjonsworker. De to tomme produksjonsdatabasene (`Spansk123` og `Spansk123 security journal`, 0 skoler) ble slettet 27. november 2026 etter eierbeslutning for å spare kostnader inntil første kundeskole signerer, og opprettes på nytt på PostgreSQL 17.12 med ferske migreringer og oppdaterte miljøvariabler i `spansk123-school-production` før aktivering.
 2. **Faglig gjennomlytting av lyd (`4or0`):** Spansklærer/produkteier kontrollerer de valgte opptakene mot manus og på fysisk skoleutstyr før lytteoppgaver brukes med elever.
 3. **Skolespesifikke avtaler og aktivering (`zq9b`):** Signert skoleavtale, databehandleravtale (DBA), bekreftede kontakter og skoleeiers godkjenning før første skole åpnes i produksjon.
 
