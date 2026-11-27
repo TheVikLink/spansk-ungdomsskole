@@ -326,7 +326,8 @@ test('Vercel Express adapter serves Norwegian Feide school info page on GET /sch
       ['/skole', '/school'],
       ['/school.html', '/school'],
       ['/besoksstatistikk', '/besoksstatistikk.html'],
-      ['/personvern', '/besoksstatistikk.html'],
+      ['/personvern', '/privacy'],
+      ['/personvern.html', '/privacy'],
     ]) {
       const redirectRes = await fetch(`${origin}${shortPath}`, { redirect: 'manual' });
       assert.equal(redirectRes.status, 301, `expected 301 for ${shortPath}`);

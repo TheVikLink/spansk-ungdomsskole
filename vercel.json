@@ -63,6 +63,10 @@
     {
       "source": "/undervisning/analytics.js",
       "headers": [{ "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }]
+    },
+    {
+      "source": "/audio/uttale/refold-v1/:path*",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=86400, immutable" }]
     }
   ]
 }

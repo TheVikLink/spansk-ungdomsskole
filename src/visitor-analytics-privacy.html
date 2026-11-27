@@ -2,25 +2,54 @@
 <html lang="nb">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="referrer" content="no-referrer">
-  <title>Besøksstatistikk – Spansk på 1-2-3</title>
+  <meta name="theme-color" content="#dc2626">
+  <meta name="description" content="Teknisk personvernoversikt for personvernsikret besøksstatistikk på de offentlige sidene av Spansk på 1-2-3.">
+  <link rel="canonical" href="https://www.spansk123.no/besoksstatistikk.html">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Crect width='192' height='192' rx='36' fill='%23dc2626'/%3E%3Ctext x='96' y='122' text-anchor='middle' font-size='96'%3E%F0%9F%87%AA%F0%9F%87%B8%3C/text%3E%3C/svg%3E">
+  <title>Besøksstatistikk og personvern | Spansk på 1-2-3</title>
+  <link rel="stylesheet" href="/undervisning/time.css">
 </head>
 <body>
-<main style="max-width:42rem;margin:2rem auto;padding:0 1rem;font-family:system-ui;line-height:1.6">
-  <h1>Besøksstatistikk og personvern</h1>
-  <p>På de offentlige sidene på <strong>spansk123.no</strong> (øvingsappen på forsiden og undervisningsoppleggene under <code>/undervisning/</code>) bruker vi Vercel Web Analytics for å få en overordnet oversikt over antall besøkende og hvilke undervisningsopplegg som blir brukt.</p>
-  <p>I tillegg måler vi tre helt anonyme hendelser på undervisningssidene:</p>
-  <ul>
-    <li><code>pdf_download</code> (tema og filnavn) når en lærer eller besøkende klikker på en PDF-lenke</li>
-    <li><code>audio_play</code> (tema og filnavn) første gang en lytteøvelse spilles av på en side</li>
-    <li><code>license_activate</code> (om det var en demokode eller skolekode, uten selve koden) når en kode aktiveres</li>
-  </ul>
-  <p>Vi sender ikke elevsvar, navn, e-postadresser, lokal fremgang, lydopptak, rå skolekoder, elevkoder eller innhold fra skolesidene (<code>/school</code>) til statistikken. Alle queryparametere (som <code>?kode=</code>, <code>?elev=</code> og <code>?fbclid=</code>) og fragmenter fjernes før innsending. Vi bruker ingen statistikkcookies eller sporing på tvers av nettsteder.</p>
-  <p>Vercel mottar teknisk nettverksinformasjon, blant annet IP-adresse og nettleserinformasjon, når statistikken lastes og sendes. Ifølge leverandøren lagres statistikk uten IP-adresser og med en besøks-hash som varer i opptil 24 timer. Statistikken kan inneholde omtrentlig sted og enhetstype.</p>
-  <p>Sideeierens prosjektadministratorer har tilgang til aggregert statistikk. Vercels rapportvindu er ikke en garantert slettingsfrist. Se <a href="https://vercel.com/docs/analytics/privacy-policy">Vercels personverninformasjon</a> og <a href="https://vercel.com/docs/analytics/limits-and-pricing">informasjon om lagring og rapportvindu</a>.</p>
-  <p>Nettleserens Global Privacy Control eller Do Not Track hindrer lasting av statistikken. Vi måler heller ikke når nettleseren er frakoblet.</p>
-  <p style="display:flex;gap:1rem;flex-wrap:wrap"><a href="/">Tilbake til øving</a><a href="/undervisning/index.html">Til undervisningstimer</a><a href="/school">Skolepakke med Feide</a></p>
-</main>
+  <main>
+    <nav aria-label="Hovednavigasjon">
+      <a href="/">Øvingsappen</a>
+      <a href="/undervisning/">Undervisningstimer</a>
+      <a href="/school">Skolepakke med Feide</a>
+      <a href="/about">Om oss</a>
+      <a href="/contact">Kontakt</a>
+      <a href="/privacy">Personvern</a>
+    </nav>
+    <header>
+      <h1>Besøksstatistikk og personvern</h1>
+      <p>Oversikt over hvordan vi måler overordnet besøkstall på de offentlige sidene uten informasjonskapsler (cookies) og uten elevdata.</p>
+    </header>
+    <section class="package-hero" aria-labelledby="analyticsOverviewTitle">
+      <h2 id="analyticsOverviewTitle">Hva som måles på offentlige sider</h2>
+      <p>På de offentlige sidene på <strong>spansk123.no</strong> (øvingsappen på forsiden og undervisningsoppleggene under <code>/undervisning/</code>) bruker vi Vercel Web Analytics for å få en overordnet oversikt over antall besøkende og hvilke undervisningsopplegg som blir brukt.</p>
+      <p>På undervisningssidene måler vi i tillegg tre helt anonyme brukshendelser:</p>
+      <ul class="package-highlights">
+        <li><strong>PDF-nedlasting:</strong> Hvilket tema og dokument som åpnes når en besøkende klikker på en PDF-lenke til elevark eller samtalekort.</li>
+        <li><strong>Lydavspilling:</strong> Første gang en lyttedialog startes på en undervisningsside (kun tema og lydfilnavn).</li>
+        <li><strong>Kodeaktivering:</strong> Om en kodeaktivering gjaldt en demokode eller en skolekode, uten at selve koden sendes videre.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Hva vi aldri sender til statistikken</h2>
+      <p>Vi sender aldri elevsvar, navn, e-postadresser, lokal øvingsfremgang, lydopptak, rå skolekoder, elevkoder eller innhold fra det innloggede skoleområdet (<code>/school</code>) til statistikken.</p>
+      <p>Alle nettadresseparametere (som kode-, elev- eller kampanjeparametere) og fragmenter fjernes før innsending. Vi bruker ingen statistikk-cookies og ingen sporing på tvers av nettsteder.</p>
+    </section>
+    <section>
+      <h2>Nettverksinformasjon, lagring og egne personvernvalg</h2>
+      <p>Vercel mottar teknisk nettverksinformasjon, blant annet IP-adresse og nettlesertype, når statistikksiden hentes og sendes. Ifølge leverandøren lagres statistikken uten IP-adresser og med en midlertidig anonym nøkkel som varer i opptil 24 timer. Statistikken kan vise omtrentlig område og enhetstype.</p>
+      <p>Sideeierens administratorer har tilgang til samlet statistikk. Vercels rapportvindu er ikke en garantert slettingsfrist. Se <a href="https://vercel.com/docs/analytics/privacy-policy">Vercels personverninformasjon</a> og <a href="https://vercel.com/docs/analytics/limits-and-pricing">informasjon om lagring og rapportvindu</a>.</p>
+      <p>Hvis nettleseren din sender Global Privacy Control eller Do Not Track, lastes ikke statistikken i det hele tatt. Vi måler heller ikke når nettleseren er uten nett.</p>
+    </section>
+    <footer class="portal-footer">
+      <p>Oversikt AS (org.nr. 930 687 758), Knappenveien 1A, 5151 Straumsgrend. Kontakt: <a href="mailto:ole@spansk123.no">ole@spansk123.no</a></p>
+      <p><a href="/about">Om oss</a> | <a href="/contact">Kontakt</a> | <a href="/privacy">Personvern</a> | <a href="/besoksstatistikk.html">Besøksstatistikk</a></p>
+    </footer>
+  </main>
 </body>
 </html>

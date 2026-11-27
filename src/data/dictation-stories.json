@@ -63,7 +63,7 @@
       ],
       "audioDir": "Luis está en Oaxaca",
       "audioExt": "wav",
-      "fullAudio": "Luis está en Oaxaca .wav",
+      "fullAudio": "Luis está en Oaxaca.mp3",
       "segments": [
         [
           "Luis está en Oaxaca.",
@@ -112,7 +112,7 @@
       ],
       "audioDir": "Sofía vive en antigua Guatemala",
       "audioExt": "wav",
-      "fullAudio": "Sofía vive en antigua Guatemala.wav",
+      "fullAudio": "Sofía vive en antigua Guatemala.mp3",
       "segments": [
         [
           "Sofía vive en Antigua Guatemala.",
@@ -161,7 +161,7 @@
       ],
       "audioDir": "Tomás vive en Buenos Aires",
       "audioExt": "wav",
-      "fullAudio": "Tomás vive en Buenos Aires .wav",
+      "fullAudio": "Tomás vive en Buenos Aires.mp3",
       "segments": [
         [
           "Tomás vive en Buenos Aires.",
@@ -210,7 +210,7 @@
       ],
       "audioDir": "Nora pasa una semana",
       "audioExt": "wav",
-      "fullAudio": "Nora pasa una semana.wav",
+      "fullAudio": "Nora pasa una semana.mp3",
       "segments": [
         [
           "Nora pasa una semana en Barcelona.",

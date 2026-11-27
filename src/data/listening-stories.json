@@ -11,8 +11,8 @@
       "durationSeconds": 68.14,
       "intro": "Leo forteller om en hel lørdag i Sevilla.",
       "audioDir": "lyttehistorier",
-      "audioExt": "wav",
-      "fullAudio": "Leo-Sevilla.wav",
+      "audioExt": "mp3",
+      "fullAudio": "Leo-Sevilla.mp3",
       "transcript": "Hola, soy Leo y vivo en Sevilla. Hoy es sábado y hace buen tiempo. Por la mañana, desayuno pan, fruta y yogur con mi madre. Después, preparo mi mochila y voy en bicicleta al parque. En el parque hay muchos árboles, flores y un pequeño lago. Veo a mi amiga Marta cerca de una fuente. Ella tiene una pelota amarilla. Jugamos al fútbol durante un rato y hablamos de la escuela. Luego, nos sentamos en un banco y bebemos agua. Antes de volver a casa, compramos un helado de chocolate y caminamos despacio por la plaza. Al mediodía, mi padre prepara arroz y ensalada para toda la familia. Comemos juntos en la cocina y contamos cosas divertidas. Por la tarde, leo un cómic, escucho música y ordeno mi habitación. También riego las plantas del balcón y preparo la ropa para el lunes. Estoy cansado, pero contento. Me gusta mucho el sábado.",
       "translation": "Hei, jeg heter Leo og bor i Sevilla. I dag er det lørdag og fint vær. Om morgenen spiser jeg brød, frukt og yoghurt med moren min. Etterpå pakker jeg sekken og sykler til parken. I parken er det mange trær, blomster og en liten innsjø. Jeg ser venninnen min Marta ved en fontene. Hun har en gul ball. Vi spiller fotball en stund og snakker om skolen. Så setter vi oss på en benk og drikker vann. Før vi går hjem, kjøper vi en sjokoladeis og går sakte gjennom torget. Ved lunsjtider lager faren min ris og salat til hele familien. Vi spiser sammen på kjøkkenet og forteller morsomme ting. Om ettermiddagen leser jeg en tegneserie, hører på musikk og rydder rommet mitt. Jeg vanner også plantene på balkongen og legger frem klær til mandag. Jeg er trøtt, men glad. Jeg liker lørdagen veldig godt.",
       "questions": [
@@ -99,7 +99,7 @@
       "theme": "By og skole",
       "durationSeconds": 35.6,
       "intro": "Carmen spør om veien til et museum i Madrid.",
-      "fullAudio": "Hola soy Carmen .wav",
+      "fullAudio": "Hola soy Carmen.mp3",
       "transcript": "Hola, soy Carmen. Estoy en Madrid con mi clase. Después de comer, queremos ir al museo. Mi amiga Julia tiene un mapa, pero no encuentra la calle. Preguntamos a un señor: «¿Dónde está el museo?». Él señala una calle pequeña y dice: «Está cerca del parque». Caminamos cinco minutos y vemos la entrada. El museo es grande y tiene una puerta azul. La profesora dice que tenemos veinte minutos para mirar una exposición de fotos. Estoy un poco cansada, pero muy contenta.",
       "translation": "Hei, jeg heter Carmen. Jeg er i Madrid med klassen min. Etter at vi har spist, vil vi gå til museet. Venninnen min Julia har et kart, men finner ikke gaten. Vi spør en mann: «Hvor er museet?». Han peker på en liten gate og sier: «Det er nær parken». Vi går i fem minutter og ser inngangen. Museet er stort og har en blå dør. Læreren sier at vi har tjue minutter til å se på en fotoutstilling. Jeg er litt trøtt, men veldig glad.",
       "questions": [
@@ -186,7 +186,7 @@
       "theme": "By og transport",
       "durationSeconds": 38.85,
       "intro": "Mateo forteller om en tur til sentrum i Puebla.",
-      "fullAudio": "Me llamo Mateo y viv.wav",
+      "fullAudio": "Me llamo Mateo y viv.mp3",
       "transcript": "Me llamo Mateo y vivo en Puebla. Esta mañana voy al centro con mi primo Nico. Queremos comprar un regalo para nuestra abuela. En la parada hay mucha gente y un autobús amarillo llega muy rápido. Nico mira el número y dice: «No es nuestro autobús». Esperamos unos minutos más. Mientras esperamos, una señora vende zumo de naranja. Compramos un vaso para compartir. Por fin llega el autobús número doce. Nos sentamos junto a la ventana y vemos una plaza con flores. Nico recuerda que el regalo tiene que ser pequeño porque volvemos a casa a pie.",
       "translation": "Jeg heter Mateo og bor i Puebla. I morges skal jeg til sentrum med fetteren min Nico. Vi vil kjøpe en gave til bestemoren vår. På holdeplassen er det mange mennesker, og en gul buss kommer veldig fort. Nico ser på nummeret og sier: «Det er ikke vår buss». Vi venter noen minutter til. Mens vi venter, selger en dame appelsinjuice. Vi kjøper ett glass som vi deler. Endelig kommer buss nummer tolv. Vi setter oss ved vinduet og ser et torg med blomster. Nico husker at gaven må være liten fordi vi går hjem.",
       "questions": [

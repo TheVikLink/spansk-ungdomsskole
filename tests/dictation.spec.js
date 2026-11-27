@@ -11,8 +11,8 @@ test.describe('lyttehistorier og fortellingsbasert diktat', () => {
     expect(stories).toHaveLength(4);
     expect(stories.map(story => story.id)).toEqual(['carmen-madrid-a0', 'mateo-puebla-a0', 'ines-valparaiso-a1', 'diego-cartagena-a1']);
     expect(Object.fromEntries(stories.map(story => [story.id, story.fullAudio]))).toEqual({
-      'carmen-madrid-a0': 'Hola soy Carmen .wav',
-      'mateo-puebla-a0': 'Me llamo Mateo y viv.wav',
+      'carmen-madrid-a0': 'Hola soy Carmen.mp3',
+      'mateo-puebla-a0': 'Me llamo Mateo y viv.mp3',
       'ines-valparaiso-a1': 'Hola soy Inés.mp3',
       'diego-cartagena-a1': 'Diego de Cartagena.mp3'
     });
@@ -45,7 +45,7 @@ test.describe('lyttehistorier og fortellingsbasert diktat', () => {
       const story = LISTENING_STORIES.find(item => item.id === 'leo-sevilla');
       return { level: story.level, questionCount: story.questions.length, audio: story.fullAudio };
     });
-    expect(story).toMatchObject({ level: 'A1', questionCount: 3, audio: 'Leo-Sevilla.wav' });
+    expect(story).toMatchObject({ level: 'A1', questionCount: 3, audio: 'Leo-Sevilla.mp3' });
     await page.getByRole('button', { name: 'Start lyttehistorien', exact: true }).first().click();
     await expect.poll(() => page.locator('#listeningStoryAudio').evaluate(audio => audio.duration)).toBeGreaterThanOrEqual(45);
     expect(await page.locator('#listeningStoryAudio').evaluate(audio => audio.duration)).toBeLessThanOrEqual(75);
@@ -207,31 +207,31 @@ test.describe('lyttehistorier og fortellingsbasert diktat', () => {
     expect(failedRequests).toEqual([]);
   });
 
-  test('Buenos Aires-diktatet bruker de nye Tomás-WAV-filene', async ({ page }) => {
+  test('Buenos Aires-diktatet bruker de nye Tomás-lydfilene', async ({ page }) => {
     await page.goto(appUrl);
     const story = await page.evaluate(() => DICTATION_STORIES.find(item => item.id === 'buenosaires-biblioteca'));
     expect(story.audioDir).toBe('Tomás vive en Buenos Aires');
-    expect(story.fullAudio).toBe('Tomás vive en Buenos Aires .wav');
+    expect(story.fullAudio).toBe('Tomás vive en Buenos Aires.mp3');
     expect(story.segments.map(segment => segment[1])).toEqual(
       Array.from({ length: 8 }, (_, index) => `Tomás vive en Buenos Aires ${index + 1}.wav`)
     );
   });
 
-  test('Barcelona-diktatet bruker de nye Nora-WAV-filene', async ({ page }) => {
+  test('Barcelona-diktatet bruker de nye Nora-lydfilene', async ({ page }) => {
     await page.goto(appUrl);
     const story = await page.evaluate(() => DICTATION_STORIES.find(item => item.id === 'barcelona-bici'));
     expect(story.audioDir).toBe('Nora pasa una semana');
-    expect(story.fullAudio).toBe('Nora pasa una semana.wav');
+    expect(story.fullAudio).toBe('Nora pasa una semana.mp3');
     expect(story.segments.map(segment => segment[1])).toEqual(
       Array.from({ length: 8 }, (_, index) => `Nora pasa una semana ${index + 1}.wav`)
     );
   });
 
-  test('bruker de innspilte WAV-filene i Madrid- og Oaxaca-mappene', async ({ page }) => {
+  test('bruker de innspilte lydfilene i Madrid- og Oaxaca-mappene', async ({ page }) => {
     await page.goto(appUrl);
     await page.evaluate(() => { localStorage.clear(); studentName = 'Diktat-test'; showMainApp(); showPage('dictation'); });
     await page.locator('#dictationStoryList').getByRole('button', { name: 'Start diktat' }).nth(1).click();
-    await expect(page.locator('#dictationFullStoryAudio')).toHaveAttribute('src', /Luis%20est.*Oaxaca.*\.wav$/);
+    await expect(page.locator('#dictationFullStoryAudio')).toHaveAttribute('src', /Luis%20est.*Oaxaca\.mp3$/);
     await page.getByRole('button', { name: 'Start øvelsen' }).click();
     await expect(page.locator('#dictationSegmentAudio')).toHaveAttribute('src', /Luis%20est.*Oaxaca.*1\.wav$/);
   });

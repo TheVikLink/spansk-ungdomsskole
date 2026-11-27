@@ -128,7 +128,7 @@ test('lærer åpner timekatalogen og eleven bruker riktig glosesett, skriving, l
 
     await expect(page.getByText('Sammenlign etter at du har skrevet', { exact: true })).toBeHidden();
     for (const [prompt, example] of lesson.writing) await page.getByLabel(prompt).fill(example);
-    await page.getByText('Sammenlign etter at du har skrevet', { exact: true }).click();
+    await expect(page.locator('[data-writing] details')).toHaveAttribute('open', '');
     for (const [, example] of lesson.writing) await expect(page.getByText(example, { exact: true })).toBeVisible();
 
     // Draft answers persist locally across reload and can be cleared cleanly

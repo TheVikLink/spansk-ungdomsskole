@@ -43,22 +43,37 @@
         let count = 0;
         try {
             const cache = await caches.open(cacheName); await removeAlphabetClips(cache);
-            for (const file of files) {
-                if (request.signal.aborted) throw new DOMException('Aborted', 'AbortError');
-                const key = url(file);
-                if (!(await valid(await cache.match(key), file))) {
-                    // Otherwise the service worker would serve the damaged cached copy again.
-                    await cache.delete(key);
-                    const timeout = setTimeout(() => request.abort(), 15000);
-                    try {
-                        const response = await fetch(key, { cache: 'reload', credentials: 'omit', signal: request.signal });
-                        if (!(await valid(response, file))) throw new Error('Ufullstendig eller feil lydfil');
-                        if (request.signal.aborted) throw new DOMException('Aborted', 'AbortError');
-                        await cache.put(key, response);
+            let nextIndex = 0;
+            const concurrency = 4;
+            let workers = [];
+            const worker = async () => {
+                while (nextIndex < files.length) {
+                    if (request.signal.aborted || controller !== request) throw new DOMException('Aborted', 'AbortError');
+                    const file = files[nextIndex++];
+                    const key = url(file);
+                    if (!(await valid(await cache.match(key), file))) {
+                        // Otherwise the service worker would serve the damaged cached copy again.
+                        await cache.delete(key);
+                        const timeout = setTimeout(() => request.abort(), 15000);
+                        try {
+                            const response = await fetch(key, { cache: 'reload', credentials: 'omit', signal: request.signal });
+                            if (!(await valid(response, file))) throw new Error('Ufullstendig eller feil lydfil');
+                            if (request.signal.aborted || controller !== request) throw new DOMException('Aborted', 'AbortError');
+                            await cache.put(key, response);
+                        }
+                        finally { clearTimeout(timeout); }
                     }
-                    finally { clearTimeout(timeout); }
+                    if (request.signal.aborted || controller !== request) throw new DOMException('Aborted', 'AbortError');
+                    count++; text(`${count} av ${files.length} opptak er klare uten nett.${count === files.length ? ' Hele uttaleskolen er lastet ned.' : ' Laster ned …'}`);
                 }
-                count++; text(`${count} av ${files.length} opptak er klare uten nett.${count === files.length ? ' Hele uttaleskolen er lastet ned.' : ' Laster ned …'}`);
+            };
+            workers = Array.from({ length: Math.min(concurrency, files.length) }, worker);
+            try {
+                await Promise.all(workers);
+            } catch (err) {
+                request.abort();
+                await Promise.allSettled(workers);
+                throw err;
             }
         } catch (error) {
             text(`${count} opptak kontrollert denne gangen. ${error.name === 'AbortError' ? 'Nedlastingen ble avbrutt.' : 'Nedlastingen ble ikke fullført. Sjekk nett og ledig lagringsplass.'} Prøv igjen for å fortsette med filene som mangler.`);

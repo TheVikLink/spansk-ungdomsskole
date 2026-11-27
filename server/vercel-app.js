@@ -253,9 +253,14 @@ export function createLazyFunctionApp(loadRuntime) {
     return res.redirect(301, '/school');
   });
 
-  app.get(['/besoksstatistikk', '/besoksstatistikk/', '/personvern', '/personvern.html'], (_req, res) => {
+  app.get(['/besoksstatistikk', '/besoksstatistikk/'], (_req, res) => {
     res.setHeader('Cache-Control', 'public, max-age=3600');
     return res.redirect(301, '/besoksstatistikk.html');
+  });
+
+  app.get(['/personvern', '/personvern/', '/personvern.html'], (_req, res) => {
+    res.setHeader('Cache-Control', 'public, max-age=3600');
+    return res.redirect(301, '/privacy');
   });
 
   app.get('/besoksstatistikk.html', (_req, res) => {

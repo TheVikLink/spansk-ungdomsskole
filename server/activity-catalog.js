@@ -8,7 +8,7 @@ export const AREAS = Object.freeze({
 });
 
 export function getSchoolContentAudioPath(filename) {
-  if (typeof filename !== 'string' || !/^[a-f0-9]{64}\.wav$/u.test(filename)) return null;
+  if (typeof filename !== 'string' || !/^[a-f0-9]{64}\.(?:wav|mp3)$/u.test(filename)) return null;
   return fileURLToPath(new URL(`./content-media/${filename}`, import.meta.url));
 }
 

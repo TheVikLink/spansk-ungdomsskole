@@ -20,7 +20,7 @@ export function normalizeAnswerText(value) {
 }
 
 export function stripEdgePunctuation(value) {
-  return normalizeAnswerText(value).replace(/^[¡.,!;: "'«»]+|[.,!;:"'«»]+$/gu, '').trim();
+  return normalizeAnswerText(value).replace(/^[¿¡.,!;:"'«»]+|[?!.,!;:"'«»]+$/gu, '').trim();
 }
 
 export function normalizeAccentVariant(value) {
@@ -29,6 +29,27 @@ export function normalizeAccentVariant(value) {
 
 function stripAccentAndPunctuation(value) {
   return stripEdgePunctuation(value).replace(/[áéíóúü]/g, (ch) => ACCENT_MAP[ch] || ch);
+}
+
+export function normalizeAccentAndTildeVariant(value) {
+  return normalizeAccentVariant(value).replace(/ñ/g, 'n');
+}
+
+function stripAccentTildeAndPunctuation(value) {
+  return stripAccentAndPunctuation(value).replace(/ñ/g, 'n');
+}
+
+export function isMissingTildeN(answer, expected) {
+  const normAnswer = normalizeAnswerText(answer);
+  const normExpected = normalizeAnswerText(expected);
+  if (!normAnswer || !normExpected) return false;
+  if (normalizeAccentVariant(normAnswer) === normalizeAccentVariant(normExpected)) return false;
+  if (normalizeAccentAndTildeVariant(normAnswer) === normalizeAccentAndTildeVariant(normExpected)) return true;
+  const strippedAnswer = stripEdgePunctuation(answer);
+  const strippedExpected = stripEdgePunctuation(expected);
+  if (!strippedAnswer || !strippedExpected) return false;
+  if (stripAccentAndPunctuation(answer) === stripAccentAndPunctuation(expected)) return false;
+  return stripAccentTildeAndPunctuation(answer) === stripAccentTildeAndPunctuation(expected);
 }
 
 export function normalizeDictationAnswer(value) {

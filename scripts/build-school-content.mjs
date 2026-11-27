@@ -1,5 +1,6 @@
-import { mkdir, readFile, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
+import path from 'node:path';
 import { extractAllItems } from './lib/extract-all-items.mjs';
 import review from '../data/vocabulary-canonical-review.json' with { type: 'json' };
 import listeningCatalog from '../src/data/listening-stories.json' with { type: 'json' };
@@ -11,7 +12,8 @@ const listening = stories.find((story) => story.id === 'leo-sevilla');
 if (!listening?.fullAudio || !Array.isArray(listening.questions)) throw new Error('Approved local Leo listening exercise was not found');
 const audioBytes = await readFile(new URL(`../audio/lyttehistorier/${listening.fullAudio}`, import.meta.url));
 const audioDigest = createHash('sha256').update(audioBytes).digest('hex');
-const audioFilename = `${audioDigest}.wav`;
+const audioExt = path.extname(listening.fullAudio).toLowerCase() === '.mp3' ? '.mp3' : '.wav';
+const audioFilename = `${audioDigest}${audioExt}`;
 const mediaDirectory = new URL('../server/content-media/', import.meta.url);
 await mkdir(mediaDirectory, { recursive: true });
 try {

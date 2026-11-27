@@ -1,5 +1,6 @@
 const root = document.querySelector('#main');
 const userArea = document.querySelector('#user-area');
+const footerAccountActions = document.querySelector('#footer-account-actions');
 const areas = { vocabulary: 'Ordforråd', grammar: 'Grammatikk', verbs: 'Verbbøying', listening: 'Lytting' };
 let currentSession = null;
 let logoutNotice = '';
@@ -326,12 +327,14 @@ function addLogout() {
       await api('/api/account/delete', { method: 'POST', body: { confirmation: phrase } });
       location.assign('/school');
     } catch (error) { window.alert(error.message); }
-  }, 'secondary');
-  userArea.replaceChildren(node('span', currentSession.displayName, { className: 'muted' }), deleteAccount, form);
+  }, 'text-danger-link');
+  userArea.replaceChildren(node('span', currentSession.displayName, { className: 'muted' }), form);
+  if (footerAccountActions) footerAccountActions.replaceChildren(deleteAccount);
 }
 
 function loginView(localTest, requiredRole = null) {
   userArea.replaceChildren();
+  footerAccountActions?.replaceChildren();
   const card = node('section', null, { className: 'card' });
   if (localTest) message(card, 'Lokal testmodus. Innloggingen bruker syntetiske testkontoer, ikke Feide.', 'banner');
   if (logoutNotice) message(card, logoutNotice, 'banner');
@@ -414,10 +417,13 @@ async function chooseSchoolView() {
   const { schools = [] } = await api('/api/session');
   const card = node('section', null, { className: 'card' });
   card.append(node('h1', 'Velg skole'), node('p', 'Velg en skole som allerede er knyttet til Feide-kontoen din.'));
-  for (const school of schools) card.append(button(`${school.name} – ${school.role}`, async () => {
-    try { await api('/api/select-school', { method: 'POST', body: { schoolId: school.id } }); location.reload(); }
-    catch (error) { message(card, error.message, 'error'); }
-  }));
+  for (const school of schools) {
+    const roleLabel = school.role === 'school_admin' ? 'skoleadministrator' : school.role === 'teacher' ? 'lærer' : 'elev';
+    card.append(button(`${school.name} – ${roleLabel}`, async () => {
+      try { await api('/api/select-school', { method: 'POST', body: { schoolId: school.id } }); location.reload(); }
+      catch (error) { message(card, error.message, 'error'); }
+    }));
+  }
   card.append(node('h2', 'Har du fått invitasjon som lærer?'));
   card.append(node('p', 'Skriv inn engangskoden fra den andre skolens administrator.'));
   const inviteCode = node('input', null, { minlength: '20', maxlength: '100', autocomplete: 'off' });
@@ -699,7 +705,11 @@ async function showProgress(classInfo) {
   for (const days of [7, 30]) period.append(node('option', `Siste ${days} dager`, { value: days }));
   const output = node('div');
   const close = button('Lukk', () => card.remove(), 'secondary');
-  card.append(close, heading, field('Periode', period),
+  const header = node('div', null, { className: 'progress-card-header' });
+  header.append(heading, close);
+  const periodWrap = node('div', null, { className: 'progress-period-field' });
+  periodWrap.append(field('Periode', period));
+  card.append(header, periodWrap,
     node('p', 'Oversikten gjelder elever med aktive, tildelte lekser. Hver oppgave teller én gang per elev og lekse i perioden, også når eleven prøver flere ganger.', { className: 'muted' }), output);
   root.prepend(card);
   heading.focus();
@@ -840,8 +850,16 @@ async function loadStudent(assignmentId = null) {
       row.append(info, button(action, () => openAssignment(assignment)));
       list.append(row);
     }
-    if (!assignments.length) list.append(node('li', 'Læreren har ikke delt noen lekser med deg ennå.', { className: 'muted' }));
-    listCard.append(list);
+    if (assignments.length) {
+      listCard.append(list);
+    } else {
+      const empty = node('div', null, { className: 'empty-state' });
+      empty.append(
+        node('p', 'Læreren har ikke delt noen lekser med deg ennå.', { className: 'muted' }),
+        node('a', 'Start anbefalt øving', { className: 'button secondary', href: practiceHref })
+      );
+      listCard.append(empty);
+    }
   } catch (error) { message(listCard, error.message, 'error'); }
   page.append(listCard, classTools);
   root.replaceChildren(page);
@@ -938,9 +956,9 @@ async function openAssignment(item, fromPractice = false) {
       typedText = textInput.value;
       submit.disabled = !typedText.trim();
     });
-    const accentRow = node('div', null, { className: 'actions' });
+    const accentRow = node('div', null, { className: 'accent-row' });
     for (const ch of ['á', 'é', 'í', 'ó', 'ú', 'ñ', '¿', '¡']) {
-      accentRow.append(button(ch, () => {
+      const accentBtn = button(ch, () => {
         if (textInput.disabled) return;
         const start = textInput.selectionStart ?? textInput.value.length;
         const end = textInput.selectionEnd ?? textInput.value.length;
@@ -949,7 +967,9 @@ async function openAssignment(item, fromPractice = false) {
         textInput.focus();
         textInput.setSelectionRange(start + ch.length, start + ch.length);
         submit.disabled = !typedText.trim();
-      }, 'secondary'));
+      }, 'secondary');
+      accentBtn.addEventListener('mousedown', (event) => { event.preventDefault(); });
+      accentRow.append(accentBtn);
     }
     const accentHint = node('p', 'Hold inne a, e, i, o, u, n eller ? og ! på tastaturet for spanske tegn, eller klikk på knappene over.', { className: 'hint' });
     textWrap.append(field('Skriv svaret på spansk', textInput), accentRow, accentHint);
@@ -1018,6 +1038,7 @@ async function openAssignment(item, fromPractice = false) {
         if (error.reauthenticationRequired && submission.userId) {
           currentSession = null;
           userArea.replaceChildren();
+          footerAccountActions?.replaceChildren();
           const recovery = node('section', null, { className: 'card' });
           recovery.append(node('h1', 'Leksebesvarelsen venter i minnet'), node('p', 'Logg inn med samme Feide-konto i et nytt vindu. Svaret blir ikke sendt før den opprinnelige kontoen er bekreftet.'));
           const recover = button('Logg inn igjen og lagre', async () => {
@@ -1098,7 +1119,18 @@ async function load() {
     if (data.role === 'school_admin') return loadSchoolAdmin();
     return loginView(mode.localOidcTest);
   } catch (error) {
-    root.replaceChildren(node('section', null, { className: 'card' }), node('p', 'Vi fikk ikke kontakt med skoleområdet. Kontroller nettforbindelsen og prøv igjen.'));
+    const card = node('section', null, { className: 'card' });
+    const actions = node('div', null, { className: 'actions' });
+    actions.append(
+      button('Prøv igjen', () => { void load(); }),
+      node('a', 'Gå til fri øving uten konto', { className: 'button secondary', href: '/' }),
+    );
+    card.append(
+      node('h1', 'Vi fikk ikke kontakt med skoleområdet'),
+      node('p', 'Kontroller nettforbindelsen og prøv igjen.'),
+      actions,
+    );
+    root.replaceChildren(card);
   }
 }
 

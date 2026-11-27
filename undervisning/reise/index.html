@@ -3,12 +3,18 @@
 <title>Velg reisen som rekker fram</title><link rel="stylesheet" href="../time.css"></head>
 <body><main><nav><a href="../index.html">Alle undervisningstimer</a><a href="elev.html?laerer=1">Åpne elevsiden</a></nav>
 <header><p>Lærerside / Spansk A1 / 45 minutter</p><h1>Velg reisen som rekker fram</h1><p>Du kan spørre om transport og velge en reise som passer.</p></header>
+<nav class="lesson-steps-nav no-print" aria-label="Hopp til del i timen"><a href="#steg-1">1. Gloser (10 min)</a><a href="#steg-2">2. Skriv (8 min)</a><a href="#steg-3">3. Lytt (7 min)</a><a href="#steg-4">4. Snakk i par (15 min)</a><a href="#steg-5">5. Hent fram (5 min)</a></nav>
 <section class="teacher-toolbar" aria-labelledby="teacherToolsTitle">
 <h2 id="teacherToolsTitle">Del og skriv ut til klassen</h2>
-<p>Del elevsiden for digital øving uten fasit og uten partnerkort, eller skriv ut elevark og samtalekort på papir.</p>
+<p>Del elevsiden digitalt uten fasit og uten partnerkort, vis klassen fra tavla, eller skriv ut elevark og samtalekort på papir.</p>
 <div class="package-actions">
 <button type="button" class="btn-primary" data-copy-student-link data-lesson-id="reise" data-free="false">Kopier elevlenke (uten fasit)</button>
+<button type="button" class="btn-secondary" data-open-qr data-lesson-id="reise" data-free="false">Vis QR-kode</button>
+<button type="button" class="btn-secondary" data-open-board>Tavlemodus</button>
 <a class="btn-secondary" href="elev.html?laerer=1">Forhåndsvis elevside</a>
+</div>
+<div class="toolbar-print-row">
+<span class="toolbar-row-label">Utskrift og PDF:</span>
 <a class="btn-secondary" href="arbeidsark.pdf">Skriv ut elevark (PDF)</a>
 <a class="btn-secondary" href="partnerkort.pdf">Skriv ut partnerkortene (A4)</a>
 <a class="btn-secondary" href="partnerkort-a.pdf">Samtalekort A (PDF)</a>
@@ -16,19 +22,19 @@
 </div>
 <p class="toolbar-status" role="status" data-student-link-status></p>
 </section>
-<section><h2>1. Øv på glosene (10 min)</h2>
-<p lang="es">el hotel, el taxi, el autobús, el tren, el metro, el aeropuerto.</p>
-<p><a target="_blank" rel="noopener" href="../../index.html?fra=undervisning&amp;time=reise#time/vocab-0523,vocab-0541,vocab-0542,vocab-0543,vocab-0544,vocab-0546">Åpne glosene</a> i en ny fane. Elevene prøver å si svaret før de snur kortet.</p></section>
-<section><h2>2. Skriv på spansk (8 min)</h2><p>Elevene skriver svarene i skriveboksene på elevsiden eller på utskrevet elevark før de sammenligner med eksemplene.</p>
+<section id="steg-1" data-step-minutes="10"><h2>1. Øv på glosene (10 min)</h2>
+<div class="lesson-vocab-box"><ul class="lesson-vocab-chips" lang="es"><li>el hotel</li><li>el taxi</li><li>el autobús</li><li>el tren</li><li>el metro</li><li>el aeropuerto</li></ul></div>
+<p class="lesson-gloss-row"><a class="btn-primary lesson-gloss-cta" target="_blank" rel="noopener" href="../../index.html?fra=undervisning&amp;time=reise#time/vocab-0523,vocab-0541,vocab-0542,vocab-0543,vocab-0544,vocab-0546">Åpne glosene</a> <span>Åpnes i ny fane. Elevene prøver å si svaret før de snur kortet.</span></p></section>
+<section id="steg-2" data-step-minutes="8"><h2>2. Skriv på spansk (8 min)</h2><p>Elevene skriver svarene i skriveboksene på elevsiden eller på utskrevet elevark før de sammenligner med eksemplene.</p>
 <ol><li>Spør om bussen går til flyplassen.</li><li>Si at du bor på hotell.</li><li>Spør når toget går.</li></ol>
 <details><summary>Eksempelsvar</summary><div lang="es"><ol><li>¿Va el autobús al aeropuerto?</li><li>Estoy en un hotel.</li><li>¿A qué hora sale el tren?</li></ol></div><p>Andre forståelige formuleringer er også mulige.</p></details></section>
-<section><h2>3. Lytteøvelse (7 min)</h2><p>Spill av lytteøvelsen høyt for klassen to ganger. Elevene svarer i skriveboksene på elevsiden eller på utskrevet <a href="arbeidsark.pdf">elevark (PDF)</a> (<a href="arbeidsark.html">vis i nettleseren</a>).</p>
+<section id="steg-3" data-step-minutes="7"><h2>3. Lytteøvelse (7 min)</h2><p>Spill av lytteøvelsen høyt for klassen to ganger. Elevene svarer i skriveboksene på elevsiden eller på utskrevet <a href="arbeidsark.pdf">elevark (PDF)</a> (<a href="arbeidsark.html">vis i nettleseren</a>).</p>
 <ol><li>Hvor skal de fra hotellet?</li><li>Når kommer bussen fram?</li><li>Hvilken transport velger de?</li></ol>
 <audio controls preload="metadata" aria-label="Lytt til samtalen" src="reise.mp3" onerror="this.hidden=true;this.nextElementSibling.textContent='Opptaket kan ikke spilles av. Les lyttemanuset høyt to ganger.'"></audio>
 <p role="status">Klar for avspilling i klasserommet.</p>
-<div class="audio-speed" role="group" aria-label="Avspillingshastighet" data-audio-speed><span class="audio-speed-label">Hastighet:</span><button type="button" class="speed-btn" data-rate="1" aria-pressed="true">1x (normal)</button><button type="button" class="speed-btn" data-rate="0.75" aria-pressed="false">0,75x</button><button type="button" class="speed-btn" data-rate="0.5" aria-pressed="false">0,5x</button></div></section>
-<section><h2>4. Snakk i par (15 min)</h2><p><a href="partnerkort.pdf">Skriv ut partnerkortene (A4)</a> for papirbruk (ett ark per par, klipp mellom A og B), eller del digitale enkeltkort i Classroom: <a href="partnerkort-a.pdf">Samtalekort A (PDF)</a> og <a href="partnerkort-b.pdf">Samtalekort B (PDF)</a> (<a href="partnerkort.html">vis begge i nettleseren</a>).</p></section>
-<section><h2>5. Hent fram ordene igjen (5 min)</h2><p>Legg bort kortene. Elevene sier én ny setning med to av ordene og lar partneren stille et spørsmål. Neste spansktime kan elevene åpne spansk123.no i samme nettleser og bruke «Repeter gloser» på Start – fremgangen lagres lokalt på elevens enhet, uten konto.</p></section>
+<div class="audio-speed" role="group" aria-label="Avspillingskontroll" data-audio-speed><span class="audio-speed-label">Hastighet:</span><button type="button" class="speed-btn" data-rate="1" aria-pressed="true">1x (normal)</button><button type="button" class="speed-btn" data-rate="0.75" aria-pressed="false">0,75x</button><button type="button" class="speed-btn" data-rate="0.5" aria-pressed="false">0,5x</button><button type="button" class="speed-btn" data-audio-back="-5">↺ -5 sek</button><button type="button" class="speed-btn" data-audio-restart>⏮ Fra start</button></div></section>
+<section id="steg-4" data-step-minutes="15"><h2>4. Snakk i par (15 min)</h2><p><a href="partnerkort.pdf">Skriv ut partnerkortene (A4)</a> for papirbruk (ett ark per par, klipp mellom A og B), eller del digitale enkeltkort i Classroom: <a href="partnerkort-a.pdf">Samtalekort A (PDF)</a> og <a href="partnerkort-b.pdf">Samtalekort B (PDF)</a> (<a href="partnerkort.html">vis begge i nettleseren</a>).</p></section>
+<section id="steg-5" data-step-minutes="5"><h2>5. Hent fram ordene igjen (5 min)</h2><p>Legg bort kortene. Elevene sier én ny setning med to av ordene og lar partneren stille et spørsmål. Neste spansktime kan elevene åpne spansk123.no i samme nettleser og bruke «Repeter gloser» på Start – fremgangen lagres lokalt på elevens enhet, uten konto.</p></section>
 <details><summary>For læreren: manus, fasit og forberedelse</summary><p>Skriv ut partnerkortene før timen (og elevarket hvis klassen jobber på papir). Elevsiden inneholder ikke denne seksjonen, ikke lyttemanuset og ikke partnerkortene.</p>
 <details class="transcript-details"><summary>Vis lyttemanus her</summary><pre class="transcript-box" lang="es">A: ¿Cómo vamos del hotel al aeropuerto?
 B: Podemos ir en autobús o en taxi.

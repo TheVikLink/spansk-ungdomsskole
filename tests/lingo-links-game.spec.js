@@ -4,7 +4,7 @@ import { pathToFileURL } from 'node:url';
 
 const appUrl = pathToFileURL(path.resolve('index.html')).toString();
 
-test.describe('Lingo Links game', () => {
+test.describe('Ordkobling game', () => {
   test('replaces the Glose-duell placeholder and starts with a 4x4 board', async ({ page }) => {
     await page.goto(appUrl);
 
@@ -14,12 +14,12 @@ test.describe('Lingo Links game', () => {
       showPage('games');
     });
 
-    await expect(page.getByRole('button', { name: /Lingo Links/ })).toBeVisible();
+    await expect(page.getByRole('button', { name: /Ordkobling/ })).toBeVisible();
     await expect(page.getByRole('button', { name: /Glose-duell/ })).toHaveCount(0);
 
-    await page.getByRole('button', { name: /Lingo Links/ }).click();
+    await page.getByRole('button', { name: /Ordkobling/ }).click();
     await expect(page.locator('#lingoLinksSetup')).toBeVisible();
-    await page.getByRole('button', { name: /Start Lingo Links/ }).click();
+    await page.getByRole('button', { name: /Start Ordkobling/ }).click();
 
     await expect(page.locator('#lingoLinksGame')).toBeVisible();
     await expect(page.locator('[data-ll-card]')).toHaveCount(16);

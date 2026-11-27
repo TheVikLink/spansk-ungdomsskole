@@ -7,7 +7,7 @@ test('F19: teacher chooses four themes; meanings appear only after an attempt an
   const boxes=page.locator('[data-ll-theme]'); await expect(boxes).not.toHaveCount(0);
   await boxes.evaluateAll(nodes=>nodes.forEach(node=>node.checked=false));
   const chosen=[];for(let i=0;i<4;i++){chosen.push(await boxes.nth(i).inputValue());await boxes.nth(i).check();}
-  await page.getByRole('button',{name:'Start Lingo Links',exact:true}).click();
+  await page.getByRole('button',{name:'Start Ordkobling',exact:true}).click();
   expect(await page.evaluate(()=>lingoLinksState.groups.map(g=>g.category).sort())).toEqual(chosen.sort());
   await expect(page.locator('#lingoLinksMeaningButton')).toBeHidden();
   const ids=await page.evaluate(()=>[...lingoLinksState.groups[0].cards.slice(0,3),lingoLinksState.groups[1].cards[0]]);
@@ -29,7 +29,7 @@ test('F19: teacher chooses four themes; meanings appear only after an attempt an
 });
 test('F19: practiced-word pool never silently includes unseen vocabulary',async({page})=>{
   await page.locator('#lingoLinksPool').selectOption('practiced');
-  await page.getByRole('button',{name:'Start Lingo Links',exact:true}).click();
+  await page.getByRole('button',{name:'Start Ordkobling',exact:true}).click();
   await expect(page.locator('#lingoLinksPoolStatus')).toContainText('fire temaer');
   await expect(page.locator('#lingoLinksSetup')).toBeVisible();
 });

@@ -20,6 +20,7 @@ function searchableTextForItem(item) {
 function applyCatalogFilter() {
   const query = (searchInput?.value || '').trim().toLowerCase();
   let visibleTotal = 0;
+  let freeVisible = 0;
 
   for (const item of catalogItems) {
     const isFree = item.dataset.free === 'true';
@@ -32,7 +33,10 @@ function applyCatalogFilter() {
     const matchesQuery = !query || text.includes(query);
     const visible = matchesFilter && matchesQuery;
     item.hidden = !visible;
-    if (visible) visibleTotal += 1;
+    if (visible) {
+      visibleTotal += 1;
+      if (isFree) freeVisible += 1;
+    }
   }
 
   for (const section of catalogSections) {
@@ -50,9 +54,12 @@ function applyCatalogFilter() {
   }
 
   if (resultCount) {
+    const freeNote = freeVisible > 0 && (activeFilter === 'theme' || activeFilter === 'culture')
+      ? ` (inkludert ${freeVisible} gratis ${freeVisible === 1 ? 'prøvetime' : 'prøvetimer'})`
+      : '';
     resultCount.textContent = visibleTotal === catalogItems.length
       ? `Viser alle ${catalogItems.length} undervisningstimer`
-      : `Viser ${visibleTotal} av ${catalogItems.length} undervisningstimer`;
+      : `Viser ${visibleTotal} av ${catalogItems.length} undervisningstimer${freeNote}`;
   }
   if (catalogEmpty) {
     catalogEmpty.hidden = visibleTotal > 0;
@@ -108,11 +115,22 @@ function showLockedLessonBanner(lessonId) {
   const topic = matching?.querySelector('small')?.textContent?.trim() || '';
   const title = matching?.querySelector('strong')?.textContent?.trim() || lessonId;
   const fullLabel = topic && topic !== title ? `${topic} – ${title}` : title;
+  const goal = matching?.dataset.goal?.trim() || '';
+  const vocabPreview = matching?.dataset.vocabPreview?.trim() || '';
+  const vocabCount = matching?.dataset.vocabCount?.trim() || '';
+  const level = matching?.dataset.level?.trim() || 'A1';
+
   lockedNotice.replaceChildren();
   const header = document.createElement('div');
   header.className = 'notice-banner-head';
+  const headingWrap = document.createElement('div');
+  const badge = document.createElement('span');
+  badge.className = 'locked-preview-badge';
+  badge.textContent = `Smakebit, 45 min (${level})`;
   const heading = document.createElement('strong');
   heading.textContent = `«${fullLabel}» inngår i Undervisningspakken.`;
+  headingWrap.append(badge, heading);
+
   const closeBtn = document.createElement('button');
   closeBtn.type = 'button';
   closeBtn.className = 'notice-close-btn';
@@ -121,14 +139,80 @@ function showLockedLessonBanner(lessonId) {
   closeBtn.addEventListener('click', () => {
     lockedNotice.hidden = true;
   });
-  header.append(heading, closeBtn);
+  header.append(headingWrap, closeBtn);
+  lockedNotice.append(header);
+
+  if (goal || vocabPreview) {
+    const previewBox = document.createElement('div');
+    previewBox.className = 'locked-preview-box';
+    if (goal) {
+      const goalLine = document.createElement('p');
+      const goalLabel = document.createElement('strong');
+      goalLabel.textContent = 'Læringsmål: ';
+      goalLine.append(goalLabel, document.createTextNode(goal));
+      previewBox.append(goalLine);
+    }
+    if (vocabPreview) {
+      const vocabLine = document.createElement('p');
+      const vocabLabel = document.createElement('strong');
+      vocabLabel.textContent = vocabCount
+        ? `Eksempel på gloser (4 av ${vocabCount}): `
+        : 'Eksempel på gloser: ';
+      const spanishSpan = document.createElement('span');
+      spanishSpan.lang = 'es';
+      spanishSpan.textContent = vocabPreview;
+      vocabLine.append(vocabLabel, spanishSpan);
+      previewBox.append(vocabLine);
+    }
+    lockedNotice.append(previewBox);
+  }
+
   const copy = document.createElement('p');
-  copy.textContent = 'Skriv inn skolens lisenskode nedenfor for å åpne alle 46 timer og utskrivbare samtalekort, eller prøv de 4 gratis prøvetimene (Spansk du kjenner igjen, Hilsener, Tall og Jul i Spania og Chile).';
-  lockedNotice.append(header, copy);
+  copy.textContent = 'Med skolekode låser du opp komplett lærerside og elevside, lyttedialog med 1x, 0,75x og 0,5x hastighet, utskrivbart elevark (PDF) og A4-samtalekort med informasjonskløft.';
+  lockedNotice.append(copy);
+
+  const actions = document.createElement('div');
+  actions.className = 'locked-preview-actions';
+
+  const codeBtn = document.createElement('button');
+  codeBtn.type = 'button';
+  codeBtn.className = 'btn-primary';
+  codeBtn.textContent = 'Skriv inn skolekode';
+  codeBtn.addEventListener('click', () => {
+    const input = document.getElementById('licenseCodeInput');
+    if (input) {
+      input.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      input.focus();
+    }
+  });
+
+  const sampleLink = document.createElement('a');
+  sampleLink.className = 'btn-secondary';
+  sampleLink.href = 'tall/index.html';
+  sampleLink.textContent = 'Prøv gratis time (Tall)';
+
+  const orderLink = document.createElement('a');
+  orderLink.className = 'btn-secondary';
+  const subject = encodeURIComponent(`Bestilling eller demo: Undervisningspakken (${fullLabel})`);
+  const body = encodeURIComponent(`Hei Ole Henrik,\n\nSkolen vår vil gjerne bestille eller se demo av Undervisningspakken (så på timen «${fullLabel}»).\n\nSkolenavn:\nKontaktperson:`);
+  orderLink.href = `mailto:ole@spansk123.no?subject=${subject}&body=${body}`;
+  orderLink.textContent = 'Bestill skolekode';
+
+  actions.append(codeBtn, sampleLink, orderLink);
+  lockedNotice.append(actions);
   lockedNotice.hidden = false;
+  lockedNotice.scrollIntoView?.({ block: 'nearest' });
+}
+
+function trackLicenseActivation(data) {
+  if (typeof window.va !== 'function') return;
+  const type = typeof data?.id === 'string' && data.id.startsWith('demo-') ? 'demo' : 'school';
+  window.va('event', { name: 'license_activate', data: { type } });
 }
 
 function renderLicensePanel(state, initialMessage = '', isError = false) {
+  const packageHero = document.querySelector('.package-hero');
+  if (packageHero) packageHero.hidden = Boolean(state?.active);
   if (!licensePanel) return;
   licensePanel.replaceChildren();
 
@@ -177,12 +261,6 @@ function renderLicensePanel(state, initialMessage = '', isError = false) {
   status.className = isError ? 'license-status error' : 'license-status';
   status.setAttribute('role', 'status');
   status.textContent = initialMessage;
-
-  function trackLicenseActivation(data) {
-    if (typeof window.va !== 'function') return;
-    const type = typeof data?.id === 'string' && data.id.startsWith('demo-') ? 'demo' : 'school';
-    window.va('event', { name: 'license_activate', data: { type } });
-  }
 
   form.addEventListener('submit', async (event) => {
     event.preventDefault();

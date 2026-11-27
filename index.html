@@ -21,7 +21,7 @@
     <meta name="theme-color" content="#dc2626">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Crect width='192' height='192' rx='36' fill='%23dc2626'/%3E%3Ctext x='96' y='122' text-anchor='middle' font-size='96'%3E🇪🇸%3C/text%3E%3C/svg%3E">
     <link rel="manifest" href="./manifest.webmanifest">
-    <meta name="app-build" content="c2a5a558e91a8ffd">
+    <meta name="app-build" content="1783d338a7d00dd7">
     <link href="./dist/tailwind.css" rel="stylesheet">
     <script type="application/ld+json">
     {
@@ -142,28 +142,23 @@
             <div class="login-divider">Har du brukt appen før?</div>
 
             <button class="login-btn login-btn-secondary" onclick="importProgressFile()">📂 Importer fremgang fra fil</button>
-            <p class="login-hint mt-2">
-                Støtter både ny og gammel versjon av appen
-            </p>
             <details class="login-hint mt-2">
                 <summary>Om sikkerhetskopi og bytte av enhet</summary>
                 <p class="mt-1">
-                    Hvis nettleserdata slettes, kan fremgangen bare hentes tilbake fra en sikkerhetskopi. Elevkoden gjenoppretter ikke data. Velg «Importer fremgang fra fil» på denne eller en ny enhet.
+                    Støtter både ny og gammel versjon av appen. Hvis nettleserdata slettes, kan fremgangen bare hentes tilbake fra en sikkerhetskopi. Elevkoden gjenoppretter ikke data. Velg «Importer fremgang fra fil» på denne eller en ny enhet.
                 </p>
             </details>
-            <p class="login-hint mt-3">
+            <p class="login-hint login-teacher-link mt-3">
                 <a href="undervisning/index.html">Er du spansklærer? Se Undervisningspakken med 46 ferdige timer (4 gratis prøvetimer)</a>
             </p>
             <p class="login-hint mt-2">
-                <a href="/school">Skolepakke med Feide</a> &nbsp;|&nbsp; <a href="/besoksstatistikk.html">Besøksstatistikk og personvern</a>
-            </p>
-            <p class="login-hint mt-2">
-                <a href="/about">Om oss</a> &nbsp;|&nbsp; <a href="/contact">Kontakt</a> &nbsp;|&nbsp; <a href="/privacy">Personvern</a>
+                <a href="/school">Skolepakke med Feide</a> &nbsp;|&nbsp; <a href="/about">Om oss</a> &nbsp;|&nbsp; <a href="/contact">Kontakt</a> &nbsp;|&nbsp; <a href="/privacy">Personvern</a> &nbsp;|&nbsp; <a href="/besoksstatistikk.html">Besøksstatistikk</a>
             </p>
         </div>
     </div>
 
     <div class="container hidden" id="mainApp">
+        <div id="offlineStatusBanner" class="offline-status-banner hidden" role="status" aria-live="polite"></div>
         <!-- Navigation Bar -->
         <nav class="nav-bar">
             <div class="nav-brand">
@@ -174,7 +169,7 @@
                 <button class="nav-link active" onclick="showPage('vocab')" id="navVocab" aria-current="page">📚 Gloser</button>
                 <button class="nav-link" onclick="showPage('brainmap')" id="navBrainmap">🧠 Kunnskapskart</button>
                 <button class="nav-link" onclick="showPage('verbs')" id="navVerbs">🏃 Verb</button>
-                <a class="nav-link" id="navLessons" href="undervisning/index.html">Undervisningstimer</a>
+                <a class="nav-link" id="navLessons" href="undervisning/index.html"><span aria-hidden="true">📘</span> Undervisningstimer</a>
                 <details class="nav-more" open>
                     <summary>☰ Flere områder <span class="nav-more-hint">Spill og lytteøvelser</span></summary>
                     <div class="nav-more-links">
@@ -188,7 +183,7 @@
             </div>
             <div class="user-info" id="userInfo">
                 <span class="user-name" id="userName"></span>
-                <button class="logout-btn" onclick="showSettings()" title="Innstillinger">⚙️</button>
+                <button class="logout-btn" onclick="showSettings()" title="Innstillinger" aria-label="Innstillinger">⚙️</button>
             </div>
         </nav>
 
@@ -212,7 +207,7 @@
 
                 <section class="recognition-launcher" aria-labelledby="recognitionLaunchTitle">
                     <div><h3 id="recognitionLaunchTitle">🔑 Spansk du kjenner igjen</h3><p>Se hvor mye spansk du allerede kan forstå! Oppdag ord som ligner på norsk og engelsk.</p></div>
-                    <button type="button" id="recognitionOpenBtn" class="btn btn-primary" onclick="openRecognitionTheme()">Utforsk temaet</button>
+                    <button type="button" id="recognitionOpenBtn" class="btn btn-outline" onclick="openRecognitionTheme()">Utforsk temaet</button>
                 </section>
                 <section class="mixed-quiz-launcher" id="mixedQuizLauncher" aria-labelledby="mixedQuizLauncherTitle">
                     <div>
@@ -667,10 +662,12 @@
                 <p class="mb-4 text-gray-500">
                     Vis en lokal oppsummering til læreren allerede første dag. Gloser, verbbøying og grammatikk teller. Ingen data sendes.
                 </p>
-                <button class="btn btn-primary btn-large" onclick="submitHomework()" id="submitHomeworkBtn">
-                    Vis ukens oppsummering
-                </button>
-                <button class="btn btn-secondary btn-large" onclick="showWeeklyReportForPrint('today')">Vis dagens oppsummering</button>
+                <div class="homework-submit-actions">
+                    <button class="btn btn-primary btn-large" onclick="submitHomework()" id="submitHomeworkBtn">
+                        Vis ukens oppsummering
+                    </button>
+                    <button class="btn btn-secondary btn-large" onclick="showWeeklyReportForPrint('today')">Vis dagens oppsummering</button>
+                </div>
                 <p class="homework-hint" id="homeworkHint"></p>
             </div>
 
@@ -727,18 +724,18 @@
                 <div class="games-grid">
                     <button type="button" class="game-card" onclick="showGameSetup('verbo-invaders')">
                         <div class="game-icon">👾</div>
-                        <h3>Verbo Invaders</h3>
+                        <h3>Verbjakt</h3>
                         <p>Bøy verb riktig før romvesnene tar over!</p>
                     </button>
                     <button type="button" class="game-card" onclick="showGameSetup('prepo-invaders')">
                         <div class="game-icon">🧭</div>
-                        <h3>Prepo Invaders</h3>
+                        <h3>Preposisjonsjakt</h3>
                         <p>Skyt riktig preposisjon før den lander!</p>
                     </button>
 
                     <button type="button" class="game-card" onclick="showGameSetup('lingo-links')">
                         <div class="game-icon">🔗</div>
-                        <h3>Lingo Links</h3>
+                        <h3>Ordkobling</h3>
                         <p>Finn gloser som hører sammen.</p>
                     </button>
                     <button type="button" class="game-card" onclick="showGameSetup('sentence-puzzle')">
@@ -752,7 +749,7 @@
             <!-- Verbo Invaders Setup -->
             <div id="verboInvadersSetup" class="hidden">
                 <div class="page-header">
-                    <h2>👾 Verbo Invaders</h2>
+                    <h2>👾 Verbjakt</h2>
                     <p>Velg verb og verbtider du vil øve på</p>
                 </div>
 
@@ -871,8 +868,8 @@
             <!-- Prepo Invaders Setup -->
             <div id="prepoInvadersSetup" class="hidden">
                 <div class="page-header">
-                    <h2>🧭 Prepo Invaders</h2>
-                    <p>Øv på spanske preposisjoner på Space-Invaders-vis</p>
+                    <h2>🧭 Preposisjonsjakt</h2>
+                    <p>Øv på spanske preposisjoner før de lander</p>
                 </div>
 
                 <div class="game-setup-section">
@@ -1060,14 +1057,14 @@
                         <div id="spWordTiles" class="sentence-puzzle-tiles" role="group" aria-label="Ordbrikker"></div>
                     </div>
 
-                    <div id="spFeedback" class="sentence-puzzle-feedback" aria-live="polite"></div>
-
                     <div class="button-group mt-5">
                         <button class="btn btn-primary" id="spCheckButton" onclick="checkSentencePuzzle()" aria-keyshortcuts="Enter">Sjekk setning</button>
                         <button class="btn btn-secondary" id="spNextButton" onclick="nextSentencePuzzle()" disabled aria-keyshortcuts="Enter">Neste setning</button>
                         <button class="btn btn-outline" id="spResetButton" onclick="resetSentencePuzzleRound()">Start setningen på nytt</button>
                         <button class="btn btn-outline" onclick="showGameSetup('sentence-puzzle')">Avslutt</button>
                     </div>
+
+                    <div id="spFeedback" class="sentence-puzzle-feedback" aria-live="polite"></div>
                 </div>
             </div>
 
@@ -1101,7 +1098,7 @@
             <!-- Lingo Links Setup -->
             <div id="lingoLinksSetup" class="hidden">
                 <div class="page-header">
-                    <h2>🔗 Lingo Links</h2>
+                    <h2>🔗 Ordkobling</h2>
                     <p>Finn fire grupper med fire spanske gloser som hører sammen.</p>
                 </div>
                 <div class="grid gap-4 md:grid-cols-2">
@@ -1130,7 +1127,7 @@
                     <p id="lingoLinksPoolStatus" role="status"></p>
                 </div>
                 <div class="button-group mt-6">
-                    <button class="btn btn-primary btn-large" onclick="startLingoLinks()">Start Lingo Links</button>
+                    <button class="btn btn-primary btn-large" onclick="startLingoLinks()">Start Ordkobling</button>
                     <button class="btn btn-secondary" onclick="showGamesMenu()">← Tilbake</button>
                 </div>
             </div>
@@ -1140,7 +1137,7 @@
                 <div class="rounded-xl border border-gray-200 bg-white p-4 shadow-sm md:p-6">
                     <div class="mb-5 flex flex-wrap items-center justify-between gap-3">
                         <div>
-                            <h2 class="text-xl font-bold text-gray-900">🔗 Lingo Links</h2>
+                            <h2 class="text-xl font-bold text-gray-900">🔗 Ordkobling</h2>
                             <p id="lingoLinksProgress" class="text-sm text-gray-600" aria-live="polite">0 av 4 grupper</p>
                         </div>
                         <div id="lingoLinksMistakes" class="rounded-full bg-gray-100 px-3 py-1 text-sm text-gray-700" aria-live="polite">Feil: 0</div>
@@ -1162,7 +1159,7 @@
             <div id="lingoLinksComplete" class="hidden">
                 <div class="session-complete">
                     <div class="emoji">🔗</div>
-                    <h2>Lingo Links ferdig</h2>
+                    <h2>Ordkobling ferdig</h2>
                     <div class="session-stats-grid">
                         <div class="session-stat">
                             <div class="session-stat-value" id="lingoLinksFinalMistakes">0</div>
@@ -1187,7 +1184,10 @@
         <footer class="app-footer" aria-label="Bunnlenker">
             <a href="undervisning/index.html">Undervisningstimer</a>
             <a href="/school">Skolepakke med Feide</a>
-            <a href="/besoksstatistikk.html">Besøksstatistikk og personvern</a>
+            <a href="/about">Om oss</a>
+            <a href="/contact">Kontakt</a>
+            <a href="/privacy">Personvern</a>
+            <a href="/besoksstatistikk.html">Besøksstatistikk</a>
         </footer>
     </div>
 
@@ -3435,22 +3435,37 @@ const pronunciationManifest = {"schemaVersion":1,"sourceArchiveSha256":"d67fa8c7
         let count = 0;
         try {
             const cache = await caches.open(cacheName); await removeAlphabetClips(cache);
-            for (const file of files) {
-                if (request.signal.aborted) throw new DOMException('Aborted', 'AbortError');
-                const key = url(file);
-                if (!(await valid(await cache.match(key), file))) {
-                    // Otherwise the service worker would serve the damaged cached copy again.
-                    await cache.delete(key);
-                    const timeout = setTimeout(() => request.abort(), 15000);
-                    try {
-                        const response = await fetch(key, { cache: 'reload', credentials: 'omit', signal: request.signal });
-                        if (!(await valid(response, file))) throw new Error('Ufullstendig eller feil lydfil');
-                        if (request.signal.aborted) throw new DOMException('Aborted', 'AbortError');
-                        await cache.put(key, response);
+            let nextIndex = 0;
+            const concurrency = 4;
+            let workers = [];
+            const worker = async () => {
+                while (nextIndex < files.length) {
+                    if (request.signal.aborted || controller !== request) throw new DOMException('Aborted', 'AbortError');
+                    const file = files[nextIndex++];
+                    const key = url(file);
+                    if (!(await valid(await cache.match(key), file))) {
+                        // Otherwise the service worker would serve the damaged cached copy again.
+                        await cache.delete(key);
+                        const timeout = setTimeout(() => request.abort(), 15000);
+                        try {
+                            const response = await fetch(key, { cache: 'reload', credentials: 'omit', signal: request.signal });
+                            if (!(await valid(response, file))) throw new Error('Ufullstendig eller feil lydfil');
+                            if (request.signal.aborted || controller !== request) throw new DOMException('Aborted', 'AbortError');
+                            await cache.put(key, response);
+                        }
+                        finally { clearTimeout(timeout); }
                     }
-                    finally { clearTimeout(timeout); }
+                    if (request.signal.aborted || controller !== request) throw new DOMException('Aborted', 'AbortError');
+                    count++; text(`${count} av ${files.length} opptak er klare uten nett.${count === files.length ? ' Hele uttaleskolen er lastet ned.' : ' Laster ned …'}`);
                 }
-                count++; text(`${count} av ${files.length} opptak er klare uten nett.${count === files.length ? ' Hele uttaleskolen er lastet ned.' : ' Laster ned …'}`);
+            };
+            workers = Array.from({ length: Math.min(concurrency, files.length) }, worker);
+            try {
+                await Promise.all(workers);
+            } catch (err) {
+                request.abort();
+                await Promise.allSettled(workers);
+                throw err;
             }
         } catch (error) {
             text(`${count} opptak kontrollert denne gangen. ${error.name === 'AbortError' ? 'Nedlastingen ble avbrutt.' : 'Nedlastingen ble ikke fullført. Sjekk nett og ledig lagringsplass.'} Prøv igjen for å fortsette med filene som mangler.`);
@@ -3509,9 +3524,9 @@ const pronunciationManifest = {"schemaVersion":1,"sourceArchiveSha256":"d67fa8c7
     function soundMenu() {
         return `<section class="pron-sound-menu"><h2>Velg en lyd å øve på</h2><nav class="pron-actions" aria-label="Velg en lyd å øve på">${catalog.items.map(item => `<button type="button" class="btn btn-secondary" data-pron-sound="${item.id}" aria-label="Øv på ${esc(item.title)}">${esc(item.title)}</button>`).join('')}</nav></section>`;
     }
-    function shell(body) {
+    function shell(body, { showMenu = true } = {}) {
         stopModel(); clearRecording();
-        root().innerHTML = `${body}<p id="pronunciationAudioStatus" class="pron-status" role="status" aria-live="polite"></p><audio id="pronunciationModelAudio" preload="none" aria-hidden="true"></audio>${soundMenu()}${credit()}`;
+        root().innerHTML = `${body}<p id="pronunciationAudioStatus" class="pron-status" role="status" aria-live="polite"></p><audio id="pronunciationModelAudio" preload="none" aria-hidden="true"></audio>${showMenu ? soundMenu() : ''}${credit()}`;
         root().querySelector('h1, h2')?.setAttribute('tabindex', '-1');
         root().querySelector('h1, h2')?.focus({ preventScroll: true });
         audio = document.getElementById('pronunciationModelAudio');
@@ -3519,16 +3534,30 @@ const pronunciationManifest = {"schemaVersion":1,"sourceArchiveSha256":"d67fa8c7
     }
     function stopModel() {
         playToken++;
-        if (audio) { audio.onended = null; audio.onerror = null; audio.pause(); audio.removeAttribute('src'); audio.load(); }
+        root()?.querySelectorAll('.pron-play').forEach(btn => btn.classList.remove('is-loading', 'is-playing'));
+        if (audio) { audio.onplaying = null; audio.onended = null; audio.onerror = null; audio.pause(); audio.removeAttribute('src'); audio.load(); }
     }
     function clearRecording() { recorder?.clear(); }
-    function status(message) { const node = document.getElementById('pronunciationAudioStatus'); if (node) node.textContent = message; }
+    function status(message, isError = false) {
+        const node = document.getElementById('pronunciationAudioStatus');
+        if (!node) return;
+        node.textContent = message;
+        node.classList.toggle('pron-status-error', Boolean(isError));
+    }
+    function preloadItemAudio(item) {
+        if (!item || navigator.onLine === false || !/^https?:$/.test(location.protocol)) return;
+        for (const role of ['word', 'sentence']) {
+            if (item.audio?.[role]) fetch(item.audio[role], { credentials: 'omit' }).catch(() => {});
+        }
+    }
     function play(role, id) {
         const item = id ? itemById(id) : current();
         if (!item) return;
         if (!item.audio[role]) return;
         const wasPlaying = Boolean(audio && !audio.paused && !audio.ended && audio.currentTime > 0);
-        const interruptedRole = wasPlaying && session?.activeRole && session.activeRole !== role && !session.heard.has(session.activeRole)
+        const mostlyHeard = Boolean(wasPlaying && audio.duration > 0 && audio.currentTime / audio.duration >= 0.6);
+        if (mostlyHeard && session?.activeRole) session.heard.add(session.activeRole);
+        const interruptedRole = wasPlaying && !mostlyHeard && session?.activeRole && session.activeRole !== role && !session.heard.has(session.activeRole)
             ? session.activeRole : null;
         recorder?.stop(); recorder?.pause(); stopModel();
         if (session) {
@@ -3536,21 +3565,34 @@ const pronunciationManifest = {"schemaVersion":1,"sourceArchiveSha256":"d67fa8c7
             session.interruptedRole = interruptedRole;
         }
         const token = playToken;
+        const activeSelector = id
+            ? `[data-pron-play="${role}"][data-pron-item="${id}"]`
+            : `[data-pron-play="${role}"]`;
+        const activeBtn = root().querySelector(activeSelector);
+        activeBtn?.classList.add('is-loading');
         audio.src = item.audio[role]; audio.crossOrigin = 'anonymous';
         if (session) {
             const control = root().querySelector(`[data-pron-play="${role}"]`);
             control?.closest('.pron-practice, .pron-rule')?.append(document.getElementById('pronunciationAudioStatus'));
         }
-        status('Spiller modellopptaket.');
+        status('Laster lyd …');
         const failure = () => {
             if (token !== playToken) return;
+            activeBtn?.classList.remove('is-loading', 'is-playing');
             if (session) session.activeRole = null;
             session?.heard.delete(role); updateButtons();
-            status('Lydopptaket er ikke tilgjengelig. Koble til nettet og prøv igjen, eller velg en annen øvelse.');
+            status('Lydopptaket er ikke tilgjengelig. Koble til nettet og prøv igjen, eller velg en annen øvelse.', true);
         };
         audio.onerror = failure;
+        audio.onplaying = () => {
+            if (token !== playToken) return;
+            activeBtn?.classList.remove('is-loading');
+            activeBtn?.classList.add('is-playing');
+            status('Spiller modellopptaket.');
+        };
         audio.onended = () => {
             if (token !== playToken) return;
+            activeBtn?.classList.remove('is-loading', 'is-playing');
             if (session) {
                 session.activeRole = null;
                 session.heard.add(role);
@@ -3570,7 +3612,7 @@ const pronunciationManifest = {"schemaVersion":1,"sourceArchiveSha256":"d67fa8c7
         const practiced = id => progress.practiced.some(p => p.itemId === id && p.contentVersion === itemById(id).contentVersion);
         const count = catalog.items.filter(item => practiced(item.id)).length;
         const group = catalog.groups.find(g => g.id === selectedGroup) || catalog.groups.find(g => g.itemIds.some(id => !practiced(id))) || catalog.groups[0];
-        shell(`<header class="pron-header"><p class="pron-eyebrow">Fra skrift til lyd</p><h1>Lær å lese spansk høyt</h1><p>Lytt, prøv selv og sammenlign. Korte økter på omtrent 5–8 minutter. Du trenger ikke mikrofon.</p></header>
+        shell(`<header class="pron-header"><p class="pron-eyebrow">Fra skrift til lyd</p><h1>Lær å lese spansk høyt</h1><p>Lytt, prøv selv og sammenlign. Korte økter på 1–3 minutter (tre lydkort). Du trenger ikke mikrofon.</p></header>
             <section class="pron-next"><div><h2>${count ? 'Fortsett å øve' : 'Begynn med lydene'}</h2><p>${esc(group.title)} – opptil tre lydkort</p></div><button class="btn btn-primary" type="button" data-pron-start="${group.id}">Start en kort økt</button></section>
             <p class="pron-progress">${count} av 31 lydtemaer øvd. Dette er egen øving, ikke en vurdering av uttalen din.</p>
             ${storageError ? `<p role="alert" class="pron-notice">${esc(storageError)}</p>` : ''}
@@ -3606,8 +3648,9 @@ const pronunciationManifest = {"schemaVersion":1,"sourceArchiveSha256":"d67fa8c7
             <details id="pronunciationRecordingOptions" class="pron-recording-options"><summary>Ta opp og sammenlign (valgfritt)</summary><div id="pronunciationRecorder"></div></details>
             <div class="pron-card-navigation"><p id="pronunciationLessonHint" class="pron-note">Hør ordet og setningen før du går videre.</p>
             <nav class="pron-card-nav" aria-label="Bytt lydkort">${button('previous', 'Forrige lyd', session.index === 0, false)}${button('next', session.index === session.items.length - 1 ? 'Fullfør økten' : 'Neste lyd', true)}</nav></div>
-        </div>`);
+        </div>`, { showMenu: false });
         mountRecorder();
+        preloadItemAudio(item);
         document.getElementById('pronunciationRecordingOptions').addEventListener('toggle', event => {
             if (!event.target.isConnected) return;
             if (!event.target.open) clearRecording();
@@ -3626,8 +3669,8 @@ const pronunciationManifest = {"schemaVersion":1,"sourceArchiveSha256":"d67fa8c7
         const hint = document.getElementById('pronunciationLessonHint');
         if (hint) {
             if (ready) hint.textContent = 'Prøv gjerne en gang til, eller gå videre.';
-            else if (session.interruptedRole === 'word' && !session.heard.has('word')) hint.textContent = 'Ordklippet ble avbrutt før slutt. Spill ferdig hele ordet før du går videre.';
-            else if (session.interruptedRole === 'sentence' && !session.heard.has('sentence')) hint.textContent = 'Setningsklippet ble avbrutt før slutt. Spill ferdig hele setningen før du går videre.';
+            else if (session.interruptedRole === 'word' && !session.heard.has('word')) hint.textContent = 'Tips: Lytt ferdig til ordet også, så åpnes neste lyd.';
+            else if (session.interruptedRole === 'sentence' && !session.heard.has('sentence')) hint.textContent = 'Tips: Lytt ferdig til setningen også, så åpnes neste lyd.';
             else if (session.heard.has('word')) hint.textContent = 'Hør også hele setningen før du går videre.';
             else if (session.heard.has('sentence')) hint.textContent = 'Hør også hele ordet før du går videre.';
             else hint.textContent = 'Hør ordet og setningen før du går videre.';
@@ -3643,7 +3686,18 @@ const pronunciationManifest = {"schemaVersion":1,"sourceArchiveSha256":"d67fa8c7
             if (storageError) status(storageError);
         } else {
             const result = session; session = null; activeSessionType = null;
-            shell(`<div class="pron-lesson"><h2>Ferdig for nå!</h2><p>Du har øvd på ${result.done.size} lydkort.</p>${storageError ? `<p role="alert">${esc(storageError)}</p>` : ''}<p>Prøv gjerne en kort økt igjen en annen dag.</p>${button('overview', 'Tilbake til temaene')}<button type="button" class="btn btn-secondary" data-pron-start="${result.group.id}">Øv videre på temaet</button></div>`);
+            let xpAward = 0;
+            if (result.done.size > 0 && typeof recordPracticeSession === 'function') {
+                xpAward = Math.min(10, Math.max(3, result.done.size * 2));
+                const sid = typeof crypto !== 'undefined' && crypto.randomUUID ? crypto.randomUUID() : `pron-${Date.now()}`;
+                recordPracticeSession(result.done.size, result.done.size, 'pronunciation', 1, {
+                    sessionId: sid,
+                    inProgress: false,
+                    interrupted: false,
+                    xp: xpAward,
+                });
+            }
+            shell(`<div class="pron-lesson"><h2>Ferdig for nå!</h2><p>Du har øvd på ${result.done.size} lydkort.</p>${xpAward ? `<p class="home-feed-xp-result">+${xpAward} XP</p>` : ''}${storageError ? `<p role="alert">${esc(storageError)}</p>` : ''}<p>Prøv gjerne en kort økt igjen en annen dag.</p><div class="pron-actions">${button('overview', 'Tilbake til temaene')}<button type="button" class="btn btn-secondary" data-pron-start="${result.group.id}">Øv videre på temaet</button></div></div>`);
         }
     }
     function close() { globalThis.PronunciationOffline.cancel(); stopModel(); clearRecording(); session = null; if (activeSessionType === 'pronunciation') activeSessionType = null; }
@@ -3759,10 +3813,10 @@ const pronunciationManifest = {"schemaVersion":1,"sourceArchiveSha256":"d67fa8c7
         const DICTATION_KEY = 'spansk123_dictation_v1';
         const DICTATION_STORIES = [
             { id:'madrid-plaza', title:'En morgen i Madrid', level:'A0', region:'Spania', place:'Madrid', theme:'Byliv', intro:'Ana går til torget en solrik morgen.', hints:['la plaza = torget'], audioDir:'Ana vive en Madrid', audioExt:'wav', fullAudio:'Ana vive en Madrid full.m4a', segments:[['Ana vive en Madrid.','Ana vive en Madrid 1'],['Por la mañana, sale de casa.','Ana vive en Madrid 2'],['Camina hasta la plaza.','Ana vive en Madrid 3'],['Hay muchas personas.','Ana vive en Madrid 4'],['Ana compra pan.','Ana vive en Madrid 5'],['Después, ve un perro pequeño.','Ana vive en Madrid 6'],['El perro tiene una pelota roja.','Ana vive en Madrid 7'],['Ana vuelve a casa contenta.','Ana vive en Madrid 8']] },
-            { id:'oaxaca-mercado', title:'Markedet i Oaxaca', level:'A0', region:'Mexico', place:'Oaxaca', theme:'Mat og marked', intro:'Luis besøker et fargerikt marked.', hints:['el mercado = marked'], audioDir:'Luis está en Oaxaca', audioExt:'wav', fullAudio:'Luis está en Oaxaca .wav', segments:[['Luis está en Oaxaca.','Luis está en Oaxaca 1'],['Visita un mercado grande.','Luis está en Oaxaca 2'],['Hay frutas de muchos colores.','Luis está en Oaxaca 3'],['Luis compra dos mangos.','Luis está en Oaxaca 4'],['La vendedora sonríe.','Luis está en Oaxaca 5'],['También compra una botella de agua.','Luis está en Oaxaca 6'],['El mercado tiene música.','Luis está en Oaxaca 7'],['Luis vuelve feliz a casa.','Luis está en Oaxaca 8']] },
-            { id:'antigua-volcan', title:'Utsikten i Antigua', level:'A1', region:'Mellom-Amerika', place:'Antigua Guatemala', theme:'Natur og utsikt', intro:'Sofía ser en vulkan fra byen.', hints:['el volcán = vulkan'], audioDir:'Sofía vive en antigua Guatemala', audioExt:'wav', fullAudio:'Sofía vive en antigua Guatemala.wav', segments:[['Sofía vive en Antigua Guatemala.','Sofía vive en antigua Guatemala 1.wav'],['Por la tarde, camina con su hermano.','Sofía vive en anrtigua Guatemala 2.wav'],['Las calles son bonitas.','Sofía vive en anrtigua Guatemala 3.wav'],['Desde la plaza, ven un volcán.','Sofía vive en anrtigua Guatemala 4.wav'],['El volcán está detrás de las casas.','Sofía vive en anrtigua Guatemala 5.wav'],['El cielo es azul y claro.','Sofía vive en anrtigua Guatemala 6.wav'],['Sofía hace una foto.','Sofía vive en anrtigua Guatemala 7.wav'],['Después, toma un chocolate caliente.','Sofía vive en anrtigua Guatemala 8.wav']] },
-            { id:'buenosaires-biblioteca', title:'Biblioteket i Buenos Aires', level:'A1', region:'Sør-Amerika', place:'Buenos Aires', theme:'Bøker og fritid', intro:'Tomás finner en spennende bok.', hints:['la biblioteca = bibliotek'], audioDir:'Tomás vive en Buenos Aires', audioExt:'wav', fullAudio:'Tomás vive en Buenos Aires .wav', segments:[['Tomás vive en Buenos Aires.','Tomás vive en Buenos Aires 1.wav'],['Le gusta leer en la biblioteca.','Tomás vive en Buenos Aires 2.wav'],['Un sábado, busca un libro nuevo.','Tomás vive en Buenos Aires 3.wav'],['El libro habla de animales.','Tomás vive en Buenos Aires 4.wav'],['Tomás se sienta cerca de la ventana.','Tomás vive en Buenos Aires 5.wav'],['Lee durante una hora.','Tomás vive en Buenos Aires 6.wav'],['Después, escribe una nota.','Tomás vive en Buenos Aires 7.wav'],['Vuelve a casa en autobús.','Tomás vive en Buenos Aires 8.wav']] },
-            { id:'barcelona-bici', title:'En sykkeltur i Barcelona', level:'A1+', region:'Spania', place:'Barcelona', theme:'By og transport', intro:'Nora sykler langs havet.', hints:['la bicicleta = sykkel'], audioDir:'Nora pasa una semana', audioExt:'wav', fullAudio:'Nora pasa una semana.wav', segments:[['Nora pasa una semana en Barcelona.','Nora pasa una semana 1.wav'],['Cada mañana, monta en bicicleta.','Nora pasa una semana 2.wav'],['Pedalea cerca del mar.','Nora pasa una semana 3.wav'],['El aire es fresco y limpio.','Nora pasa una semana 4.wav'],['Un día, encuentra un parque tranquilo.','Nora pasa una semana 5.wav'],['Se sienta bajo un árbol.','Nora pasa una semana 6.wav'],['Escucha a los pájaros.','Nora pasa una semana 7.wav'],['Por la tarde, vuelve al hotel.','Nora pasa una semana 8.wav']] }
+            { id:'oaxaca-mercado', title:'Markedet i Oaxaca', level:'A0', region:'Mexico', place:'Oaxaca', theme:'Mat og marked', intro:'Luis besøker et fargerikt marked.', hints:['el mercado = marked'], audioDir:'Luis está en Oaxaca', audioExt:'wav', fullAudio:'Luis está en Oaxaca.mp3', segments:[['Luis está en Oaxaca.','Luis está en Oaxaca 1'],['Visita un mercado grande.','Luis está en Oaxaca 2'],['Hay frutas de muchos colores.','Luis está en Oaxaca 3'],['Luis compra dos mangos.','Luis está en Oaxaca 4'],['La vendedora sonríe.','Luis está en Oaxaca 5'],['También compra una botella de agua.','Luis está en Oaxaca 6'],['El mercado tiene música.','Luis está en Oaxaca 7'],['Luis vuelve feliz a casa.','Luis está en Oaxaca 8']] },
+            { id:'antigua-volcan', title:'Utsikten i Antigua', level:'A1', region:'Mellom-Amerika', place:'Antigua Guatemala', theme:'Natur og utsikt', intro:'Sofía ser en vulkan fra byen.', hints:['el volcán = vulkan'], audioDir:'Sofía vive en antigua Guatemala', audioExt:'wav', fullAudio:'Sofía vive en antigua Guatemala.mp3', segments:[['Sofía vive en Antigua Guatemala.','Sofía vive en antigua Guatemala 1.wav'],['Por la tarde, camina con su hermano.','Sofía vive en anrtigua Guatemala 2.wav'],['Las calles son bonitas.','Sofía vive en anrtigua Guatemala 3.wav'],['Desde la plaza, ven un volcán.','Sofía vive en anrtigua Guatemala 4.wav'],['El volcán está detrás de las casas.','Sofía vive en anrtigua Guatemala 5.wav'],['El cielo es azul y claro.','Sofía vive en anrtigua Guatemala 6.wav'],['Sofía hace una foto.','Sofía vive en anrtigua Guatemala 7.wav'],['Después, toma un chocolate caliente.','Sofía vive en anrtigua Guatemala 8.wav']] },
+            { id:'buenosaires-biblioteca', title:'Biblioteket i Buenos Aires', level:'A1', region:'Sør-Amerika', place:'Buenos Aires', theme:'Bøker og fritid', intro:'Tomás finner en spennende bok.', hints:['la biblioteca = bibliotek'], audioDir:'Tomás vive en Buenos Aires', audioExt:'wav', fullAudio:'Tomás vive en Buenos Aires.mp3', segments:[['Tomás vive en Buenos Aires.','Tomás vive en Buenos Aires 1.wav'],['Le gusta leer en la biblioteca.','Tomás vive en Buenos Aires 2.wav'],['Un sábado, busca un libro nuevo.','Tomás vive en Buenos Aires 3.wav'],['El libro habla de animales.','Tomás vive en Buenos Aires 4.wav'],['Tomás se sienta cerca de la ventana.','Tomás vive en Buenos Aires 5.wav'],['Lee durante una hora.','Tomás vive en Buenos Aires 6.wav'],['Después, escribe una nota.','Tomás vive en Buenos Aires 7.wav'],['Vuelve a casa en autobús.','Tomás vive en Buenos Aires 8.wav']] },
+            { id:'barcelona-bici', title:'En sykkeltur i Barcelona', level:'A1+', region:'Spania', place:'Barcelona', theme:'By og transport', intro:'Nora sykler langs havet.', hints:['la bicicleta = sykkel'], audioDir:'Nora pasa una semana', audioExt:'wav', fullAudio:'Nora pasa una semana.mp3', segments:[['Nora pasa una semana en Barcelona.','Nora pasa una semana 1.wav'],['Cada mañana, monta en bicicleta.','Nora pasa una semana 2.wav'],['Pedalea cerca del mar.','Nora pasa una semana 3.wav'],['El aire es fresco y limpio.','Nora pasa una semana 4.wav'],['Un día, encuentra un parque tranquilo.','Nora pasa una semana 5.wav'],['Se sienta bajo un árbol.','Nora pasa una semana 6.wav'],['Escucha a los pájaros.','Nora pasa una semana 7.wav'],['Por la tarde, vuelve al hotel.','Nora pasa una semana 8.wav']] }
         ];
         const DICTATION_TRANSLATIONS = {
             'madrid-plaza':['Ana bor i Madrid.','Om morgenen går hun hjemmefra.','Hun går til torget.','Det er mange mennesker der.','Ana kjøper brød.','Etterpå ser hun en liten hund.','Hunden har en rød ball.','Ana går fornøyd hjem.'],
@@ -3773,7 +3827,7 @@ const pronunciationManifest = {"schemaVersion":1,"sourceArchiveSha256":"d67fa8c7
         };
         const LISTENING_STORIES = [{
             id:'leo-sevilla', title:'En lørdag i Sevilla', level:'A1', region:'Spania', place:'Sevilla', theme:'Hverdagsliv og fritid', durationSeconds:68.14,
-            intro:'Leo forteller om en hel lørdag i Sevilla.', audioDir:'lyttehistorier', audioExt:'wav', fullAudio:'Leo-Sevilla.wav',
+            intro:'Leo forteller om en hel lørdag i Sevilla.', audioDir:'lyttehistorier', audioExt:'mp3', fullAudio:'Leo-Sevilla.mp3',
             transcript:'Hola, soy Leo y vivo en Sevilla. Hoy es sábado y hace buen tiempo. Por la mañana, desayuno pan, fruta y yogur con mi madre. Después, preparo mi mochila y voy en bicicleta al parque. En el parque hay muchos árboles, flores y un pequeño lago. Veo a mi amiga Marta cerca de una fuente. Ella tiene una pelota amarilla. Jugamos al fútbol durante un rato y hablamos de la escuela. Luego, nos sentamos en un banco y bebemos agua. Antes de volver a casa, compramos un helado de chocolate y caminamos despacio por la plaza. Al mediodía, mi padre prepara arroz y ensalada para toda la familia. Comemos juntos en la cocina y contamos cosas divertidas. Por la tarde, leo un cómic, escucho música y ordeno mi habitación. También riego las plantas del balcón y preparo la ropa para el lunes. Estoy cansado, pero contento. Me gusta mucho el sábado.',
             translation:'Hei, jeg heter Leo og bor i Sevilla. I dag er det lørdag og fint vær. Om morgenen spiser jeg brød, frukt og yoghurt med moren min. Etterpå pakker jeg sekken og sykler til parken. I parken er det mange trær, blomster og en liten innsjø. Jeg ser venninnen min Marta ved en fontene. Hun har en gul ball. Vi spiller fotball en stund og snakker om skolen. Så setter vi oss på en benk og drikker vann. Før vi går hjem, kjøper vi en sjokoladeis og går sakte gjennom torget. Ved lunsjtider lager faren min ris og salat til hele familien. Vi spiser sammen på kjøkkenet og forteller morsomme ting. Om ettermiddagen leser jeg en tegneserie, hører på musikk og rydder rommet mitt. Jeg vanner også plantene på balkongen og legger frem klær til mandag. Jeg er trøtt, men glad. Jeg liker lørdagen veldig godt.',
             questions:[
@@ -3792,7 +3846,7 @@ const pronunciationManifest = {"schemaVersion":1,"sourceArchiveSha256":"d67fa8c7
             ]
         }, {
             id:'carmen-madrid-a0', title:'Carmen finner veien', level:'A0', region:'Spania', place:'Madrid', theme:'By og skole', durationSeconds:35.6,
-            intro:'Carmen spør om veien til et museum i Madrid.', fullAudio:'Hola soy Carmen .wav',
+            intro:'Carmen spør om veien til et museum i Madrid.', fullAudio:'Hola soy Carmen.mp3',
             transcript:'Hola, soy Carmen. Estoy en Madrid con mi clase. Después de comer, queremos ir al museo. Mi amiga Julia tiene un mapa, pero no encuentra la calle. Preguntamos a un señor: «¿Dónde está el museo?». Él señala una calle pequeña y dice: «Está cerca del parque». Caminamos cinco minutos y vemos la entrada. El museo es grande y tiene una puerta azul. La profesora dice que tenemos veinte minutos para mirar una exposición de fotos. Estoy un poco cansada, pero muy contenta.',
             translation:'Hei, jeg heter Carmen. Jeg er i Madrid med klassen min. Etter at vi har spist, vil vi gå til museet. Venninnen min Julia har et kart, men finner ikke gaten. Vi spør en mann: «Hvor er museet?». Han peker på en liten gate og sier: «Det er nær parken». Vi går i fem minutter og ser inngangen. Museet er stort og har en blå dør. Læreren sier at vi har tjue minutter til å se på en fotoutstilling. Jeg er litt trøtt, men veldig glad.',
             questions:[
@@ -3802,7 +3856,7 @@ const pronunciationManifest = {"schemaVersion":1,"sourceArchiveSha256":"d67fa8c7
             ]
         }, {
             id:'mateo-puebla-a0', title:'Mateo og den gule bussen', level:'A0', region:'Mexico', place:'Puebla', theme:'By og transport', durationSeconds:38.85,
-            intro:'Mateo forteller om en tur til sentrum i Puebla.', fullAudio:'Me llamo Mateo y viv.wav',
+            intro:'Mateo forteller om en tur til sentrum i Puebla.', fullAudio:'Me llamo Mateo y viv.mp3',
             transcript:'Me llamo Mateo y vivo en Puebla. Esta mañana voy al centro con mi primo Nico. Queremos comprar un regalo para nuestra abuela. En la parada hay mucha gente y un autobús amarillo llega muy rápido. Nico mira el número y dice: «No es nuestro autobús». Esperamos unos minutos más. Mientras esperamos, una señora vende zumo de naranja. Compramos un vaso para compartir. Por fin llega el autobús número doce. Nos sentamos junto a la ventana y vemos una plaza con flores. Nico recuerda que el regalo tiene que ser pequeño porque volvemos a casa a pie.',
             translation:'Jeg heter Mateo og bor i Puebla. I morges skal jeg til sentrum med fetteren min Nico. Vi vil kjøpe en gave til bestemoren vår. På holdeplassen er det mange mennesker, og en gul buss kommer veldig fort. Nico ser på nummeret og sier: «Det er ikke vår buss». Vi venter noen minutter til. Mens vi venter, selger en dame appelsinjuice. Vi kjøper ett glass som vi deler. Endelig kommer buss nummer tolv. Vi setter oss ved vinduet og ser et torg med blomster. Nico husker at gaven må være liten fordi vi går hjem.',
             questions:[
@@ -4022,8 +4076,11 @@ const pronunciationManifest = {"schemaVersion":1,"sourceArchiveSha256":"d67fa8c7
                 <audio id="listeningStoryAudio" controls preload="metadata" ${location.protocol.startsWith('http') ? 'crossorigin="anonymous"' : ''} src="${listeningAudioUrl(story)}" aria-label="Hør hele historien" onloadedmetadata="listeningStoryAudioReady()" onplaying="markListeningStoryPlayed()" onerror="showListeningStoryAudioError()"></audio>
                 <p id="listeningStoryAudioStatus" role="status">Laster lyd …</p>
                 <div id="listeningStoryAudioError" class="hidden" role="alert">Lyden er ikke tilgjengelig. Koble til nett og prøv igjen, eller velg en historie du har lastet ned. <button class="btn btn-outline btn-sm" onclick="retryListeningStoryAudio()">Prøv lyden igjen</button></div>
-                <button id="listeningStoryStartBtn" class="btn btn-primary" disabled onclick="beginListeningStoryQuestions()">Start spørsmål</button>
-                ${canDownload ? '<button id="listeningDownloadBtn" class="btn btn-outline" onclick="downloadListeningStoryAudio()">Last ned lyd til bruk uten nett</button><p id="listeningDownloadStatus" role="status">Last ned hele historien før du kobler fra nettet.</p>' : '<p>For å laste ned lyd i nettleseren må du åpne appen via HTTPS eller localhost. Åpner du HTML-filen direkte, må lydmappen følge med.</p>'}`;
+                <div class="listening-preview-actions">
+                    <button id="listeningStoryStartBtn" class="btn btn-primary" disabled onclick="beginListeningStoryQuestions()">Start spørsmål</button>
+                    ${canDownload ? '<button id="listeningDownloadBtn" class="btn btn-outline" onclick="downloadListeningStoryAudio()">Last ned lyd til bruk uten nett</button>' : ''}
+                </div>
+                ${canDownload ? '<p id="listeningDownloadStatus" role="status">Last ned hele historien før du kobler fra nettet.</p>' : '<p>For å laste ned lyd i nettleseren må du åpne appen via HTTPS eller localhost. Åpner du HTML-filen direkte, må lydmappen følge med.</p>'}`;
             updateListeningDownloadStatus();
         }
         function listeningStoryAudioReady() {
@@ -4141,7 +4198,7 @@ const pronunciationManifest = {"schemaVersion":1,"sourceArchiveSha256":"d67fa8c7
         function renderListeningStoryCompletion(){ const state=listeningState, correct=state.answers.filter((answer,index)=>answer===state.story.questions[index].correctOptionId).length; homeFeedStarted.set(`listening:${state.story.id}`, Date.now()); if (activeHomeFeedCard && activeHomeFeedCard.session === practiceSessions.listening) checkpointPracticeSession('listening', state.answers.length, correct, null, true, false, state.story.questions.length); document.getElementById('listeningExercise').innerHTML=`<div class="completion-screen mx-auto max-w-5xl px-4 py-8 sm:px-8"><div class="study-header"><button class="btn btn-outline btn-sm" onclick="endListeningStory()">✕ Tilbake</button></div><h2>Lytteforståelsen er ferdig!</h2><p id="listeningStoryResult" aria-live="polite">Du fikk ${correct} av ${state.story.questions.length} riktige.</p>${renderHomeFeedResult('listening')}<details id="listeningStoryTextSupport"><summary>Vis tekststøtte og oversettelse</summary><div class="completion-reading"><section><h3>Spansk tekst</h3><p>${escapeHtml(state.story.transcript)}</p></section><section><h3>Norsk oversettelse</h3><p>${escapeHtml(state.story.translation)}</p></section></div></details></div>`; }
         function endListeningStory(){ if (activeHomeFeedCard?.area === 'listening') activeHomeFeedCard = null; document.querySelector('#listeningExercise audio')?.pause(); listeningState=null; if(activeSessionType==='listening') activeSessionType=null; document.getElementById('listeningExercise').innerHTML=''; document.getElementById('listeningExercise').classList.add('hidden'); document.getElementById('listeningOverview').classList.remove('hidden'); document.getElementById('dictationOverview').classList.remove('hidden'); renderListeningOverview(); }
         function dictationAudioErrorMarkup() {
-            return '<p id="dictationAudioError" class="hidden" role="alert">Lyden er ikke tilgjengelig. Koble til internett og prøv igjen, eller velg en historie du har lastet ned. <button class="btn btn-outline btn-sm" onclick="retryDictationAudio()">Prøv lyden igjen</button></div>';
+            return '<p id="dictationAudioError" class="hidden" role="alert">Lyden er ikke tilgjengelig. Koble til internett og prøv igjen, eller velg en historie du har lastet ned. <button class="btn btn-outline btn-sm" onclick="retryDictationAudio()">Prøv lyden igjen</button></p>';
         }
 
         function renderDictationPreview() {
@@ -4158,10 +4215,22 @@ const pronunciationManifest = {"schemaVersion":1,"sourceArchiveSha256":"d67fa8c7
             updateDictationDownloadStatus();
         }
 
+        const DICTATION_SPEED_KEY = 'spansk123_dictationSpeed_v1';
+        function getSavedDictationSpeed() {
+            const parsed = Number(localStorage.getItem(DICTATION_SPEED_KEY));
+            if (Number.isFinite(parsed) && parsed >= 0.8 && parsed <= 1.2) return Math.round(parsed * 10) / 10;
+            return 1;
+        }
+        function saveDictationSpeed(rate) {
+            try { localStorage.setItem(DICTATION_SPEED_KEY, String(rate)); } catch {}
+        }
+
         function dictationAudioReady() {
             if (!dictationState) return;
             if (dictationState.offlineUnavailable) { showDictationAudioError(); return; }
             dictationState.audioReady = true;
+            const audio = document.querySelector('#dictationExercise audio');
+            if (audio && dictationState.playbackRate) audio.playbackRate = dictationState.playbackRate;
             document.getElementById('dictationAudioError')?.classList.add('hidden');
             const status = document.getElementById('dictationAudioStatus');
             if (status) status.textContent = 'Lyden er klar. Bruk avspillingsknappen for å lytte.';
@@ -4189,7 +4258,18 @@ const pronunciationManifest = {"schemaVersion":1,"sourceArchiveSha256":"d67fa8c7
             dictationState.index = 0;
             dictationState.submitted = false;
             dictationState.answer = '';
+            dictationState.startedAt = new Date();
+            dictationState.playbackRate = dictationState.playbackRate ?? getSavedDictationSpeed();
+            beginPracticeSession('dictation');
             renderDictationSegment();
+        }
+
+        function replayDictationSegment() {
+            const audio = document.getElementById('dictationSegmentAudio');
+            if (!audio) return;
+            audio.currentTime = 0;
+            if (dictationState?.playbackRate) audio.playbackRate = dictationState.playbackRate;
+            audio.play().catch(() => {});
         }
 
         function renderDictationSegment() {
@@ -4197,22 +4277,45 @@ const pronunciationManifest = {"schemaVersion":1,"sourceArchiveSha256":"d67fa8c7
             const { story, index, submitted, answer } = dictationState;
             const [text, filename] = story.segments[index];
             const hints = dictationHintsForSegment(story, text);
+            const rate = dictationState.playbackRate ?? getSavedDictationSpeed();
+            dictationState.playbackRate = rate;
             dictationState.audioReady = false;
             document.getElementById('dictationExercise').innerHTML = `
                 <div class="study-header"><button class="btn btn-outline btn-sm" onclick="endDictation()">✕ Avslutt</button><span class="whitespace-nowrap shrink-0">${index + 1} / ${story.segments.length}</span></div>
                 <h2>${escapeHtml(story.title)}</h2><p class="dictation-hints">${hints.length ? 'Hint: ' + hints.map(escapeHtml).join(', ') : ''}</p>
                 <audio id="dictationSegmentAudio" controls autoplay preload="metadata" ${location.protocol.startsWith('http') ? 'crossorigin="anonymous"' : ''} src="${dictationAudioUrl(story, filename)}" aria-label="Spill av segment" onloadedmetadata="dictationAudioReady()" onerror="showDictationAudioError()"></audio>
                 ${dictationAudioErrorMarkup()}<p id="dictationAudioStatus" role="status">Laster lyd …</p>
-                <label for="dictationSpeed">Tempo</label><input id="dictationSpeed" type="range" min="0.8" max="1.2" step="0.1" value="1" oninput="setDictationSpeed(this.value)"><span id="dictationSpeedValue">1,0×</span>
-                <label for="dictationAnswer">Skriv det du hører</label><textarea id="dictationAnswer" rows="3" autocomplete="off" aria-describedby="dictationAccentHint">${escapeHtml(answer)}</textarea>
-                ${renderAccentHint('dictationAccentHint', 'Du kan også holde inne n for ñ eller bruke knappene under.', { buttons: false })}
-                <div class="dictation-accent-buttons" aria-label="Aksentknapper">${['á','é','í','ó','ú','ü','ñ','¿','¡'].map(c => `<button type="button" aria-label="Sett inn ${c}" onclick="insertDictationAccent('${c}')">${c}</button>`).join('')}</div>
+                <div class="dictation-speed-row">
+                    <button type="button" id="dictationReplayBtn" class="btn btn-outline btn-sm" onclick="replayDictationSegment()" title="Spill av på nytt (Alt+R)" aria-keyshortcuts="Alt+R">↺ Spill av på nytt</button>
+                    <label for="dictationSpeed">Tempo</label>
+                    <input id="dictationSpeed" type="range" min="0.8" max="1.2" step="0.1" value="${rate}" oninput="setDictationSpeed(this.value)">
+                    <span id="dictationSpeedValue">${rate.toFixed(1).replace('.', ',')}×</span>
+                </div>
+                <label for="dictationAnswer">Skriv det du hører</label>
+                ${renderAccentHint('dictationAccentHint', 'Hold også inne n for ñ.', { targetId: 'dictationAnswer' })}
+                <textarea id="dictationAnswer" rows="3" autocomplete="off" aria-describedby="dictationAccentHint">${escapeHtml(answer)}</textarea>
                 <div id="dictationSolution" class="dictation-solution hidden" aria-live="polite"></div>
                 <div id="dictationControls"><button id="dictationCheckBtn" class="btn btn-primary" disabled onclick="submitDictationAnswer()">Sjekk svar</button></div>`;
+            const segmentAudio = document.getElementById('dictationSegmentAudio');
+            if (segmentAudio) segmentAudio.playbackRate = rate;
             const input = document.getElementById('dictationAnswer');
+            setupAccentInput(input);
             input.addEventListener('keydown', event => {
+                if (event.altKey && event.key.toLowerCase() === 'r') {
+                    event.preventDefault();
+                    replayDictationSegment();
+                    return;
+                }
                 if (event.key === 'Enter' && !event.shiftKey && !event.isComposing) {
-                    event.preventDefault(); event.stopPropagation(); submitDictationAnswer();
+                    event.preventDefault();
+                    event.stopPropagation();
+                    if (event.repeat) return;
+                    if (!input.value.trim()) {
+                        const status = document.getElementById('dictationAudioStatus');
+                        if (status) status.textContent = 'Skriv det du hører før du trykker Enter, eller klikk «Sjekk svar» for å hoppe over.';
+                        return;
+                    }
+                    submitDictationAnswer();
                 }
             });
             input.focus();
@@ -4220,10 +4323,13 @@ const pronunciationManifest = {"schemaVersion":1,"sourceArchiveSha256":"d67fa8c7
         }
 
         function setDictationSpeed(value) {
+            const rate = Math.round(Math.min(1.2, Math.max(0.8, Number(value) || 1)) * 10) / 10;
+            if (dictationState) dictationState.playbackRate = rate;
+            saveDictationSpeed(rate);
             const audio = document.querySelector('#dictationExercise audio');
-            if (audio) audio.playbackRate = Number(value);
+            if (audio) audio.playbackRate = rate;
             const label = document.getElementById('dictationSpeedValue');
-            if (label) label.textContent = Number(value).toFixed(1).replace('.', ',') + '×';
+            if (label) label.textContent = rate.toFixed(1).replace('.', ',') + '×';
         }
 
         function insertDictationAccent(character) {
@@ -4254,8 +4360,9 @@ const pronunciationManifest = {"schemaVersion":1,"sourceArchiveSha256":"d67fa8c7
             solution.className = `dictation-solution is-${kind}`;
             solution.innerHTML = `<strong>Fasit:</strong> ${fasitMarkup}<p>${getDictationFeedbackMessage(kind)}</p>${kind !== 'exact' && kind !== 'empty' ? '<p class="text-xs text-slate-600 mt-1">Markerte ord manglet eller hadde annen stavemåte/aksent i svaret ditt.</p>' : ''}`;
             document.getElementById('dictationAnswer').disabled = true;
+            document.querySelectorAll('#dictationExercise .app-accent-btn').forEach(btn => { btn.disabled = true; });
             document.getElementById('dictationControls').innerHTML = '<button id="dictationNextBtn" data-feedback-next class="btn btn-primary" onclick="nextDictationSegment()">Neste segment</button>';
-            if (!document.querySelector('.settings-modal')) document.getElementById('dictationNextBtn')?.focus();
+            if (!document.querySelector('.settings-modal')) document.getElementById('dictationNextBtn')?.focus({ preventScroll: true });
         }
 
         function submitDictationAnswer() {
@@ -4281,11 +4388,17 @@ const pronunciationManifest = {"schemaVersion":1,"sourceArchiveSha256":"d67fa8c7
             const skippedSegments = totalSegments - attempted;
             const correct = dictationState.answers.filter((answer, index) => compareDictationAnswer(answer, dictationState.story.segments[index][0]) === 'exact').length;
             if (attempted === totalSegments) saveDictationCompletion(dictationState.story.id);
+            let dictationXp = 0;
+            if (attempted > 0) {
+                checkpointPracticeSession('dictation', attempted, correct, dictationState.startedAt, true, false, attempted);
+                const sid = practiceSessions.dictation?.sessionId;
+                dictationXp = practiceHistory.find(entry => entry.sessionId === sid)?.xp || 0;
+            }
             const ownText = dictationState.answers.map(answer => answer.trim() ? escapeHtml(answer) : '<em class="text-slate-500">(hoppet over)</em>').join('<br>');
             const translation = (DICTATION_TRANSLATIONS[dictationState.story.id] || []).map(escapeHtml).join('<br>');
             const solution = dictationState.story.segments.map(segment => escapeHtml(segment[0])).join('<br>');
             const skippedSummary = skippedSegments > 0 ? ` (${skippedSegments} hoppet over)` : '';
-            document.getElementById('dictationExercise').innerHTML = `<div class="completion-screen mx-auto max-w-5xl px-4 py-8 sm:px-8"><p class="mb-2 text-sm font-bold uppercase tracking-widest text-indigo-600">${attempted === totalSegments ? 'Alle deler forsøkt' : 'Historien er gjennomgått'}</p><h2 class="mb-2 text-3xl font-black tracking-tight text-slate-900 sm:text-4xl">Historien er ferdig!</h2><p class="mb-8 text-base font-semibold text-slate-500">${escapeHtml(dictationState.story.theme)} – ${escapeHtml(dictationState.story.place)}</p><p>${attempted} av ${totalSegments} deler besvart${skippedSummary}. ${correct} svar stemte med fasiten. ${attempted === 0 ? 'Ingen diktat er registrert som fullført.' : 'Sammenlign teksten din med fasiten.'}</p><h3 class="mb-3 text-lg font-extrabold text-slate-900">Det du skrev</h3><p class="completion-answer mb-8 rounded-2xl border border-amber-200 bg-amber-50 px-5 py-4 leading-7 text-slate-700">${ownText}</p><div class="completion-reading grid gap-5 md:grid-cols-2"><section class="rounded-2xl border border-indigo-100 border-t-4 border-t-indigo-500 bg-white p-5 shadow-sm"><h3 class="mb-3 text-lg font-extrabold text-slate-900">Spansk fasit</h3><p class="leading-7 text-slate-700">${solution}</p></section><section class="rounded-2xl border border-amber-100 border-t-4 border-t-amber-500 bg-white p-5 shadow-sm"><h3 class="mb-3 text-lg font-extrabold text-slate-900">Norsk oversettelse</h3><p class="leading-7 text-slate-700">${translation}</p></section></div><button class="btn btn-primary mt-6" onclick="endDictation()">Tilbake til historiene</button></div>`;
+            document.getElementById('dictationExercise').innerHTML = `<div class="completion-screen mx-auto max-w-5xl px-4 py-8 sm:px-8"><p class="mb-2 text-sm font-bold uppercase tracking-widest text-indigo-600">${attempted === totalSegments ? 'Alle deler forsøkt' : 'Historien er gjennomgått'}</p><h2 class="mb-2 text-3xl font-black tracking-tight text-slate-900 sm:text-4xl">Historien er ferdig!</h2><p class="mb-8 text-base font-semibold text-slate-500">${escapeHtml(dictationState.story.theme)} – ${escapeHtml(dictationState.story.place)}</p><p>${attempted} av ${totalSegments} deler besvart${skippedSummary}. ${correct} svar stemte med fasiten. ${attempted === 0 ? 'Ingen diktat er registrert som fullført.' : 'Sammenlign teksten din med fasiten.'}</p>${dictationXp ? `<p class="home-feed-xp-result">+${dictationXp} XP</p>` : ''}<h3 class="mb-3 text-lg font-extrabold text-slate-900">Det du skrev</h3><p class="completion-answer mb-8 rounded-2xl border border-amber-200 bg-amber-50 px-5 py-4 leading-7 text-slate-700">${ownText}</p><div class="completion-reading grid gap-5 md:grid-cols-2"><section class="rounded-2xl border border-indigo-100 border-t-4 border-t-indigo-500 bg-white p-5 shadow-sm"><h3 class="mb-3 text-lg font-extrabold text-slate-900">Spansk fasit</h3><p class="leading-7 text-slate-700">${solution}</p></section><section class="rounded-2xl border border-amber-100 border-t-4 border-t-amber-500 bg-white p-5 shadow-sm"><h3 class="mb-3 text-lg font-extrabold text-slate-900">Norsk oversettelse</h3><p class="leading-7 text-slate-700">${translation}</p></section></div><button class="btn btn-primary mt-6" onclick="endDictation()">Tilbake til historiene</button></div>`;
         }
 
         function endDictation() {
@@ -18708,7 +18821,7 @@ const pronunciationManifest = {"schemaVersion":1,"sourceArchiveSha256":"d67fa8c7
         }
 
         function stripEdgePunctuation(value) {
-            return normalizeAnswerText(value).replace(/^[¡.,!;:"'«»]+|[.,!;:"'«»]+$/gu, '').trim();
+            return normalizeAnswerText(value).replace(/^[¿¡.,!;:"'«»]+|[?!.,!;:"'«»]+$/gu, '').trim();
         }
 
         function normalizeAccentVariant(value) {
@@ -18726,7 +18839,7 @@ const pronunciationManifest = {"schemaVersion":1,"sourceArchiveSha256":"d67fa8c7
         function evaluateDiagnosisAnswer(question, answer) {
             const normalizedAnswer = normalizeAnswerText(answer);
             if (!normalizedAnswer) return { resultKind: 'skipped', correct: false };
-            const stripEdge = value => normalizeAnswerText(value).replace(/^[¡.,!;:"'«»]+|[.,!;:"'«»]+$/gu, '').trim();
+            const stripEdge = value => normalizeAnswerText(value).replace(/^[¿¡.,!;:"'«»]+|[?!.,!;:"'«»]+$/gu, '').trim();
             const stripAccentEdge = value => normalizeAccentVariant(stripEdge(value));
             const strippedAnswer = stripEdge(answer);
             const acceptedAnswers = question.acceptedAnswers || [];
@@ -18790,12 +18903,50 @@ const pronunciationManifest = {"schemaVersion":1,"sourceArchiveSha256":"d67fa8c7
             return formatAnswerAlternatives(values) || 'Ikke oppgitt';
         }
 
+        function isSingleCharTypo(answer, expected) {
+            const a = normalizeAnswerText(answer);
+            const b = normalizeAnswerText(expected);
+            if (!a || !b || a === b) return false;
+            if (Math.max(a.length, b.length) < 4 || Math.min(a.length, b.length) < 3) return false;
+            if (Math.abs(a.length - b.length) > 1) return false;
+            const m = a.length, n = b.length;
+            const dp = Array.from({ length: m + 1 }, () => new Array(n + 1).fill(0));
+            for (let i = 0; i <= m; i++) dp[i][0] = i;
+            for (let j = 0; j <= n; j++) dp[0][j] = j;
+            for (let i = 1; i <= m; i++) {
+                for (let j = 1; j <= n; j++) {
+                    const cost = a[i - 1] === b[j - 1] ? 0 : 1;
+                    dp[i][j] = Math.min(dp[i - 1][j] + 1, dp[i][j - 1] + 1, dp[i - 1][j - 1] + cost);
+                    if (i > 1 && j > 1 && a[i - 1] === b[j - 2] && a[i - 2] === b[j - 1]) {
+                        dp[i][j] = Math.min(dp[i][j], dp[i - 2][j - 2] + 1);
+                    }
+                }
+            }
+            return dp[m][n] === 1;
+        }
+
+        function isMissingTildeN(answer, expected) {
+            const normAnswer = normalizeAnswerText(answer);
+            const normExpected = normalizeAnswerText(expected);
+            if (!normAnswer || !normExpected) return false;
+            const foldTilde = value => normalizeAccentVariant(value).replace(/ñ/g, 'n');
+            if (normalizeAccentVariant(normAnswer) !== normalizeAccentVariant(normExpected)
+                && foldTilde(normAnswer) === foldTilde(normExpected)) {
+                return true;
+            }
+            const strippedAnswer = stripEdgePunctuation(answer);
+            const strippedExpected = stripEdgePunctuation(expected);
+            if (!strippedAnswer || !strippedExpected) return false;
+            return normalizeAccentVariant(strippedAnswer) !== normalizeAccentVariant(strippedExpected)
+                && foldTilde(strippedAnswer) === foldTilde(strippedExpected);
+        }
+
         function evaluateTypedAnswer(answer, expected) {
             const normalizedAnswer = normalizeAnswerText(answer);
             const normalizedExpected = normalizeAnswerText(expected);
             if (!normalizedAnswer) return { resultKind: 'skipped', correct: false };
             if (normalizedAnswer === normalizedExpected) return { resultKind: 'correct', correct: true };
-            const stripEdge = value => normalizeAnswerText(value).replace(/^[¡.,!;:"'«»]+|[.,!;:"'«»]+$/gu, '').trim();
+            const stripEdge = value => normalizeAnswerText(value).replace(/^[¿¡.,!;:"'«»]+|[?!.,!;:"'«»]+$/gu, '').trim();
             const strippedAnswer = stripEdge(answer);
             const strippedExpected = stripEdge(expected);
             if (strippedAnswer && strippedAnswer === strippedExpected) {
@@ -19743,7 +19894,7 @@ const pronunciationManifest = {"schemaVersion":1,"sourceArchiveSha256":"d67fa8c7
                 const statusEl = document.getElementById('assignmentImportStatus');
                 if (statusEl) {
                     statusEl.textContent = feedback;
-                    statusEl.className = unavailableVocabulary ? 'homework-hint text-amber-800' : 'homework-hint text-emerald-500';
+                    statusEl.className = unavailableVocabulary ? 'homework-hint text-amber-800' : 'homework-hint text-emerald-700';
                 }
                 showToast(unavailableVocabulary ? feedback : result.message, unavailableVocabulary ? 'error' : 'success');
                 return result;
@@ -19751,7 +19902,7 @@ const pronunciationManifest = {"schemaVersion":1,"sourceArchiveSha256":"d67fa8c7
                 const statusEl = document.getElementById('assignmentImportStatus');
                 if (statusEl) {
                     statusEl.textContent = error.message;
-                    statusEl.className = 'homework-hint text-amber-500';
+                    statusEl.className = 'homework-hint text-amber-800';
                 }
                 showToast('Kunne ikke importere leksepakken: ' + error.message, 'error');
                 return { imported: false, message: error.message };
@@ -19916,7 +20067,7 @@ const pronunciationManifest = {"schemaVersion":1,"sourceArchiveSha256":"d67fa8c7
                 URL.revokeObjectURL(url);
 
                 statusEl.textContent = 'Leksepakke laget med ' + assignment.vocabulary.length + ' gloser. Ord eleven allerede har, hoppes over som nye kort, men brukes fortsatt i lekseøkten. Del JSON-filen med elevene.';
-                statusEl.className = 'homework-hint text-emerald-500';
+                statusEl.className = 'homework-hint text-emerald-700';
                 document.getElementById('assignmentPupilInstructions').value = getAssignmentPupilInstructions(assignment);
                 document.getElementById('assignmentPupilHandoff').hidden = false;
                 return assignment;
@@ -20071,7 +20222,7 @@ const pronunciationManifest = {"schemaVersion":1,"sourceArchiveSha256":"d67fa8c7
             const summaryHtml = `
                 <p><strong>${activeAssignment ? 'Pakkeøving denne uken' : 'Øvingsdager denne uken'}:</strong> ${practiceDays} av ${requiredDays} påkrevd</p>
                 <p>All øving denne uken: ${allPracticeDays} dag(er). Kalenderen viser også øving utenfor pakken.</p>
-                <p class="mt-2 ${targetReached ? 'text-emerald-500' : 'text-amber-500'}">
+                <p class="mt-2 ${targetReached ? 'text-emerald-700' : 'text-amber-800'}">
                     ${targetReached ? 'Ukens mål for øvingsdager er nådd.' : `Øv ${requiredDays - practiceDays} dag(er) til for å nå ukens mål. Du kan vise oppsummeringen nå.`}
                 </p>
             `;
@@ -20241,7 +20392,7 @@ const pronunciationManifest = {"schemaVersion":1,"sourceArchiveSha256":"d67fa8c7
             const historyEl = document.getElementById('practiceHistory');
 
             if (practiceHistory.length === 0) {
-                historyEl.innerHTML = '<p class="text-center text-gray-500">Ingen øvingshistorikk ennå. Start med gloser, verbbøying eller grammatikk!</p>';
+                historyEl.innerHTML = '<div class="empty-history-state"><p class="text-center text-gray-500">Ingen øvingshistorikk ennå. Start med gloser, verbbøying eller grammatikk!</p><button type="button" class="btn btn-primary btn-sm" onclick="showPage(\'vocab\')">Start en kort økt</button></div>';
                 return;
             }
 
@@ -20725,7 +20876,7 @@ const pronunciationManifest = {"schemaVersion":1,"sourceArchiveSha256":"d67fa8c7
             if (!statusEl) return;
 
             const status = getBackupStatus();
-            statusEl.className = `homework-hint ${status.tone === 'success' ? 'text-emerald-500' : 'text-amber-500'}`;
+            statusEl.className = `homework-hint ${status.tone === 'success' ? 'text-emerald-700' : 'text-amber-800'}`;
             statusEl.textContent = status.text;
         }
 
@@ -20956,14 +21107,16 @@ const pronunciationManifest = {"schemaVersion":1,"sourceArchiveSha256":"d67fa8c7
                         </div>
                         <p id="homeFeedWeeklyXp"><strong>${totalXp} XP</strong> denne uka</p>
                     </div>
-                    <ol class="home-week-days" role="list" aria-label="XP per dag, mandag til søndag">
-                        ${days.map(({ date, xp, isToday }) => `<li data-home-day="${getLocalDateString(date)}"${isToday ? ' aria-current="date"' : ''}>
-                            <span class="sr-only">${fullDate.format(date)}:</span>
-                            <strong>${xp} XP</strong>
-                            <span class="home-week-track" aria-hidden="true"><span style="--home-bar-height: ${xp / max * 100}%"></span></span>
-                            <span aria-hidden="true">${weekday.format(date)}</span>
-                        </li>`).join('')}
-                    </ol>
+                    ${totalXp > 0
+                        ? `<ol class="home-week-days" role="list" aria-label="XP per dag, mandag til søndag">
+                            ${days.map(({ date, xp, isToday }) => `<li data-home-day="${getLocalDateString(date)}"${isToday ? ' aria-current="date"' : ''}>
+                                <span class="sr-only">${fullDate.format(date)}:</span>
+                                <strong>${xp} XP</strong>
+                                <span class="home-week-track" aria-hidden="true"><span style="--home-bar-height: ${xp / max * 100}%"></span></span>
+                                <span aria-hidden="true">${weekday.format(date)}</span>
+                            </li>`).join('')}
+                        </ol>`
+                        : '<p class="home-week-empty-note" id="homeWeekEmptyNote">Du har 0 XP så langt denne uka. Fullfør din første økt over for å starte rekka di.</p>'}
                 </section>
             `;
         }
@@ -21288,13 +21441,13 @@ const pronunciationManifest = {"schemaVersion":1,"sourceArchiveSha256":"d67fa8c7
             const today = new Date();
             const quizStats = loadQuizStats();
             content.innerHTML = `
-                ${renderHomeProgress(today, quizStats)}
                 <section aria-labelledby="homeFeedTitle">
                     <h1 class="home-feed-heading" id="homeFeedTitle">Anbefalt for deg</h1>
                     <div id="homeSchoolPriority" hidden></div>
                     <div id="homeLearningFeed" class="home-feed"></div>
                     <button type="button" class="btn btn-outline" id="homeFeedMore">Vis flere</button>
                 </section>
+                ${renderHomeProgress(today, quizStats)}
             `;
             const feed = content.querySelector('#homeLearningFeed');
             visibleHomeFeedCards = new Set();
@@ -21398,10 +21551,34 @@ const pronunciationManifest = {"schemaVersion":1,"sourceArchiveSha256":"d67fa8c7
             return true;
         }
 
+        function hasActiveSessionProgress() {
+            if (!activeSessionType) return false;
+            if (activeSessionType === 'mixedQuiz') return (mixedQuizState?.answered || 0) > 0;
+            if (activeSessionType === 'vocabulary') return (sessionStats?.reviewed || 0) > 0;
+            if (activeSessionType === 'verbs') return (verbStats?.answered || 0) > 0;
+            if (activeSessionType === 'grammar') return (grammarSession?.answers?.length || 0) > 0;
+            if (activeSessionType === 'recognition') return true;
+            if (activeSessionType === 'recognitionLearning') return true;
+            if (activeSessionType === 'dictation') return Boolean(dictationState?.answers?.some(a => a && a.trim()));
+            if (activeSessionType === 'listening') return Boolean(listeningState?.answers?.length);
+            if (activeSessionType === 'diagnosis') return Boolean(loadDiagnosisState()?.answers?.length);
+            if (activeSessionType === 'pronunciation') return true;
+            return true;
+        }
+
+        function syncPracticeSessionBodyClass() {
+            const active = Boolean(document.querySelector(
+                '#vocabStudy:not(.hidden), #mixedQuizStudy:not(.hidden), #verbExercise:not(.hidden), #grammarExercise:not(.hidden), #dictationExercise:not(.hidden), #listeningExercise:not(.hidden), #recognitionAnswerInput, #recognitionLearningInput'
+            ));
+            document.body?.classList.toggle('in-practice-session', active);
+        }
+
         function showPage(page, options = {}) {
             const activePage = getActiveSessionPage();
-            if (!options.skipGuard && activeSessionType && activePage === page) return false;
-            if (!options.skipGuard && activeSessionType && activePage && activePage !== page) {
+            if (!options.skipGuard && activeSessionType && activePage === page) {
+                if (activeSessionType !== 'recognition' && activeSessionType !== 'recognitionLearning') return false;
+            }
+            if (!options.skipGuard && activeSessionType && activePage) {
                 if (!confirm('Du holder på med en økt. Avslutt og bytt fane?')) return false;
                 abandonActiveSession();
             }
@@ -21499,6 +21676,10 @@ const pronunciationManifest = {"schemaVersion":1,"sourceArchiveSha256":"d67fa8c7
                 document.getElementById('navGames').setAttribute('aria-current', 'page');
                 showGamesMenu();
             }
+            if (window.matchMedia('(max-width: 640px)').matches) {
+                document.querySelector('.nav-more')?.removeAttribute('open');
+            }
+            syncPracticeSessionBodyClass();
         }
         // VOCABULARY DATABASE
         // ============================================
@@ -25513,7 +25694,7 @@ const pronunciationManifest = {"schemaVersion":1,"sourceArchiveSha256":"d67fa8c7
             const stats = document.getElementById('mixedQuizStats');
             const counter = document.getElementById('mixedQuizCounter');
             if (stats) stats.textContent = `${answered} / ${total}`;
-            if (counter) counter.textContent = finished ? `${answered} av ${total} besvart` : `Oppgave ${Math.min(answered + 1, total)} av ${total}`;
+            if (counter) counter.textContent = finished ? `${answered} av ${total} besvart` : `Oppgave ${Math.min((mixedQuizState?.index ?? 0) + 1, total)} av ${total}`;
         }
 
         function shouldShowMixedQuizContext(item) {
@@ -25553,11 +25734,10 @@ const pronunciationManifest = {"schemaVersion":1,"sourceArchiveSha256":"d67fa8c7
                 : getDiagnosisOptions(item);
             const expectsSpanish = item.direction !== 'es-no' && item.direction !== 'esToNo';
             const responseControls = item.responseMode === 'choice'
-                ? `<div class="mixed-quiz-options">${choices.map(option => `<button type="button" class="btn btn-outline" data-mixed-answer="${escapeHtml(option.label)}">${escapeHtml(option.label)}</button>`).join('')}</div>`
+                ? `<div class="mixed-quiz-options">${choices.map((option, idx) => `<button type="button" class="btn btn-outline" data-choice-key="${idx + 1}" data-mixed-answer="${escapeHtml(option.label)}">${escapeHtml(option.label)}</button>`).join('')}</div>`
                 : item.responseMode === 'select'
                     ? `<label class="mixed-quiz-select-label" for="mixedQuizSelect">Velg svar</label><select id="mixedQuizSelect" class="mixed-quiz-select"><option value="">Velg et svar …</option>${getSelectOptions(item).map(option => `<option value="${escapeHtml(option.label)}">${escapeHtml(option.label)}</option>`).join('')}</select><div class="button-group"><button type="button" class="btn btn-primary" onclick="submitMixedQuizSelectAnswer()">Sjekk svar</button></div>`
-                    : `<input id="mixedQuizAnswerInput" class="conjugation-input" autocomplete="off" placeholder="Skriv svaret" ${expectsSpanish ? 'aria-describedby="mixedQuizAnswerAccentHint"' : ''} onkeydown="if(event.key === 'Enter') { event.preventDefault(); event.stopPropagation(); submitMixedQuizTypedAnswer(); }">
-                        ${expectsSpanish ? renderAccentHint('mixedQuizAnswerAccentHint', '', { targetId: 'mixedQuizAnswerInput' }) : ''}
+                    : `${expectsSpanish ? renderAccentHint('mixedQuizAnswerAccentHint', '', { targetId: 'mixedQuizAnswerInput' }) : ''}<input id="mixedQuizAnswerInput" class="conjugation-input" autocomplete="off" placeholder="Skriv svaret" ${expectsSpanish ? 'aria-describedby="mixedQuizAnswerAccentHint"' : ''} onkeydown="if(event.key === 'Enter') { event.preventDefault(); event.stopPropagation(); if(!event.repeat) submitMixedQuizTypedAnswer(); }">
                         <div class="button-group"><button type="button" class="btn btn-primary" onclick="submitMixedQuizTypedAnswer()">Sjekk svar</button></div>`;
             container.innerHTML = `
                 <div class="mixed-quiz-question" data-response-mode="${item.responseMode}" data-accepted-answer="${escapeHtml(getDiagnosisAnswerValue(item.acceptedAnswers[0]))}">
@@ -25675,25 +25855,38 @@ const pronunciationManifest = {"schemaVersion":1,"sourceArchiveSha256":"d67fa8c7
             checkpointPracticeSession('mixed-quiz', mixedQuizState.answered, mixedQuizState.correct, mixedQuizState.startedAt);
             const feedback = document.getElementById('mixedQuizFeedback');
             if (feedback) {
-                const feedbackClass = result.resultKind === 'correct' ? 'correct' : result.resultKind === 'accent_or_case_variant' ? 'near-miss' : 'incorrect';
+                const acceptedValues = getDiagnosisAnswerValues(item);
+                const isTypedWrong = result.resultKind === 'wrong' && (item.responseMode === 'typed' || !item.responseMode);
+                const isTildeNearMiss = isTypedWrong && acceptedValues.some(val => isMissingTildeN(answer, val));
+                const isTypoNearMiss = isTypedWrong && !isTildeNearMiss && acceptedValues.some(val => isSingleCharTypo(answer, val));
+                const feedbackClass = result.resultKind === 'correct'
+                    ? 'correct'
+                    : (result.resultKind === 'accent_or_case_variant' || result.resultKind === 'near_miss' || isTildeNearMiss || isTypoNearMiss)
+                        ? 'near-miss'
+                        : 'incorrect';
                 feedback.className = `mixed-quiz-feedback ${feedbackClass}`;
                 feedback.innerHTML = result.resultKind === 'correct'
                     ? '✓ Riktig!'
                     : result.resultKind === 'accent_or_case_variant'
                         ? `Nesten riktig — sjekk aksenten. Riktig svar er: <strong>${escapeHtml(formatMixedQuizCorrectAnswers(item))}</strong>`
-                        : result.resultKind === 'near_miss'
-                            ? `Nesten — riktig svar er: <strong>${escapeHtml(formatMixedQuizCorrectAnswers(item))}</strong>`
-                            : `✗ Feil — riktig svar: <strong>${escapeHtml(formatMixedQuizCorrectAnswers(item))}</strong>`;
+                        : isTildeNearMiss
+                            ? `Nesten riktig — husk bokstaven ñ. Riktig svar er: <strong>${escapeHtml(formatMixedQuizCorrectAnswers(item))}</strong>`
+                            : isTypoNearMiss
+                                ? `Nesten! Sjekk stavingen. Riktig svar er: <strong>${escapeHtml(formatMixedQuizCorrectAnswers(item))}</strong>`
+                                : result.resultKind === 'near_miss'
+                                    ? `Nesten — riktig svar er: <strong>${escapeHtml(formatMixedQuizCorrectAnswers(item))}</strong>`
+                                    : `✗ Feil — riktig svar: <strong>${escapeHtml(formatMixedQuizCorrectAnswers(item))}</strong>`;
                 feedback.insertAdjacentHTML('beforeend', `<div class="button-group"><button type="button" data-feedback-next class="btn btn-primary btn-sm mt-4" onclick="advanceMixedQuizQuestion()">${mixedQuizState.answered >= mixedQuizState.quiz.items.length ? 'Se resultat' : 'Neste'}</button></div>`);
                 if (result.resultKind !== 'correct') {
-                    feedback.insertAdjacentHTML('beforeend', `<div class="mixed-quiz-scaffolding-note">💡 Støtten tilpasses automatisk neste gang du møter dette målet.</div>`);
+                    feedback.insertAdjacentHTML('beforeend', `<div class="mixed-quiz-scaffolding-note">💡 Neste gang får du litt ekstra hjelp med denne.</div>`);
                     feedback.insertAdjacentHTML('beforeend', renderStudentFeedbackButton({itemRef:`quiz:${item.questionId}`,source:'quiz',prompt:item.prompt,studentAnswer:String(answer || ''),expectedAnswer:formatMixedQuizCorrectAnswers(item)}));
                 }
             }
-            document.querySelectorAll('#mixedQuizQuestion input, #mixedQuizQuestion button').forEach(control => {
+            document.querySelectorAll('#mixedQuizQuestion input, #mixedQuizQuestion select, #mixedQuizQuestion button').forEach(control => {
                 if (!control.matches('#mixedQuizFeedback button')) control.disabled = true;
             });
-            setTimeout(() => { if (!document.querySelector('.settings-modal')) feedback?.querySelector('button')?.focus(); }, 0);
+            document.querySelector('#mixedQuizQuestion > .mixed-quiz-question > .button-group')?.setAttribute('hidden', '');
+            setTimeout(() => { if (!document.querySelector('.settings-modal')) feedback?.querySelector('button')?.focus({ preventScroll: true }); }, 0);
             updateMixedQuizProgress();
         }
 
@@ -25750,8 +25943,8 @@ const pronunciationManifest = {"schemaVersion":1,"sourceArchiveSha256":"d67fa8c7
                     <div class="session-complete mixed-quiz-results">
                         <div class="emoji">${mixedQuizState.answered === 0 ? '📝' : accuracy >= 80 ? '🎉' : accuracy >= 50 ? '👍' : '💪'}</div>
                         <h2>${mixedQuizState.answered === total ? 'Quiz ferdig' : 'Quiz avsluttet'}</h2>
-                        <p>${mixedQuizState.answered} av ${total} oppgaver besvart. ${mixedQuizState.answered ? `${mixedQuizState.correct} ${mixedQuizState.correct === 1 ? 'riktig' : 'riktige'} (${accuracy}%).` : 'Ingen svar ennå.'}</p>
-                        <p data-practice-result-message>${getPracticeResultMessage(mixedQuizState.correct, mixedQuizState.answered, total)}</p>
+                        <p class="font-semibold text-gray-800">${mixedQuizState.answered} av ${total} oppgaver besvart. ${mixedQuizState.answered ? `${mixedQuizState.correct} ${mixedQuizState.correct === 1 ? 'riktig' : 'riktige'} (${accuracy}%).` : 'Ingen svar ennå.'}</p>
+                        <p data-practice-result-message class="sr-only">${getPracticeResultMessage(mixedQuizState.correct, mixedQuizState.answered, total)}</p>
                         ${renderHomeFeedResult('mixed-quiz')}
                         ${renderQuizStreakBadge(quizStats)}
                         <p id="mixedQuizWeeklyGoal">${renderQuizWeeklyGoal(quizStats)}</p>
@@ -25812,7 +26005,7 @@ const pronunciationManifest = {"schemaVersion":1,"sourceArchiveSha256":"d67fa8c7
                 showPage('vocab');
                 return;
             }
-            if (confirm('Er du sikker på at du vil avslutte quizen?')) finishMixedQuiz();
+            if (mixedQuizState.answered === 0 || confirm('Er du sikker på at du vil avslutte quizen?')) finishMixedQuiz();
         }
 
         function loadData() {
@@ -25982,12 +26175,23 @@ const pronunciationManifest = {"schemaVersion":1,"sourceArchiveSha256":"d67fa8c7
             document.addEventListener('keydown', (e) => {
                 if (e.defaultPrevented || e.isComposing || document.querySelector('.settings-modal')) return;
                 const target = e.target instanceof Element ? e.target : null;
+                if (e.altKey && e.key.toLowerCase() === 'r' && !document.getElementById('dictationExercise')?.classList.contains('hidden')) {
+                    e.preventDefault();
+                    replayDictationSegment();
+                    return;
+                }
+                if (target?.tagName === 'SELECT' && e.key === 'Enter' && !e.repeat && target.value) {
+                    if (target.id === 'grammarSelect') { e.preventDefault(); submitGrammarSelectAnswer(); return; }
+                    if (target.id === 'mixedQuizSelect') { e.preventDefault(); submitMixedQuizSelectAnswer(); return; }
+                    if (target.id === 'vocabSelect') { e.preventDefault(); submitVocabSelectAnswer(); return; }
+                }
                 if (target?.closest('textarea, select, [contenteditable="true"]')) return;
                 if (target?.closest('input') && !['typedVocabInput', 'verbInput'].includes(target.id)) return;
                 const nativeControl = target?.closest('button, a[href], summary');
                 if (nativeControl && !nativeControl.disabled && ['Enter', ' '].includes(e.key)) return;
                 if (diagnosisFeedback && e.key === 'Enter' && e.target?.id !== 'diagnosisAnswerInput') {
                     e.preventDefault();
+                    if (e.repeat) return;
                     advanceDiagnosisFeedback();
                     return;
                 }
@@ -25995,6 +26199,7 @@ const pronunciationManifest = {"schemaVersion":1,"sourceArchiveSha256":"d67fa8c7
                     .find(button => button.getClientRects().length && !button.disabled);
                 if (feedbackNext && e.key === 'Enter' && !e.ctrlKey && !e.metaKey && !e.altKey) {
                     e.preventDefault();
+                    if (e.repeat) return;
                     feedbackNext.click();
                     return;
                 }
@@ -26011,6 +26216,7 @@ const pronunciationManifest = {"schemaVersion":1,"sourceArchiveSha256":"d67fa8c7
                     if (e.target?.id === 'typedVocabInput') {
                         if (e.key === 'Enter') {
                             e.preventDefault();
+                            if (e.repeat) return;
                             submitTypedVocabAnswer();
                         }
                         return;
@@ -26025,9 +26231,23 @@ const pronunciationManifest = {"schemaVersion":1,"sourceArchiveSha256":"d67fa8c7
                     }
                 }
 
+                // Multiple-choice 1-4 shortcuts for Mixed Quiz & Grammar
+                if (!e.ctrlKey && !e.metaKey && !e.altKey && !e.shiftKey && ['1', '2', '3', '4'].includes(e.key) && !target?.closest('input')) {
+                    const idx = Number(e.key) - 1;
+                    if (!document.getElementById('mixedQuizStudy').classList.contains('hidden')) {
+                        const opt = document.querySelectorAll('#mixedQuizQuestion [data-mixed-answer]:not(:disabled)')[idx];
+                        if (opt) { e.preventDefault(); opt.click(); return; }
+                    }
+                    if (!document.getElementById('grammarExercise').classList.contains('hidden')) {
+                        const opt = document.querySelectorAll('#grammarExerciseArea .grammar-option:not(:disabled)')[idx];
+                        if (opt) { e.preventDefault(); opt.click(); return; }
+                    }
+                }
+
                 const grammarNextButton = document.getElementById('grammarNextBtn');
                 if (grammarNextButton && !document.getElementById('grammarExercise').classList.contains('hidden') && e.key === 'Enter') {
                     e.preventDefault();
+                    if (e.repeat) return;
                     grammarNextButton.click();
                     return;
                 }
@@ -26036,15 +26256,23 @@ const pronunciationManifest = {"schemaVersion":1,"sourceArchiveSha256":"d67fa8c7
                 if (!document.getElementById('verbExercise').classList.contains('hidden')) {
                     if (e.key === 'Enter') {
                         e.preventDefault();
+                        if (e.repeat) return;
                         checkVerbAnswer();
                     }
                 }
 
                 if (!document.getElementById('sentencePuzzleGame').classList.contains('hidden')) {
+                    if (e.key === 'Backspace' && !target?.closest('input') && document.getElementById('spNextButton').disabled && spSelectedWords.length > 0) {
+                        e.preventDefault();
+                        removeSentencePuzzleWord(spSelectedWords.length - 1);
+                        return;
+                    }
                     if (e.key === 'Enter') {
-                        const primaryAction = document.getElementById('spCheckButton').disabled
-                            ? document.getElementById('spNextButton')
-                            : document.getElementById('spCheckButton');
+                        if (e.repeat) return;
+                        const checkButton = document.getElementById('spCheckButton');
+                        const nextButton = document.getElementById('spNextButton');
+                        const primaryAction = checkButton.disabled ? nextButton : checkButton;
+                        if (primaryAction === checkButton && spSelectedWords.length === 0) return;
                         if (!primaryAction.disabled) {
                             e.preventDefault();
                             primaryAction.click();
@@ -26213,7 +26441,7 @@ const pronunciationManifest = {"schemaVersion":1,"sourceArchiveSha256":"d67fa8c7
                     <div id="recognitionHint" aria-live="polite"></div>
                     <div id="recognitionFeedback" aria-live="polite"></div>`;
             }
-            document.getElementById('recognitionQuestionTitle')?.focus();
+            document.getElementById('recognitionQuestionTitle')?.focus({ preventScroll: true });
         }
 
         function getRecognitionNonSpoilerHint(card) {
@@ -26273,7 +26501,8 @@ const pronunciationManifest = {"schemaVersion":1,"sourceArchiveSha256":"d67fa8c7
         }
 
         function exitRecognitionDiscovery() {
-            if (recognitionRound && confirm('Avslutte oppdagelsesrunden? Svarene i runden blir ikke lagret.')) finishRecognitionDiscovery();
+            if (!recognitionRound) return;
+            if (recognitionRound.answers.length === 0 || confirm('Avslutte oppdagelsesrunden? Svarene i runden blir ikke lagret.')) finishRecognitionDiscovery();
         }
 
         function startRecognitionPractice(mode = 'mixed', starters = true) {
@@ -26287,8 +26516,13 @@ const pronunciationManifest = {"schemaVersion":1,"sourceArchiveSha256":"d67fa8c7
         }
 
         function evaluateRecognitionSentence(item, answer) {
-            const normalized = String(answer || '').normalize('NFC').trim().replace(/\.$/u, '').trim();
-            return evaluateDiagnosisAnswer({ acceptedAnswers: [item.tokens.join(' ')] }, normalized);
+            const raw = String(answer || '').normalize('NFC').trim();
+            const expected = item.tokens.join(' ');
+            if (/[¿?]/u.test(raw) && !/[¿?]/u.test(expected)) {
+                return { resultKind: 'wrong', correct: false };
+            }
+            const normalized = raw.replace(/\.$/u, '').trim();
+            return evaluateDiagnosisAnswer({ acceptedAnswers: [expected] }, normalized);
         }
 
         function startRecognitionLearning(kind) {
@@ -26516,7 +26750,9 @@ const pronunciationManifest = {"schemaVersion":1,"sourceArchiveSha256":"d67fa8c7
         }
 
         function exitRecognitionLearning() {
-            if (recognitionLearning && confirm('Avslutte øvingen og gå til temaet? Resultatet i runden blir ikke lagret.')) finishRecognitionLearning();
+            if (!recognitionLearning) return;
+            const hasProgress = recognitionLearning.results.some(Boolean);
+            if (!hasProgress || confirm('Avslutte øvingen og gå til temaet? Resultatet i runden blir ikke lagret.')) finishRecognitionLearning();
         }
 
         function getCategories() {
@@ -27322,8 +27558,8 @@ Vil du øve på ${pronoun} likevel?`
                         <div class="card-word">${front}</div>
                         ${getVocabularyFrontHint(item) ? `<div class="card-hint">${getVocabularyFrontHint(item)}</div>` : ''}
                         <div class="mt-4">
-                            <input type="text" class="conjugation-input" id="typedVocabInput" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Skriv svaret" ${direction === 'no-es' ? 'aria-describedby="typedVocabAccentHint"' : ''}>
                             ${direction === 'no-es' ? renderAccentHint('typedVocabAccentHint', '', { targetId: 'typedVocabInput' }) : ''}
+                            <input type="text" class="conjugation-input" id="typedVocabInput" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Skriv svaret" ${direction === 'no-es' ? 'aria-describedby="typedVocabAccentHint"' : ''}>
                             <div class="conjugation-feedback" id="typedVocabFeedback"></div>
                         </div>
                         <span class="card-category">${getCategoryEmoji(card.category)} ${capitalizeFirst(card.category)}</span>
@@ -27366,7 +27602,7 @@ Vil du øve på ${pronoun} likevel?`
             }
 
             document.getElementById('flashcardArea').innerHTML = `
-                <div class="flashcard" role="button" tabindex="0" aria-label="${escapeHtml(front)} - trykk for å se svar" onclick="flipCard()" onkeydown="if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); flipCard(); }">
+                <div class="flashcard" role="button" tabindex="0" aria-label="${escapeHtml(front)} - trykk for å se svar" onclick="flipCard()" onkeydown="if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); if (!event.repeat) flipCard(); }">
                     <span class="card-type-badge ${item.scaffoldedAfterError ? 'badge-retry' : (isCustomStudySession ? 'badge-review' : (isNew ? 'badge-new' : 'badge-review'))}">
                         ${item.scaffoldedAfterError ? '💡 Støtte etter feil' : cardTypeLabel}
                     </span>
@@ -27375,12 +27611,15 @@ Vil du øve på ${pronoun} likevel?`
                     </span>
                     <div class="card-word">${front}</div>
                     ${getVocabularyFrontHint(item) ? `<div class="card-hint">${getVocabularyFrontHint(item)}</div>` : ''}
-                    <div class="card-hint">Trykk for å se svar (mellomrom)</div>
+                    <div class="card-hint">Trykk for å se svar<span class="shortcut-hint"> (mellomrom)</span></div>
                     <span class="card-category">${getCategoryEmoji(card.category)} ${capitalizeFirst(card.category)}</span>
                 </div>
             `;
             document.getElementById('buttonArea').innerHTML = '';
             updateUndoButtonState();
+            if (!document.querySelector('.settings-modal')) {
+                document.querySelector('#flashcardArea .flashcard')?.focus({ preventScroll: true });
+            }
         }
 
         function flipCard() {
@@ -27418,6 +27657,9 @@ Vil du øve på ${pronoun} likevel?`
                 </div>
             `;
                     updateUndoButtonState();
+                    setTimeout(() => {
+                        if (!document.querySelector('.settings-modal')) document.querySelector('#buttonArea .rating-good')?.focus({ preventScroll: true });
+                    }, 0);
         }
 
         function submitTypedVocabAnswer() {
@@ -27426,9 +27668,11 @@ Vil du øve på ${pronoun} likevel?`
             if (!input || input.disabled || currentCardRated) return;
             const feedback = document.getElementById('typedVocabFeedback');
             const expected = getExpectedAnswerText(currentCard);
-            const evaluation = isTypedVocabAnswerCorrect(input.value, expected, getVocabularyAcceptedAnswers(currentCard.card, currentCard.direction, expected).map(item => item.value));
+            const acceptedList = getVocabularyAcceptedAnswers(currentCard.card, currentCard.direction, expected).map(item => item.value);
+            const evaluation = isTypedVocabAnswerCorrect(input.value, expected, acceptedList);
 
             input.disabled = true;
+            document.querySelectorAll('#flashcardArea .app-accent-btn').forEach(btn => { btn.disabled = true; });
             rateCard(evaluation.resultKind === 'correct' ? 2 : 0, false);
 
             if (evaluation.resultKind === 'correct') {
@@ -27436,12 +27680,23 @@ Vil du øve på ${pronoun} likevel?`
                     ? '<div class="grammar-feedback correct">✓ Riktig med støtte!</div>'
                     : '<div class="grammar-feedback correct">✓ Riktig!</div>';
                 document.getElementById('buttonArea').innerHTML = '<div class="button-group"><button data-feedback-next class="btn btn-primary" onclick="rateCard(2)">Neste kort</button></div>';
+                setTimeout(() => { if (!document.querySelector('.settings-modal')) document.querySelector('#buttonArea [data-feedback-next]')?.focus({ preventScroll: true }); }, 0);
                 return;
             }
 
+            const nearMissTilde = evaluation.resultKind === 'wrong' && acceptedList.some(val => isMissingTildeN(input.value, val));
+            const isTypoNearMiss = evaluation.resultKind === 'wrong' && !nearMissTilde && acceptedList.some(val => isSingleCharTypo(input.value, val));
+            const feedbackVariantClass = evaluation.resultKind === 'accent_or_case_variant' || nearMissTilde || isTypoNearMiss ? 'near-miss' : 'incorrect';
+            const feedbackPrefix = evaluation.resultKind === 'accent_or_case_variant'
+                ? 'Nesten riktig — sjekk aksenten.'
+                : nearMissTilde
+                    ? 'Nesten riktig — husk bokstaven ñ.'
+                    : isTypoNearMiss
+                        ? 'Nesten! Sjekk stavingen.'
+                        : '✗ Feil.';
             feedback.innerHTML = `
-                <div class="grammar-feedback ${evaluation.resultKind === 'accent_or_case_variant' ? 'near-miss' : 'incorrect'}">
-                    ${evaluation.resultKind === 'accent_or_case_variant' ? 'Nesten riktig — sjekk aksenten.' : '✗ Feil.'} Godkjente svar: <strong>${formatAnswerAlternatives(getVocabularyAcceptedAnswers(currentCard.card, currentCard.direction, expected).map(item => escapeHtml(item.value)))}</strong>
+                <div class="grammar-feedback ${feedbackVariantClass}">
+                    ${feedbackPrefix} Godkjente svar: <strong>${formatAnswerAlternatives(acceptedList.map(item => escapeHtml(item)))}</strong>
                 </div>
                 ${renderStudentFeedbackButton({itemRef:`vocab:${currentCard.card.no}:${currentCard.card.es}:${currentCard.direction}`,source:'gloser',prompt:getVocabPromptText(currentCard),studentAnswer:input.value,expectedAnswer:expected})}
             `;
@@ -27450,6 +27705,7 @@ Vil du øve på ${pronoun} likevel?`
                     <button data-feedback-next class="btn btn-primary" onclick="rateCard(0)">Neste kort</button>
                 </div>
             `;
+            setTimeout(() => { if (!document.querySelector('.settings-modal')) document.querySelector('#buttonArea [data-feedback-next]')?.focus({ preventScroll: true }); }, 0);
         }
 
         function submitVocabSelectAnswer() {
@@ -27549,16 +27805,26 @@ Vil du øve på ${pronoun} likevel?`
         }
 
         function endVocabSessionEarly() {
-            if (confirm('Er du sikker på at du vil avslutte økten?')) endVocabSession();
+            if (sessionStats.reviewed === 0 || confirm('Er du sikker på at du vil avslutte økten?')) endVocabSession();
         }
 
         function endVocabSession() {
-            if (!checkpointPracticeSession('vocabulary', sessionStats.reviewed, sessionStats.correct, sessionStartTime, true, false, sessionCards.length)) return;
+            const plannedCount = (activeHomeFeedCard?.session === practiceSessions.vocabulary || isCustomStudySession)
+                ? sessionCards.length
+                : (sessionStats.reviewed > 0 ? sessionStats.reviewed : sessionCards.length);
+            const vocabSessionRef = practiceSessions.vocabulary;
+            if (!checkpointPracticeSession('vocabulary', sessionStats.reviewed, sessionStats.correct, sessionStartTime, true, false, plannedCount)) return;
+            const vocabXp = (!isCustomStudySession && activeHomeFeedCard?.session !== vocabSessionRef)
+                ? (practiceHistory.find(entry => entry.sessionId === vocabSessionRef?.sessionId)?.xp || 0)
+                : 0;
             activeSessionType = null;
             vocabUndoStack = [];
             updateUndoButtonState();
             document.querySelector('#vocabStudy .study-header')?.classList.add('hidden');
-            const duration = Math.round((new Date() - sessionStartTime) / 60000);
+            const elapsedMinutes = getElapsedPracticeMinutes(sessionStartTime);
+            const duration = Math.round(elapsedMinutes);
+            const durationDisplay = sessionStats.reviewed > 0 && duration < 1 ? '< 1' : String(duration);
+            const durationLabel = (sessionStats.reviewed > 0 && duration <= 1) ? 'Minutt' : 'Minutter';
             const accuracy = sessionStats.reviewed > 0 ? Math.round((sessionStats.correct / sessionStats.reviewed) * 100) : 0;
 
 
@@ -27569,10 +27835,11 @@ Vil du øve på ${pronoun} likevel?`
                     <div class="session-stats-grid">
                         <div class="session-stat"><div class="session-stat-value">${sessionStats.reviewed}</div><div class="session-stat-label">Kort repetert</div></div>
                         <div class="session-stat"><div class="session-stat-value">${sessionStats.reviewed ? accuracy + '%' : '–'}</div><div class="session-stat-label">Nøyaktighet</div></div>
-                        <div class="session-stat"><div class="session-stat-value">${duration}</div><div class="session-stat-label">${duration === 1 ? 'Minutt' : 'Minutter'}</div></div>
+                        <div class="session-stat"><div class="session-stat-value">${durationDisplay}</div><div class="session-stat-label">${durationLabel}</div></div>
                     </div>
                     <p data-practice-result-message class="mt-5 text-gray-600">${getPracticeResultMessage(sessionStats.correct, sessionStats.reviewed, sessionCards.length, 'cards')} ${sessionStats.reviewed ? 'Repeter kortene senere for å huske ordene.' : ''}</p>
-                    ${!isCustomStudySession && sessionStats.newLearned > 0 ? `<p class="font-semibold text-emerald-600">Du svarte riktig på ${sessionStats.newLearned} nye kort.</p>` : ''}
+                    ${vocabXp ? `<p class="home-feed-xp-result">+${vocabXp} XP</p>` : ''}
+                    ${!isCustomStudySession && sessionStats.newLearned > 0 ? `<p class="font-semibold text-emerald-700">${sessionStats.newLearned === 1 ? 'Du klarte 1 nytt kort!' : `Du klarte ${sessionStats.newLearned} nye kort!`}</p>` : ''}
                     ${isCustomStudySession ? `<p class="font-semibold text-gray-600">📝 Denne økten endret ikke repetisjonsplanen.</p>` : ''}
                 </div>
             `;
@@ -27963,14 +28230,20 @@ Vil du øve på ${pronoun} likevel?`
                                         <span class="brainmap-group-meta">${children.length} ${children.length === 1 ? 'ferdighet' : 'ferdigheter'} – ${escapeHtml(group.statusLabel)}</span>
                                     </summary>
                                     <div class="brainmap-node-grid brainmap-group-skills">
-                                        ${children.map(node => `
-                                            <button type="button" class="brainmap-node brainmap-node-${node.status} brainmap-skill-action" data-brainmap-skill-action data-brainmap-status="${node.status}" data-brainmap-intensity="${getBrainmapStrengthIntensity(node)}" onclick="activateBrainmapSkill('${node.id}')" aria-label="${escapeHtml(`${node.label}, ${node.level}, ${formatBrainmapNodeStatus(node)}. ${getBrainmapSkillActionDescriptors()[node.id]?.label || 'Åpne emne'}`)}">
+                                        ${children.map(node => {
+                                            const descriptor = getBrainmapSkillActionDescriptors()[node.id];
+                                            const actionLabel = descriptor
+                                                ? (descriptor.kind === 'planned' ? descriptor.label : `${descriptor.label} →`)
+                                                : 'Øv nå →';
+                                            return `
+                                            <button type="button" class="brainmap-node brainmap-node-${node.status} brainmap-skill-action" data-brainmap-skill-action data-brainmap-status="${node.status}" data-brainmap-intensity="${getBrainmapStrengthIntensity(node)}" onclick="activateBrainmapSkill('${node.id}')" aria-label="${escapeHtml(`${node.label}, ${node.level}, ${formatBrainmapNodeStatus(node)}. ${descriptor?.label || 'Åpne emne'}`)}">
                                                 <span class="brainmap-node-topline"><span class="brainmap-status-dot" aria-hidden="true"></span><span class="brainmap-node-level">${escapeHtml(node.level)}</span></span>
                                                 <strong>${escapeHtml(node.label)}</strong>
                                                 <span>${escapeHtml(formatBrainmapNodeStatus(node))}</span>
-                                                <span class="brainmap-node-action">${escapeHtml(getBrainmapSkillActionDescriptors()[node.id]?.label || 'Åpne emne')} →</span>
+                                                <span class="brainmap-node-action">${escapeHtml(actionLabel)}</span>
                                             </button>
-                                        `).join('')}
+                                        `;
+                                        }).join('')}
                                     </div>
                                 </details>
                             `;
@@ -27986,7 +28259,7 @@ Vil du øve på ${pronoun} likevel?`
                                 </div>
                                 <h4>${escapeHtml(capitalizeFirst(area.label))}</h4>
                                 <p>${area.mastered} av ${area.count} ord mestret. Trykk for å øve</p>
-                                ${area.directionSplit ? `<p class="brainmap-direction-split">Norsk → spansk ${area.directionStrength.noToEs.toFixed(1)} – Spansk → norsk ${area.directionStrength.esToNo.toFixed(1)}</p>` : ''}
+                                ${area.directionSplit ? `<p class="brainmap-direction-split">Norsk → spansk: ${escapeHtml(getBrainmapStatus({ strength: area.directionStrength.noToEs, attempts: 1 }).label)}, spansk → norsk: ${escapeHtml(getBrainmapStatus({ strength: area.directionStrength.esToNo, attempts: 1 }).label)}</p>` : ''}
                             </button>
                         `).join('')}
                     </div>
@@ -28477,8 +28750,10 @@ Vil du øve på ${pronoun} likevel?`
                 <div class="conjugation-exercise">
                     ${renderAssignmentSessionGoal('verbs', 'verb')}
                     ${verbPracticeGuidance ? `<p id="verbPracticeGoal" class="grammar-feedback">${escapeHtml(verbPracticeGuidance)}</p>` : ''}
-                    <div class="conjugation-verb">${verb.infinitive}</div>
-                    <div class="conjugation-translation">${verb.translation}</div>
+                    <div class="conjugation-header-row">
+                        <div class="conjugation-verb">${verb.infinitive}</div>
+                        <div class="conjugation-translation">(${verb.translation})</div>
+                    </div>
                     <div class="conjugation-tense">${tenseDisplay}</div>
 
                     <div class="conjugation-prompt">
@@ -28487,11 +28762,11 @@ Vil du øve på ${pronoun} likevel?`
                     </div>
                     <p id="verbPronounMeaning" class="conjugation-translation"><span lang="es">${pronouns[pronounIndex]}</span> = ${pronounsNorwegian[pronounIndex]}</p>
 
+                    ${renderAccentHint('verbAccentHint', 'Hold også inne n for ñ, ? for ¿ eller ! for ¡.', { targetId: 'verbInput' })}
                     <div class="conjugation-input-container">
                         <input type="text" class="conjugation-input" id="verbInput"
                                placeholder="Skriv svaret..." autocomplete="off" aria-describedby="verbAccentHint" autofocus>
                     </div>
-                    ${renderAccentHint('verbAccentHint', 'Hold også inne n for ñ, ? for ¿ eller ! for ¡.', { targetId: 'verbInput' })}
                     ${needsSupport && verbOptions.length > 0 ? `
                         <div id="verbAnswerOptions" class="verb-scaffolding-container">
                             <span class="verb-scaffolding-badge">💡 Støtte: Velg eller skriv</span>
@@ -28540,6 +28815,7 @@ Vil du øve på ${pronoun} likevel?`
             verbAnswerPending = true;
             verbStats.answered = (verbStats.answered || 0) + 1;
             input.readOnly = true;
+            document.querySelectorAll('#verbExerciseArea .app-accent-btn').forEach(btn => { btn.disabled = true; });
             document.getElementById('verbAnswerActions').remove();
             document.getElementById('verbAnswerOptions')?.remove();
             document.getElementById('verbHint').hidden = true;
@@ -28552,10 +28828,16 @@ Vil du øve på ${pronoun} likevel?`
                 verbStats.correct++;
 
             } else {
+                const nearMissTilde = evaluation.resultKind === 'wrong' && isMissingTildeN(input.value, expected);
+                const isTypoNearMiss = evaluation.resultKind === 'wrong' && !nearMissTilde && isSingleCharTypo(input.value, expected);
                 feedback.innerHTML = evaluation.resultKind === 'accent_or_case_variant'
                     ? `Nesten riktig — sjekk aksenten. Riktig svar: <strong>${expected}</strong>`
-                    : `✗ Riktig svar: <strong>${expected}</strong>`;
-                feedback.className = `conjugation-feedback ${evaluation.resultKind === 'accent_or_case_variant' ? 'near-miss' : 'incorrect'}`;
+                    : nearMissTilde
+                        ? `Nesten riktig — husk bokstaven ñ. Riktig svar: <strong>${expected}</strong>`
+                        : isTypoNearMiss
+                            ? `Nesten! Sjekk stavingen. Riktig svar: <strong>${expected}</strong>`
+                            : `✗ Riktig svar: <strong>${expected}</strong>`;
+                feedback.className = `conjugation-feedback ${evaluation.resultKind === 'accent_or_case_variant' || nearMissTilde || isTypoNearMiss ? 'near-miss' : 'incorrect'}`;
                 input.classList.add('incorrect');
                 input.classList.remove('correct');
 
@@ -28578,7 +28860,7 @@ Vil du øve på ${pronoun} likevel?`
                     document.getElementById('verbHint').hidden
             }));
             checkpointPracticeSession('verbs', verbStats.answered, verbStats.correct, verbSessionStartTime);
-            setTimeout(() => { if (!document.querySelector('.settings-modal')) feedback.querySelector('[data-feedback-next]')?.focus(); }, 0);
+            setTimeout(() => { if (!document.querySelector('.settings-modal')) feedback.querySelector('[data-feedback-next]')?.focus({ preventScroll: true }); }, 0);
         }
 
         function advanceVerbExercise() {
@@ -28640,7 +28922,7 @@ Vil du øve på ${pronoun} likevel?`
                 showPage('verbs');
                 return;
             }
-            if (confirm('Er du sikker på at du vil avslutte økten?')) endVerbSession();
+            if ((verbStats.answered || 0) === 0 || confirm('Er du sikker på at du vil avslutte økten?')) endVerbSession();
         }
 
         function endVerbSession() {
@@ -29089,7 +29371,7 @@ Vil du øve på ${pronoun} likevel?`
             if (!preview) return;
 
             if (rows.length === 0) {
-                preview.innerHTML = '<p class="homework-hint text-amber-500">Fant ingen ordpar. Sjekk at norsk og spansk står på samme linje med tab, flere mellomrom, « - », « = » eller « : » mellom.</p>';
+                preview.innerHTML = '<p class="homework-hint text-amber-800">Fant ingen ordpar. Sjekk at norsk og spansk står på samme linje med tab, flere mellomrom, « - », « = » eller « : » mellom.</p>';
                 return;
             }
 
@@ -29262,22 +29544,26 @@ Vil du øve på ${pronoun} likevel?`
             const showButtons = options?.buttons !== false && Boolean(targetId);
             const chars = ['á', 'é', 'í', 'ó', 'ú', 'ü', 'ñ', '¿', '¡'];
             const bar = showButtons
-                ? `<div class="app-accent-bar" role="group" aria-label="Spanske tegn">${chars.map(ch => `<button type="button" class="app-accent-btn" data-accent-char="${ch}" data-accent-target="${escapeHtml(targetId)}" aria-label="Sett inn ${ch}">${ch}</button>`).join('')}</div>`
+                ? `<div class="app-accent-bar" role="group" aria-label="Spanske tegn">${chars.map(ch => `<button type="button" tabindex="-1" class="app-accent-btn" data-accent-char="${ch}" data-accent-target="${escapeHtml(targetId)}" aria-label="Sett inn ${ch}">${ch}</button>`).join('')}</div>`
                 : '';
             const tip = showButtons
-                ? `Hold inne en vokal på tastaturet for å få aksent (a → á), eller klikk på tegnene under.${extra ? ` ${extra}` : ''}`
-                : `Hold inne en vokal på tastaturet for å få aksent, for eksempel a → á.${extra ? ` ${extra}` : ''}`;
+                ? `Hold inne en vokal på tastaturet (a → á) eller trykk på et tegn.${extra ? ` ${extra}` : ''}`
+                : `Hold inne en vokal på tastaturet, for eksempel a → á.${extra ? ` ${extra}` : ''}`;
             return `<p id="${id}" class="accent-hint">${tip}</p>${bar}`;
         }
 
         if (!window.appAccentBarBound) {
             window.appAccentBarBound = true;
+            document.addEventListener('mousedown', (event) => {
+                const btn = event.target instanceof Element ? event.target.closest('[data-accent-char][data-accent-target]') : null;
+                if (btn) event.preventDefault();
+            });
             document.addEventListener('click', (event) => {
                 const btn = event.target instanceof Element ? event.target.closest('[data-accent-char][data-accent-target]') : null;
-                if (!btn) return;
+                if (!btn || btn.disabled) return;
                 const target = document.getElementById(btn.dataset.accentTarget);
                 if (!target || target.disabled || target.readOnly) return;
-                target.focus();
+                target.focus({ preventScroll: true });
                 insertCharacter(target, btn.dataset.accentChar);
             });
         }
@@ -30364,11 +30650,10 @@ Vil du øve på ${pronoun} likevel?`
                     ? '📝 På vei: Velg fra liste'
                     : '⭐ Mestring: Skriv svaret';
             const responseControls = responseMode === 'choice'
-                ? `<div class="grammar-options">${shuffledOptions.map(opt => `<button class="grammar-option" onclick="selectGrammarAnswer('${opt}', this)">${opt}</button>`).join('')}</div>`
+                ? `<div class="grammar-options">${shuffledOptions.map((opt, idx) => `<button class="grammar-option" data-choice-key="${idx + 1}" onclick="selectGrammarAnswer('${opt}', this)">${opt}</button>`).join('')}</div>`
                 : responseMode === 'select'
                     ? `<label class="grammar-select-label" for="grammarSelect">Velg svar</label><select id="grammarSelect" class="grammar-select"><option value="">Velg et svar …</option>${shuffledOptions.map(opt => `<option value="${escapeHtml(opt)}">${escapeHtml(opt)}</option>`).join('')}</select><button class="btn btn-primary" id="grammarSubmitBtn" onclick="submitGrammarSelectAnswer()">Sjekk svar</button>`
-                    : `<label class="grammar-input-label" for="grammarAnswerInput">Skriv svaret</label><input id="grammarAnswerInput" class="conjugation-input" autocomplete="off" aria-describedby="grammarAnswerAccentHint" onkeydown="if(event.key === 'Enter') { event.preventDefault(); event.stopPropagation(); submitGrammarTypedAnswer(); }">
-                        ${renderAccentHint('grammarAnswerAccentHint', '', { targetId: 'grammarAnswerInput' })}
+                    : `<label class="grammar-input-label" for="grammarAnswerInput">Skriv svaret</label>${renderAccentHint('grammarAnswerAccentHint', '', { targetId: 'grammarAnswerInput' })}<input id="grammarAnswerInput" class="conjugation-input" autocomplete="off" aria-describedby="grammarAnswerAccentHint" onkeydown="if(event.key === 'Enter') { event.preventDefault(); event.stopPropagation(); if(!event.repeat) submitGrammarTypedAnswer(); }">
                         <button class="btn btn-primary" id="grammarSubmitBtn" onclick="submitGrammarTypedAnswer()">Sjekk svar</button>`;
 
             document.getElementById('grammarExerciseArea').innerHTML = `
@@ -30384,9 +30669,14 @@ Vil du øve på ${pronoun} likevel?`
                     <button class="grammar-hint-btn" onclick="showGrammarHint()">💡 Vis hint</button>
                     <p id="grammarHint" aria-live="polite" hidden></p>
 
-                    <div class="grammar-feedback" id="grammarFeedback"></div>
+                    <div id="grammarFeedback" aria-live="polite"></div>
                 </div>
             `;
+            const grammarInput = document.getElementById('grammarAnswerInput');
+            if (grammarInput) setupAccentInput(grammarInput);
+            if (!document.querySelector('.settings-modal')) {
+                (grammarInput || document.getElementById('grammarSelect') || document.querySelector('#grammarExerciseArea .grammar-option'))?.focus({ preventScroll: true });
+            }
         }
 
         function selectGrammarAnswer(answer, buttonElement) {
@@ -30432,8 +30722,14 @@ Vil du øve på ${pronoun} likevel?`
             });
             document.getElementById('grammarSelect')?.setAttribute('disabled', '');
             document.getElementById('grammarAnswerInput')?.setAttribute('disabled', '');
-            document.getElementById('grammarSubmitBtn')?.setAttribute('disabled', '');
+            document.querySelectorAll('#grammarExerciseArea .app-accent-btn').forEach(btn => { btn.disabled = true; });
+            const grammarSubmitBtn = document.getElementById('grammarSubmitBtn');
+            if (grammarSubmitBtn) {
+                grammarSubmitBtn.disabled = true;
+                grammarSubmitBtn.hidden = true;
+            }
 
+            const grammarNextLabel = grammarCurrentIndex >= grammarExercises.length - 1 ? 'Neste (se resultat)' : 'Neste →';
             if (isCorrect) {
                 buttonElement?.classList.add('correct');
                 grammarStats.correct++;
@@ -30441,7 +30737,7 @@ Vil du øve på ${pronoun} likevel?`
                 document.getElementById('grammarFeedback').innerHTML = `
                     <div class="grammar-feedback correct">
                         ✓ Riktig!
-                        <button data-feedback-next class="btn btn-primary btn-sm mt-4" onclick="advanceGrammarExercise()" id="grammarNextBtn" aria-keyshortcuts="Enter">Neste</button>
+                        <div class="button-group"><button data-feedback-next class="btn btn-primary btn-sm mt-2" onclick="advanceGrammarExercise()" id="grammarNextBtn" aria-keyshortcuts="Enter">${grammarNextLabel}</button></div>
                     </div>
                 `;
             } else {
@@ -30452,21 +30748,20 @@ Vil du øve på ${pronoun} likevel?`
                 document.getElementById('grammarFeedback').innerHTML = `
                     <div class="grammar-feedback incorrect">
                         ✗ Feil! Riktig svar er: <strong>${exercise.answer}</strong>
+                        <div class="button-group"><button data-feedback-next class="btn btn-primary btn-sm mt-2" onclick="advanceGrammarExercise()" id="grammarNextBtn" aria-keyshortcuts="Enter">${grammarNextLabel}</button></div>
                         <div class="explanation">${escapeHtml(exercise.hint || exercise.explanation || getGrammarMistakeExplanation(currentGrammarTopic.id))}</div>
                         <div class="explanation"><strong>Hvorfor?</strong> ${getGrammarMistakeExplanation(currentGrammarTopic.id).replace(/^Hvorfor\?\s*/, '')}</div>
                         <div class="grammar-scaffolding-note">💡 Neste gang du møter dette målet får du forsterket støtte.</div>
                         ${renderStudentFeedbackButton({itemRef:`grammar:${currentGrammarTopic.id}:${grammarCurrentIndex}`,source:'grammatikk',prompt:exercise.sentence,studentAnswer:answer,expectedAnswer:exercise.answer})}
-                        <button data-feedback-next class="btn btn-primary btn-sm mt-4" onclick="advanceGrammarExercise()" id="grammarNextBtn" aria-keyshortcuts="Enter">Neste</button>
                     </div>
                 `;
-                document.getElementById('grammarNextBtn').focus();
             }
 
             // Update overall progress
             grammarProgress[currentGrammarTopic.id].total++;
             if (isCorrect) grammarProgress[currentGrammarTopic.id].correct++;
             saveGrammarProgress();
-            setTimeout(() => { if (!document.querySelector('.settings-modal')) document.getElementById('grammarNextBtn')?.focus(); }, 0);
+            setTimeout(() => { if (!document.querySelector('.settings-modal')) document.getElementById('grammarNextBtn')?.focus({ preventScroll: true }); }, 0);
             checkpointPracticeSession('grammar', grammarSession.answers.length, grammarStats.correct, grammarSessionStartTime);
 
         }
@@ -30519,7 +30814,7 @@ Vil du øve på ${pronoun} likevel?`
                 showPage('grammar');
                 return;
             }
-            if (confirm('Er du sikker på at du vil avslutte økten?')) endGrammarSession();
+            if ((grammarSession?.answers?.length || 0) === 0 || confirm('Er du sikker på at du vil avslutte økten?')) endGrammarSession();
         }
 
         function endGrammarSession() {
@@ -30703,6 +30998,9 @@ Vil du øve på ${pronoun} likevel?`
                     ${escapeHtml(tile.word)}
                 </button>
             `).join('');
+            if (!document.querySelector('.settings-modal')) {
+                document.querySelector('#spWordTiles .sentence-puzzle-tile')?.focus({ preventScroll: true });
+            }
         }
 
         function updateSentencePuzzleProgress() {
@@ -30723,7 +31021,12 @@ Vil du øve på ${pronoun} likevel?`
             checkButton.className = isSolved ? 'btn btn-secondary' : 'btn btn-primary';
             nextButton.disabled = !isSolved;
             nextButton.className = isSolved ? 'btn btn-primary' : 'btn btn-secondary';
+            nextButton.textContent = spRoundIndex >= spQuestionPool.length - 1 ? 'Se resultat' : 'Neste setning';
             if (resetButton) resetButton.disabled = isSolved;
+            document.querySelectorAll('#spBuiltSentence .sentence-puzzle-built-word').forEach(btn => {
+                btn.disabled = isSolved;
+                btn.draggable = !isSolved;
+            });
         }
 
         function selectSentencePuzzleWord(tileIndex) {
@@ -32136,7 +32439,35 @@ Vil du øve på ${pronoun} likevel?`
             try { await appRegistration.update(); navigator.serviceWorker.controller?.postMessage({ type: 'GET_APP_BUILD' }); showToast('Sjekket etter oppdateringer.', 'info'); }
             catch { showToast('Koble til internett for å se etter oppdateringer.', 'info'); }
         }
+        let offlineBannerHideTimer = null;
+        function syncOfflineStatusBanner(justCameOnline = false) {
+            const banner = document.getElementById('offlineStatusBanner');
+            if (!banner) return;
+            if (offlineBannerHideTimer) {
+                clearTimeout(offlineBannerHideTimer);
+                offlineBannerHideTimer = null;
+            }
+            if (navigator.onLine === false) {
+                banner.textContent = 'Du er uten nett. Gloser, verb, grammatikk og nedlastet lyd virker som vanlig.';
+                banner.className = 'offline-status-banner is-offline';
+                return;
+            }
+            if (justCameOnline) {
+                banner.textContent = 'Tilbake på nett.';
+                banner.className = 'offline-status-banner is-online';
+                offlineBannerHideTimer = setTimeout(() => {
+                    banner.classList.add('hidden');
+                }, 4000);
+                return;
+            }
+            banner.className = 'offline-status-banner hidden';
+            banner.textContent = '';
+        }
+
         (function() {
+            window.addEventListener('offline', () => syncOfflineStatusBanner(false));
+            window.addEventListener('online', () => syncOfflineStatusBanner(true));
+            syncOfflineStatusBanner(false);
             if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
                 navigator.serviceWorker.addEventListener('message', event => {
                     if (event.data?.type === 'APP_BUILD') showAppUpdate(event.data.build);

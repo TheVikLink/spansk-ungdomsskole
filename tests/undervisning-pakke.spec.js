@@ -230,3 +230,134 @@ test('Undervisningspakken analytics tracks anonymous pdf_download, audio_play, l
     await server.close();
   }
 });
+
+test('Undervisningspakken Wave 4: locked Smakebit, hero collapse, local SVG QR, Tavlemodus timer, audio rewind, partnerkort nav & responsive widths', async ({ page }) => {
+  const server = await startUndervisningServer();
+  const externalRequests = [];
+  page.on('request', (req) => {
+    const url = req.url();
+    if (!url.startsWith(server.url) && !url.startsWith('data:')) {
+      externalRequests.push(url);
+    }
+  });
+
+  try {
+    // 1. Locked lesson shows Smakebit preview without leaking transcript/fasit/prompts, and hides hero on activation
+    await page.setViewportSize({ width: 1366, height: 768 });
+    await page.goto(`${server.url}/undervisning/familie/index.html`);
+    await expect(page).toHaveURL(/\/undervisning\/\?las=familie$/);
+    await expect(page.locator('.package-hero')).toBeVisible();
+    await expect(page.locator('#lockedNotice')).toBeVisible();
+    await expect(page.locator('.locked-preview-box')).toContainText('Læringsmål:');
+    await expect(page.locator('.locked-preview-box')).toContainText('Eksempel på gloser (4 av');
+    await expect(page.locator('#lockedNotice')).toContainText('Skriv inn skolekode');
+    await expect(page.locator('#lockedNotice')).toContainText('Prøv gratis time (Tall)');
+    await expect(page.locator('#lockedNotice')).not.toContainText('Fasit til lytteøvelsen');
+    await expect(page.locator('#lockedNotice')).not.toContainText('B:');
+
+    const validCode = createSchoolLicenseCode({
+      school: 'Vesterheim ungdomsskole',
+      expiresAt: '2027-08-31',
+    }, TEST_SECRET);
+    await page.locator('#lockedNotice').getByRole('button', { name: 'Skriv inn skolekode' }).click();
+    await expect(page.locator('#licenseCodeInput')).toBeFocused();
+    await page.locator('#licenseCodeInput').fill(validCode);
+    await page.getByRole('button', { name: 'Lås opp alle 46 timer' }).click();
+    await expect(page.locator('#licensePanel')).toContainText('Aktiv skolelisens: Vesterheim ungdomsskole');
+    await expect(page.locator('.package-hero')).toBeHidden();
+
+    // Filter summary mentions included free trials inside theme/culture filters
+    await page.locator('[data-filter="theme"]').click();
+    await expect(page.locator('#catalogCount')).toContainText('inkludert 3 gratis prøvetimer');
+
+    // Deactivating brings hero back
+    await page.getByRole('button', { name: 'Fjern skolekode fra denne enheten' }).click();
+    await expect(page.locator('.package-hero')).toBeVisible();
+
+    // 2. Free lesson: Local SVG QR, Tavlemodus timer + safe content, audio controls, student preview banner & partnerkort nav
+    await page.goto(`${server.url}/undervisning/tall/index.html`);
+    await page.getByRole('button', { name: 'Vis QR-kode' }).click();
+    const qrModal = page.locator('#qrModalOverlay');
+    await expect(qrModal).toBeVisible();
+    const qrPath = await qrModal.locator('svg path').getAttribute('d');
+    expect((qrPath || '').length).toBeGreaterThan(100);
+    await qrModal.getByRole('button', { name: 'Lukk' }).click();
+    await expect(qrModal).toBeHidden();
+
+    // Also test QR on a licensed lesson with long signed student token
+    await page.goto(`${server.url}/undervisning/`);
+    await page.locator('#licenseCodeInput').fill(validCode);
+    await page.getByRole('button', { name: 'Lås opp alle 46 timer' }).click();
+    await expect(page.locator('#licensePanel')).toContainText('Aktiv skolelisens:');
+    await page.goto(`${server.url}/undervisning/familie/index.html`);
+    await page.getByRole('button', { name: 'Vis QR-kode' }).click();
+    const signedQrPath = await page.locator('#qrModalOverlay svg path').getAttribute('d');
+    expect((signedQrPath || '').length).toBeGreaterThan(200);
+    await page.keyboard.press('Escape');
+    await expect(page.locator('#qrModalOverlay')).toBeHidden();
+
+    // Tavlemodus step navigation, countdown timer, opt-in example answers & zero teacher secret leakage
+    await page.getByRole('button', { name: 'Tavlemodus' }).click();
+    const board = page.locator('#boardModeOverlay');
+    await expect(board).toBeVisible();
+    await expect(board.locator('.board-stage-heading')).toContainText('1. Gloser');
+    await expect(board.locator('.board-timer-clock')).toHaveText('10:00');
+    await board.getByRole('button', { name: '+1 min' }).click();
+    await expect(board.locator('.board-timer-clock')).toHaveText('11:00');
+    await board.getByRole('button', { name: 'Nullstill' }).click();
+    await expect(board.locator('.board-timer-clock')).toHaveText('10:00');
+    await board.getByRole('button', { name: 'Start' }).click();
+    await expect.poll(async () => board.locator('.board-timer-clock').textContent()).not.toBe('10:00');
+    await board.getByRole('button', { name: 'Pause' }).click();
+
+    await board.getByRole('button', { name: 'Neste del →' }).click();
+    await expect(board.locator('.board-stage-heading')).toContainText('2. Skriv');
+    await expect(board.locator('.board-examples-box')).toBeHidden();
+    await board.getByRole('button', { name: 'Vis eksempelsvar' }).click();
+    await expect(board.locator('.board-examples-box')).toBeVisible();
+
+    await board.getByRole('button', { name: 'Neste del →' }).click();
+    await expect(board.locator('.board-stage-heading')).toContainText('3. Lytt');
+    await expect(board).not.toContainText('For læreren: manus, fasit og forberedelse');
+    await expect(board).not.toContainText('Fasit til lytteøvelsen');
+
+    await board.getByRole('button', { name: 'Avslutt tavlemodus' }).click();
+    await expect(board).toBeHidden();
+
+    // Rewind/restart audio controls on teacher page
+    await page.locator('audio').evaluate((el) => {
+      Object.defineProperty(el, 'currentTime', { value: 12, writable: true, configurable: true });
+    });
+    await page.locator('[data-audio-back="-5"]').click();
+    expect(await page.locator('audio').evaluate((el) => el.currentTime)).toBe(7);
+    await page.locator('[data-audio-restart]').click();
+    expect(await page.locator('audio').evaluate((el) => el.currentTime)).toBe(0);
+
+    // Teacher preview banner warns against copying address bar
+    await page.getByRole('link', { name: 'Forhåndsvis elevside' }).click();
+    await expect(page.locator('.teacher-preview-banner')).toContainText('Ikke kopier adressefeltet');
+
+    // Partnerkort navigation back + print button
+    await page.goto(`${server.url}/undervisning/tall/partnerkort.html`);
+    await expect(page.locator('.print-nav')).toContainText('Tilbake til lærersiden');
+    await expect(page.locator('.print-nav').getByRole('button', { name: 'Skriv ut' })).toBeVisible();
+
+    // Responsive 0-overflow checks across 1920x1080, 1366x768 and 390x844
+    for (const vp of [
+      { width: 1920, height: 1080 },
+      { width: 1366, height: 768 },
+      { width: 390, height: 844 },
+    ]) {
+      await page.setViewportSize(vp);
+      for (const route of ['/undervisning/', '/undervisning/tall/index.html', '/undervisning/tall/elev.html']) {
+        await page.goto(`${server.url}${route}`);
+        const hasOverflow = await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth + 1);
+        expect(hasOverflow, `${route} at ${vp.width}px`).toBe(false);
+      }
+    }
+
+    expect(externalRequests).toEqual([]);
+  } finally {
+    await server.close();
+  }
+});

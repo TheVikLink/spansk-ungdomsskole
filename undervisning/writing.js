@@ -35,7 +35,7 @@ if (isTeacherPreview) {
     const banner = document.createElement('p');
     banner.className = 'teacher-preview-banner';
     banner.setAttribute('role', 'note');
-    banner.textContent = 'Lærerforhåndsvisning: Lenken tilbake til lærersiden vises bare for deg, ikke når elever åpner den delte elevlenken.';
+    banner.textContent = 'Lærerforhåndsvisning: Lenken tilbake til lærersiden vises bare for deg. Ikke kopier adressefeltet herfra til elevene – bruk «Kopier elevlenke (uten fasit)» på lærersiden.';
     mainNav.after(banner);
   }
 }
@@ -180,8 +180,13 @@ function saveLocalDraft() {
 
 function updateExamples() {
   if (!examples) return;
+  const wasHidden = examples.hidden;
   examples.hidden = inputs.some((input) => !input.value.trim());
-  if (examples.hidden) examples.open = false;
+  if (examples.hidden) {
+    examples.open = false;
+  } else if (wasHidden) {
+    examples.open = true;
+  }
 }
 
 loadLocalDraft();
@@ -249,6 +254,20 @@ if (audio && speedGroup) {
       for (const candidate of speedButtons) {
         candidate.setAttribute('aria-pressed', candidate === btn ? 'true' : 'false');
       }
+    });
+  }
+  const backBtn = speedGroup.querySelector('[data-audio-back]');
+  if (backBtn) {
+    backBtn.addEventListener('click', () => {
+      const delta = Number(backBtn.dataset.audioBack) || -5;
+      audio.currentTime = Math.max(0, (audio.currentTime || 0) + delta);
+    });
+  }
+  const restartBtn = speedGroup.querySelector('[data-audio-restart]');
+  if (restartBtn) {
+    restartBtn.addEventListener('click', () => {
+      audio.currentTime = 0;
+      audio.play?.().catch(() => {});
     });
   }
 }

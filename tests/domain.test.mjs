@@ -4,6 +4,7 @@ import {
   compareDictationAnswer,
   evaluateAcceptedTextAnswer,
   evaluateTypedAnswer,
+  isMissingTildeN,
   normalizeAccentVariant,
   normalizeAnswerText,
 } from '../src/domain/answer-grading.js';
@@ -35,6 +36,20 @@ test('answer-grading normalizes text, detects accent variants, and preserves ñ 
   const accentMiss = evaluateAcceptedTextAnswer('el ático'.replace('á', 'a'), ['el ático']);
   assert.equal(accentMiss.outcome, 'incorrect');
   assert.equal(accentMiss.resultKind, 'accent_or_case_variant');
+
+  assert.deepEqual(evaluateTypedAnswer('que tal', '¿qué tal?'), { resultKind: 'accent_or_case_variant', correct: false });
+  assert.deepEqual(evaluateTypedAnswer('qué tal', '¿qué tal?'), { resultKind: 'correct', correct: true });
+  assert.deepEqual(evaluateTypedAnswer('carinoso', 'cariñoso'), {
+    resultKind: 'wrong',
+    correct: false,
+  });
+
+  const tildeMiss = evaluateAcceptedTextAnswer('carinoso', ['cariñoso', 'cariñosa']);
+  assert.equal(tildeMiss.outcome, 'incorrect');
+  assert.equal(tildeMiss.resultKind, 'wrong');
+  assert.equal(tildeMiss.correct, false);
+  assert.equal(isMissingTildeN('carinoso', 'cariñoso'), true);
+  assert.equal(isMissingTildeN('hablo', 'habló'), false);
 });
 
 test('compareDictationAnswer classifies exact, punctuation, incomplete, and different responses', () => {
@@ -63,7 +78,7 @@ test('sm2 calculates deterministic intervals and caps ease factor and max interv
 });
 
 test('audio-paths builds encoded URLs for listening and dictation stories', () => {
-  assert.equal(listeningAudioUrl({ fullAudio: 'Leo-Sevilla.wav' }), 'audio/lyttehistorier/Leo-Sevilla.wav');
+  assert.equal(listeningAudioUrl({ fullAudio: 'Leo-Sevilla.mp3' }), 'audio/lyttehistorier/Leo-Sevilla.mp3');
   const story = {
     audioDir: 'Ana vive en Madrid',
     audioExt: 'wav',

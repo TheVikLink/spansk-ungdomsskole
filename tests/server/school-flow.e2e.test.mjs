@@ -388,10 +388,10 @@ test('synthetic local OIDC → class invite → four homework areas → saved pr
       assert.equal(opened.body.exercise.questions[0].prompt, assignment.publishedQuestion.prompt, 'a later catalogue edit cannot change a published exercise');
       if (assignment.activity.area === 'listening') {
         assert.equal(opened.body.exercise.audio, assignment.publishedAudio, 'a later recording/catalogue update cannot change the published audio asset');
-        assert.match(opened.body.exercise.audio, /^\/audio\/school-content\/[a-f0-9]{64}\.wav$/u);
+        assert.match(opened.body.exercise.audio, /^\/audio\/school-content\/[a-f0-9]{64}\.(?:wav|mp3)$/u);
         const audio = await student.request(opened.body.exercise.audio);
         assert.equal(audio.status, 200);
-        assert.match(audio.headers.get('content-type'), /audio\/wav/u);
+        assert.match(audio.headers.get('content-type'), /audio\/(?:wav|mpeg)/u);
         const audioBytes = Buffer.from(await audio.arrayBuffer());
         const audioDigest = createHash('sha256').update(audioBytes).digest('hex');
         assert.equal(audioDigest, opened.body.exercise.audio.split('/').at(-1).slice(0, -4));

@@ -1,14 +1,18 @@
 // Generated build identifier; run npm run build:app after changing app assets.
-const APP_BUILD = 'c2a5a558e91a8ffd';
+const APP_BUILD = '1783d338a7d00dd7';
 const CACHE_NAME = `spansk123-shell-${APP_BUILD}`;
 const AUDIO_CACHE = 'spansk123-audio-v1';
-const APP_SHELL = ['./', './index.html', './dist/tailwind.css', './manifest.webmanifest'];
+const APP_SHELL = ['./index.html', './dist/tailwind.css', './manifest.webmanifest'];
 const absolute = relative => new URL(relative, self.registration.scope).href;
 
 self.addEventListener('install', event => {
   event.waitUntil((async () => {
     const cache = await caches.open(CACHE_NAME);
     await cache.addAll(APP_SHELL.map(url => new Request(absolute(url), { cache: 'reload' })));
+    const indexRes = await cache.match(absolute('./index.html'));
+    if (indexRes && !indexRes.redirected) {
+      await cache.put(absolute('./'), indexRes.clone());
+    }
     // The inline app stays in memory. Clients choose when to reload it.
     await self.skipWaiting();
   })());

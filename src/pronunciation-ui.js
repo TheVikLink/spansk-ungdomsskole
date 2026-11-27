@@ -46,9 +46,9 @@
     function soundMenu() {
         return `<section class="pron-sound-menu"><h2>Velg en lyd å øve på</h2><nav class="pron-actions" aria-label="Velg en lyd å øve på">${catalog.items.map(item => `<button type="button" class="btn btn-secondary" data-pron-sound="${item.id}" aria-label="Øv på ${esc(item.title)}">${esc(item.title)}</button>`).join('')}</nav></section>`;
     }
-    function shell(body) {
+    function shell(body, { showMenu = true } = {}) {
         stopModel(); clearRecording();
-        root().innerHTML = `${body}<p id="pronunciationAudioStatus" class="pron-status" role="status" aria-live="polite"></p><audio id="pronunciationModelAudio" preload="none" aria-hidden="true"></audio>${soundMenu()}${credit()}`;
+        root().innerHTML = `${body}<p id="pronunciationAudioStatus" class="pron-status" role="status" aria-live="polite"></p><audio id="pronunciationModelAudio" preload="none" aria-hidden="true"></audio>${showMenu ? soundMenu() : ''}${credit()}`;
         root().querySelector('h1, h2')?.setAttribute('tabindex', '-1');
         root().querySelector('h1, h2')?.focus({ preventScroll: true });
         audio = document.getElementById('pronunciationModelAudio');
@@ -56,16 +56,30 @@
     }
     function stopModel() {
         playToken++;
-        if (audio) { audio.onended = null; audio.onerror = null; audio.pause(); audio.removeAttribute('src'); audio.load(); }
+        root()?.querySelectorAll('.pron-play').forEach(btn => btn.classList.remove('is-loading', 'is-playing'));
+        if (audio) { audio.onplaying = null; audio.onended = null; audio.onerror = null; audio.pause(); audio.removeAttribute('src'); audio.load(); }
     }
     function clearRecording() { recorder?.clear(); }
-    function status(message) { const node = document.getElementById('pronunciationAudioStatus'); if (node) node.textContent = message; }
+    function status(message, isError = false) {
+        const node = document.getElementById('pronunciationAudioStatus');
+        if (!node) return;
+        node.textContent = message;
+        node.classList.toggle('pron-status-error', Boolean(isError));
+    }
+    function preloadItemAudio(item) {
+        if (!item || navigator.onLine === false || !/^https?:$/.test(location.protocol)) return;
+        for (const role of ['word', 'sentence']) {
+            if (item.audio?.[role]) fetch(item.audio[role], { credentials: 'omit' }).catch(() => {});
+        }
+    }
     function play(role, id) {
         const item = id ? itemById(id) : current();
         if (!item) return;
         if (!item.audio[role]) return;
         const wasPlaying = Boolean(audio && !audio.paused && !audio.ended && audio.currentTime > 0);
-        const interruptedRole = wasPlaying && session?.activeRole && session.activeRole !== role && !session.heard.has(session.activeRole)
+        const mostlyHeard = Boolean(wasPlaying && audio.duration > 0 && audio.currentTime / audio.duration >= 0.6);
+        if (mostlyHeard && session?.activeRole) session.heard.add(session.activeRole);
+        const interruptedRole = wasPlaying && !mostlyHeard && session?.activeRole && session.activeRole !== role && !session.heard.has(session.activeRole)
             ? session.activeRole : null;
         recorder?.stop(); recorder?.pause(); stopModel();
         if (session) {
@@ -73,21 +87,34 @@
             session.interruptedRole = interruptedRole;
         }
         const token = playToken;
+        const activeSelector = id
+            ? `[data-pron-play="${role}"][data-pron-item="${id}"]`
+            : `[data-pron-play="${role}"]`;
+        const activeBtn = root().querySelector(activeSelector);
+        activeBtn?.classList.add('is-loading');
         audio.src = item.audio[role]; audio.crossOrigin = 'anonymous';
         if (session) {
             const control = root().querySelector(`[data-pron-play="${role}"]`);
             control?.closest('.pron-practice, .pron-rule')?.append(document.getElementById('pronunciationAudioStatus'));
         }
-        status('Spiller modellopptaket.');
+        status('Laster lyd …');
         const failure = () => {
             if (token !== playToken) return;
+            activeBtn?.classList.remove('is-loading', 'is-playing');
             if (session) session.activeRole = null;
             session?.heard.delete(role); updateButtons();
-            status('Lydopptaket er ikke tilgjengelig. Koble til nettet og prøv igjen, eller velg en annen øvelse.');
+            status('Lydopptaket er ikke tilgjengelig. Koble til nettet og prøv igjen, eller velg en annen øvelse.', true);
         };
         audio.onerror = failure;
+        audio.onplaying = () => {
+            if (token !== playToken) return;
+            activeBtn?.classList.remove('is-loading');
+            activeBtn?.classList.add('is-playing');
+            status('Spiller modellopptaket.');
+        };
         audio.onended = () => {
             if (token !== playToken) return;
+            activeBtn?.classList.remove('is-loading', 'is-playing');
             if (session) {
                 session.activeRole = null;
                 session.heard.add(role);
@@ -107,7 +134,7 @@
         const practiced = id => progress.practiced.some(p => p.itemId === id && p.contentVersion === itemById(id).contentVersion);
         const count = catalog.items.filter(item => practiced(item.id)).length;
         const group = catalog.groups.find(g => g.id === selectedGroup) || catalog.groups.find(g => g.itemIds.some(id => !practiced(id))) || catalog.groups[0];
-        shell(`<header class="pron-header"><p class="pron-eyebrow">Fra skrift til lyd</p><h1>Lær å lese spansk høyt</h1><p>Lytt, prøv selv og sammenlign. Korte økter på omtrent 5–8 minutter. Du trenger ikke mikrofon.</p></header>
+        shell(`<header class="pron-header"><p class="pron-eyebrow">Fra skrift til lyd</p><h1>Lær å lese spansk høyt</h1><p>Lytt, prøv selv og sammenlign. Korte økter på 1–3 minutter (tre lydkort). Du trenger ikke mikrofon.</p></header>
             <section class="pron-next"><div><h2>${count ? 'Fortsett å øve' : 'Begynn med lydene'}</h2><p>${esc(group.title)} – opptil tre lydkort</p></div><button class="btn btn-primary" type="button" data-pron-start="${group.id}">Start en kort økt</button></section>
             <p class="pron-progress">${count} av 31 lydtemaer øvd. Dette er egen øving, ikke en vurdering av uttalen din.</p>
             ${storageError ? `<p role="alert" class="pron-notice">${esc(storageError)}</p>` : ''}
@@ -143,8 +170,9 @@
             <details id="pronunciationRecordingOptions" class="pron-recording-options"><summary>Ta opp og sammenlign (valgfritt)</summary><div id="pronunciationRecorder"></div></details>
             <div class="pron-card-navigation"><p id="pronunciationLessonHint" class="pron-note">Hør ordet og setningen før du går videre.</p>
             <nav class="pron-card-nav" aria-label="Bytt lydkort">${button('previous', 'Forrige lyd', session.index === 0, false)}${button('next', session.index === session.items.length - 1 ? 'Fullfør økten' : 'Neste lyd', true)}</nav></div>
-        </div>`);
+        </div>`, { showMenu: false });
         mountRecorder();
+        preloadItemAudio(item);
         document.getElementById('pronunciationRecordingOptions').addEventListener('toggle', event => {
             if (!event.target.isConnected) return;
             if (!event.target.open) clearRecording();
@@ -163,8 +191,8 @@
         const hint = document.getElementById('pronunciationLessonHint');
         if (hint) {
             if (ready) hint.textContent = 'Prøv gjerne en gang til, eller gå videre.';
-            else if (session.interruptedRole === 'word' && !session.heard.has('word')) hint.textContent = 'Ordklippet ble avbrutt før slutt. Spill ferdig hele ordet før du går videre.';
-            else if (session.interruptedRole === 'sentence' && !session.heard.has('sentence')) hint.textContent = 'Setningsklippet ble avbrutt før slutt. Spill ferdig hele setningen før du går videre.';
+            else if (session.interruptedRole === 'word' && !session.heard.has('word')) hint.textContent = 'Tips: Lytt ferdig til ordet også, så åpnes neste lyd.';
+            else if (session.interruptedRole === 'sentence' && !session.heard.has('sentence')) hint.textContent = 'Tips: Lytt ferdig til setningen også, så åpnes neste lyd.';
             else if (session.heard.has('word')) hint.textContent = 'Hør også hele setningen før du går videre.';
             else if (session.heard.has('sentence')) hint.textContent = 'Hør også hele ordet før du går videre.';
             else hint.textContent = 'Hør ordet og setningen før du går videre.';
@@ -180,7 +208,18 @@
             if (storageError) status(storageError);
         } else {
             const result = session; session = null; activeSessionType = null;
-            shell(`<div class="pron-lesson"><h2>Ferdig for nå!</h2><p>Du har øvd på ${result.done.size} lydkort.</p>${storageError ? `<p role="alert">${esc(storageError)}</p>` : ''}<p>Prøv gjerne en kort økt igjen en annen dag.</p>${button('overview', 'Tilbake til temaene')}<button type="button" class="btn btn-secondary" data-pron-start="${result.group.id}">Øv videre på temaet</button></div>`);
+            let xpAward = 0;
+            if (result.done.size > 0 && typeof recordPracticeSession === 'function') {
+                xpAward = Math.min(10, Math.max(3, result.done.size * 2));
+                const sid = typeof crypto !== 'undefined' && crypto.randomUUID ? crypto.randomUUID() : `pron-${Date.now()}`;
+                recordPracticeSession(result.done.size, result.done.size, 'pronunciation', 1, {
+                    sessionId: sid,
+                    inProgress: false,
+                    interrupted: false,
+                    xp: xpAward,
+                });
+            }
+            shell(`<div class="pron-lesson"><h2>Ferdig for nå!</h2><p>Du har øvd på ${result.done.size} lydkort.</p>${xpAward ? `<p class="home-feed-xp-result">+${xpAward} XP</p>` : ''}${storageError ? `<p role="alert">${esc(storageError)}</p>` : ''}<p>Prøv gjerne en kort økt igjen en annen dag.</p><div class="pron-actions">${button('overview', 'Tilbake til temaene')}<button type="button" class="btn btn-secondary" data-pron-start="${result.group.id}">Øv videre på temaet</button></div></div>`);
         }
     }
     function close() { globalThis.PronunciationOffline.cancel(); stopModel(); clearRecording(); session = null; if (activeSessionType === 'pronunciation') activeSessionType = null; }
