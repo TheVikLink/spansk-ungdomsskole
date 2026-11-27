@@ -19,8 +19,16 @@ export function normalizeAnswerText(value) {
   return String(value ?? '').normalize('NFC').trim().toLowerCase().replace(/\s+/g, ' ');
 }
 
+export function stripEdgePunctuation(value) {
+  return normalizeAnswerText(value).replace(/^[¡.,!;: "'«»]+|[.,!;:"'«»]+$/gu, '').trim();
+}
+
 export function normalizeAccentVariant(value) {
   return normalizeAnswerText(value).replace(/[áéíóúü]/g, (ch) => ACCENT_MAP[ch] || ch);
+}
+
+function stripAccentAndPunctuation(value) {
+  return stripEdgePunctuation(value).replace(/[áéíóúü]/g, (ch) => ACCENT_MAP[ch] || ch);
 }
 
 export function normalizeDictationAnswer(value) {
@@ -49,7 +57,13 @@ export function evaluateTypedAnswer(answer, expected) {
   const normalizedExpected = normalizeAnswerText(expected);
   if (!normalizedAnswer) return { resultKind: 'skipped', correct: false };
   if (normalizedAnswer === normalizedExpected) return { resultKind: 'correct', correct: true };
-  if (normalizeAccentVariant(answer) === normalizeAccentVariant(expected)) {
+  const strippedAnswer = stripEdgePunctuation(answer);
+  const strippedExpected = stripEdgePunctuation(expected);
+  if (strippedAnswer && strippedAnswer === strippedExpected) {
+    return { resultKind: 'correct', correct: true };
+  }
+  if (normalizeAccentVariant(answer) === normalizeAccentVariant(expected)
+    || (strippedAnswer && stripAccentAndPunctuation(answer) === stripAccentAndPunctuation(expected))) {
     return { resultKind: 'accent_or_case_variant', correct: false };
   }
   return { resultKind: 'wrong', correct: false };
@@ -65,19 +79,23 @@ export function evaluateAcceptedTextAnswer(answer, acceptedAnswers = []) {
   if (!normalizedAnswer) {
     return { outcome: 'incorrect', resultKind: 'skipped', correct: false };
   }
+  const strippedAnswer = stripEdgePunctuation(answer);
   const candidates = (Array.isArray(acceptedAnswers) ? acceptedAnswers : [acceptedAnswers])
     .map((item) => (typeof item === 'string' ? item : item?.value ?? ''))
     .filter(Boolean);
 
   for (const candidate of candidates) {
-    if (normalizeAnswerText(candidate) === normalizedAnswer) {
+    if (normalizeAnswerText(candidate) === normalizedAnswer
+      || (strippedAnswer && stripEdgePunctuation(candidate) === strippedAnswer)) {
       return { outcome: 'correct', resultKind: 'correct', correct: true };
     }
   }
 
   const answerAccent = normalizeAccentVariant(normalizedAnswer);
+  const strippedAccent = stripAccentAndPunctuation(answer);
   for (const candidate of candidates) {
-    if (normalizeAccentVariant(candidate) === answerAccent) {
+    if (normalizeAccentVariant(candidate) === answerAccent
+      || (strippedAccent && stripAccentAndPunctuation(candidate) === strippedAccent)) {
       return { outcome: 'incorrect', resultKind: 'accent_or_case_variant', correct: false };
     }
   }

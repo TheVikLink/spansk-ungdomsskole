@@ -19,7 +19,7 @@ test('F13: the bounded article lesson remains available through grammar navigati
   await page.locator('#studentNameInput').fill('Test');
   await page.locator('.login-btn-primary').click();
   await page.locator('#navGrammar').click();
-  await page.locator('.grammar-topic-card[onclick="startGrammarTopic(\'articles\')"] .grammar-topic-theory-link').click();
+  await page.locator('.grammar-topic-card[data-topic-id="articles"] .grammar-topic-theory-link').click();
   await expect(page.locator('#grammarLessonPage')).toBeVisible();
   await page.locator('.grammar-lesson-actions button').first().click();
   const skillIds = await page.evaluate(() => grammarExercises.map(exercise => exercise.skillId));

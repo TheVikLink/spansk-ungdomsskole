@@ -93,7 +93,7 @@ test('F11: feedback dialog keeps Enter and Tab inside and restores focus on Esca
   await expect(page.locator('#grammarCounter')).toContainText('1 /');
   await dialog.getByRole('button', { name: 'Avbryt', exact: true }).focus();
   await page.keyboard.press('Tab');
-  await expect(explanation).toBeFocused();
+  await expect(dialog.getByRole('button', { name: 'Lukk dialog', exact: true })).toBeFocused();
   await page.keyboard.press('Shift+Tab');
   await expect(dialog.getByRole('button', { name: 'Avbryt', exact: true })).toBeFocused();
   await page.keyboard.press('Escape');

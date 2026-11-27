@@ -36,7 +36,7 @@ test('discovery requires an attempt, hides the bridge and never writes progress'
     await page.locator('#recognitionSkipBtn').click();
     await page.locator('#recognitionNextBtn').click();
   }
-  await expect(page.locator('#recognitionThemePanel')).toContainText('1 av 10 riktige uten hint. 1 riktige med hint.');
+  await expect(page.locator('#recognitionThemePanel')).toContainText('1 av 10 riktig uten hint. 1 riktig med hint.');
   await page.getByRole('button', { name: 'Tilbake til temaet', exact: true }).click();
   await expect(page.locator('#recognitionDiscoverBtn')).toBeFocused();
   expect(await storage(page)).toBe(before);

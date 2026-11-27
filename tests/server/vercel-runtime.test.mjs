@@ -313,6 +313,31 @@ test('Vercel Express adapter serves Norwegian Feide school info page on GET /sch
     assert.equal(health.status, 503);
     assert.deepEqual(await health.json(), { error: 'Tjenesten er midlertidig utilgjengelig' });
     assert.equal(log.mock.calls[0]?.arguments?.[0], 'School runtime initialization failed: CONFIG_MISSING_OIDC_ISSUER');
+
+    // Allowlisted lesson context on /school shows safe Norwegian banner without reflecting untrusted input
+    const lessonInfoRes = await fetch(`${origin}/school?activity=vocabulary.tall.v1&title=Hvor%20mange%20billetter%3F`);
+    assert.equal(lessonInfoRes.status, 200);
+    const lessonInfoHtml = await lessonInfoRes.text();
+    assert.match(lessonInfoHtml, /Du valgte «Hvor mange billetter\?» som digital Feide-lekse\./u);
+    assert.match(lessonInfoHtml, /eks\. mva\./u);
+
+    // Friendly redirects for common short paths
+    for (const [shortPath, target] of [
+      ['/skole', '/school'],
+      ['/school.html', '/school'],
+      ['/besoksstatistikk', '/besoksstatistikk.html'],
+      ['/personvern', '/besoksstatistikk.html'],
+    ]) {
+      const redirectRes = await fetch(`${origin}${shortPath}`, { redirect: 'manual' });
+      assert.equal(redirectRes.status, 301, `expected 301 for ${shortPath}`);
+      assert.equal(redirectRes.headers.get('location'), target);
+    }
+
+    // Unknown top-level paths return 404 (not 503) when school runtime config is missing
+    const unknownHtmlRes = await fetch(`${origin}/finnes-ikke`, { headers: { Accept: 'text/html' } });
+    assert.equal(unknownHtmlRes.status, 404);
+    assert.match(unknownHtmlRes.headers.get('content-type') || '', /^text\/html/u);
+    assert.match(await unknownHtmlRes.text(), /Fant ikke siden/u);
   });
 });
 

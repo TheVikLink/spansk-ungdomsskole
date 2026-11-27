@@ -73,7 +73,7 @@ for (const width of [1440, 390]) {
       await page.locator('.nav-more > summary').click();
     }
     await page.locator('#navGrammar').click();
-    await page.locator('.grammar-topic-card[onclick="startGrammarTopic(\'articles\')"] .grammar-topic-theory-link').click();
+    await page.locator('.grammar-topic-card[data-topic-id="articles"] .grammar-topic-theory-link').click();
     await page.locator('#grammarLessonContent .grammar-lesson-actions button').first().click();
     expect(await page.evaluate(() => grammarExercises.length)).toBe(14);
     for (let i = 0; i < 14; i++) {

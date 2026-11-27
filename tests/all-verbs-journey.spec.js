@@ -109,7 +109,7 @@ for (const [button, tense] of [
       })));
       const groups = {};
       for (const suffix of ['ar', 'er', 'ir']) {
-        groups['regular_' + suffix] = groupTypes.filter(card => card.type === 'regular -' + suffix).map(card => card.verb);
+        groups['regular_' + suffix] = groupTypes.filter(card => card.type === 'regelrett -' + suffix).map(card => card.verb);
         expect(groups['regular_' + suffix].length).toBeGreaterThan(0);
       }
       for (const verb of ['ser', 'estar', 'ir', 'tener', 'hacer']) groups[verb] = [verb];

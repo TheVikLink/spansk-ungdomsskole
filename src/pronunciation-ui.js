@@ -64,7 +64,14 @@
         const item = id ? itemById(id) : current();
         if (!item) return;
         if (!item.audio[role]) return;
+        const wasPlaying = Boolean(audio && !audio.paused && !audio.ended && audio.currentTime > 0);
+        const interruptedRole = wasPlaying && session?.activeRole && session.activeRole !== role && !session.heard.has(session.activeRole)
+            ? session.activeRole : null;
         recorder?.stop(); recorder?.pause(); stopModel();
+        if (session) {
+            session.activeRole = role;
+            session.interruptedRole = interruptedRole;
+        }
         const token = playToken;
         audio.src = item.audio[role]; audio.crossOrigin = 'anonymous';
         if (session) {
@@ -74,12 +81,23 @@
         status('Spiller modellopptaket.');
         const failure = () => {
             if (token !== playToken) return;
+            if (session) session.activeRole = null;
             session?.heard.delete(role); updateButtons();
             status('Lydopptaket er ikke tilgjengelig. Koble til nettet og prøv igjen, eller velg en annen øvelse.');
         };
         audio.onerror = failure;
-        audio.onended = () => { if (token !== playToken) return; if (session) session.heard.add(role); updateButtons(); status('Modellopptaket er ferdig.'); };
+        audio.onended = () => {
+            if (token !== playToken) return;
+            if (session) {
+                session.activeRole = null;
+                session.heard.add(role);
+                if (session.interruptedRole === role) session.interruptedRole = null;
+            }
+            updateButtons();
+            status('Modellopptaket er ferdig.');
+        };
         audio.play().catch(failure);
+        if (interruptedRole) updateButtons();
     }
     function open() {
         session = null; storageError = ''; renderOverview();
@@ -143,7 +161,14 @@
         const ready = session.heard.has('word') && session.heard.has('sentence');
         const next = root().querySelector('[data-pron-action="next"]'); if (next) next.disabled = !ready;
         const hint = document.getElementById('pronunciationLessonHint');
-        if (hint) hint.textContent = ready ? 'Prøv gjerne en gang til, eller gå videre.' : session.heard.has('word') ? 'Hør også setningen før du går videre.' : 'Hør ordet og setningen før du går videre.';
+        if (hint) {
+            if (ready) hint.textContent = 'Prøv gjerne en gang til, eller gå videre.';
+            else if (session.interruptedRole === 'word' && !session.heard.has('word')) hint.textContent = 'Ordklippet ble avbrutt før slutt. Spill ferdig hele ordet før du går videre.';
+            else if (session.interruptedRole === 'sentence' && !session.heard.has('sentence')) hint.textContent = 'Setningsklippet ble avbrutt før slutt. Spill ferdig hele setningen før du går videre.';
+            else if (session.heard.has('word')) hint.textContent = 'Hør også hele setningen før du går videre.';
+            else if (session.heard.has('sentence')) hint.textContent = 'Hør også hele ordet før du går videre.';
+            else hint.textContent = 'Hør ordet og setningen før du går videre.';
+        }
     }
     function complete() {
         if (!session || !session.heard.has('word') || !session.heard.has('sentence')) return;

@@ -13,7 +13,7 @@ test('F19: teacher chooses four themes; meanings appear only after an attempt an
   const ids=await page.evaluate(()=>[...lingoLinksState.groups[0].cards.slice(0,3),lingoLinksState.groups[1].cards[0]]);
   for(const id of ids) await page.locator(`[data-ll-card-id="${id}"]`).click();
   await page.locator('#lingoLinksCheckButton').click();
-  await page.getByRole('button',{name:'Vis betydningen av valgte ord',exact:true}).click();
+  await page.getByRole('button',{name:'Vis betydningen av forrige forsøk',exact:true}).click();
   await expect(page.locator('#lingoLinksMeaning')).toContainText('→');
   const groups=await page.evaluate(()=>lingoLinksState.groups.map(g=>g.cards));
   for(const group of groups){for(const id of group)await page.locator(`[data-ll-card-id="${id}"]`).click();await page.locator('#lingoLinksCheckButton').click();}

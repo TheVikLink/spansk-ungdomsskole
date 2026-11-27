@@ -119,7 +119,7 @@ function renderSinglePartnerCard(lesson, escapedTitle, side) {
     return `<tr>${cellsHtml}</tr>`;
   }).join('');
 
-  return `<article class="info-gap-card" data-side="${side}"><div class="card-head"><small>Samtalekort ${side}</small><h2>${escapedTitle}</h2></div><p class="card-intro">${escape(intro)}</p><table class="gap-table"><thead><tr>${headersHtml}</tr></thead><tbody>${rowsHtml}</tbody></table><div class="card-phrases"><strong>Hjelp på spansk:</strong><ul lang="es">${phrasesHtml}</ul></div><p class="card-goal"><strong>Til slutt:</strong> ${escape(goalText)}</p></article>`;
+  return `<article class="info-gap-card" data-side="${side}"><div class="card-head"><small>Samtalekort ${side}</small><h2>${escapedTitle}</h2></div><p class="card-intro">${escape(intro)}</p><div class="gap-table-wrap"><table class="gap-table"><thead><tr>${headersHtml}</tr></thead><tbody>${rowsHtml}</tbody></table></div><div class="card-phrases"><strong>Hjelp på spansk:</strong><ul lang="es">${phrasesHtml}</ul></div><p class="card-goal"><strong>Til slutt:</strong> ${escape(goalText)}</p></article>`;
 }
 
 function renderPartnerCards(lesson, escapedTitle, id) {
@@ -200,18 +200,22 @@ ${script}
   save(id + '/arbeidsark.html', document(`${lesson.title} (Elevark)`, '../time.css', worksheetBody));
 
   const route = lesson.pack ? 'gloser/' + lesson.pack : 'time/' + lesson.ids.join(',');
-  const studentGlossHref = lesson.pack ? `../../index.html?fra=elev#${escape(route)}` : `../../index.html#${escape(route)}`;
-  const teacherGlossHref = lesson.pack ? `../../index.html?fra=undervisning#${escape(route)}` : `../../index.html#${escape(route)}`;
+  const studentGlossHref = lesson.pack
+    ? `../../index.html?fra=elev#${escape(route)}`
+    : `../../index.html?fra=elev&amp;time=${encodeURIComponent(id)}#${escape(route)}`;
+  const teacherGlossHref = lesson.pack
+    ? `../../index.html?fra=undervisning#${escape(route)}`
+    : `../../index.html?fra=undervisning&amp;time=${encodeURIComponent(id)}#${escape(route)}`;
   const examplesList = list(lesson.writing.map(([, example]) => example));
-  const studentWriting = lesson.writing.map(([prompt]) => `<label>${escape(prompt)}<textarea rows="2" lang="es" autocomplete="off"></textarea></label>`).join('\n');
-  const studentListening = lesson.questions.map(([question], i) => `<label>${i + 1}. ${escape(question)}<textarea rows="2" autocomplete="off"></textarea></label>`).join('\n');
+  const studentWriting = lesson.writing.map(([prompt], i) => `<label>${escape(prompt)}<textarea rows="2" lang="es" autocomplete="off" data-draft-key="write-${i}"></textarea></label>`).join('\n');
+  const studentListening = lesson.questions.map(([question], i) => `<label>${i + 1}. ${escape(question)}<textarea rows="2" autocomplete="off" data-draft-key="listen-${i}"></textarea></label>`).join('\n');
 
   const studentBody = `<nav><a href="../../index.html">Til øvingsappen</a></nav>
 <header><p>Elevside / Spansk A1 / 45 minutter</p><h1>${title}</h1><p>${goal}</p></header>
 <section><h2>1. Øv på glosene (10 min)</h2>
 <p lang="es">${vocabulary.map(escape).join(', ')}.</p>
 <p><a target="_blank" rel="noopener" href="${studentGlossHref}">Åpne glosene</a> i en ny fane. Prøv å si svaret før du snur kortet. Gå tilbake hit når økten er ferdig.</p></section>
-<section data-writing><h2>2. Skriv på spansk (8 min)</h2><p>Prøv alle tre før du åpner eksemplene.</p>
+<section data-writing data-lesson-id="${id}"><h2>2. Skriv på spansk (8 min)</h2><p>Skriv et svar i alle tre feltene under – da dukker eksempelsvarene opp slik at du kan sammenligne.</p>
 <p class="accent-hint">Tips: Hold inne a, e, i, o, u, n eller ? og ! på tastaturet for spanske tegn, eller klikk på knappene under.</p>
 <div class="accent-bar" role="group" aria-label="Spanske tegn" data-accent-bar></div>
 ${studentWriting}
@@ -221,6 +225,7 @@ ${studentWriting}
 <p role="status">Spill av opptaket eller lytt når læreren spiller av i klasserommet.</p>
 ${audioSpeedControls}
 ${studentListening}
+<div class="draft-bar"><p class="draft-note">Svarene dine lagres automatisk bare lokalt i denne nettleseren (aldri i skyen).</p><button type="button" class="btn-secondary btn-clear-draft" data-clear-draft>Tøm svar på denne siden</button><p class="draft-status" role="status" data-draft-status></p></div>
 </section>
 <section><h2>4. Snakk i par (15 min)</h2><p>Du får Samtalekort A eller Samtalekort B av læreren. Hold kortet skjult for partneren din, still spørsmål på spansk og lytt til svaret. Bytt roller når dere er ferdige.</p></section>
 <section><h2>5. Hent fram ordene igjen (5 min)</h2><p>Legg bort kortene. Si én ny setning med to av ordene. La partneren stille et spørsmål. Neste spansktime kan du åpne spansk123.no i samme nettleser og bruke «Repeter gloser» på Start – fremgangen lagres automatisk lokalt på enheten, uten konto.</p></section>
@@ -229,7 +234,7 @@ ${studentListening}
   save(id + '/elev.html', document(`${lesson.title} (Elevside)`, '../time.css', studentBody));
 
   const schoolActivityId = lesson.category ? `vocabulary.${id}.v1` : 'vocabulary.all.v1';
-  const teacherNav = '<nav><a href="../index.html">Alle undervisningstimer</a><a href="elev.html">Åpne elevsiden</a></nav>';
+  const teacherNav = '<nav><a href="../index.html">Alle undervisningstimer</a><a href="elev.html?laerer=1">Åpne elevsiden</a></nav>';
   const teacherBody = `${teacherNav}
 <header><p>Lærerside / Spansk A1 / 45 minutter</p><h1>${title}</h1><p>${goal}</p></header>
 <section class="teacher-toolbar" aria-labelledby="teacherToolsTitle">
@@ -251,7 +256,7 @@ ${studentListening}
 <section><h2>2. Skriv på spansk (8 min)</h2><p>Elevene skriver svarene i skriveboksene på elevsiden eller på utskrevet elevark før de sammenligner med eksemplene.</p>
 ${list(lesson.writing.map(([prompt]) => prompt))}
 <details><summary>Eksempelsvar</summary><div lang="es">${examplesList}</div><p>Andre forståelige formuleringer er også mulige.</p></details></section>
-<section><h2>3. Lytteøvelse (7 min)</h2><p>Spill av lytteøvelsen høyt for klassen to ganger. Elevene svarer i skriveboksene på elevsiden eller på utskrevet <a href="arbeidsark.pdf">elevark (PDF)</a>.</p>
+<section><h2>3. Lytteøvelse (7 min)</h2><p>Spill av lytteøvelsen høyt for klassen to ganger. Elevene svarer i skriveboksene på elevsiden eller på utskrevet <a href="arbeidsark.pdf">elevark (PDF)</a> (<a href="arbeidsark.html">vis i nettleseren</a>).</p>
 ${list(lesson.questions.map(([question]) => question))}
 <audio controls preload="metadata" aria-label="Lytt til samtalen" src="${audio}" onerror="this.hidden=true;this.nextElementSibling.textContent='Opptaket kan ikke spilles av. Les lyttemanuset høyt to ganger.'"></audio>
 <p role="status">Klar for avspilling i klasserommet.</p>
@@ -259,8 +264,8 @@ ${audioSpeedControls}</section>
 <section><h2>4. Snakk i par (15 min)</h2><p><a href="partnerkort.pdf">Skriv ut partnerkortene (A4)</a> for papirbruk (ett ark per par, klipp mellom A og B), eller del digitale enkeltkort i Classroom: <a href="partnerkort-a.pdf">Samtalekort A (PDF)</a> og <a href="partnerkort-b.pdf">Samtalekort B (PDF)</a> (<a href="partnerkort.html">vis begge i nettleseren</a>).</p></section>
 <section><h2>5. Hent fram ordene igjen (5 min)</h2><p>Legg bort kortene. Elevene sier én ny setning med to av ordene og lar partneren stille et spørsmål. Neste spansktime kan elevene åpne spansk123.no i samme nettleser og bruke «Repeter gloser» på Start – fremgangen lagres lokalt på elevens enhet, uten konto.</p></section>
 <details><summary>For læreren: manus, fasit og forberedelse</summary><p>Skriv ut partnerkortene før timen (og elevarket hvis klassen jobber på papir). Elevsiden inneholder ikke denne seksjonen, ikke lyttemanuset og ikke partnerkortene.</p>
-<p><a href="lyttemanus.txt">Åpne lyttemanus</a></p>
-<p><a href="/school?activity=${encodeURIComponent(schoolActivityId)}&amp;title=${encodeURIComponent(lesson.title)}">Gi temaet som digital skolelekse (Feide)</a>.</p>
+<details class="transcript-details"><summary>Vis lyttemanus her</summary><pre class="transcript-box" lang="es">${escape(script)}</pre><p><a href="lyttemanus.txt" target="_blank" rel="noopener">Åpne lyttemanus som ren tekstfil (ny fane)</a></p></details>
+<p><a href="/school?activity=${encodeURIComponent(schoolActivityId)}&amp;lesson=${encodeURIComponent(id)}&amp;title=${encodeURIComponent(lesson.title)}">Gi temaet som digital skolelekse (Skolepakke med Feide)</a>.</p>
 <h3>Fasit til lytteøvelsen</h3>
 ${list(lesson.questions.map(([, answer]) => answer))}
 <p>Lytt etter om begge kan stille et spørsmål, forstå partnerens svar og bruke opplysningen til å løse oppgaven.</p></details>
@@ -293,8 +298,8 @@ const sections = [
 ];
 
 const orderSubject = encodeURIComponent('Bestilling eller demo: Undervisningspakken i Spansk på 1-2-3');
-const orderBody = encodeURIComponent('Hei Ole Henrik,\n\nSkolen vår vil gjerne bestille eller se en kort demo av Undervisningspakken (3 490 kr per skole per år).\n\nSkolenavn:\nKontaktperson:\nAntall spanskgrupper:');
-save('index.html', document('Undervisningstimer i spansk', 'time.css', `<nav><a href="../index.html">Til øvingsappen</a><a href="../school">Skolemodus med Feide</a></nav>
+const orderBody = encodeURIComponent('Hei Ole Henrik,\n\nSkolen vår vil gjerne bestille eller se en kort demo av Undervisningspakken (3 490 kr eks. mva. per skole per år).\n\nSkolenavn:\nKontaktperson:\nAntall spanskgrupper:');
+save('index.html', document('Undervisningstimer i spansk', 'time.css', `<nav><a href="../index.html">Til øvingsappen</a><a href="../school">Skolepakke med Feide</a></nav>
 <header><h1>Undervisningstimer i spansk</h1><p>46 ferdige 45-minutters opplegg med gloseøkt, skriving, lytteøvelse, utskrivbart elevark (PDF) og A4-samtalekort med informasjonskløft. Laget for ungdomsskolen og spansk nivå I i videregående.</p></header>
 <section class="package-hero" aria-labelledby="packageTitle">
 <h2 id="packageTitle">Undervisningspakken – klar til bruk i klasserommet uten elevkontoer</h2>
@@ -304,7 +309,7 @@ save('index.html', document('Undervisningstimer i spansk', 'time.css', `<nav><a 
 <li>46 utskrivbare elevark og A4-samtalekort med informasjonskløft-tabeller (PDF)</li>
 <li>Null elevdata i skyen – ingen ventetid på kommunal DBA</li>
 </ul>
-<p><strong>Pris: 3 490 kr per skole per år</strong> (inntil 6 klasser, bestilles enkelt på skolens budsjett). Vil skolen også ha Feide-lekser og læreroversikt? Se <a href="../school">Skolepakke med Feide (4 995 kr første år)</a>.</p>
+<p><strong>Pris: 3 490 kr eks. mva. per skole per år</strong> (inntil 6 klasser, bestilles enkelt på skolens budsjett). Vil skolen også ha Feide-lekser og læreroversikt? Se <a href="../school">Skolepakke med Feide (4 995 kr eks. mva. første år)</a>.</p>
 <div class="package-actions">
 <a class="btn-primary" href="mailto:ole@spansk123.no?subject=${orderSubject}&amp;body=${orderBody}">Bestill skolekode til din skole</a>
 <a class="btn-secondary" href="wordkeys-recognizable/index.html">Prøv gratis time nå</a>
@@ -322,6 +327,7 @@ save('index.html', document('Undervisningstimer i spansk', 'time.css', `<nav><a 
 <button type="button" class="filter-btn" data-filter="culture" aria-pressed="false">Kultur og hverdagsliv (${culture.length})</button>
 </div>
 <p id="catalogCount" class="catalog-count" aria-live="polite"></p>
+<div id="catalogEmpty" class="catalog-empty" role="status" hidden><p>Ingen undervisningstimer matchet søket.</p><button type="button" class="btn-secondary" id="catalogResetBtn">Nullstill søk og filter</button></div>
 </section>
 ${sections.join('\n')}
 <footer class="portal-footer"><a href="/besoksstatistikk.html">Besøksstatistikk og personvern</a></footer>

@@ -1,12 +1,21 @@
 const searchInput = document.getElementById('lessonSearchInput');
 const filterButtons = [...document.querySelectorAll('[data-filter]')];
 const resultCount = document.getElementById('catalogCount');
+const catalogEmpty = document.getElementById('catalogEmpty');
+const catalogResetBtn = document.getElementById('catalogResetBtn');
 const catalogItems = [...document.querySelectorAll('.catalog li[data-lesson-id]')];
 const catalogSections = [...document.querySelectorAll('.catalog-section')];
 const licensePanel = document.getElementById('licensePanel');
 const lockedNotice = document.getElementById('lockedNotice');
 
 let activeFilter = 'all';
+
+function searchableTextForItem(item) {
+  const topic = item.querySelector('small')?.textContent || '';
+  const title = item.querySelector('strong')?.textContent || '';
+  const id = item.dataset.lessonId || '';
+  return `${topic} ${title} ${id}`.toLowerCase();
+}
 
 function applyCatalogFilter() {
   const query = (searchInput?.value || '').trim().toLowerCase();
@@ -19,7 +28,7 @@ function applyCatalogFilter() {
       || (activeFilter === 'free' && isFree)
       || (activeFilter === 'theme' && group === 'theme')
       || (activeFilter === 'culture' && group === 'culture');
-    const text = item.textContent.toLowerCase();
+    const text = searchableTextForItem(item);
     const matchesQuery = !query || text.includes(query);
     const visible = matchesFilter && matchesQuery;
     item.hidden = !visible;
@@ -29,12 +38,24 @@ function applyCatalogFilter() {
   for (const section of catalogSections) {
     const hasVisible = [...section.querySelectorAll('li[data-lesson-id]')].some((li) => !li.hidden);
     section.hidden = !hasVisible;
+    const heading = section.querySelector('h2');
+    if (heading) {
+      if (!heading.dataset.defaultTitle) heading.dataset.defaultTitle = heading.textContent || '';
+      if (heading.dataset.defaultTitle === 'Gratis prøvetimer') {
+        if (activeFilter === 'culture') heading.textContent = 'Gratis prøvetime i kultur og hverdagsliv';
+        else if (activeFilter === 'theme') heading.textContent = 'Gratis prøvetimer i glosetemaer';
+        else heading.textContent = heading.dataset.defaultTitle;
+      }
+    }
   }
 
   if (resultCount) {
     resultCount.textContent = visibleTotal === catalogItems.length
       ? `Viser alle ${catalogItems.length} undervisningstimer`
       : `Viser ${visibleTotal} av ${catalogItems.length} undervisningstimer`;
+  }
+  if (catalogEmpty) {
+    catalogEmpty.hidden = visibleTotal > 0;
   }
 }
 
@@ -50,6 +71,18 @@ for (const btn of filterButtons) {
 
 if (searchInput) {
   searchInput.addEventListener('input', applyCatalogFilter);
+}
+
+if (catalogResetBtn) {
+  catalogResetBtn.addEventListener('click', () => {
+    if (searchInput) searchInput.value = '';
+    activeFilter = 'all';
+    for (const candidate of filterButtons) {
+      candidate.setAttribute('aria-pressed', candidate.dataset.filter === 'all' ? 'true' : 'false');
+    }
+    applyCatalogFilter();
+    searchInput?.focus();
+  });
 }
 
 function updateCardBadges(active) {
@@ -72,13 +105,26 @@ function updateCardBadges(active) {
 function showLockedLessonBanner(lessonId) {
   if (!lockedNotice) return;
   const matching = catalogItems.find((li) => li.dataset.lessonId === lessonId);
-  const title = matching?.querySelector('strong')?.textContent || lessonId;
+  const topic = matching?.querySelector('small')?.textContent?.trim() || '';
+  const title = matching?.querySelector('strong')?.textContent?.trim() || lessonId;
+  const fullLabel = topic && topic !== title ? `${topic} – ${title}` : title;
   lockedNotice.replaceChildren();
+  const header = document.createElement('div');
+  header.className = 'notice-banner-head';
   const heading = document.createElement('strong');
-  heading.textContent = `«${title}» inngår i Undervisningspakken.`;
+  heading.textContent = `«${fullLabel}» inngår i Undervisningspakken.`;
+  const closeBtn = document.createElement('button');
+  closeBtn.type = 'button';
+  closeBtn.className = 'notice-close-btn';
+  closeBtn.setAttribute('aria-label', 'Lukk varsel');
+  closeBtn.textContent = '×';
+  closeBtn.addEventListener('click', () => {
+    lockedNotice.hidden = true;
+  });
+  header.append(heading, closeBtn);
   const copy = document.createElement('p');
   copy.textContent = 'Skriv inn skolens lisenskode nedenfor for å åpne alle 46 timer og utskrivbare samtalekort, eller prøv de 4 gratis prøvetimene (Spansk du kjenner igjen, Hilsener, Tall og Jul i Spania og Chile).';
-  lockedNotice.append(heading, copy);
+  lockedNotice.append(header, copy);
   lockedNotice.hidden = false;
 }
 
@@ -141,7 +187,12 @@ function renderLicensePanel(state, initialMessage = '', isError = false) {
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
     const code = input.value.trim();
-    if (!code) return;
+    if (!code) {
+      status.className = 'license-status error';
+      status.textContent = 'Skriv inn en skolekode før du aktiverer.';
+      input.focus();
+      return;
+    }
     submit.disabled = true;
     status.className = 'license-status';
     status.textContent = 'Kontrollerer skolekode …';

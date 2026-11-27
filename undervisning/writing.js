@@ -128,7 +128,55 @@ const section = document.querySelector('[data-writing]');
 const inputs = section ? [...section.querySelectorAll('textarea')] : [];
 const examples = section?.querySelector('details') || null;
 const allTextareas = [...document.querySelectorAll('textarea')];
+const clearDraftBtn = document.querySelector('[data-clear-draft]');
+const draftStatus = document.querySelector('[data-draft-status]');
 let activeTextarea = inputs[0] || allTextareas[0] || null;
+
+const lessonIdForDraft = section?.dataset?.lessonId
+  || window.location.pathname.split('/').filter(Boolean).slice(-2, -1)[0]
+  || '';
+const draftStorageKey = lessonIdForDraft ? `spansk123_lessonDraft_v1:${lessonIdForDraft}` : '';
+
+function loadLocalDraft() {
+  if (!draftStorageKey) return;
+  try {
+    const raw = window.localStorage.getItem(draftStorageKey);
+    if (!raw) return;
+    const saved = JSON.parse(raw);
+    if (!saved || typeof saved !== 'object') return;
+    for (const textarea of allTextareas) {
+      const key = textarea.dataset.draftKey;
+      if (key && typeof saved[key] === 'string' && !textarea.value) {
+        textarea.value = saved[key];
+      }
+    }
+  } catch {
+    // Ignore storage errors (e.g. private browsing).
+  }
+}
+
+function saveLocalDraft() {
+  if (!draftStorageKey) return;
+  try {
+    const payload = {};
+    let hasContent = false;
+    for (const textarea of allTextareas) {
+      const key = textarea.dataset.draftKey;
+      if (!key) continue;
+      if (textarea.value) {
+        payload[key] = textarea.value;
+        hasContent = true;
+      }
+    }
+    if (hasContent) {
+      window.localStorage.setItem(draftStorageKey, JSON.stringify(payload));
+    } else {
+      window.localStorage.removeItem(draftStorageKey);
+    }
+  } catch {
+    // Ignore storage errors.
+  }
+}
 
 function updateExamples() {
   if (!examples) return;
@@ -136,15 +184,38 @@ function updateExamples() {
   if (examples.hidden) examples.open = false;
 }
 
+loadLocalDraft();
+updateExamples();
+
 if (section) {
   section.addEventListener('input', updateExamples);
-  window.addEventListener('pageshow', updateExamples);
+  window.addEventListener('pageshow', () => {
+    loadLocalDraft();
+    updateExamples();
+  });
 }
 
 for (const textarea of allTextareas) {
   setupAccentInput(textarea);
   textarea.addEventListener('focus', () => {
     activeTextarea = textarea;
+  });
+  textarea.addEventListener('input', () => {
+    saveLocalDraft();
+    if (draftStatus && draftStatus.textContent) draftStatus.textContent = '';
+  });
+}
+
+if (clearDraftBtn) {
+  clearDraftBtn.addEventListener('click', () => {
+    for (const textarea of allTextareas) textarea.value = '';
+    if (draftStorageKey) {
+      try {
+        window.localStorage.removeItem(draftStorageKey);
+      } catch {}
+    }
+    updateExamples();
+    if (draftStatus) draftStatus.textContent = 'Svarene på denne siden er tømt.';
   });
 }
 

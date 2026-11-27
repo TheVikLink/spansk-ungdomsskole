@@ -90,8 +90,8 @@ test('families offer examples, an unrevealed probe, navigation and an honest sum
   await page.locator('#recognitionLearningCheckBtn').click();
   await page.locator('#recognitionLearningNextBtn').click();
   await expect(page.locator('#recognitionThemePanel')).toContainText('2 av 7 prøveord besvart');
-  await expect(page.locator('#recognitionThemePanel')).toContainText('1 riktige uten støtte');
-  await expect(page.locator('#recognitionThemePanel')).toContainText('1 riktige med støtte');
+  await expect(page.locator('#recognitionThemePanel')).toContainText('1 riktig uten støtte');
+  await expect(page.locator('#recognitionThemePanel')).toContainText('1 riktig med støtte');
   await page.locator('#recognitionLearningReturnBtn').click();
   await expect(page.locator('#recognitionFamiliesBtn')).toBeFocused();
   expect(await stored(page)).toBe(before);

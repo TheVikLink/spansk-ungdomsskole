@@ -32,11 +32,12 @@ test('lærer åpner timekatalogen og eleven bruker riktig glosesett, skriving, l
     }
     await links.filter({ hasText: lesson.title }).click();
     const flash = page.getByRole('link', { name: 'Åpne glosene' });
-    await expect(flash).toHaveAttribute('href', '../../index.html#time/' + lesson.ids.join(','));
+    await expect(flash).toHaveAttribute('href', `../../index.html?fra=undervisning&time=tall#time/${lesson.ids.join(',')}`);
     const opened = page.waitForEvent('popup');
     await flash.click();
     const vocab = await opened;
     await expect(vocab.locator('#vocabStudy')).toBeVisible();
+    await expect(vocab.locator('#cultureVocabularyContext').getByRole('link', { name: 'Tilbake til undervisningstimen' })).toHaveAttribute('href', 'undervisning/tall/index.html');
     const queue = await vocab.evaluate(() =>
       sessionCards.map(item => item.card.canonicalId + '/' + item.direction).sort()
     );
@@ -73,9 +74,10 @@ test('lærer åpner timekatalogen og eleven bruker riktig glosesett, skriving, l
 
     const teacherDetails = page.locator('details', { hasText: 'For læreren: manus, fasit og forberedelse' });
     await expect(teacherDetails).not.toContainText('Legg ferdig opptak i samme mappe');
-    await teacherDetails.locator('summary').click();
-    const schoolLink = page.getByRole('link', { name: 'Gi temaet som digital skolelekse (Feide)' });
-    await expect(schoolLink).toHaveAttribute('href', `/school?activity=${encodeURIComponent('vocabulary.tall.v1')}&title=${encodeURIComponent(lesson.title)}`);
+    await teacherDetails.locator('> summary').click();
+    await expect(teacherDetails.getByText('Vis lyttemanus her')).toBeVisible();
+    const schoolLink = page.getByRole('link', { name: 'Gi temaet som digital skolelekse (Skolepakke med Feide)' });
+    await expect(schoolLink).toHaveAttribute('href', `/school?activity=${encodeURIComponent('vocabulary.tall.v1')}&lesson=tall&title=${encodeURIComponent(lesson.title)}`);
 
     // Student page separates answers, transcript, and A/B cards, and provides web inputs + accents
     await page.getByRole('link', { name: 'Åpne elevsiden' }).click();
@@ -128,6 +130,13 @@ test('lærer åpner timekatalogen og eleven bruker riktig glosesett, skriving, l
     for (const [prompt, example] of lesson.writing) await page.getByLabel(prompt).fill(example);
     await page.getByText('Sammenlign etter at du har skrevet', { exact: true }).click();
     for (const [, example] of lesson.writing) await expect(page.getByText(example, { exact: true })).toBeVisible();
+
+    // Draft answers persist locally across reload and can be cleared cleanly
+    await page.reload();
+    await expect(page.getByLabel(lesson.writing[0][0])).toHaveValue(lesson.writing[0][1]);
+    await page.locator('[data-clear-draft]').click();
+    await expect(page.getByLabel(lesson.writing[0][0])).toHaveValue('');
+    await expect(page.locator('[data-draft-status]')).toContainText('tømt');
 
     await expect(page.locator('[data-listening] textarea')).toHaveCount(lesson.questions.length);
     const audioEl = page.locator('audio');
