@@ -1,6 +1,19 @@
 # Gjenoppretting og databaseoppgradering – konkret grunnlag
 
-Avstemt 9. november 2026 for Beads ya9r/ya9r.11. Ingen oppgradering, skyrestore, nytt prosjekt eller rolleendring er utført. Produktets vanlige lokale eksport/import beholdes. Dette er klargjøring for staging og senere eksplisitt produksjonslevering.
+Avstemt 9. november 2026 for Beads ya9r/ya9r.11 og oppdatert 27. november 2026 etter gjennomført staging-oppgradering til PostgreSQL 17.12.0.002. Produktets vanlige lokale eksport/import beholdes. Dette er klargjøring for staging og senere eksplisitt produksjonslevering.
+
+## Gjennomført staging-oppgradering til PostgreSQL 17.12 (27. november 2026)
+
+Begge stagingprosjektene i `eu-north-1` ble etter godkjent førkontroll oppgradert in-place via Supabase Dashboard fra `17.6.1.171` til `17.12.0.002` og verifisert friske (`ACTIVE_HEALTHY`) samme kveld (`spansk-ungdomsskole-ya9r` lukket):
+
+| Kontroll | Journalstaging `quznpkwsapehdcmicgsq` | Appstaging `peglwndjqnrstwnlrdsa` |
+| --- | --- | --- |
+| Status og versjon | `ACTIVE_HEALTHY`, PostgreSQL `17.12` (`17.12.0.002`) | `ACTIVE_HEALTHY`, PostgreSQL `17.12` (`17.12.0.002`) |
+| Førkontroll (`17.6.1.171`) | 0 slots, 0 prepared tx, 0 MD5-roller, 0 `ltree`/`float gist`/custom ops | 0 slots, 0 prepared tx, 0 MD5-roller, 0 `ltree`/`float gist`/custom ops |
+| Migreringer / hasher | 6 (`001–006`), 15 journalrader bevart | 12 (`001–012`), alle 23 SHA-256-kildehasher identiske mot kandidatregisteret |
+| Roller og RLS | `journal_migrator` (`NOLOGIN`), `journal_retention_operator` (`NOLOGIN`), `journal_runtime` (`LOGIN`) | `app_migrator` (`NOLOGIN`), `school_retention_operator` (`NOLOGIN`), `app_runtime` (`LOGIN`), `global_auth_job_staging` (`LOGIN`), 0 manglende RLS på kjernetabeller |
+| Security Advisor | 0 ERROR, 0 WARN, 3 INFO (interne RLS-tabeller) | 0 ERROR, 0 WARN, 11 INFO (interne RLS-tabeller) |
+| Apphelse (Vercel staging) | — | `GET /healthz` på `spansk123-ay0qirjy2-theviklinks-projects.vercel.app` svarte `{"status":"ok","securityJournal":"ok"}` |
 
 ## Lokal prøve av versjonsbytte og gjenoppretting 24. november 2026
 

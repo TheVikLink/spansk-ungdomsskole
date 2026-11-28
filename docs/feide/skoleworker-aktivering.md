@@ -1,6 +1,14 @@
 # Skoleworker: klargjort aktivering og kontrollert stopp
 
-Gjeldende underlag 12. november 2026, Beads `spansk-ungdomsskole-twkq` / `spansk-ungdomsskole-rbec.4`. Dette er en kjørebeskrivelse for en separat bestilt stagingaktivering. Ingen roller, passord, prosjekt, monitor, skolepolicy eller cron opprettes av dokumentet. Den leverte [workerpakken fra 9. november](../../output/school-operations-and-sales-2026-11-09/worker/README.md) beholdes som datert artefakt, med `enabled:false`, `cronEnabled:false`, tom cronliste og ubundne prosjekt-/rolle-/utløpsfelt. Ikke rediger denne historiske pakken for å aktivere drift.
+Gjeldende underlag 12. november 2026 (oppdatert 28. november 2026 for PostgreSQL `17.12` og standby stagingworker), Beads `spansk-ungdomsskole-twkq` / `spansk-ungdomsskole-2nf2` / `spansk-ungdomsskole-rbec.4`.
+
+## Status 28. november 2026 (PostgreSQL 17.12 stagingkontroll og opprydding)
+
+- **Healthchecks.io-kontroll:** `Spansk123 STAGING – globale innloggingsøkter` bekreftet `UP` etter PG `17.12`-oppgraderingen; eksisterende paused/test-monitorer (`twkq uteblitt kjøring`, `twkq daglig Cron 0215`, `Spansk123 STAGING TEST – retensjon`, samt historiske `DOWN`-monitorer `twkq Cron staging test` og `twkq production Cron test`) ble kartlagt urørt uten endring av alarmer.
+- **Vercel-opprydding og standby-worker:** Det utdaterte testprosjektet `spansk123-school-retention-production` ble slettet etter eiergodkjenning. Et rent standby-stagingprosjekt (`spansk123-school-retention-staging`, `prj_Ry4sBG0JFniWJVXOCpPG3LV6vgpS`) ble deployet i strengt inaktiv modus (`enabled:false`, `cronEnabled:false`, `crons:[]`, Vercel Authentication aktivert og uten databasepassord) for å unngå falske `503`-varsler med null aktive policyer.
+- **PG 17.12 retensjons- og minstetilgangsprøve (rullet tilbake):** I rullede transaksjoner på både `peglwndjqnrstwnlrdsa` (`school_retention_service_pg1712`) og `quznpkwsapehdcmicgsq` (`journal_retention_service_pg1712`) ble `verifyWorkerRole`-predikater (`rawAccess=false`, `operatorAccess=false`, sikker `NOLOGIN`-operatørgruppe), `retention_targets`, `prepare_retention`, `apply_retention` (`deletedAuditEvents=1`, yngre kontrollpost bevart), `journal_retention.record_assignments` og DB-først-stopp (`NOLOGIN` + utløpt `VALID UNTIL`) bekreftet uten gjenværende roller eller syntetiske rader.
+
+Dette er en kjørebeskrivelse for en separat bestilt stagingaktivering. Ingen varige roller, passord, monitor, skolepolicy eller cron aktiveres av dokumentet. Den leverte [workerpakken fra 9. november](../../output/school-operations-and-sales-2026-11-09/worker/README.md) beholdes som datert artefakt, med `enabled:false`, `cronEnabled:false`, tom cronliste og ubundne prosjekt-/rolle-/utløpsfelt. Ikke rediger denne historiske pakken for å aktivere drift.
 
 ## Kilde og kjent tilstand
 
