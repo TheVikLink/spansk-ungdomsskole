@@ -7,13 +7,13 @@
   },
   "type": "module",
   "scripts": {
-    "build:app": "node scripts/build-lesson-plans.mjs && npm run sync:vocabulary && npm run sync:culture && npm run sync:pronunciation && npm run sync:catalogs && npm run build:css && node scripts/build-offline.mjs && npm run build:school-content",
+    "build:app": "node scripts/build-lesson-plans.mjs && npm run sync:vocabulary && npm run sync:culture && npm run sync:pronunciation && npm run sync:word-audio && npm run sync:catalogs && npm run build:css && node scripts/build-offline.mjs && npm run build:school-content",
     "sync:catalogs": "node scripts/sync-catalogs.mjs",
     "check:catalogs": "node scripts/sync-catalogs.mjs --check",
     "doctor": "node scripts/doctor.mjs",
     "license:create": "node scripts/create-school-license.mjs",
     "preview:undervisning": "node scripts/preview-undervisning.mjs",
-    "check:fast": "node scripts/build-lesson-plans.mjs --check && npm run check:pronunciation && npm run check:vocabulary && npm run check:culture && npm run check:catalogs && npm run check:content && npm run check:content-accuracy && npm run check:grammar-lessons && npm run check:diagnosis-catalog && npm run check:learning-catalog && npm run check:tailwind && npm run check:offline-build && node --test tests/*.test.mjs",
+    "check:fast": "node scripts/build-lesson-plans.mjs --check && npm run check:pronunciation && npm run check:word-audio && npm run check:vocabulary && npm run check:culture && npm run check:catalogs && npm run check:content && npm run check:content-accuracy && npm run check:grammar-lessons && npm run check:diagnosis-catalog && npm run check:learning-catalog && npm run check:tailwind && npm run check:offline-build && node --test tests/*.test.mjs",
     "sync:culture": "node scripts/build-culture-preview.mjs",
     "check:culture": "node scripts/build-culture-preview.mjs --check",
     "build:vercel": "npm run build:app && node scripts/build-vercel-public.mjs",
@@ -69,7 +69,7 @@
     "test:sentence-puzzle": "playwright test tests/sentence-puzzle-game.spec.js --browser chromium",
     "test:productive-patterns": "playwright test tests/productive-patterns.spec.js --browser chromium",
     "audit:student-video": "playwright test tests/model-student-video-audit.spec.js --workers=1 --browser chromium && node scripts/postprocess-student-audit.mjs output/student-agent-audit/latest",
-    "test:all": "node scripts/build-lesson-plans.mjs --check && npm run check:pronunciation && npm run check:vocabulary && npm run check:culture && npm run check:content && npm run check:content-accuracy && npm run check:grammar-lessons && npm run check:diagnosis-catalog && node --test tests/*.test.mjs && npm run test:school && npm run check:learning-catalog && npm run check:tailwind && npm run check:offline-build && npm run test:browser",
+    "test:all": "node scripts/build-lesson-plans.mjs --check && npm run check:pronunciation && npm run check:word-audio && npm run check:vocabulary && npm run check:culture && npm run check:content && npm run check:content-accuracy && npm run check:grammar-lessons && npm run check:diagnosis-catalog && node --test tests/*.test.mjs && npm run test:school && npm run check:learning-catalog && npm run check:tailwind && npm run check:offline-build && npm run test:browser",
     "test:school": "node --test tests/server/*.test.mjs",
     "setup:school-demo": "node scripts/setup-school-demo.mjs",
     "school:db:up": "docker compose -p spansk123-school-local -f docker-compose.school.yml up -d --wait",
@@ -88,7 +88,10 @@
     "sync:vocabulary": "node scripts/sync-vocabulary.mjs",
     "check:vocabulary": "node scripts/sync-vocabulary.mjs --check",
     "sync:pronunciation": "node scripts/sync-pronunciation.mjs",
-    "check:pronunciation": "node scripts/sync-pronunciation.mjs --check"
+    "check:pronunciation": "node scripts/sync-pronunciation.mjs --check",
+    "sync:word-audio": "node scripts/sync-word-audio.mjs",
+    "check:word-audio": "node scripts/sync-word-audio.mjs --check",
+    "export:word-audio-batches": "node scripts/export-word-audio-batches.mjs"
   },
   "devDependencies": {
     "@electric-sql/pglite": "^0.5.8",

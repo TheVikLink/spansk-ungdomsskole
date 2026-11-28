@@ -67,6 +67,10 @@
     {
       "source": "/audio/uttale/refold-v1/:path*",
       "headers": [{ "key": "Cache-Control", "value": "public, max-age=86400, immutable" }]
+    },
+    {
+      "source": "/audio/ord/:path*",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=86400, immutable" }]
     }
   ]
 }

@@ -2,24 +2,4158 @@
   "schemaVersion": 1,
   "note": "Godkjente statiske enkeltord-opptak (kun forhåndsgenererte eller eiergodkjente filer, aldri nettleser-TTS). Legg Luvvoice-MP3-filer i audio/ord/ og registrer dem her ved behov.",
   "entries": [
-    { "word": "casa", "normalized": "casa", "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_1_word.mp3", "source": "refold-v1" },
-    { "word": "mesa", "normalized": "mesa", "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_2_word.mp3", "source": "refold-v1" },
-    { "word": "silla", "normalized": "silla", "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_3_word.mp3", "source": "refold-v1" },
-    { "word": "sol", "normalized": "sol", "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_4_word.mp3", "source": "refold-v1" },
-    { "word": "uno", "normalized": "uno", "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_5_word.mp3", "source": "refold-v1" },
-    { "word": "aire", "normalized": "aire", "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_6_word.mp3", "source": "refold-v1" },
-    { "word": "Europa", "normalized": "europa", "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_9_word.mp3", "source": "refold-v1" },
-    { "word": "viuda", "normalized": "viuda", "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_11_word.mp3", "source": "refold-v1" },
-    { "word": "ruido", "normalized": "ruido", "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_12_word.mp3", "source": "refold-v1" },
-    { "word": "huevo", "normalized": "huevo", "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_13_word.mp3", "source": "refold-v1" },
-    { "word": "cuota", "normalized": "cuota", "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_14_word.mp3", "source": "refold-v1" },
-    { "word": "dedo", "normalized": "dedo", "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_17_word.mp3", "source": "refold-v1" },
-    { "word": "foto", "normalized": "foto", "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_18_word.mp3", "source": "refold-v1" },
-    { "word": "luna", "normalized": "luna", "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_21_word.mp3", "source": "refold-v1" },
-    { "word": "mamá", "normalized": "mama", "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_23_word.mp3", "source": "refold-v1" },
-    { "word": "nido", "normalized": "nido", "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_24_word.mp3", "source": "refold-v1" },
-    { "word": "niño", "normalized": "nino", "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_25_word.mp3", "source": "refold-v1" },
-    { "word": "papel", "normalized": "papel", "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_26_word.mp3", "source": "refold-v1" },
-    { "word": "zapato", "normalized": "zapato", "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_31_word.mp3", "source": "refold-v1" }
+    {
+      "word": "casa",
+      "normalized": "casa",
+      "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_1_word.mp3",
+      "source": "refold-v1"
+    },
+    {
+      "word": "mesa",
+      "normalized": "mesa",
+      "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_2_word.mp3",
+      "source": "refold-v1"
+    },
+    {
+      "word": "silla",
+      "normalized": "silla",
+      "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_3_word.mp3",
+      "source": "refold-v1"
+    },
+    {
+      "word": "sol",
+      "normalized": "sol",
+      "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_4_word.mp3",
+      "source": "refold-v1"
+    },
+    {
+      "word": "uno",
+      "normalized": "uno",
+      "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_5_word.mp3",
+      "source": "refold-v1"
+    },
+    {
+      "word": "aire",
+      "normalized": "aire",
+      "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_6_word.mp3",
+      "source": "refold-v1"
+    },
+    {
+      "word": "Europa",
+      "normalized": "europa",
+      "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_9_word.mp3",
+      "source": "refold-v1"
+    },
+    {
+      "word": "viuda",
+      "normalized": "viuda",
+      "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_11_word.mp3",
+      "source": "refold-v1"
+    },
+    {
+      "word": "ruido",
+      "normalized": "ruido",
+      "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_12_word.mp3",
+      "source": "refold-v1"
+    },
+    {
+      "word": "huevo",
+      "normalized": "huevo",
+      "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_13_word.mp3",
+      "source": "refold-v1"
+    },
+    {
+      "word": "cuota",
+      "normalized": "cuota",
+      "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_14_word.mp3",
+      "source": "refold-v1"
+    },
+    {
+      "word": "dedo",
+      "normalized": "dedo",
+      "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_17_word.mp3",
+      "source": "refold-v1"
+    },
+    {
+      "word": "foto",
+      "normalized": "foto",
+      "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_18_word.mp3",
+      "source": "refold-v1"
+    },
+    {
+      "word": "luna",
+      "normalized": "luna",
+      "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_21_word.mp3",
+      "source": "refold-v1"
+    },
+    {
+      "word": "mamá",
+      "normalized": "mama",
+      "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_23_word.mp3",
+      "source": "refold-v1"
+    },
+    {
+      "word": "nido",
+      "normalized": "nido",
+      "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_24_word.mp3",
+      "source": "refold-v1"
+    },
+    {
+      "word": "niño",
+      "normalized": "nino",
+      "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_25_word.mp3",
+      "source": "refold-v1"
+    },
+    {
+      "word": "papel",
+      "normalized": "papel",
+      "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_26_word.mp3",
+      "source": "refold-v1"
+    },
+    {
+      "word": "zapato",
+      "normalized": "zapato",
+      "path": "audio/uttale/refold-v1/ESPhoneticWritingSystem_31_word.mp3",
+      "source": "refold-v1"
+    },
+    {
+      "word": "la música",
+      "normalized": "música",
+      "path": "audio/ord/la-musica.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0525"
+    },
+    {
+      "word": "el hotel",
+      "normalized": "hotel",
+      "path": "audio/ord/el-hotel.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0523"
+    },
+    {
+      "word": "la información",
+      "normalized": "información",
+      "path": "audio/ord/la-informacion.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0561"
+    },
+    {
+      "word": "hola",
+      "normalized": "hola",
+      "path": "audio/ord/hola.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0064"
+    },
+    {
+      "word": "gracias",
+      "normalized": "gracias",
+      "path": "audio/ord/gracias.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0065"
+    },
+    {
+      "word": "buenos días",
+      "normalized": "buenos días",
+      "path": "audio/ord/buenos-dias.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0066"
+    },
+    {
+      "word": "hablar",
+      "normalized": "hablar",
+      "path": "audio/ord/hablar.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0412"
+    },
+    {
+      "word": "comer",
+      "normalized": "comer",
+      "path": "audio/ord/comer.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0417"
+    },
+    {
+      "word": "vivir",
+      "normalized": "vivir",
+      "path": "audio/ord/vivir.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0421"
+    },
+    {
+      "word": "y",
+      "normalized": "y",
+      "path": "audio/ord/y.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0434"
+    },
+    {
+      "word": "o",
+      "normalized": "o",
+      "path": "audio/ord/o.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0435"
+    },
+    {
+      "word": "pero",
+      "normalized": "pero",
+      "path": "audio/ord/pero.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0436"
+    },
+    {
+      "word": "también",
+      "normalized": "también",
+      "path": "audio/ord/tambien.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0437"
+    },
+    {
+      "word": "mañana",
+      "normalized": "mañana",
+      "path": "audio/ord/manana.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0307"
+    },
+    {
+      "word": "siempre",
+      "normalized": "siempre",
+      "path": "audio/ord/siempre.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0438"
+    },
+    {
+      "word": "nunca",
+      "normalized": "nunca",
+      "path": "audio/ord/nunca.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0439"
+    },
+    {
+      "word": "a veces",
+      "normalized": "a veces",
+      "path": "audio/ord/a-veces.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0440"
+    },
+    {
+      "word": "buenas noches",
+      "normalized": "buenas noches",
+      "path": "audio/ord/buenas-noches.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0068"
+    },
+    {
+      "word": "adiós",
+      "normalized": "adiós",
+      "path": "audio/ord/adios.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0069"
+    },
+    {
+      "word": "beber",
+      "normalized": "beber",
+      "path": "audio/ord/beber.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0418"
+    },
+    {
+      "word": "leer",
+      "normalized": "leer",
+      "path": "audio/ord/leer.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0419"
+    },
+    {
+      "word": "escribir",
+      "normalized": "escribir",
+      "path": "audio/ord/escribir.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0422"
+    },
+    {
+      "word": "aprender",
+      "normalized": "aprender",
+      "path": "audio/ord/aprender.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0425"
+    },
+    {
+      "word": "dos",
+      "normalized": "dos",
+      "path": "audio/ord/dos.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0002"
+    },
+    {
+      "word": "tres",
+      "normalized": "tres",
+      "path": "audio/ord/tres.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0003"
+    },
+    {
+      "word": "cuatro",
+      "normalized": "cuatro",
+      "path": "audio/ord/cuatro.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0004"
+    },
+    {
+      "word": "cinco",
+      "normalized": "cinco",
+      "path": "audio/ord/cinco.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0005"
+    },
+    {
+      "word": "seis",
+      "normalized": "seis",
+      "path": "audio/ord/seis.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0006"
+    },
+    {
+      "word": "siete",
+      "normalized": "siete",
+      "path": "audio/ord/siete.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0007"
+    },
+    {
+      "word": "ocho",
+      "normalized": "ocho",
+      "path": "audio/ord/ocho.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0008"
+    },
+    {
+      "word": "nueve",
+      "normalized": "nueve",
+      "path": "audio/ord/nueve.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0009"
+    },
+    {
+      "word": "diez",
+      "normalized": "diez",
+      "path": "audio/ord/diez.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0010"
+    },
+    {
+      "word": "once",
+      "normalized": "once",
+      "path": "audio/ord/once.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0011"
+    },
+    {
+      "word": "doce",
+      "normalized": "doce",
+      "path": "audio/ord/doce.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0012"
+    },
+    {
+      "word": "trece",
+      "normalized": "trece",
+      "path": "audio/ord/trece.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0013"
+    },
+    {
+      "word": "catorce",
+      "normalized": "catorce",
+      "path": "audio/ord/catorce.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0014"
+    },
+    {
+      "word": "quince",
+      "normalized": "quince",
+      "path": "audio/ord/quince.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0015"
+    },
+    {
+      "word": "dieciséis",
+      "normalized": "dieciséis",
+      "path": "audio/ord/dieciseis.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0016"
+    },
+    {
+      "word": "diecisiete",
+      "normalized": "diecisiete",
+      "path": "audio/ord/diecisiete.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0017"
+    },
+    {
+      "word": "dieciocho",
+      "normalized": "dieciocho",
+      "path": "audio/ord/dieciocho.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0018"
+    },
+    {
+      "word": "diecinueve",
+      "normalized": "diecinueve",
+      "path": "audio/ord/diecinueve.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0019"
+    },
+    {
+      "word": "veinte",
+      "normalized": "veinte",
+      "path": "audio/ord/veinte.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0020"
+    },
+    {
+      "word": "veintiséis",
+      "normalized": "veintiséis",
+      "path": "audio/ord/veintiseis.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0021"
+    },
+    {
+      "word": "treinta",
+      "normalized": "treinta",
+      "path": "audio/ord/treinta.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0022"
+    },
+    {
+      "word": "treinta y nueve",
+      "normalized": "treinta y nueve",
+      "path": "audio/ord/treinta-y-nueve.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0023"
+    },
+    {
+      "word": "cuarenta",
+      "normalized": "cuarenta",
+      "path": "audio/ord/cuarenta.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0024"
+    },
+    {
+      "word": "cuarenta y tres",
+      "normalized": "cuarenta y tres",
+      "path": "audio/ord/cuarenta-y-tres.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0025"
+    },
+    {
+      "word": "cincuenta",
+      "normalized": "cincuenta",
+      "path": "audio/ord/cincuenta.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0026"
+    },
+    {
+      "word": "cincuenta y cuatro",
+      "normalized": "cincuenta y cuatro",
+      "path": "audio/ord/cincuenta-y-cuatro.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0027"
+    },
+    {
+      "word": "sesenta",
+      "normalized": "sesenta",
+      "path": "audio/ord/sesenta.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0028"
+    },
+    {
+      "word": "sesenta y dos",
+      "normalized": "sesenta y dos",
+      "path": "audio/ord/sesenta-y-dos.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0029"
+    },
+    {
+      "word": "setenta",
+      "normalized": "setenta",
+      "path": "audio/ord/setenta.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0030"
+    },
+    {
+      "word": "setenta y ocho",
+      "normalized": "setenta y ocho",
+      "path": "audio/ord/setenta-y-ocho.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0031"
+    },
+    {
+      "word": "ochenta",
+      "normalized": "ochenta",
+      "path": "audio/ord/ochenta.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0032"
+    },
+    {
+      "word": "ochenta y siete",
+      "normalized": "ochenta y siete",
+      "path": "audio/ord/ochenta-y-siete.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0033"
+    },
+    {
+      "word": "noventa",
+      "normalized": "noventa",
+      "path": "audio/ord/noventa.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0034"
+    },
+    {
+      "word": "noventa y uno",
+      "normalized": "noventa y uno",
+      "path": "audio/ord/noventa-y-uno.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0035"
+    },
+    {
+      "word": "cien",
+      "normalized": "cien",
+      "path": "audio/ord/cien.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0036"
+    },
+    {
+      "word": "ciento diez",
+      "normalized": "ciento diez",
+      "path": "audio/ord/ciento-diez.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0037"
+    },
+    {
+      "word": "ciento veintitrés",
+      "normalized": "ciento veintitrés",
+      "path": "audio/ord/ciento-veintitres.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0038"
+    },
+    {
+      "word": "doscientos",
+      "normalized": "doscientos",
+      "path": "audio/ord/doscientos.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0039"
+    },
+    {
+      "word": "doscientos cuarenta y cinco",
+      "normalized": "doscientos cuarenta y cinco",
+      "path": "audio/ord/doscientos-cuarenta-y-cinco.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0040"
+    },
+    {
+      "word": "trescientos",
+      "normalized": "trescientos",
+      "path": "audio/ord/trescientos.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0041"
+    },
+    {
+      "word": "cuatrocientos",
+      "normalized": "cuatrocientos",
+      "path": "audio/ord/cuatrocientos.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0042"
+    },
+    {
+      "word": "quinientos",
+      "normalized": "quinientos",
+      "path": "audio/ord/quinientos.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0043"
+    },
+    {
+      "word": "seiscientos",
+      "normalized": "seiscientos",
+      "path": "audio/ord/seiscientos.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0044"
+    },
+    {
+      "word": "setecientos",
+      "normalized": "setecientos",
+      "path": "audio/ord/setecientos.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0045"
+    },
+    {
+      "word": "ochocientos",
+      "normalized": "ochocientos",
+      "path": "audio/ord/ochocientos.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0046"
+    },
+    {
+      "word": "novecientos",
+      "normalized": "novecientos",
+      "path": "audio/ord/novecientos.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0047"
+    },
+    {
+      "word": "mil",
+      "normalized": "mil",
+      "path": "audio/ord/mil.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0048"
+    },
+    {
+      "word": "ochocientos setenta",
+      "normalized": "ochocientos setenta",
+      "path": "audio/ord/ochocientos-setenta.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0049"
+    },
+    {
+      "word": "mil doscientos",
+      "normalized": "mil doscientos",
+      "path": "audio/ord/mil-doscientos.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0050"
+    },
+    {
+      "word": "mil quinientos ochenta y nueve",
+      "normalized": "mil quinientos ochenta y nueve",
+      "path": "audio/ord/mil-quinientos-ochenta-y-nueve.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0051"
+    },
+    {
+      "word": "dos mil",
+      "normalized": "dos mil",
+      "path": "audio/ord/dos-mil.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0052"
+    },
+    {
+      "word": "cuatro mil",
+      "normalized": "cuatro mil",
+      "path": "audio/ord/cuatro-mil.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0053"
+    },
+    {
+      "word": "diez mil",
+      "normalized": "diez mil",
+      "path": "audio/ord/diez-mil.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0054"
+    },
+    {
+      "word": "mil novecientos cuarenta y cinco",
+      "normalized": "mil novecientos cuarenta y cinco",
+      "path": "audio/ord/mil-novecientos-cuarenta-y-cinco.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0055"
+    },
+    {
+      "word": "mil novecientos noventa y seis",
+      "normalized": "mil novecientos noventa y seis",
+      "path": "audio/ord/mil-novecientos-noventa-y-seis.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0056"
+    },
+    {
+      "word": "dos mil once",
+      "normalized": "dos mil once",
+      "path": "audio/ord/dos-mil-once.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0057"
+    },
+    {
+      "word": "dos mil diecinueve",
+      "normalized": "dos mil diecinueve",
+      "path": "audio/ord/dos-mil-diecinueve.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0058"
+    },
+    {
+      "word": "el hermano",
+      "normalized": "hermano",
+      "path": "audio/ord/el-hermano.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0173"
+    },
+    {
+      "word": "la hermana",
+      "normalized": "hermana",
+      "path": "audio/ord/la-hermana.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0174"
+    },
+    {
+      "word": "el primo",
+      "normalized": "primo",
+      "path": "audio/ord/el-primo.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0175"
+    },
+    {
+      "word": "la prima",
+      "normalized": "prima",
+      "path": "audio/ord/la-prima.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0176"
+    },
+    {
+      "word": "la tía",
+      "normalized": "tía",
+      "path": "audio/ord/la-tia.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0177"
+    },
+    {
+      "word": "el tío",
+      "normalized": "tío",
+      "path": "audio/ord/el-tio.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0178"
+    },
+    {
+      "word": "la madre",
+      "normalized": "madre",
+      "path": "audio/ord/la-madre.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0179"
+    },
+    {
+      "word": "el padre",
+      "normalized": "padre",
+      "path": "audio/ord/el-padre.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0180"
+    },
+    {
+      "word": "la abuela",
+      "normalized": "abuela",
+      "path": "audio/ord/la-abuela.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0181"
+    },
+    {
+      "word": "el abuelo",
+      "normalized": "abuelo",
+      "path": "audio/ord/el-abuelo.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0182"
+    },
+    {
+      "word": "el novio",
+      "normalized": "novio",
+      "path": "audio/ord/el-novio.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0183"
+    },
+    {
+      "word": "el padrastro",
+      "normalized": "padrastro",
+      "path": "audio/ord/el-padrastro.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0184"
+    },
+    {
+      "word": "la madrastra",
+      "normalized": "madrastra",
+      "path": "audio/ord/la-madrastra.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0185"
+    },
+    {
+      "word": "el hermanastro",
+      "normalized": "hermanastro",
+      "path": "audio/ord/el-hermanastro.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0186"
+    },
+    {
+      "word": "la hermanastra",
+      "normalized": "hermanastra",
+      "path": "audio/ord/la-hermanastra.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0187"
+    },
+    {
+      "word": "el medio hermano",
+      "normalized": "medio hermano",
+      "path": "audio/ord/el-medio-hermano.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0188"
+    },
+    {
+      "word": "la media hermana",
+      "normalized": "media hermana",
+      "path": "audio/ord/la-media-hermana.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0189"
+    },
+    {
+      "word": "el hermano mayor",
+      "normalized": "hermano mayor",
+      "path": "audio/ord/el-hermano-mayor.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0190"
+    },
+    {
+      "word": "la hermana menor",
+      "normalized": "hermana menor",
+      "path": "audio/ord/la-hermana-menor.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0191"
+    },
+    {
+      "word": "la familia",
+      "normalized": "familia",
+      "path": "audio/ord/la-familia.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0557"
+    },
+    {
+      "word": "el alumno",
+      "normalized": "alumno",
+      "path": "audio/ord/el-alumno.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0316"
+    },
+    {
+      "word": "el profesor de español",
+      "normalized": "profesor de español",
+      "path": "audio/ord/el-profesor-de-espanol.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0317"
+    },
+    {
+      "word": "la clase",
+      "normalized": "clase",
+      "path": "audio/ord/la-clase.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0318"
+    },
+    {
+      "word": "la pizarra",
+      "normalized": "pizarra",
+      "path": "audio/ord/la-pizarra.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0320"
+    },
+    {
+      "word": "el mapa",
+      "normalized": "mapa",
+      "path": "audio/ord/el-mapa.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0321"
+    },
+    {
+      "word": "la papelera",
+      "normalized": "papelera",
+      "path": "audio/ord/la-papelera.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0322"
+    },
+    {
+      "word": "el libro",
+      "normalized": "libro",
+      "path": "audio/ord/el-libro.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0323"
+    },
+    {
+      "word": "el ordenador",
+      "normalized": "ordenador",
+      "path": "audio/ord/el-ordenador.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0324"
+    },
+    {
+      "word": "la E.S.O",
+      "normalized": "eso",
+      "path": "audio/ord/la-e-s-o.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0325"
+    },
+    {
+      "word": "el pupitre",
+      "normalized": "pupitre",
+      "path": "audio/ord/el-pupitre.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0326"
+    },
+    {
+      "word": "la mochila",
+      "normalized": "mochila",
+      "path": "audio/ord/la-mochila.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0328"
+    },
+    {
+      "word": "el estuche",
+      "normalized": "estuche",
+      "path": "audio/ord/el-estuche.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0329"
+    },
+    {
+      "word": "el lápiz",
+      "normalized": "lápiz",
+      "path": "audio/ord/el-lapiz.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0330"
+    },
+    {
+      "word": "el bolígrafo",
+      "normalized": "bolígrafo",
+      "path": "audio/ord/el-boligrafo.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0331"
+    },
+    {
+      "word": "la goma",
+      "normalized": "goma",
+      "path": "audio/ord/la-goma.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0332"
+    },
+    {
+      "word": "el sacapuntas",
+      "normalized": "sacapuntas",
+      "path": "audio/ord/el-sacapuntas.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0333"
+    },
+    {
+      "word": "la regla",
+      "normalized": "regla",
+      "path": "audio/ord/la-regla.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0334"
+    },
+    {
+      "word": "el bachillerato",
+      "normalized": "bachillerato",
+      "path": "audio/ord/el-bachillerato.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0335"
+    },
+    {
+      "word": "el estudiante",
+      "normalized": "estudiante",
+      "path": "audio/ord/el-estudiante.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0551"
+    },
+    {
+      "word": "la universidad",
+      "normalized": "universidad",
+      "path": "audio/ord/la-universidad.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0568"
+    },
+    {
+      "word": "la fruta",
+      "normalized": "fruta",
+      "path": "audio/ord/la-fruta.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0464"
+    },
+    {
+      "word": "la pera",
+      "normalized": "pera",
+      "path": "audio/ord/la-pera.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0465"
+    },
+    {
+      "word": "la naranja",
+      "normalized": "naranja",
+      "path": "audio/ord/la-naranja.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0466"
+    },
+    {
+      "word": "el plátano",
+      "normalized": "plátano",
+      "path": "audio/ord/el-platano.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0467"
+    },
+    {
+      "word": "la manzana",
+      "normalized": "manzana",
+      "path": "audio/ord/la-manzana.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0468"
+    },
+    {
+      "word": "el melocotón",
+      "normalized": "melocotón",
+      "path": "audio/ord/el-melocoton.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0469"
+    },
+    {
+      "word": "la uva",
+      "normalized": "uva",
+      "path": "audio/ord/la-uva.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0470"
+    },
+    {
+      "word": "el melón",
+      "normalized": "melón",
+      "path": "audio/ord/el-melon.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0471"
+    },
+    {
+      "word": "la sandía",
+      "normalized": "sandía",
+      "path": "audio/ord/la-sandia.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0472"
+    },
+    {
+      "word": "el limón",
+      "normalized": "limón",
+      "path": "audio/ord/el-limon.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0473"
+    },
+    {
+      "word": "la verdura",
+      "normalized": "verdura",
+      "path": "audio/ord/la-verdura.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0474"
+    },
+    {
+      "word": "el tomate",
+      "normalized": "tomate",
+      "path": "audio/ord/el-tomate.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0475"
+    },
+    {
+      "word": "el pepino",
+      "normalized": "pepino",
+      "path": "audio/ord/el-pepino.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0476"
+    },
+    {
+      "word": "la cebolla",
+      "normalized": "cebolla",
+      "path": "audio/ord/la-cebolla.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0477"
+    },
+    {
+      "word": "el ajo",
+      "normalized": "ajo",
+      "path": "audio/ord/el-ajo.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0478"
+    },
+    {
+      "word": "la lechuga",
+      "normalized": "lechuga",
+      "path": "audio/ord/la-lechuga.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0479"
+    },
+    {
+      "word": "el pimiento",
+      "normalized": "pimiento",
+      "path": "audio/ord/el-pimiento.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0480"
+    },
+    {
+      "word": "la zanahoria",
+      "normalized": "zanahoria",
+      "path": "audio/ord/la-zanahoria.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0481"
+    },
+    {
+      "word": "la patata",
+      "normalized": "patata",
+      "path": "audio/ord/la-patata.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0482"
+    },
+    {
+      "word": "el alimento",
+      "normalized": "alimento",
+      "path": "audio/ord/el-alimento.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0483"
+    },
+    {
+      "word": "la galleta",
+      "normalized": "galleta",
+      "path": "audio/ord/la-galleta.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0484"
+    },
+    {
+      "word": "el pan",
+      "normalized": "pan",
+      "path": "audio/ord/el-pan.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0485"
+    },
+    {
+      "word": "la mermelada",
+      "normalized": "mermelada",
+      "path": "audio/ord/la-mermelada.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0486"
+    },
+    {
+      "word": "los cereales",
+      "normalized": "cereales",
+      "path": "audio/ord/los-cereales.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0487"
+    },
+    {
+      "word": "la salchicha",
+      "normalized": "salchicha",
+      "path": "audio/ord/la-salchicha.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0488"
+    },
+    {
+      "word": "el jamón",
+      "normalized": "jamón",
+      "path": "audio/ord/el-jamon.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0489"
+    },
+    {
+      "word": "la carne",
+      "normalized": "carne",
+      "path": "audio/ord/la-carne.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0490"
+    },
+    {
+      "word": "el pollo",
+      "normalized": "pollo",
+      "path": "audio/ord/el-pollo.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0491"
+    },
+    {
+      "word": "la pasta",
+      "normalized": "pasta",
+      "path": "audio/ord/la-pasta.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0492"
+    },
+    {
+      "word": "el arroz",
+      "normalized": "arroz",
+      "path": "audio/ord/el-arroz.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0493"
+    },
+    {
+      "word": "el pescado",
+      "normalized": "pescado",
+      "path": "audio/ord/el-pescado.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0495"
+    },
+    {
+      "word": "el azúcar",
+      "normalized": "azúcar",
+      "path": "audio/ord/el-azucar.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0496"
+    },
+    {
+      "word": "la sal",
+      "normalized": "sal",
+      "path": "audio/ord/la-sal.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0497"
+    },
+    {
+      "word": "el pastel",
+      "normalized": "pastel",
+      "path": "audio/ord/el-pastel.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0498"
+    },
+    {
+      "word": "la mantequilla",
+      "normalized": "mantequilla",
+      "path": "audio/ord/la-mantequilla.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0499"
+    },
+    {
+      "word": "el queso",
+      "normalized": "queso",
+      "path": "audio/ord/el-queso.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0500"
+    },
+    {
+      "word": "el yogur",
+      "normalized": "yogur",
+      "path": "audio/ord/el-yogur.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0501"
+    },
+    {
+      "word": "la leche",
+      "normalized": "leche",
+      "path": "audio/ord/la-leche.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0502"
+    },
+    {
+      "word": "el refresco",
+      "normalized": "refresco",
+      "path": "audio/ord/el-refresco.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0503"
+    },
+    {
+      "word": "el zumo",
+      "normalized": "zumo",
+      "path": "audio/ord/el-zumo.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0504"
+    },
+    {
+      "word": "el jugo",
+      "normalized": "jugo",
+      "path": "audio/ord/el-jugo.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0505"
+    },
+    {
+      "word": "el agua",
+      "normalized": "agua",
+      "path": "audio/ord/el-agua.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0506"
+    },
+    {
+      "word": "necesitar",
+      "normalized": "necesitar",
+      "path": "audio/ord/necesitar.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0507"
+    },
+    {
+      "word": "después",
+      "normalized": "después",
+      "path": "audio/ord/despues.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0508"
+    },
+    {
+      "word": "preparar",
+      "normalized": "preparar",
+      "path": "audio/ord/preparar.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0509"
+    },
+    {
+      "word": "el supermercado",
+      "normalized": "supermercado",
+      "path": "audio/ord/el-supermercado.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0510"
+    },
+    {
+      "word": "comprar",
+      "normalized": "comprar",
+      "path": "audio/ord/comprar.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0511"
+    },
+    {
+      "word": "lo que",
+      "normalized": "lo que",
+      "path": "audio/ord/lo-que.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0512"
+    },
+    {
+      "word": "acabar de",
+      "normalized": "acabar de",
+      "path": "audio/ord/acabar-de.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0514"
+    },
+    {
+      "word": "el aceite de oliva",
+      "normalized": "aceite de oliva",
+      "path": "audio/ord/el-aceite-de-oliva.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0515"
+    },
+    {
+      "word": "al fondo",
+      "normalized": "al fondo",
+      "path": "audio/ord/al-fondo.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0517"
+    },
+    {
+      "word": "las patatas fritas",
+      "normalized": "patatas fritas",
+      "path": "audio/ord/las-patatas-fritas.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0518"
+    },
+    {
+      "word": "la aceituna",
+      "normalized": "aceituna",
+      "path": "audio/ord/la-aceituna.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0519"
+    },
+    {
+      "word": "picar",
+      "normalized": "picar",
+      "path": "audio/ord/picar.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0520"
+    },
+    {
+      "word": "la cajera",
+      "normalized": "cajera",
+      "path": "audio/ord/la-cajera.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0522"
+    },
+    {
+      "word": "el chocolate",
+      "normalized": "chocolate",
+      "path": "audio/ord/el-chocolate.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0537"
+    },
+    {
+      "word": "la pizza",
+      "normalized": "pizza",
+      "path": "audio/ord/la-pizza.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0538"
+    },
+    {
+      "word": "el café",
+      "normalized": "café",
+      "path": "audio/ord/el-cafe.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0539"
+    },
+    {
+      "word": "el té",
+      "normalized": "té",
+      "path": "audio/ord/el-te.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0540"
+    },
+    {
+      "word": "trabajar",
+      "normalized": "trabajar",
+      "path": "audio/ord/trabajar.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0413"
+    },
+    {
+      "word": "entrenar",
+      "normalized": "entrenar",
+      "path": "audio/ord/entrenar.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0414"
+    },
+    {
+      "word": "bailar",
+      "normalized": "bailar",
+      "path": "audio/ord/bailar.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0415"
+    },
+    {
+      "word": "estudiar",
+      "normalized": "estudiar",
+      "path": "audio/ord/estudiar.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0420"
+    },
+    {
+      "word": "escuchar",
+      "normalized": "escuchar",
+      "path": "audio/ord/escuchar.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0423"
+    },
+    {
+      "word": "ver",
+      "normalized": "ver",
+      "path": "audio/ord/ver.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0424"
+    },
+    {
+      "word": "ganar",
+      "normalized": "ganar",
+      "path": "audio/ord/ganar.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0426"
+    },
+    {
+      "word": "olvidar",
+      "normalized": "olvidar",
+      "path": "audio/ord/olvidar.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0427"
+    },
+    {
+      "word": "ayudar",
+      "normalized": "ayudar",
+      "path": "audio/ord/ayudar.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0428"
+    },
+    {
+      "word": "cantar",
+      "normalized": "cantar",
+      "path": "audio/ord/cantar.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0429"
+    },
+    {
+      "word": "esperar",
+      "normalized": "esperar",
+      "path": "audio/ord/esperar.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0430"
+    },
+    {
+      "word": "preguntar",
+      "normalized": "preguntar",
+      "path": "audio/ord/preguntar.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0431"
+    },
+    {
+      "word": "pagar",
+      "normalized": "pagar",
+      "path": "audio/ord/pagar.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0432"
+    },
+    {
+      "word": "viajar",
+      "normalized": "viajar",
+      "path": "audio/ord/viajar.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0433"
+    },
+    {
+      "word": "normalmente",
+      "normalized": "normalmente",
+      "path": "audio/ord/normalmente.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0441"
+    },
+    {
+      "word": "porque",
+      "normalized": "porque",
+      "path": "audio/ord/porque.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0442"
+    },
+    {
+      "word": "por eso",
+      "normalized": "por eso",
+      "path": "audio/ord/por-eso.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0443"
+    },
+    {
+      "word": "quizás",
+      "normalized": "quizás",
+      "path": "audio/ord/quizas.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0444"
+    },
+    {
+      "word": "entonces",
+      "normalized": "entonces",
+      "path": "audio/ord/entonces.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0445"
+    },
+    {
+      "word": "además",
+      "normalized": "además",
+      "path": "audio/ord/ademas.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0446"
+    },
+    {
+      "word": "aunque",
+      "normalized": "aunque",
+      "path": "audio/ord/aunque.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0447"
+    },
+    {
+      "word": "sin embargo",
+      "normalized": "sin embargo",
+      "path": "audio/ord/sin-embargo.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0448"
+    },
+    {
+      "word": "por un lado",
+      "normalized": "por un lado",
+      "path": "audio/ord/por-un-lado.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0449"
+    },
+    {
+      "word": "por otro lado",
+      "normalized": "por otro lado",
+      "path": "audio/ord/por-otro-lado.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0450"
+    },
+    {
+      "word": "sobre todo",
+      "normalized": "sobre todo",
+      "path": "audio/ord/sobre-todo.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0451"
+    },
+    {
+      "word": "al mismo tiempo",
+      "normalized": "al mismo tiempo",
+      "path": "audio/ord/al-mismo-tiempo.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0452"
+    },
+    {
+      "word": "claro",
+      "normalized": "claro",
+      "path": "audio/ord/claro.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0453"
+    },
+    {
+      "word": "voy a hablar sobre",
+      "normalized": "voy a hablar sobre",
+      "path": "audio/ord/voy-a-hablar-sobre.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0454"
+    },
+    {
+      "word": "gracias por su atención",
+      "normalized": "gracias por su atención",
+      "path": "audio/ord/gracias-por-su-atencion.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0455"
+    },
+    {
+      "word": "la habitación",
+      "normalized": "habitación",
+      "path": "audio/ord/la-habitacion.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0344"
+    },
+    {
+      "word": "el cuarto",
+      "normalized": "cuarto",
+      "path": "audio/ord/el-cuarto.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0345"
+    },
+    {
+      "word": "el baño",
+      "normalized": "baño",
+      "path": "audio/ord/el-bano.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0346"
+    },
+    {
+      "word": "el comedor",
+      "normalized": "comedor",
+      "path": "audio/ord/el-comedor.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0347"
+    },
+    {
+      "word": "el pasillo",
+      "normalized": "pasillo",
+      "path": "audio/ord/el-pasillo.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0348"
+    },
+    {
+      "word": "el ático",
+      "normalized": "ático",
+      "path": "audio/ord/el-atico.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0349"
+    },
+    {
+      "word": "la puerta",
+      "normalized": "puerta",
+      "path": "audio/ord/la-puerta.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0350"
+    },
+    {
+      "word": "el dormitorio",
+      "normalized": "dormitorio",
+      "path": "audio/ord/el-dormitorio.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0351"
+    },
+    {
+      "word": "el cuarto de trabajo",
+      "normalized": "cuarto de trabajo",
+      "path": "audio/ord/el-cuarto-de-trabajo.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0352"
+    },
+    {
+      "word": "el cuarto de estar",
+      "normalized": "cuarto de estar",
+      "path": "audio/ord/el-cuarto-de-estar.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0353"
+    },
+    {
+      "word": "la cocina",
+      "normalized": "cocina",
+      "path": "audio/ord/la-cocina.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0354"
+    },
+    {
+      "word": "el sótano",
+      "normalized": "sótano",
+      "path": "audio/ord/el-sotano.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0355"
+    },
+    {
+      "word": "la ventana",
+      "normalized": "ventana",
+      "path": "audio/ord/la-ventana.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0356"
+    },
+    {
+      "word": "rojo",
+      "normalized": "rojo",
+      "path": "audio/ord/rojo.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0088"
+    },
+    {
+      "word": "azul",
+      "normalized": "azul",
+      "path": "audio/ord/azul.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0089"
+    },
+    {
+      "word": "amarillo",
+      "normalized": "amarillo",
+      "path": "audio/ord/amarillo.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0090"
+    },
+    {
+      "word": "verde",
+      "normalized": "verde",
+      "path": "audio/ord/verde.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0091"
+    },
+    {
+      "word": "gris",
+      "normalized": "gris",
+      "path": "audio/ord/gris.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0092"
+    },
+    {
+      "word": "marrón",
+      "normalized": "marrón",
+      "path": "audio/ord/marron.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0093"
+    },
+    {
+      "word": "blanco",
+      "normalized": "blanco",
+      "path": "audio/ord/blanco.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0094"
+    },
+    {
+      "word": "negro",
+      "normalized": "negro",
+      "path": "audio/ord/negro.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0095"
+    },
+    {
+      "word": "rosa",
+      "normalized": "rosa",
+      "path": "audio/ord/rosa.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0096"
+    },
+    {
+      "word": "violeta",
+      "normalized": "violeta",
+      "path": "audio/ord/violeta.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0097"
+    },
+    {
+      "word": "turquesa",
+      "normalized": "turquesa",
+      "path": "audio/ord/turquesa.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0099"
+    },
+    {
+      "word": "me despierto",
+      "normalized": "me despierto",
+      "path": "audio/ord/me-despierto.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0385"
+    },
+    {
+      "word": "me levanto",
+      "normalized": "me levanto",
+      "path": "audio/ord/me-levanto.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0386"
+    },
+    {
+      "word": "me ducho",
+      "normalized": "me ducho",
+      "path": "audio/ord/me-ducho.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0387"
+    },
+    {
+      "word": "me cepillo los dientes",
+      "normalized": "me cepillo los dientes",
+      "path": "audio/ord/me-cepillo-los-dientes.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0388"
+    },
+    {
+      "word": "me maquillo",
+      "normalized": "me maquillo",
+      "path": "audio/ord/me-maquillo.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0389"
+    },
+    {
+      "word": "me afeito",
+      "normalized": "me afeito",
+      "path": "audio/ord/me-afeito.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0390"
+    },
+    {
+      "word": "me peino",
+      "normalized": "me peino",
+      "path": "audio/ord/me-peino.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0391"
+    },
+    {
+      "word": "me visto",
+      "normalized": "me visto",
+      "path": "audio/ord/me-visto.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0392"
+    },
+    {
+      "word": "me acuesto",
+      "normalized": "me acuesto",
+      "path": "audio/ord/me-acuesto.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0393"
+    },
+    {
+      "word": "desayuno",
+      "normalized": "desayuno",
+      "path": "audio/ord/desayuno.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0394"
+    },
+    {
+      "word": "salgo de la casa",
+      "normalized": "salgo de la casa",
+      "path": "audio/ord/salgo-de-la-casa.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0395"
+    },
+    {
+      "word": "voy a la escuela",
+      "normalized": "voy a la escuela",
+      "path": "audio/ord/voy-a-la-escuela.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0396"
+    },
+    {
+      "word": "almuerzo",
+      "normalized": "almuerzo",
+      "path": "audio/ord/almuerzo.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0397"
+    },
+    {
+      "word": "voy a casa",
+      "normalized": "voy a casa",
+      "path": "audio/ord/voy-a-casa.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0398"
+    },
+    {
+      "word": "voy al entrenamiento",
+      "normalized": "voy al entrenamiento",
+      "path": "audio/ord/voy-al-entrenamiento.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0399"
+    },
+    {
+      "word": "ceno",
+      "normalized": "ceno",
+      "path": "audio/ord/ceno.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0400"
+    },
+    {
+      "word": "duermo",
+      "normalized": "duermo",
+      "path": "audio/ord/duermo.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0401"
+    },
+    {
+      "word": "me levanto temprano",
+      "normalized": "me levanto temprano",
+      "path": "audio/ord/me-levanto-temprano.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0402"
+    },
+    {
+      "word": "me pongo una camiseta",
+      "normalized": "me pongo una camiseta",
+      "path": "audio/ord/me-pongo-una-camiseta.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0403"
+    },
+    {
+      "word": "voy a pie a la escuela",
+      "normalized": "voy a pie a la escuela",
+      "path": "audio/ord/voy-a-pie-a-la-escuela.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0404"
+    },
+    {
+      "word": "¿Tienes reloj?",
+      "normalized": "tienes reloj",
+      "path": "audio/ord/tienes-reloj.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0278"
+    },
+    {
+      "word": "¿Sabes qué hora es?",
+      "normalized": "sabes qué hora es",
+      "path": "audio/ord/sabes-que-hora-es.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0279"
+    },
+    {
+      "word": "¿A qué hora vas a comer?",
+      "normalized": "a qué hora vas a comer",
+      "path": "audio/ord/a-que-hora-vas-a-comer.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0280"
+    },
+    {
+      "word": "voy a comer a las ocho",
+      "normalized": "voy a comer a las ocho",
+      "path": "audio/ord/voy-a-comer-a-las-ocho.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0281"
+    },
+    {
+      "word": "Es la una",
+      "normalized": "es la una",
+      "path": "audio/ord/es-la-una.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0282"
+    },
+    {
+      "word": "es la una y cuarto",
+      "normalized": "es la una y cuarto",
+      "path": "audio/ord/es-la-una-y-cuarto.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0283"
+    },
+    {
+      "word": "es la una y media",
+      "normalized": "es la una y media",
+      "path": "audio/ord/es-la-una-y-media.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0284"
+    },
+    {
+      "word": "son las dos",
+      "normalized": "son las dos",
+      "path": "audio/ord/son-las-dos.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0285"
+    },
+    {
+      "word": "son las tres menos veinte",
+      "normalized": "son las tres menos veinte",
+      "path": "audio/ord/son-las-tres-menos-veinte.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0286"
+    },
+    {
+      "word": "son las tres menos diez",
+      "normalized": "son las tres menos diez",
+      "path": "audio/ord/son-las-tres-menos-diez.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0287"
+    },
+    {
+      "word": "a las ocho de la mañana",
+      "normalized": "a las ocho de la mañana",
+      "path": "audio/ord/a-las-ocho-de-la-manana.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0288"
+    },
+    {
+      "word": "a las seis de la tarde",
+      "normalized": "a las seis de la tarde",
+      "path": "audio/ord/a-las-seis-de-la-tarde.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0289"
+    },
+    {
+      "word": "a las doce de la noche",
+      "normalized": "a las doce de la noche",
+      "path": "audio/ord/a-las-doce-de-la-noche.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0290"
+    },
+    {
+      "word": "Son las cinco en punto",
+      "normalized": "son las cinco en punto",
+      "path": "audio/ord/son-las-cinco-en-punto.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0291"
+    },
+    {
+      "word": "por supuesto",
+      "normalized": "por supuesto",
+      "path": "audio/ord/por-supuesto.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0516"
+    },
+    {
+      "word": "el problema",
+      "normalized": "problema",
+      "path": "audio/ord/el-problema.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0558"
+    },
+    {
+      "word": "el sistema",
+      "normalized": "sistema",
+      "path": "audio/ord/el-sistema.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0559"
+    },
+    {
+      "word": "el programa",
+      "normalized": "programa",
+      "path": "audio/ord/el-programa.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0560"
+    },
+    {
+      "word": "la tradición",
+      "normalized": "tradición",
+      "path": "audio/ord/la-tradicion.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0562"
+    },
+    {
+      "word": "la situación",
+      "normalized": "situación",
+      "path": "audio/ord/la-situacion.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0563"
+    },
+    {
+      "word": "la conversación",
+      "normalized": "conversación",
+      "path": "audio/ord/la-conversacion.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0564"
+    },
+    {
+      "word": "la invitación",
+      "normalized": "invitación",
+      "path": "audio/ord/la-invitacion.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0565"
+    },
+    {
+      "word": "la organización",
+      "normalized": "organización",
+      "path": "audio/ord/la-organizacion.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0566"
+    },
+    {
+      "word": "la actividad",
+      "normalized": "actividad",
+      "path": "audio/ord/la-actividad.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0567"
+    },
+    {
+      "word": "el restaurante",
+      "normalized": "restaurante",
+      "path": "audio/ord/el-restaurante.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0524"
+    },
+    {
+      "word": "el piano",
+      "normalized": "piano",
+      "path": "audio/ord/el-piano.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0526"
+    },
+    {
+      "word": "la guitarra",
+      "normalized": "guitarra",
+      "path": "audio/ord/la-guitarra.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0527"
+    },
+    {
+      "word": "normal",
+      "normalized": "normal",
+      "path": "audio/ord/normal.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0530"
+    },
+    {
+      "word": "popular",
+      "normalized": "popular",
+      "path": "audio/ord/popular.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0569"
+    },
+    {
+      "word": "el turista",
+      "normalized": "turista",
+      "path": "audio/ord/el-turista.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0547"
+    },
+    {
+      "word": "la radio",
+      "normalized": "radio",
+      "path": "audio/ord/la-radio.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0528"
+    },
+    {
+      "word": "el teléfono",
+      "normalized": "teléfono",
+      "path": "audio/ord/el-telefono.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0529"
+    },
+    {
+      "word": "el taxi",
+      "normalized": "taxi",
+      "path": "audio/ord/el-taxi.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0541"
+    },
+    {
+      "word": "el elefante",
+      "normalized": "elefante",
+      "path": "audio/ord/el-elefante.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0553"
+    },
+    {
+      "word": "el hospital",
+      "normalized": "hospital",
+      "path": "audio/ord/el-hospital.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0531"
+    },
+    {
+      "word": "¡Feliz cumpleaños!",
+      "normalized": "feliz cumpleaños",
+      "path": "audio/ord/feliz-cumpleanos.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0059"
+    },
+    {
+      "word": "¿Cuándo es tu cumpleaños?",
+      "normalized": "cuándo es tu cumpleaños",
+      "path": "audio/ord/cuando-es-tu-cumpleanos.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0060"
+    },
+    {
+      "word": "Mi cumpleaños es el siete de julio",
+      "normalized": "mi cumpleaños es el siete de julio",
+      "path": "audio/ord/mi-cumpleanos-es-el-siete-de-julio.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0061"
+    },
+    {
+      "word": "¿Cuándo es el cumpleaños de Marius?",
+      "normalized": "cuándo es el cumpleaños de marius",
+      "path": "audio/ord/cuando-es-el-cumpleanos-de-marius.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0062"
+    },
+    {
+      "word": "El cumpleaños de Marius es el veintiséis de junio",
+      "normalized": "cumpleaños de marius es el veintiséis de junio",
+      "path": "audio/ord/el-cumpleanos-de-marius-es-el-veintiseis-de-junio.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0063"
+    },
+    {
+      "word": "Noruega",
+      "normalized": "noruega",
+      "path": "audio/ord/noruega.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0070"
+    },
+    {
+      "word": "Suecia",
+      "normalized": "suecia",
+      "path": "audio/ord/suecia.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0071"
+    },
+    {
+      "word": "Dinamarca",
+      "normalized": "dinamarca",
+      "path": "audio/ord/dinamarca.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0072"
+    },
+    {
+      "word": "Finlandia",
+      "normalized": "finlandia",
+      "path": "audio/ord/finlandia.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0073"
+    },
+    {
+      "word": "Islandia",
+      "normalized": "islandia",
+      "path": "audio/ord/islandia.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0074"
+    },
+    {
+      "word": "Rusia",
+      "normalized": "rusia",
+      "path": "audio/ord/rusia.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0075"
+    },
+    {
+      "word": "Alemania",
+      "normalized": "alemania",
+      "path": "audio/ord/alemania.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0076"
+    },
+    {
+      "word": "Austria",
+      "normalized": "austria",
+      "path": "audio/ord/austria.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0077"
+    },
+    {
+      "word": "Los Países Bajos",
+      "normalized": "países bajos",
+      "path": "audio/ord/los-paises-bajos.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0078"
+    },
+    {
+      "word": "Francia",
+      "normalized": "francia",
+      "path": "audio/ord/francia.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0079"
+    },
+    {
+      "word": "Italia",
+      "normalized": "italia",
+      "path": "audio/ord/italia.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0080"
+    },
+    {
+      "word": "Bélgica",
+      "normalized": "bélgica",
+      "path": "audio/ord/belgica.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0081"
+    },
+    {
+      "word": "España",
+      "normalized": "españa",
+      "path": "audio/ord/espana.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0082"
+    },
+    {
+      "word": "Portugal",
+      "normalized": "portugal",
+      "path": "audio/ord/portugal.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0083"
+    },
+    {
+      "word": "Inglaterra",
+      "normalized": "inglaterra",
+      "path": "audio/ord/inglaterra.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0084"
+    },
+    {
+      "word": "Irlanda",
+      "normalized": "irlanda",
+      "path": "audio/ord/irlanda.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0085"
+    },
+    {
+      "word": "Grecia",
+      "normalized": "grecia",
+      "path": "audio/ord/grecia.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0086"
+    },
+    {
+      "word": "Suiza",
+      "normalized": "suiza",
+      "path": "audio/ord/suiza.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0087"
+    },
+    {
+      "word": "el invierno",
+      "normalized": "invierno",
+      "path": "audio/ord/el-invierno.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0100"
+    },
+    {
+      "word": "la primavera",
+      "normalized": "primavera",
+      "path": "audio/ord/la-primavera.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0101"
+    },
+    {
+      "word": "el verano",
+      "normalized": "verano",
+      "path": "audio/ord/el-verano.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0102"
+    },
+    {
+      "word": "el otoño",
+      "normalized": "otoño",
+      "path": "audio/ord/el-otono.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0103"
+    },
+    {
+      "word": "llueve",
+      "normalized": "llueve",
+      "path": "audio/ord/llueve.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0104"
+    },
+    {
+      "word": "nieva",
+      "normalized": "nieva",
+      "path": "audio/ord/nieva.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0105"
+    },
+    {
+      "word": "está despejado",
+      "normalized": "está despejado",
+      "path": "audio/ord/esta-despejado.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0106"
+    },
+    {
+      "word": "está nublado",
+      "normalized": "está nublado",
+      "path": "audio/ord/esta-nublado.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0107"
+    },
+    {
+      "word": "hace cinco grados sobre cero",
+      "normalized": "hace cinco grados sobre cero",
+      "path": "audio/ord/hace-cinco-grados-sobre-cero.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0108"
+    },
+    {
+      "word": "hace cinco grados bajo cero",
+      "normalized": "hace cinco grados bajo cero",
+      "path": "audio/ord/hace-cinco-grados-bajo-cero.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0109"
+    },
+    {
+      "word": "hace buen tiempo",
+      "normalized": "hace buen tiempo",
+      "path": "audio/ord/hace-buen-tiempo.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0110"
+    },
+    {
+      "word": "hace mal tiempo",
+      "normalized": "hace mal tiempo",
+      "path": "audio/ord/hace-mal-tiempo.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0111"
+    },
+    {
+      "word": "hace sol",
+      "normalized": "hace sol",
+      "path": "audio/ord/hace-sol.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0112"
+    },
+    {
+      "word": "hace viento",
+      "normalized": "hace viento",
+      "path": "audio/ord/hace-viento.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0113"
+    },
+    {
+      "word": "hace calor",
+      "normalized": "hace calor",
+      "path": "audio/ord/hace-calor.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0115"
+    },
+    {
+      "word": "hace frío",
+      "normalized": "hace frío",
+      "path": "audio/ord/hace-frio.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0116"
+    },
+    {
+      "word": "La Navidad",
+      "normalized": "navidad",
+      "path": "audio/ord/la-navidad.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0117"
+    },
+    {
+      "word": "La Nochevieja",
+      "normalized": "nochevieja",
+      "path": "audio/ord/la-nochevieja.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0118"
+    },
+    {
+      "word": "La Nochebuena",
+      "normalized": "nochebuena",
+      "path": "audio/ord/la-nochebuena.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0119"
+    },
+    {
+      "word": "La Noche de San Juan",
+      "normalized": "noche de san juan",
+      "path": "audio/ord/la-noche-de-san-juan.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0120"
+    },
+    {
+      "word": "La Semana Santa",
+      "normalized": "semana santa",
+      "path": "audio/ord/la-semana-santa.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0121"
+    },
+    {
+      "word": "El Día de San Valentín",
+      "normalized": "día de san valentín",
+      "path": "audio/ord/el-dia-de-san-valentin.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0122"
+    },
+    {
+      "word": "El día Nacional",
+      "normalized": "día nacional",
+      "path": "audio/ord/el-dia-nacional.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0123"
+    },
+    {
+      "word": "el Día de Reyes",
+      "normalized": "día de reyes",
+      "path": "audio/ord/el-dia-de-reyes.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0124"
+    },
+    {
+      "word": "el Día de Todos los Santos",
+      "normalized": "día de todos los santos",
+      "path": "audio/ord/el-dia-de-todos-los-santos.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0125"
+    },
+    {
+      "word": "El Cumpleaños",
+      "normalized": "cumpleaños",
+      "path": "audio/ord/el-cumpleanos.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0126"
+    },
+    {
+      "word": "La Confirmación",
+      "normalized": "confirmación",
+      "path": "audio/ord/la-confirmacion.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0127"
+    },
+    {
+      "word": "El Bautizo",
+      "normalized": "bautizo",
+      "path": "audio/ord/el-bautizo.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0128"
+    },
+    {
+      "word": "La Boda",
+      "normalized": "boda",
+      "path": "audio/ord/la-boda.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0129"
+    },
+    {
+      "word": "el Funeral",
+      "normalized": "funeral",
+      "path": "audio/ord/el-funeral.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0130"
+    },
+    {
+      "word": "entierro",
+      "normalized": "entierro",
+      "path": "audio/ord/entierro.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0131"
+    },
+    {
+      "word": "alto",
+      "normalized": "alto",
+      "path": "audio/ord/alto.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0132"
+    },
+    {
+      "word": "bajo",
+      "normalized": "bajo",
+      "path": "audio/ord/bajo.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0133"
+    },
+    {
+      "word": "moreno",
+      "normalized": "moreno",
+      "path": "audio/ord/moreno.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0134"
+    },
+    {
+      "word": "rubio",
+      "normalized": "rubio",
+      "path": "audio/ord/rubio.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0135"
+    },
+    {
+      "word": "pelirrojo",
+      "normalized": "pelirrojo",
+      "path": "audio/ord/pelirrojo.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0136"
+    },
+    {
+      "word": "calvo",
+      "normalized": "calvo",
+      "path": "audio/ord/calvo.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0137"
+    },
+    {
+      "word": "guapo",
+      "normalized": "guapo",
+      "path": "audio/ord/guapo.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0138"
+    },
+    {
+      "word": "hermoso",
+      "normalized": "hermoso",
+      "path": "audio/ord/hermoso.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0139"
+    },
+    {
+      "word": "los ojos azules",
+      "normalized": "ojos azules",
+      "path": "audio/ord/los-ojos-azules.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0140"
+    },
+    {
+      "word": "los ojos marrones",
+      "normalized": "ojos marrones",
+      "path": "audio/ord/los-ojos-marrones.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0141"
+    },
+    {
+      "word": "los ojos verdes",
+      "normalized": "ojos verdes",
+      "path": "audio/ord/los-ojos-verdes.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0142"
+    },
+    {
+      "word": "el pelo moreno",
+      "normalized": "pelo moreno",
+      "path": "audio/ord/el-pelo-moreno.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0143"
+    },
+    {
+      "word": "el pelo rubio",
+      "normalized": "pelo rubio",
+      "path": "audio/ord/el-pelo-rubio.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0144"
+    },
+    {
+      "word": "el pelo pelirrojo",
+      "normalized": "pelo pelirrojo",
+      "path": "audio/ord/el-pelo-pelirrojo.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0145"
+    },
+    {
+      "word": "el pelo corto",
+      "normalized": "pelo corto",
+      "path": "audio/ord/el-pelo-corto.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0146"
+    },
+    {
+      "word": "el pelo largo",
+      "normalized": "pelo largo",
+      "path": "audio/ord/el-pelo-largo.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0147"
+    },
+    {
+      "word": "el pelo liso",
+      "normalized": "pelo liso",
+      "path": "audio/ord/el-pelo-liso.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0148"
+    },
+    {
+      "word": "el pelo rizado",
+      "normalized": "pelo rizado",
+      "path": "audio/ord/el-pelo-rizado.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0149"
+    },
+    {
+      "word": "la cola de caballo",
+      "normalized": "cola de caballo",
+      "path": "audio/ord/la-cola-de-caballo.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0150"
+    },
+    {
+      "word": "el flequillo",
+      "normalized": "flequillo",
+      "path": "audio/ord/el-flequillo.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0151"
+    },
+    {
+      "word": "las trenzas",
+      "normalized": "trenzas",
+      "path": "audio/ord/las-trenzas.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0152"
+    },
+    {
+      "word": "las gafas",
+      "normalized": "gafas",
+      "path": "audio/ord/las-gafas.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0153"
+    },
+    {
+      "word": "la barba",
+      "normalized": "barba",
+      "path": "audio/ord/la-barba.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0154"
+    },
+    {
+      "word": "el bigote",
+      "normalized": "bigote",
+      "path": "audio/ord/el-bigote.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0155"
+    },
+    {
+      "word": "las pecas",
+      "normalized": "pecas",
+      "path": "audio/ord/las-pecas.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0156"
+    },
+    {
+      "word": "los hoyuelos",
+      "normalized": "hoyuelos",
+      "path": "audio/ord/los-hoyuelos.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0157"
+    },
+    {
+      "word": "la cicatriz",
+      "normalized": "cicatriz",
+      "path": "audio/ord/la-cicatriz.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0158"
+    },
+    {
+      "word": "aburrido",
+      "normalized": "aburrido",
+      "path": "audio/ord/aburrido.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0159"
+    },
+    {
+      "word": "cariñoso",
+      "normalized": "cariñoso",
+      "path": "audio/ord/carinoso.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0160"
+    },
+    {
+      "word": "gracioso",
+      "normalized": "gracioso",
+      "path": "audio/ord/gracioso.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0161"
+    },
+    {
+      "word": "hablador",
+      "normalized": "hablador",
+      "path": "audio/ord/hablador.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0162"
+    },
+    {
+      "word": "impaciente",
+      "normalized": "impaciente",
+      "path": "audio/ord/impaciente.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0163"
+    },
+    {
+      "word": "inteligente",
+      "normalized": "inteligente",
+      "path": "audio/ord/inteligente.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0164"
+    },
+    {
+      "word": "ordenado",
+      "normalized": "ordenado",
+      "path": "audio/ord/ordenado.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0165"
+    },
+    {
+      "word": "paciente",
+      "normalized": "paciente",
+      "path": "audio/ord/paciente.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0166"
+    },
+    {
+      "word": "responsable",
+      "normalized": "responsable",
+      "path": "audio/ord/responsable.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0167"
+    },
+    {
+      "word": "simpático",
+      "normalized": "simpático",
+      "path": "audio/ord/simpatico.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0168"
+    },
+    {
+      "word": "sociable",
+      "normalized": "sociable",
+      "path": "audio/ord/sociable.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0169"
+    },
+    {
+      "word": "terco",
+      "normalized": "terco",
+      "path": "audio/ord/terco.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0170"
+    },
+    {
+      "word": "tímido",
+      "normalized": "tímido",
+      "path": "audio/ord/timido.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0171"
+    },
+    {
+      "word": "vago",
+      "normalized": "vago",
+      "path": "audio/ord/vago.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0172"
+    },
+    {
+      "word": "En mi familia somos cinco",
+      "normalized": "en mi familia somos cinco",
+      "path": "audio/ord/en-mi-familia-somos-cinco.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0192"
+    },
+    {
+      "word": "¿Con quién vives?",
+      "normalized": "con quién vives",
+      "path": "audio/ord/con-quien-vives.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0193"
+    },
+    {
+      "word": "Vivo con mi madre y mi hermano",
+      "normalized": "vivo con mi madre y mi hermano",
+      "path": "audio/ord/vivo-con-mi-madre-y-mi-hermano.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0194"
+    },
+    {
+      "word": "Mis padres están divorciados",
+      "normalized": "mis padres están divorciados",
+      "path": "audio/ord/mis-padres-estan-divorciados.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0195"
+    },
+    {
+      "word": "Mis padres están casados",
+      "normalized": "mis padres están casados",
+      "path": "audio/ord/mis-padres-estan-casados.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0196"
+    },
+    {
+      "word": "¿Cómo se llama tu hermano?",
+      "normalized": "cómo se llama tu hermano",
+      "path": "audio/ord/como-se-llama-tu-hermano.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0197"
+    },
+    {
+      "word": "Mi hermano se llama",
+      "normalized": "mi hermano se llama",
+      "path": "audio/ord/mi-hermano-se-llama.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0198"
+    },
+    {
+      "word": "¿Cuántos años tiene tu hermano?",
+      "normalized": "cuántos años tiene tu hermano",
+      "path": "audio/ord/cuantos-anos-tiene-tu-hermano.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0199"
+    },
+    {
+      "word": "Mi hermano tiene ocho años",
+      "normalized": "mi hermano tiene ocho años",
+      "path": "audio/ord/mi-hermano-tiene-ocho-anos.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0200"
+    },
+    {
+      "word": "llevar",
+      "normalized": "llevar",
+      "path": "audio/ord/llevar.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0201"
+    },
+    {
+      "word": "ponerse",
+      "normalized": "ponerse",
+      "path": "audio/ord/ponerse.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0202"
+    },
+    {
+      "word": "las botas",
+      "normalized": "botas",
+      "path": "audio/ord/las-botas.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0203"
+    },
+    {
+      "word": "la camiseta",
+      "normalized": "camiseta",
+      "path": "audio/ord/la-camiseta.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0204"
+    },
+    {
+      "word": "el biquini",
+      "normalized": "biquini",
+      "path": "audio/ord/el-biquini.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0205"
+    },
+    {
+      "word": "la camisa",
+      "normalized": "camisa",
+      "path": "audio/ord/la-camisa.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0206"
+    },
+    {
+      "word": "los vaqueros",
+      "normalized": "vaqueros",
+      "path": "audio/ord/los-vaqueros.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0207"
+    },
+    {
+      "word": "el gorro",
+      "normalized": "gorro",
+      "path": "audio/ord/el-gorro.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0208"
+    },
+    {
+      "word": "la gorra",
+      "normalized": "gorra",
+      "path": "audio/ord/la-gorra.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0209"
+    },
+    {
+      "word": "el cinturón",
+      "normalized": "cinturón",
+      "path": "audio/ord/el-cinturon.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0210"
+    },
+    {
+      "word": "los calcetines",
+      "normalized": "calcetines",
+      "path": "audio/ord/los-calcetines.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0211"
+    },
+    {
+      "word": "el jersey",
+      "normalized": "jersey",
+      "path": "audio/ord/el-jersey.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0212"
+    },
+    {
+      "word": "las zapatillas",
+      "normalized": "zapatillas",
+      "path": "audio/ord/las-zapatillas.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0213"
+    },
+    {
+      "word": "los zapatos",
+      "normalized": "zapatos",
+      "path": "audio/ord/los-zapatos.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0214"
+    },
+    {
+      "word": "los zapatos de tacón",
+      "normalized": "zapatos de tacón",
+      "path": "audio/ord/los-zapatos-de-tacon.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0215"
+    },
+    {
+      "word": "las sandalias",
+      "normalized": "sandalias",
+      "path": "audio/ord/las-sandalias.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0216"
+    },
+    {
+      "word": "las zapatillas deportivas",
+      "normalized": "zapatillas deportivas",
+      "path": "audio/ord/las-zapatillas-deportivas.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0217"
+    },
+    {
+      "word": "la chaqueta",
+      "normalized": "chaqueta",
+      "path": "audio/ord/la-chaqueta.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0218"
+    },
+    {
+      "word": "el vestido",
+      "normalized": "vestido",
+      "path": "audio/ord/el-vestido.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0219"
+    },
+    {
+      "word": "la falda",
+      "normalized": "falda",
+      "path": "audio/ord/la-falda.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0220"
+    },
+    {
+      "word": "el bolso",
+      "normalized": "bolso",
+      "path": "audio/ord/el-bolso.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0221"
+    },
+    {
+      "word": "las gafas de sol",
+      "normalized": "gafas de sol",
+      "path": "audio/ord/las-gafas-de-sol.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0222"
+    },
+    {
+      "word": "la bufanda",
+      "normalized": "bufanda",
+      "path": "audio/ord/la-bufanda.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0223"
+    },
+    {
+      "word": "el chal",
+      "normalized": "chal",
+      "path": "audio/ord/el-chal.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0224"
+    },
+    {
+      "word": "el sombrero",
+      "normalized": "sombrero",
+      "path": "audio/ord/el-sombrero.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0225"
+    },
+    {
+      "word": "el pañuelo",
+      "normalized": "pañuelo",
+      "path": "audio/ord/el-panuelo.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0226"
+    },
+    {
+      "word": "la corbata",
+      "normalized": "corbata",
+      "path": "audio/ord/la-corbata.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0227"
+    },
+    {
+      "word": "el paraguas",
+      "normalized": "paraguas",
+      "path": "audio/ord/el-paraguas.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0228"
+    },
+    {
+      "word": "el anillo",
+      "normalized": "anillo",
+      "path": "audio/ord/el-anillo.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0229"
+    },
+    {
+      "word": "la pulsera",
+      "normalized": "pulsera",
+      "path": "audio/ord/la-pulsera.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0230"
+    },
+    {
+      "word": "el reloj",
+      "normalized": "reloj",
+      "path": "audio/ord/el-reloj.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0231"
+    },
+    {
+      "word": "la cadena",
+      "normalized": "cadena",
+      "path": "audio/ord/la-cadena.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0232"
+    },
+    {
+      "word": "los pendientes",
+      "normalized": "pendientes",
+      "path": "audio/ord/los-pendientes.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0233"
+    },
+    {
+      "word": "el abogado",
+      "normalized": "abogado",
+      "path": "audio/ord/el-abogado.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0234"
+    },
+    {
+      "word": "el bombero",
+      "normalized": "bombero",
+      "path": "audio/ord/el-bombero.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0235"
+    },
+    {
+      "word": "el carpintero",
+      "normalized": "carpintero",
+      "path": "audio/ord/el-carpintero.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0236"
+    },
+    {
+      "word": "el cocinero",
+      "normalized": "cocinero",
+      "path": "audio/ord/el-cocinero.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0237"
+    },
+    {
+      "word": "el dentista",
+      "normalized": "dentista",
+      "path": "audio/ord/el-dentista.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0238"
+    },
+    {
+      "word": "el electricista",
+      "normalized": "electricista",
+      "path": "audio/ord/el-electricista.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0239"
+    },
+    {
+      "word": "el enfermero",
+      "normalized": "enfermero",
+      "path": "audio/ord/el-enfermero.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0240"
+    },
+    {
+      "word": "el granjero",
+      "normalized": "granjero",
+      "path": "audio/ord/el-granjero.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0241"
+    },
+    {
+      "word": "el médico",
+      "normalized": "médico",
+      "path": "audio/ord/el-medico.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0242"
+    },
+    {
+      "word": "el peluquero",
+      "normalized": "peluquero",
+      "path": "audio/ord/el-peluquero.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0243"
+    },
+    {
+      "word": "el periodista",
+      "normalized": "periodista",
+      "path": "audio/ord/el-periodista.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0244"
+    },
+    {
+      "word": "el policía",
+      "normalized": "policía",
+      "path": "audio/ord/el-policia.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0245"
+    },
+    {
+      "word": "el profesor",
+      "normalized": "profesor",
+      "path": "audio/ord/el-profesor.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0246"
+    },
+    {
+      "word": "el veterinario",
+      "normalized": "veterinario",
+      "path": "audio/ord/el-veterinario.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0247"
+    },
+    {
+      "word": "¿en qué trabajas?",
+      "normalized": "en qué trabajas",
+      "path": "audio/ord/en-que-trabajas.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0248"
+    },
+    {
+      "word": "¿Dónde trabajas?",
+      "normalized": "dónde trabajas",
+      "path": "audio/ord/donde-trabajas.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0249"
+    },
+    {
+      "word": "¿Cuándo trabajas?",
+      "normalized": "cuándo trabajas",
+      "path": "audio/ord/cuando-trabajas.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0250"
+    },
+    {
+      "word": "¿En qué trabaja tu madre?",
+      "normalized": "en qué trabaja tu madre",
+      "path": "audio/ord/en-que-trabaja-tu-madre.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0251"
+    },
+    {
+      "word": "el golf",
+      "normalized": "golf",
+      "path": "audio/ord/el-golf.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0252"
+    },
+    {
+      "word": "el fútbol americano",
+      "normalized": "fútbol americano",
+      "path": "audio/ord/el-futbol-americano.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0253"
+    },
+    {
+      "word": "el balonmano",
+      "normalized": "balonmano",
+      "path": "audio/ord/el-balonmano.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0254"
+    },
+    {
+      "word": "el voleibol",
+      "normalized": "voleibol",
+      "path": "audio/ord/el-voleibol.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0255"
+    },
+    {
+      "word": "bádminton",
+      "normalized": "bádminton",
+      "path": "audio/ord/badminton.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0256"
+    },
+    {
+      "word": "el floorball",
+      "normalized": "floorball",
+      "path": "audio/ord/el-floorball.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0257"
+    },
+    {
+      "word": "el tenis",
+      "normalized": "tenis",
+      "path": "audio/ord/el-tenis.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0258"
+    },
+    {
+      "word": "el tenis de mesa",
+      "normalized": "tenis de mesa",
+      "path": "audio/ord/el-tenis-de-mesa.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0259"
+    },
+    {
+      "word": "el hockey sobre hielo",
+      "normalized": "hockey sobre hielo",
+      "path": "audio/ord/el-hockey-sobre-hielo.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0260"
+    },
+    {
+      "word": "videojuegos",
+      "normalized": "videojuegos",
+      "path": "audio/ord/videojuegos.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0261"
+    },
+    {
+      "word": "esquí de fondo",
+      "normalized": "esquí de fondo",
+      "path": "audio/ord/esqui-de-fondo.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0262"
+    },
+    {
+      "word": "esquí alpino",
+      "normalized": "esquí alpino",
+      "path": "audio/ord/esqui-alpino.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0263"
+    },
+    {
+      "word": "ir de compras",
+      "normalized": "ir de compras",
+      "path": "audio/ord/ir-de-compras.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0264"
+    },
+    {
+      "word": "montar en bici",
+      "normalized": "montar en bici",
+      "path": "audio/ord/montar-en-bici.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0265"
+    },
+    {
+      "word": "cantar en un coro",
+      "normalized": "cantar en un coro",
+      "path": "audio/ord/cantar-en-un-coro.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0266"
+    },
+    {
+      "word": "ver la tele",
+      "normalized": "ver la tele",
+      "path": "audio/ord/ver-la-tele.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0267"
+    },
+    {
+      "word": "tocar la guitarra",
+      "normalized": "tocar la guitarra",
+      "path": "audio/ord/tocar-la-guitarra.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0268"
+    },
+    {
+      "word": "tocar el piano",
+      "normalized": "tocar el piano",
+      "path": "audio/ord/tocar-el-piano.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0269"
+    },
+    {
+      "word": "entrenar en el gimnasio",
+      "normalized": "entrenar en el gimnasio",
+      "path": "audio/ord/entrenar-en-el-gimnasio.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0270"
+    },
+    {
+      "word": "escuchar música",
+      "normalized": "escuchar música",
+      "path": "audio/ord/escuchar-musica.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0271"
+    },
+    {
+      "word": "estar con amigos",
+      "normalized": "estar con amigos",
+      "path": "audio/ord/estar-con-amigos.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0272"
+    },
+    {
+      "word": "salir con amigos",
+      "normalized": "salir con amigos",
+      "path": "audio/ord/salir-con-amigos.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0273"
+    },
+    {
+      "word": "bailar en el tiempo libre",
+      "normalized": "bailar en el tiempo libre",
+      "path": "audio/ord/bailar-en-el-tiempo-libre.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0274"
+    },
+    {
+      "word": "dar un paseo",
+      "normalized": "dar un paseo",
+      "path": "audio/ord/dar-un-paseo.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0275"
+    },
+    {
+      "word": "relajarse",
+      "normalized": "relajarse",
+      "path": "audio/ord/relajarse.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0276"
+    },
+    {
+      "word": "navegar por internet",
+      "normalized": "navegar por internet",
+      "path": "audio/ord/navegar-por-internet.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0277"
+    },
+    {
+      "word": "todos los días",
+      "normalized": "todos los días",
+      "path": "audio/ord/todos-los-dias.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0292"
+    },
+    {
+      "word": "el lunes",
+      "normalized": "lunes",
+      "path": "audio/ord/el-lunes.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0293"
+    },
+    {
+      "word": "martes",
+      "normalized": "martes",
+      "path": "audio/ord/martes.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0295"
+    },
+    {
+      "word": "miércoles",
+      "normalized": "miércoles",
+      "path": "audio/ord/miercoles.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0296"
+    },
+    {
+      "word": "jueves",
+      "normalized": "jueves",
+      "path": "audio/ord/jueves.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0297"
+    },
+    {
+      "word": "viernes",
+      "normalized": "viernes",
+      "path": "audio/ord/viernes.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0298"
+    },
+    {
+      "word": "por la mañana",
+      "normalized": "por la mañana",
+      "path": "audio/ord/por-la-manana.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0299"
+    },
+    {
+      "word": "hace unos días",
+      "normalized": "hace unos días",
+      "path": "audio/ord/hace-unos-dias.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0300"
+    },
+    {
+      "word": "cada semana",
+      "normalized": "cada semana",
+      "path": "audio/ord/cada-semana.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0301"
+    },
+    {
+      "word": "a menudo",
+      "normalized": "a menudo",
+      "path": "audio/ord/a-menudo.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0302"
+    },
+    {
+      "word": "raramente",
+      "normalized": "raramente",
+      "path": "audio/ord/raramente.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0303"
+    },
+    {
+      "word": "por la tarde",
+      "normalized": "por la tarde",
+      "path": "audio/ord/por-la-tarde.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0304"
+    },
+    {
+      "word": "antes",
+      "normalized": "antes",
+      "path": "audio/ord/antes.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0305"
+    },
+    {
+      "word": "esta noche",
+      "normalized": "esta noche",
+      "path": "audio/ord/esta-noche.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0306"
+    },
+    {
+      "word": "ayer",
+      "normalized": "ayer",
+      "path": "audio/ord/ayer.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0308"
+    },
+    {
+      "word": "por la noche",
+      "normalized": "por la noche",
+      "path": "audio/ord/por-la-noche.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0309"
+    },
+    {
+      "word": "la cabeza",
+      "normalized": "cabeza",
+      "path": "audio/ord/la-cabeza.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0311"
+    },
+    {
+      "word": "el ojo",
+      "normalized": "ojo",
+      "path": "audio/ord/el-ojo.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0312"
+    },
+    {
+      "word": "la boca",
+      "normalized": "boca",
+      "path": "audio/ord/la-boca.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0313"
+    },
+    {
+      "word": "la mano",
+      "normalized": "mano",
+      "path": "audio/ord/la-mano.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0314"
+    },
+    {
+      "word": "el pie",
+      "normalized": "pie",
+      "path": "audio/ord/el-pie.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0315"
+    },
+    {
+      "word": "el inglés",
+      "normalized": "inglés",
+      "path": "audio/ord/el-ingles.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0336"
+    },
+    {
+      "word": "las matemáticas",
+      "normalized": "matemáticas",
+      "path": "audio/ord/las-matematicas.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0337"
+    },
+    {
+      "word": "la historia",
+      "normalized": "historia",
+      "path": "audio/ord/la-historia.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0338"
+    },
+    {
+      "word": "las ciencias sociales",
+      "normalized": "ciencias sociales",
+      "path": "audio/ord/las-ciencias-sociales.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0339"
+    },
+    {
+      "word": "las ciencias naturales",
+      "normalized": "ciencias naturales",
+      "path": "audio/ord/las-ciencias-naturales.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0340"
+    },
+    {
+      "word": "la educación física",
+      "normalized": "educación física",
+      "path": "audio/ord/la-educacion-fisica.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0341"
+    },
+    {
+      "word": "las artes manuales",
+      "normalized": "artes manuales",
+      "path": "audio/ord/las-artes-manuales.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0342"
+    },
+    {
+      "word": "la religión",
+      "normalized": "religión",
+      "path": "audio/ord/la-religion.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0343"
+    },
+    {
+      "word": "el mueble",
+      "normalized": "mueble",
+      "path": "audio/ord/el-mueble.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0358"
+    },
+    {
+      "word": "el sofá",
+      "normalized": "sofá",
+      "path": "audio/ord/el-sofa.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0359"
+    },
+    {
+      "word": "el televisor",
+      "normalized": "televisor",
+      "path": "audio/ord/el-televisor.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0361"
+    },
+    {
+      "word": "el armario",
+      "normalized": "armario",
+      "path": "audio/ord/el-armario.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0362"
+    },
+    {
+      "word": "el póster",
+      "normalized": "póster",
+      "path": "audio/ord/el-poster.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0363"
+    },
+    {
+      "word": "la nevera",
+      "normalized": "nevera",
+      "path": "audio/ord/la-nevera.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0364"
+    },
+    {
+      "word": "el escritorio",
+      "normalized": "escritorio",
+      "path": "audio/ord/el-escritorio.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0365"
+    },
+    {
+      "word": "la estantería",
+      "normalized": "estantería",
+      "path": "audio/ord/la-estanteria.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0366"
+    },
+    {
+      "word": "la cómoda",
+      "normalized": "cómoda",
+      "path": "audio/ord/la-comoda.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0367"
+    },
+    {
+      "word": "el sillón",
+      "normalized": "sillón",
+      "path": "audio/ord/el-sillon.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0368"
+    },
+    {
+      "word": "la alfombra",
+      "normalized": "alfombra",
+      "path": "audio/ord/la-alfombra.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0369"
+    },
+    {
+      "word": "el lavavajillas",
+      "normalized": "lavavajillas",
+      "path": "audio/ord/el-lavavajillas.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0370"
+    },
+    {
+      "word": "la cama",
+      "normalized": "cama",
+      "path": "audio/ord/la-cama.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0371"
+    },
+    {
+      "word": "la lámpara",
+      "normalized": "lámpara",
+      "path": "audio/ord/la-lampara.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0372"
+    },
+    {
+      "word": "el cuadro",
+      "normalized": "cuadro",
+      "path": "audio/ord/el-cuadro.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0373"
+    },
+    {
+      "word": "el horno",
+      "normalized": "horno",
+      "path": "audio/ord/el-horno.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0374"
+    },
+    {
+      "word": "el espejo",
+      "normalized": "espejo",
+      "path": "audio/ord/el-espejo.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0375"
+    },
+    {
+      "word": "me gusta",
+      "normalized": "me gusta",
+      "path": "audio/ord/me-gusta.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0376"
+    },
+    {
+      "word": "no me gusta",
+      "normalized": "no me gusta",
+      "path": "audio/ord/no-me-gusta.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0377"
+    },
+    {
+      "word": "te gusta",
+      "normalized": "te gusta",
+      "path": "audio/ord/te-gusta.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0378"
+    },
+    {
+      "word": "no te gusta",
+      "normalized": "no te gusta",
+      "path": "audio/ord/no-te-gusta.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0379"
+    },
+    {
+      "word": "le gusta",
+      "normalized": "le gusta",
+      "path": "audio/ord/le-gusta.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0380"
+    },
+    {
+      "word": "me gusta este libro",
+      "normalized": "me gusta este libro",
+      "path": "audio/ord/me-gusta-este-libro.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0381"
+    },
+    {
+      "word": "me gustan estos libros",
+      "normalized": "me gustan estos libros",
+      "path": "audio/ord/me-gustan-estos-libros.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0382"
+    },
+    {
+      "word": "me encanta",
+      "normalized": "me encanta",
+      "path": "audio/ord/me-encanta.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0383"
+    },
+    {
+      "word": "me molesta",
+      "normalized": "me molesta",
+      "path": "audio/ord/me-molesta.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0384"
+    },
+    {
+      "word": "voy a hacer algo",
+      "normalized": "voy a hacer algo",
+      "path": "audio/ord/voy-a-hacer-algo.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0405"
+    },
+    {
+      "word": "¿Qué vas a hacer hoy?",
+      "normalized": "qué vas a hacer hoy",
+      "path": "audio/ord/que-vas-a-hacer-hoy.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0406"
+    },
+    {
+      "word": "¿Qué vas a hacer mañana?",
+      "normalized": "qué vas a hacer mañana",
+      "path": "audio/ord/que-vas-a-hacer-manana.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0407"
+    },
+    {
+      "word": "Hoy voy a estar con mis amigos",
+      "normalized": "hoy voy a estar con mis amigos",
+      "path": "audio/ord/hoy-voy-a-estar-con-mis-amigos.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0408"
+    },
+    {
+      "word": "Mañana voy a visitar a mi abuela",
+      "normalized": "mañana voy a visitar a mi abuela",
+      "path": "audio/ord/manana-voy-a-visitar-a-mi-abuela.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0409"
+    },
+    {
+      "word": "¿Qué vas a hacer el año que viene?",
+      "normalized": "qué vas a hacer el año que viene",
+      "path": "audio/ord/que-vas-a-hacer-el-ano-que-viene.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0410"
+    },
+    {
+      "word": "El año que viene voy a empezar el bachillerato",
+      "normalized": "año que viene voy a empezar el bachillerato",
+      "path": "audio/ord/el-ano-que-viene-voy-a-empezar-el-bachillerato.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0411"
+    },
+    {
+      "word": "hacer las compras",
+      "normalized": "hacer las compras",
+      "path": "audio/ord/hacer-las-compras.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0456"
+    },
+    {
+      "word": "lavar los platos",
+      "normalized": "lavar los platos",
+      "path": "audio/ord/lavar-los-platos.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0457"
+    },
+    {
+      "word": "limpiar el cuarto de baño",
+      "normalized": "limpiar el cuarto de baño",
+      "path": "audio/ord/limpiar-el-cuarto-de-bano.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0458"
+    },
+    {
+      "word": "lavar la ropa",
+      "normalized": "lavar la ropa",
+      "path": "audio/ord/lavar-la-ropa.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0459"
+    },
+    {
+      "word": "pasar la aspiradora",
+      "normalized": "pasar la aspiradora",
+      "path": "audio/ord/pasar-la-aspiradora.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0460"
+    },
+    {
+      "word": "arreglar la habitación",
+      "normalized": "arreglar la habitación",
+      "path": "audio/ord/arreglar-la-habitacion.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0461"
+    },
+    {
+      "word": "una vez a la semana",
+      "normalized": "vez a la semana",
+      "path": "audio/ord/una-vez-a-la-semana.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0462"
+    },
+    {
+      "word": "cada día",
+      "normalized": "cada día",
+      "path": "audio/ord/cada-dia.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0463"
+    },
+    {
+      "word": "acaba de regresar",
+      "normalized": "acaba de regresar",
+      "path": "audio/ord/acaba-de-regresar.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0513"
+    },
+    {
+      "word": "el museo",
+      "normalized": "museo",
+      "path": "audio/ord/el-museo.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0532"
+    },
+    {
+      "word": "el teatro",
+      "normalized": "teatro",
+      "path": "audio/ord/el-teatro.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0533"
+    },
+    {
+      "word": "el cine",
+      "normalized": "cine",
+      "path": "audio/ord/el-cine.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0534"
+    },
+    {
+      "word": "la televisión",
+      "normalized": "televisión",
+      "path": "audio/ord/la-television.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0535"
+    },
+    {
+      "word": "el autobús",
+      "normalized": "autobús",
+      "path": "audio/ord/el-autobus.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0542"
+    },
+    {
+      "word": "el tren",
+      "normalized": "tren",
+      "path": "audio/ord/el-tren.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0543"
+    },
+    {
+      "word": "el metro",
+      "normalized": "metro",
+      "path": "audio/ord/el-metro.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0544"
+    },
+    {
+      "word": "la bicicleta",
+      "normalized": "bicicleta",
+      "path": "audio/ord/la-bicicleta.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0545"
+    },
+    {
+      "word": "el aeropuerto",
+      "normalized": "aeropuerto",
+      "path": "audio/ord/el-aeropuerto.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0546"
+    },
+    {
+      "word": "el artista",
+      "normalized": "artista",
+      "path": "audio/ord/el-artista.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0548"
+    },
+    {
+      "word": "el actor",
+      "normalized": "actor",
+      "path": "audio/ord/el-actor.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0549"
+    },
+    {
+      "word": "el doctor",
+      "normalized": "doctor",
+      "path": "audio/ord/el-doctor.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0550"
+    },
+    {
+      "word": "el animal",
+      "normalized": "animal",
+      "path": "audio/ord/el-animal.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0552"
+    },
+    {
+      "word": "el león",
+      "normalized": "león",
+      "path": "audio/ord/el-leon.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0554"
+    },
+    {
+      "word": "el tigre",
+      "normalized": "tigre",
+      "path": "audio/ord/el-tigre.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0555"
+    },
+    {
+      "word": "el gorila",
+      "normalized": "gorila",
+      "path": "audio/ord/el-gorila.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0556"
+    },
+    {
+      "word": "importante",
+      "normalized": "importante",
+      "path": "audio/ord/importante.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0570"
+    },
+    {
+      "word": "interesante",
+      "normalized": "interesante",
+      "path": "audio/ord/interesante.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0571"
+    },
+    {
+      "word": "diferente",
+      "normalized": "diferente",
+      "path": "audio/ord/diferente.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0572"
+    },
+    {
+      "word": "natural",
+      "normalized": "natural",
+      "path": "audio/ord/natural.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0573"
+    },
+    {
+      "word": "internacional",
+      "normalized": "internacional",
+      "path": "audio/ord/internacional.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0574"
+    },
+    {
+      "word": "social",
+      "normalized": "social",
+      "path": "audio/ord/social.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0575"
+    },
+    {
+      "word": "cultural",
+      "normalized": "cultural",
+      "path": "audio/ord/cultural.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0576"
+    },
+    {
+      "word": "musical",
+      "normalized": "musical",
+      "path": "audio/ord/musical.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0577"
+    },
+    {
+      "word": "posible",
+      "normalized": "posible",
+      "path": "audio/ord/posible.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0578"
+    },
+    {
+      "word": "imposible",
+      "normalized": "imposible",
+      "path": "audio/ord/imposible.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0579"
+    },
+    {
+      "word": "terrible",
+      "normalized": "terrible",
+      "path": "audio/ord/terrible.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0580"
+    },
+    {
+      "word": "horrible",
+      "normalized": "horrible",
+      "path": "audio/ord/horrible.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0581"
+    },
+    {
+      "word": "elegante",
+      "normalized": "elegante",
+      "path": "audio/ord/elegante.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0582"
+    },
+    {
+      "word": "moderno",
+      "normalized": "moderno",
+      "path": "audio/ord/moderno.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0583"
+    },
+    {
+      "word": "fantástico",
+      "normalized": "fantástico",
+      "path": "audio/ord/fantastico.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0584"
+    },
+    {
+      "word": "romántico",
+      "normalized": "romántico",
+      "path": "audio/ord/romantico.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0585"
+    },
+    {
+      "word": "práctico",
+      "normalized": "práctico",
+      "path": "audio/ord/practico.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0586"
+    },
+    {
+      "word": "optimista",
+      "normalized": "optimista",
+      "path": "audio/ord/optimista.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0587"
+    },
+    {
+      "word": "pesimista",
+      "normalized": "pesimista",
+      "path": "audio/ord/pesimista.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0588"
+    },
+    {
+      "word": "generoso",
+      "normalized": "generoso",
+      "path": "audio/ord/generoso.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0589"
+    },
+    {
+      "word": "curioso",
+      "normalized": "curioso",
+      "path": "audio/ord/curioso.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0590"
+    },
+    {
+      "word": "famoso",
+      "normalized": "famoso",
+      "path": "audio/ord/famoso.mp3",
+      "source": "luvvoice-es-es",
+      "vocabId": "vocab-0591"
+    }
   ]
 }

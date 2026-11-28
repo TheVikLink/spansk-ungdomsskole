@@ -2,8 +2,10 @@ import { readFileSync } from 'node:fs';
 import { extractGlossary } from './lib/extract-all-items.mjs';
 
 const html = readFileSync('index.html', 'utf8');
+// Ignore ASCII-folded audio filenames (e.g. audio/ord/veintiseis.mp3) while still checking Spanish display text.
+const htmlWithoutAudioSlugs = html.replace(/audio\/ord\/[a-z0-9-]+\.mp3/g, 'audio/ord/<slug>.mp3');
 // Protect actual tuples regardless of source formatting. Keep prose checks too.
-const checkedSource = html + '\n' + extractGlossary(html).map(row => `[${row.map(value => JSON.stringify(value)).join(', ')}]`).join('\n');
+const checkedSource = htmlWithoutAudioSlugs + '\n' + extractGlossary(html).map(row => `[${row.map(value => JSON.stringify(value)).join(', ')}]`).join('\n');
 
 const forbiddenFragments = [
   {

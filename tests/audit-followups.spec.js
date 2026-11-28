@@ -104,11 +104,23 @@ for (const width of [390, 1280]) {
       await page.locator('#vocabStudy').getByRole('button', { name: 'Sjekk svar' }).click();
 
       const audioBtn = page.locator('#typedVocabFeedback .correct-audio-btn');
+      const autoToggleBtn = page.locator('#typedVocabFeedback .correct-audio-auto-toggle');
       await expect(audioBtn).toBeVisible();
       await expect(audioBtn).toHaveAttribute('data-approved-audio-path', 'audio/uttale/refold-v1/ESPhoneticWritingSystem_1_word.mp3');
+      await expect(autoToggleBtn).toBeVisible();
+      await expect(autoToggleBtn).toHaveAttribute('aria-pressed', 'true');
       await expect(page.locator('#typedVocabFeedback .correct-audio-status')).toContainText('Spiller godkjent opptak.');
       expect(await page.evaluate(() => window.__audioPlayCalls)).toContain('audio/uttale/refold-v1/ESPhoneticWritingSystem_1_word.mp3');
       expect(await page.evaluate(() => window.__ttsCalls)).toBe(0);
+
+      // One-click classroom toggle disables autoplay while keeping manual listen available
+      await autoToggleBtn.click();
+      await expect(autoToggleBtn).toHaveAttribute('aria-pressed', 'false');
+      await expect(page.locator('#typedVocabFeedback .correct-audio-status')).toContainText('Automatisk lyd slått av.');
+      expect(await page.evaluate(() => localStorage.getItem('spansk123_audioOnCorrect'))).toBe('0');
+      const callsBeforeManual = await page.evaluate(() => window.__audioPlayCalls.length);
+      await audioBtn.click();
+      expect(await page.evaluate(() => window.__audioPlayCalls.length)).toBe(callsBeforeManual + 1);
 
       // Failure path shows clear Norwegian error and never calls TTS
       await page.evaluate(() => {

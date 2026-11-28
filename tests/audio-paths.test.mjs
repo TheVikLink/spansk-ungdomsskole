@@ -19,10 +19,11 @@ for (const name of ['dictationAudioUrl', 'listeningAudioUrl', 'getDictationAudio
   vm.runInContext(end < 0 ? tail : tail.slice(0, end), runtime);
 }
 
-test('every listening and dictation URL matches an exact tracked filename on case-sensitive systems', () => {
+test('every listening, dictation, and approved word audio URL matches an exact tracked filename on case-sensitive systems', () => {
   // macOS file lookup can hide both case and Unicode differences. Compare with
   // Git's exact paths, which are the filenames checked out by Linux CI/Pages.
   const tracked = new Set(execFileSync('git', ['ls-files', '-z', '--', 'audio/'], { encoding: 'utf8' }).split('\0').filter(Boolean));
+  const approvedWordAudio = JSON.parse(readFileSync('data/approved-word-audio.json', 'utf8'));
   const urls = vm.runInContext(`[
     ...LISTENING_STORIES.filter(story => story.fullAudio).map(story => listeningAudioUrl(story)),
     ...DICTATION_STORIES.filter(story => story.audioDir).flatMap(story => getDictationAudioUrls(story))
@@ -32,6 +33,9 @@ test('every listening and dictation URL matches an exact tracked filename on cas
   for (const url of urls) {
     const path = decodeURIComponent(new URL(url, runtime.location.href).pathname.slice('/classroom/'.length));
     if (!tracked.has(path)) missing.push(path);
+  }
+  for (const entry of approvedWordAudio.entries || []) {
+    if (!tracked.has(entry.path)) missing.push(entry.path);
   }
   assert.deepEqual(missing, [], 'App audio URLs must match Git filenames exactly, including Unicode composition');
 });
