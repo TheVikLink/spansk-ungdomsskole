@@ -140,15 +140,17 @@ test('a short grammar card awards the smaller maximum shown before practice', as
     await page.goto(appUrl);
     await page.locator('#studentNameInput').fill('Prøveelev');
     await page.locator('.login-btn-primary').click();
-    const grammar = page.locator('#homeLearningFeed article').filter({ hasText: '1 oppgave.' }).first();
+    const grammar = page.locator('#homeLearningFeed article').filter({ hasText: '5 oppgaver.' }).first();
     for (let batch = 0; batch < 4 && await grammar.count() === 0; batch++) {
         await page.getByRole('button', { name: 'Vis flere' }).click();
     }
-    await expect(grammar).toContainText('Opptil 3 XP');
+    await expect(grammar).toContainText('Opptil 4 XP');
     await grammar.getByRole('button').click();
     await page.evaluate(() => {
-        selectGrammarAnswer(grammarExercises[0].answer, null);
-        advanceGrammarExercise();
+        for (let i = 0; i < grammarExercises.length; i += 1) {
+            selectGrammarAnswer(grammarExercises[i].answer, null);
+            advanceGrammarExercise();
+        }
     });
-    await expect(page.locator('[data-feed-xp]')).toHaveText('+3 XP (inkludert 2 XP for alt riktig)');
+    await expect(page.locator('[data-feed-xp]')).toHaveText('+4 XP (inkludert 2 XP for alt riktig)');
 });

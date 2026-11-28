@@ -12,6 +12,7 @@ test('real download and file import in a clean profile preserve activity and ver
   const form=await page.locator('#verbInput').getAttribute('data-expected');
   await page.locator('#verbInput').fill(form);await page.getByRole('button',{name:'✓ Sjekk svar',exact:true}).click();
   await page.evaluate(()=>endVerbSession());await page.locator('#navHomework').click();
+  await page.locator('#progressBackupDisclosure > summary').click();
   const downloaded=page.waitForEvent('download');await page.getByRole('button',{name:'📥 Last ned fremgang',exact:true}).click();
   const download=await downloaded;const file=await download.path();
   expect(download.suggestedFilename()).not.toContain('lokal');

@@ -21,7 +21,7 @@
     <meta name="theme-color" content="#dc2626">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Crect width='192' height='192' rx='36' fill='%23dc2626'/%3E%3Ctext x='96' y='122' text-anchor='middle' font-size='96'%3E🇪🇸%3C/text%3E%3C/svg%3E">
     <link rel="manifest" href="./manifest.webmanifest">
-    <meta name="app-build" content="4322e9e026cbd2b0">
+    <meta name="app-build" content="72b8879635c25db3">
     <link href="./dist/tailwind.css" rel="stylesheet">
     <script type="application/ld+json">
     {
@@ -352,7 +352,7 @@
                                 <div class="setting-row mt-4">
                                     <div>
                                         <div class="setting-label">Importer fra lærer</div>
-                                        <div class="setting-hint">Last inn JSON-fil med nye gloser</div>
+                                        <div class="setting-hint">Last inn lokal glosefil fra lærer</div>
                                     </div>
                                     <button class="btn btn-sm btn-outline" onclick="importTeacherWords()">📥 Importer gloser</button>
                                 </div>
@@ -564,23 +564,51 @@
                 </div>
             </div>
 
-            <div class="homework-assignment-section">
-                <h3>📥 Hent leksepakke fra lærer</h3>
+            <div class="active-assignment-panel" id="activeAssignmentPanel">
+                <!-- Fylles inn dynamisk -->
+            </div>
+
+            <div class="homework-submit-section">
+                <h3>✅ Vis det du har øvd på</h3>
                 <p class="mb-4 text-gray-500">
-                    Slipp en JSON-fil her, eller velg filen du fikk av læreren. Filen lagres bare i denne nettleseren.
+                    Vis en lokal oppsummering til læreren allerede første dag. Gloser, verbbøying og grammatikk teller. Ingen data sendes.
                 </p>
-                <label class="assignment-dropzone" id="assignmentDropzone" for="assignmentFileInput">
-                    <span class="assignment-dropzone-icon">📄</span>
-                    <span class="assignment-dropzone-title">Slipp leksefil her</span>
-                    <span class="assignment-dropzone-hint">Leksefil (JSON) med gloser og ukemål</span>
-                    <input type="file" id="assignmentFileInput" accept=".json,application/json" onchange="handleAssignmentFileInput(event)">
-                </label>
-                <p class="homework-hint" id="assignmentImportStatus" role="status" aria-atomic="true"></p>
-                <div class="active-assignment-panel" id="activeAssignmentPanel">
+                <div class="homework-submit-actions">
+                    <button class="btn btn-primary btn-large" onclick="submitHomework()" id="submitHomeworkBtn">
+                        Vis ukens oppsummering
+                    </button>
+                    <button class="btn btn-secondary btn-large" onclick="showWeeklyReportForPrint('today')">Vis dagens oppsummering</button>
+                </div>
+                <p class="homework-hint" id="homeworkHint"></p>
+            </div>
+
+            <div class="homework-history-section">
+                <h3>📊 Øvingshistorikk</h3>
+                <div id="practiceHistory">
                     <!-- Fylles inn dynamisk -->
                 </div>
+            </div>
 
-                <details class="assignment-builder" id="assignmentBuilder">
+            <p class="homework-hint mt-4">Bruker skolen din Feide? Da får du lekser automatisk uten filer via <a href="/school">Skolemodus med Feide</a>.</p>
+
+            <div class="homework-assignment-section mt-4">
+                <details class="assignment-builder" id="assignmentImportDisclosure">
+                    <summary><span class="assignment-builder-kicker">Avansert (lokal fil)</span><h3>Hent leksepakke fra lærer</h3></summary>
+                    <div class="assignment-builder-body">
+                        <p class="mb-4 text-gray-500">
+                            Slipp en JSON-fil her, eller velg filen du fikk av læreren. Filen lagres bare i denne nettleseren.
+                        </p>
+                        <label class="assignment-dropzone" id="assignmentDropzone" for="assignmentFileInput">
+                            <span class="assignment-dropzone-icon">📄</span>
+                            <span class="assignment-dropzone-title">Slipp leksefil her</span>
+                            <span class="assignment-dropzone-hint">Leksefil (JSON) med gloser og ukemål</span>
+                            <input type="file" id="assignmentFileInput" accept=".json,application/json" onchange="handleAssignmentFileInput(event)">
+                        </label>
+                        <p class="homework-hint" id="assignmentImportStatus" role="status" aria-atomic="true"></p>
+                    </div>
+                </details>
+
+                <details class="assignment-builder mt-4" id="assignmentBuilder">
                     <summary><span class="assignment-builder-kicker">For lærer</span><h3>Lag leksepakke</h3></summary>
                     <div class="assignment-builder-body">
                         <div class="assignment-builder-grid">
@@ -656,40 +684,21 @@
                         </div>
                     </div>
                 </details>
-            </div>
 
-            <div class="homework-submit-section">
-                <h3>✅ Vis det du har øvd på</h3>
-                <p class="mb-4 text-gray-500">
-                    Vis en lokal oppsummering til læreren allerede første dag. Gloser, verbbøying og grammatikk teller. Ingen data sendes.
-                </p>
-                <div class="homework-submit-actions">
-                    <button class="btn btn-primary btn-large" onclick="submitHomework()" id="submitHomeworkBtn">
-                        Vis ukens oppsummering
-                    </button>
-                    <button class="btn btn-secondary btn-large" onclick="showWeeklyReportForPrint('today')">Vis dagens oppsummering</button>
-                </div>
-                <p class="homework-hint" id="homeworkHint"></p>
-            </div>
-
-            <div class="homework-history-section">
-                <h3>📊 Øvingshistorikk</h3>
-                <div id="practiceHistory">
-                    <!-- Fylles inn dynamisk -->
-                </div>
-            </div>
-
-            <div class="settings-section mt-6">
-                <h3>💾 Lagre/Hent fremgang</h3>
-                <p class="mb-4 text-gray-500">
-                    Last ned fremgangen din som fil, eller importer fra en tidligere lagring. Filen inneholder elevkode/kallenavn, øvingshistorikk og aktiv leksepakke. Del den bare med noen du stoler på.
-                </p>
-                <p class="homework-hint" id="feedbackBackupNotice">Tilbakemeldinger på oppgaver følger ikke med i fremgangsfilen. Eksporter dem separat fra Innstillinger → Tilbakemeldinger før du sletter nettleserdata.</p>
-                <p class="homework-hint" id="backupStatus"></p>
-                <div class="button-group">
-                    <button class="btn btn-secondary" onclick="exportAllProgress()">📥 Last ned fremgang</button>
-                    <button class="btn btn-secondary" onclick="importProgressFile()">📂 Importer fremgang</button>
-                </div>
+                <details class="assignment-builder mt-4" id="progressBackupDisclosure">
+                    <summary><span class="assignment-builder-kicker">Avansert (lokal lagring)</span><h3>Sikkerhetskopi av fremgang</h3></summary>
+                    <div class="assignment-builder-body">
+                        <p class="mb-4 text-gray-500">
+                            Last ned fremgangen din som fil, eller importer fra en tidligere lagring. Filen inneholder elevkode/kallenavn, øvingshistorikk og aktiv leksepakke. Del den bare med noen du stoler på.
+                        </p>
+                        <p class="homework-hint" id="feedbackBackupNotice">Tilbakemeldinger på oppgaver følger ikke med i fremgangsfilen. Eksporter dem separat fra Innstillinger → Tilbakemeldinger før du sletter nettleserdata.</p>
+                        <p class="homework-hint" id="backupStatus"></p>
+                        <div class="button-group">
+                            <button class="btn btn-secondary" onclick="exportAllProgress()">📥 Last ned fremgang</button>
+                            <button class="btn btn-secondary" onclick="importProgressFile()">📂 Importer fremgang</button>
+                        </div>
+                    </div>
+                </details>
             </div>
         </div>
 
@@ -17962,6 +17971,14 @@ const pronunciationManifest = {"schemaVersion":1,"sourceArchiveSha256":"d67fa8c7
             return null;
         }
 
+        function getApprovedWordAudioForMixedQuizItem(item, acceptedValues = []) {
+            if (!item || item.itemType !== 'vocabulary') return null;
+            const expectsNorwegian = item.direction === 'esToNo' || item.direction === 'es-no';
+            return expectsNorwegian
+                ? (getApprovedWordAudio(item.prompt) || getApprovedWordAudioForList(acceptedValues))
+                : (getApprovedWordAudioForList(acceptedValues) || getApprovedWordAudio(item.prompt));
+        }
+
         function stopApprovedWordAudio() {
             correctAnswerAudioToken += 1;
             if (correctAnswerAudioEl) {
@@ -18092,6 +18109,13 @@ const pronunciationManifest = {"schemaVersion":1,"sourceArchiveSha256":"d67fa8c7
                         <button class="btn btn-primary" onclick="saveSettings()">Lagre</button>
                         <button class="btn btn-secondary" onclick="closeSettings()">Avbryt</button>
                     </div>
+                    <details class="mt-4">
+                        <summary class="text-sm font-medium text-gray-700 cursor-pointer">💾 Sikkerhetskopi av lokal fremgang</summary>
+                        <div class="button-group mt-3">
+                            <button type="button" class="btn btn-secondary btn-sm" onclick="exportAllProgress()">📥 Last ned fremgang</button>
+                            <button type="button" class="btn btn-secondary btn-sm" onclick="importProgressFile()">📂 Importer fremgang</button>
+                        </div>
+                    </details>
                     <hr class="my-5 border-0 border-t border-gray-200">
                     <button class="btn btn-outline w-full mb-3" onclick="closeSettings(); showFeedbackView();">📢 Tilbakemeldinger</button>
                     <button class="btn btn-outline w-full text-red-500" onclick="resetAllData()">🗑️ Slett all data</button>
@@ -18678,7 +18702,7 @@ const pronunciationManifest = {"schemaVersion":1,"sourceArchiveSha256":"d67fa8c7
                 if (strength < 4) return 2;
                 return 3;
             };
-            const sorted = [...exercises].sort((a, b) => {
+            const sortedByRank = [...exercises].sort((a, b) => {
                 const rankDifference = rank(a) - rank(b);
                 if (rankDifference) return rankDifference;
                 const aCell = progress?.skillProgress?.[a.skillId] || {};
@@ -18687,8 +18711,33 @@ const pronunciationManifest = {"schemaVersion":1,"sourceArchiveSha256":"d67fa8c7
                 if (strengthDifference) return strengthDifference;
                 const lapseDifference = (Number(bCell.lapses) || 0) - (Number(aCell.lapses) || 0);
                 if (lapseDifference) return lapseDifference;
-                return String(a.id || a.sentence || '').localeCompare(String(b.id || b.sentence || ''));
+                return 0;
             });
+
+            // Fordel oppgaver med rundgang på tvers av mikroferdigheter innenfor samme prioritetsnivå
+            const sorted = [];
+            const bucketsByRank = new Map();
+            for (const ex of sortedByRank) {
+                const r = rank(ex);
+                if (!bucketsByRank.has(r)) bucketsByRank.set(r, new Map());
+                const skillBuckets = bucketsByRank.get(r);
+                const sid = ex.skillId || '__default';
+                if (!skillBuckets.has(sid)) skillBuckets.set(sid, []);
+                skillBuckets.get(sid).push(ex);
+            }
+            for (const skillBuckets of bucketsByRank.values()) {
+                const queues = [...skillBuckets.values()];
+                let added = true;
+                while (added) {
+                    added = false;
+                    for (const queue of queues) {
+                        if (queue.length > 0) {
+                            sorted.push(queue.shift());
+                            added = true;
+                        }
+                    }
+                }
+            }
 
             const max = Math.max(0, Number(limit) || 0);
             const selected = [];
@@ -26264,9 +26313,9 @@ const pronunciationManifest = {"schemaVersion":1,"sourceArchiveSha256":"d67fa8c7
                         ? 'near-miss'
                         : 'incorrect';
                 feedback.className = `mixed-quiz-feedback ${feedbackClass}`;
-                const audioMatch = result.resultKind === 'correct' ? getApprovedWordAudioForList(acceptedValues) : null;
-                feedback.innerHTML = result.resultKind === 'correct'
-                    ? `✓ Riktig!${audioMatch ? renderApprovedAudioRowHtml(audioMatch) : ''}`
+                const audioMatch = getApprovedWordAudioForMixedQuizItem(item, acceptedValues);
+                feedback.innerHTML = (result.resultKind === 'correct'
+                    ? '✓ Riktig!'
                     : result.resultKind === 'accent_or_case_variant'
                         ? `Nesten riktig — sjekk aksenten. Riktig svar er: <strong>${escapeHtml(formatMixedQuizCorrectAnswers(item))}</strong>`
                         : isTildeNearMiss
@@ -26275,9 +26324,10 @@ const pronunciationManifest = {"schemaVersion":1,"sourceArchiveSha256":"d67fa8c7
                                 ? `Nesten! Sjekk stavingen. Riktig svar er: <strong>${escapeHtml(formatMixedQuizCorrectAnswers(item))}</strong>`
                                 : result.resultKind === 'near_miss'
                                     ? `Nesten — riktig svar er: <strong>${escapeHtml(formatMixedQuizCorrectAnswers(item))}</strong>`
-                                    : `✗ Feil — riktig svar: <strong>${escapeHtml(formatMixedQuizCorrectAnswers(item))}</strong>`;
+                                    : `✗ Feil — riktig svar: <strong>${escapeHtml(formatMixedQuizCorrectAnswers(item))}</strong>`)
+                    + (audioMatch ? renderApprovedAudioRowHtml(audioMatch) : '');
                 if (audioMatch) {
-                    mountApprovedAudioControl(feedback, audioMatch, { autoPlay: isCorrectAnswerAudioEnabled() });
+                    mountApprovedAudioControl(feedback, audioMatch, { autoPlay: result.resultKind === 'correct' && isCorrectAnswerAudioEnabled() });
                 }
                 feedback.insertAdjacentHTML('beforeend', `<div class="button-group"><button type="button" data-feedback-next class="btn btn-primary btn-sm mt-4" onclick="advanceMixedQuizQuestion()">${mixedQuizState.answered >= mixedQuizState.quiz.items.length ? 'Se resultat' : 'Neste'}</button></div>`);
                 if (result.resultKind !== 'correct') {
@@ -26289,11 +26339,12 @@ const pronunciationManifest = {"schemaVersion":1,"sourceArchiveSha256":"d67fa8c7
                 if (!control.matches('#mixedQuizFeedback button')) control.disabled = true;
             });
             document.querySelector('#mixedQuizQuestion > .mixed-quiz-question > .button-group')?.setAttribute('hidden', '');
-            setTimeout(() => { if (!document.querySelector('.settings-modal')) feedback?.querySelector('button')?.focus({ preventScroll: true }); }, 0);
+            setTimeout(() => { if (!document.querySelector('.settings-modal')) (feedback?.querySelector('[data-feedback-next]') || feedback?.querySelector('button'))?.focus({ preventScroll: true }); }, 0);
             updateMixedQuizProgress();
         }
 
         function advanceMixedQuizQuestion() {
+            stopApprovedWordAudio();
             if (!mixedQuizState || mixedQuizState.finalResult || mixedQuizState.answered <= mixedQuizState.index) return;
             mixedQuizState.index++;
             if (mixedQuizState.index >= mixedQuizState.quiz.items.length) return finishMixedQuiz();
@@ -28083,8 +28134,8 @@ Vil du øve på ${pronoun} likevel?`
             document.querySelectorAll('#flashcardArea .app-accent-btn').forEach(btn => { btn.disabled = true; });
             rateCard(evaluation.resultKind === 'correct' ? 2 : 0, false);
 
+            const audioMatch = getApprovedWordAudio(currentCard.card.es) || getApprovedWordAudioForList(acceptedList);
             if (evaluation.resultKind === 'correct') {
-                const audioMatch = getApprovedWordAudio(currentCard.card.es) || getApprovedWordAudioForList(acceptedList);
                 feedback.innerHTML = `${currentCard.scaffoldedAfterError
                     ? '<div class="grammar-feedback correct">✓ Riktig med støtte!</div>'
                     : '<div class="grammar-feedback correct">✓ Riktig!</div>'}${audioMatch ? renderApprovedAudioRowHtml(audioMatch) : ''}`;
@@ -28110,8 +28161,12 @@ Vil du øve på ${pronoun} likevel?`
                 <div class="grammar-feedback ${feedbackVariantClass}">
                     ${feedbackPrefix} Godkjente svar: <strong>${formatAnswerAlternatives(acceptedList.map(item => escapeHtml(item)))}</strong>
                 </div>
+                ${audioMatch ? renderApprovedAudioRowHtml(audioMatch) : ''}
                 ${renderStudentFeedbackButton({itemRef:`vocab:${currentCard.card.no}:${currentCard.card.es}:${currentCard.direction}`,source:'gloser',prompt:getVocabPromptText(currentCard),studentAnswer:input.value,expectedAnswer:expected})}
             `;
+            if (audioMatch) {
+                mountApprovedAudioControl(feedback, audioMatch, { autoPlay: false });
+            }
             document.getElementById('buttonArea').innerHTML = `
                 <div class="button-group">
                     <button data-feedback-next class="btn btn-primary" onclick="rateCard(0)">Neste kort</button>
@@ -28129,12 +28184,13 @@ Vil du øve på ${pronoun} likevel?`
             const isCorrect = isTypedVocabAnswerCorrect(select.value, expected, getVocabularyAcceptedAnswers(currentCard.card, currentCard.direction, expected).map(item => item.value)).correct;
             select.disabled = true;
             rateCard(isCorrect ? 2 : 0, false);
-            const selectAudioMatch = isCorrect ? (getApprovedWordAudio(currentCard.card.es) || getApprovedWordAudio(expected)) : null;
-            feedback.innerHTML = isCorrect
-                ? `${currentCard.scaffoldedAfterError ? '<div class="grammar-feedback correct">✓ Riktig med støtte!</div>' : '<div class="grammar-feedback correct">✓ Riktig!</div>'}${selectAudioMatch ? renderApprovedAudioRowHtml(selectAudioMatch) : ''}`
-                : `<div class="grammar-feedback incorrect">✗ Riktig svar: <strong>${escapeHtml(expected)}</strong></div>`;
+            const selectAudioMatch = getApprovedWordAudio(currentCard.card.es) || getApprovedWordAudio(expected);
+            feedback.innerHTML = (isCorrect
+                ? (currentCard.scaffoldedAfterError ? '<div class="grammar-feedback correct">✓ Riktig med støtte!</div>' : '<div class="grammar-feedback correct">✓ Riktig!</div>')
+                : `<div class="grammar-feedback incorrect">✗ Riktig svar: <strong>${escapeHtml(expected)}</strong></div>`)
+                + (selectAudioMatch ? renderApprovedAudioRowHtml(selectAudioMatch) : '');
             if (selectAudioMatch) {
-                mountApprovedAudioControl(feedback, selectAudioMatch, { autoPlay: isCorrectAnswerAudioEnabled() });
+                mountApprovedAudioControl(feedback, selectAudioMatch, { autoPlay: isCorrect && isCorrectAnswerAudioEnabled() });
             }
             document.getElementById('buttonArea').innerHTML = `<div class="button-group"><button data-feedback-next class="btn btn-primary" onclick="rateCard(${isCorrect ? 2 : 0})">Neste kort</button></div>`;
         }
@@ -30109,13 +30165,52 @@ Vil du øve på ${pronoun} likevel?`
                 },
                 exercises: [
                     { skillId: 'a0.identity.age', sentence: 'Tengo ___ años', answer: 'catorce', options: ['catorce', 'soy', 'vivo', 'hay'], hint: 'På spansk sier du «jeg har fjorten år».', no: 'Jeg er fjorten år.' },
+                    { skillId: 'a0.identity.age', sentence: '___ quince años', answer: 'Tengo', options: ['Tengo', 'Soy', 'Estoy', 'Hay'], hint: 'Alder uttrykkes med tener (jeg har femten år).', no: 'Jeg er femten år.' },
+                    { skillId: 'a0.identity.age', sentence: '¿Cuántos años ___?', answer: 'tienes', options: ['tienes', 'eres', 'estás', 'hay'], hint: 'Når du spør hvor gammel noen er, bruker du du-formen tienes.', no: 'Hvor gammel er du?' },
+                    { skillId: 'a0.identity.age', sentence: 'Mi hermano ___ doce años', answer: 'tiene', options: ['tiene', 'es', 'está', 'hay'], hint: 'Med han/hun (mi hermano) bøyes tener som tiene.', no: 'Broren min er tolv år.' },
+                    { skillId: 'a0.identity.age', sentence: 'Yo tengo dieciséis ___', answer: 'años', options: ['años', 'días', 'libros', 'hermanos'], hint: 'År heter años på spansk.', no: 'Jeg er seksten år.' },
+
                     { skillId: 'a0.existential.hay', sentence: '___ un libro en la mesa', answer: 'Hay', options: ['Hay', 'Soy', 'Tengo', 'Vivo'], hint: 'Bruk hay når du sier at noe finnes eller er et sted.', no: 'Det er en bok på bordet.' },
+                    { skillId: 'a0.existential.hay', sentence: '___ dos sillas en el aula', answer: 'Hay', options: ['Hay', 'Soy', 'Tengo', 'Vivo'], hint: 'Hay brukes både når én ting og når flere ting finnes et sted.', no: 'Det er to stoler i klasserommet.' },
+                    { skillId: 'a0.existential.hay', sentence: 'En mi mochila ___ un cuaderno', answer: 'hay', options: ['hay', 'soy', 'trabajo', 'vivo'], hint: 'Bruk hay når du forteller hva som finnes i sekken.', no: 'I sekken min er det en skrivebok.' },
+                    { skillId: 'a0.existential.hay', sentence: '¿___ un café cerca?', answer: 'Hay', options: ['Hay', 'Tienes', 'Trabajas', 'Eres'], hint: 'Spør om noe finnes i nærheten med ¿Hay ...?', no: 'Er det en kafé i nærheten?' },
+                    { skillId: 'a0.existential.hay', sentence: 'En la clase ___ veinte alumnos', answer: 'hay', options: ['hay', 'tengo', 'estoy', 'soy'], hint: 'Bruk hay for å si hvor mange som finnes i klassen.', no: 'I klassen er det tjue elever.' },
+
                     { skillId: 'a0.possession.tener', sentence: 'Yo ___ una hermana', answer: 'tengo', options: ['tengo', 'hay', 'soy', 'vivo'], hint: 'Tener betyr å ha. Med yo blir det tengo.', no: 'Jeg har en søster.' },
+                    { skillId: 'a0.possession.tener', sentence: '___ un perro en casa', answer: 'Tengo', options: ['Tengo', 'Soy', 'Hay', 'Vivo'], hint: 'Bruk tengo når du sier at du har noe.', no: 'Jeg har en hund hjemme.' },
+                    { skillId: 'a0.possession.tener', sentence: '¿___ una bicicleta?', answer: 'Tienes', options: ['Tienes', 'Eres', 'Vives', 'Hay'], hint: 'Med du (tú) blir tener til tienes.', no: 'Har du en sykkel?' },
+                    { skillId: 'a0.possession.tener', sentence: 'María ___ dos libros nuevos', answer: 'tiene', options: ['tiene', 'es', 'hay', 'vive'], hint: 'Med hun (María) bøyes tener som tiene.', no: 'María har to nye bøker.' },
+                    { skillId: 'a0.possession.tener', sentence: 'Nosotros ___ clase de español hoy', answer: 'tenemos', options: ['tenemos', 'somos', 'vivimos', 'hay'], hint: 'Med vi (nosotros) blir tener til tenemos.', no: 'Vi har spansktime i dag.' },
+
                     { skillId: 'a0.greetings.como_estas', sentence: '—¿Cómo estás? —___ bien, gracias', answer: 'Estoy', options: ['Estoy', 'Tengo', 'Hay', 'Vivo'], hint: 'Svar på hvordan du har det med estoy.', no: '—Hvordan har du det? —Jeg har det bra, takk.' },
+                    { skillId: 'a0.greetings.como_estas', sentence: '—Hola, ¿___ estás? —Muy bien', answer: 'cómo', options: ['cómo', 'dónde', 'quién', 'qué'], hint: '¿Cómo estás? betyr «Hvordan har du det?».', no: '—Hei, hvordan har du det? —Veldig bra.' },
+                    { skillId: 'a0.greetings.como_estas', sentence: '—¿Cómo estás? —Estoy ___, gracias', answer: 'bien', options: ['bien', 'años', 'escuela', 'libro'], hint: 'Estoy bien betyr «jeg har det bra».', no: '—Hvordan har du det? —Jeg har det bra, takk.' },
+                    { skillId: 'a0.greetings.como_estas', sentence: '—¿Qué tal? —___ muy bien, ¿y tú?', answer: 'Estoy', options: ['Estoy', 'Tengo', 'Trabajo', 'Hay'], hint: 'Når du svarer på hvordan du har det akkurat nå, bruker du estoy.', no: '—Hvordan går det? —Jeg har det veldig bra, og du?' },
+                    { skillId: 'a0.greetings.como_estas', sentence: '—¿Cómo estás hoy? —Estoy un poco ___', answer: 'cansado', options: ['cansado', 'tengo', 'vivo', 'hay'], hint: 'Cansado betyr «sliten» og passer etter estoy.', no: '—Hvordan har du det i dag? —Jeg er litt sliten.' },
+
                     { skillId: 'a0.work.trabajar', sentence: 'Yo ___ en una escuela', answer: 'trabajo', options: ['trabajo', 'trabajas', 'trabajar', 'hay'], hint: 'Med yo får regelrette -ar-verb endelsen -o.', no: 'Jeg jobber på en skole.' },
+                    { skillId: 'a0.work.trabajar', sentence: 'Mi padre ___ en un hospital', answer: 'trabaja', options: ['trabaja', 'trabajo', 'trabajas', 'trabajan'], hint: 'Med han/hun (mi padre) får -ar-verb endelsen -a.', no: 'Faren min jobber på et sykehus.' },
+                    { skillId: 'a0.work.trabajar', sentence: '¿Dónde ___ tú?', answer: 'trabajas', options: ['trabajas', 'trabajo', 'trabaja', 'trabajar'], hint: 'Med du (tú) får -ar-verb endelsen -as.', no: 'Hvor jobber du?' },
+                    { skillId: 'a0.work.trabajar', sentence: 'Yo trabajo ___ una tienda', answer: 'en', options: ['en', 'un', 'hay', 'soy'], hint: 'På spansk sier du trabajar en («jobbe i / på»).', no: 'Jeg jobber i en butikk.' },
+                    { skillId: 'a0.work.trabajar', sentence: 'Mis padres ___ en Oslo', answer: 'trabajan', options: ['trabajan', 'trabajo', 'trabajas', 'trabaja'], hint: 'Med flertall (mis padres) får -ar-verb endelsen -an.', no: 'Foreldrene mine jobber i Oslo.' },
+
                     { skillId: 'a0.location.vivo_en', sentence: '___ en Oslo', answer: 'Vivo', options: ['Vivo', 'Soy', 'Tengo', 'Hay'], hint: 'Vivo en betyr «jeg bor i».', no: 'Jeg bor i Oslo.' },
+                    { skillId: 'a0.location.vivo_en', sentence: 'Yo vivo ___ Bergen', answer: 'en', options: ['en', 'hay', 'tengo', 'soy'], hint: 'Bruk preposisjonen en etter vivo når du sier hvor du bor.', no: 'Jeg bor i Bergen.' },
+                    { skillId: 'a0.location.vivo_en', sentence: '¿Dónde ___ tú?', answer: 'vives', options: ['vives', 'vivo', 'vive', 'vivir'], hint: 'Med du (tú) får -ir-verb som vivir endelsen -es.', no: 'Hvor bor du?' },
+                    { skillId: 'a0.location.vivo_en', sentence: 'Mi amiga ___ en Madrid', answer: 'vive', options: ['vive', 'vivo', 'vives', 'viven'], hint: 'Med han/hun (mi amiga) får vivir endelsen -e.', no: 'Venninnen min bor i Madrid.' },
+                    { skillId: 'a0.location.vivo_en', sentence: 'Nosotros ___ en Noruega', answer: 'vivimos', options: ['vivimos', 'vivo', 'vives', 'viven'], hint: 'Med vi (nosotros) blir vivir til vivimos.', no: 'Vi bor i Norge.' },
+
                     { skillId: 'a0.professions.zero_article', instructionNb: 'Velg den enkle yrkesbeskrivelsen uten artikkel.', sentence: 'Mi madre es ___', answer: 'profesora', options: ['profesora', 'una profesora', 'la profesora', 'hay'], hint: 'I en enkel yrkesbeskrivelse sier vi es profesora, uten artikkel. Med una eller la får beskrivelsen en annen vekt eller viser til en bestemt person.', no: 'Moren min er lærer.' },
-                    { skillId: 'a0.questions.que_es_eso', sentence: '¿___ es eso?', answer: 'Qué', options: ['Qué', 'Quién', 'Dónde', 'Cuándo'], hint: 'Qué betyr «hva».', no: 'Hva er det?' }
+                    { skillId: 'a0.professions.zero_article', instructionNb: 'Velg den enkle yrkesbeskrivelsen uten artikkel.', sentence: 'Mi padre es ___', answer: 'médico', options: ['médico', 'un médico', 'el médico', 'hay'], hint: 'I en enkel yrkesbeskrivelse etter ser bruker vi ikke ubestemt artikkel: es médico.', no: 'Faren min er lege.' },
+                    { skillId: 'a0.professions.zero_article', instructionNb: 'Velg den enkle yrkesbeskrivelsen uten artikkel.', sentence: 'Ana es ___', answer: 'estudiante', options: ['estudiante', 'una estudiante', 'la estudiante', 'tengo'], hint: 'Etter ser står yrke eller rolle vanligvis uten artikkel: Ana es estudiante.', no: 'Ana er elev / student.' },
+                    { skillId: 'a0.professions.zero_article', instructionNb: 'Velg den enkle yrkesbeskrivelsen uten artikkel.', sentence: 'Carlos es ___', answer: 'cocinero', options: ['cocinero', 'un cocinero', 'el cocinero', 'vivo'], hint: 'En enkel yrkesbeskrivelse på spansk utelater artikkelen: es cocinero.', no: 'Carlos er kokk.' },
+                    { skillId: 'a0.professions.zero_article', instructionNb: 'Velg den enkle yrkesbeskrivelsen uten artikkel.', sentence: 'Mi hermana es ___', answer: 'enfermera', options: ['enfermera', 'una enfermera', 'la enfermera', 'estoy'], hint: 'Etter es står en enkel yrkesbeskrivelse uten artikkel: es enfermera.', no: 'Søsteren min er sykepleier.' },
+
+                    { skillId: 'a0.questions.que_es_eso', sentence: '¿___ es eso?', answer: 'Qué', options: ['Qué', 'Quién', 'Dónde', 'Cuándo'], hint: 'Qué betyr «hva».', no: 'Hva er det?' },
+                    { skillId: 'a0.questions.que_es_eso', sentence: '¿___ es esto? —Es un cuaderno.', answer: 'Qué', options: ['Qué', 'Quién', 'Dónde', 'Cómo'], hint: 'Spørreordet qué betyr «hva» når du spør hva en ting er.', no: 'Hva er dette? —Det er en skrivebok.' },
+                    { skillId: 'a0.questions.que_es_eso', sentence: '¿___ hay en la mesa?', answer: 'Qué', options: ['Qué', 'Quién', 'Cuándo', 'Cuál'], hint: 'Bruk qué for å spørre hva som finnes på bordet.', no: 'Hva er det på bordet?' },
+                    { skillId: 'a0.questions.que_es_eso', sentence: '¿___ significa esta palabra?', answer: 'Qué', options: ['Qué', 'Quién', 'Dónde', 'Cuándo'], hint: '¿Qué significa ...? betyr «Hva betyr ...?».', no: 'Hva betyr dette ordet?' },
+                    { skillId: 'a0.questions.que_es_eso', sentence: '¿___ tienes en la mochila?', answer: 'Qué', options: ['Qué', 'Quién', 'Cómo', 'Dónde'], hint: 'Bruk qué når du spør hva noen har i sekken.', no: 'Hva har du i sekken?' }
                 ]
             },
             articles: {
@@ -30222,6 +30317,7 @@ Vil du øve på ${pronoun} likevel?`
                     { skillId: 'a1.adjectives.regular_o', sentence: "Mis abuelas son ___", answer: "viejas", options: ["viejo", "vieja", "viejos", "viejas"], hint: "abuelas er feminin flertall", base: "viejo" },
                     { skillId: 'a1.adjectives.regular_o', sentence: "La comida está ___", answer: "rica", options: ["rico", "rica", "ricos", "ricas"], hint: "comida er feminin entall", base: "rico" },
                     { skillId: 'a1.adjectives.common_gender', sentence: "Los libros son ___", answer: "interesantes", options: ["interesante", "interesanta", "interesantes", "interesantos"], hint: "-e adjektiv i flertall", base: "interesante" },
+                    { skillId: 'a1.adjectives.common_gender', sentence: "La película es muy ___", answer: "interesante", options: ["interesante", "interesanta", "interesantes", "interesanto"], hint: "-e adjektiv er like for hankjønn og hunkjønn i entall", no: "Filmen er veldig interessant.", base: "interesante" },
                 ]
             },
 
@@ -30601,7 +30697,8 @@ Vil du øve på ${pronoun} likevel?`
             adjectives: [
                 'Huset er veldig pent.', 'Guttene er høye.', 'Søsteren min er veldig hyggelig.', 'Blomstene er røde.',
                 'Læreren er intelligent.', 'Jentene er veldig intelligente.', 'Faren min er mørkhåret.', 'Husene er store.',
-                'Hunden er liten.', 'Bestemødrene mine er gamle.', 'Maten er god.', 'Bøkene er interessante.'
+                'Hunden er liten.', 'Bestemødrene mine er gamle.', 'Maten er god.', 'Bøkene er interessante.',
+                'Filmen er veldig interessant.'
             ],
             serEstar: [
                 'Jeg er fra Norge.', 'Moren min er på kjøkkenet.', 'Vi er elever.', 'I dag er jeg veldig sliten.',
@@ -30640,7 +30737,7 @@ Vil du øve på ${pronoun} likevel?`
 
         Object.entries(grammarExerciseContextNo).forEach(([topicId, contexts]) => {
             grammarTopics[topicId].exercises.forEach((exercise, index) => {
-                exercise.no = contexts[index];
+                exercise.no = contexts[index] ?? exercise.no;
                 exercise.sentence = exercise.sentence.replace(/\s*\(der borte\)/gi, '');
             });
         });

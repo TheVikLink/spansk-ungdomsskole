@@ -3567,6 +3567,70 @@
     {
       "topicId": "a0Foundation",
       "topicName": "A0 grunnmur",
+      "sentence": "___ quince años",
+      "answer": "Tengo",
+      "options": [
+        "Tengo",
+        "Soy",
+        "Estoy",
+        "Hay"
+      ],
+      "hint": "Alder uttrykkes med tener (jeg har femten år).",
+      "word": null,
+      "no": "Jeg er femten år.",
+      "id": "grammar:a0Foundation:2"
+    },
+    {
+      "topicId": "a0Foundation",
+      "topicName": "A0 grunnmur",
+      "sentence": "¿Cuántos años ___?",
+      "answer": "tienes",
+      "options": [
+        "tienes",
+        "eres",
+        "estás",
+        "hay"
+      ],
+      "hint": "Når du spør hvor gammel noen er, bruker du du-formen tienes.",
+      "word": null,
+      "no": "Hvor gammel er du?",
+      "id": "grammar:a0Foundation:3"
+    },
+    {
+      "topicId": "a0Foundation",
+      "topicName": "A0 grunnmur",
+      "sentence": "Mi hermano ___ doce años",
+      "answer": "tiene",
+      "options": [
+        "tiene",
+        "es",
+        "está",
+        "hay"
+      ],
+      "hint": "Med han/hun (mi hermano) bøyes tener som tiene.",
+      "word": null,
+      "no": "Broren min er tolv år.",
+      "id": "grammar:a0Foundation:4"
+    },
+    {
+      "topicId": "a0Foundation",
+      "topicName": "A0 grunnmur",
+      "sentence": "Yo tengo dieciséis ___",
+      "answer": "años",
+      "options": [
+        "años",
+        "días",
+        "libros",
+        "hermanos"
+      ],
+      "hint": "År heter años på spansk.",
+      "word": null,
+      "no": "Jeg er seksten år.",
+      "id": "grammar:a0Foundation:5"
+    },
+    {
+      "topicId": "a0Foundation",
+      "topicName": "A0 grunnmur",
       "sentence": "___ un libro en la mesa",
       "answer": "Hay",
       "options": [
@@ -3578,7 +3642,71 @@
       "hint": "Bruk hay når du sier at noe finnes eller er et sted.",
       "word": null,
       "no": "Det er en bok på bordet.",
-      "id": "grammar:a0Foundation:2"
+      "id": "grammar:a0Foundation:6"
+    },
+    {
+      "topicId": "a0Foundation",
+      "topicName": "A0 grunnmur",
+      "sentence": "___ dos sillas en el aula",
+      "answer": "Hay",
+      "options": [
+        "Hay",
+        "Soy",
+        "Tengo",
+        "Vivo"
+      ],
+      "hint": "Hay brukes både når én ting og når flere ting finnes et sted.",
+      "word": null,
+      "no": "Det er to stoler i klasserommet.",
+      "id": "grammar:a0Foundation:7"
+    },
+    {
+      "topicId": "a0Foundation",
+      "topicName": "A0 grunnmur",
+      "sentence": "En mi mochila ___ un cuaderno",
+      "answer": "hay",
+      "options": [
+        "hay",
+        "soy",
+        "trabajo",
+        "vivo"
+      ],
+      "hint": "Bruk hay når du forteller hva som finnes i sekken.",
+      "word": null,
+      "no": "I sekken min er det en skrivebok.",
+      "id": "grammar:a0Foundation:8"
+    },
+    {
+      "topicId": "a0Foundation",
+      "topicName": "A0 grunnmur",
+      "sentence": "¿___ un café cerca?",
+      "answer": "Hay",
+      "options": [
+        "Hay",
+        "Tienes",
+        "Trabajas",
+        "Eres"
+      ],
+      "hint": "Spør om noe finnes i nærheten med ¿Hay ...?",
+      "word": null,
+      "no": "Er det en kafé i nærheten?",
+      "id": "grammar:a0Foundation:9"
+    },
+    {
+      "topicId": "a0Foundation",
+      "topicName": "A0 grunnmur",
+      "sentence": "En la clase ___ veinte alumnos",
+      "answer": "hay",
+      "options": [
+        "hay",
+        "tengo",
+        "estoy",
+        "soy"
+      ],
+      "hint": "Bruk hay for å si hvor mange som finnes i klassen.",
+      "word": null,
+      "no": "I klassen er det tjue elever.",
+      "id": "grammar:a0Foundation:10"
     },
     {
       "topicId": "a0Foundation",
@@ -3594,7 +3722,71 @@
       "hint": "Tener betyr å ha. Med yo blir det tengo.",
       "word": null,
       "no": "Jeg har en søster.",
-      "id": "grammar:a0Foundation:3"
+      "id": "grammar:a0Foundation:11"
+    },
+    {
+      "topicId": "a0Foundation",
+      "topicName": "A0 grunnmur",
+      "sentence": "___ un perro en casa",
+      "answer": "Tengo",
+      "options": [
+        "Tengo",
+        "Soy",
+        "Hay",
+        "Vivo"
+      ],
+      "hint": "Bruk tengo når du sier at du har noe.",
+      "word": null,
+      "no": "Jeg har en hund hjemme.",
+      "id": "grammar:a0Foundation:12"
+    },
+    {
+      "topicId": "a0Foundation",
+      "topicName": "A0 grunnmur",
+      "sentence": "¿___ una bicicleta?",
+      "answer": "Tienes",
+      "options": [
+        "Tienes",
+        "Eres",
+        "Vives",
+        "Hay"
+      ],
+      "hint": "Med du (tú) blir tener til tienes.",
+      "word": null,
+      "no": "Har du en sykkel?",
+      "id": "grammar:a0Foundation:13"
+    },
+    {
+      "topicId": "a0Foundation",
+      "topicName": "A0 grunnmur",
+      "sentence": "María ___ dos libros nuevos",
+      "answer": "tiene",
+      "options": [
+        "tiene",
+        "es",
+        "hay",
+        "vive"
+      ],
+      "hint": "Med hun (María) bøyes tener som tiene.",
+      "word": null,
+      "no": "María har to nye bøker.",
+      "id": "grammar:a0Foundation:14"
+    },
+    {
+      "topicId": "a0Foundation",
+      "topicName": "A0 grunnmur",
+      "sentence": "Nosotros ___ clase de español hoy",
+      "answer": "tenemos",
+      "options": [
+        "tenemos",
+        "somos",
+        "vivimos",
+        "hay"
+      ],
+      "hint": "Med vi (nosotros) blir tener til tenemos.",
+      "word": null,
+      "no": "Vi har spansktime i dag.",
+      "id": "grammar:a0Foundation:15"
     },
     {
       "topicId": "a0Foundation",
@@ -3610,7 +3802,71 @@
       "hint": "Svar på hvordan du har det med estoy.",
       "word": null,
       "no": "—Hvordan har du det? —Jeg har det bra, takk.",
-      "id": "grammar:a0Foundation:4"
+      "id": "grammar:a0Foundation:16"
+    },
+    {
+      "topicId": "a0Foundation",
+      "topicName": "A0 grunnmur",
+      "sentence": "—Hola, ¿___ estás? —Muy bien",
+      "answer": "cómo",
+      "options": [
+        "cómo",
+        "dónde",
+        "quién",
+        "qué"
+      ],
+      "hint": "¿Cómo estás? betyr «Hvordan har du det?».",
+      "word": null,
+      "no": "—Hei, hvordan har du det? —Veldig bra.",
+      "id": "grammar:a0Foundation:17"
+    },
+    {
+      "topicId": "a0Foundation",
+      "topicName": "A0 grunnmur",
+      "sentence": "—¿Cómo estás? —Estoy ___, gracias",
+      "answer": "bien",
+      "options": [
+        "bien",
+        "años",
+        "escuela",
+        "libro"
+      ],
+      "hint": "Estoy bien betyr «jeg har det bra».",
+      "word": null,
+      "no": "—Hvordan har du det? —Jeg har det bra, takk.",
+      "id": "grammar:a0Foundation:18"
+    },
+    {
+      "topicId": "a0Foundation",
+      "topicName": "A0 grunnmur",
+      "sentence": "—¿Qué tal? —___ muy bien, ¿y tú?",
+      "answer": "Estoy",
+      "options": [
+        "Estoy",
+        "Tengo",
+        "Trabajo",
+        "Hay"
+      ],
+      "hint": "Når du svarer på hvordan du har det akkurat nå, bruker du estoy.",
+      "word": null,
+      "no": "—Hvordan går det? —Jeg har det veldig bra, og du?",
+      "id": "grammar:a0Foundation:19"
+    },
+    {
+      "topicId": "a0Foundation",
+      "topicName": "A0 grunnmur",
+      "sentence": "—¿Cómo estás hoy? —Estoy un poco ___",
+      "answer": "cansado",
+      "options": [
+        "cansado",
+        "tengo",
+        "vivo",
+        "hay"
+      ],
+      "hint": "Cansado betyr «sliten» og passer etter estoy.",
+      "word": null,
+      "no": "—Hvordan har du det i dag? —Jeg er litt sliten.",
+      "id": "grammar:a0Foundation:20"
     },
     {
       "topicId": "a0Foundation",
@@ -3626,7 +3882,71 @@
       "hint": "Med yo får regelrette -ar-verb endelsen -o.",
       "word": null,
       "no": "Jeg jobber på en skole.",
-      "id": "grammar:a0Foundation:5"
+      "id": "grammar:a0Foundation:21"
+    },
+    {
+      "topicId": "a0Foundation",
+      "topicName": "A0 grunnmur",
+      "sentence": "Mi padre ___ en un hospital",
+      "answer": "trabaja",
+      "options": [
+        "trabaja",
+        "trabajo",
+        "trabajas",
+        "trabajan"
+      ],
+      "hint": "Med han/hun (mi padre) får -ar-verb endelsen -a.",
+      "word": null,
+      "no": "Faren min jobber på et sykehus.",
+      "id": "grammar:a0Foundation:22"
+    },
+    {
+      "topicId": "a0Foundation",
+      "topicName": "A0 grunnmur",
+      "sentence": "¿Dónde ___ tú?",
+      "answer": "trabajas",
+      "options": [
+        "trabajas",
+        "trabajo",
+        "trabaja",
+        "trabajar"
+      ],
+      "hint": "Med du (tú) får -ar-verb endelsen -as.",
+      "word": null,
+      "no": "Hvor jobber du?",
+      "id": "grammar:a0Foundation:23"
+    },
+    {
+      "topicId": "a0Foundation",
+      "topicName": "A0 grunnmur",
+      "sentence": "Yo trabajo ___ una tienda",
+      "answer": "en",
+      "options": [
+        "en",
+        "un",
+        "hay",
+        "soy"
+      ],
+      "hint": "På spansk sier du trabajar en («jobbe i / på»).",
+      "word": null,
+      "no": "Jeg jobber i en butikk.",
+      "id": "grammar:a0Foundation:24"
+    },
+    {
+      "topicId": "a0Foundation",
+      "topicName": "A0 grunnmur",
+      "sentence": "Mis padres ___ en Oslo",
+      "answer": "trabajan",
+      "options": [
+        "trabajan",
+        "trabajo",
+        "trabajas",
+        "trabaja"
+      ],
+      "hint": "Med flertall (mis padres) får -ar-verb endelsen -an.",
+      "word": null,
+      "no": "Foreldrene mine jobber i Oslo.",
+      "id": "grammar:a0Foundation:25"
     },
     {
       "topicId": "a0Foundation",
@@ -3642,7 +3962,71 @@
       "hint": "Vivo en betyr «jeg bor i».",
       "word": null,
       "no": "Jeg bor i Oslo.",
-      "id": "grammar:a0Foundation:6"
+      "id": "grammar:a0Foundation:26"
+    },
+    {
+      "topicId": "a0Foundation",
+      "topicName": "A0 grunnmur",
+      "sentence": "Yo vivo ___ Bergen",
+      "answer": "en",
+      "options": [
+        "en",
+        "hay",
+        "tengo",
+        "soy"
+      ],
+      "hint": "Bruk preposisjonen en etter vivo når du sier hvor du bor.",
+      "word": null,
+      "no": "Jeg bor i Bergen.",
+      "id": "grammar:a0Foundation:27"
+    },
+    {
+      "topicId": "a0Foundation",
+      "topicName": "A0 grunnmur",
+      "sentence": "¿Dónde ___ tú?",
+      "answer": "vives",
+      "options": [
+        "vives",
+        "vivo",
+        "vive",
+        "vivir"
+      ],
+      "hint": "Med du (tú) får -ir-verb som vivir endelsen -es.",
+      "word": null,
+      "no": "Hvor bor du?",
+      "id": "grammar:a0Foundation:28"
+    },
+    {
+      "topicId": "a0Foundation",
+      "topicName": "A0 grunnmur",
+      "sentence": "Mi amiga ___ en Madrid",
+      "answer": "vive",
+      "options": [
+        "vive",
+        "vivo",
+        "vives",
+        "viven"
+      ],
+      "hint": "Med han/hun (mi amiga) får vivir endelsen -e.",
+      "word": null,
+      "no": "Venninnen min bor i Madrid.",
+      "id": "grammar:a0Foundation:29"
+    },
+    {
+      "topicId": "a0Foundation",
+      "topicName": "A0 grunnmur",
+      "sentence": "Nosotros ___ en Noruega",
+      "answer": "vivimos",
+      "options": [
+        "vivimos",
+        "vivo",
+        "vives",
+        "viven"
+      ],
+      "hint": "Med vi (nosotros) blir vivir til vivimos.",
+      "word": null,
+      "no": "Vi bor i Norge.",
+      "id": "grammar:a0Foundation:30"
     },
     {
       "topicId": "a0Foundation",
@@ -3658,7 +4042,71 @@
       "hint": "I en enkel yrkesbeskrivelse sier vi es profesora, uten artikkel. Med una eller la får beskrivelsen en annen vekt eller viser til en bestemt person.",
       "word": null,
       "no": "Moren min er lærer.",
-      "id": "grammar:a0Foundation:7"
+      "id": "grammar:a0Foundation:31"
+    },
+    {
+      "topicId": "a0Foundation",
+      "topicName": "A0 grunnmur",
+      "sentence": "Mi padre es ___",
+      "answer": "médico",
+      "options": [
+        "médico",
+        "un médico",
+        "el médico",
+        "hay"
+      ],
+      "hint": "I en enkel yrkesbeskrivelse etter ser bruker vi ikke ubestemt artikkel: es médico.",
+      "word": null,
+      "no": "Faren min er lege.",
+      "id": "grammar:a0Foundation:32"
+    },
+    {
+      "topicId": "a0Foundation",
+      "topicName": "A0 grunnmur",
+      "sentence": "Ana es ___",
+      "answer": "estudiante",
+      "options": [
+        "estudiante",
+        "una estudiante",
+        "la estudiante",
+        "tengo"
+      ],
+      "hint": "Etter ser står yrke eller rolle vanligvis uten artikkel: Ana es estudiante.",
+      "word": null,
+      "no": "Ana er elev / student.",
+      "id": "grammar:a0Foundation:33"
+    },
+    {
+      "topicId": "a0Foundation",
+      "topicName": "A0 grunnmur",
+      "sentence": "Carlos es ___",
+      "answer": "cocinero",
+      "options": [
+        "cocinero",
+        "un cocinero",
+        "el cocinero",
+        "vivo"
+      ],
+      "hint": "En enkel yrkesbeskrivelse på spansk utelater artikkelen: es cocinero.",
+      "word": null,
+      "no": "Carlos er kokk.",
+      "id": "grammar:a0Foundation:34"
+    },
+    {
+      "topicId": "a0Foundation",
+      "topicName": "A0 grunnmur",
+      "sentence": "Mi hermana es ___",
+      "answer": "enfermera",
+      "options": [
+        "enfermera",
+        "una enfermera",
+        "la enfermera",
+        "estoy"
+      ],
+      "hint": "Etter es står en enkel yrkesbeskrivelse uten artikkel: es enfermera.",
+      "word": null,
+      "no": "Søsteren min er sykepleier.",
+      "id": "grammar:a0Foundation:35"
     },
     {
       "topicId": "a0Foundation",
@@ -3674,7 +4122,71 @@
       "hint": "Qué betyr «hva».",
       "word": null,
       "no": "Hva er det?",
-      "id": "grammar:a0Foundation:8"
+      "id": "grammar:a0Foundation:36"
+    },
+    {
+      "topicId": "a0Foundation",
+      "topicName": "A0 grunnmur",
+      "sentence": "¿___ es esto? —Es un cuaderno.",
+      "answer": "Qué",
+      "options": [
+        "Qué",
+        "Quién",
+        "Dónde",
+        "Cómo"
+      ],
+      "hint": "Spørreordet qué betyr «hva» når du spør hva en ting er.",
+      "word": null,
+      "no": "Hva er dette? —Det er en skrivebok.",
+      "id": "grammar:a0Foundation:37"
+    },
+    {
+      "topicId": "a0Foundation",
+      "topicName": "A0 grunnmur",
+      "sentence": "¿___ hay en la mesa?",
+      "answer": "Qué",
+      "options": [
+        "Qué",
+        "Quién",
+        "Cuándo",
+        "Cuál"
+      ],
+      "hint": "Bruk qué for å spørre hva som finnes på bordet.",
+      "word": null,
+      "no": "Hva er det på bordet?",
+      "id": "grammar:a0Foundation:38"
+    },
+    {
+      "topicId": "a0Foundation",
+      "topicName": "A0 grunnmur",
+      "sentence": "¿___ significa esta palabra?",
+      "answer": "Qué",
+      "options": [
+        "Qué",
+        "Quién",
+        "Dónde",
+        "Cuándo"
+      ],
+      "hint": "¿Qué significa ...? betyr «Hva betyr ...?».",
+      "word": null,
+      "no": "Hva betyr dette ordet?",
+      "id": "grammar:a0Foundation:39"
+    },
+    {
+      "topicId": "a0Foundation",
+      "topicName": "A0 grunnmur",
+      "sentence": "¿___ tienes en la mochila?",
+      "answer": "Qué",
+      "options": [
+        "Qué",
+        "Quién",
+        "Cómo",
+        "Dónde"
+      ],
+      "hint": "Bruk qué når du spør hva noen har i sekken.",
+      "word": null,
+      "no": "Hva har du i sekken?",
+      "id": "grammar:a0Foundation:40"
     },
     {
       "topicId": "articles",
@@ -3690,7 +4202,7 @@
       "hint": "casa (hus) er feminin",
       "word": "casa",
       "no": "Huset er stort.",
-      "id": "grammar:articles:9"
+      "id": "grammar:articles:41"
     },
     {
       "topicId": "articles",
@@ -3706,7 +4218,7 @@
       "hint": "libro (bok) slutter på -o",
       "word": "libro",
       "no": "Boka er interessant.",
-      "id": "grammar:articles:10"
+      "id": "grammar:articles:42"
     },
     {
       "topicId": "articles",
@@ -3722,7 +4234,7 @@
       "hint": "hermano (bror) er maskulin",
       "word": "hermano",
       "no": "Jeg har en bror.",
-      "id": "grammar:articles:11"
+      "id": "grammar:articles:43"
     },
     {
       "topicId": "articles",
@@ -3738,7 +4250,7 @@
       "hint": "mesa (bord) slutter på -a",
       "word": "mesa",
       "no": "Bordet står på kjøkkenet.",
-      "id": "grammar:articles:12"
+      "id": "grammar:articles:44"
     },
     {
       "topicId": "articles",
@@ -3754,7 +4266,7 @@
       "hint": "perro (hund) er maskulin",
       "word": "perro",
       "no": "Jeg ser en hund i parken.",
-      "id": "grammar:articles:13"
+      "id": "grammar:articles:45"
     },
     {
       "topicId": "articles",
@@ -3770,7 +4282,7 @@
       "hint": "profesora (lærer) er feminin",
       "word": "profesora",
       "no": "Læreren er hyggelig.",
-      "id": "grammar:articles:14"
+      "id": "grammar:articles:46"
     },
     {
       "topicId": "articles",
@@ -3786,7 +4298,7 @@
       "hint": "chicos (gutter) er maskulin flertall",
       "word": "chicos",
       "no": "Guttene spiller fotball.",
-      "id": "grammar:articles:15"
+      "id": "grammar:articles:47"
     },
     {
       "topicId": "articles",
@@ -3802,7 +4314,7 @@
       "hint": "sillas (stoler) er feminin flertall",
       "word": "sillas",
       "no": "Stolene er røde.",
-      "id": "grammar:articles:16"
+      "id": "grammar:articles:48"
     },
     {
       "topicId": "articles",
@@ -3818,7 +4330,7 @@
       "hint": "bolígrafo (penn) er maskulin",
       "word": "bolígrafo",
       "no": "Jeg trenger en penn.",
-      "id": "grammar:articles:17"
+      "id": "grammar:articles:49"
     },
     {
       "topicId": "articles",
@@ -3834,7 +4346,7 @@
       "hint": "día (dag) er UNNTAK - maskulin!",
       "word": "día",
       "no": "Dagen er fin.",
-      "id": "grammar:articles:18"
+      "id": "grammar:articles:50"
     },
     {
       "topicId": "articles",
@@ -3850,7 +4362,7 @@
       "hint": "problema er UNNTAK - maskulin!",
       "word": "problema",
       "no": "Problemet er vanskelig.",
-      "id": "grammar:articles:19"
+      "id": "grammar:articles:51"
     },
     {
       "topicId": "articles",
@@ -3866,7 +4378,7 @@
       "hint": "mano (hånd) er UNNTAK - feminin!",
       "word": "mano",
       "no": "Hånden er kald.",
-      "id": "grammar:articles:20"
+      "id": "grammar:articles:52"
     },
     {
       "topicId": "articles",
@@ -3882,7 +4394,7 @@
       "hint": "ventana (vindu) slutter på -a",
       "word": "ventana",
       "no": "Vinduet er åpent.",
-      "id": "grammar:articles:21"
+      "id": "grammar:articles:53"
     },
     {
       "topicId": "articles",
@@ -3898,7 +4410,7 @@
       "hint": "padres (foreldre) er maskulin flertall",
       "word": "padres",
       "no": "Foreldrene mine er hjemme.",
-      "id": "grammar:articles:22"
+      "id": "grammar:articles:54"
     },
     {
       "topicId": "articles",
@@ -3914,7 +4426,7 @@
       "hint": "gata (katt, hunn) er feminin",
       "word": "gata",
       "no": "Jeg har en svart katt.",
-      "id": "grammar:articles:23"
+      "id": "grammar:articles:55"
     },
     {
       "topicId": "adjectives",
@@ -3930,7 +4442,7 @@
       "hint": "casa er feminin entall",
       "word": "bonito",
       "no": "Huset er veldig pent.",
-      "id": "grammar:adjectives:24"
+      "id": "grammar:adjectives:56"
     },
     {
       "topicId": "adjectives",
@@ -3946,7 +4458,7 @@
       "hint": "chicos er maskulin flertall",
       "word": "alto",
       "no": "Guttene er høye.",
-      "id": "grammar:adjectives:25"
+      "id": "grammar:adjectives:57"
     },
     {
       "topicId": "adjectives",
@@ -3962,7 +4474,7 @@
       "hint": "hermana er feminin entall",
       "word": "simpático",
       "no": "Søsteren min er veldig hyggelig.",
-      "id": "grammar:adjectives:26"
+      "id": "grammar:adjectives:58"
     },
     {
       "topicId": "adjectives",
@@ -3978,7 +4490,7 @@
       "hint": "flores er feminin flertall",
       "word": "rojo",
       "no": "Blomstene er røde.",
-      "id": "grammar:adjectives:27"
+      "id": "grammar:adjectives:59"
     },
     {
       "topicId": "adjectives",
@@ -3994,7 +4506,7 @@
       "hint": "-e adjektiv er like for begge kjønn",
       "word": "inteligente",
       "no": "Læreren er intelligent.",
-      "id": "grammar:adjectives:28"
+      "id": "grammar:adjectives:60"
     },
     {
       "topicId": "adjectives",
@@ -4010,7 +4522,7 @@
       "hint": "flertall av -e adjektiv får -es",
       "word": "inteligente",
       "no": "Jentene er veldig intelligente.",
-      "id": "grammar:adjectives:29"
+      "id": "grammar:adjectives:61"
     },
     {
       "topicId": "adjectives",
@@ -4026,7 +4538,7 @@
       "hint": "padre er maskulin entall",
       "word": "moreno",
       "no": "Faren min er mørkhåret.",
-      "id": "grammar:adjectives:30"
+      "id": "grammar:adjectives:62"
     },
     {
       "topicId": "adjectives",
@@ -4042,7 +4554,7 @@
       "hint": "grande er likt for begge kjønn",
       "word": "grande",
       "no": "Husene er store.",
-      "id": "grammar:adjectives:31"
+      "id": "grammar:adjectives:63"
     },
     {
       "topicId": "adjectives",
@@ -4058,7 +4570,7 @@
       "hint": "perro er maskulin entall",
       "word": "pequeño",
       "no": "Hunden er liten.",
-      "id": "grammar:adjectives:32"
+      "id": "grammar:adjectives:64"
     },
     {
       "topicId": "adjectives",
@@ -4074,7 +4586,7 @@
       "hint": "abuelas er feminin flertall",
       "word": "viejo",
       "no": "Bestemødrene mine er gamle.",
-      "id": "grammar:adjectives:33"
+      "id": "grammar:adjectives:65"
     },
     {
       "topicId": "adjectives",
@@ -4090,7 +4602,7 @@
       "hint": "comida er feminin entall",
       "word": "rico",
       "no": "Maten er god.",
-      "id": "grammar:adjectives:34"
+      "id": "grammar:adjectives:66"
     },
     {
       "topicId": "adjectives",
@@ -4106,7 +4618,23 @@
       "hint": "-e adjektiv i flertall",
       "word": "interesante",
       "no": "Bøkene er interessante.",
-      "id": "grammar:adjectives:35"
+      "id": "grammar:adjectives:67"
+    },
+    {
+      "topicId": "adjectives",
+      "topicName": "Adjektivsamsvar",
+      "sentence": "La película es muy ___",
+      "answer": "interesante",
+      "options": [
+        "interesante",
+        "interesanta",
+        "interesantes",
+        "interesanto"
+      ],
+      "hint": "-e adjektiv er like for hankjønn og hunkjønn i entall",
+      "word": "interesante",
+      "no": "Filmen er veldig interessant.",
+      "id": "grammar:adjectives:68"
     },
     {
       "topicId": "serEstar",
@@ -4122,7 +4650,7 @@
       "hint": "Nasjonalitet/opprinnelse = SER",
       "word": null,
       "no": "Jeg er fra Norge.",
-      "id": "grammar:serEstar:36"
+      "id": "grammar:serEstar:69"
     },
     {
       "topicId": "serEstar",
@@ -4138,7 +4666,7 @@
       "hint": "Lokasjon = ESTAR",
       "word": null,
       "no": "Moren min er på kjøkkenet.",
-      "id": "grammar:serEstar:37"
+      "id": "grammar:serEstar:70"
     },
     {
       "topicId": "serEstar",
@@ -4154,7 +4682,7 @@
       "hint": "Identitet = SER",
       "word": null,
       "no": "Vi er elever.",
-      "id": "grammar:serEstar:38"
+      "id": "grammar:serEstar:71"
     },
     {
       "topicId": "serEstar",
@@ -4170,7 +4698,7 @@
       "hint": "Tilstand nå = ESTAR",
       "word": null,
       "no": "I dag er jeg veldig sliten.",
-      "id": "grammar:serEstar:39"
+      "id": "grammar:serEstar:72"
     },
     {
       "topicId": "serEstar",
@@ -4186,7 +4714,7 @@
       "hint": "Yrke = SER",
       "word": null,
       "no": "Faren min er lærer.",
-      "id": "grammar:serEstar:40"
+      "id": "grammar:serEstar:73"
     },
     {
       "topicId": "serEstar",
@@ -4202,7 +4730,7 @@
       "hint": "Lokasjon = ESTAR",
       "word": null,
       "no": "Hvor er badet?",
-      "id": "grammar:serEstar:41"
+      "id": "grammar:serEstar:74"
     },
     {
       "topicId": "serEstar",
@@ -4218,7 +4746,7 @@
       "hint": "Beskrivelse = SER",
       "word": null,
       "no": "De er veldig hyggelige.",
-      "id": "grammar:serEstar:42"
+      "id": "grammar:serEstar:75"
     },
     {
       "topicId": "serEstar",
@@ -4234,7 +4762,7 @@
       "hint": "Tilstand = ESTAR",
       "word": null,
       "no": "Vinduet er åpent.",
-      "id": "grammar:serEstar:43"
+      "id": "grammar:serEstar:76"
     },
     {
       "topicId": "serEstar",
@@ -4250,7 +4778,7 @@
       "hint": "Dag/tid = SER",
       "word": null,
       "no": "I dag er det mandag.",
-      "id": "grammar:serEstar:44"
+      "id": "grammar:serEstar:77"
     },
     {
       "topicId": "serEstar",
@@ -4266,7 +4794,7 @@
       "hint": "Hvordan har du det (tilstand) = ESTAR",
       "word": null,
       "no": "Hvordan har du det?",
-      "id": "grammar:serEstar:45"
+      "id": "grammar:serEstar:78"
     },
     {
       "topicId": "serEstar",
@@ -4282,7 +4810,7 @@
       "hint": "Fysisk beskrivelse = SER",
       "word": null,
       "no": "Broren min er høy og mørkhåret.",
-      "id": "grammar:serEstar:46"
+      "id": "grammar:serEstar:79"
     },
     {
       "topicId": "serEstar",
@@ -4298,7 +4826,7 @@
       "hint": "Lokasjon = ESTAR",
       "word": null,
       "no": "Barna er i parken.",
-      "id": "grammar:serEstar:47"
+      "id": "grammar:serEstar:80"
     },
     {
       "topicId": "serEstar",
@@ -4314,7 +4842,7 @@
       "hint": "Når noe skjer = SER",
       "word": null,
       "no": "Festen er på lørdag.",
-      "id": "grammar:serEstar:48"
+      "id": "grammar:serEstar:81"
     },
     {
       "topicId": "serEstar",
@@ -4330,7 +4858,7 @@
       "hint": "Følelse nå = ESTAR",
       "word": null,
       "no": "I dag er jeg veldig glad.",
-      "id": "grammar:serEstar:49"
+      "id": "grammar:serEstar:82"
     },
     {
       "topicId": "serEstar",
@@ -4346,7 +4874,7 @@
       "hint": "Lokasjon = ESTAR",
       "word": null,
       "no": "Boka er på bordet.",
-      "id": "grammar:serEstar:50"
+      "id": "grammar:serEstar:83"
     },
     {
       "topicId": "serEstar",
@@ -4362,7 +4890,7 @@
       "hint": "Lokasjon = ESTAR",
       "word": null,
       "no": "Vennene mine er på skolen.",
-      "id": "grammar:serEstar:51"
+      "id": "grammar:serEstar:84"
     },
     {
       "topicId": "hayEstar",
@@ -4378,7 +4906,7 @@
       "hint": "un libro introduserer ei bok. Bruk hay for å si at boka finnes der.",
       "word": null,
       "no": "Det er en bok på bordet.",
-      "id": "grammar:hayEstar:52"
+      "id": "grammar:hayEstar:85"
     },
     {
       "topicId": "hayEstar",
@@ -4394,7 +4922,7 @@
       "hint": "El libro er ei bestemt bok. Bruk está for å si hvor den er.",
       "word": null,
       "no": "Boka er på bordet.",
-      "id": "grammar:hayEstar:53"
+      "id": "grammar:hayEstar:86"
     },
     {
       "topicId": "hayEstar",
@@ -4410,7 +4938,7 @@
       "hint": "dos ventanas forteller hvor mange vinduer som finnes. Bruk hay også når det finnes flere ting.",
       "word": null,
       "no": "Det er to vinduer i klasserommet.",
-      "id": "grammar:hayEstar:54"
+      "id": "grammar:hayEstar:87"
     },
     {
       "topicId": "hayEstar",
@@ -4426,7 +4954,7 @@
       "hint": "Las ventanas er bestemte vinduer i flertall. Bruk están for å si hvor de er.",
       "word": null,
       "no": "Vinduene er ved siden av døra.",
-      "id": "grammar:hayEstar:55"
+      "id": "grammar:hayEstar:88"
     },
     {
       "topicId": "hayEstar",
@@ -4442,7 +4970,7 @@
       "hint": "una farmacia spør etter et apotek som finnes i nærheten. Bruk hay.",
       "word": null,
       "no": "Finnes det et apotek i nærheten?",
-      "id": "grammar:hayEstar:56"
+      "id": "grammar:hayEstar:89"
     },
     {
       "topicId": "hayEstar",
@@ -4458,7 +4986,7 @@
       "hint": "La farmacia er et bestemt apotek i entall. Bruk está for å si hvor det er.",
       "word": null,
       "no": "Apoteket er ved siden av banken.",
-      "id": "grammar:hayEstar:57"
+      "id": "grammar:hayEstar:90"
     },
     {
       "topicId": "hayEstar",
@@ -4474,7 +5002,7 @@
       "hint": "tres libros introduserer tre bøker. Bruk hay for å si hva som finnes i sekken.",
       "word": null,
       "no": "I sekken min er det tre bøker.",
-      "id": "grammar:hayEstar:58"
+      "id": "grammar:hayEstar:91"
     },
     {
       "topicId": "hayEstar",
@@ -4490,7 +5018,7 @@
       "hint": "Los libros viser til bestemte bøker i flertall. Bruk están om plasseringen.",
       "word": null,
       "no": "Bøkene er i sekken min.",
-      "id": "grammar:hayEstar:59"
+      "id": "grammar:hayEstar:92"
     },
     {
       "topicId": "hayEstar",
@@ -4506,7 +5034,7 @@
       "hint": "una silla introduserer en stol som finnes her. Bruk hay.",
       "word": null,
       "no": "Det er en stol her.",
-      "id": "grammar:hayEstar:60"
+      "id": "grammar:hayEstar:93"
     },
     {
       "topicId": "hayEstar",
@@ -4522,7 +5050,7 @@
       "hint": "La silla er en bestemt stol i entall. Bruk está om plasseringen.",
       "word": null,
       "no": "Stolen er ved siden av bordet.",
-      "id": "grammar:hayEstar:61"
+      "id": "grammar:hayEstar:94"
     },
     {
       "topicId": "gustar",
@@ -4538,7 +5066,7 @@
       "hint": "Jeg liker...",
       "word": null,
       "no": "Jeg liker sjokolade.",
-      "id": "grammar:gustar:62"
+      "id": "grammar:gustar:95"
     },
     {
       "topicId": "gustar",
@@ -4554,7 +5082,7 @@
       "hint": "videojuegos er flertall",
       "word": null,
       "no": "Jeg liker videospill.",
-      "id": "grammar:gustar:63"
+      "id": "grammar:gustar:96"
     },
     {
       "topicId": "gustar",
@@ -4570,7 +5098,7 @@
       "hint": "Liker du...?",
       "word": null,
       "no": "Liker du å danse?",
-      "id": "grammar:gustar:64"
+      "id": "grammar:gustar:97"
     },
     {
       "topicId": "gustar",
@@ -4586,7 +5114,7 @@
       "hint": "Han liker...",
       "word": null,
       "no": "Broren min liker fotball.",
-      "id": "grammar:gustar:65"
+      "id": "grammar:gustar:98"
     },
     {
       "topicId": "gustar",
@@ -4602,7 +5130,7 @@
       "hint": "Infinitiv = gusta (entall)",
       "word": null,
       "no": "Jeg liker å høre på musikk.",
-      "id": "grammar:gustar:66"
+      "id": "grammar:gustar:99"
     },
     {
       "topicId": "gustar",
@@ -4618,7 +5146,7 @@
       "hint": "Vi liker...",
       "word": null,
       "no": "Vi liker skrekkfilmer.",
-      "id": "grammar:gustar:67"
+      "id": "grammar:gustar:100"
     },
     {
       "topicId": "gustar",
@@ -4634,7 +5162,7 @@
       "hint": "Hun liker...",
       "word": null,
       "no": "María liker katter.",
-      "id": "grammar:gustar:68"
+      "id": "grammar:gustar:101"
     },
     {
       "topicId": "gustar",
@@ -4650,7 +5178,7 @@
       "hint": "pizza er entall",
       "word": null,
       "no": "Liker du pizza?",
-      "id": "grammar:gustar:69"
+      "id": "grammar:gustar:102"
     },
     {
       "topicId": "gustar",
@@ -4666,7 +5194,7 @@
       "hint": "De liker... (flertall)",
       "word": null,
       "no": "Foreldrene mine liker å reise.",
-      "id": "grammar:gustar:70"
+      "id": "grammar:gustar:103"
     },
     {
       "topicId": "gustar",
@@ -4682,7 +5210,7 @@
       "hint": "verduras er flertall",
       "word": null,
       "no": "Jeg liker ikke grønnsaker.",
-      "id": "grammar:gustar:71"
+      "id": "grammar:gustar:104"
     },
     {
       "topicId": "gustar",
@@ -4698,7 +5226,7 @@
       "hint": "Jeg liker...",
       "word": null,
       "no": "Jeg liker denne sangen veldig godt.",
-      "id": "grammar:gustar:72"
+      "id": "grammar:gustar:105"
     },
     {
       "topicId": "gustar",
@@ -4714,7 +5242,7 @@
       "hint": "Hun liker...",
       "word": null,
       "no": "Hun liker hunder.",
-      "id": "grammar:gustar:73"
+      "id": "grammar:gustar:106"
     },
     {
       "topicId": "reflexive",
@@ -4730,7 +5258,7 @@
       "hint": "Jeg står opp...",
       "word": null,
       "no": "Jeg står opp klokken sju.",
-      "id": "grammar:reflexive:74"
+      "id": "grammar:reflexive:107"
     },
     {
       "topicId": "reflexive",
@@ -4746,7 +5274,7 @@
       "hint": "Hun dusjer...",
       "word": null,
       "no": "Søsteren min dusjer om morgenen.",
-      "id": "grammar:reflexive:75"
+      "id": "grammar:reflexive:108"
     },
     {
       "topicId": "reflexive",
@@ -4762,7 +5290,7 @@
       "hint": "Hva heter du?",
       "word": null,
       "no": "Hva heter du?",
-      "id": "grammar:reflexive:76"
+      "id": "grammar:reflexive:109"
     },
     {
       "topicId": "reflexive",
@@ -4778,7 +5306,7 @@
       "hint": "Vi legger oss...",
       "word": null,
       "no": "Vi legger oss klokken ti.",
-      "id": "grammar:reflexive:77"
+      "id": "grammar:reflexive:110"
     },
     {
       "topicId": "reflexive",
@@ -4794,7 +5322,7 @@
       "hint": "Jeg kler på meg...",
       "word": null,
       "no": "Jeg kler på meg raskt.",
-      "id": "grammar:reflexive:78"
+      "id": "grammar:reflexive:111"
     },
     {
       "topicId": "reflexive",
@@ -4810,7 +5338,7 @@
       "hint": "Hun sminker seg...",
       "word": null,
       "no": "Hun sminker seg hver dag.",
-      "id": "grammar:reflexive:79"
+      "id": "grammar:reflexive:112"
     },
     {
       "topicId": "reflexive",
@@ -4826,7 +5354,7 @@
       "hint": "Når våkner du?",
       "word": null,
       "no": "Når våkner du?",
-      "id": "grammar:reflexive:80"
+      "id": "grammar:reflexive:113"
     },
     {
       "topicId": "reflexive",
@@ -4842,7 +5370,7 @@
       "hint": "De vasker seg...",
       "word": null,
       "no": "Barna vasker hendene sine.",
-      "id": "grammar:reflexive:81"
+      "id": "grammar:reflexive:114"
     },
     {
       "topicId": "reflexive",
@@ -4858,7 +5386,7 @@
       "hint": "Jeg grer meg...",
       "word": null,
       "no": "Jeg grer meg før jeg drar.",
-      "id": "grammar:reflexive:82"
+      "id": "grammar:reflexive:115"
     },
     {
       "topicId": "reflexive",
@@ -4874,7 +5402,7 @@
       "hint": "Han barberer seg...",
       "word": null,
       "no": "Faren min barberer seg hver morgen.",
-      "id": "grammar:reflexive:83"
+      "id": "grammar:reflexive:116"
     },
     {
       "topicId": "reflexive",
@@ -4890,7 +5418,7 @@
       "hint": "Pusser du tennene?",
       "word": null,
       "no": "Pusser du tennene?",
-      "id": "grammar:reflexive:84"
+      "id": "grammar:reflexive:117"
     },
     {
       "topicId": "reflexive",
@@ -4906,7 +5434,7 @@
       "hint": "De våkner...",
       "word": null,
       "no": "De våkner tidlig.",
-      "id": "grammar:reflexive:85"
+      "id": "grammar:reflexive:118"
     },
     {
       "topicId": "demonstratives",
@@ -4922,7 +5450,7 @@
       "hint": "libro er maskulin entall, nær",
       "word": null,
       "no": "Denne boka er veldig interessant.",
-      "id": "grammar:demonstratives:86"
+      "id": "grammar:demonstratives:119"
     },
     {
       "topicId": "demonstratives",
@@ -4938,7 +5466,7 @@
       "hint": "casa er feminin entall, nær",
       "word": null,
       "no": "Dette huset er stort og står her nær meg.",
-      "id": "grammar:demonstratives:87"
+      "id": "grammar:demonstratives:120"
     },
     {
       "topicId": "demonstratives",
@@ -4954,7 +5482,7 @@
       "hint": "chicos er maskulin flertall, nær",
       "word": null,
       "no": "Disse guttene er vennene mine.",
-      "id": "grammar:demonstratives:88"
+      "id": "grammar:demonstratives:121"
     },
     {
       "topicId": "demonstratives",
@@ -4970,7 +5498,7 @@
       "hint": "flores er feminin flertall, nær",
       "word": null,
       "no": "Disse blomstene er pene.",
-      "id": "grammar:demonstratives:89"
+      "id": "grammar:demonstratives:122"
     },
     {
       "topicId": "demonstratives",
@@ -4986,7 +5514,7 @@
       "hint": "nøytralt, lenger unna",
       "word": null,
       "no": "Hva er det der borte?",
-      "id": "grammar:demonstratives:90"
+      "id": "grammar:demonstratives:123"
     },
     {
       "topicId": "demonstratives",
@@ -5002,7 +5530,7 @@
       "hint": "coche er maskulin, lenger unna",
       "word": null,
       "no": "Den bilen der borte er faren min sin.",
-      "id": "grammar:demonstratives:91"
+      "id": "grammar:demonstratives:124"
     },
     {
       "topicId": "demonstratives",
@@ -5018,7 +5546,7 @@
       "hint": "mesa er feminin, lenger unna",
       "word": null,
       "no": "Det bordet der borte er opptatt.",
-      "id": "grammar:demonstratives:92"
+      "id": "grammar:demonstratives:125"
     },
     {
       "topicId": "demonstratives",
@@ -5034,7 +5562,7 @@
       "hint": "zapatos er maskulin flertall, nær",
       "word": null,
       "no": "Disse skoene er nye.",
-      "id": "grammar:demonstratives:93"
+      "id": "grammar:demonstratives:126"
     },
     {
       "topicId": "demonstratives",
@@ -5050,7 +5578,7 @@
       "hint": "películas er feminin flertall, lenger unna",
       "word": null,
       "no": "De filmene der borte er kjedelige.",
-      "id": "grammar:demonstratives:94"
+      "id": "grammar:demonstratives:127"
     },
     {
       "topicId": "demonstratives",
@@ -5066,7 +5594,7 @@
       "hint": "canción er feminin, nær",
       "word": null,
       "no": "Jeg liker denne sangen her.",
-      "id": "grammar:demonstratives:95"
+      "id": "grammar:demonstratives:128"
     },
     {
       "topicId": "demonstratives",
@@ -5082,7 +5610,7 @@
       "hint": "perros er maskulin flertall, lenger unna",
       "word": null,
       "no": "De hundene der borte er store.",
-      "id": "grammar:demonstratives:96"
+      "id": "grammar:demonstratives:129"
     },
     {
       "topicId": "demonstratives",
@@ -5098,7 +5626,7 @@
       "hint": "chica er feminin, nær",
       "word": null,
       "no": "Hvem er denne jenta her?",
-      "id": "grammar:demonstratives:97"
+      "id": "grammar:demonstratives:130"
     },
     {
       "topicId": "possessives",
@@ -5114,7 +5642,7 @@
       "hint": "hermano er entall - min",
       "word": null,
       "no": "Broren min heter Pedro.",
-      "id": "grammar:possessives:98"
+      "id": "grammar:possessives:131"
     },
     {
       "topicId": "possessives",
@@ -5130,7 +5658,7 @@
       "hint": "padres er flertall - mine",
       "word": null,
       "no": "Foreldrene mine er hjemme.",
-      "id": "grammar:possessives:99"
+      "id": "grammar:possessives:132"
     },
     {
       "topicId": "possessives",
@@ -5146,7 +5674,7 @@
       "hint": "libro er entall - din",
       "word": null,
       "no": "Hvor er boka di?",
-      "id": "grammar:possessives:100"
+      "id": "grammar:possessives:133"
     },
     {
       "topicId": "possessives",
@@ -5162,7 +5690,7 @@
       "hint": "familia er entall - hennes",
       "word": null,
       "no": "Hun bor med familien sin.",
-      "id": "grammar:possessives:101"
+      "id": "grammar:possessives:134"
     },
     {
       "topicId": "possessives",
@@ -5178,7 +5706,7 @@
       "hint": "abuelos er flertall - mine",
       "word": null,
       "no": "Besteforeldrene mine er veldig hyggelige.",
-      "id": "grammar:possessives:102"
+      "id": "grammar:possessives:135"
     },
     {
       "topicId": "possessives",
@@ -5194,7 +5722,7 @@
       "hint": "hermanas er flertall - dine",
       "word": null,
       "no": "Hva heter søstrene dine?",
-      "id": "grammar:possessives:103"
+      "id": "grammar:possessives:136"
     },
     {
       "topicId": "possessives",
@@ -5210,7 +5738,7 @@
       "hint": "madre er feminin - vår",
       "word": null,
       "no": "Moren vår er lærer.",
-      "id": "grammar:possessives:104"
+      "id": "grammar:possessives:137"
     },
     {
       "topicId": "possessives",
@@ -5226,7 +5754,7 @@
       "hint": "padre er maskulin - vår",
       "word": null,
       "no": "Faren vår jobber i en bank.",
-      "id": "grammar:possessives:105"
+      "id": "grammar:possessives:138"
     },
     {
       "topicId": "possessives",
@@ -5242,7 +5770,7 @@
       "hint": "dinero er entall - deres",
       "word": null,
       "no": "De vil ha pengene sine.",
-      "id": "grammar:possessives:106"
+      "id": "grammar:possessives:139"
     },
     {
       "topicId": "possessives",
@@ -5258,7 +5786,7 @@
       "hint": "amigos er flertall - hennes/hans",
       "word": null,
       "no": "Vennene hennes kommer i morgen.",
-      "id": "grammar:possessives:107"
+      "id": "grammar:possessives:140"
     },
     {
       "topicId": "possessives",
@@ -5274,7 +5802,7 @@
       "hint": "casa er entall - din",
       "word": null,
       "no": "Jeg liker huset ditt.",
-      "id": "grammar:possessives:108"
+      "id": "grammar:possessives:141"
     },
     {
       "topicId": "possessives",
@@ -5290,7 +5818,7 @@
       "hint": "hijos er maskulin flertall - våre",
       "word": null,
       "no": "Barna våre er veldig intelligente.",
-      "id": "grammar:possessives:109"
+      "id": "grammar:possessives:142"
     },
     {
       "topicId": "possessives",
@@ -5306,7 +5834,7 @@
       "hint": "llaves er flertall - mine",
       "word": null,
       "no": "Hvor er nøklene mine?",
-      "id": "grammar:possessives:110"
+      "id": "grammar:possessives:143"
     },
     {
       "topicId": "possessives",
@@ -5322,7 +5850,7 @@
       "hint": "profesora er feminin - vår",
       "word": null,
       "no": "Læreren vår er veldig flink.",
-      "id": "grammar:possessives:111"
+      "id": "grammar:possessives:144"
     },
     {
       "topicId": "patterns",
@@ -5338,7 +5866,7 @@
       "hint": "På spansk uttrykker vi sult med tengo hambre.",
       "word": null,
       "no": "Jeg er sulten.",
-      "id": "grammar:patterns:112"
+      "id": "grammar:patterns:145"
     },
     {
       "topicId": "patterns",
@@ -5354,7 +5882,7 @@
       "hint": "På spansk sier vi tengo sed når vi er tørste.",
       "word": null,
       "no": "Jeg er tørst.",
-      "id": "grammar:patterns:113"
+      "id": "grammar:patterns:146"
     },
     {
       "topicId": "patterns",
@@ -5370,7 +5898,7 @@
       "hint": "Når du fryser, sier du tengo frío.",
       "word": null,
       "no": "Jeg fryser.",
-      "id": "grammar:patterns:114"
+      "id": "grammar:patterns:147"
     },
     {
       "topicId": "patterns",
@@ -5386,7 +5914,7 @@
       "hint": "Alder uttrykkes med tener på spansk.",
       "word": null,
       "no": "Jeg er femten år.",
-      "id": "grammar:patterns:115"
+      "id": "grammar:patterns:148"
     },
     {
       "topicId": "patterns",
@@ -5402,7 +5930,7 @@
       "hint": "Tener betyr å ha eller eie.",
       "word": null,
       "no": "Jeg har en svart hund.",
-      "id": "grammar:patterns:116"
+      "id": "grammar:patterns:149"
     },
     {
       "topicId": "patterns",
@@ -5418,7 +5946,7 @@
       "hint": "Tengo que betyr «jeg må».",
       "word": null,
       "no": "Jeg må øve til prøven.",
-      "id": "grammar:patterns:117"
+      "id": "grammar:patterns:150"
     },
     {
       "topicId": "patterns",
@@ -5434,7 +5962,7 @@
       "hint": "Quiero + infinitiv uttrykker et ønske om å gjøre noe.",
       "word": null,
       "no": "Jeg vil spise et eple.",
-      "id": "grammar:patterns:118"
+      "id": "grammar:patterns:151"
     },
     {
       "topicId": "patterns",
@@ -5450,7 +5978,7 @@
       "hint": "Quiero + substantiv betyr «jeg vil ha».",
       "word": null,
       "no": "Jeg vil ha vann.",
-      "id": "grammar:patterns:119"
+      "id": "grammar:patterns:152"
     },
     {
       "topicId": "patterns",
@@ -5466,7 +5994,7 @@
       "hint": "Quiero betyr «jeg vil».",
       "word": null,
       "no": "Jeg vil hvile litt.",
-      "id": "grammar:patterns:120"
+      "id": "grammar:patterns:153"
     },
     {
       "topicId": "patterns",
@@ -5482,7 +6010,7 @@
       "hint": "Quiero hablar betyr «jeg vil snakke».",
       "word": null,
       "no": "Jeg vil snakke spansk.",
-      "id": "grammar:patterns:121"
+      "id": "grammar:patterns:154"
     },
     {
       "topicId": "patterns",
@@ -5498,7 +6026,7 @@
       "hint": "Ir a casa betyr å dra hjem.",
       "word": null,
       "no": "Jeg vil dra hjem.",
-      "id": "grammar:patterns:122"
+      "id": "grammar:patterns:155"
     },
     {
       "topicId": "patterns",
@@ -5514,7 +6042,7 @@
       "hint": "Aprender betyr å lære.",
       "word": null,
       "no": "Jeg vil lære mer.",
-      "id": "grammar:patterns:123"
+      "id": "grammar:patterns:156"
     },
     {
       "topicId": "patterns",
@@ -5530,7 +6058,7 @@
       "hint": "Me gusta + infinitiv betyr «jeg liker å».",
       "word": null,
       "no": "Jeg liker å danse.",
-      "id": "grammar:patterns:124"
+      "id": "grammar:patterns:157"
     },
     {
       "topicId": "patterns",
@@ -5546,7 +6074,7 @@
       "hint": "Substantiv etter gustar har bestemt artikkel.",
       "word": null,
       "no": "Jeg liker musikk.",
-      "id": "grammar:patterns:125"
+      "id": "grammar:patterns:158"
     },
     {
       "topicId": "patterns",
@@ -5562,7 +6090,7 @@
       "hint": "Me gusta leer betyr «jeg liker å lese».",
       "word": null,
       "no": "Jeg liker å lese bøker.",
-      "id": "grammar:patterns:126"
+      "id": "grammar:patterns:159"
     },
     {
       "topicId": "patterns",
@@ -5578,7 +6106,7 @@
       "hint": "Bruk infinitiv når du liker å gjøre en handling.",
       "word": null,
       "no": "Jeg liker å spise pizza.",
-      "id": "grammar:patterns:127"
+      "id": "grammar:patterns:160"
     },
     {
       "topicId": "patterns",
@@ -5594,7 +6122,7 @@
       "hint": "Viajar betyr å reise.",
       "word": null,
       "no": "Jeg liker å reise om sommeren.",
-      "id": "grammar:patterns:128"
+      "id": "grammar:patterns:161"
     },
     {
       "topicId": "patterns",
@@ -5610,7 +6138,7 @@
       "hint": "Nadar betyr å svømme.",
       "word": null,
       "no": "Jeg liker å svømme i havet.",
-      "id": "grammar:patterns:129"
+      "id": "grammar:patterns:162"
     },
     {
       "topicId": "patterns",
@@ -5626,7 +6154,7 @@
       "hint": "Voy a + infinitiv uttrykker nær framtid (jeg skal).",
       "word": null,
       "no": "Jeg skal sove nå.",
-      "id": "grammar:patterns:130"
+      "id": "grammar:patterns:163"
     },
     {
       "topicId": "patterns",
@@ -5642,7 +6170,7 @@
       "hint": "Etter voy a bruker du infinitiv.",
       "word": null,
       "no": "Jeg skal studere.",
-      "id": "grammar:patterns:131"
+      "id": "grammar:patterns:164"
     },
     {
       "topicId": "patterns",
@@ -5658,7 +6186,7 @@
       "hint": "Voy a jugar betyr «jeg skal spille».",
       "word": null,
       "no": "Jeg skal spille fotball i ettermiddag.",
-      "id": "grammar:patterns:132"
+      "id": "grammar:patterns:165"
     },
     {
       "topicId": "patterns",
@@ -5674,7 +6202,7 @@
       "hint": "Ver una película betyr å se en film.",
       "word": null,
       "no": "Jeg skal se en film i kveld.",
-      "id": "grammar:patterns:133"
+      "id": "grammar:patterns:166"
     },
     {
       "topicId": "patterns",
@@ -5690,7 +6218,7 @@
       "hint": "Voy a + infinitiv betyr at du skal gjøre noe.",
       "word": null,
       "no": "Jeg skal snakke med Ana.",
-      "id": "grammar:patterns:134"
+      "id": "grammar:patterns:167"
     },
     {
       "topicId": "patterns",
@@ -5706,7 +6234,7 @@
       "hint": "Salir betyr å gå ut.",
       "word": null,
       "no": "Jeg skal gå ut med venner.",
-      "id": "grammar:patterns:135"
+      "id": "grammar:patterns:168"
     }
   ],
   "verbs": [

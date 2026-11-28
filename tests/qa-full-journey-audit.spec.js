@@ -306,6 +306,7 @@ test('QA: full student journey audit', async ({ page }) => {
     }));
     // Full eksport fra Lekse-fanen
     await page.locator('#navHomework').click();
+    await page.locator('#progressBackupDisclosure > summary').click();
     const dlFull = page.waitForEvent('download');
     await page.getByRole('button', { name: /Last ned fremgang/ }).click();
     const fullFile = await dlFull;
